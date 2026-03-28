@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/seo/StructuredData";
 import { Analytics } from "@vercel/analytics/next";
+const IS_VERCEL = process.env.VERCEL === '1';
 import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
 
@@ -137,7 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {children}
-        <Analytics />
+        {IS_VERCEL && <Analytics />}
         <CookieConsent />
       </body>
     </html>

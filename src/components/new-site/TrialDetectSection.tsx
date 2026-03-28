@@ -10,6 +10,7 @@ declare global {
       render: (container: string | HTMLElement, params: Record<string, unknown>) => string;
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
+      execute: (widgetId: string) => void;
     };
     _turnstileWidgetId?: string;
   }
@@ -78,16 +79,17 @@ export default function TrialDetectSection() {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  // Ref to avoid stale closures inside Turnstile callback
+  const imageRef = useRef<File | null>(null);
 
   const renderTurnstile = useCallback(() => {
     if (!window.turnstile || !turnstileContainerRef.current) return;
-    if (window._turnstileWidgetId) {
-      window.turnstile.remove(window._turnstileWidgetId);
-      window._turnstileWidgetId = undefined;
-    }
+    // Only render once — subsequent scans use reset() + execute()
+    if (window._turnstileWidgetId) return;
     window._turnstileWidgetId = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: "0x4AAAAAACxT9cdgoqC5n44u",
       size: "invisible",
+      execution: "execute", // don't auto-execute on render
       callback: (token: string) => submitWithToken(token),
       "error-callback": () => {
         setState("error");
@@ -101,13 +103,14 @@ export default function TrialDetectSection() {
   }, [renderTurnstile]);
 
   const submitWithToken = async (token: string) => {
-    if (!image) return;
+    const currentImage = imageRef.current;
+    if (!currentImage) return;
     setState("loading");
     setResult(null);
     setErrorMsg("");
 
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", currentImage);
     formData.append("turnstileToken", token);
     formData.append("fingerprintId", getOrCreateSessionId());
 
@@ -141,7 +144,7 @@ export default function TrialDetectSection() {
       setState("error");
       setErrorMsg("Network error. Please check your connection and try again.");
     } finally {
-      // Reset Turnstile so user can scan again
+      // Reset Turnstile so the widget is ready for the next execute()
       if (window.turnstile && window._turnstileWidgetId) {
         window.turnstile.reset(window._turnstileWidgetId);
       }
@@ -150,6 +153,7 @@ export default function TrialDetectSection() {
 
   const handleFile = (file: File) => {
     if (!file.type.startsWith("image/")) return;
+    imageRef.current = file;
     setImage(file);
     setPreview(URL.createObjectURL(file));
     setState("idle");
@@ -165,28 +169,33 @@ export default function TrialDetectSection() {
   };
 
   const handleScan = () => {
-    if (!image || state === "loading") return;
-    if (window.turnstile && window._turnstileWidgetId) {
-      window.turnstile.reset(window._turnstileWidgetId);
-    } else {
+    if (!imageRef.current || state === "loading") return;
+    if (!window.turnstile) {
+      setState("error");
+      setErrorMsg("Bot protection not loaded yet. Please wait a moment and try again.");
+      return;
+    }
+    if (!window._turnstileWidgetId) {
       renderTurnstile();
+      // Retry after render
+      setTimeout(() => {
+        if (window.turnstile && window._turnstileWidgetId) {
+          window.turnstile.execute(window._turnstileWidgetId);
+        }
+      }, 300);
+      return;
     }
-    // Turnstile will call submitWithToken on success
-    // For invisible, we need to execute it
-    if (window.turnstile && window._turnstileWidgetId) {
-      // execute() triggers the invisible challenge
-      (window.turnstile as unknown as Record<string, (id: string) => void>).execute?.(window._turnstileWidgetId);
-    }
+    window.turnstile.execute(window._turnstileWidgetId);
   };
 
   const reset = () => {
     if (preview) URL.revokeObjectURL(preview);
+    imageRef.current = null;
     setImage(null);
     setPreview(null);
     setState("idle");
     setResult(null);
     setErrorMsg("");
-    renderTurnstile();
   };
 
   const faceswapFake = result?.faceswap.verdict === "fake";
