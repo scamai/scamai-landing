@@ -8,6 +8,7 @@ import { BentoV1_3, BentoV1_5, BentoV1_26, BentoV1_28 } from "@/components/bento
 import { Suspense } from "react";
 import { trackCTA, trackOutbound } from "@/lib/analytics";
 import DeveloperSection from "./DeveloperSection";
+import TrialDetectSection from "./TrialDetectSection";
 
 // Skeleton loader for bento visual components
 function BentoSkeleton() {
@@ -615,6 +616,11 @@ export default function NewLanding() {
 
       {/* Session7: FAQ */}
       <FAQSection />
+
+      <div className="section-divider" />
+
+      {/* Trial: Free AI Detection */}
+      <TrialDetectSection />
 
     </main>
   );
