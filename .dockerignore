@@ -1,0 +1,13 @@
+.git
+.gitignore
+.next
+node_modules
+.env*.local
+README.md
+*.md
+.agents
+.claude
+.mcp
+.trae
+skills
+scripts
