@@ -19,8 +19,8 @@ declare global {
 type DetectResult = {
   success: boolean;
   scansRemaining: number;
-  faceswap: { verdict: "fake" | "real"; confidence: number; faceCount: number };
-  aiGenerated: { verdict: "ai_generated" | "likely_real"; confidence: number };
+  faceswap: { verdict: string; confidence: number; faceCount: number };
+  aiGenerated: { verdict: string; confidence: number };
 };
 
 type UIState = "idle" | "loading" | "done" | "error";
@@ -198,8 +198,12 @@ export default function TrialDetectSection() {
     setErrorMsg("");
   };
 
+  // Confidence comes as 0-1 from backend, convert to percentage
+  const faceswapPct = Math.round((result?.faceswap.confidence ?? 0) * 100);
+  const aiGeneratedPct = Math.round((result?.aiGenerated.confidence ?? 0) * 100);
   const faceswapFake = result?.faceswap.verdict === "fake";
-  const aiGenerated = result?.aiGenerated.verdict === "ai_generated";
+  const aiGenerated = result?.aiGenerated.verdict === "likely_ai";
+  const aiUnavailable = result?.aiGenerated.verdict === "unavailable";
 
   return (
     <>
@@ -348,11 +352,11 @@ export default function TrialDetectSection() {
                           </div>
                         </div>
                         <span className={`text-xl font-bold ${faceswapFake ? "text-red-400" : "text-green-400"}`}>
-                          {result.faceswap.confidence.toFixed(0)}%
+                          {faceswapPct}%
                         </span>
                       </div>
                       <ConfidenceBar
-                        confidence={result.faceswap.confidence}
+                        confidence={faceswapPct}
                         color={faceswapFake ? "#f87171" : "#4ade80"}
                       />
                       {result.faceswap.faceCount > 0 && (
@@ -362,24 +366,36 @@ export default function TrialDetectSection() {
 
                     {/* AI-generated card */}
                     <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                      <div className="flex items-center justify-between mb-3">
+                      {aiUnavailable ? (
                         <div className="flex items-center gap-2">
-                          <span className="text-lg">{aiGenerated ? "🤖" : "✅"}</span>
+                          <span className="text-lg">⚠️</span>
                           <div>
                             <p className="text-xs text-gray-400 uppercase tracking-wide font-medium">AI-Generated</p>
-                            <p className={`text-sm font-semibold ${aiGenerated ? "text-orange-400" : "text-green-400"}`}>
-                              {aiGenerated ? "Likely AI-Generated" : "Likely Real"}
-                            </p>
+                            <p className="text-sm font-semibold text-gray-500">Unavailable</p>
                           </div>
                         </div>
-                        <span className={`text-xl font-bold ${aiGenerated ? "text-orange-400" : "text-green-400"}`}>
-                          {result.aiGenerated.confidence.toFixed(0)}%
-                        </span>
-                      </div>
-                      <ConfidenceBar
-                        confidence={result.aiGenerated.confidence}
-                        color={aiGenerated ? "#fb923c" : "#4ade80"}
-                      />
+                      ) : (
+                        <>
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                              <span className="text-lg">{aiGenerated ? "🤖" : "✅"}</span>
+                              <div>
+                                <p className="text-xs text-gray-400 uppercase tracking-wide font-medium">AI-Generated</p>
+                                <p className={`text-sm font-semibold ${aiGenerated ? "text-orange-400" : "text-green-400"}`}>
+                                  {aiGenerated ? "Likely AI-Generated" : "Likely Real"}
+                                </p>
+                              </div>
+                            </div>
+                            <span className={`text-xl font-bold ${aiGenerated ? "text-orange-400" : "text-green-400"}`}>
+                              {aiGeneratedPct}%
+                            </span>
+                          </div>
+                          <ConfidenceBar
+                            confidence={aiGeneratedPct}
+                            color={aiGenerated ? "#fb923c" : "#4ade80"}
+                          />
+                        </>
+                      )}
                     </div>
 
                     <div className="flex gap-3 pt-1">
