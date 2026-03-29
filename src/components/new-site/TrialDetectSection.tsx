@@ -145,7 +145,10 @@ export default function TrialDetectSection() {
       });
 
       if (res.status === 429) {
-        window.open("https://dev.scam.ai/auth/signup", "_blank", "noopener,noreferrer");
+        if (!showGateRef.current) {
+          setShowGate(true);
+          showGateRef.current = true;
+        }
         setState("idle");
         return;
       }
@@ -212,10 +215,12 @@ export default function TrialDetectSection() {
     window.turnstile.execute(window._turnstileWidgetId);
   };
 
+  const showGateRef = useRef(false);
+
   const handleScan = () => {
     if (getScanCount() >= 2 && !isRegistered()) {
       setShowGate(true);
-      return;
+      showGateRef.current = true;
     }
     executeScan();
   };
@@ -223,7 +228,7 @@ export default function TrialDetectSection() {
   const proceedAfterRegistration = () => {
     markRegistered();
     setShowGate(false);
-    executeScan();
+    showGateRef.current = false;
   };
 
   const reset = () => {
@@ -365,8 +370,25 @@ export default function TrialDetectSection() {
                 </div>
               )}
 
+              {/* Loading behind gate */}
+              {showGate && state === "loading" && preview && (
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden">
+                  <div className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={preview} alt="Uploaded image" className="w-full max-h-72 object-contain bg-black blur-sm opacity-60" />
+                  </div>
+                  <div className="p-6 text-center space-y-3">
+                    <svg className="h-8 w-8 animate-spin mx-auto text-[#245FFF]" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                    <p className="text-sm text-gray-400">Analyzing your image…</p>
+                  </div>
+                </div>
+              )}
+
               {/* Registration gate */}
-              {showGate && preview && (
+              {showGate && state !== "loading" && preview && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -417,7 +439,7 @@ export default function TrialDetectSection() {
               )}
 
               {/* Results */}
-              {state === "done" && result && (
+              {!showGate && state === "done" && result && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
