@@ -145,8 +145,8 @@ export default function TrialDetectSection() {
       });
 
       if (res.status === 429) {
-        setState("error");
-        setErrorMsg("You've used all 3 free scans for today. Come back tomorrow!");
+        window.open("https://dev.scam.ai/auth/signup", "_blank", "noopener,noreferrer");
+        setState("idle");
         return;
       }
       if (res.status === 403) {
