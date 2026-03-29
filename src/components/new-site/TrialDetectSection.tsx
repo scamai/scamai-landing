@@ -36,6 +36,29 @@ function getOrCreateSessionId(): string {
   return id;
 }
 
+const SCAN_COUNT_KEY = "scamai_trial_scans";
+const REGISTERED_KEY = "scamai_registered";
+
+function getScanCount(): number {
+  if (typeof window === "undefined") return 0;
+  return parseInt(localStorage.getItem(SCAN_COUNT_KEY) || "0", 10);
+}
+
+function incrementScanCount(): number {
+  const count = getScanCount() + 1;
+  localStorage.setItem(SCAN_COUNT_KEY, String(count));
+  return count;
+}
+
+function isRegistered(): boolean {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem(REGISTERED_KEY) === "true";
+}
+
+function markRegistered(): void {
+  localStorage.setItem(REGISTERED_KEY, "true");
+}
+
 function AnimatedSection({ children, className = "", delay = 0 }: {
   children: React.ReactNode; className?: string; delay?: number;
 }) {
@@ -77,6 +100,7 @@ export default function TrialDetectSection() {
   const [result, setResult] = useState<DetectResult | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const [showGate, setShowGate] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   // Ref to avoid stale closures inside Turnstile callback
@@ -140,6 +164,7 @@ export default function TrialDetectSection() {
       const data: DetectResult = await res.json();
       setResult(data);
       setState("done");
+      incrementScanCount();
     } catch {
       setState("error");
       setErrorMsg("Network error. Please check your connection and try again.");
@@ -168,7 +193,7 @@ export default function TrialDetectSection() {
     if (file) handleFile(file);
   };
 
-  const handleScan = () => {
+  const executeScan = () => {
     if (!imageRef.current || state === "loading") return;
     if (!window.turnstile) {
       setState("error");
@@ -177,7 +202,6 @@ export default function TrialDetectSection() {
     }
     if (!window._turnstileWidgetId) {
       renderTurnstile();
-      // Retry after render
       setTimeout(() => {
         if (window.turnstile && window._turnstileWidgetId) {
           window.turnstile.execute(window._turnstileWidgetId);
@@ -188,6 +212,20 @@ export default function TrialDetectSection() {
     window.turnstile.execute(window._turnstileWidgetId);
   };
 
+  const handleScan = () => {
+    if (getScanCount() >= 2 && !isRegistered()) {
+      setShowGate(true);
+      return;
+    }
+    executeScan();
+  };
+
+  const proceedAfterRegistration = () => {
+    markRegistered();
+    setShowGate(false);
+    executeScan();
+  };
+
   const reset = () => {
     if (preview) URL.revokeObjectURL(preview);
     imageRef.current = null;
@@ -196,6 +234,7 @@ export default function TrialDetectSection() {
     setState("idle");
     setResult(null);
     setErrorMsg("");
+    setShowGate(false);
   };
 
   // Confidence comes as 0-1 from backend, convert to percentage
@@ -204,6 +243,12 @@ export default function TrialDetectSection() {
   const faceswapFake = result?.faceswap.verdict === "fake";
   const aiGenerated = result?.aiGenerated.verdict === "likely_ai";
   const aiUnavailable = result?.aiGenerated.verdict === "unavailable";
+
+  // Overall verdict: if either detector flags it, image is manipulated
+  const isManipulated = faceswapFake || aiGenerated;
+  const overallConfidence = isManipulated
+    ? Math.max(faceswapFake ? faceswapPct : 0, aiGenerated ? aiGeneratedPct : 0)
+    : 100 - Math.max(faceswapPct, aiUnavailable ? 0 : aiGeneratedPct);
 
   return (
     <>
@@ -278,7 +323,7 @@ export default function TrialDetectSection() {
               )}
 
               {/* Preview + action */}
-              {preview && state !== "done" && (
+              {preview && state !== "done" && !showGate && (
                 <div className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden">
                   <div className="relative">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -320,6 +365,57 @@ export default function TrialDetectSection() {
                 </div>
               )}
 
+              {/* Registration gate */}
+              {showGate && preview && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden"
+                >
+                  <div className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={preview} alt="Uploaded image" className="w-full max-h-72 object-contain bg-black blur-sm opacity-60" />
+                    <button
+                      onClick={reset}
+                      className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-black/60 text-gray-400 hover:text-white transition"
+                      aria-label="Remove image"
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="p-6 text-center space-y-4">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#245FFF]/10 border border-[#245FFF]/30 mx-auto">
+                      <svg className="h-7 w-7 text-[#245FFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-bold text-white">Registration Required</h3>
+                    <p className="text-sm text-gray-400 max-w-sm mx-auto">
+                      You&apos;ve used your 2 free trial scans. Register on SCAM AI to view this result and unlock full access.
+                    </p>
+                    <div className="flex flex-col gap-3 max-w-xs mx-auto">
+                      <a
+                        href="https://dev.scam.ai/auth/signup"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rainbow-button w-full"
+                      >
+                        <span className="rainbow-button-inner text-sm">Register Now</span>
+                      </a>
+                      <button
+                        onClick={proceedAfterRegistration}
+                        className="text-sm text-gray-500 hover:text-gray-300 transition underline underline-offset-2"
+                      >
+                        I&apos;ve already registered
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
               {/* Results */}
               {state === "done" && result && (
                 <motion.div
@@ -328,74 +424,37 @@ export default function TrialDetectSection() {
                   transition={{ duration: 0.5 }}
                   className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden"
                 >
-                  {/* Preview */}
                   <div className="relative">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={preview!} alt="Scanned image" className="w-full max-h-60 object-contain bg-black" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-3 left-4 text-xs text-gray-400">
-                      {result.scansRemaining} free scan{result.scansRemaining !== 1 ? "s" : ""} remaining today
-                    </div>
                   </div>
 
                   <div className="p-5 sm:p-6 space-y-4">
-                    {/* Face swap card */}
-                    <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg">{faceswapFake ? "🚨" : "✅"}</span>
-                          <div>
-                            <p className="text-xs text-gray-400 uppercase tracking-wide font-medium">Face Swap</p>
-                            <p className={`text-sm font-semibold ${faceswapFake ? "text-red-400" : "text-green-400"}`}>
-                              {faceswapFake ? "Detected" : "Not Detected"}
-                            </p>
-                          </div>
-                        </div>
-                        <span className={`text-xl font-bold ${faceswapFake ? "text-red-400" : "text-green-400"}`}>
-                          {faceswapPct}%
+                    <div className={`rounded-xl border p-6 text-center ${
+                      isManipulated
+                        ? "border-red-500/30 bg-red-500/10"
+                        : "border-green-500/30 bg-green-500/10"
+                    }`}>
+                      <div className="text-4xl mb-3">{isManipulated ? "🚨" : "✅"}</div>
+                      <h3 className={`text-xl font-bold mb-1 ${isManipulated ? "text-red-400" : "text-green-400"}`}>
+                        {isManipulated ? "AI Manipulated" : "Authentic"}
+                      </h3>
+                      <p className="text-sm text-gray-400 mb-4">
+                        {isManipulated
+                          ? "This image shows signs of AI manipulation"
+                          : "No signs of AI manipulation detected"}
+                      </p>
+                      <div className="flex items-center justify-center gap-2 mb-3">
+                        <span className={`text-3xl font-bold ${isManipulated ? "text-red-400" : "text-green-400"}`}>
+                          {overallConfidence}%
                         </span>
+                        <span className="text-xs text-gray-500">confidence</span>
                       </div>
                       <ConfidenceBar
-                        confidence={faceswapPct}
-                        color={faceswapFake ? "#f87171" : "#4ade80"}
+                        confidence={overallConfidence}
+                        color={isManipulated ? "#f87171" : "#4ade80"}
                       />
-                      {result.faceswap.faceCount > 0 && (
-                        <p className="mt-2 text-xs text-gray-500">{result.faceswap.faceCount} face{result.faceswap.faceCount !== 1 ? "s" : ""} detected</p>
-                      )}
-                    </div>
-
-                    {/* AI-generated card */}
-                    <div className="rounded-xl border border-white/10 bg-black/30 p-4">
-                      {aiUnavailable ? (
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg">⚠️</span>
-                          <div>
-                            <p className="text-xs text-gray-400 uppercase tracking-wide font-medium">AI-Generated</p>
-                            <p className="text-sm font-semibold text-gray-500">Unavailable</p>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center gap-2">
-                              <span className="text-lg">{aiGenerated ? "🤖" : "✅"}</span>
-                              <div>
-                                <p className="text-xs text-gray-400 uppercase tracking-wide font-medium">AI-Generated</p>
-                                <p className={`text-sm font-semibold ${aiGenerated ? "text-orange-400" : "text-green-400"}`}>
-                                  {aiGenerated ? "Likely AI-Generated" : "Likely Real"}
-                                </p>
-                              </div>
-                            </div>
-                            <span className={`text-xl font-bold ${aiGenerated ? "text-orange-400" : "text-green-400"}`}>
-                              {aiGeneratedPct}%
-                            </span>
-                          </div>
-                          <ConfidenceBar
-                            confidence={aiGeneratedPct}
-                            color={aiGenerated ? "#fb923c" : "#4ade80"}
-                          />
-                        </>
-                      )}
                     </div>
 
                     <div className="flex gap-3 pt-1">
@@ -403,7 +462,7 @@ export default function TrialDetectSection() {
                         Scan another
                       </button>
                       <a
-                        href="https://app.scam.ai"
+                        href="https://dev.scam.ai"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 rainbow-button"
