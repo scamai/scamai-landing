@@ -231,6 +231,19 @@ export default function TrialDetectSection() {
     showGateRef.current = false;
   };
 
+  // Auto-reveal results when user returns to tab after registering
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible" && showGateRef.current && result) {
+        markRegistered();
+        setShowGate(false);
+        showGateRef.current = false;
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [result]);
+
   const reset = () => {
     if (preview) URL.revokeObjectURL(preview);
     imageRef.current = null;
