@@ -38,6 +38,8 @@ function getOrCreateSessionId(): string {
 
 const SCAN_COUNT_KEY = "scamai_trial_scans";
 const REGISTERED_KEY = "scamai_registered";
+const GATED_RESULT_KEY = "scamai_gated_result";
+const GATED_PREVIEW_KEY = "scamai_gated_preview";
 
 function getScanCount(): number {
   if (typeof window === "undefined") return 0;
@@ -103,8 +105,25 @@ export default function TrialDetectSection() {
   const [showGate, setShowGate] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
-  // Ref to avoid stale closures inside Turnstile callback
   const imageRef = useRef<File | null>(null);
+
+  // On mount: restore gated result if user comes back after registering
+  useEffect(() => {
+    const stored = localStorage.getItem(GATED_RESULT_KEY);
+    const storedPreview = localStorage.getItem(GATED_PREVIEW_KEY);
+    if (stored && storedPreview) {
+      try {
+        const parsed: DetectResult = JSON.parse(stored);
+        setResult(parsed);
+        setPreview(storedPreview);
+        setState("done");
+        // Clear stored data
+        localStorage.removeItem(GATED_RESULT_KEY);
+        localStorage.removeItem(GATED_PREVIEW_KEY);
+        markRegistered();
+      } catch { /* ignore parse errors */ }
+    }
+  }, []);
 
   const renderTurnstile = useCallback(() => {
     if (!window.turnstile || !turnstileContainerRef.current) return;
@@ -168,6 +187,21 @@ export default function TrialDetectSection() {
       setResult(data);
       setState("done");
       incrementScanCount();
+      // If gate is showing, persist result so it survives page navigation
+      if (showGateRef.current) {
+        localStorage.setItem(GATED_RESULT_KEY, JSON.stringify(data));
+        // Convert file to data URL (blob URLs don't survive page reload)
+        const currentImage = imageRef.current;
+        if (currentImage) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            if (typeof reader.result === "string") {
+              localStorage.setItem(GATED_PREVIEW_KEY, reader.result);
+            }
+          };
+          reader.readAsDataURL(currentImage);
+        }
+      }
     } catch {
       setState("error");
       setErrorMsg("Network error. Please check your connection and try again.");
@@ -229,36 +263,31 @@ export default function TrialDetectSection() {
     markRegistered();
     setShowGate(false);
     showGateRef.current = false;
-    hasReturnedRef.current = false;
+    localStorage.removeItem(GATED_RESULT_KEY);
+    localStorage.removeItem(GATED_PREVIEW_KEY);
   };
 
-  // Track if user left and returned to this tab (implies they went to register)
-  const hasReturnedRef = useRef(false);
-
+  // When user returns to this tab, auto-reveal if result is ready
   useEffect(() => {
-    const handleVisibility = () => {
-      if (document.visibilityState === "visible" && showGateRef.current) {
-        hasReturnedRef.current = true;
-        // If result already loaded, reveal immediately
-        if (result) {
-          markRegistered();
-          setShowGate(false);
-          showGateRef.current = false;
-        }
+    const revealIfReady = () => {
+      if (showGateRef.current && result) {
+        markRegistered();
+        setShowGate(false);
+        showGateRef.current = false;
+        localStorage.removeItem(GATED_RESULT_KEY);
+        localStorage.removeItem(GATED_PREVIEW_KEY);
       }
     };
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, [result]);
-
-  // Handle case: user returned to tab BEFORE result arrived, then result loads
-  useEffect(() => {
-    if (result && showGateRef.current && hasReturnedRef.current) {
-      markRegistered();
-      setShowGate(false);
-      showGateRef.current = false;
-    }
-  }, [result]);
+    const onVisible = () => {
+      if (document.visibilityState === "visible") revealIfReady();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", revealIfReady);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", revealIfReady);
+    };
+  });
 
   const reset = () => {
     if (preview) URL.revokeObjectURL(preview);
@@ -269,6 +298,8 @@ export default function TrialDetectSection() {
     setResult(null);
     setErrorMsg("");
     setShowGate(false);
+    localStorage.removeItem(GATED_RESULT_KEY);
+    localStorage.removeItem(GATED_PREVIEW_KEY);
   };
 
   // Confidence comes as 0-1 from backend, convert to percentage
@@ -450,8 +481,6 @@ export default function TrialDetectSection() {
                     <div className="flex flex-col gap-3 max-w-xs mx-auto">
                       <a
                         href="https://dev.scam.ai/auth/signup"
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="rainbow-button w-full"
                       >
                         <span className="rainbow-button-inner text-sm">Register Now</span>
