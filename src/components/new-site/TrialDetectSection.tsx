@@ -106,17 +106,18 @@ export default function TrialDetectSection() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<File | null>(null);
+  const dataUrlRef = useRef<string | null>(null);
 
   // On mount: restore gated result if user comes back after registering
   useEffect(() => {
     const stored = localStorage.getItem(GATED_RESULT_KEY);
-    const storedPreview = localStorage.getItem(GATED_PREVIEW_KEY);
-    if (stored && storedPreview) {
+    if (stored) {
       try {
         const parsed: DetectResult = JSON.parse(stored);
         setResult(parsed);
-        setPreview(storedPreview);
         setState("done");
+        const storedPreview = localStorage.getItem(GATED_PREVIEW_KEY);
+        if (storedPreview) setPreview(storedPreview);
         // Clear stored data
         localStorage.removeItem(GATED_RESULT_KEY);
         localStorage.removeItem(GATED_PREVIEW_KEY);
@@ -190,16 +191,8 @@ export default function TrialDetectSection() {
       // If gate is showing, persist result so it survives page navigation
       if (showGateRef.current) {
         localStorage.setItem(GATED_RESULT_KEY, JSON.stringify(data));
-        // Convert file to data URL (blob URLs don't survive page reload)
-        const currentImage = imageRef.current;
-        if (currentImage) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            if (typeof reader.result === "string") {
-              localStorage.setItem(GATED_PREVIEW_KEY, reader.result);
-            }
-          };
-          reader.readAsDataURL(currentImage);
+        if (dataUrlRef.current) {
+          localStorage.setItem(GATED_PREVIEW_KEY, dataUrlRef.current);
         }
       }
     } catch {
@@ -221,6 +214,12 @@ export default function TrialDetectSection() {
     setState("idle");
     setResult(null);
     setErrorMsg("");
+    // Pre-compute data URL so it's ready for localStorage if gated
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") dataUrlRef.current = reader.result;
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
