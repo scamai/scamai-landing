@@ -229,19 +229,35 @@ export default function TrialDetectSection() {
     markRegistered();
     setShowGate(false);
     showGateRef.current = false;
+    hasReturnedRef.current = false;
   };
 
-  // Auto-reveal results when user returns to tab after registering
+  // Track if user left and returned to this tab (implies they went to register)
+  const hasReturnedRef = useRef(false);
+
   useEffect(() => {
     const handleVisibility = () => {
-      if (document.visibilityState === "visible" && showGateRef.current && result) {
-        markRegistered();
-        setShowGate(false);
-        showGateRef.current = false;
+      if (document.visibilityState === "visible" && showGateRef.current) {
+        hasReturnedRef.current = true;
+        // If result already loaded, reveal immediately
+        if (result) {
+          markRegistered();
+          setShowGate(false);
+          showGateRef.current = false;
+        }
       }
     };
     document.addEventListener("visibilitychange", handleVisibility);
     return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [result]);
+
+  // Handle case: user returned to tab BEFORE result arrived, then result loads
+  useEffect(() => {
+    if (result && showGateRef.current && hasReturnedRef.current) {
+      markRegistered();
+      setShowGate(false);
+      showGateRef.current = false;
+    }
   }, [result]);
 
   const reset = () => {
