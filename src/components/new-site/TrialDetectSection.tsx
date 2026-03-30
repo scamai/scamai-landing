@@ -480,7 +480,7 @@ export default function TrialDetectSection() {
                     </p>
                     <div className="flex flex-col gap-3 max-w-xs mx-auto">
                       <a
-                        href="https://dev.scam.ai/auth/signup"
+                        href="https://dev.scam.ai/auth/signup?from=trial"
                         className="rainbow-button w-full"
                       >
                         <span className="rainbow-button-inner text-sm">Register Now</span>
