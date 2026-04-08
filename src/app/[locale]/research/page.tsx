@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { trackCTA } from "@/lib/analytics";
+import { useRef, useState, useCallback, useEffect } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { trackCTA, trackEvent } from "@/lib/analytics";
 
 function AnimatedSection({
   children,
@@ -120,27 +120,267 @@ const researchCategories: ResearchCategory[] = [
 
 type Dataset = {
   name: string;
-  coming?: boolean;
+  id: string;
+  link: string;
 };
 
 const datasets: Dataset[] = [
-  { name: "Real-world deepfake dataset" },
-  { name: "AI-edit document forgery dataset (AIForge-Doc)" },
-  { name: "Adversarial age estimation attack dataset" },
-  { name: "Fully-synthetic AI-generated receipt dataset", coming: true },
-  { name: "Simulated gaze estimation for reading dataset", coming: true },
+  {
+    id: "rwfs",
+    name: "Real-World Faceswap Dataset (RWFS)",
+    link: "https://drive.google.com/file/d/1A-RPa61f5ROJ0ovcXWW1fNFZgunaAOyd/view?usp=sharing",
+  },
+  {
+    id: "aiforge-doc",
+    name: "AI-edit document forgery dataset (AIForge-Doc)",
+    link: "https://drive.google.com/file/d/1M1GZAdpdRPqlGJe9lJpLkmnxAEh4y1k1/view",
+  },
+  {
+    id: "age-estimation",
+    name: "Adversarial age estimation attack dataset",
+    link: "https://drive.google.com/file/d/1QcbykqEs2zkknZexgkzWxGltWDE9smbr/view?usp=sharing",
+  },
+  {
+    id: "gpt4o-receipt",
+    name: "Fully-synthetic AI-generated receipt (GPT-4o-receipt)",
+    link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view?usp=sharing",
+  },
+  {
+    id: "gaze-estimation",
+    name: "Simulated gaze estimation for reading dataset",
+    link: "https://drive.google.com/file/d/17O4W0xdxijDaq2H21BkfKAAxgvC2Fhip/view?usp=sharing",
+  },
 ];
 
 const stats = [
   { label: "Research Papers", value: `${researchCategories.reduce((sum, c) => sum + c.papers.length, 0)}` },
   { label: "Research Areas", value: `${researchCategories.length}` },
   { label: "Open Datasets", value: `${datasets.length}` },
-  { label: "Coming Soon", value: `${researchCategories.reduce((sum, c) => sum + c.papers.filter(p => p.coming).length, 0) + datasets.filter(d => d.coming).length}` },
+  { label: "Coming Soon", value: `${researchCategories.reduce((sum, c) => sum + c.papers.filter(p => p.coming).length, 0)}` },
 ];
 
+/* ── Dataset Access Modal ─────────────────────────────────────── */
+
+const DATASET_ACCESS_KEY = "scamai_dataset_access";
+
+function getStoredEmail(): string {
+  if (typeof window === "undefined") return "";
+  try {
+    const raw = localStorage.getItem(DATASET_ACCESS_KEY);
+    return raw ? JSON.parse(raw).email ?? "" : "";
+  } catch {
+    return "";
+  }
+}
+
+function storeEmail(email: string) {
+  localStorage.setItem(DATASET_ACCESS_KEY, JSON.stringify({ email, ts: Date.now() }));
+}
+
+function DatasetAccessModal({
+  dataset,
+  onClose,
+}: {
+  dataset: Dataset;
+  onClose: () => void;
+}) {
+  const [email, setEmail] = useState("");
+  const [agreed, setAgreed] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [accessLink, setAccessLink] = useState("");
+
+  useEffect(() => {
+    const stored = getStoredEmail();
+    if (stored) setEmail(stored);
+  }, []);
+
+  const handleSubmit = useCallback(async () => {
+    setError("");
+    if (!agreed) {
+      setError("Please agree to the data usage terms.");
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/dataset-access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, datasetId: dataset.id, agreed }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Something went wrong.");
+        return;
+      }
+      storeEmail(email);
+      trackEvent({
+        action: "dataset_access",
+        category: "research",
+        label: `${dataset.name} | ${email}`,
+      });
+      setAccessLink(data.link);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [agreed, email, dataset]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+        transition={{ duration: 0.2 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md rounded-2xl border border-gray-800/60 bg-[#0e0e11] p-6 sm:p-8 shadow-2xl"
+      >
+        {/* Close */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 6L6 18" /><path d="M6 6l12 12" />
+          </svg>
+        </button>
+
+        {accessLink ? (
+          /* ── Success: show download link ── */
+          <div className="text-center py-4">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
+              <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Access Granted</h3>
+            <p className="text-sm text-gray-400 mb-5">
+              {dataset.name}
+            </p>
+            <a
+              href={accessLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#1d4acc]"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Open in Google Drive
+            </a>
+            <button
+              onClick={onClose}
+              className="mt-4 block mx-auto text-xs text-gray-500 hover:text-gray-300 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          /* ── Form state ── */
+          <>
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <svg className="w-5 h-5 text-[#245FFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                </svg>
+                <h3 className="text-lg font-semibold text-white">Access Dataset</h3>
+              </div>
+              <p className="text-sm text-gray-400">
+                <span className="text-gray-300 font-medium">{dataset.name}</span>
+              </p>
+              <p className="text-xs text-gray-500 mt-2">
+                Enter your email and agree to our terms to access the dataset.
+              </p>
+            </div>
+
+            {/* Email */}
+            <div className="mb-4">
+              <label htmlFor="dataset-email" className="block text-xs font-medium text-gray-400 mb-1.5">
+                Email address
+              </label>
+              <input
+                id="dataset-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                placeholder="you@university.edu"
+                className="w-full rounded-lg border border-gray-800/60 bg-white/[0.03] px-3.5 py-2.5 text-sm text-white placeholder-gray-600 outline-none transition-colors focus:border-[#245FFF]/50 focus:bg-white/[0.05]"
+              />
+            </div>
+
+            {/* Agreement */}
+            <label className="flex items-start gap-3 mb-5 cursor-pointer group">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="mt-0.5 h-4 w-4 rounded border-gray-700 bg-white/[0.03] text-[#245FFF] accent-[#245FFF] cursor-pointer"
+              />
+              <span className="text-xs text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                I agree to use this dataset solely for non-commercial research purposes. I will cite the
+                associated publication in any resulting work and will not redistribute the data.
+              </span>
+            </label>
+
+            {error && <p className="text-xs text-red-400 mb-4">{error}</p>}
+
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 rounded-lg bg-[#245FFF] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#1d4acc] disabled:opacity-50"
+            >
+              {loading ? (
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+              ) : (
+                <>
+                  Continue
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14" /><path d="M12 5l7 7-7 7" />
+                  </svg>
+                </>
+              )}
+            </button>
+          </>
+        )}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ── Page ─────────────────────────────────────────────────────── */
+
 export default function ResearchPage() {
+  const [activeDataset, setActiveDataset] = useState<Dataset | null>(null);
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <AnimatePresence>
+        {activeDataset && (
+          <DatasetAccessModal
+            dataset={activeDataset}
+            onClose={() => setActiveDataset(null)}
+          />
+        )}
+      </AnimatePresence>
+
       <main>
         {/* Hero */}
         <section className="mx-auto max-w-6xl px-4 sm:px-8 pb-14 sm:pb-20" style={{ paddingTop: '180px' }}>
@@ -267,7 +507,7 @@ export default function ResearchPage() {
               </h2>
               <p className="text-sm text-gray-500 max-w-xl">
                 Curated datasets to help researchers benchmark detection models.
-                Contact us for access.
+                Provide your email and agree to our terms to receive access.
               </p>
             </div>
           </AnimatedSection>
@@ -280,29 +520,20 @@ export default function ResearchPage() {
                     <svg className="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
                     </svg>
-                    <div>
-                      <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-[#245FFF] transition-colors">
-                        {dataset.name}
-                      </h3>
-                      {dataset.coming && (
-                        <span className="inline-block rounded bg-white/5 border border-gray-800/60 px-1.5 py-0.5 text-[10px] font-medium text-gray-500">
-                          Coming soon
-                        </span>
-                      )}
-                    </div>
+                    <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-[#245FFF] transition-colors">
+                      {dataset.name}
+                    </h3>
                   </div>
 
-                  {!dataset.coming && (
-                    <button
-                      onClick={() => {
-                        trackCTA(`dataset:${dataset.name}`, "dataset_access");
-                        window.open("https://cal.com/scamai/15min", "_blank", "noopener,noreferrer");
-                      }}
-                      className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg border border-gray-800/60 bg-white/[0.03] px-4 py-2.5 text-xs font-semibold text-white transition-all hover:border-[#245FFF]/30 hover:bg-[#245FFF]/5 hover:text-[#245FFF]"
-                    >
-                      Request Access
-                    </button>
-                  )}
+                  <button
+                    onClick={() => setActiveDataset(dataset)}
+                    className="mt-4 w-full flex items-center justify-center gap-2 rounded-lg border border-gray-800/60 bg-white/[0.03] px-4 py-2.5 text-xs font-semibold text-white transition-all hover:border-[#245FFF]/30 hover:bg-[#245FFF]/5 hover:text-[#245FFF]"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Get Access
+                  </button>
                 </div>
               </AnimatedSection>
             ))}
