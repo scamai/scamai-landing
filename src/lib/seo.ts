@@ -21,7 +21,7 @@ export function generatePageMetadata({
   title,
   description,
   keywords = [],
-  ogImage = `${baseUrl}/scamai-logo.svg`,
+  ogImage = `${baseUrl}/opengraph-image`,
   noindex = false,
 }: GenerateMetadataParams): Metadata {
   const fullUrl = `${baseUrl}/${locale}${path}`;
@@ -225,6 +225,22 @@ export const pageMetadata = {
     description:
       'Learn about how ScamAI uses cookies to improve your experience and our compliance with cookie regulations.',
     keywords: ['cookies', 'cookie policy', 'tracking', 'privacy'],
+  },
+  research: {
+    title: 'Research - Advancing the Science of AI Trust',
+    description:
+      'Published research on deepfake detection, document forgery, age estimation, and synthetic media forensics. Download open datasets for benchmarking detection models.',
+    keywords: [
+      'deepfake research',
+      'deepfake detection benchmark',
+      'AI-generated image detection',
+      'document forgery detection',
+      'faceswap dataset',
+      'synthetic media research',
+      'open research datasets',
+      'age estimation attack',
+      'AI trust research',
+    ],
   },
   newsletter: {
     title: 'Deepfake Weekly Newsletter',

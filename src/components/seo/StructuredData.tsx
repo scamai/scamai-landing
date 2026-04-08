@@ -156,6 +156,61 @@ export default function StructuredData() {
     ]
   };
 
+  const datasetsSchema = {
+    "@context": "https://schema.org",
+    "@type": "DataCatalog",
+    "name": "ScamAI Research Datasets",
+    "url": "https://scam.ai/en/research",
+    "description": "Open datasets for benchmarking deepfake detection, document forgery, and synthetic media analysis models.",
+    "creator": {
+      "@type": "Organization",
+      "name": "Reality Inc.",
+      "url": "https://scam.ai"
+    },
+    "dataset": [
+      {
+        "@type": "Dataset",
+        "name": "Real-World Faceswap Dataset (RWFS)",
+        "description": "Real-world faceswap samples for benchmarking deepfake detection models.",
+        "url": "https://scam.ai/en/research",
+        "license": "https://scam.ai/en/research",
+        "creator": { "@type": "Organization", "name": "Reality Inc." }
+      },
+      {
+        "@type": "Dataset",
+        "name": "AIForge-Doc",
+        "description": "Benchmark dataset for detecting AI-forged tampering in financial and form documents.",
+        "url": "https://scam.ai/en/research",
+        "license": "https://scam.ai/en/research",
+        "creator": { "@type": "Organization", "name": "Reality Inc." }
+      },
+      {
+        "@type": "Dataset",
+        "name": "Adversarial Age Estimation Attack Dataset",
+        "description": "Dataset of low-cost cosmetic attacks on age estimation systems.",
+        "url": "https://scam.ai/en/research",
+        "license": "https://scam.ai/en/research",
+        "creator": { "@type": "Organization", "name": "Reality Inc." }
+      },
+      {
+        "@type": "Dataset",
+        "name": "GPT-4o-receipt: Fully-Synthetic AI-Generated Receipt Dataset",
+        "description": "Fully synthetic AI-generated financial receipts for document forgery detection research.",
+        "url": "https://scam.ai/en/research",
+        "license": "https://scam.ai/en/research",
+        "creator": { "@type": "Organization", "name": "Reality Inc." }
+      },
+      {
+        "@type": "Dataset",
+        "name": "Simulated Gaze Estimation for Reading Dataset",
+        "description": "Simulated gaze estimation data for robust reading and cheating identification research.",
+        "url": "https://scam.ai/en/research",
+        "license": "https://scam.ai/en/research",
+        "creator": { "@type": "Organization", "name": "Reality Inc." }
+      }
+    ]
+  };
+
   return (
     <>
       <script
@@ -173,6 +228,10 @@ export default function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetsSchema) }}
       />
     </>
   );

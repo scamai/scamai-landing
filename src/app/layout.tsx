@@ -67,11 +67,11 @@ export const metadata: Metadata = {
     siteName: "ScamAI",
     images: [
       {
-        url: "https://scam.ai/scamai-logo.svg",
+        url: "https://scam.ai/opengraph-image",
         width: 1200,
         height: 630,
         alt: "ScamAI - AI Trust Platform for Deepfake Detection",
-        type: "image/svg+xml",
+        type: "image/png",
       },
     ],
   },
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ScamAI - AI Trust Platform | Deepfake Detection",
     description: "Detect synthetic media and deepfakes in real-time with industry-leading accuracy. SOC 2 Type II compliant.",
-    images: ["https://scam.ai/scamai-logo.svg"],
+    images: ["https://scam.ai/opengraph-image"],
     creator: "@scamai",
     site: "@scamai",
   },
