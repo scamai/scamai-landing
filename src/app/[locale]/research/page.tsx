@@ -267,32 +267,19 @@ function DatasetAccessModal({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Access Granted</h3>
-            <p className="text-sm text-gray-400 mb-2">
-              {dataset.name}
+            <h3 className="text-lg font-semibold text-white mb-2">Check your email</h3>
+            <p className="text-sm text-gray-400 mb-1">
+              We&apos;ve sent the download link to
             </p>
-            <a
-              href={`/api/dataset-access?token=${accessToken}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#1d4acc]"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Open in Google Drive
-            </a>
-            <p className="mt-4 text-xs text-gray-400">
-              We&apos;ve also sent the download link to <span className="text-white font-medium">{email}</span>
-            </p>
-            <p className="mt-1 text-[11px] text-gray-600">
-              This button expires in 60 seconds
+            <p className="text-sm text-white font-medium mb-4">{email}</p>
+            <p className="text-xs text-gray-500">
+              Don&apos;t see it? Check your spam folder.
             </p>
             <button
               onClick={onClose}
-              className="mt-4 block mx-auto text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              className="mt-6 rounded-lg bg-white/[0.06] px-5 py-2 text-sm font-medium text-gray-300 hover:bg-white/[0.1] transition-colors"
             >
-              Close
+              Done
             </button>
           </div>
         ) : (
