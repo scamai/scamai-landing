@@ -167,7 +167,7 @@ const datasets: Dataset[] = [
   {
     id: "gpt4o-receipt",
     name: "Fully-synthetic AI-generated receipt (GPT-4o-receipt)",
-    link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view?usp=sharing",
+    link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view",
     paper: "https://arxiv.org/abs/2603.11442",
     citation: `@article{zhang2026gpt4o,
   title={GPT4o-Receipt: A Dataset and Human Study for AI-Generated Document Forensics},
