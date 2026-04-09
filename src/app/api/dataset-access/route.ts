@@ -27,26 +27,54 @@ function checkRateLimit(ip: string): boolean {
 }
 
 // All published datasets — single source of truth for the email
-const DATASETS: Record<string, { name: string; link: string }> = {
+const DATASETS: Record<string, { name: string; link: string; citation: string }> = {
   "rwfs": {
     name: "Real-World Faceswap Dataset (RWFS)",
     link: "https://drive.google.com/file/d/1A-RPa61f5ROJ0ovcXWW1fNFZgunaAOyd/view?usp=sharing",
+    citation: `@article{ren2026rwfs,
+  title={Do Deepfake Detectors Work in Reality?},
+  author={Ren, Simiao and Patil, Disha and Zewde, Kidus and Ng, Dennis and Xu, Hengwei and Jiang, Shengkai and Desai, Ramini and Cheng, Ning-Yau and Zhou, Yining and Muthukrishnan, Ragavi},
+  year={2026}
+}`,
   },
   "aiforge-doc": {
     name: "AIForge-Doc",
     link: "https://drive.google.com/file/d/1M1GZAdpdRPqlGJe9lJpLkmnxAEh4y1k1/view",
+    citation: `@article{wu2026aiforge,
+  title={AIForge-Doc: A Benchmark for Detecting AI-Forged Tampering in Financial and Form Documents},
+  author={Wu, Jiaqi and Zhou, Yuchen and Xu, Muduo and Liang, Zisheng and Ren, Simiao and Xue, Jiayu and Yang, Meige and Chen, Siying and Huan, Jingheng},
+  journal={arXiv preprint arXiv:2602.20569},
+  year={2026}
+}`,
   },
   "age-estimation": {
     name: "Adversarial Age Estimation Attack Dataset",
     link: "https://drive.google.com/file/d/1QcbykqEs2zkknZexgkzWxGltWDE9smbr/view?usp=sharing",
+    citation: `@article{shen2026teenager,
+  title={Can a Teenager Fool an AI? Evaluating Low-Cost Cosmetic Attacks on Age Estimation Systems},
+  author={Shen, Xingyu and Duong, Tommy and An, Xiaodong and Zhao, Zengqi and Hu, Zebang and Hu, Haoyu and Wang, Ziyou and Guo, Finn and Ren, Simiao},
+  journal={arXiv preprint arXiv:2602.19539},
+  year={2026}
+}`,
   },
   "gpt4o-receipt": {
     name: "Fully-Synthetic AI-Generated Receipt (GPT-4o-receipt)",
     link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view?usp=sharing",
+    citation: `@article{zhang2026gpt4o,
+  title={GPT4o-Receipt: A Dataset and Human Study for AI-Generated Document Forensics},
+  author={Zhang, Yan and Ren, Simiao and Raj, Ankit and Wei, En and Ng, Dennis and Shen, Alex and Xu, Jiayue and Zhang, Yuxin and Marotta, Evelyn},
+  journal={arXiv preprint arXiv:2603.11442},
+  year={2026}
+}`,
   },
   "gaze-estimation": {
     name: "Simulated Gaze Estimation for Reading Dataset",
     link: "https://drive.google.com/file/d/17O4W0xdxijDaq2H21BkfKAAxgvC2Fhip/view?usp=sharing",
+    citation: `@article{ren2026gaze,
+  title={Reading Gaze Estimation Dataset for Robust Cheating Identification},
+  author={Ren, Simiao},
+  year={2026}
+}`,
   },
 };
 
@@ -138,6 +166,11 @@ export async function POST(req: Request) {
                 </a>
               </div>
 
+              <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-bottom: 24px;">
+                <p style="font-size: 13px; color: #888; margin: 0 0 12px; font-weight: 600;">How to Cite</p>
+                <pre style="background: #f1f3f5; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; font-size: 12px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; color: #333; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; line-height: 1.5; margin: 0;">${dataset.citation}</pre>
+              </div>
+
               <div style="border-top: 1px solid #e5e7eb; padding-top: 20px;">
                 <p style="font-size: 13px; color: #888; margin: 0 0 12px; font-weight: 600;">Usage Terms</p>
                 <ul style="font-size: 13px; color: #666; margin: 0; padding-left: 18px; line-height: 1.7;">
@@ -155,7 +188,7 @@ export async function POST(req: Request) {
             </div>
           </div>
         `,
-        text: `Dataset Access Granted\n\nDataset: ${dataset.name}\n\nDownload: ${dataset.link}\n\nUsage Terms:\n- Use solely for non-commercial research purposes\n- Cite the associated publication in any resulting work\n- Do not redistribute the dataset\n\nScamAI Research — https://scam.ai/research`,
+        text: `Dataset Access Granted\n\nDataset: ${dataset.name}\n\nDownload: ${dataset.link}\n\nHow to Cite:\n${dataset.citation}\n\nUsage Terms:\n- Use solely for non-commercial research purposes\n- Cite the associated publication in any resulting work\n- Do not redistribute the dataset\n\nScamAI Research — https://scam.ai/research`,
       }).catch((err) => console.error("[Dataset Access] User email failed:", err));
 
       // Internal access log to the team
