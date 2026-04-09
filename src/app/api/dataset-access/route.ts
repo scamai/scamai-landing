@@ -31,10 +31,12 @@ const DATASETS: Record<string, { name: string; link: string; citation: string }>
   "rwfs": {
     name: "Real-World Faceswap Dataset (RWFS)",
     link: "https://drive.google.com/file/d/1A-RPa61f5ROJ0ovcXWW1fNFZgunaAOyd/view?usp=sharing",
-    citation: `@article{ren2026rwfs,
-  title={Do Deepfake Detectors Work in Reality?},
-  author={Ren, Simiao and Patil, Disha and Zewde, Kidus and Ng, Dennis and Xu, Hengwei and Jiang, Shengkai and Desai, Ramini and Cheng, Ning-Yau and Zhou, Yining and Muthukrishnan, Ragavi},
-  year={2026}
+    citation: `@inproceedings{ren2025deepfake,
+  title={Do deepfake detectors work in reality?},
+  author={Ren, Simiao and Patil, Disha and Zewde, Kidus and Ng, Tsang Dennis and Xu, Hengwei and Jiang, Shengkai and Desai, Ramini and Cheng, Ning-Yau and Zhou, Yining and Muthukrishnan, Ragavi},
+  booktitle={Proceedings of the 4th workshop on security implications of deepfakes and cheapfakes},
+  pages={21--26},
+  year={2025}
 }`,
   },
   "aiforge-doc": {
@@ -50,7 +52,7 @@ const DATASETS: Record<string, { name: string; link: string; citation: string }>
   "age-estimation": {
     name: "Adversarial Age Estimation Attack Dataset",
     link: "https://drive.google.com/file/d/1QcbykqEs2zkknZexgkzWxGltWDE9smbr/view?usp=sharing",
-    citation: `@article{shen2026teenager,
+    citation: `@article{shen2026can,
   title={Can a Teenager Fool an AI? Evaluating Low-Cost Cosmetic Attacks on Age Estimation Systems},
   author={Shen, Xingyu and Duong, Tommy and An, Xiaodong and Zhao, Zengqi and Hu, Zebang and Hu, Haoyu and Wang, Ziyou and Guo, Finn and Ren, Simiao},
   journal={arXiv preprint arXiv:2602.19539},
@@ -70,10 +72,12 @@ const DATASETS: Record<string, { name: string; link: string; citation: string }>
   "gaze-estimation": {
     name: "Simulated Gaze Estimation for Reading Dataset",
     link: "https://drive.google.com/file/d/17O4W0xdxijDaq2H21BkfKAAxgvC2Fhip/view?usp=sharing",
-    citation: `@article{ren2026gaze,
-  title={Reading Gaze Estimation Dataset for Robust Cheating Identification},
-  author={Ren, Simiao},
-  year={2026}
+    citation: `@article{zewde2026synthetic,
+  title={A Synthetic Eye Movement Dataset for Script Reading Detection: Real Trajectory Replay on a 3D Eye Simulator},
+  author={Zewde, Kidus and Zhou, Yuchen and Ng, Dennis and Tiangratanakul, Neo and Duong, Tommy and Raj, Ankit and Zhang, Yuxin and Shen, Xingyu and Ren, Simiao},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2026},
+  note={Authors affiliated with ScamAI}
 }`,
   },
 };
