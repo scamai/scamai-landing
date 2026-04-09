@@ -140,7 +140,7 @@ export default function TrialDetectSection() {
         setErrorMsg("Bot verification failed. Please try again.");
       },
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);  
 
   useEffect(() => {
     if (window.turnstile) renderTurnstile();
