@@ -122,6 +122,8 @@ type Dataset = {
   name: string;
   id: string;
   link: string;
+  paper: string;
+  citation: string;
 };
 
 const datasets: Dataset[] = [
@@ -129,26 +131,63 @@ const datasets: Dataset[] = [
     id: "rwfs",
     name: "Real-World Faceswap Dataset (RWFS)",
     link: "https://drive.google.com/file/d/1A-RPa61f5ROJ0ovcXWW1fNFZgunaAOyd/view?usp=sharing",
+    paper: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=n4B3bH4AAAAJ&sortby=pubdate&citation_for_view=n4B3bH4AAAAJ:tKAzc9rXhukC",
+    citation: `@inproceedings{ren2025deepfake,
+  title={Do deepfake detectors work in reality?},
+  author={Ren, Simiao and Patil, Disha and Zewde, Kidus and Ng, Tsang Dennis and Xu, Hengwei and Jiang, Shengkai and Desai, Ramini and Cheng, Ning-Yau and Zhou, Yining and Muthukrishnan, Ragavi},
+  booktitle={Proceedings of the 4th workshop on security implications of deepfakes and cheapfakes},
+  pages={21--26},
+  year={2025}
+}`,
   },
   {
     id: "aiforge-doc",
     name: "AI-edit document forgery dataset (AIForge-Doc)",
     link: "https://drive.google.com/file/d/1M1GZAdpdRPqlGJe9lJpLkmnxAEh4y1k1/view",
+    paper: "https://arxiv.org/abs/2602.20569",
+    citation: `@article{wu2026aiforge,
+  title={AIForge-Doc: A Benchmark for Detecting AI-Forged Tampering in Financial and Form Documents},
+  author={Wu, Jiaqi and Zhou, Yuchen and Xu, Muduo and Liang, Zisheng and Ren, Simiao and Xue, Jiayu and Yang, Meige and Chen, Siying and Huan, Jingheng},
+  journal={arXiv preprint arXiv:2602.20569},
+  year={2026}
+}`,
   },
   {
     id: "age-estimation",
     name: "Adversarial age estimation attack dataset",
     link: "https://drive.google.com/file/d/1QcbykqEs2zkknZexgkzWxGltWDE9smbr/view?usp=sharing",
+    paper: "https://arxiv.org/abs/2602.19539",
+    citation: `@article{shen2026can,
+  title={Can a Teenager Fool an AI? Evaluating Low-Cost Cosmetic Attacks on Age Estimation Systems},
+  author={Shen, Xingyu and Duong, Tommy and An, Xiaodong and Zhao, Zengqi and Hu, Zebang and Hu, Haoyu and Wang, Ziyou and Guo, Finn and Ren, Simiao},
+  journal={arXiv preprint arXiv:2602.19539},
+  year={2026}
+}`,
   },
   {
     id: "gpt4o-receipt",
     name: "Fully-synthetic AI-generated receipt (GPT-4o-receipt)",
     link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view?usp=sharing",
+    paper: "https://arxiv.org/abs/2603.11442",
+    citation: `@article{zhang2026gpt4o,
+  title={GPT4o-Receipt: A Dataset and Human Study for AI-Generated Document Forensics},
+  author={Zhang, Yan and Ren, Simiao and Raj, Ankit and Wei, En and Ng, Dennis and Shen, Alex and Xu, Jiayue and Zhang, Yuxin and Marotta, Evelyn},
+  journal={arXiv preprint arXiv:2603.11442},
+  year={2026}
+}`,
   },
   {
     id: "gaze-estimation",
     name: "Simulated gaze estimation for reading dataset",
     link: "https://drive.google.com/file/d/17O4W0xdxijDaq2H21BkfKAAxgvC2Fhip/view?usp=sharing",
+    paper: "",
+    citation: `@article{zewde2026synthetic,
+  title={A Synthetic Eye Movement Dataset for Script Reading Detection: Real Trajectory Replay on a 3D Eye Simulator},
+  author={Zewde, Kidus and Zhou, Yuchen and Ng, Dennis and Tiangratanakul, Neo and Duong, Tommy and Raj, Ankit and Zhang, Yuxin and Shen, Xingyu and Ren, Simiao},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2026},
+  note={Authors affiliated with ScamAI}
+}`,
   },
 ];
 
@@ -260,24 +299,61 @@ function DatasetAccessModal({
         </button>
 
         {accessToken ? (
-          /* ── Success: redirect link via token ── */
-          <div className="text-center py-4">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
-              <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+          /* ── Success: email sent + citation + paper link ── */
+          <div className="py-4">
+            <div className="text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10">
+                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Check your email</h3>
+              <p className="text-sm text-gray-400 mb-1">
+                We&apos;ve sent the download link to
+              </p>
+              <p className="text-sm text-white font-medium mb-4">{email}</p>
+              <p className="text-xs text-gray-500">
+                Don&apos;t see it? Check your spam folder.
+              </p>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Check your email</h3>
-            <p className="text-sm text-gray-400 mb-1">
-              We&apos;ve sent the download link to
-            </p>
-            <p className="text-sm text-white font-medium mb-4">{email}</p>
-            <p className="text-xs text-gray-500">
-              Don&apos;t see it? Check your spam folder.
-            </p>
+
+            {/* Citation */}
+            <div className="mt-6 rounded-lg border border-gray-800/60 bg-white/[0.03] p-4">
+              <p className="text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">How to Cite</p>
+              <pre className="text-[11px] text-gray-400 font-mono leading-relaxed whitespace-pre-wrap break-words overflow-x-auto max-h-40 overflow-y-auto scrollbar-thin">
+                {dataset.citation}
+              </pre>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(dataset.citation);
+                }}
+                className="mt-2 flex items-center gap-1.5 text-[11px] text-gray-500 hover:text-[#245FFF] transition-colors"
+              >
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                Copy citation
+              </button>
+            </div>
+
+            {/* Paper link */}
+            {dataset.paper && (
+              <a
+                href={dataset.paper}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-gray-800/60 bg-white/[0.03] px-4 py-2.5 text-xs font-semibold text-gray-300 hover:border-[#245FFF]/30 hover:text-[#245FFF] transition-all"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                View Research Paper
+              </a>
+            )}
+
             <button
               onClick={onClose}
-              className="mt-6 rounded-lg bg-white/[0.06] px-5 py-2 text-sm font-medium text-gray-300 hover:bg-white/[0.1] transition-colors"
+              className="mt-4 w-full rounded-lg bg-white/[0.06] px-5 py-2 text-sm font-medium text-gray-300 hover:bg-white/[0.1] transition-colors"
             >
               Done
             </button>
