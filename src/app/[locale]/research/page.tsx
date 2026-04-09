@@ -268,26 +268,29 @@ function DatasetAccessModal({
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">Access Granted</h3>
-            <p className="text-sm text-gray-400 mb-5">
+            <p className="text-sm text-gray-400 mb-2">
               {dataset.name}
             </p>
             <a
               href={`/api/dataset-access?token=${accessToken}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#1d4acc]"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#1d4acc]"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               Open in Google Drive
             </a>
-            <p className="mt-3 text-[11px] text-gray-600">
-              This link expires in 60 seconds
+            <p className="mt-4 text-xs text-gray-400">
+              We&apos;ve also sent the download link to <span className="text-white font-medium">{email}</span>
+            </p>
+            <p className="mt-1 text-[11px] text-gray-600">
+              This button expires in 60 seconds
             </p>
             <button
               onClick={onClose}
-              className="mt-3 block mx-auto text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              className="mt-4 block mx-auto text-xs text-gray-500 hover:text-gray-300 transition-colors"
             >
               Close
             </button>

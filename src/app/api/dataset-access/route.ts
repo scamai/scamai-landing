@@ -120,7 +120,7 @@ export async function POST(req: Request) {
     if (resend) {
       // Email the user with the dataset download link
       resend.emails.send({
-        from: "ScamAI Research <research@scam.ai>",
+        from: "ScamAI Research <data@scam.ai>",
         to: [email],
         cc: ["benren@scam.ai", "dennisng@scam.ai"],
         subject: `Your dataset access: ${dataset.name}`,
@@ -160,7 +160,7 @@ export async function POST(req: Request) {
 
       // Internal access log to the team
       resend.emails.send({
-        from: "ScamAI Research <research@scam.ai>",
+        from: "ScamAI Research <data@scam.ai>",
         to: ["dennisng@scam.ai", "benren@scam.ai"],
         subject: `[Log] Dataset accessed: ${dataset.name}`,
         html: `
