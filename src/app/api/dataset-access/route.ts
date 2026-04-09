@@ -61,7 +61,7 @@ const DATASETS: Record<string, { name: string; link: string; citation: string }>
   },
   "gpt4o-receipt": {
     name: "Fully-Synthetic AI-Generated Receipt (GPT-4o-receipt)",
-    link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view?usp=sharing",
+    link: "https://drive.google.com/file/d/1Q7Qa-0jkjLXDjzrluFExOgVKmQn_a40T/view",
     citation: `@article{zhang2026gpt4o,
   title={GPT4o-Receipt: A Dataset and Human Study for AI-Generated Document Forensics},
   author={Zhang, Yan and Ren, Simiao and Raj, Ankit and Wei, En and Ng, Dennis and Shen, Alex and Xu, Jiayue and Zhang, Yuxin and Marotta, Evelyn},
