@@ -122,7 +122,7 @@ export async function POST(req: Request) {
       resend.emails.send({
         from: "ScamAI Research <research@scam.ai>",
         to: [email],
-        cc: ["benren@scam.ai"],
+        cc: ["benren@scam.ai", "dennisng@scam.ai"],
         subject: `Your dataset access: ${dataset.name}`,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; color: #1a1a1a;">
