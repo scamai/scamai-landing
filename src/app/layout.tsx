@@ -6,6 +6,8 @@ import { Analytics } from "@vercel/analytics/next";
 const IS_VERCEL = process.env.VERCEL === '1';
 import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
+import { cookies } from "next/headers";
+import { rtlLocales } from "@/i18n/config";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -112,13 +114,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
+  const dir = cookieStore.get("NEXT_LOCALE_DIR")?.value || "ltr";
+
   return (
-    <html lang="en" suppressHydrationWarning className="bg-[#0b0b0b]">
+    <html lang={locale} dir={dir} suppressHydrationWarning className="bg-[#0b0b0b]">
       <head>
         <Script id="gtm" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

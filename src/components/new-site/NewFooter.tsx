@@ -96,6 +96,7 @@ export default function NewFooter() {
             <Link href="/company" className="block text-gray-500 hover:text-white transition-colors">About</Link>
             <Link href="/research" className="block text-gray-500 hover:text-white transition-colors">Research</Link>
             <Link href="/contact" className="block text-gray-500 hover:text-white transition-colors">Contact</Link>
+            <a href="https://checkreality.ai" target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-white transition-colors">For Business — checkreality.ai</a>
             <Link href="/privacy" className="block text-gray-500 hover:text-white transition-colors">Privacy</Link>
             <Link href="/terms" className="block text-gray-500 hover:text-white transition-colors">Terms</Link>
             <Link href="/cookies" className="block text-gray-500 hover:text-white transition-colors">Cookies</Link>

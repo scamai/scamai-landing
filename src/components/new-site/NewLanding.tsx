@@ -301,7 +301,7 @@ export default function NewLanding() {
 
               <AnimatedSection delay={0.3}>
                 <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  AI trust platform
+                  Detect Deepfakes &amp; AI-Generated Media
                 </h1>
               </AnimatedSection>
 
