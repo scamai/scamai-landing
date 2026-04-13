@@ -105,6 +105,8 @@ export const pageMetadata = {
       'real-time detection',
       'Eva-v1 AI model',
       'media verification',
+      'deepfake detection',
+      'synthetic media detection',
     ],
   },
   products: {
@@ -114,7 +116,7 @@ export const pageMetadata = {
     keywords: ['AI products', 'detection solutions', 'API integration'],
   },
   aiDetection: {
-    title: 'AI Detection - Image & Video Deepfake Detection',
+    title: 'Image & Video Deepfake Detection - 95.3% Accuracy',
     description:
       'Detect AI-generated images and deepfake videos with 95.3% accuracy. Real-time processing under 4 seconds. Perfect for KYC, content moderation, and fraud prevention.',
     keywords: [
@@ -126,7 +128,7 @@ export const pageMetadata = {
     ],
   },
   audioDetection: {
-    title: 'Audio Detection - Voice Clone & Synthetic Audio Detection',
+    title: 'Voice Clone & Synthetic Audio Detection',
     description:
       'Identify synthetic voices, cloned audio, and AI-generated speech with industry-leading accuracy. Protect against voice phishing and audio fraud.',
     keywords: [
