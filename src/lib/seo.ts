@@ -181,7 +181,7 @@ export const pageMetadata = {
     keywords: ['about', 'Reality Inc', 'company', 'team', 'mission'],
   },
   company: {
-    title: 'Company - Meet the Team Behind ScamAI',
+    title: 'Company - Meet the ScamAI Team',
     description:
       'Built by a team obsessed with trust, safety, and verification. Learn about our vision and values.',
     keywords: ['company', 'team', 'vision', 'values'],
@@ -193,13 +193,13 @@ export const pageMetadata = {
     keywords: ['contact', 'support', 'sales', 'partnership'],
   },
   news: {
-    title: 'News & Updates - Latest from ScamAI',
+    title: 'News & Updates - ScamAI',
     description:
       'Stay updated with the latest news, product updates, and insights from ScamAI.',
-    keywords: ['news', 'updates', 'blog', 'announcements'],
+    keywords: ['news', 'updates', 'blog', 'announcements', 'deepfake news'],
   },
   demo: {
-    title: 'Book a Demo - Experience ScamAI',
+    title: 'Book a Demo - See ScamAI in Action',
     description:
       'Schedule a personalized demo to see how ScamAI can protect your business from synthetic media and deepfakes.',
     keywords: ['demo', 'trial', 'consultation', 'book demo'],
