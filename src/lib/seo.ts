@@ -97,7 +97,7 @@ export function generatePageMetadata({
 // Pre-defined metadata for common pages
 export const pageMetadata = {
   home: {
-    title: 'ScamAI - AI Trust Platform | Deepfake Detection & Synthetic Media Verification',
+    title: 'AI Trust Platform | Deepfake Detection & Synthetic Media Verification',
     description:
       'All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time. Industry-leading accuracy with SOC 2 Type II compliance. 200 free images per month.',
     keywords: [

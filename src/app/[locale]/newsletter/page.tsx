@@ -28,8 +28,11 @@ export default async function NewsletterPage() {
       <section className="relative px-4 py-24 sm:px-6" style={{ paddingTop: '140px' }}>
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="mb-6 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            News
+            Deepfake Weekly — ScamAI
           </h1>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Weekly analysis on deepfake technology, synthetic media threats, and AI fraud — from the team at ScamAI.
+          </p>
         </div>
       </section>
 
