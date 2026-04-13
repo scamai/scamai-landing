@@ -62,7 +62,7 @@ export async function generateMetadata(
       siteName: "ScamAI",
       images: [
         {
-          url: "https://scam.ai/opengraph-image",
+          url: `https://scam.ai/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: "ScamAI - AI Trust Platform for Deepfake Detection",
