@@ -170,7 +170,7 @@ export default function NewNav() {
       {isLandingPage && (
         <div className="fixed top-0 left-0 right-0 w-full bg-[#0021f3] py-2 text-center z-50" style={{ height: '36px' }}>
           <p className="text-xs sm:text-sm text-white leading-tight">
-            Scam.ai raised $2.5M and joined Berkeley SkyDeck
+            Scam.ai raised $2.6M and joined Berkeley SkyDeck
           </p>
         </div>
       )}

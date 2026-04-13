@@ -135,6 +135,50 @@ export default async function OGImage({
             ALL-IN-ONE DEEPFAKE DETECTION
           </div>
 
+          {/* Funding badge */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginTop: '20px',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'rgba(36,95,255,0.12)',
+                border: '1px solid rgba(36,95,255,0.25)',
+                borderRadius: '100px',
+                padding: '6px 14px',
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M13 7h8m-8 4H4m13-8a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#245FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span style={{ fontSize: '12px', fontWeight: 600, color: '#245FFF' }}>
+                $2.6M Raised
+              </span>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: '100px',
+                padding: '6px 14px',
+              }}
+            >
+              <span style={{ fontSize: '12px', fontWeight: 500, color: '#6b7280' }}>
+                Berkeley SkyDeck
+              </span>
+            </div>
+          </div>
+
           {/* H1 */}
           <div
             style={{
