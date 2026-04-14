@@ -69,9 +69,9 @@ export default function AIDetectionPage() {
             </AnimatedSection>
             
             <AnimatedSection delay={0.4}>
-              <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
+              <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
                 <p className="text-center">
-                  Industry-leading AI models that analyze visual content in real-time to identify <span className="font-semibold text-white">synthetic media</span>, <span className="font-semibold text-white">manipulated faces</span>, and <span className="font-semibold text-white">deepfake videos</span> with unprecedented accuracy.
+                  ScamAI&apos;s Eva-v1 models detect <span className="font-semibold text-white">synthetic media</span>, <span className="font-semibold text-white">manipulated faces</span>, and <span className="font-semibold text-white">deepfake videos</span> with <span className="font-semibold text-white">95.3% accuracy</span> in under 4 seconds. Supports face swaps, GAN-generated images, and diffusion model outputs including Stable Diffusion, DALL-E, Midjourney, and Flux.
                 </p>
               </div>
             </AnimatedSection>
@@ -119,11 +119,11 @@ export default function AIDetectionPage() {
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
                   Face Manipulation Detection
                 </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
-                  Identify face swaps, expression changes, and facial attribute manipulations with <span className="font-semibold text-white">95.3% accuracy</span> using advanced neural network analysis.
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4" data-speakable>
+                  Identify face swaps, expression changes, and facial attribute manipulations with <span className="font-semibold text-white">95.3% accuracy</span> using advanced neural network analysis. Detects outputs from leading generation tools including Stable Diffusion, DALL-E, Midjourney, and Flux.
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Get instant results with processing times <span className="font-semibold text-white">under 3 seconds</span>, enabling live verification for streaming and real-time content.
+                  Eva-v1-Fast processes in <span className="font-semibold text-white">under 2 seconds</span> for real-time moderation. Eva-v1-Pro delivers forensic-grade results in <span className="font-semibold text-white">under 4 seconds</span> for KYC and legal evidence.
                 </p>
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>

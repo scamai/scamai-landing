@@ -68,9 +68,9 @@ export default function AudioDetectionPage() {
             </AnimatedSection>
             
             <AnimatedSection delay={0.4}>
-              <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
+              <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
                 <p className="text-center">
-                  Advanced AI-powered analysis to identify <span className="font-semibold text-white">AI-generated voices</span>, <span className="font-semibold text-white">voice cloning attempts</span>, and <span className="font-semibold text-white">manipulated audio content</span> with industry-leading precision.
+                  Detect <span className="font-semibold text-white">voice clones</span>, <span className="font-semibold text-white">AI-generated speech</span>, and <span className="font-semibold text-white">synthetic audio</span> with <span className="font-semibold text-white">98.5% accuracy</span> in under 3 seconds. Identifies outputs from ElevenLabs, PlayHT, Resemble AI, Azure TTS, and other voice synthesis platforms. Supports MP3, WAV, M4A, FLAC, and OGG formats.
                 </p>
               </div>
             </AnimatedSection>
@@ -114,11 +114,11 @@ export default function AudioDetectionPage() {
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
                   Identify AI-Generated Voices
                 </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
-                  Identify AI-generated voice clones with <span className="font-semibold text-white">98.5% accuracy</span> across multiple languages, accents, and speech patterns.
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4" data-speakable>
+                  Identify AI-generated voice clones with <span className="font-semibold text-white">98.5% accuracy</span> across multiple languages, accents, and speech patterns. According to the FBI&apos;s IC3 2024 report, voice phishing losses exceeded $12.5 billion globally, making real-time audio detection essential for financial institutions and call centers.
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Get instant results with processing times <span className="font-semibold text-white">under 3 seconds</span> for audio clips, enabling live call verification and streaming analysis.
+                  Processing in <span className="font-semibold text-white">under 3 seconds</span> per audio clip enables live call verification, real-time streaming analysis, and automated fraud screening at scale.
                 </p>
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>

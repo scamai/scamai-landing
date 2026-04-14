@@ -306,13 +306,13 @@ export default function NewLanding() {
               </AnimatedSection>
 
               <AnimatedSection delay={0.4}>
-                <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
+                <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
                   <div className="text-center space-y-2">
                     <p>
-                      <span className="font-semibold text-white">Detect synthetic media and deepfakes in real time</span>.
+                      <span className="font-semibold text-white">Detect synthetic media and deepfakes in real time</span> with <span className="font-semibold text-white">95.3% accuracy</span>.
                     </p>
                     <p>
-                      <span className="font-semibold text-white">Industry-leading accuracy</span> that fights fraud and unifies trust signals.
+                      Processing under 4 seconds. SOC 2 Type II certified. <span className="font-semibold text-white">200 free images per month</span>.
                     </p>
                   </div>
                 </div>
@@ -404,8 +404,8 @@ export default function NewLanding() {
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1] lg:mb-8">
                   Fight AI threats<br />with <span className="text-[#245FFF]">AI defense</span>
                 </h2>
-                <p className="max-w-xl text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
-                  Deepfakes and synthetic fraud cost businesses millions every year. Our <span className="font-semibold text-white">Eva-v1</span> models adapt as fast as the threats themselves — detecting deepfakes, stopping fraud, and protecting your revenue in real-time.
+                <p className="max-w-xl text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
+                  According to Deloitte, AI-generated deepfake fraud is projected to cost businesses over $40 billion by 2027. Our <span className="font-semibold text-white">Eva-v1</span> models adapt as fast as the threats themselves — achieving <span className="font-semibold text-white">95.3% detection accuracy</span> in under 4 seconds, stopping fraud and protecting your revenue in real-time.
                 </p>
                 <a
                   href="https://app.scam.ai"
@@ -476,8 +476,8 @@ export default function NewLanding() {
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
                   One platform for all media verification needs
                 </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Stop juggling multiple detection tools. ScamAI unifies deepfake detection, synthetic media analysis, and fraud prevention into a single platform. One API, one dashboard, complete protection.
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
+                  Stop juggling multiple detection tools. ScamAI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes.
                 </p>
               </div>
               {/* Bento 3 - All-in-One, right side */}
@@ -509,8 +509,8 @@ export default function NewLanding() {
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
                   Real-time detection at scale
                 </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Process millions of media files with industry-leading speed. Our Eva-v1 model delivers instant verdicts without compromising accuracy, keeping your platform safe in real-time.
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
+                  Eva-v1-Fast processes images in under 2 seconds; Eva-v1-Pro delivers forensic-grade accuracy in under 4 seconds. Supports JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV, and FLAC. Built for high-throughput use cases like KYC verification, content moderation, and call center voice authentication.
                 </p>
               </div>
             </div>
@@ -547,8 +547,8 @@ export default function NewLanding() {
                 <p className="text-lg font-semibold text-gray-200 mb-6 sm:text-xl">
                   200 free images / month
                 </p>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Start with 200 free images monthly with our Eva-v1-Fast model. Simple pay-as-you-go pricing—no contracts, no setup fees, no commitments. You're only charged for successful analyses.
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
+                  Start with 200 free images monthly with our Eva-v1-Fast model. Pay-as-you-go at $0.05 per image after. Optional add-ons (Adaptive Defense, Active Liveness, Express Lane) at $0.008 per image each. No contracts, no setup fees.
                 </p>
               </div>
               {/* Bento 28 - Transparent Pricing, right side */}
@@ -584,8 +584,8 @@ export default function NewLanding() {
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
                   Stay compliant, everywhere.
                 </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
-                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II certified</strong>.
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
+                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II certified</strong>. No customer data retained after processing — images are deleted immediately after analysis.
                 </p>
                 <a 
                   href="https://reality-inc.trust.site/" 
