@@ -26,9 +26,9 @@ const changelogData: ChangelogEntry[] = [
   {
     date: "December 15, 2025",
     version: "■",
-    title: "Seed Funding Round - $2.5M",
+    title: "Seed Funding Round - $2.6M",
     tags: ["Funding", "Milestone"],
-    description: "Closed $2.5M in total equity financing led by Llama Venture, with participation from SCVxSBI, Welight Capital, SkyDeck Fund, and Beta Fund. Funding will accelerate product development and global expansion."
+    description: "Closed $2.6M in total equity financing led by Llama Venture, with participation from SCVxSBI, Welight Capital, SkyDeck Fund, and Beta Fund. Funding will accelerate product development and global expansion."
   },
   {
     date: "December 10, 2025",

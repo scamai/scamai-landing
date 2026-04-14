@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function AudioDetectionPage() {
-  return (
-    <NewPage
-      title="Audio Detection"
-      subtitle="Real-time voice clone and synthetic audio detection to protect against fraud."
-    />
-  );
+  redirect(`/${defaultLocale}/products/audio-detection`);
 }

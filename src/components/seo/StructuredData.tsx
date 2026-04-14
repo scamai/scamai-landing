@@ -207,6 +207,45 @@ export default function StructuredData() {
     ]
   };
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to detect deepfakes with ScamAI API",
+    "description": "Integrate ScamAI deepfake detection into your application in under 10 minutes using the REST API.",
+    "totalTime": "PT10M",
+    "tool": [
+      { "@type": "HowToTool", "name": "ScamAI API key (free at app.scam.ai)" },
+      { "@type": "HowToTool", "name": "Python, JavaScript, or cURL" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Create a free ScamAI account",
+        "text": "Sign up at app.scam.ai to get your API key. The free tier includes 200 images per month with no credit card required.",
+        "url": "https://app.scam.ai"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Send an image or video to the detection API",
+        "text": "Make a POST request to https://api.scam.ai/v1/detect with your API key in the Authorization header and the image URL in the JSON body."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Review the detection results",
+        "text": "The API returns a JSON response with is_deepfake (boolean), confidence score (0-1), and the model used (eva-v1-fast or eva-v1-pro). Processing takes under 4 seconds."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Integrate into your workflow",
+        "text": "Use webhooks for asynchronous processing, batch API for bulk analysis, or real-time API for live content moderation. Full documentation at scam.ai/en/resources/documentation."
+      }
+    ]
+  };
+
   return (
     <>
       <script
@@ -228,6 +267,10 @@ export default function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetsSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
     </>
   );

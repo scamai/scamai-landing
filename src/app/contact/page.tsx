@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function ContactPage() {
-  return (
-    <NewPage
-      title="Contact"
-      subtitle="Talk with our team about deployments, pricing, and integrations."
-    />
-  );
+  redirect(`/${defaultLocale}/contact`);
 }

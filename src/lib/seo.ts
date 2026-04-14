@@ -13,6 +13,7 @@ interface GenerateMetadataParams {
   keywords?: string[];
   ogImage?: string;
   noindex?: boolean;
+  dateModified?: string;
 }
 
 export function generatePageMetadata({
@@ -23,6 +24,7 @@ export function generatePageMetadata({
   keywords = [],
   ogImage = `${baseUrl}/opengraph-image`,
   noindex = false,
+  dateModified,
 }: GenerateMetadataParams): Metadata {
   const fullUrl = `${baseUrl}/${locale}${path}`;
   const fullTitle = path === '' ? title : `${title} | ScamAI`;
@@ -91,6 +93,14 @@ export function generatePageMetadata({
             'max-snippet': -1,
           },
         },
+    ...(dateModified
+      ? {
+          other: {
+            'article:modified_time': dateModified,
+            'date': dateModified,
+          },
+        }
+      : {}),
   };
 }
 
@@ -153,12 +163,14 @@ export const pageMetadata = {
       'deepfake detection',
       'synthetic media detection',
     ],
+    dateModified: '2026-02-02',
   },
   products: {
     title: 'Products - AI Detection Solutions',
     description:
       'Comprehensive suite of AI-powered detection tools for synthetic media, deepfakes, and fraud prevention. Vision, audio, and database solutions.',
     keywords: ['AI products', 'detection solutions', 'API integration'],
+    dateModified: '2026-02-02',
   },
   aiDetection: {
     title: 'Image & Video Deepfake Detection - 95.3% Accuracy',
@@ -171,6 +183,7 @@ export const pageMetadata = {
       'face swap detection',
       'synthetic image',
     ],
+    dateModified: '2026-01-15',
   },
   audioDetection: {
     title: 'Voice Clone & Synthetic Audio Detection',
@@ -182,6 +195,7 @@ export const pageMetadata = {
       'synthetic voice',
       'voice phishing',
     ],
+    dateModified: '2025-11-05',
   },
   scamDatabase: {
     title: 'Scam Database - Comprehensive Fraud Intelligence',
@@ -194,6 +208,7 @@ export const pageMetadata = {
     description:
       'Start free with 200 images per month. Transparent pricing for individuals, businesses, and enterprises. No hidden fees.',
     keywords: ['pricing', 'plans', 'free tier', 'enterprise pricing'],
+    dateModified: '2026-02-02',
   },
   resources: {
     title: 'Resources - Documentation & Learning Center',
@@ -224,6 +239,7 @@ export const pageMetadata = {
     description:
       'Learn about Reality Inc., the team behind ScamAI. Our mission is to build trust and safety in the age of AI-generated content.',
     keywords: ['about', 'Reality Inc', 'company', 'team', 'mission'],
+    dateModified: '2026-02-02',
   },
   company: {
     title: 'Company - Meet the ScamAI Team',
@@ -288,6 +304,7 @@ export const pageMetadata = {
       'age estimation attack',
       'AI trust research',
     ],
+    dateModified: '2026-01-15',
   },
   newsletter: {
     title: 'Deepfake Weekly Newsletter',
