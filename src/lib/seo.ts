@@ -94,6 +94,51 @@ export function generatePageMetadata({
   };
 }
 
+// Generate BreadcrumbList JSON-LD for a page
+export function generateBreadcrumbSchema(
+  locale: Locale,
+  breadcrumbs: { name: string; path?: string }[]
+) {
+  const baseUrl = 'https://scam.ai';
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${baseUrl}/${locale}`,
+      },
+      ...breadcrumbs.map((crumb, i) => ({
+        '@type': 'ListItem',
+        position: i + 2,
+        name: crumb.name,
+        ...(crumb.path ? { item: `${baseUrl}/${locale}${crumb.path}` } : {}),
+      })),
+    ],
+  };
+}
+
+// Generate Speakable schema for voice assistant GEO
+export function generateSpeakableSchema(
+  locale: Locale,
+  path: string,
+  cssSelectors: string[] = ['h1', '[data-speakable]']
+) {
+  const baseUrl = 'https://scam.ai';
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `ScamAI - ${path || 'Home'}`,
+    url: `${baseUrl}/${locale}${path}`,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: cssSelectors,
+    },
+  };
+}
+
 // Pre-defined metadata for common pages
 export const pageMetadata = {
   home: {
