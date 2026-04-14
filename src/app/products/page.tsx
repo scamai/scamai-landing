@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function ProductsPage() {
-  return (
-    <NewPage
-      title="Products"
-      subtitle="Comprehensive detection solutions for AI-generated media and synthetic fraud."
-    />
-  );
+  redirect(`/${defaultLocale}/products`);
 }

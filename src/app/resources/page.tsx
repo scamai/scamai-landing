@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function ResourcesPage() {
-  return (
-    <NewPage
-      title="Resources"
-      subtitle="Documentation, guides, and insights to help you get the most out of ScamAI."
-    />
-  );
+  redirect(`/${defaultLocale}/resources`);
 }

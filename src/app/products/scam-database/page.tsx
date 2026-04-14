@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function ScamDatabasePage() {
-  return (
-    <NewPage
-      title="Scam Database"
-      subtitle="Comprehensive database of known scams and fraud patterns for proactive protection."
-    />
-  );
+  redirect(`/${defaultLocale}/products/scam-database`);
 }

@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function CompliancePage() {
-  return (
-    <NewPage
-      title="Compliance"
-      subtitle="Our compliance certifications and adherence to industry standards and regulations."
-    />
-  );
+  redirect(`/${defaultLocale}/resources/security-compliance`);
 }

@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function DocumentationPage() {
-  return (
-    <NewPage
-      title="Documentation"
-      subtitle="Comprehensive guides and API references for integrating ScamAI into your platform."
-    />
-  );
+  redirect(`/${defaultLocale}/resources/documentation`);
 }

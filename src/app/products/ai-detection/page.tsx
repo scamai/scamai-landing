@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function AIDetectionPage() {
-  return (
-    <NewPage
-      title="AI Detection"
-      subtitle="Advanced AI-powered image and video detection for synthetic media and deepfakes."
-    />
-  );
+  redirect(`/${defaultLocale}/products/ai-detection`);
 }

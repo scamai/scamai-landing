@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function SolutionsPage() {
-  return (
-    <NewPage
-      title="Solutions"
-      subtitle="Solve synthetic media fraud across onboarding, KYC, and customer trust."
-    />
-  );
+  redirect(`/${defaultLocale}/products`);
 }

@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function SecurityPage() {
-  return (
-    <NewPage
-      title="Security"
-      subtitle="Learn about our security practices, certifications, and data protection measures."
-    />
-  );
+  redirect(`/${defaultLocale}/resources/security-compliance`);
 }

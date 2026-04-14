@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function PlatformPage() {
-  return (
-    <NewPage
-      title="Platform"
-      subtitle="Unified detection, unified decisions. Built for modern risk teams."
-    />
-  );
+  redirect(`/${defaultLocale}/products`);
 }

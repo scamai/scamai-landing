@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function LoginPage() {
-  return (
-    <NewPage
-      title="Log In"
-      subtitle="Access your ScamAI account to manage your detection workflows."
-    />
-  );
+  redirect(`/${defaultLocale}`);
 }

@@ -1,10 +1,6 @@
-import NewPage from "@/components/new-site/NewPage";
+import { redirect } from "next/navigation";
+import { defaultLocale } from "@/i18n/config";
 
 export default function DemoPage() {
-  return (
-    <NewPage
-      title="Book a Demo"
-      subtitle="Experience the new ScamAI platform built for real-time trust."
-    />
-  );
+  redirect(`/${defaultLocale}/demo`);
 }
