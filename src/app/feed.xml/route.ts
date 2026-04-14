@@ -8,8 +8,8 @@ export async function GET() {
     .map(
       (nl) => `    <item>
       <title>${escapeXml(nl.title)}</title>
-      <link>${baseUrl}/en/newsletter/${nl.id}</link>
-      <guid isPermaLink="true">${baseUrl}/en/newsletter/${nl.id}</guid>
+      <link>${baseUrl}/en/newsletter/${nl.slug || nl.id}</link>
+      <guid isPermaLink="true">${baseUrl}/en/newsletter/${nl.slug || nl.id}</guid>
       <pubDate>${new Date(nl.date).toUTCString()}</pubDate>
       <description>${escapeXml(nl.summary || '')}</description>
     </item>`

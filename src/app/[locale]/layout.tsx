@@ -1,4 +1,5 @@
-import type { AbstractIntlMessages, Metadata } from "next-intl";
+import type { AbstractIntlMessages } from "next-intl";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { defaultLocale, locales, rtlLocales, type Locale } from "@/i18n/config";

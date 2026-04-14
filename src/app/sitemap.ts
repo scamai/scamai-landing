@@ -24,6 +24,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/cookies',
     '/newsletter',
     '/research',
+    '/company',
+    '/news',
   ]
 
   const sitemapEntries: MetadataRoute.Sitemap = []
@@ -54,16 +56,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     newsletters.forEach(nl => {
       locales.forEach(locale => {
         sitemapEntries.push({
-          url: `${baseUrl}/${locale}/newsletter/${nl.id}`,
+          url: `${baseUrl}/${locale}/newsletter/${nl.slug || nl.id}`,
           lastModified: new Date(nl.date),
           changeFrequency: 'monthly',
           priority: 0.6,
           alternates: {
             languages: {
               ...Object.fromEntries(
-                locales.map(l => [l, `${baseUrl}/${l}/newsletter/${nl.id}`])
+                locales.map(l => [l, `${baseUrl}/${l}/newsletter/${nl.slug || nl.id}`])
               ),
-              'x-default': `${baseUrl}/en/newsletter/${nl.id}`,
+              'x-default': `${baseUrl}/en/newsletter/${nl.slug || nl.id}`,
             }
           }
         })

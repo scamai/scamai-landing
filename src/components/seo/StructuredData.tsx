@@ -52,7 +52,7 @@ export default function StructuredData() {
     "funding": {
       "@type": "MonetaryAmount",
       "currency": "USD",
-      "value": "2500000"
+      "value": "2600000"
     }
   };
 
@@ -62,11 +62,7 @@ export default function StructuredData() {
     "name": "ScamAI",
     "url": "https://scam.ai",
     "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://scam.ai/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "inLanguage": ["en", "es", "pt", "ja", "ko", "zh-CN", "zh-TW", "id", "fr", "de", "ar"]
   };
 
   const softwareSchema = {
