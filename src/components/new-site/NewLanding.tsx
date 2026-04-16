@@ -301,18 +301,18 @@ export default function NewLanding() {
 
               <AnimatedSection delay={0.3}>
                 <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  Detect Deepfakes &amp; AI-Generated Media
+                  AI trust platform
                 </h1>
               </AnimatedSection>
 
               <AnimatedSection delay={0.4}>
-                <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
+                <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
                   <div className="text-center space-y-2">
                     <p>
-                      <span className="font-semibold text-white">Detect synthetic media and deepfakes in real time</span> with <span className="font-semibold text-white">95.3% accuracy</span>.
+                      <span className="font-semibold text-white">Detect synthetic media and deepfakes in real time</span>.
                     </p>
                     <p>
-                      Processing under 4 seconds. SOC 2 Type II certified. <span className="font-semibold text-white">200 free images per month</span>.
+                      <span className="font-semibold text-white">Industry-leading accuracy</span> that fights fraud and unifies trust signals.
                     </p>
                   </div>
                 </div>
