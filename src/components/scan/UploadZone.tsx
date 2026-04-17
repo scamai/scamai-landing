@@ -146,7 +146,7 @@ export function UploadZone({ locale }: { locale: string }) {
         onDragLeave={onDragLeave}
         onDragOver={onDragOver}
         onDrop={onDrop}
-        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-10 text-center transition sm:p-14 ${
+        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-7 text-center transition sm:p-12 ${
           isDragging
             ? "border-[#245FFF] bg-[#245FFF]/5"
             : "border-white/15 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.04]"
@@ -165,14 +165,14 @@ export function UploadZone({ locale }: { locale: string }) {
         />
         {!busy ? (
           <>
-            <svg className="mb-4 h-10 w-10 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+            <svg className="mb-3 h-8 w-8 text-white/50 sm:h-10 sm:w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
             </svg>
-            <p className="text-lg font-semibold text-white sm:text-xl">
-              Drop an image, paste from clipboard, or click to upload
+            <p className="text-base font-semibold text-white sm:text-xl">
+              Drop, paste, or tap to upload
             </p>
-            <p className="mt-1 text-sm text-gray-400">
-              JPG, PNG, WebP, HEIC — 4MB max. Results in ~2 seconds.
+            <p className="mt-1 text-xs text-gray-400 sm:text-sm">
+              JPG, PNG, WebP, HEIC · 4MB · ~2s
             </p>
           </>
         ) : (
@@ -185,28 +185,29 @@ export function UploadZone({ locale }: { locale: string }) {
         )}
       </div>
 
-      <form onSubmit={onUrlSubmit} className="mt-4 flex items-center gap-2">
-        <span className="text-xs uppercase tracking-wider text-gray-500 whitespace-nowrap">or URL</span>
-        <input
-          type="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          disabled={busy}
-          placeholder="https://example.com/image.jpg"
-          className="flex-1 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] focus:bg-white/[0.05] disabled:opacity-50"
-        />
+      <form onSubmit={onUrlSubmit} className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
+        <div className="flex flex-1 items-center gap-2">
+          <span className="text-[10px] uppercase tracking-wider text-gray-500 sm:text-xs">or URL</span>
+          <input
+            type="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            disabled={busy}
+            placeholder="https://example.com/image.jpg"
+            className="h-11 flex-1 rounded-lg border border-white/10 bg-white/[0.03] px-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] focus:bg-white/[0.05] disabled:opacity-50"
+          />
+        </div>
         <button
           type="submit"
           disabled={busy || !url.trim()}
-          className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-11 rounded-lg bg-white px-5 text-sm font-semibold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Verify
         </button>
       </form>
 
-      <p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/[0.04] px-3 py-2 text-xs leading-relaxed text-amber-200/90">
-        <span className="font-semibold">Heads up:</span> your result gets a public URL at <code className="font-mono">scam.ai/scan/[id]</code>. Don&rsquo;t upload private or sensitive images.
-        Registered users can make scans private.
+      <p className="mt-3 text-[11px] leading-relaxed text-amber-200/80 sm:text-xs">
+        Your result gets a public URL. Don&rsquo;t upload private images.
       </p>
 
       {message && !busy && <p className="mt-3 text-center text-xs text-gray-400">{message}</p>}
