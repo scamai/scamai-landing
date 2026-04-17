@@ -1,613 +1,81 @@
-"use client";
-
-import { Link } from "@/i18n/navigation";
-import { useState, useRef, DragEvent, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import HeroBackground from "./HeroBackground";
-import { BentoV1_3, BentoV1_5, BentoV1_26, BentoV1_28 } from "@/components/bento-v1";
-import { Suspense } from "react";
-import { trackCTA, trackOutbound } from "@/lib/analytics";
-import DeveloperSection from "./DeveloperSection";
-
-// Skeleton loader for bento visual components
-function BentoSkeleton() {
-  return (
-    <div className="w-full h-full rounded-xl bg-white/[0.02] border border-gray-800/40 flex items-center justify-center animate-pulse">
-      <div className="w-16 h-16 rounded-full bg-white/[0.03]" />
-    </div>
-  );
-}
-import PricingSection from "./PricingSection";
-import FAQSection from "./FAQSection";
-import SolutionsSection from "./SolutionsSection";
 import { UploadZone } from "@/components/scan/UploadZone";
-import { jsonLdProps, softwareApplicationSchema, faqSchema } from "@/lib/seo/schema";
-
-type FileWithPreview = {
-  file: File;
-  preview: string;
-  watermarkedImage?: string;
-  status: 'pending' | 'analyzing' | 'completed';
-  result?: {
-    isAI: boolean;
-    confidence: number;
-    type: 'likely_ai_manipulated' | 'likely_real';
-    details?: string;
-  };
-};
-
-// Animated Section Component
-function AnimatedSection({ 
-  children, 
-  className = "",
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ 
-        duration: 0.8, 
-        delay,
-        ease: [0.25, 0.1, 0.25, 1.0]
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import {
+  jsonLdProps,
+  softwareApplicationSchema,
+  faqSchema,
+} from "@/lib/seo/schema";
 
 export default function NewLanding({ locale = "en" }: { locale?: string } = {}) {
-  const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    
-    const files = Array.from(e.dataTransfer.files);
-    processFiles(files);
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files);
-      processFiles(files);
-    }
-  };
-
-  const processFiles = (files: File[]) => {
-    const validFiles = files.filter(file => {
-      const type = file.type;
-      return type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/');
-    });
-
-    const newFiles: FileWithPreview[] = validFiles.map(file => ({
-      file,
-      preview: URL.createObjectURL(file),
-      status: 'pending'
-    }));
-
-    setUploadedFiles(prev => [...prev, ...newFiles]);
-  };
-
-  const addWatermark = async (file: File, result: any): Promise<string> => {
-    // Only watermark images
-    if (!file.type.startsWith('image/')) {
-      return URL.createObjectURL(file);
-    }
-
-    try {
-      if (typeof window === "undefined") {
-        return URL.createObjectURL(file);
-      }
-
-      const { default: watermark } = await import("watermarkjs");
-      const options = {
-        init(img: any) {
-          img.crossOrigin = 'anonymous';
-        }
-      };
-
-      const watermarkText = (text: string, offsetFromBottom: number, fontSize: number = 20) => {
-        return (target: any) => {
-          const ctx = target.getContext('2d');
-          if (!ctx) return target;
-
-          const width = target.width;
-          const height = target.height;
-          
-          ctx.save();
-          ctx.globalAlpha = 0.6;
-          ctx.fillStyle = 'white';
-          ctx.font = `bold ${fontSize}px Inter, sans-serif`;
-          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-          ctx.shadowBlur = 4;
-          ctx.shadowOffsetX = 2;
-          ctx.shadowOffsetY = 2;
-          
-          // Measure text width to align right
-          const textWidth = ctx.measureText(text).width;
-          const x = width - textWidth - 20; // 20px padding from right
-          const y = height - offsetFromBottom; // offset from bottom
-          
-          ctx.fillText(text, x, y);
-          ctx.restore();
-
-          return target;
-        };
-      };
-
-      // @ts-ignore - watermarkjs types
-      const result_watermarked = await watermark([file], options)
-        .image(watermarkText('Scam.ai', 100, 24))
-        .then((img: any) => {
-          // @ts-ignore
-          return watermark([img])
-            .image(watermarkText(
-              result.type === 'likely_ai_manipulated' ? 'AI-Manipulated' : 'Verified',
-              70,
-              16
-            ));
-        })
-        .then((img: any) => {
-          // @ts-ignore
-          return watermark([img])
-            .image(watermarkText(`${result.confidence.toFixed(1)}% Confidence`, 40, 14));
-        })
-        .then((img: any) => img.src);
-
-      return result_watermarked;
-    } catch (error) {
-      console.error('Watermark error:', error);
-      return URL.createObjectURL(file);
-    }
-  };
-
-  const analyzeFile = async (index: number) => {
-    setUploadedFiles(prev => prev.map((f, i) => 
-      i === index ? { ...f, status: 'analyzing' as const } : f
-    ));
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Mock result
-    const isAI = Math.random() > 0.5;
-    const mockResult = {
-      isAI,
-      confidence: Math.random() * 100,
-      type: (isAI ? 'likely_ai_manipulated' : 'likely_real') as 'likely_ai_manipulated' | 'likely_real',
-      details: 'Analysis completed using AI detection models'
-    };
-
-    const fileData = uploadedFiles[index];
-    const watermarkedImage = await addWatermark(fileData.file, mockResult);
-
-    setUploadedFiles(prev => prev.map((f, i) => 
-      i === index ? { 
-        ...f, 
-        status: 'completed' as const, 
-        result: mockResult,
-        watermarkedImage 
-      } : f
-    ));
-  };
-
-  const removeFile = (index: number) => {
-    setUploadedFiles(prev => {
-      const newFiles = prev.filter((_, i) => i !== index);
-      URL.revokeObjectURL(prev[index].preview);
-      if (prev[index].watermarkedImage) {
-        URL.revokeObjectURL(prev[index].watermarkedImage!);
-      }
-      return newFiles;
-    });
-  };
-
-  const downloadWatermarkedImage = (fileData: FileWithPreview) => {
-    if (!fileData.watermarkedImage) return;
-
-    const link = document.createElement('a');
-    link.href = fileData.watermarkedImage;
-    link.download = `scamai_verified_${fileData.file.name}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const shareToSocialMedia = async (fileData: FileWithPreview, platform: string) => {
-    const text = `I verified this image with Scam.ai - ${fileData.result?.type === 'likely_ai_manipulated' ? 'AI-Manipulated' : 'Likely Real'} (${fileData.result?.confidence.toFixed(1)}% confidence)`;
-    const url = 'https://scam.ai';
-
-    // Check if Web Share API is supported and we have a watermarked image
-    if (platform === 'native' && navigator.share && fileData.watermarkedImage) {
-      try {
-        // Convert data URL to Blob
-        const response = await fetch(fileData.watermarkedImage);
-        const blob = await response.blob();
-        const file = new File([blob], `scamai_verified_${fileData.file.name}`, { type: blob.type });
-
-        // Check if we can share files
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: 'Scam.ai Verification',
-            text: text,
-            files: [file]
-          });
-          return;
-        } else {
-          // Fallback to sharing just text if files aren't supported
-          await navigator.share({
-            title: 'Scam.ai Verification',
-            text: text,
-            url: url
-          });
-          return;
-        }
-      } catch (error) {
-        console.log('Share cancelled or failed:', error);
-        return;
-      }
-    }
-
-    // Fallback to platform-specific URLs for desktop or when Web Share API isn't available
-    const shareUrls: Record<string, string> = {
-      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-      whatsapp: `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`,
-    };
-
-    if (platform in shareUrls) {
-      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
-    }
-  };
-
-  const getFileType = (file: File) => {
-    if (file.type.startsWith('image/')) return 'Image';
-    if (file.type.startsWith('video/')) return 'Video';
-    if (file.type.startsWith('audio/')) return 'Audio';
-    return 'File';
-  };
   return (
     <main className="bg-black text-white" role="main">
-      {/* Hero Section — text takes ~70vh, video peeks below */}
-      <section className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
-        <HeroBackground className="" />
-        <div className="relative z-10 w-full">
-          <script {...jsonLdProps(softwareApplicationSchema())} />
-          <script {...jsonLdProps(faqSchema([
-            { q: "How accurate is ScamAI?", a: "ScamAI Eva V1.6 achieves approximately 95% accuracy across 120+ generator types, including Midjourney v6, FLUX, Sora, Veo, StyleGAN3, FaceSwap, and DeepFaceLab. No detector is perfect, and newly released generators lag detection." },
-            { q: "Is it free?", a: "Yes. The first 2 scans require no account. Registered users get 20 scans per month free. Unlimited scans and a private-by-default result URL are $9/month." },
-            { q: "Are my scan results public?", a: "Anonymous scans produce a public result page by default at scam.ai/scan/[id]. Registered users can opt in or out of public sharing per scan." },
-            { q: "What image formats are supported?", a: "JPG, PNG, WebP, HEIC up to 4MB. Video and audio detection is available via the Pro API." },
-            { q: "How fast is it?", a: "Verdict in under 2 seconds for most images, via the Eva V1.6 inference path." },
-          ]))} />
+      <script {...jsonLdProps(softwareApplicationSchema())} />
+      <script
+        {...jsonLdProps(
+          faqSchema([
+            {
+              q: "How accurate is ScamAI?",
+              a: "ScamAI Eva V1.6 achieves approximately 95% accuracy across 120+ generator types, including Midjourney v6, FLUX, Sora, Veo, StyleGAN3, FaceSwap, and DeepFaceLab. No detector is perfect, and newly released generators lag detection.",
+            },
+            {
+              q: "Is it free?",
+              a: "Yes. The first 2 scans require no account. Registered users get 20 scans per month free. Unlimited scans and a private-by-default result URL are $9/month.",
+            },
+            {
+              q: "Are my scan results public?",
+              a: "Anonymous scans produce a public result page by default at scam.ai/scan/[id]. Registered users can opt in or out of public sharing per scan.",
+            },
+            {
+              q: "What image formats are supported?",
+              a: "JPG, PNG, WebP, HEIC up to 4MB. Video and audio detection is available via the Pro API.",
+            },
+            {
+              q: "How fast is it?",
+              a: "Verdict in under 2 seconds for most images, via the Eva V1.6 inference path.",
+            },
+          ]),
+        )}
+      />
 
-          {/* Tool-first hero — upload zone IS the hero */}
-          <div className="flex flex-col items-center justify-center px-5 pt-[110px] pb-14 text-center sm:px-10 sm:pt-[130px] sm:pb-20 lg:px-8">
-            <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-5 sm:space-y-6">
-              <AnimatedSection delay={0.1}>
-                <p className="text-[10px] font-semibold text-gray-400 tracking-[0.18em] uppercase sm:text-xs">
-                  AI Image Verification · Free · No signup for your first 2 scans
-                </p>
-              </AnimatedSection>
+      <section
+        className="relative px-5 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24"
+        aria-label="Verify any image"
+      >
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400 sm:text-xs">
+            AI Image Verification · Free · No signup for your first 2 scans
+          </p>
+          <h1 className="mt-4 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            Verify any image —{" "}
+            <span className="text-[#245FFF]">free, in 2 seconds</span>
+          </h1>
+          <p
+            className="mt-5 max-w-2xl text-sm leading-relaxed text-gray-300 sm:text-base lg:text-lg"
+            data-speakable
+          >
+            ScamAI{" "}
+            <span className="font-semibold text-white">Eva V1.6</span> detects
+            deepfakes and AI-generated images across{" "}
+            <span className="font-semibold text-white">
+              120+ generator types
+            </span>{" "}
+            — Midjourney, Sora, FLUX, Veo, StyleGAN, FaceSwap — at{" "}
+            <span className="font-semibold text-white">95% accuracy</span>. We
+            tell you when we&rsquo;re uncertain.
+          </p>
 
-              <AnimatedSection delay={0.2}>
-                <h1 className="text-3xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  Verify any image — <span className="text-[#245FFF]">free, in 2 seconds</span>
-                </h1>
-              </AnimatedSection>
-
-              <AnimatedSection delay={0.3}>
-                <p className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
-                  ScamAI <span className="font-semibold text-white">Eva V1.6</span> detects deepfakes and AI-generated images across{" "}
-                  <span className="font-semibold text-white">120+ generator types</span> — Midjourney, Sora, FLUX, Veo, StyleGAN, FaceSwap — at{" "}
-                  <span className="font-semibold text-white">95% accuracy</span>. We tell you when we&rsquo;re uncertain.
-                </p>
-              </AnimatedSection>
-
-              <AnimatedSection delay={0.4}>
-                <div className="w-full pt-2 sm:pt-3">
-                  <UploadZone locale={locale} />
-                </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={0.55}>
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2 text-[11px] uppercase tracking-wider text-gray-500 sm:text-xs">
-                  <span>✓ 95% accuracy · 120+ generator types</span>
-                  <span>✓ &lt; 2s results</span>
-                  <span>✓ SOC 2 Type II · GDPR</span>
-                </div>
-              </AnimatedSection>
-            </div>
+          <div className="mt-8 w-full">
+            <UploadZone locale={locale} />
           </div>
 
-          {/* Product visual — sits in the remaining ~30vh, peeks above fold */}
-          <AnimatedSection delay={0.7}>
-            <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 sm:px-10 lg:px-8">
-              <div className="overflow-hidden rounded-xl">
-                <div className="relative">
-                  <video
-                    ref={(el) => {
-                      if (el) {
-                        el.currentTime = 4;
-                        const handleTimeUpdate = () => {
-                          if (el.ended || el.currentTime < 4) {
-                            el.currentTime = 4;
-                            el.play();
-                          }
-                        };
-                        el.addEventListener('ended', handleTimeUpdate);
-                        el.addEventListener('loadedmetadata', () => { el.currentTime = 4; });
-                      }
-                    }}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-auto rounded-xl"
-                  >
-                    <source src="/dashboard.mp4" type="video/mp4" />
-                  </video>
-                  {/* Gradient fade at bottom */}
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent" />
-                </div>
-              </div>
-              {/* Glow effect behind the frame */}
-              <div className="pointer-events-none absolute -inset-4 -z-10 rounded-2xl bg-[#245FFF]/5 blur-2xl" />
-            </div>
-          </AnimatedSection>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-wider text-gray-500 sm:text-xs">
+            <span>95% accuracy · 120+ types</span>
+            <span>·</span>
+            <span>&lt; 2s results</span>
+            <span>·</span>
+            <span>SOC 2 Type II · GDPR</span>
+          </div>
         </div>
       </section>
-
-      {/* AI-Powered Security — merged section */}
-      <section className="landing-section relative overflow-hidden" aria-label="AI-Powered Security - Deepfake Protection" style={{
-        backgroundImage: 'url(/session1.svg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}>
-        <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-24 lg:py-32">
-          <AnimatedSection>
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="text-left flex flex-col justify-center">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-4 sm:text-[10px] lg:mb-6">
-                  AI-POWERED SECURITY
-                </p>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1] lg:mb-8">
-                  Fight AI threats<br />with <span className="text-[#245FFF]">AI defense</span>
-                </h2>
-                <p className="max-w-xl text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
-                  According to Deloitte, AI-generated deepfake fraud is projected to cost businesses over $40 billion by 2027. Our <span className="font-semibold text-white">Eva-v1</span> models adapt as fast as the threats themselves — achieving <span className="font-semibold text-white">95.3% detection accuracy</span> in under 4 seconds, stopping fraud and protecting your revenue in real-time.
-                </p>
-                <a
-                  href="https://app.scam.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#245FFF] transition hover:gap-3"
-                  onClick={() => trackCTA("start_detecting", "ai_security")}
-                >
-                  Start detecting now
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-              {/* Bento 26 - AI Detection visual */}
-              <div className="relative flex items-center justify-center min-h-[280px] sm:min-h-[400px]">
-                <div className="w-full max-w-[300px] sm:max-w-[400px] h-[280px] sm:h-[400px] scale-100 sm:scale-[1.2]">
-                  <Suspense fallback={<BentoSkeleton />}>
-                    <BentoV1_26 />
-                  </Suspense>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* Solutions Section: Product verticals */}
-      <SolutionsSection />
-
-      <div className="section-divider" />
-
-      {/* Features Section: THE PLATFORM + All-in-One + Lightning Fast */}
-      <section className="landing-section relative overflow-hidden bg-black" aria-label="Platform Features - Why Teams Choose Us">
-        {/* Background image wrapper */}
-        <div className="absolute inset-0 w-full h-full" style={{
-          backgroundImage: 'url(/session3.svg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}></div>
-        
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
-        
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
-          {/* Platform Title - no overlay */}
-          <AnimatedSection>
-            <div className="text-center mb-12 lg:mb-16">
-              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-4 sm:text-[10px] lg:mb-6">
-                THE PLATFORM
-              </p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                Why teams choose <span className="text-[#245FFF]">us</span>
-              </h2>
-            </div>
-          </AnimatedSection>
-
-          {/* Feature 1: All-in-One Platform */}
-          <AnimatedSection>
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-16 lg:mb-20">
-              <div className="lg:pl-12 flex flex-col justify-center min-h-0 sm:min-h-[350px]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  ALL-IN-ONE PLATFORM
-                </p>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  One platform for all media verification needs
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Stop juggling multiple detection tools. ScamAI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes.
-                </p>
-              </div>
-              {/* Bento 3 - All-in-One, right side */}
-              <div className="relative flex items-center justify-center min-h-[280px] sm:min-h-[400px]">
-                <div className="w-full max-w-[300px] sm:max-w-[400px] h-[280px] sm:h-[400px] scale-100 sm:scale-[1.2]">
-                  <Suspense fallback={<BentoSkeleton />}>
-                    <BentoV1_3 />
-                  </Suspense>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Feature 2: Real-Time Detection */}
-          <AnimatedSection delay={0.2}>
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              {/* Bento 5 - Lightning Fast, left side */}
-              <div className="order-2 lg:order-1 relative flex items-center justify-center min-h-[280px] sm:min-h-[350px]">
-                <div className="w-full max-w-[300px] sm:max-w-[400px] h-[280px] sm:h-[400px] scale-100 sm:scale-[1.2]">
-                  <Suspense fallback={<BentoSkeleton />}>
-                    <BentoV1_5 />
-                  </Suspense>
-                </div>
-              </div>
-              <div className="order-1 lg:order-2 flex flex-col justify-center min-h-0 sm:min-h-[400px]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  LIGHTNING FAST
-                </p>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Real-time detection at scale
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Eva-v1-Fast processes images in under 2 seconds; Eva-v1-Pro delivers forensic-grade accuracy in under 4 seconds. Supports JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV, and FLAC. Built for high-throughput use cases like KYC verification, content moderation, and call center voice authentication.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* Session4: Transparent Pricing & Global Compliance */}
-      <section className="landing-section relative overflow-hidden bg-black" aria-label="Pricing & Compliance">
-        {/* Background image wrapper */}
-        <div className="absolute inset-0 w-full h-full" style={{
-          backgroundImage: 'url(/session4.svg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}></div>
-        
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
-        
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
-          {/* Transparent Pricing */}
-          <AnimatedSection>
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-16 lg:mb-20">
-              <div className="lg:pl-12 flex flex-col justify-center min-h-0 sm:min-h-[350px]">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  $ TRANSPARENT PRICING
-                </p>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Pay only for what you use.
-                </h3>
-                <p className="text-lg font-semibold text-gray-200 mb-6 sm:text-xl">
-                  200 free images / month
-                </p>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Start with 200 free images monthly with our Eva-v1-Fast model. Pay-as-you-go at $0.05 per image after. Optional add-ons (Adaptive Defense, Active Liveness, Express Lane) at $0.008 per image each. No contracts, no setup fees.
-                </p>
-              </div>
-              {/* Bento 28 - Transparent Pricing, right side */}
-              <div className="relative flex items-center justify-center min-h-[280px] sm:min-h-[400px]">
-                <div className="w-full max-w-[300px] sm:max-w-[400px] h-[280px] sm:h-[400px] scale-100 sm:scale-[1.2]">
-                  <Suspense fallback={<BentoSkeleton />}>
-                    <BentoV1_28 />
-                  </Suspense>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Global Compliance */}
-          <AnimatedSection delay={0.2}>
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex items-center justify-center gap-8 flex-wrap order-2 lg:order-1">
-                <img 
-                  src="/gdpr-badge.png" 
-                  alt="GDPR Compliant Badge" 
-                  className="h-20 w-20 sm:h-32 sm:w-32 object-contain"
-                />
-                <img
-                  src="/soc2-badge.png"
-                  alt="SOC 2 Type II Certified Badge"
-                  className="h-20 w-20 sm:h-32 sm:w-32 object-contain"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  ☑ GLOBAL COMPLIANCE
-                </p>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Stay compliant, everywhere.
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
-                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II certified</strong>. No customer data retained after processing — images are deleted immediately after analysis.
-                </p>
-                <a 
-                  href="https://reality-inc.trust.site/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-[#245FFF] hover:text-[#1d4acc] font-semibold transition-colors"
-                >
-                  View our Trust Center →
-                </a>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* Session5: Developer-First */}
-      <DeveloperSection />
-
-      <div className="section-divider" />
-
-      {/* Session6: Pricing */}
-      <PricingSection />
-
-      <div className="section-divider" />
-
-      {/* Session7: FAQ */}
-      <FAQSection />
-
     </main>
   );
 }
