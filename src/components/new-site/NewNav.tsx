@@ -83,7 +83,6 @@ export default function NewNav() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const isLandingPage = pathname === "/" || pathname === "";
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
   const companyDropdownRef = useRef<HTMLDivElement>(null);
@@ -124,17 +123,10 @@ export default function NewNav() {
     setLangOpen(false);
   };
 
-  const announcementHeight = isLandingPage ? 36 : 0;
+  const announcementHeight = 0;
 
   return (
     <>
-      {isLandingPage && (
-        <div className="fixed top-0 left-0 right-0 w-full bg-[#0021f3] py-2 text-center z-50" style={{ height: '36px' }}>
-          <p className="text-xs sm:text-sm text-white leading-tight">
-            Scam.ai raised $2.6M and joined Berkeley SkyDeck
-          </p>
-        </div>
-      )}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
