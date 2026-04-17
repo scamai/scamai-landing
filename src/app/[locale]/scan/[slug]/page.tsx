@@ -10,6 +10,8 @@ import {
 import { VerdictBadge } from "@/components/scan/VerdictBadge";
 import { SignalList } from "@/components/scan/SignalList";
 import { ShareBar } from "@/components/scan/ShareBar";
+import { IS_AI_ENTRIES } from "@/lib/seo/pages/is-ai";
+import { HOW_TO_ENTRIES } from "@/lib/seo/pages/how-to";
 
 type ScanPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -132,6 +134,47 @@ export default async function ScanPage({ params }: ScanPageProps) {
           >
             Verify an image →
           </Link>
+        </div>
+
+        <div className="mt-14 grid gap-8 sm:grid-cols-2">
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
+              Popular verifications
+            </h2>
+            <ul className="mt-3 space-y-2 text-sm">
+              {IS_AI_ENTRIES.slice(0, 4).map((e) => (
+                <li key={e.slug}>
+                  <Link href={`/${locale}/is-ai/${e.slug}`} className="text-gray-300 hover:text-white hover:underline">
+                    Is {e.subject} AI-generated?
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href={`/${locale}/is-ai`} className="font-semibold text-[#245FFF] hover:underline">
+                  Browse all →
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
+              How to verify
+            </h2>
+            <ul className="mt-3 space-y-2 text-sm">
+              {HOW_TO_ENTRIES.slice(0, 4).map((e) => (
+                <li key={e.slug}>
+                  <Link href={`/${locale}/how-to/${e.slug}`} className="text-gray-300 hover:text-white hover:underline">
+                    {e.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href={`/${locale}/how-to`} className="font-semibold text-[#245FFF] hover:underline">
+                  Browse all →
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </main>

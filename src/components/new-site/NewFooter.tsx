@@ -1,50 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { trackNewsletterSignup, trackOutbound } from "@/lib/analytics";
+import { trackOutbound } from "@/lib/analytics";
 
 export default function NewFooter() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      trackNewsletterSignup("footer");
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 3000);
-    }
-  };
-
   return (
     <footer className="relative border-t border-white/10 bg-black" role="contentinfo" aria-label="Site footer">
       <div className="mx-auto max-w-6xl px-4 pt-16 pb-8 sm:px-6">
-        {/* Newsletter CTA */}
-        <div className="mb-14 rounded-2xl border border-white/10 p-5 sm:p-8 lg:p-10 text-center">
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Stay ahead of AI threats</h3>
-          <p className="text-sm text-gray-400 mb-6 max-w-md mx-auto">
-            Weekly insights on deepfakes, synthetic media, and AI security — straight to your inbox.
-          </p>
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="you@company.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="flex-1 rounded-full bg-black border border-white/15 px-5 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] transition"
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-[#245FFF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1d4acc] transition-colors whitespace-nowrap"
-            >
-              {subscribed ? "Subscribed!" : "Subscribe"}
-            </button>
-          </form>
-        </div>
-
         {/* Footer columns */}
         <div className="grid gap-10 md:grid-cols-3">
           <div className="space-y-4">

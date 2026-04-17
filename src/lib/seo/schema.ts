@@ -85,6 +85,80 @@ export function scanResultSchema(slug: string, verdict: string, confidence: numb
   };
 }
 
+export function howToSchema(input: {
+  name: string;
+  description: string;
+  steps: Array<{ name: string; text: string }>;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: input.name,
+    description: input.description,
+    url: `${SITE_URL}${input.url}`,
+    step: input.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
+export function articleSchema(input: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  author?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: input.headline,
+    description: input.description,
+    url: `${SITE_URL}${input.url}`,
+    datePublished: input.datePublished,
+    dateModified: input.datePublished,
+    author: {
+      "@type": "Organization",
+      name: input.author ?? "ScamAI",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ScamAI",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+    },
+  };
+}
+
+export function claimReviewSchema(input: {
+  url: string;
+  claim: string;
+  verdict: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  datePublished: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ClaimReview",
+    url: `${SITE_URL}${input.url}`,
+    datePublished: input.datePublished,
+    author: { "@type": "Organization", name: "ScamAI" },
+    claimReviewed: input.claim,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: input.rating,
+      bestRating: 5,
+      worstRating: 1,
+      alternateName: input.verdict,
+    },
+  };
+}
+
 export function jsonLdProps(data: unknown) {
   return {
     type: "application/ld+json" as const,
