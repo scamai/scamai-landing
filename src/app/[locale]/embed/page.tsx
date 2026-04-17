@@ -56,9 +56,9 @@ export default function EmbedPage() {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+        <div className="rounded-2xl border border-white/10 p-6">
           <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Preview</p>
-          <div className="mt-4 flex items-center justify-center rounded-xl bg-white/[0.04] p-8">
+          <div className="mt-4 flex items-center justify-center rounded-xl p-8">
             <div
               style={{
                 display: "inline-flex",
@@ -103,7 +103,7 @@ export default function EmbedPage() {
                 {copied === "html" ? "Copied" : "Copy"}
               </button>
             </div>
-            <pre className="mt-2 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.03] p-4 text-xs leading-relaxed">
+            <pre className="mt-2 overflow-x-auto rounded-xl border border-white/10 p-4 text-xs leading-relaxed">
               {scriptSnippet}
             </pre>
           </div>
@@ -119,7 +119,7 @@ export default function EmbedPage() {
                 {copied === "iframe" ? "Copied" : "Copy"}
               </button>
             </div>
-            <pre className="mt-2 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.03] p-4 text-xs leading-relaxed">
+            <pre className="mt-2 overflow-x-auto rounded-xl border border-white/10 p-4 text-xs leading-relaxed">
               {iframeSnippet}
             </pre>
           </div>

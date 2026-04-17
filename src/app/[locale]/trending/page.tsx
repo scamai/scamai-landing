@@ -52,7 +52,7 @@ export default async function TrendingPage({
 
       <section className="mx-auto max-w-6xl px-5 pb-24 sm:px-8">
         {scans.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-10 text-center">
+          <div className="rounded-2xl border border-white/10 p-10 text-center">
             <p className="text-lg font-semibold text-white">No public scans yet.</p>
             <p className="mt-2 text-sm text-gray-400">
               Be the first —{" "}
@@ -68,7 +68,7 @@ export default async function TrendingPage({
               <Link
                 key={scan.id}
                 href={`/${locale}/scan/${scan.slug}`}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition hover:border-white/20 hover:bg-white/[0.04]"
+                className="group overflow-hidden rounded-2xl border border-white/10 transition hover:border-white/20 hover:bg-white/[0.04]"
               >
                 {scan.image_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -78,7 +78,7 @@ export default async function TrendingPage({
                     className="aspect-video w-full object-cover"
                   />
                 ) : (
-                  <div className="aspect-video w-full bg-white/[0.03]" />
+                  <div className="aspect-video w-full" />
                 )}
                 <div className="p-4">
                   <VerdictBadge verdict={scan.verdict} confidence={Number(scan.confidence)} />

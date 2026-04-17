@@ -14,7 +14,7 @@ import {
 
 function ConsumerTierCard({ locale }: { locale: string }) {
   return (
-    <section className="border-b border-white/10 bg-gradient-to-b from-black to-[#080818] px-4 py-16 sm:px-6 sm:py-20">
+    <section className="border-b border-white/10 px-4 py-16 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#245FFF]">
@@ -29,7 +29,7 @@ function ConsumerTierCard({ locale }: { locale: string }) {
         </div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <div className="rounded-2xl border border-white/10 p-6">
             <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Anonymous</p>
             <p className="mt-2 text-3xl font-bold">Free</p>
             <p className="mt-1 text-xs text-gray-500">No signup</p>
@@ -43,7 +43,7 @@ function ConsumerTierCard({ locale }: { locale: string }) {
             </Link>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <div className="rounded-2xl border border-white/10 p-6">
             <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Registered</p>
             <p className="mt-2 text-3xl font-bold">Free</p>
             <p className="mt-1 text-xs text-gray-500">Google / Apple sign-in</p>
@@ -57,7 +57,7 @@ function ConsumerTierCard({ locale }: { locale: string }) {
             </Link>
           </div>
 
-          <div className="relative rounded-2xl border border-[#245FFF]/50 bg-[#245FFF]/[0.06] p-6">
+          <div className="relative rounded-2xl border border-[#245FFF]/50 p-6">
             <span className="absolute -top-2 right-5 rounded-full bg-[#245FFF] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
               Best for pros
             </span>

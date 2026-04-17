@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState, DragEvent, ClipboardEvent } from "react";
+import { useCallback, useEffect, useRef, useState, DragEvent } from "react";
 
 type ScanResponse = {
   slug: string;
@@ -23,38 +23,24 @@ export function UploadZone({ locale }: { locale: string }) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [url, setUrl] = useState("");
   const [message, setMessage] = useState<string | null>(null);
 
-  const startTimer = () => performance.now();
-
   const submit = useCallback(
-    async (payload: { file?: File; url?: string }) => {
-      const t0 = startTimer();
+    async (file: File) => {
+      const t0 = performance.now();
       setError(null);
       setPhase("uploading");
       try {
-        let res: Response;
-        if (payload.file) {
-          const fd = new FormData();
-          fd.append("file", payload.file);
-          setPhase("analyzing");
-          res = await fetch("/api/scan", { method: "POST", body: fd });
-        } else {
-          setPhase("analyzing");
-          res = await fetch("/api/scan", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url: payload.url }),
-          });
-        }
+        const fd = new FormData();
+        fd.append("file", file);
+        setPhase("analyzing");
+        const res = await fetch("/api/scan", { method: "POST", body: fd });
         if (!res.ok) {
           const body = await res.json().catch(() => ({ error: "Scan failed" }));
           throw new Error(body.error ?? "Scan failed");
         }
         const data = (await res.json()) as ScanResponse;
         const clientTtfr = Math.round(performance.now() - t0);
-        // Fire analytics events — Vercel Analytics is already wired
         (window as unknown as { va?: (e: string, o?: Record<string, unknown>) => void }).va?.(
           "event",
           { name: "ttfr_measured", ttfrMs: clientTtfr, serverMs: data.ttfrMs },
@@ -89,7 +75,7 @@ export function UploadZone({ locale }: { locale: string }) {
           const file = item.getAsFile();
           if (file) {
             setMessage("Pasted image — scanning…");
-            submit({ file });
+            submit(file);
           }
           return;
         }
@@ -118,13 +104,7 @@ export function UploadZone({ locale }: { locale: string }) {
     dragCounter.current = 0;
     setIsDragging(false);
     const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith("image/")) submit({ file });
-  };
-
-  const onUrlSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!url.trim()) return;
-    submit({ url: url.trim() });
+    if (file && file.type.startsWith("image/")) submit(file);
   };
 
   const busy = phase === "uploading" || phase === "analyzing";
@@ -146,10 +126,8 @@ export function UploadZone({ locale }: { locale: string }) {
         onDragLeave={onDragLeave}
         onDragOver={onDragOver}
         onDrop={onDrop}
-        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-7 text-center transition sm:p-12 ${
-          isDragging
-            ? "border-[#245FFF] bg-[#245FFF]/5"
-            : "border-white/15 bg-white/[0.02] hover:border-white/30 hover:bg-white/[0.04]"
+        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-8 text-center transition sm:p-14 ${
+          isDragging ? "border-[#245FFF]" : "border-white/20 hover:border-white/40"
         } ${busy ? "cursor-wait" : "cursor-pointer"}`}
       >
         <input
@@ -159,7 +137,7 @@ export function UploadZone({ locale }: { locale: string }) {
           className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0];
-            if (file) submit({ file });
+            if (file) submit(file);
             e.currentTarget.value = "";
           }}
         />
@@ -179,40 +157,19 @@ export function UploadZone({ locale }: { locale: string }) {
           <div className="flex flex-col items-center gap-3 py-2">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#245FFF] border-t-transparent" />
             <p className="text-sm font-semibold text-white">
-              {phase === "uploading" ? "Uploading…" : "Analyzing with Eva V1.6…"}
+              {phase === "uploading" ? "Uploading…" : "Analyzing…"}
             </p>
           </div>
         )}
       </div>
 
-      <form onSubmit={onUrlSubmit} className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
-        <div className="flex flex-1 items-center gap-2">
-          <span className="text-[10px] uppercase tracking-wider text-gray-500 sm:text-xs">or URL</span>
-          <input
-            type="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            disabled={busy}
-            placeholder="https://example.com/image.jpg"
-            className="h-11 flex-1 rounded-lg border border-white/10 bg-white/[0.03] px-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] focus:bg-white/[0.05] disabled:opacity-50"
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={busy || !url.trim()}
-          className="h-11 rounded-lg bg-white px-5 text-sm font-semibold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          Verify
-        </button>
-      </form>
-
-      <p className="mt-3 text-[11px] leading-relaxed text-amber-200/80 sm:text-xs">
-        Your result gets a public URL. Don&rsquo;t upload private images.
+      <p className="mt-3 text-center text-[11px] leading-relaxed text-amber-200/80 sm:text-xs">
+        Your scan result page is public. Don&rsquo;t upload private images.
       </p>
 
       {message && !busy && <p className="mt-3 text-center text-xs text-gray-400">{message}</p>}
       {error && (
-        <p className="mt-3 rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs text-red-300">
+        <p className="mt-3 rounded-lg border border-red-500/40 px-3 py-2 text-xs text-red-300">
           {error}
         </p>
       )}

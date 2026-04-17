@@ -40,7 +40,7 @@ export function EnterpriseForm() {
     );
   }
 
-  const field = "w-full rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] focus:bg-white/[0.05]";
+  const field = "w-full rounded-lg border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] focus:bg-white/[0.05]";
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
