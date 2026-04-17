@@ -45,7 +45,7 @@ export default async function EnterprisePage({
             { t: "Insurance + legal", d: "Evidence triage with audit-trail for claim photos." },
             { t: "Ad platforms", d: "Pre-flight check for AI-generated product imagery in creative review." },
           ].map((x) => (
-            <div key={x.t} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+            <div key={x.t} className="rounded-2xl border border-white/10 p-5">
               <p className="text-sm font-semibold text-white">{x.t}</p>
               <p className="mt-1 text-sm text-gray-400">{x.d}</p>
             </div>
@@ -54,7 +54,7 @@ export default async function EnterprisePage({
       </section>
 
       <section className="mx-auto max-w-3xl px-5 pb-32 sm:px-8">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+        <div className="rounded-2xl border border-white/10 p-6 sm:p-8">
           <h2 className="text-xl font-bold sm:text-2xl">Talk to our team</h2>
           <p className="mt-1 text-sm text-gray-400">
             Tell us about your use case — we respond within one business day.

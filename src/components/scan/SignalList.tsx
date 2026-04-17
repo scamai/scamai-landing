@@ -22,9 +22,9 @@ export function SignalList({ signals }: { signals: Signal[] }) {
             <span className="text-gray-300">{niceName[s.type] ?? s.type}</span>
             <span className="font-mono text-xs text-gray-400">{s.score.toFixed(0)}</span>
           </div>
-          <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/5">
+          <div className="mt-1 h-1.5 overflow-hidden rounded-full border border-white/10">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-[#245FFF] to-[#6d8bff]"
+              className="h-full rounded-full bg-[#245FFF]"
               style={{ width: `${Math.min(100, Math.max(0, s.score))}%` }}
             />
           </div>

@@ -119,7 +119,7 @@ export default async function DevelopersPage({
           Developer API · Eva V1.6
         </p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Deepfake detection, one <code className="rounded bg-white/10 px-2 py-0.5 font-mono text-3xl sm:text-5xl">POST</code> away.
+          Deepfake detection, one <code className="rounded px-2 py-0.5 font-mono text-3xl sm:text-5xl">POST</code> away.
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-gray-300 sm:text-base lg:text-lg" data-speakable>
           95% accuracy across 120+ generator types. Sub-2-second p50. Free to start, $99/month at 10K images,
@@ -133,7 +133,7 @@ export default async function DevelopersPage({
             <div
               key={t.name}
               className={`flex flex-col rounded-2xl border p-6 ${
-                t.highlight ? "border-[#245FFF]/50 bg-[#245FFF]/[0.06]" : "border-white/10 bg-white/[0.02]"
+                t.highlight ? "border-[#245FFF]/50" : "border-white/10"
               }`}
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">{t.name}</p>
@@ -165,13 +165,13 @@ export default async function DevelopersPage({
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">Request</p>
-            <pre className="overflow-x-auto rounded-xl border border-white/10 bg-white/[0.03] p-5 text-xs leading-relaxed text-gray-200">
+            <pre className="overflow-x-auto rounded-xl border border-white/10 p-5 text-xs leading-relaxed text-gray-200">
               {sampleCurl}
             </pre>
           </div>
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">Response</p>
-            <pre className="overflow-x-auto rounded-xl border border-white/10 bg-white/[0.03] p-5 text-xs leading-relaxed text-gray-200">
+            <pre className="overflow-x-auto rounded-xl border border-white/10 p-5 text-xs leading-relaxed text-gray-200">
               {sampleResponse}
             </pre>
           </div>

@@ -89,7 +89,7 @@ export default async function ScanPage({ params }: ScanPageProps) {
         </header>
 
         {scan.image_url && (
-          <figure className="mb-8 overflow-hidden rounded-xl border border-white/10 bg-white/[0.02]">
+          <figure className="mb-8 overflow-hidden rounded-xl border border-white/10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={scan.image_url}
@@ -99,7 +99,7 @@ export default async function ScanPage({ params }: ScanPageProps) {
           </figure>
         )}
 
-        <section className="mb-8 rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
+        <section className="mb-8 rounded-xl border border-white/10 p-5 sm:p-6">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
             Detection signals
           </h2>
@@ -111,7 +111,7 @@ export default async function ScanPage({ params }: ScanPageProps) {
           </div>
         </section>
 
-        <section className="mb-8 rounded-xl border border-yellow-500/20 bg-yellow-500/[0.04] p-5 text-sm text-yellow-200/90 sm:p-6">
+        <section className="mb-8 rounded-xl border border-yellow-500/30 p-5 text-sm text-yellow-200/90 sm:p-6">
           <p className="font-semibold text-yellow-100">We catch about 95% of manipulated images.</p>
           <p className="mt-1 text-yellow-200/80">
             No detector is perfect, and new generators emerge faster than any model can perfectly keep up.
@@ -121,7 +121,7 @@ export default async function ScanPage({ params }: ScanPageProps) {
 
         <ShareBar slug={slug} verdictLabel={label} confidence={confidence} />
 
-        <div className="mt-12 rounded-xl border border-[#245FFF]/30 bg-[#245FFF]/5 p-6 text-center sm:p-8">
+        <div className="mt-12 rounded-xl border border-[#245FFF]/40 p-6 text-center sm:p-8">
           <h2 className="text-xl font-bold sm:text-2xl">Scan your own image</h2>
           <p className="mt-2 text-sm text-gray-300 sm:text-base">
             Free, no signup for the first 2 scans. Results in under 2 seconds.

@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import CommandPalette from "./CommandPalette";
 import { trackCTA, trackNav, trackOutbound } from "@/lib/analytics";
 
 type NavChild = {
@@ -34,32 +33,6 @@ const navIcons = {
 };
 
 const navItems: NavItem[] = [
-  {
-    label: "Product",
-    href: "/products",
-    hasDropdown: true,
-    children: [
-      {
-        label: "AI Detection",
-        href: "/products/ai-detection",
-        description: "Deepfake and synthetic media detection",
-        icon: navIcons.vision,
-      },
-      {
-        label: "Audio",
-        href: "/products/audio-detection",
-        description: "Voice cloning and synthetic audio detection",
-        icon: navIcons.audio,
-      },
-      {
-        label: "Documentation",
-        href: "https://docu.scam.ai",
-        external: true,
-        description: "API guides and integration examples",
-        icon: navIcons.book,
-      },
-    ]
-  },
   { label: "Pricing", href: "/pricing" },
   {
     label: "Company",
@@ -107,7 +80,6 @@ export default function NewNav() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -135,17 +107,6 @@ export default function NewNav() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setSearchOpen((prev) => !prev);
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -246,19 +207,6 @@ export default function NewNav() {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text min-w-[180px] lg:min-w-[220px]"
-            aria-label="Search"
-          >
-            <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span className="flex-1 text-left">Search...</span>
-            <kbd className="hidden lg:inline-flex items-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-gray-600 font-medium">
-              ⌘K
-            </kbd>
-          </button>
           <a
             href="https://app.scam.ai"
             target="_blank"
@@ -268,27 +216,9 @@ export default function NewNav() {
           >
             Log In
           </a>
-          <a
-            href="https://cal.com/scamai/15min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
-            onClick={() => trackCTA("book_demo", "nav")}
-          >
-            Book a demo
-          </a>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="flex h-11 w-11 items-center justify-center text-white"
-            aria-label="Search"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
           <button
             className="flex h-11 w-11 items-center justify-center text-white"
             onClick={() => setOpen((prev) => !prev)}
@@ -358,34 +288,6 @@ export default function NewNav() {
                       </button>
                       {isOpen && (
                         <div className="py-3 pl-2 space-y-3">
-                          {/* Talk with Team Card for Mobile */}
-                          {isProduct && (
-                            <a
-                              href="https://cal.com/scamai/15min"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-3 p-4 rounded-lg bg-white/5"
-                              onClick={() => {
-                                setOpen(false);
-                                setIsOpen(false);
-                              }}
-                            >
-                              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                                </svg>
-                              </div>
-                              <div className="flex-1">
-                                <h3 className="text-sm font-semibold text-white mb-0.5">
-                                  Talk with the Team
-                                </h3>
-                                <p className="text-xs text-gray-500">
-                                  Schedule a call
-                                </p>
-                              </div>
-                            </a>
-                          )}
-
                           {item.children.map((child) => {
                             const mobileContent = (
                               <div className="flex items-start gap-3">
@@ -522,15 +424,6 @@ export default function NewNav() {
               >
                 Log In
               </a>
-              <a
-                href="https://cal.com/scamai/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-6 py-3 text-center text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition"
-                onClick={() => setOpen(false)}
-              >
-                Book a demo
-              </a>
             </div>
           </div>
         </div>
@@ -555,35 +448,6 @@ export default function NewNav() {
         {/* Products Grid */}
         {productsOpen && (
           <div className="flex gap-6">
-            {/* Talk with Team Card */}
-            <div className="flex-shrink-0" style={{ width: '220px' }}>
-              <a
-                href="https://cal.com/scamai/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
-              >
-                <div className="flex flex-col h-full justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4">
-                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-sm font-semibold text-white mb-2">
-                      Talk with the Team
-                    </h3>
-                  </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Schedule call
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-              </a>
-            </div>
-
             {/* Products List */}
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-3">
               {navItems.find(item => item.label === "Product")?.children?.map((child) => {
@@ -681,7 +545,6 @@ export default function NewNav() {
       </div>
     </div>
     </div>
-    <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
