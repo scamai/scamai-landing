@@ -20,6 +20,8 @@ function BentoSkeleton() {
 import PricingSection from "./PricingSection";
 import FAQSection from "./FAQSection";
 import SolutionsSection from "./SolutionsSection";
+import { UploadZone } from "@/components/scan/UploadZone";
+import { jsonLdProps, softwareApplicationSchema, faqSchema } from "@/lib/seo/schema";
 
 type FileWithPreview = {
   file: File;
@@ -64,7 +66,7 @@ function AnimatedSection({
   );
 }
 
-export default function NewLanding() {
+export default function NewLanding({ locale = "en" }: { locale?: string } = {}) {
   const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -290,59 +292,49 @@ export default function NewLanding() {
       <section className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
         <HeroBackground className="" />
         <div className="relative z-10 w-full">
-          {/* Text area — centered in ~70vh */}
-          <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 pt-[120px] text-center sm:px-10 lg:px-8">
-            <div className="mx-auto flex max-w-4xl flex-col items-center space-y-4 sm:space-y-5">
-              <AnimatedSection delay={0.2}>
-                <p className="text-[10px] font-semibold text-gray-400 tracking-[0.15em] uppercase sm:text-xs">
-                  All-in-one
+          <script {...jsonLdProps(softwareApplicationSchema())} />
+          <script {...jsonLdProps(faqSchema([
+            { q: "How accurate is ScamAI?", a: "ScamAI Eva V1.6 achieves approximately 95% accuracy across 120+ generator types, including Midjourney v6, FLUX, Sora, Veo, StyleGAN3, FaceSwap, and DeepFaceLab. No detector is perfect, and newly released generators lag detection." },
+            { q: "Is it free?", a: "Yes. The first 2 scans require no account. Registered users get 20 scans per month free. Unlimited scans and a private-by-default result URL are $9/month." },
+            { q: "Are my scan results public?", a: "Anonymous scans produce a public result page by default at scam.ai/scan/[id]. Registered users can opt in or out of public sharing per scan." },
+            { q: "What image formats are supported?", a: "JPG, PNG, WebP, HEIC up to 4MB. Video and audio detection is available via the Pro API." },
+            { q: "How fast is it?", a: "Verdict in under 2 seconds for most images, via the Eva V1.6 inference path." },
+          ]))} />
+
+          {/* Tool-first hero — upload zone IS the hero */}
+          <div className="flex flex-col items-center justify-center px-5 pt-[110px] pb-14 text-center sm:px-10 sm:pt-[130px] sm:pb-20 lg:px-8">
+            <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-5 sm:space-y-6">
+              <AnimatedSection delay={0.1}>
+                <p className="text-[10px] font-semibold text-gray-400 tracking-[0.18em] uppercase sm:text-xs">
+                  AI Image Verification · Free · No signup for your first 2 scans
                 </p>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.3}>
-                <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  AI trust platform
+              <AnimatedSection delay={0.2}>
+                <h1 className="text-3xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
+                  Verify any image — <span className="text-[#245FFF]">free, in 2 seconds</span>
                 </h1>
               </AnimatedSection>
 
+              <AnimatedSection delay={0.3}>
+                <p className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
+                  ScamAI <span className="font-semibold text-white">Eva V1.6</span> detects deepfakes and AI-generated images across{" "}
+                  <span className="font-semibold text-white">120+ generator types</span> — Midjourney, Sora, FLUX, Veo, StyleGAN, FaceSwap — at{" "}
+                  <span className="font-semibold text-white">95% accuracy</span>. We tell you when we&rsquo;re uncertain.
+                </p>
+              </AnimatedSection>
+
               <AnimatedSection delay={0.4}>
-                <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
-                  <div className="text-center space-y-2">
-                    <p>
-                      <span className="font-semibold text-white">Detect synthetic media and deepfakes in real time</span>.
-                    </p>
-                    <p>
-                      <span className="font-semibold text-white">Industry-leading accuracy</span> that fights fraud and unifies trust signals.
-                    </p>
-                  </div>
+                <div className="w-full pt-2 sm:pt-3">
+                  <UploadZone locale={locale} />
                 </div>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.5}>
-                <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center gap-4">
-                  <a
-                    href="https://app.scam.ai"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rainbow-button inline-block"
-                    onClick={() => trackCTA("start_free", "hero")}
-                  >
-                    <span className="rainbow-button-inner">
-                      Start for Free
-                    </span>
-                  </a>
-                  <a
-                    href="https://app.scam.ai"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition hover:text-white"
-                    onClick={() => trackCTA("see_platform", "hero")}
-                  >
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
-                    </svg>
-                    See the platform
-                  </a>
+              <AnimatedSection delay={0.55}>
+                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2 text-[11px] uppercase tracking-wider text-gray-500 sm:text-xs">
+                  <span>✓ 95% accuracy · 120+ generator types</span>
+                  <span>✓ &lt; 2s results</span>
+                  <span>✓ SOC 2 Type II · GDPR</span>
                 </div>
               </AnimatedSection>
             </div>
