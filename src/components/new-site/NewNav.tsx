@@ -173,10 +173,19 @@ export default function NewNav() {
 
       </nav>
 
-      {/* Full-Screen Menu (all viewports) */}
+      {/* Backdrop — clickable to close */}
       <div
-        className={`fixed left-0 right-0 bottom-0 z-[100] bg-black transition-transform duration-300 ease-in-out ${
-          open ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-[99] bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${
+          open ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Sidebar — collapsible panel that slides in from the LEFT */}
+      <div
+        className={`fixed left-0 bottom-0 z-[100] w-72 max-w-[85vw] border-r border-white/5 bg-black shadow-2xl transition-transform duration-300 ease-in-out ${
+          open ? 'translate-x-0' : '-translate-x-full'
         }`}
         style={{ top: `${announcementHeight}px` }}
       >
