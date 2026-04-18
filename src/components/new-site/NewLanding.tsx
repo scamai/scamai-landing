@@ -143,7 +143,7 @@ export default function NewLanding({
                                 </svg>
                               )}
                               title="Full"
-                              sub="Signals · heatmap · attribution"
+                              sub="Signals · deepfake detection"
                               badge="PRO"
                             />
                           </div>
@@ -216,7 +216,7 @@ function IntroModal({ onClose }: { onClose: () => void }) {
           <p className="mt-3 text-sm leading-relaxed text-white/70">
             Upgrade to{" "}
             <span className="underline decoration-[#6B9FFF]/50 underline-offset-2 text-white">Full</span>{" "}
-            for per-region heatmap, signal breakdown, and face-swap detection.
+            for signal breakdown and deepfake detection.
           </p>
 
           <div className="mt-6 flex items-center justify-end gap-2">
@@ -520,7 +520,7 @@ function ResultView({
               </div>
               <div>
                 <div className="text-sm font-medium text-white">4 signals support this result</div>
-                <div className="text-xs text-white/50">Full breakdown · heatmap · model attribution</div>
+                <div className="text-xs text-white/50">Full breakdown · deepfake detection</div>
               </div>
             </div>
             <span className="rounded-full bg-[#245FFF]/20 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#6B9FFF]">
