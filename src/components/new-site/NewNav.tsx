@@ -129,7 +129,7 @@ export default function NewNav() {
     <>
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-all duration-300 ${open ? 'bg-black' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
+        <nav className="relative flex w-full items-center justify-between px-3 py-2 sm:px-4">
         {/* Hamburger (left) — all viewports */}
         <button
           className="flex h-11 w-11 items-center justify-center text-white"
