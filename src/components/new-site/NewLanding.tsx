@@ -36,6 +36,7 @@ export default function NewLanding({
   const [shareOpen, setShareOpen] = useState(false);
   const [mode, setMode] = useState<Mode>("fast");
   const [modeMenuOpen, setModeMenuOpen] = useState(false);
+  const [introOpen, setIntroOpen] = useState(true);
 
   const startScan = () => setView("scanning");
 
@@ -170,7 +171,74 @@ export default function NewLanding({
       </div>
 
       {shareOpen && <ShareSheet onClose={() => setShareOpen(false)} />}
+      {introOpen && <IntroModal onClose={() => setIntroOpen(false)} />}
     </main>
+  );
+}
+
+function IntroModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/85 px-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#0b0b0b] shadow-2xl ring-1 ring-white/10"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Hero: iris with concentric halo rings */}
+        <div className="relative h-48 w-full overflow-hidden bg-black">
+          {/* Ambient radial blur */}
+          <div className="absolute inset-0">
+            <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#245FFF]/20 blur-3xl" />
+            <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7B3FFF]/25 blur-2xl" />
+          </div>
+          {/* Iris in center with bright halo */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="relative">
+              <div className="absolute -inset-10 rounded-full bg-gradient-to-br from-[#6B9FFF]/40 via-[#245FFF]/30 to-[#7B3FFF]/30 blur-xl" />
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#6B9FFF]/60 to-[#7B3FFF]/60 blur-md" />
+              <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#3b5ef0] via-[#6b5dff] to-[#8d5dff] shadow-2xl ring-4 ring-white/15">
+                <img src="/logo.svg" alt="ScamAI" className="h-12 w-12" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Copy + actions */}
+        <div className="px-6 pb-6 pt-5">
+          <h2 className="text-xl font-semibold text-white">
+            ScamAI now checks audio and video
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            Drop anything suspicious — screenshots, clips, voice notes, or links. We&apos;ll tell you
+            if it&apos;s AI-edited in about 2 seconds.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            Upgrade to{" "}
+            <span className="underline decoration-[#6B9FFF]/50 underline-offset-2 text-white">Full</span>{" "}
+            for per-region heatmap, signal breakdown, and face-swap detection.
+          </p>
+
+          <div className="mt-6 flex items-center justify-end gap-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-full px-4 py-2 text-sm font-medium text-[#6B9FFF] transition hover:bg-white/5"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-full bg-[#6B9FFF] px-5 py-2 text-sm font-semibold text-[#0a0a0a] transition hover:bg-[#85B0FF]"
+            >
+              Try it
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
