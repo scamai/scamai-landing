@@ -268,16 +268,16 @@ function IntroModal({ onClose }: { onClose: () => void }) {
 
 function HomeView({ onPromptSelect }: { onPromptSelect: () => void }) {
   return (
-    <section className="flex-1 px-6 pt-20 pb-40 md:flex md:items-center md:justify-center md:pb-48 md:pt-24">
-      <div className="mx-auto w-full max-w-2xl md:max-w-3xl lg:max-w-4xl">
+    <section className="flex-1 px-6 pt-20 pb-40 md:flex md:items-center md:justify-center md:pb-44 md:pt-24">
+      <div className="mx-auto w-full max-w-2xl">
         <div className="pt-16 md:pt-0 md:text-center">
-          <p className="text-3xl font-normal text-white/70 sm:text-4xl md:text-5xl">Hi,</p>
-          <h1 className="mt-1 text-[2.5rem] font-normal leading-[1.05] tracking-tight sm:text-5xl md:mt-2 md:text-6xl lg:text-7xl">
+          <p className="text-3xl font-normal text-white/70 sm:text-4xl">Hi,</p>
+          <h1 className="mt-1 text-[2.5rem] font-normal leading-[1.05] tracking-tight sm:text-5xl md:mt-1.5">
             What should we verify?
           </h1>
         </div>
 
-        <div className="mt-10 flex flex-col items-start gap-3 md:mt-12 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2.5">
+        <div className="mt-10 flex flex-col items-start gap-3 md:mt-10 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2.5">
           {SUGGESTIONS.map((s) => (
             <button
               key={s.label}
