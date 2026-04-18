@@ -74,6 +74,7 @@ export default function CookieConsent() {
     setConsent("accepted");
     setVisible(false);
     loadGA();
+    window.dispatchEvent(new Event("cookie-consent-set"));
 
     // Track consent after GA loads
     setTimeout(() => {
@@ -91,6 +92,7 @@ export default function CookieConsent() {
     setConsent("declined");
     setVisible(false);
     removeGACookies();
+    window.dispatchEvent(new Event("cookie-consent-set"));
   }, []);
 
   if (consent !== "pending" || !visible) return null;

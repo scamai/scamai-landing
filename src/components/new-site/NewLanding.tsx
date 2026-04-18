@@ -35,7 +35,32 @@ export default function NewLanding({
   const [shareOpen, setShareOpen] = useState(false);
   const [mode, setMode] = useState<Mode>("fast");
   const [modeMenuOpen, setModeMenuOpen] = useState(false);
-  const [introOpen, setIntroOpen] = useState(true);
+  const [introOpen, setIntroOpen] = useState(false);
+
+  // Wait for cookie consent to be resolved before showing the intro modal
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const INTRO_KEY = "scamai_intro_seen";
+    const CONSENT_KEY = "scamai_cookie_consent";
+    const tryOpen = () => {
+      const consent = localStorage.getItem(CONSENT_KEY);
+      const seen = localStorage.getItem(INTRO_KEY);
+      if ((consent === "accepted" || consent === "declined") && !seen) {
+        setIntroOpen(true);
+      }
+    };
+    tryOpen();
+    const handler = () => setTimeout(tryOpen, 350);
+    window.addEventListener("cookie-consent-set", handler);
+    return () => window.removeEventListener("cookie-consent-set", handler);
+  }, []);
+
+  const closeIntro = () => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("scamai_intro_seen", "1");
+    }
+    setIntroOpen(false);
+  };
 
   const startScan = () => setView("scanning");
 
@@ -170,7 +195,7 @@ export default function NewLanding({
       </div>
 
       {shareOpen && <ShareSheet onClose={() => setShareOpen(false)} />}
-      {introOpen && <IntroModal onClose={() => setIntroOpen(false)} />}
+      {introOpen && <IntroModal onClose={closeIntro} />}
     </main>
   );
 }
