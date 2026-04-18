@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
+
+type ScanResult = {
+  verdict: string;
+  confidencePct: number;
+  aiImage: { detected: boolean; confidence: number; processingMs?: number } | null;
+  faceSwap: { detected: boolean; confidence: number; numFaces: number; modelVersion?: string | null } | null;
+  latencyMs: number;
+};
 
 const SUGGESTIONS = [
   { emoji: "🖼️", label: "Check an image" },
@@ -36,6 +44,10 @@ export default function NewLanding({
   const [mode, setMode] = useState<Mode>("fast");
   const [modeMenuOpen, setModeMenuOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
+  const [scanResult, setScanResult] = useState<ScanResult | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [scanError, setScanError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Wait for cookie consent to be resolved before showing the intro modal
   useEffect(() => {
@@ -62,13 +74,45 @@ export default function NewLanding({
     setIntroOpen(false);
   };
 
-  const startScan = () => setView("scanning");
+  const startScan = () => {
+    fileInputRef.current?.click();
+  };
 
-  useEffect(() => {
-    if (view !== "scanning") return;
-    const t = setTimeout(() => setView("result"), SCAN_STAGES.length * 900 + 200);
-    return () => clearTimeout(t);
-  }, [view]);
+  const handleFile = async (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      setScanError("Please pick an image (JPG, PNG, WebP).");
+      return;
+    }
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    const objectUrl = URL.createObjectURL(file);
+    setPreviewUrl(objectUrl);
+    setScanError(null);
+    setScanResult(null);
+    setView("scanning");
+
+    try {
+      const form = new FormData();
+      form.append("file", file);
+      const res = await fetch("/api/scan/detect", { method: "POST", body: form });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+        throw new Error(err.error || "Scan failed");
+      }
+      const data: ScanResult = await res.json();
+      setScanResult(data);
+      setView("result");
+    } catch (err) {
+      console.error("[scan] failed:", err);
+      setScanError(err instanceof Error ? err.message : "Scan failed");
+      setView("home");
+    }
+  };
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+    e.target.value = "";
+  };
 
   const inputBarProps: InputBarProps = {
     view,
@@ -81,10 +125,34 @@ export default function NewLanding({
 
   return (
     <main className="flex min-h-screen flex-col bg-black text-white" role="main">
-      {view === "home" && <HomeView onPromptSelect={startScan} inputBarProps={inputBarProps} />}
-      {view === "scanning" && <ScanningView />}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={onFileChange}
+        className="hidden"
+        aria-hidden="true"
+      />
+      {view === "home" && (
+        <HomeView
+          onPromptSelect={startScan}
+          inputBarProps={inputBarProps}
+          error={scanError}
+        />
+      )}
+      {view === "scanning" && <ScanningView previewUrl={previewUrl} />}
       {view === "result" && (
-        <ResultView onReset={() => setView("home")} onShare={() => setShareOpen(true)} />
+        <ResultView
+          onReset={() => {
+            if (previewUrl) URL.revokeObjectURL(previewUrl);
+            setPreviewUrl(null);
+            setScanResult(null);
+            setView("home");
+          }}
+          onShare={() => setShareOpen(true)}
+          previewUrl={previewUrl}
+          scan={scanResult}
+        />
       )}
 
       {/* Mobile-fixed input bar — hidden on desktop home (HomeView renders inline there) */}
@@ -291,13 +359,20 @@ function IntroModal({ onClose }: { onClose: () => void }) {
 function HomeView({
   onPromptSelect,
   inputBarProps,
+  error,
 }: {
   onPromptSelect: () => void;
   inputBarProps: InputBarProps;
+  error: string | null;
 }) {
   return (
     <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40 md:px-8 md:pb-16 md:pt-20">
       <div className="mx-auto w-full max-w-2xl md:flex md:flex-col md:items-center md:gap-7">
+        {error && (
+          <div className="mb-4 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-xs text-red-200">
+            {error}
+          </div>
+        )}
         {/* Greeting */}
         <div className="pt-16 md:pt-0 md:text-center">
           <p className="text-3xl font-normal text-white/70 sm:text-4xl">Hi,</p>
@@ -330,7 +405,7 @@ function HomeView({
   );
 }
 
-function ScanningView() {
+function ScanningView({ previewUrl }: { previewUrl: string | null }) {
   const [stage, setStage] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -346,13 +421,18 @@ function ScanningView() {
         <div className="flex justify-end pt-4">
           <div className="flex max-w-[80%] flex-col items-end gap-2">
             <div className="h-40 w-40 overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-700 via-zinc-800 to-zinc-900 ring-2 ring-[#245FFF]/50">
-              <div className="flex h-full w-full items-center justify-center">
-                <svg className="h-10 w-10 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="9" cy="9" r="2" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
-              </div>
+              {previewUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={previewUrl} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center">
+                  <svg className="h-10 w-10 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                </div>
+              )}
             </div>
             <div className="rounded-2xl bg-[#245FFF] px-4 py-2.5 text-sm text-white">
               Is this real or AI?
@@ -452,10 +532,31 @@ function MiniPixel() {
 function ResultView({
   onReset,
   onShare,
+  previewUrl,
+  scan,
 }: {
   onReset: () => void;
   onShare: () => void;
+  previewUrl: string | null;
+  scan: ScanResult | null;
 }) {
+  const verdict = scan?.verdict ?? DEMO_SCAN.verdict;
+  const confidence = scan?.confidencePct ?? DEMO_SCAN.confidence;
+  const isFake = verdict.toLowerCase().includes("ai");
+  const faceSwapDetected = scan?.faceSwap?.detected ?? DEMO_SCAN.faceSwap.detected;
+  const faceSwapConfidencePct = scan?.faceSwap
+    ? Math.round((scan.faceSwap.confidence ?? 0) * 100)
+    : DEMO_SCAN.faceSwap.confidence;
+  const latencySec = scan ? (scan.latencyMs / 1000).toFixed(1) : "2";
+  const accentRed = isFake;
+  const cardBorder = accentRed ? "border-red-500/30" : "border-emerald-500/30";
+  const cardBg = accentRed
+    ? "from-red-500/15 via-red-500/5 to-transparent"
+    : "from-emerald-500/15 via-emerald-500/5 to-transparent";
+  const dotBg = accentRed ? "bg-red-500/20" : "bg-emerald-500/20";
+  const dotIconColor = accentRed ? "text-red-400" : "text-emerald-400";
+  const barColor = accentRed ? "bg-red-400" : "bg-emerald-400";
+
   return (
     <section className="flex-1 px-5 pt-20 pb-40">
       <div className="mx-auto max-w-2xl md:max-w-3xl space-y-5">
@@ -463,13 +564,18 @@ function ResultView({
         <div className="flex justify-end pt-4">
           <div className="flex max-w-[80%] flex-col items-end gap-2">
             <div className="h-40 w-40 overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-700 via-zinc-800 to-zinc-900 ring-2 ring-[#245FFF]/50">
-              <div className="flex h-full w-full items-center justify-center">
-                <svg className="h-10 w-10 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="9" cy="9" r="2" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
-              </div>
+              {previewUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={previewUrl} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center">
+                  <svg className="h-10 w-10 text-white/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                </div>
+              )}
             </div>
             <div className="rounded-2xl bg-[#245FFF] px-4 py-2.5 text-sm text-white">
               Is this real or AI?
@@ -485,26 +591,33 @@ function ResultView({
           </div>
 
           {/* Verdict card (brand-baked for screenshot virality) */}
-          <div className="overflow-hidden rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-500/15 via-red-500/5 to-transparent">
+          <div className={`overflow-hidden rounded-2xl border ${cardBorder} bg-gradient-to-br ${cardBg}`}>
             <div className="p-5">
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-500/20">
-                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="15" y1="9" x2="9" y2="15" />
-                    <line x1="9" y1="9" x2="15" y2="15" />
-                  </svg>
+                <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${dotBg}`}>
+                  {accentRed ? (
+                    <svg className={`h-5 w-5 ${dotIconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="15" y1="9" x2="9" y2="15" />
+                      <line x1="9" y1="9" x2="15" y2="15" />
+                    </svg>
+                  ) : (
+                    <svg className={`h-5 w-5 ${dotIconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="9 12 11 14 15 10" />
+                    </svg>
+                  )}
                 </div>
                 <div className="flex-1">
-                  <div className="text-xl font-semibold text-white">{DEMO_SCAN.verdict}</div>
-                  <div className="mt-0.5 text-sm text-white/60">{DEMO_SCAN.confidence}% confidence</div>
+                  <div className="text-xl font-semibold text-white">{verdict}</div>
+                  <div className="mt-0.5 text-sm text-white/60">{confidence}% confidence</div>
                 </div>
               </div>
               <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                <div className="h-full rounded-full bg-red-400" style={{ width: `${DEMO_SCAN.confidence}%` }} />
+                <div className={`h-full rounded-full ${barColor}`} style={{ width: `${confidence}%` }} />
               </div>
 
-              {DEMO_SCAN.faceSwap.detected && (
+              {faceSwapDetected && (
                 <div className="mt-3 flex items-center gap-2.5 rounded-lg bg-red-500/15 px-3 py-2 ring-1 ring-red-500/30">
                   <svg className="h-4 w-4 flex-shrink-0 text-red-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10" />
@@ -515,7 +628,7 @@ function ResultView({
                   </svg>
                   <div className="flex-1 text-sm">
                     <span className="font-medium text-red-100">Face-swap detected</span>
-                    <span className="ml-1.5 text-red-200/70">· {DEMO_SCAN.faceSwap.confidence}% match on face region</span>
+                    <span className="ml-1.5 text-red-200/70">· {faceSwapConfidencePct}% match on face region</span>
                   </div>
                 </div>
               )}
@@ -525,7 +638,7 @@ function ResultView({
                 <img src="/scamai-logo.svg" alt="" className="h-3.5 w-auto opacity-80" />
                 <span className="font-mono">{DEMO_SCAN.shareUrl}</span>
               </div>
-              <span className="text-[11px] text-white/40">Verified · 2s</span>
+              <span className="text-[11px] text-white/40">Verified · {latencySec}s</span>
             </div>
           </div>
 
