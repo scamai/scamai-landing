@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 
 const SUGGESTIONS = [
   { emoji: "🖼️", label: "Check an image" },
@@ -70,133 +70,155 @@ export default function NewLanding({
     return () => clearTimeout(t);
   }, [view]);
 
+  const inputBarProps: InputBarProps = {
+    view,
+    mode,
+    setMode,
+    modeMenuOpen,
+    setModeMenuOpen,
+    startScan,
+  };
+
   return (
     <main className="flex min-h-screen flex-col bg-black text-white" role="main">
-      {view === "home" && <HomeView onPromptSelect={startScan} />}
+      {view === "home" && <HomeView onPromptSelect={startScan} inputBarProps={inputBarProps} />}
       {view === "scanning" && <ScanningView />}
       {view === "result" && (
         <ResultView onReset={() => setView("home")} onShare={() => setShareOpen(true)} />
       )}
 
-      {/* Bottom input bar */}
-      <div className="fixed inset-x-0 bottom-0 z-30 bg-gradient-to-t from-black via-black/95 to-transparent px-4 pb-5 pt-6">
-        <div className="mx-auto max-w-2xl md:max-w-3xl lg:max-w-4xl">
-          <div className="liquid-glass rounded-[28px] px-4 py-3">
-            <input
-              type="text"
-              placeholder={
-                view === "result" ? "Ask about this scan…" : "Drop image, audio, or video…"
-              }
-              className="w-full bg-transparent text-base text-white placeholder-white/50 outline-none"
-              onFocus={() => view === "home" && startScan()}
-              readOnly
-            />
-            <div className="mt-3 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  aria-label="Upload"
-                  onClick={startScan}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/15"
-                >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 5v14" />
-                    <path d="M5 12h14" />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex items-center gap-2">
-                {view === "scanning" ? (
-                  <div className="flex h-9 items-center rounded-full bg-[#245FFF]/15 px-3">
-                    <MiniPixel />
-                  </div>
-                ) : (
-                  <>
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={() => setModeMenuOpen((v) => !v)}
-                        className="flex h-9 items-center gap-1.5 rounded-full border border-white/15 px-3 text-sm text-white/80 transition hover:bg-white/5"
-                      >
-                        {mode === "fast" ? (
-                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
-                          </svg>
-                        ) : (
-                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                            <polygon points="12 2 2 8 12 14 22 8 12 2" />
-                            <polyline points="2 12 12 18 22 12" />
-                            <polyline points="2 16 12 22 22 16" />
-                          </svg>
-                        )}
-                        <span>{mode === "fast" ? "Fast" : "Full"}</span>
-                        {mode === "full" && (
-                          <span className="rounded-sm bg-[#245FFF]/40 px-1 py-px text-[9px] font-bold uppercase tracking-wider text-white">Pro</span>
-                        )}
-                        <svg className={`h-3.5 w-3.5 transition-transform ${modeMenuOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="6 9 12 15 18 9" />
-                        </svg>
-                      </button>
-                      {modeMenuOpen && (
-                        <>
-                          <button
-                            type="button"
-                            aria-label="Close menu"
-                            onClick={() => setModeMenuOpen(false)}
-                            className="fixed inset-0 z-40 cursor-default"
-                          />
-                          <div className="absolute bottom-full right-0 z-50 mb-2 min-w-[200px] overflow-hidden rounded-2xl border border-white/10 bg-black/95 shadow-2xl backdrop-blur-xl">
-                            <ModeItem
-                              selected={mode === "fast"}
-                              onClick={() => { setMode("fast"); setModeMenuOpen(false); }}
-                              icon={(
-                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                                  <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
-                                </svg>
-                              )}
-                              title="Fast"
-                              sub="2s scan · binary verdict"
-                            />
-                            <ModeItem
-                              selected={mode === "full"}
-                              onClick={() => { setMode("full"); setModeMenuOpen(false); }}
-                              icon={(
-                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                                  <polygon points="12 2 2 8 12 14 22 8 12 2" />
-                                  <polyline points="2 12 12 18 22 12" />
-                                  <polyline points="2 16 12 22 22 16" />
-                                </svg>
-                              )}
-                              title="Full"
-                              sub="Signals · deepfake detection"
-                              badge="PRO"
-                            />
-                          </div>
-                        </>
-                      )}
-                    </div>
-                    <button
-                      type="button"
-                      aria-label="Scan"
-                      onClick={startScan}
-                      className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/90"
-                    >
-                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="M13 6l6 6-6 6" />
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
+      {/* Mobile-fixed input bar — hidden on desktop home (HomeView renders inline there) */}
+      <div className={`fixed inset-x-0 bottom-0 z-30 bg-gradient-to-t from-black via-black/95 to-transparent px-4 pb-5 pt-6 ${view === "home" ? "md:hidden" : ""}`}>
+        <div className="mx-auto max-w-2xl">
+          <InputBar {...inputBarProps} />
         </div>
       </div>
 
       {shareOpen && <ShareSheet onClose={() => setShareOpen(false)} />}
       {introOpen && <IntroModal onClose={closeIntro} />}
     </main>
+  );
+}
+
+type InputBarProps = {
+  view: View;
+  mode: Mode;
+  setMode: Dispatch<SetStateAction<Mode>>;
+  modeMenuOpen: boolean;
+  setModeMenuOpen: Dispatch<SetStateAction<boolean>>;
+  startScan: () => void;
+};
+
+function InputBar({ view, mode, setMode, modeMenuOpen, setModeMenuOpen, startScan }: InputBarProps) {
+  return (
+    <div className="liquid-glass rounded-[28px] px-4 py-3">
+      <input
+        type="text"
+        placeholder={view === "result" ? "Ask about this scan…" : "Drop image, audio, or video…"}
+        className="w-full bg-transparent text-base text-white placeholder-white/50 outline-none"
+        onFocus={() => view === "home" && startScan()}
+        readOnly
+      />
+      <div className="mt-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label="Upload"
+            onClick={startScan}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/15"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14" />
+              <path d="M5 12h14" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex items-center gap-2">
+          {view === "scanning" ? (
+            <div className="flex h-9 items-center rounded-full bg-[#245FFF]/15 px-3">
+              <MiniPixel />
+            </div>
+          ) : (
+            <>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setModeMenuOpen((v) => !v)}
+                  className="flex h-9 items-center gap-1.5 rounded-full border border-white/15 px-3 text-sm text-white/80 transition hover:bg-white/5"
+                >
+                  {mode === "fast" ? (
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                    </svg>
+                  ) : (
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="12 2 2 8 12 14 22 8 12 2" />
+                      <polyline points="2 12 12 18 22 12" />
+                      <polyline points="2 16 12 22 22 16" />
+                    </svg>
+                  )}
+                  <span>{mode === "fast" ? "Fast" : "Full"}</span>
+                  {mode === "full" && (
+                    <span className="rounded-sm bg-[#245FFF]/40 px-1 py-px text-[9px] font-bold uppercase tracking-wider text-white">Pro</span>
+                  )}
+                  <svg className={`h-3.5 w-3.5 transition-transform ${modeMenuOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+                {modeMenuOpen && (
+                  <>
+                    <button
+                      type="button"
+                      aria-label="Close menu"
+                      onClick={() => setModeMenuOpen(false)}
+                      className="fixed inset-0 z-40 cursor-default"
+                    />
+                    <div className="absolute bottom-full right-0 z-50 mb-2 min-w-[200px] overflow-hidden rounded-2xl border border-white/10 bg-black/95 shadow-2xl backdrop-blur-xl">
+                      <ModeItem
+                        selected={mode === "fast"}
+                        onClick={() => { setMode("fast"); setModeMenuOpen(false); }}
+                        icon={(
+                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                          </svg>
+                        )}
+                        title="Fast"
+                        sub="2s scan · binary verdict"
+                      />
+                      <ModeItem
+                        selected={mode === "full"}
+                        onClick={() => { setMode("full"); setModeMenuOpen(false); }}
+                        icon={(
+                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                            <polygon points="12 2 2 8 12 14 22 8 12 2" />
+                            <polyline points="2 12 12 18 22 12" />
+                            <polyline points="2 16 12 22 22 16" />
+                          </svg>
+                        )}
+                        title="Full"
+                        sub="Signals · deepfake detection"
+                        badge="PRO"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+              <button
+                type="button"
+                aria-label="Scan"
+                onClick={startScan}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition hover:bg-white/90"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="M13 6l6 6-6 6" />
+                </svg>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -266,10 +288,17 @@ function IntroModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-function HomeView({ onPromptSelect }: { onPromptSelect: () => void }) {
+function HomeView({
+  onPromptSelect,
+  inputBarProps,
+}: {
+  onPromptSelect: () => void;
+  inputBarProps: InputBarProps;
+}) {
   return (
-    <section className="flex-1 px-6 pt-20 pb-40 md:flex md:items-center md:justify-center md:pb-44 md:pt-24">
-      <div className="mx-auto w-full max-w-2xl">
+    <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40 md:px-8 md:pb-16 md:pt-20">
+      <div className="mx-auto w-full max-w-2xl md:flex md:flex-col md:items-center md:gap-7">
+        {/* Greeting */}
         <div className="pt-16 md:pt-0 md:text-center">
           <p className="text-3xl font-normal text-white/70 sm:text-4xl">Hi,</p>
           <h1 className="mt-1 text-[2.5rem] font-normal leading-[1.05] tracking-tight sm:text-5xl md:mt-1.5">
@@ -277,13 +306,19 @@ function HomeView({ onPromptSelect }: { onPromptSelect: () => void }) {
           </h1>
         </div>
 
-        <div className="mt-10 flex flex-col items-start gap-3 md:mt-10 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2.5">
+        {/* Desktop: inline input below the greeting (Gemini web pattern) */}
+        <div className="hidden w-full md:block">
+          <InputBar {...inputBarProps} />
+        </div>
+
+        {/* Pills — vertical column on mobile, horizontal row below input on desktop */}
+        <div className="mt-10 flex flex-col items-start gap-3 md:mt-0 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2">
           {SUGGESTIONS.map((s) => (
             <button
               key={s.label}
               type="button"
               onClick={onPromptSelect}
-              className="flex items-center gap-3 rounded-full bg-white/[0.06] px-5 py-3 text-base text-white/90 transition hover:bg-white/[0.1] md:text-sm"
+              className="flex items-center gap-3 rounded-full bg-white/[0.06] px-5 py-3 text-base text-white/90 transition hover:bg-white/[0.1] md:px-4 md:py-2 md:text-sm"
             >
               <span className="text-xl leading-none md:text-base">{s.emoji}</span>
               <span>{s.label}</span>
