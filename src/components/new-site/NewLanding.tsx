@@ -6,7 +6,6 @@ const SUGGESTIONS = [
   { emoji: "🖼️", label: "Check an image" },
   { emoji: "🎬", label: "Check a video", note: "up to 5s free" },
   { emoji: "🎙️", label: "Check an audio clip", note: "up to 5s free" },
-  { emoji: "🔗", label: "Paste a link" },
   { emoji: "📸", label: "Screenshot from chat" },
 ];
 
@@ -61,7 +60,7 @@ export default function NewLanding({
             <input
               type="text"
               placeholder={
-                view === "result" ? "Ask about this scan…" : "Drop image, audio, video, or paste a link…"
+                view === "result" ? "Ask about this scan…" : "Drop image, audio, or video…"
               }
               className="w-full bg-transparent text-base text-white placeholder-white/50 outline-none"
               onFocus={() => view === "home" && startScan()}
@@ -211,7 +210,7 @@ function IntroModal({ onClose }: { onClose: () => void }) {
             ScamAI now checks audio and video
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
-            Drop anything suspicious — screenshots, clips, voice notes, or links. We&apos;ll tell you
+            Drop anything suspicious — screenshots, clips, or voice notes. We&apos;ll tell you
             if it&apos;s AI-edited in about 2 seconds.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
