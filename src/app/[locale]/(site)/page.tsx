@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import NewLanding from "@/components/new-site/NewLanding";
 
 export const metadata: Metadata = {
-  title: "Verify any image — free, in 2 seconds | ScamAI",
+  title: "Is it real or AI? · ScamAI",
   description:
-    "Drag an image, get a verdict. ScamAI Eva V1.6 detects deepfakes and AI-generated images across 120+ generator types with 95% accuracy — free to try, no signup for the first two scans.",
+    "Drop an image, video, or voice clip and ScamAI tells you if it's AI-edited in about 2 seconds. Eva v1.6 detects deepfakes and AI-generated media across 120+ generator types. Free to try, no signup needed.",
   keywords: [
     "verify image ai",
     "is this image ai generated",
