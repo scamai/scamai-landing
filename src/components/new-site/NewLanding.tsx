@@ -2,6 +2,33 @@
 
 import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 
+const ANON_DAILY_LIMIT = 3;
+const ANON_KEY = "scamai_anon_scans";
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function readAnonScans(): number {
+  if (typeof window === "undefined") return 0;
+  try {
+    const raw = localStorage.getItem(ANON_KEY);
+    if (!raw) return 0;
+    const { date, count } = JSON.parse(raw);
+    if (date !== todayKey()) return 0;
+    return Number(count) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+function bumpAnonScans(): number {
+  if (typeof window === "undefined") return 0;
+  const next = readAnonScans() + 1;
+  localStorage.setItem(ANON_KEY, JSON.stringify({ date: todayKey(), count: next }));
+  return next;
+}
+
 type ScanResult = {
   verdict: string;
   confidencePct: number;
@@ -47,7 +74,13 @@ export default function NewLanding({
   const [scanResult, setScanResult] = useState<ScanResult | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [scanError, setScanError] = useState<string | null>(null);
+  const [gateOpen, setGateOpen] = useState(false);
+  const [scansToday, setScansToday] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    setScansToday(readAnonScans());
+  }, []);
 
   // Wait for cookie consent to be resolved before showing the intro modal
   useEffect(() => {
@@ -75,12 +108,20 @@ export default function NewLanding({
   };
 
   const startScan = () => {
+    if (readAnonScans() >= ANON_DAILY_LIMIT) {
+      setGateOpen(true);
+      return;
+    }
     fileInputRef.current?.click();
   };
 
   const handleFile = async (file: File) => {
     if (!file.type.startsWith("image/")) {
       setScanError("Please pick an image (JPG, PNG, WebP).");
+      return;
+    }
+    if (readAnonScans() >= ANON_DAILY_LIMIT) {
+      setGateOpen(true);
       return;
     }
     if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -100,6 +141,7 @@ export default function NewLanding({
       }
       const data: ScanResult = await res.json();
       setScanResult(data);
+      setScansToday(bumpAnonScans());
       setView("result");
     } catch (err) {
       console.error("[scan] failed:", err);
@@ -138,6 +180,7 @@ export default function NewLanding({
           onPromptSelect={startScan}
           inputBarProps={inputBarProps}
           error={scanError}
+          scansToday={scansToday}
         />
       )}
       {view === "scanning" && <ScanningView previewUrl={previewUrl} />}
@@ -164,7 +207,90 @@ export default function NewLanding({
 
       {shareOpen && <ShareSheet onClose={() => setShareOpen(false)} />}
       {introOpen && <IntroModal onClose={closeIntro} />}
+      {gateOpen && (
+        <RegisterGate
+          scansToday={scansToday}
+          onClose={() => setGateOpen(false)}
+        />
+      )}
     </main>
+  );
+}
+
+function RegisterGate({
+  scansToday,
+  onClose,
+}: {
+  scansToday: number;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/85 px-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#0b0b0b] shadow-2xl ring-1 ring-white/10"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="relative h-44 w-full overflow-hidden bg-black">
+          <div className="absolute inset-0">
+            <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#245FFF]/25 blur-3xl" />
+            <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#245FFF]/40 blur-2xl" />
+          </div>
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-[#6B9FFF]/50 to-[#245FFF]/50 blur-lg" />
+              <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#3b5ef0] via-[#5470ff] to-[#6b5dff] shadow-2xl ring-4 ring-white/15">
+                <svg className="h-9 w-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="11" width="14" height="9" rx="2" />
+                  <path d="M8 11V7a4 4 0 018 0v4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-6 pb-6 pt-5">
+          <div className="text-xs uppercase tracking-widest text-[#6B9FFF]">
+            {scansToday}/{ANON_DAILY_LIMIT} free scans used today
+          </div>
+          <h2 className="mt-2 text-xl font-semibold text-white">
+            You&apos;ve hit today&apos;s free limit
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            Sign up free to keep verifying — <span className="text-white">20 scans / month</span>,
+            no credit card. Your free counter resets at midnight.
+          </p>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <a
+              href="https://app.scam.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-full bg-[#245FFF] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#245FFF]/20 transition hover:bg-[#1E52E0]"
+            >
+              Sign up free
+            </a>
+            <a
+              href="https://app.scam.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-full bg-white/[0.06] px-5 py-3 text-sm font-medium text-white/80 transition hover:bg-white/[0.1]"
+            >
+              I already have an account
+            </a>
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-1 text-xs text-white/40 transition hover:text-white/70"
+            >
+              Maybe later
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -360,11 +486,14 @@ function HomeView({
   onPromptSelect,
   inputBarProps,
   error,
+  scansToday,
 }: {
   onPromptSelect: () => void;
   inputBarProps: InputBarProps;
   error: string | null;
+  scansToday: number;
 }) {
+  const scansLeft = Math.max(0, ANON_DAILY_LIMIT - scansToday);
   return (
     <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40 md:px-8 md:pb-16 md:pt-20">
       <div className="mx-auto w-full max-w-2xl md:flex md:flex-col md:items-center md:gap-7">
@@ -384,6 +513,19 @@ function HomeView({
         {/* Desktop: inline input below the greeting (Gemini web pattern) */}
         <div className="hidden w-full md:block">
           <InputBar {...inputBarProps} />
+          <div className="mt-2 text-center text-xs text-white/40">
+            {scansLeft > 0
+              ? `${scansLeft} of ${ANON_DAILY_LIMIT} free scans left today · `
+              : "Daily free scans used · "}
+            <a
+              href="https://app.scam.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 underline decoration-white/20 hover:text-white"
+            >
+              Sign up free for 20/mo
+            </a>
+          </div>
         </div>
 
         {/* Pills — vertical column on mobile, horizontal row below input on desktop */}
