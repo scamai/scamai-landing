@@ -128,7 +128,7 @@ export default function NewNav() {
   return (
     <>
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
-      <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+      <header className={`transition-all duration-300 ${open ? 'bg-black' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
         {/* Hamburger (left) — all viewports */}
         <button
@@ -175,14 +175,14 @@ export default function NewNav() {
 
       {/* Full-Screen Menu (all viewports) */}
       <div
-        className={`fixed left-0 right-0 bottom-0 z-[100] bg-[#0b0b0b] transition-transform duration-300 ease-in-out ${
+        className={`fixed left-0 right-0 bottom-0 z-[100] bg-black transition-transform duration-300 ease-in-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ top: `${announcementHeight}px` }}
       >
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
             <Link href="/" onClick={() => setOpen(false)}>
               <img
                 src="/scamai-logo.svg"
@@ -213,7 +213,7 @@ export default function NewNav() {
                     <div key={item.href}>
                       <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-gray-700"
+                        className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-white/5"
                       >
                         {item.label}
                         <svg
@@ -286,7 +286,7 @@ export default function NewNav() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block py-4 text-lg font-medium text-white border-b border-gray-700"
+                    className="block py-4 text-lg font-medium text-white border-b border-white/5"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
@@ -297,7 +297,7 @@ export default function NewNav() {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-gray-700 px-6 py-4">
+          <div className="border-t border-white/5 px-6 py-4">
             {/* Language Selector - Commented Out
             <div className="mb-4">
               <button
