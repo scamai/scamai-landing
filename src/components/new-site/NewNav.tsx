@@ -130,7 +130,24 @@ export default function NewNav() {
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
-        <Link href="/" className={`flex items-center ${open ? 'invisible' : ''}`}>
+        {/* Hamburger (left) — all viewports */}
+        <button
+          className="flex h-11 w-11 items-center justify-center text-white"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label="Open menu"
+        >
+          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M4 7h16" />
+            <path d="M4 12h16" />
+            <path d="M4 17h16" />
+          </svg>
+        </button>
+
+        {/* Logo (centered, all viewports) */}
+        <Link
+          href="/"
+          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${open ? 'invisible' : ''}`}
+        >
           <img
             src="/scamai-logo.svg"
             alt="ScamAI"
@@ -138,66 +155,7 @@ export default function NewNav() {
           />
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => {
-            if (item.children) {
-              const isProduct = item.label === "Product";
-              const isCompany = item.label === "Company";
-              const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
-              const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
-              const dropdownRef = isProduct ? productsDropdownRef : (isCompany ? companyDropdownRef : null);
-              
-              return (
-                <div key={item.href} className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center gap-1 text-sm font-medium text-white transition-colors duration-150 hover:text-white/80"
-                  >
-                    {item.label}
-                    <svg
-                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              );
-            }
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-1 text-sm font-medium text-white transition hover:text-white/80"
-              >
-                {item.label}
-                {item.hasDropdown && (
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                )}
-              </Link>
-            );
-          })}
-        </div>
-
+        {/* Log In (desktop only, right) */}
         <div className="hidden items-center gap-3 md:flex">
           <a
             href="https://app.scam.ai"
@@ -210,20 +168,14 @@ export default function NewNav() {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            className="flex h-11 w-11 items-center justify-center text-white"
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label="Open menu"
-          >
-            <span className="text-2xl">{open ? "" : "☰"}</span>
-          </button>
-        </div>
+        {/* Mobile right spacer to keep logo centered */}
+        <span className="h-11 w-11 md:hidden" aria-hidden="true" />
+
       </nav>
 
-      {/* Mobile Full-Screen Menu */}
+      {/* Full-Screen Menu (all viewports) */}
       <div
-        className={`fixed left-0 right-0 bottom-0 z-[100] bg-[#0b0b0b] transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed left-0 right-0 bottom-0 z-[100] bg-[#0b0b0b] transition-transform duration-300 ease-in-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ top: `${announcementHeight}px` }}

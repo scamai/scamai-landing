@@ -418,3 +418,50 @@ footer {
     overflow-x: hidden;
   }
 }
+
+/* Pixel-grid loader — wave diagonal pulse */
+.pixel-cell {
+  background-color: var(--pixel-color, #245FFF);
+  opacity: 0.12;
+  transform-origin: center;
+  animation: pixel-pulse 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes pixel-pulse {
+  0%, 70%, 100% {
+    opacity: 0.12;
+    transform: scale(1);
+    box-shadow: none;
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.18);
+    box-shadow:
+      0 0 10px var(--pixel-glow, rgba(36, 95, 255, 0.9)),
+      0 0 22px var(--pixel-glow, rgba(36, 95, 255, 0.5));
+  }
+}
+.pixel-halo {
+  animation: pixel-breathe 3.2s ease-in-out infinite;
+}
+@keyframes pixel-breathe {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 0.75; transform: scale(1.05); }
+}
+.pixel-label {
+  animation: pixel-shimmer 2.4s linear infinite;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,0.55) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+@keyframes pixel-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
