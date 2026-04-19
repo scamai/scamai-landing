@@ -1749,7 +1749,9 @@
       "scansLeft": "{count} of {total} free scans left today",
       "scansUsed": "Daily free scans used",
       "signUpFree": "Sign up free for 20/mo",
-      "comingSoonHint": "Vote and we'll release it faster",
+      "comingSoonHint": "Don't click me!",
+      "comingSoonHintRevealed": "Aha! Vote and we'll release it faster",
+      "voteThanks": "Thanks! We hear you.",
       "vote": "vote",
       "voted": "voted"
     },
@@ -1783,12 +1785,19 @@
       "desc": "Upgrade to Pro for unlimited scans, heatmaps, signal breakdowns, and private results. Just $9/month.",
       "cta": "Upgrade to Pro — $9/mo"
     },
+    "feedback": {
+      "title": "Help us protect more people",
+      "mission": "We're building ScamAI to fight AI-powered scams and deepfakes. Your feedback helps us get better at catching them. Tell us what you'd like to see, report a wrong result, or share a scam type we should watch for.",
+      "placeholder": "Share your feedback, ideas, or report a scam...",
+      "send": "Send",
+      "thanks": "Thank you! Your feedback helps us protect more people."
+    },
     "intro": {
-      "title": "ScamAI now checks audio and video",
-      "desc1": "Drop anything suspicious — screenshots, clips, or voice notes. We'll tell you if it's AI-edited in about 2 seconds.",
-      "desc2Prefix": "Upgrade to",
-      "desc2Full": "Full",
-      "desc2Suffix": "for signal breakdown and deepfake detection.",
+      "title": "Is that image real or AI?",
+      "desc1": "ScamAI detects deepfakes, face-swaps, and AI-generated images in about 2 seconds. We combat AI-powered scams so you don't have to guess.",
+      "desc2Prefix": "Powered by",
+      "desc2Full": "Eva V1.6",
+      "desc2Suffix": "— 95% accuracy across 120+ AI generator types.",
       "close": "Close",
       "tryIt": "Try it"
     },

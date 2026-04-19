@@ -601,9 +601,9 @@ function IntroModal({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative h-48 w-full overflow-hidden bg-black">
-          <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#245FFF]/20 blur-2xl" />
+          <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-2xl" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#3b5ef0] to-[#6b5dff] shadow-2xl ring-4 ring-white/15">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-white/15 to-white/5 shadow-2xl ring-4 ring-white/10">
               <img src="/logo.svg" alt="ScamAI" className="h-12 w-12" />
             </div>
           </div>
@@ -619,7 +619,7 @@ function IntroModal({ onClose }: { onClose: () => void }) {
           </p>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
             {t("intro.desc2Prefix")}{" "}
-            <span className="underline decoration-[#6B9FFF]/50 underline-offset-2 text-white">{t("intro.desc2Full")}</span>{" "}
+            <span className="underline decoration-white/30 underline-offset-2 text-white">{t("intro.desc2Full")}</span>{" "}
             {t("intro.desc2Suffix")}
           </p>
 
@@ -627,14 +627,14 @@ function IntroModal({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full px-4 py-2 text-sm font-medium text-[#6B9FFF] transition hover:bg-white/5"
+              className="rounded-full px-4 py-2 text-sm font-medium text-white/50 transition hover:bg-white/5 hover:text-white/70"
             >
               {t("intro.close")}
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full bg-[#6B9FFF] px-5 py-2 text-sm font-semibold text-[#0a0a0a] transition hover:bg-[#85B0FF]"
+              className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-black transition hover:bg-white/90"
             >
               {t("intro.tryIt")}
             </button>
@@ -713,20 +713,58 @@ function HomeView({
         </div>
 
         {/* Coming soon — vote to unlock */}
-        <div className="mt-6 flex flex-col items-start gap-2 md:mt-4 md:items-center">
-          <p className="text-xs text-white/30 md:text-center">{t("home.comingSoonHint")}</p>
-          <div className="flex flex-col items-start gap-2 md:flex-row md:flex-wrap md:justify-center">
-            {SUGGESTION_KEYS.filter((s) => s.noteKey === ("suggestions.comingSoon" as string)).map((s) => (
-              <ComingSoonPill key={s.labelKey} emoji={s.emoji} labelKey={s.labelKey} />
-            ))}
-          </div>
-        </div>
+        <ComingSoonSection />
+
+        {/* Feedback / mission */}
+        <FeedbackSection />
       </div>
     </section>
   );
 }
 
-function ComingSoonPill({ emoji, labelKey }: { emoji: string; labelKey: string }) {
+function ComingSoonSection() {
+  const t = useTranslations("NewLanding");
+  const comingSoonItems = SUGGESTION_KEYS.filter((s) => s.noteKey === ("suggestions.comingSoon" as string));
+  const [revealed, setRevealed] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    if (!hasVoted) return;
+    const timer = setTimeout(() => setHidden(true), 10000);
+    return () => clearTimeout(timer);
+  }, [hasVoted]);
+
+  if (hidden) return null;
+
+  return (
+    <div className={`mt-6 flex flex-col items-start gap-2 transition-opacity duration-1000 md:mt-4 md:items-center ${hasVoted ? "opacity-60" : ""}`}>
+      {!revealed ? (
+        <button
+          type="button"
+          onClick={() => setRevealed(true)}
+          className="rounded-full border border-white/[0.06] bg-white/[0.03] px-5 py-2.5 text-sm text-white/40 transition hover:border-white/10 hover:bg-white/[0.05] hover:text-white/60"
+        >
+          {t("home.comingSoonHint")}
+        </button>
+      ) : (
+        <>
+          <p className="text-xs text-white/30 md:text-center">{t("home.comingSoonHintRevealed")}</p>
+          <div className="flex flex-col items-start gap-2 md:flex-row md:flex-wrap md:justify-center">
+            {comingSoonItems.map((s) => (
+              <ComingSoonPill key={s.labelKey} emoji={s.emoji} labelKey={s.labelKey} onVote={() => setHasVoted(true)} />
+            ))}
+          </div>
+          {hasVoted && (
+            <p className="mt-1 text-xs text-emerald-400/70 md:text-center">{t("home.voteThanks")}</p>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function ComingSoonPill({ emoji, labelKey, onVote }: { emoji: string; labelKey: string; onVote: () => void }) {
   const t = useTranslations("NewLanding");
   const storageKey = `scamai_vote_${labelKey}`;
   const [liked, setLiked] = useState(false);
@@ -739,6 +777,7 @@ function ComingSoonPill({ emoji, labelKey }: { emoji: string; labelKey: string }
     if (liked) return;
     localStorage.setItem(storageKey, "1");
     setLiked(true);
+    onVote();
   };
 
   return (
@@ -764,6 +803,86 @@ function ComingSoonPill({ emoji, labelKey }: { emoji: string; labelKey: string }
         {liked ? t("home.voted") : t("home.vote")}
       </span>
     </button>
+  );
+}
+
+function FeedbackSection() {
+  const t = useTranslations("NewLanding");
+  const { user } = useUser();
+  const [expanded, setExpanded] = useState(false);
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  if (!user) return null;
+
+  const handleSubmit = async () => {
+    if (!message.trim() || sending) return;
+    setSending(true);
+    try {
+      await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: message.trim() }),
+      });
+      setSubmitted(true);
+      setMessage("");
+    } catch {
+      // silently fail
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="mt-10 flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500/10 px-5 py-3 text-sm text-emerald-400 md:mt-6">
+        <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+        {t("feedback.thanks")}
+      </div>
+    );
+  }
+
+  if (!expanded) {
+    return (
+      <button
+        type="button"
+        onClick={() => setExpanded(true)}
+        className="mt-10 flex w-full items-center justify-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] px-5 py-3 text-sm text-white/40 transition hover:border-white/10 hover:bg-white/[0.04] hover:text-white/60 md:mt-6"
+      >
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg>
+        {t("feedback.title")}
+      </button>
+    );
+  }
+
+  return (
+    <div className="mt-10 w-full rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-5 md:mt-6">
+      <p className="text-sm font-medium text-white/80">{t("feedback.title")}</p>
+      <p className="mt-1 text-xs leading-relaxed text-white/40">{t("feedback.mission")}</p>
+      <div className="mt-4 flex gap-2">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+          placeholder={t("feedback.placeholder")}
+          className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-white placeholder:text-white/25 focus:border-[#245FFF]/40 focus:outline-none"
+        />
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={!message.trim() || sending}
+          className="shrink-0 rounded-xl bg-[#245FFF]/20 px-4 py-2.5 text-sm font-medium text-[#6B9FFF] transition hover:bg-[#245FFF]/30 disabled:opacity-40"
+        >
+          {t("feedback.send")}
+        </button>
+      </div>
+    </div>
   );
 }
 
