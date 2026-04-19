@@ -1747,5 +1747,160 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "Periksa gambar",
+      "checkVideo": "Periksa video",
+      "checkAudio": "Periksa audio",
+      "screenshot": "Screenshot dari chat",
+      "freeNote": "gratis hingga 5 detik",
+      "comingSoon": "segera hadir"
+    },
+    "scanStages": {
+      "scanning": "Memindai",
+      "readingPixels": "Membaca piksel",
+      "crossReferencing": "Mencocokkan referensi",
+      "verifying": "Memverifikasi"
+    },
+    "errors": {
+      "pickImage": "Silakan pilih gambar (JPG, PNG, WebP)."
+    },
+    "inputBar": {
+      "askAboutScan": "Tanya tentang hasil pemindaian ini…",
+      "dropMedia": "Letakkan gambar, audio, atau video…"
+    },
+    "mode": {
+      "fast": "Cepat",
+      "full": "Lengkap",
+      "pro": "Pro",
+      "fastSub": "Pindai 2 detik · hasil biner",
+      "fullSub": "Sinyal · deteksi deepfake"
+    },
+    "home": {
+      "greeting": "Halo,",
+      "headline": "Apa yang ingin diverifikasi?",
+      "scansLeft": "{count} dari {total} pemindaian gratis tersisa hari ini",
+      "scansUsed": "Pemindaian gratis harian habis",
+      "signUpFree": "Daftar gratis untuk 20/bulan"
+    },
+    "scanning": {
+      "userQuestion": "Ini asli atau AI?"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — cepat",
+      "verified": "Terverifikasi · {sec} detik",
+      "faceSwapDetected": "Pertukaran wajah terdeteksi",
+      "faceSwapMatch": "· kecocokan {pct}% pada area wajah",
+      "disclaimer": "AI bisa salah. Selalu periksa ulang dengan sumbernya sebelum bertindak.",
+      "share": "Bagikan",
+      "download": "Unduh",
+      "signalsCount": "{count} sinyal mendukung hasil ini",
+      "signalsSub": "Analisis lengkap · deteksi deepfake",
+      "scanAnother": "Pindai gambar lain"
+    },
+    "gate": {
+      "scansUsed": "{used}/{total} pemindaian gratis digunakan hari ini",
+      "hitLimit": "Anda telah mencapai batas gratis hari ini",
+      "signUpDesc": "Daftar gratis untuk terus memverifikasi — {count} pemindaian/bulan, tanpa kartu kredit. Kuota gratis direset pada tengah malam.",
+      "signUpFree": "Daftar gratis",
+      "haveAccount": "Saya sudah punya akun",
+      "maybeLater": "Mungkin nanti"
+    },
+    "intro": {
+      "title": "ScamAI kini memeriksa audio dan video",
+      "desc1": "Letakkan konten mencurigakan apa pun — screenshot, klip, atau pesan suara. Kami akan memberi tahu apakah itu diedit AI dalam sekitar 2 detik.",
+      "desc2Prefix": "Upgrade ke",
+      "desc2Full": "Lengkap",
+      "desc2Suffix": "untuk analisis sinyal dan deteksi deepfake.",
+      "close": "Tutup",
+      "tryIt": "Coba"
+    },
+    "shareSheet": {
+      "title": "Bagikan hasil ini",
+      "likelyAI": "Kemungkinan AI",
+      "faceSwap": "Pertukaran wajah",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "Ketuk untuk verifikasi milikmu",
+      "disclaimer": "AI bisa salah — periksa ulang dengan sumbernya.",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "Pesan",
+        "email": "Email",
+        "copyLink": "Salin tautan",
+        "saveImage": "Simpan gambar",
+        "reportError": "Laporkan kesalahan"
+      },
+      "replySection": "Balas pengirim",
+      "sendReply": "Kirim balasan →",
+      "orShareEverywhere": "Atau bagikan ke mana saja"
+    }
+  },
+  "NewNav": {
+    "research": "Riset",
+    "pricing": "Harga",
+    "company": "Perusahaan",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "logIn": "Log In",
+    "logOut": "Keluar"
+  },
+  "PricingPage": {
+    "headline": "Gratis untuk memulai. {price}/bulan saat Anda serius.",
+    "tiers": {
+      "free": {
+        "label": "Gratis",
+        "price": "Gratis",
+        "note": "Masuk dengan Google / Apple",
+        "features": {
+          "scans": "20 pemindaian/bulan",
+          "history": "Riwayat pemindaian",
+          "publicUrl": "URL hasil publik"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/bulan",
+        "annual": "atau $39/tahun",
+        "badge": "Paling populer",
+        "features": {
+          "scans": "100 pemindaian/bulan",
+          "privateScans": "Pemindaian privat tersedia",
+          "signalBreakdown": "Analisis sinyal",
+          "history": "Riwayat pemindaian"
+        },
+        "cta": "Dapatkan Plus — $4/bulan"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/bulan",
+        "annual": "atau $79/tahun",
+        "features": {
+          "scans": "500 pemindaian/bulan",
+          "private": "Privat secara default",
+          "signalBreakdown": "Analisis sinyal lengkap",
+          "history": "Riwayat + ekspor PDF"
+        },
+        "cta": "Dapatkan Pro — $9/bulan"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "Kustom",
+        "note": "Model tingkat enterprise",
+        "features": {
+          "volume": "Volume pemindaian kustom",
+          "model": "Akses model khusus",
+          "api": "Integrasi API",
+          "support": "SLA + dukungan prioritas"
+        },
+        "cta": "Hubungi tim penjualan"
+      }
+    },
+    "checkoutAlert": "Pembayaran Stripe segera hadir — hubungi kami untuk akses awal."
   }
 }

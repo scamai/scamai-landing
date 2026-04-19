@@ -1747,5 +1747,160 @@
         "nextTitle": "Learn about identity theft scams"
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "检查图片",
+      "checkVideo": "检查视频",
+      "checkAudio": "检查音频",
+      "screenshot": "聊天截图",
+      "freeNote": "最多5秒免费",
+      "comingSoon": "即将推出"
+    },
+    "scanStages": {
+      "scanning": "扫描中",
+      "readingPixels": "读取像素",
+      "crossReferencing": "交叉比对",
+      "verifying": "验证中"
+    },
+    "errors": {
+      "pickImage": "请选择图片（JPG、PNG、WebP）。"
+    },
+    "inputBar": {
+      "askAboutScan": "询问此扫描结果…",
+      "dropMedia": "拖放图片、音频或视频…"
+    },
+    "mode": {
+      "fast": "快速",
+      "full": "完整",
+      "pro": "Pro",
+      "fastSub": "2 秒扫描 · 二元判定",
+      "fullSub": "信号分析 · 深伪检测"
+    },
+    "home": {
+      "greeting": "嗨，",
+      "headline": "需要验证什么？",
+      "scansLeft": "今日免费扫描剩余 {count}/{total} 次",
+      "scansUsed": "今日免费扫描已用完",
+      "signUpFree": "免费注册，每月 20 次"
+    },
+    "scanning": {
+      "userQuestion": "这是真的还是 AI 生成的？"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — 快速",
+      "verified": "已验证 · {sec} 秒",
+      "faceSwapDetected": "检测到换脸",
+      "faceSwapMatch": "· 面部区域匹配 {pct}%",
+      "disclaimer": "AI 可能出错。在采取行动前，请务必与来源交叉验证。",
+      "share": "分享",
+      "download": "下载",
+      "signalsCount": "{count} 个信号支持此结果",
+      "signalsSub": "完整分析 · 深伪检测",
+      "scanAnother": "再扫描一张"
+    },
+    "gate": {
+      "scansUsed": "今日免费扫描已使用 {used}/{total} 次",
+      "hitLimit": "您已达到今日免费上限",
+      "signUpDesc": "免费注册即可继续验证——每月 {count} 次扫描，无需信用卡。免费次数于午夜重置。",
+      "signUpFree": "免费注册",
+      "haveAccount": "我已有账号",
+      "maybeLater": "稍后再说"
+    },
+    "intro": {
+      "title": "ScamAI 现已支持音频和视频检测",
+      "desc1": "拖放任何可疑内容——截图、视频片段或语音消息。我们会在约 2 秒内告诉您是否经过 AI 编辑。",
+      "desc2Prefix": "升级至",
+      "desc2Full": "完整",
+      "desc2Suffix": "以获取信号分析和深伪检测。",
+      "close": "关闭",
+      "tryIt": "试试看"
+    },
+    "shareSheet": {
+      "title": "分享此结果",
+      "likelyAI": "可能是 AI",
+      "faceSwap": "换脸",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "点击验证您的图片",
+      "disclaimer": "AI 可能出错——请与来源交叉验证。",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "短信",
+        "email": "电子邮件",
+        "copyLink": "复制链接",
+        "saveImage": "保存图片",
+        "reportError": "报告错误"
+      },
+      "replySection": "回复发送者",
+      "sendReply": "发送回复 →",
+      "orShareEverywhere": "或分享到各处"
+    }
+  },
+  "NewNav": {
+    "research": "研究",
+    "pricing": "定价",
+    "company": "公司",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "logIn": "Log In",
+    "logOut": "退出登录"
+  },
+  "PricingPage": {
+    "headline": "免费开始。认真使用每月 {price}。",
+    "tiers": {
+      "free": {
+        "label": "免费",
+        "price": "免费",
+        "note": "Google / Apple 登录",
+        "features": {
+          "scans": "每月 20 次扫描",
+          "history": "扫描记录",
+          "publicUrl": "公开结果链接"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/月",
+        "annual": "或 $39/年",
+        "badge": "最受欢迎",
+        "features": {
+          "scans": "每月 100 次扫描",
+          "privateScans": "可设为私人扫描",
+          "signalBreakdown": "信号分析",
+          "history": "扫描记录"
+        },
+        "cta": "获取 Plus — $4/月"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/月",
+        "annual": "或 $79/年",
+        "features": {
+          "scans": "每月 500 次扫描",
+          "private": "默认为私人",
+          "signalBreakdown": "完整信号分析",
+          "history": "扫描记录 + PDF 导出"
+        },
+        "cta": "获取 Pro — $9/月"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "自定义",
+        "note": "企业级模型",
+        "features": {
+          "volume": "自定义扫描量",
+          "model": "专属模型访问",
+          "api": "API 集成",
+          "support": "SLA + 优先支持"
+        },
+        "cta": "联系销售"
+      }
+    },
+    "checkoutAlert": "Stripe 支付即将推出——联系我们以抢先体验。"
   }
 }
