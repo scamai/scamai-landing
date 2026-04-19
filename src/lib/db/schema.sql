@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS news_sources (
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
+  name TEXT,
+  avatar_url TEXT,
   provider TEXT NOT NULL DEFAULT 'google',           -- 'google' | 'apple' | 'magic'
   plan TEXT NOT NULL DEFAULT 'free',                 -- 'free' | 'paid'
   stripe_customer_id TEXT,

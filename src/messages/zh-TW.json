@@ -1747,5 +1747,160 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "檢查圖片",
+      "checkVideo": "檢查影片",
+      "checkAudio": "檢查音訊",
+      "screenshot": "聊天截圖",
+      "freeNote": "最多5秒免費",
+      "comingSoon": "即將推出"
+    },
+    "scanStages": {
+      "scanning": "掃描中",
+      "readingPixels": "讀取像素",
+      "crossReferencing": "交叉比對",
+      "verifying": "驗證中"
+    },
+    "errors": {
+      "pickImage": "請選擇圖片（JPG、PNG、WebP）。"
+    },
+    "inputBar": {
+      "askAboutScan": "詢問此掃描結果⋯",
+      "dropMedia": "拖放圖片、音訊或影片⋯"
+    },
+    "mode": {
+      "fast": "快速",
+      "full": "完整",
+      "pro": "Pro",
+      "fastSub": "2 秒掃描 · 二元判定",
+      "fullSub": "訊號分析 · 深偽檢測"
+    },
+    "home": {
+      "greeting": "嗨，",
+      "headline": "需要驗證什麼？",
+      "scansLeft": "今日免費掃描剩餘 {count}/{total} 次",
+      "scansUsed": "今日免費掃描已用完",
+      "signUpFree": "免費註冊，每月 20 次"
+    },
+    "scanning": {
+      "userQuestion": "這是真的還是 AI 生成的？"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — 快速",
+      "verified": "已驗證 · {sec} 秒",
+      "faceSwapDetected": "偵測到換臉",
+      "faceSwapMatch": "· 臉部區域匹配 {pct}%",
+      "disclaimer": "AI 可能出錯。在採取行動前，請務必與來源交叉驗證。",
+      "share": "分享",
+      "download": "下載",
+      "signalsCount": "{count} 個訊號支持此結果",
+      "signalsSub": "完整分析 · 深偽檢測",
+      "scanAnother": "再掃描一張"
+    },
+    "gate": {
+      "scansUsed": "今日免費掃描已使用 {used}/{total} 次",
+      "hitLimit": "您已達到今日免費上限",
+      "signUpDesc": "免費註冊即可繼續驗證——每月 {count} 次掃描，無需信用卡。免費次數於午夜重置。",
+      "signUpFree": "免費註冊",
+      "haveAccount": "我已有帳號",
+      "maybeLater": "稍後再說"
+    },
+    "intro": {
+      "title": "ScamAI 現已支援音訊和影片檢測",
+      "desc1": "拖放任何可疑內容——截圖、影片片段或語音訊息。我們會在約 2 秒內告訴您是否經過 AI 編輯。",
+      "desc2Prefix": "升級至",
+      "desc2Full": "完整",
+      "desc2Suffix": "以獲取訊號分析和深偽檢測。",
+      "close": "關閉",
+      "tryIt": "試試看"
+    },
+    "shareSheet": {
+      "title": "分享此結果",
+      "likelyAI": "可能是 AI",
+      "faceSwap": "換臉",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "點擊驗證您的圖片",
+      "disclaimer": "AI 可能出錯——請與來源交叉驗證。",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "訊息",
+        "email": "電子郵件",
+        "copyLink": "複製連結",
+        "saveImage": "儲存圖片",
+        "reportError": "回報錯誤"
+      },
+      "replySection": "回覆傳送者",
+      "sendReply": "傳送回覆 →",
+      "orShareEverywhere": "或分享到各處"
+    }
+  },
+  "NewNav": {
+    "research": "研究",
+    "pricing": "定價",
+    "company": "公司",
+    "about": "關於我們",
+    "contact": "聯絡我們",
+    "logIn": "Log In",
+    "logOut": "登出"
+  },
+  "PricingPage": {
+    "headline": "免費開始。認真使用每月 {price}。",
+    "tiers": {
+      "free": {
+        "label": "免費",
+        "price": "免費",
+        "note": "Google / Apple 登入",
+        "features": {
+          "scans": "每月 20 次掃描",
+          "history": "掃描記錄",
+          "publicUrl": "公開結果連結"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/月",
+        "annual": "或 $39/年",
+        "badge": "最受歡迎",
+        "features": {
+          "scans": "每月 100 次掃描",
+          "privateScans": "可設為私人掃描",
+          "signalBreakdown": "訊號分析",
+          "history": "掃描記錄"
+        },
+        "cta": "取得 Plus — $4/月"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/月",
+        "annual": "或 $79/年",
+        "features": {
+          "scans": "每月 500 次掃描",
+          "private": "預設為私人",
+          "signalBreakdown": "完整訊號分析",
+          "history": "掃描記錄 + PDF 匯出"
+        },
+        "cta": "取得 Pro — $9/月"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "自訂",
+        "note": "企業級模型",
+        "features": {
+          "volume": "自訂掃描量",
+          "model": "專屬模型存取",
+          "api": "API 整合",
+          "support": "SLA + 優先支援"
+        },
+        "cta": "聯絡業務"
+      }
+    },
+    "checkoutAlert": "Stripe 付款即將推出——聯絡我們以搶先體驗。"
   }
 }

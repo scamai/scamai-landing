@@ -50,7 +50,7 @@ export default async function ScanOG({ params }: { params: { slug: string } }) {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div style={{ fontSize: 88, fontWeight: 700, lineHeight: 1.05 }}>{headline}</div>
           <div style={{ fontSize: 40, color: accent, fontWeight: 600 }}>
-            {confidence.toFixed(0)}% confidence
+            {confidence.toFixed(0)}% AI index
           </div>
         </div>
 

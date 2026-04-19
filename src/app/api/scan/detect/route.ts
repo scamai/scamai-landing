@@ -117,7 +117,11 @@ export async function POST(req: Request) {
     );
 
     const verdict = aiSignal || swapSignal ? "Likely AI-edited" : "Likely real";
-    const confidencePct = Math.round(combinedConfidence * 100);
+    const rawPct = Math.round(combinedConfidence * 100);
+    // For "Likely real": confidence means how sure we are it's real, so invert the AI signal
+    const orientedPct = verdict === "Likely real" ? 100 - rawPct : rawPct;
+    // Clamp to 2–97% — never show absolute certainty or zero
+    const confidencePct = Math.min(97, Math.max(2, orientedPct));
 
     return NextResponse.json({
       verdict,

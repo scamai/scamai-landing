@@ -1747,5 +1747,160 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "画像をチェック",
+      "checkVideo": "動画をチェック",
+      "checkAudio": "音声をチェック",
+      "screenshot": "チャットのスクリーンショット",
+      "freeNote": "5秒まで無料",
+      "comingSoon": "近日公開"
+    },
+    "scanStages": {
+      "scanning": "スキャン中",
+      "readingPixels": "ピクセルを読み取り中",
+      "crossReferencing": "照合中",
+      "verifying": "検証中"
+    },
+    "errors": {
+      "pickImage": "画像を選択してください（JPG、PNG、WebP）。"
+    },
+    "inputBar": {
+      "askAboutScan": "このスキャンについて質問…",
+      "dropMedia": "画像、音声、動画をドロップ…"
+    },
+    "mode": {
+      "fast": "高速",
+      "full": "フル",
+      "pro": "Pro",
+      "fastSub": "2秒スキャン · 判定結果",
+      "fullSub": "シグナル分析 · ディープフェイク検出"
+    },
+    "home": {
+      "greeting": "こんにちは、",
+      "headline": "何を検証しますか？",
+      "scansLeft": "本日の無料スキャン残り {count}/{total} 回",
+      "scansUsed": "本日の無料スキャンを使い切りました",
+      "signUpFree": "無料登録で月20回"
+    },
+    "scanning": {
+      "userQuestion": "これは本物？それともAI？"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — 高速",
+      "verified": "検証済み · {sec}秒",
+      "faceSwapDetected": "顔すり替えを検出",
+      "faceSwapMatch": "· 顔領域の一致率 {pct}%",
+      "disclaimer": "AIは間違えることがあります。行動を起こす前に、必ず情報源と照合してください。",
+      "share": "共有",
+      "download": "ダウンロード",
+      "signalsCount": "{count} 件のシグナルがこの結果を裏付けています",
+      "signalsSub": "詳細分析 · ディープフェイク検出",
+      "scanAnother": "別の画像をスキャン"
+    },
+    "gate": {
+      "scansUsed": "本日の無料スキャン {used}/{total} 回使用済み",
+      "hitLimit": "本日の無料上限に達しました",
+      "signUpDesc": "無料登録で検証を続けられます——月 {count} 回スキャン、クレジットカード不要。無料回数は毎日午前0時にリセットされます。",
+      "signUpFree": "無料登録",
+      "haveAccount": "アカウントをお持ちの方",
+      "maybeLater": "あとで"
+    },
+    "intro": {
+      "title": "ScamAI が音声と動画の検出に対応しました",
+      "desc1": "怪しいものは何でもドロップしてください——スクリーンショット、動画クリップ、ボイスメッセージ。約2秒でAI編集かどうかお伝えします。",
+      "desc2Prefix": "アップグレードして",
+      "desc2Full": "フル",
+      "desc2Suffix": "でシグナル分析とディープフェイク検出を利用。",
+      "close": "閉じる",
+      "tryIt": "試してみる"
+    },
+    "shareSheet": {
+      "title": "この結果を共有",
+      "likelyAI": "AI の可能性",
+      "faceSwap": "顔すり替え",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "タップしてあなたの画像を検証",
+      "disclaimer": "AIは間違えることがあります——情報源と照合してください。",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "メッセージ",
+        "email": "メール",
+        "copyLink": "リンクをコピー",
+        "saveImage": "画像を保存",
+        "reportError": "エラーを報告"
+      },
+      "replySection": "送信者に返信",
+      "sendReply": "返信を送信 →",
+      "orShareEverywhere": "または各所で共有"
+    }
+  },
+  "NewNav": {
+    "research": "研究",
+    "pricing": "料金",
+    "company": "会社情報",
+    "about": "概要",
+    "contact": "お問い合わせ",
+    "logIn": "Log In",
+    "logOut": "ログアウト"
+  },
+  "PricingPage": {
+    "headline": "無料で始められます。本格利用は月額 {price}。",
+    "tiers": {
+      "free": {
+        "label": "無料",
+        "price": "無料",
+        "note": "Google / Apple サインイン",
+        "features": {
+          "scans": "月20回スキャン",
+          "history": "スキャン履歴",
+          "publicUrl": "公開結果URL"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/月",
+        "annual": "または $39/年",
+        "badge": "一番人気",
+        "features": {
+          "scans": "月100回スキャン",
+          "privateScans": "プライベートスキャン対応",
+          "signalBreakdown": "シグナル分析",
+          "history": "スキャン履歴"
+        },
+        "cta": "Plus を取得 — $4/月"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/月",
+        "annual": "または $79/年",
+        "features": {
+          "scans": "月500回スキャン",
+          "private": "デフォルトでプライベート",
+          "signalBreakdown": "完全シグナル分析",
+          "history": "スキャン履歴 + PDF エクスポート"
+        },
+        "cta": "Pro を取得 — $9/月"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "カスタム",
+        "note": "エンタープライズモデル",
+        "features": {
+          "volume": "カスタムスキャン量",
+          "model": "専用モデルアクセス",
+          "api": "API 統合",
+          "support": "SLA + 優先サポート"
+        },
+        "cta": "営業に問い合わせ"
+      }
+    },
+    "checkoutAlert": "Stripe 決済は近日公開——早期アクセスはお問い合わせください。"
   }
 }

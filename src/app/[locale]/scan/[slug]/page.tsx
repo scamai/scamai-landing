@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: ScanPageProps): Promise<Metad
     return { title: "Scan not found — ScamAI", robots: { index: false } };
   }
   const label = verdictLabel(scan.verdict);
-  const title = `${label} (${Number(scan.confidence).toFixed(0)}% confidence) — ScamAI`;
-  const description = `ScamAI Eva V1.6 analyzed this image. Verdict: ${label} at ${Number(scan.confidence).toFixed(0)}% confidence. Free to verify any image.`;
+  const title = `${label} (${Number(scan.confidence).toFixed(0)}% AI index) — ScamAI`;
+  const description = `ScamAI Eva V1.6 analyzed this image. Verdict: ${label} at ${Number(scan.confidence).toFixed(0)}% AI index. Free to verify any image.`;
   return {
     title,
     description,
@@ -82,7 +82,7 @@ export default async function ScanPage({ params }: ScanPageProps) {
           <VerdictBadge verdict={scan.verdict} confidence={confidence} />
           <h1 className="text-3xl font-bold leading-tight sm:text-4xl">
             {label}{" "}
-            <span className="text-gray-400">({confidence.toFixed(0)}% confidence)</span>
+            <span className="text-gray-400">({confidence.toFixed(0)}% AI index)</span>
           </h1>
           <p className="text-sm text-gray-400">
             Analyzed by <span className="font-semibold text-white">ScamAI Eva {scan.model_version.includes("v1.6") ? "V1.6" : scan.model_version}</span>{" "}

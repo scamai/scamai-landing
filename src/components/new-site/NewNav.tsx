@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { trackCTA, trackNav, trackOutbound } from "@/lib/analytics";
+import { useUser } from "@/contexts/UserContext";
 
 type NavChild = {
   label: string;
@@ -14,6 +15,7 @@ type NavChild = {
 };
 
 type NavItem = {
+  id: string;
   label: string;
   href: string;
   hasDropdown?: boolean;
@@ -32,37 +34,42 @@ const navIcons = {
   book: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
 };
 
-const navItems: NavItem[] = [
-  { label: "Pricing", href: "/pricing" },
-  {
-    label: "Company",
-    href: "/company",
-    hasDropdown: true,
-    children: [
-      {
-        label: "About Us",
-        href: "/about",
-        description: "Learn about our mission and team"
-      },
-      {
-        label: "Research",
-        href: "/research",
-        description: "Publications, benchmarks, and technical deep-dives"
-      },
-      {
-        label: "Newsletter",
-        href: "/newsletter",
-        description: "Weekly insights on deepfake technology and AI security"
-      },
-      {
-        label: "Security & Compliance",
-        href: "https://reality-inc.trust.site/",
-        external: true,
-        description: "Security certifications, compliance standards, and data protection policies"
-      },
-    ]
-  },
-];
+function useNavItems(): NavItem[] {
+  const t = useTranslations("NewNav");
+  return [
+    { id: "research", label: t("research"), href: "/research" },
+    { id: "pricing", label: t("pricing"), href: "/pricing" },
+    {
+      id: "company",
+      label: t("company"),
+      href: "/company",
+      hasDropdown: true,
+      children: [
+        {
+          label: t("aboutUs"),
+          href: "/about",
+          description: t("aboutDesc"),
+        },
+        {
+          label: t("research"),
+          href: "/research",
+          description: t("researchDesc"),
+        },
+        {
+          label: t("newsletter"),
+          href: "/newsletter",
+          description: t("newsletterDesc"),
+        },
+        {
+          label: "Security & Compliance",
+          href: "https://reality-inc.trust.site/",
+          external: true,
+          description: t("securityDesc"),
+        },
+      ],
+    },
+  ];
+}
 
 const languages = [
   { code: "en", name: "English" },
@@ -80,13 +87,18 @@ export default function NewNav() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const locale = useLocale();
+  const t = useTranslations("NewNav");
+  const { user, logout } = useUser();
+  const navItems = useNavItems();
   const router = useRouter();
   const pathname = usePathname();
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
   const companyDropdownRef = useRef<HTMLDivElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
+  const accountDropdownRef = useRef<HTMLDivElement>(null);
 
   const currentLanguage = languages.find((lang) => lang.code === locale) || languages[0];
 
@@ -102,6 +114,10 @@ export default function NewNav() {
 
       const insideCompany = (companyDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
       if (!insideCompany) setCompanyOpen(false);
+
+      if (accountDropdownRef.current && !accountDropdownRef.current.contains(target)) {
+        setAccountOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -155,17 +171,60 @@ export default function NewNav() {
           />
         </Link>
 
-        {/* Log In (desktop only, right) */}
+        {/* Account / Log In (desktop only, right) */}
         <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="https://app.scam.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
-            onClick={() => trackCTA("log_in", "nav")}
-          >
-            Log In
-          </a>
+          {user ? (
+            <div className="relative" ref={accountDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setAccountOpen((v) => !v)}
+                className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full ring-2 ring-white/20 transition hover:ring-white/40"
+              >
+                {user.avatarUrl ? (
+                  <img src={user.avatarUrl} alt="" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-[#245FFF] text-sm font-bold text-white">
+                    {(user.name?.[0] || user.email[0]).toUpperCase()}
+                  </div>
+                )}
+              </button>
+              {accountOpen && (
+                <div className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl">
+                  <div className="border-b border-white/5 px-4 py-3">
+                    <p className="truncate text-sm font-medium text-white">{user.name || user.email}</p>
+                    {user.name && <p className="truncate text-xs text-white/50">{user.email}</p>}
+                    <span className="mt-1 inline-block rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/60">
+                      {user.plan}
+                    </span>
+                  </div>
+                  <div className="py-1">
+                    <button
+                      type="button"
+                      onClick={async () => { await logout(); setAccountOpen(false); }}
+                      className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+                    >
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                      </svg>
+                      {t("logOut")}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <a
+              href="https://app.scam.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+              onClick={() => trackCTA("log_in", "nav")}
+            >
+              {t("logIn")}
+            </a>
+          )}
         </div>
 
         {/* Mobile right spacer to keep logo centered */}
@@ -213,8 +272,8 @@ export default function NewNav() {
             <div className="flex flex-col gap-1">
               {navItems.map((item) => {
                 if (item.children) {
-                  const isProduct = item.label === "Product";
-                  const isCompany = item.label === "Company";
+                  const isProduct = item.id === "product";
+                  const isCompany = item.id === "company";
                   const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
                   const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
                   
@@ -368,15 +427,39 @@ export default function NewNav() {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">
-              <a
-                href="https://app.scam.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
-                onClick={() => setOpen(false)}
-              >
-                Log In
-              </a>
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-white/20">
+                    {user.avatarUrl ? (
+                      <img src={user.avatarUrl} alt="" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-[#245FFF] text-sm font-bold text-white">
+                        {(user.name?.[0] || user.email[0]).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-white">{user.name || user.email}</p>
+                    <button
+                      type="button"
+                      onClick={async () => { await logout(); setOpen(false); }}
+                      className="text-xs text-white/50 transition hover:text-white/80"
+                    >
+                      {t("logOut")}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href="https://app.scam.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
+                  onClick={() => setOpen(false)}
+                >
+                  {t("logIn")}
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -385,7 +468,7 @@ export default function NewNav() {
     
     <div 
       ref={dropdownPanelRef}
-      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 ${
+      className={`fixed left-0 right-0 w-full overflow-hidden bg-black transition-all duration-200 z-30 ${
         (productsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
       }`}
       style={{
@@ -403,7 +486,7 @@ export default function NewNav() {
           <div className="flex gap-6">
             {/* Products List */}
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {navItems.find(item => item.label === "Product")?.children?.map((child) => {
+              {navItems.find(item => item.id === "product")?.children?.map((child) => {
                 const content = (
                   <>
                     <div className="flex items-center gap-2 mb-1">
@@ -451,7 +534,7 @@ export default function NewNav() {
           <div className="flex gap-4">
             {/* Company List */}
             <div className="flex-1">
-              {navItems.find(item => item.label === "Company")?.children?.map((child) => (
+              {navItems.find(item => item.id === "company")?.children?.map((child) => (
                 child.external ? (
                   <a
                     key={child.label}

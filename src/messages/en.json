@@ -1711,5 +1711,165 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "Check an image",
+      "checkVideo": "Check a video",
+      "checkAudio": "Check an audio clip",
+      "screenshot": "Screenshot from chat",
+      "freeNote": "up to 5s free",
+      "comingSoon": "coming soon"
+    },
+    "scanStages": {
+      "scanning": "Scanning",
+      "readingPixels": "Reading pixels",
+      "crossReferencing": "Cross-referencing",
+      "verifying": "Verifying"
+    },
+    "errors": {
+      "pickImage": "Please pick an image (JPG, PNG, WebP)."
+    },
+    "inputBar": {
+      "askAboutScan": "Ask about this scan…",
+      "dropMedia": "Drop image, audio, or video…"
+    },
+    "mode": {
+      "fast": "Fast",
+      "full": "Full",
+      "pro": "Pro",
+      "fastSub": "2s scan · binary verdict",
+      "fullSub": "Signals · deepfake detection"
+    },
+    "home": {
+      "greeting": "Hi,",
+      "headline": "What should we verify?",
+      "scansLeft": "{count} of {total} free scans left today",
+      "scansUsed": "Daily free scans used",
+      "signUpFree": "Sign up free for 20/mo"
+    },
+    "scanning": {
+      "userQuestion": "Is this real or AI?"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — fast",
+      "verified": "Verified · {sec}s",
+      "faceSwapDetected": "Face-swap detected",
+      "faceSwapMatch": "· {pct}% match on face region",
+      "disclaimer": "AI can be wrong. Always cross-check with the source before acting on it.",
+      "share": "Share",
+      "download": "Download",
+      "signalsCount": "{count} signals support this result",
+      "signalsSub": "Full breakdown · deepfake detection",
+      "scanAnother": "Scan another"
+    },
+    "gate": {
+      "scansUsed": "{used}/{total} free scans used today",
+      "hitLimit": "You've hit today's free limit",
+      "signUpDesc": "Sign up free to keep verifying — {count} scans / month, no credit card. Your free counter resets at midnight.",
+      "signUpFree": "Sign up free",
+      "haveAccount": "I already have an account",
+      "maybeLater": "Maybe later"
+    },
+    "intro": {
+      "title": "ScamAI now checks audio and video",
+      "desc1": "Drop anything suspicious — screenshots, clips, or voice notes. We'll tell you if it's AI-edited in about 2 seconds.",
+      "desc2Prefix": "Upgrade to",
+      "desc2Full": "Full",
+      "desc2Suffix": "for signal breakdown and deepfake detection.",
+      "close": "Close",
+      "tryIt": "Try it"
+    },
+    "shareSheet": {
+      "title": "Share this result",
+      "likelyAI": "Likely AI",
+      "faceSwap": "Face-swap",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "Tap to verify yours",
+      "disclaimer": "AI can be wrong — cross-check with the source.",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "Messages",
+        "email": "Email",
+        "copyLink": "Copy link",
+        "saveImage": "Save image",
+        "reportError": "Report error"
+      },
+      "replySection": "Reply to whoever sent this",
+      "sendReply": "Send reply →",
+      "orShareEverywhere": "Or share everywhere"
+    }
+  },
+  "NewNav": {
+    "research": "Research",
+    "pricing": "Pricing",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "newsletter": "Newsletter",
+    "securityCompliance": "Security & Compliance",
+    "aboutDesc": "Learn about our mission and team",
+    "researchDesc": "Publications, benchmarks, and technical deep-dives",
+    "newsletterDesc": "Weekly insights on deepfake technology and AI security",
+    "securityDesc": "Security certifications, compliance standards, and data protection policies",
+    "logIn": "Log In",
+    "logOut": "Log Out"
+  },
+  "PricingPage": {
+    "headline": "Free to start. {price}/month when you're serious.",
+    "tiers": {
+      "free": {
+        "label": "Free",
+        "price": "Free",
+        "note": "Google / Apple sign-in",
+        "features": {
+          "scans": "20 scans / month",
+          "history": "Scan history",
+          "publicUrl": "Public result URL"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/mo",
+        "annual": "or $39/year",
+        "badge": "Most popular",
+        "features": {
+          "scans": "100 scans / month",
+          "privateScans": "Private scans available",
+          "signalBreakdown": "Signal breakdown",
+          "history": "Scan history"
+        },
+        "cta": "Get Plus — $4/month"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/mo",
+        "annual": "or $79/year",
+        "features": {
+          "scans": "500 scans / month",
+          "private": "Private by default",
+          "signalBreakdown": "Full signal breakdown",
+          "history": "Scan history + PDF export"
+        },
+        "cta": "Get Pro — $9/month"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "Custom",
+        "note": "Enterprise-grade model",
+        "features": {
+          "volume": "Custom scan volume",
+          "model": "Dedicated model access",
+          "api": "API integration",
+          "support": "SLA + priority support"
+        },
+        "cta": "Contact sales"
+      }
+    },
+    "checkoutAlert": "Stripe checkout coming soon — contact us for early access."
   }
 }
