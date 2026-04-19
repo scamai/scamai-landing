@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useUser } from "@/contexts/UserContext";
 
 const ANON_DAILY_LIMIT = 3;
+const FREE_MONTHLY_LIMIT = 20;
 const ANON_KEY = "scamai_anon_scans";
 
 function todayKey() {
@@ -44,6 +45,8 @@ const SUGGESTION_KEYS = [
   { emoji: "🎬", labelKey: "suggestions.checkVideo" as const, noteKey: "suggestions.freeNote" as const },
   { emoji: "🎙️", labelKey: "suggestions.checkAudio" as const, noteKey: "suggestions.comingSoon" as const },
   { emoji: "📸", labelKey: "suggestions.screenshot" as const },
+  { emoji: "📞", labelKey: "suggestions.checkPhone" as const, noteKey: "suggestions.comingSoon" as const },
+  { emoji: "📧", labelKey: "suggestions.checkEmail" as const, noteKey: "suggestions.comingSoon" as const },
 ];
 
 const DEMO_SCAN = {
@@ -79,6 +82,7 @@ export default function NewLanding({
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [scanError, setScanError] = useState<string | null>(null);
   const [gateOpen, setGateOpen] = useState(false);
+  const [upgradeGateOpen, setUpgradeGateOpen] = useState(false);
   const [scansToday, setScansToday] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -116,6 +120,10 @@ export default function NewLanding({
       setGateOpen(true);
       return;
     }
+    if (user && user.plan === "free" && (user.scansThisMonth ?? 0) >= FREE_MONTHLY_LIMIT) {
+      setUpgradeGateOpen(true);
+      return;
+    }
     fileInputRef.current?.click();
   }, [user]);
 
@@ -126,6 +134,10 @@ export default function NewLanding({
     }
     if (!user && readAnonScans() >= ANON_DAILY_LIMIT) {
       setGateOpen(true);
+      return;
+    }
+    if (user && user.plan === "free" && (user.scansThisMonth ?? 0) >= FREE_MONTHLY_LIMIT) {
+      setUpgradeGateOpen(true);
       return;
     }
     if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -168,6 +180,24 @@ export default function NewLanding({
     setModeMenuOpen,
     startScan,
   }), [view, mode, modeMenuOpen, startScan]);
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return (
+      <main className="flex min-h-screen flex-col bg-black text-white" role="main">
+        <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40">
+          <div className="mx-auto w-full max-w-2xl md:text-center">
+            <p className="text-3xl font-normal text-white/70 sm:text-4xl">{t("home.greeting")}</p>
+            <h1 className="mt-1 text-[2.5rem] font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              {t("home.headline")}
+            </h1>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-black text-white" role="main">
@@ -217,21 +247,21 @@ export default function NewLanding({
           onClose={() => setGateOpen(false)}
         />
       )}
+      {upgradeGateOpen && (
+        <UpgradeGate
+          scansUsed={user?.scansThisMonth ?? FREE_MONTHLY_LIMIT}
+          onClose={() => setUpgradeGateOpen(false)}
+        />
+      )}
     </main>
   );
 }
 
-function RegisterGate({
-  scansToday,
-  onClose,
-}: {
-  scansToday: number;
-  onClose: () => void;
-}) {
-  const t = useTranslations("NewLanding");
+function useGoogleLogin(onSuccess: () => void) {
   const { login } = useUser();
   const oneTapRef = useRef<HTMLDivElement>(null);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const g = (window as unknown as Record<string, unknown>).google as
@@ -245,11 +275,14 @@ function RegisterGate({
     g.accounts.id.initialize({
       client_id: clientId,
       callback: async (response: { credential: string }) => {
+        setLoading(true);
         try {
           await login(response.credential);
-          onClose();
+          onSuccess();
         } catch (err) {
           setAuthError(err instanceof Error ? err.message : "Login failed");
+        } finally {
+          setLoading(false);
         }
       },
     });
@@ -261,7 +294,60 @@ function RegisterGate({
       width: 320,
       text: "continue_with",
     });
-  }, [login, onClose]);
+  }, [login, onSuccess]);
+
+  const triggerPopup = useCallback(() => {
+    const g = (window as unknown as Record<string, unknown>).google as
+      | { accounts: { oauth2: { initCodeClient: (cfg: Record<string, unknown>) => { requestCode: () => void } } } }
+      | undefined;
+    if (g?.accounts?.oauth2) {
+      const client = g.accounts.oauth2.initCodeClient({
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+        scope: "email profile",
+        ux_mode: "popup",
+      });
+      client.requestCode();
+    }
+  }, []);
+
+  return { oneTapRef, authError, loading, triggerPopup };
+}
+
+function GoogleButton({ onClick, loading, label }: { onClick: () => void; loading: boolean; label: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={loading}
+      className="flex w-full max-w-[320px] items-center justify-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-medium text-gray-800 shadow-lg transition hover:bg-gray-50 disabled:opacity-60"
+    >
+      <svg className="h-5 w-5" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+      </svg>
+      {loading ? "..." : label}
+    </button>
+  );
+}
+
+function RegisterGate({
+  scansToday,
+  onClose,
+}: {
+  scansToday: number;
+  onClose: () => void;
+}) {
+  const t = useTranslations("NewLanding");
+  const { oneTapRef, authError, loading } = useGoogleLogin(onClose);
+
+  const handleGoogleClick = useCallback(() => {
+    const g = (window as unknown as Record<string, unknown>).google as
+      | { accounts: { id: { prompt: () => void } } }
+      | undefined;
+    g?.accounts?.id?.prompt();
+  }, []);
 
   return (
     <div
@@ -296,10 +382,76 @@ function RegisterGate({
           </p>
 
           <div className="mt-6 flex flex-col items-center gap-3">
-            <div ref={oneTapRef} />
+            <div ref={oneTapRef} className="hidden" />
+            <GoogleButton
+              onClick={handleGoogleClick}
+              loading={loading}
+              label={t("gate.signUpFree")}
+            />
             {authError && (
               <p className="text-xs text-red-400">{authError}</p>
             )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-1 text-xs text-white/40 transition hover:text-white/70"
+            >
+              {t("gate.maybeLater")}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function UpgradeGate({
+  scansUsed,
+  onClose,
+}: {
+  scansUsed: number;
+  onClose: () => void;
+}) {
+  const t = useTranslations("NewLanding");
+
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/85 px-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#0b0b0b] shadow-2xl ring-1 ring-white/10"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="relative h-44 w-full overflow-hidden bg-black">
+          <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/20 blur-2xl" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-600 shadow-2xl ring-4 ring-white/15">
+              <svg className="h-9 w-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-6 pb-6 pt-5">
+          <div className="text-xs uppercase tracking-widest text-amber-400">
+            {t("upgrade.scansUsed", { used: scansUsed, total: FREE_MONTHLY_LIMIT })}
+          </div>
+          <h2 className="mt-2 text-xl font-semibold text-white">
+            {t("upgrade.hitLimit")}
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-white/70">
+            {t("upgrade.desc")}
+          </p>
+
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <a
+              href="/pricing"
+              className="flex w-full max-w-[320px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:from-amber-400 hover:to-orange-400"
+            >
+              {t("upgrade.cta")}
+            </a>
             <button
               type="button"
               onClick={onClose}
@@ -540,9 +692,9 @@ function HomeView({
           </div>
         </div>
 
-        {/* Pills — vertical column on mobile, horizontal row below input on desktop */}
+        {/* Active pills */}
         <div className="mt-10 flex flex-col items-start gap-3 md:mt-0 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2">
-          {SUGGESTION_KEYS.map((s) => (
+          {SUGGESTION_KEYS.filter((s) => s.noteKey !== ("suggestions.comingSoon" as string)).map((s) => (
             <button
               key={s.labelKey}
               type="button"
@@ -551,11 +703,67 @@ function HomeView({
             >
               <span className="text-xl leading-none md:text-base">{s.emoji}</span>
               <span>{t(s.labelKey)}</span>
+              {s.noteKey && (
+                <span className="rounded-full bg-white/[0.08] px-2 py-0.5 text-[10px] text-white/50">
+                  {t(s.noteKey)}
+                </span>
+              )}
             </button>
           ))}
         </div>
+
+        {/* Coming soon — vote to unlock */}
+        <div className="mt-6 flex flex-col items-start gap-2 md:mt-4 md:items-center">
+          <p className="text-xs text-white/30 md:text-center">{t("home.comingSoonHint")}</p>
+          <div className="flex flex-col items-start gap-2 md:flex-row md:flex-wrap md:justify-center">
+            {SUGGESTION_KEYS.filter((s) => s.noteKey === ("suggestions.comingSoon" as string)).map((s) => (
+              <ComingSoonPill key={s.labelKey} emoji={s.emoji} labelKey={s.labelKey} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
+  );
+}
+
+function ComingSoonPill({ emoji, labelKey }: { emoji: string; labelKey: string }) {
+  const t = useTranslations("NewLanding");
+  const storageKey = `scamai_vote_${labelKey}`;
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    setLiked(localStorage.getItem(storageKey) === "1");
+  }, [storageKey]);
+
+  const handleLike = () => {
+    if (liked) return;
+    localStorage.setItem(storageKey, "1");
+    setLiked(true);
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleLike}
+      className={`group flex items-center gap-2.5 rounded-full border px-4 py-2.5 text-sm transition md:py-2 ${
+        liked
+          ? "border-white/[0.06] bg-white/[0.03] text-white/40"
+          : "border-white/[0.06] bg-white/[0.03] text-white/40 hover:border-white/10 hover:bg-white/[0.05] hover:text-white/60"
+      }`}
+    >
+      <span className="text-base leading-none">{emoji}</span>
+      <span>{t(labelKey)}</span>
+      <span className={`flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[10px] ${
+        liked ? "bg-pink-500/20 text-pink-400" : "bg-white/[0.06] text-white/30 group-hover:text-pink-400/60"
+      }`}>
+        {liked ? (
+          <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        ) : (
+          <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        )}
+        {liked ? t("home.voted") : t("home.vote")}
+      </span>
+    </button>
   );
 }
 

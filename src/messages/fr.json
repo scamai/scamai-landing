@@ -1750,10 +1750,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "Vérifier une image",
-      "checkVideo": "Vérifier une vidéo",
-      "checkAudio": "Vérifier un audio",
-      "screenshot": "Capture d'écran de chat",
+      "checkImage": "Image",
+      "checkVideo": "Vidéo",
+      "checkAudio": "Audio",
+      "screenshot": "Capture",
+      "checkPhone": "Téléphone",
+      "checkEmail": "E-mail",
       "freeNote": "jusqu'à 5s gratuit",
       "comingSoon": "bientôt"
     },
@@ -1782,7 +1784,10 @@
       "headline": "Que souhaitez-vous vérifier ?",
       "scansLeft": "{count} sur {total} scans gratuits restants aujourd'hui",
       "scansUsed": "Scans gratuits du jour épuisés",
-      "signUpFree": "Inscrivez-vous gratuitement pour 20/mois"
+      "signUpFree": "Inscrivez-vous gratuitement pour 20/mois",
+      "comingSoonHint": "Votez et on le construit plus vite",
+      "vote": "voter",
+      "voted": "voté"
     },
     "scanning": {
       "userQuestion": "C'est réel ou généré par IA ?"

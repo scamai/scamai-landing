@@ -8,6 +8,7 @@ export type User = {
   name: string | null;
   avatarUrl: string | null;
   plan: "free" | "paid";
+  scansThisMonth?: number;
 };
 
 type UserContextValue = {

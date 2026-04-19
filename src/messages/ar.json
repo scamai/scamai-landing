@@ -1750,10 +1750,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "تحقّق من صورة",
-      "checkVideo": "تحقّق من فيديو",
-      "checkAudio": "تحقّق من مقطع صوتي",
-      "screenshot": "لقطة شاشة من المحادثة",
+      "checkImage": "صورة",
+      "checkVideo": "فيديو",
+      "checkAudio": "صوت",
+      "screenshot": "لقطة شاشة",
+      "checkPhone": "رقم الهاتف",
+      "checkEmail": "بريد إلكتروني",
       "freeNote": "حتى 5 ثوانٍ مجانًا",
       "comingSoon": "قريبًا"
     },
@@ -1782,7 +1784,10 @@
       "headline": "ماذا تريد أن نتحقق منه؟",
       "scansLeft": "متبقي {count} من {total} فحص مجاني اليوم",
       "scansUsed": "نفدت الفحوصات المجانية اليومية",
-      "signUpFree": "سجّل مجانًا واحصل على 20 فحص/شهر"
+      "signUpFree": "سجّل مجانًا واحصل على 20 فحص/شهر",
+      "comingSoonHint": "صوّت وسنبنيها أسرع",
+      "vote": "صوّت",
+      "voted": "تم"
     },
     "scanning": {
       "userQuestion": "هل هذا حقيقي أم ذكاء اصطناعي؟"
