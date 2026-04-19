@@ -1714,10 +1714,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "Check an image",
-      "checkVideo": "Check a video",
-      "checkAudio": "Check an audio clip",
-      "screenshot": "Screenshot from chat",
+      "checkImage": "Image",
+      "checkVideo": "Video",
+      "checkAudio": "Audio",
+      "screenshot": "Screenshot",
+      "checkPhone": "Phone number",
+      "checkEmail": "Email",
       "freeNote": "up to 5s free",
       "comingSoon": "coming soon"
     },
@@ -1746,7 +1748,10 @@
       "headline": "What should we verify?",
       "scansLeft": "{count} of {total} free scans left today",
       "scansUsed": "Daily free scans used",
-      "signUpFree": "Sign up free for 20/mo"
+      "signUpFree": "Sign up free for 20/mo",
+      "comingSoonHint": "Vote and we'll release it faster",
+      "vote": "vote",
+      "voted": "voted"
     },
     "scanning": {
       "userQuestion": "Is this real or AI?"
@@ -1768,9 +1773,15 @@
       "scansUsed": "{used}/{total} free scans used today",
       "hitLimit": "You've hit today's free limit",
       "signUpDesc": "Sign up free to keep verifying — {count} scans / month, no credit card. Your free counter resets at midnight.",
-      "signUpFree": "Sign up free",
+      "signUpFree": "Continue with Google",
       "haveAccount": "I already have an account",
       "maybeLater": "Maybe later"
+    },
+    "upgrade": {
+      "scansUsed": "{used}/{total} free scans used this month",
+      "hitLimit": "You've used all your free scans",
+      "desc": "Upgrade to Pro for unlimited scans, heatmaps, signal breakdowns, and private results. Just $9/month.",
+      "cta": "Upgrade to Pro — $9/mo"
     },
     "intro": {
       "title": "ScamAI now checks audio and video",

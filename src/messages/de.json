@@ -1750,10 +1750,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "Bild prüfen",
-      "checkVideo": "Video prüfen",
-      "checkAudio": "Audio prüfen",
-      "screenshot": "Chat-Screenshot",
+      "checkImage": "Bild",
+      "checkVideo": "Video",
+      "checkAudio": "Audio",
+      "screenshot": "Screenshot",
+      "checkPhone": "Telefon",
+      "checkEmail": "E-Mail",
       "freeNote": "bis zu 5s kostenlos",
       "comingSoon": "bald verfügbar"
     },
@@ -1782,7 +1784,10 @@
       "headline": "Was sollen wir prüfen?",
       "scansLeft": "{count} von {total} kostenlosen Scans heute übrig",
       "scansUsed": "Tägliche kostenlose Scans aufgebraucht",
-      "signUpFree": "Kostenlos registrieren für 20/Monat"
+      "signUpFree": "Kostenlos registrieren für 20/Monat",
+      "comingSoonHint": "Stimme ab und wir bauen es schneller",
+      "vote": "abstimmen",
+      "voted": "abgestimmt"
     },
     "scanning": {
       "userQuestion": "Ist das echt oder KI?"

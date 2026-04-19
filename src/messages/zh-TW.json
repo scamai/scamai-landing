@@ -1750,10 +1750,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "檢查圖片",
-      "checkVideo": "檢查影片",
-      "checkAudio": "檢查音訊",
-      "screenshot": "聊天截圖",
+      "checkImage": "圖片",
+      "checkVideo": "影片",
+      "checkAudio": "音訊",
+      "screenshot": "截圖",
+      "checkPhone": "電話號碼",
+      "checkEmail": "電郵",
       "freeNote": "最多5秒免費",
       "comingSoon": "即將推出"
     },
@@ -1782,7 +1784,10 @@
       "headline": "需要驗證什麼？",
       "scansLeft": "今日免費掃描剩餘 {count}/{total} 次",
       "scansUsed": "今日免費掃描已用完",
-      "signUpFree": "免費註冊，每月 20 次"
+      "signUpFree": "免費註冊，每月 20 次",
+      "comingSoonHint": "投票支持，我們會更快開發",
+      "vote": "投票",
+      "voted": "已投"
     },
     "scanning": {
       "userQuestion": "這是真的還是 AI 生成的？"

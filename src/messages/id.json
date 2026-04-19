@@ -1750,10 +1750,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "Periksa gambar",
-      "checkVideo": "Periksa video",
-      "checkAudio": "Periksa audio",
-      "screenshot": "Screenshot dari chat",
+      "checkImage": "Gambar",
+      "checkVideo": "Video",
+      "checkAudio": "Audio",
+      "screenshot": "Tangkapan layar",
+      "checkPhone": "Telepon",
+      "checkEmail": "Email",
       "freeNote": "gratis hingga 5 detik",
       "comingSoon": "segera hadir"
     },
@@ -1782,7 +1784,10 @@
       "headline": "Apa yang ingin diverifikasi?",
       "scansLeft": "{count} dari {total} pemindaian gratis tersisa hari ini",
       "scansUsed": "Pemindaian gratis harian habis",
-      "signUpFree": "Daftar gratis untuk 20/bulan"
+      "signUpFree": "Daftar gratis untuk 20/bulan",
+      "comingSoonHint": "Vote dan kami akan membangunnya lebih cepat",
+      "vote": "vote",
+      "voted": "voted"
     },
     "scanning": {
       "userQuestion": "Ini asli atau AI?"

@@ -1750,10 +1750,12 @@
   },
   "NewLanding": {
     "suggestions": {
-      "checkImage": "이미지 확인",
-      "checkVideo": "동영상 확인",
-      "checkAudio": "오디오 확인",
-      "screenshot": "채팅 스크린샷",
+      "checkImage": "이미지",
+      "checkVideo": "영상",
+      "checkAudio": "오디오",
+      "screenshot": "스크린샷",
+      "checkPhone": "전화번호",
+      "checkEmail": "이메일",
       "freeNote": "최대 5초 무료",
       "comingSoon": "출시 예정"
     },
@@ -1782,7 +1784,10 @@
       "headline": "무엇을 검증할까요?",
       "scansLeft": "오늘 무료 스캔 {count}/{total}회 남음",
       "scansUsed": "오늘 무료 스캔을 모두 사용했습니다",
-      "signUpFree": "무료 가입하고 월 20회 이용"
+      "signUpFree": "무료 가입하고 월 20회 이용",
+      "comingSoonHint": "투표하면 더 빨리 만들어요",
+      "vote": "투표",
+      "voted": "완료"
     },
     "scanning": {
       "userQuestion": "이것은 진짜인가요, AI인가요?"
