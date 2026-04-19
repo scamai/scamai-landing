@@ -730,8 +730,15 @@ function ComingSoonSection() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
+    if (localStorage.getItem("scamai_voted_done") === "1") setHidden(true);
+  }, []);
+
+  useEffect(() => {
     if (!hasVoted) return;
-    const timer = setTimeout(() => setHidden(true), 10000);
+    const timer = setTimeout(() => {
+      localStorage.setItem("scamai_voted_done", "1");
+      setHidden(true);
+    }, 10000);
     return () => clearTimeout(timer);
   }, [hasVoted]);
 
