@@ -100,3 +100,25 @@ export async function countScansByUserThisMonth(userId: number): Promise<number>
   `;
   return Number((rows[0] as { n: number })?.n ?? 0);
 }
+
+export async function getScanByHash(imageHash: string): Promise<ScanRow | null> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT * FROM scans
+    WHERE image_hash = ${imageHash}
+      AND is_public = TRUE
+      AND min_quality_passed = TRUE
+    ORDER BY created_at DESC
+    LIMIT 1
+  `;
+  return (rows[0] as ScanRow) ?? null;
+}
+
+export async function getScanViewCount(scanId: number): Promise<number> {
+  const sql = getDb();
+  const rows = await sql`
+    SELECT COUNT(*)::int AS n FROM scan_events
+    WHERE scan_id = ${scanId}
+  `;
+  return Number((rows[0] as { n: number })?.n ?? 0);
+}

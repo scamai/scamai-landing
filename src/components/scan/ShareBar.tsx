@@ -41,21 +41,31 @@ export function ShareBar({ slug, verdictLabel, confidence }: Props) {
     <button
       type="button"
       onClick={onClick}
-      className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-white transition hover:border-white/30"
+      className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/5 active:scale-[0.97]"
     >
       {label}
     </button>
   );
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="sticky bottom-0 z-20 -mx-5 bg-gradient-to-t from-black via-black/95 to-transparent px-5 py-4 sm:static sm:mx-0 sm:bg-transparent sm:p-0">
+      <div className="flex flex-wrap items-center gap-2">
       <span className="mr-1 text-xs uppercase tracking-wider text-gray-500">Share</span>
+      {typeof navigator !== "undefined" && "share" in navigator && (
+        <Button
+          label="Share..."
+          onClick={() => {
+            navigator.share({ title: text, url }).catch(() => {});
+          }}
+        />
+      )}
       <Button label="Copy link" onClick={() => share("copy")} />
       {copied && <span className="text-xs text-emerald-400">Copied.</span>}
       <Button label="X / Twitter" onClick={() => share("twitter")} />
       <Button label="WhatsApp" onClick={() => share("whatsapp")} />
       <Button label="Facebook" onClick={() => share("facebook")} />
       <Button label="LinkedIn" onClick={() => share("linkedin")} />
+      </div>
     </div>
   );
 }

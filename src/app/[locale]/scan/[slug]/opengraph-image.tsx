@@ -12,8 +12,9 @@ function labelFor(verdict: string) {
   return { headline: "Uncertain", accent: "#f5a623" };
 }
 
-export default async function ScanOG({ params }: { params: { slug: string } }) {
-  const scan = await getScanBySlug(params.slug);
+export default async function ScanOG({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { slug } = await params;
+  const scan = await getScanBySlug(slug);
   const verdict = scan?.verdict ?? "uncertain";
   const confidence = scan ? Number(scan.confidence) : 0;
   const { headline, accent } = labelFor(verdict);

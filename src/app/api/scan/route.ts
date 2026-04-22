@@ -3,12 +3,14 @@ import { createHash } from "crypto";
 import { detectImage } from "@/lib/detection/eva-client";
 import { generateScanSlug } from "@/lib/detection/slug";
 import { getAnonIdentity, countAnonScans, ANON_SCAN_LIMIT } from "@/lib/detection/fingerprint";
-import { insertScan, getScanBySlug } from "@/lib/db/scans";
+import { insertScan, getScanByHash, countScansByUserThisMonth } from "@/lib/db/scans";
+import { getSession } from "@/lib/auth-session";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MAX_UPLOAD_BYTES = 4 * 1024 * 1024; // 4MB — data-URL-friendly ceiling
+const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+const FREE_MONTHLY_LIMIT = 20;
 
 function bytesToDataUrl(bytes: ArrayBuffer, mime: string) {
   const b64 = Buffer.from(bytes).toString("base64");
@@ -64,16 +66,63 @@ export async function POST(req: Request) {
     if (!bytes) return NextResponse.json({ error: "No image data" }, { status: 400 });
 
     const imageHash = createHash("sha256").update(Buffer.from(bytes)).digest("hex");
+
+    // Hash dedup: if this exact image was already scanned, return the existing result instantly
+    const existing = await getScanByHash(imageHash);
+    if (existing) {
+      return NextResponse.json({
+        slug: existing.slug,
+        verdict: existing.verdict,
+        confidence: Number(existing.confidence),
+        signals: (existing.signals as { list?: unknown[] })?.list ?? [],
+        modelVersion: existing.model_version,
+        latencyMs: 0,
+        ttfrMs: Date.now() - started,
+        isPublic: existing.is_public,
+        cached: true,
+        reachedAnonLimit: false,
+        anonScansUsed: 0,
+        anonScansLimit: ANON_SCAN_LIMIT,
+        shareUrl: `/scan/${existing.slug}`,
+      });
+    }
+
+    // Auth + quota enforcement
+    const session = await getSession();
+    let userId: number | null = null;
+
+    if (session) {
+      userId = session.userId;
+      if (session.plan === "free") {
+        const monthlyCount = await countScansByUserThisMonth(session.userId);
+        if (monthlyCount >= FREE_MONTHLY_LIMIT) {
+          return NextResponse.json({
+            error: "Monthly scan limit reached",
+            limit: FREE_MONTHLY_LIMIT,
+            used: monthlyCount,
+            upgradeUrl: "/pricing",
+          }, { status: 429 });
+        }
+      }
+    }
+
+    // Anon gate: only enforce if not logged in
     const anon = await getAnonIdentity();
-    const prevAnonCount = await countAnonScans(anon.fingerprint);
+    const prevAnonCount = !session ? await countAnonScans(anon.fingerprint) : 0;
+
+    if (!session && prevAnonCount >= ANON_SCAN_LIMIT) {
+      return NextResponse.json({
+        error: "Free scan limit reached — sign in to continue",
+        reachedAnonLimit: true,
+        anonScansUsed: prevAnonCount,
+        anonScansLimit: ANON_SCAN_LIMIT,
+      }, { status: 429 });
+    }
 
     const result = await detectImage(bytes);
     const slug = generateScanSlug();
 
-    // TODO: migrate image storage to Vercel Blob / S3 when creds are set.
-    // For the prototype we inline the image as a data URL (capped at 4MB).
     const imageUrl = bytesToDataUrl(bytes, mime);
-
     const ttfrMs = Date.now() - started;
 
     const scan = await insertScan({
@@ -85,14 +134,15 @@ export async function POST(req: Request) {
       confidence: result.confidence,
       signals: { list: result.signals, latencyMs: result.latencyMs },
       heatmapUrl: result.heatmapUrl ?? null,
-      userId: null, // TODO: plug in end-user session when auth is wired
-      anonFingerprint: anon.fingerprint,
+      userId,
+      anonFingerprint: session ? null : anon.fingerprint,
       ttfrMs,
       modelVersion: result.modelVersion,
       isPublic: true,
     });
 
-    const reachedAnonLimit = prevAnonCount + 1 >= ANON_SCAN_LIMIT;
+    const anonScansUsed = session ? 0 : prevAnonCount + 1;
+    const reachedAnonLimit = !session && anonScansUsed >= ANON_SCAN_LIMIT;
 
     return NextResponse.json({
       slug: scan.slug,
@@ -103,8 +153,9 @@ export async function POST(req: Request) {
       latencyMs: result.latencyMs,
       ttfrMs,
       isPublic: scan.is_public,
+      cached: false,
       reachedAnonLimit,
-      anonScansUsed: prevAnonCount + 1,
+      anonScansUsed,
       anonScansLimit: ANON_SCAN_LIMIT,
       shareUrl: `/scan/${scan.slug}`,
     });
