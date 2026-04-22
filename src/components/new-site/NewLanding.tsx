@@ -766,9 +766,6 @@ function HomeView({
               </button>
             )}
           </div>
-          <p className="mt-1.5 text-center text-[11px] text-white/25">
-            Results are shareable so others can verify too
-          </p>
         </div>
 
         {/* Active pills */}
