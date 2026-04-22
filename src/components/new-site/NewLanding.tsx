@@ -184,12 +184,42 @@ export default function NewLanding({
   if (!mounted) {
     return (
       <main className="flex min-h-screen flex-col bg-black text-white" role="main">
-        <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40">
-          <div className="mx-auto w-full max-w-2xl md:text-center">
-            <p className="text-3xl font-normal text-white/70 sm:text-4xl">{t("home.greeting")}</p>
-            <h1 className="mt-1 text-[2.5rem] font-normal leading-[1.05] tracking-tight sm:text-5xl">
-              {t("home.headline")}
-            </h1>
+        <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40 md:px-8 md:pb-16 md:pt-20">
+          <div className="mx-auto w-full max-w-2xl md:flex md:flex-col md:items-center md:gap-7">
+            <div className="pt-16 md:pt-0 md:text-center">
+              <p className="text-3xl font-normal text-white/70 sm:text-4xl">{t("home.greeting")}</p>
+              <h1 className="mt-1 text-[2.5rem] font-normal leading-[1.05] tracking-tight sm:text-5xl md:mt-1.5">
+                {t("home.headline")}
+              </h1>
+            </div>
+            {/* Skeleton paste prompt */}
+            <div className="mt-6 flex items-center gap-2 rounded-full border border-dashed border-white/20 bg-white/[0.03] px-5 py-3 text-sm text-white/50 md:mt-0">
+              <kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px] text-white/60">⌘V</kbd>
+              <span>Paste an image to scan instantly</span>
+              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-white/40" />
+            </div>
+            {/* Skeleton input bar */}
+            <div className="hidden w-full md:block">
+              <div className="liquid-glass rounded-[28px] px-4 py-3">
+                <div className="w-full bg-transparent text-base text-white/50">{t("inputBar.dropMedia")}</div>
+                <div className="mt-3 flex items-center justify-between">
+                  <div className="h-9 w-9 rounded-full bg-white/10" />
+                  <div className="flex items-center gap-2">
+                    <div className="h-9 w-20 rounded-full border border-white/15" />
+                    <div className="h-9 w-9 rounded-full bg-white" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Skeleton suggestion pills */}
+            <div className="mt-10 flex flex-col items-start gap-3 md:mt-0 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2">
+              {SUGGESTION_KEYS.filter((s) => s.noteKey !== ("suggestions.comingSoon" as string)).map((s) => (
+                <div key={s.labelKey} className="flex items-center gap-3 rounded-full bg-white/[0.06] px-5 py-3 text-base text-white/90 md:px-4 md:py-2 md:text-sm">
+                  <span className="text-xl leading-none md:text-base">{s.emoji}</span>
+                  <span>{t(s.labelKey)}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
@@ -255,7 +285,7 @@ export default function NewLanding({
         </div>
       </div>
 
-      {shareOpen && <ShareSheet onClose={() => setShareOpen(false)} previewUrl={previewUrl} />}
+      {shareOpen && <ShareSheet onClose={() => setShareOpen(false)} previewUrl={previewUrl} scan={scanResult} />}
       {introOpen && <IntroModal onClose={closeIntro} />}
       {gateOpen && (
         <RegisterGate
@@ -1129,55 +1159,85 @@ function ResultView({
             <span>{t("result.modelLabel")}</span>
           </div>
 
-          {/* Verdict card (brand-baked for screenshot virality) */}
-          <div className={`overflow-hidden rounded-2xl border ${cardBorder} bg-gradient-to-br ${cardBg}`}>
-            <div className="p-5">
-              <div className="flex items-start gap-3">
-                <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full ${dotBg}`}>
-                  {accentRed ? (
-                    <svg className={`h-5 w-5 ${dotIconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="15" y1="9" x2="9" y2="15" />
-                      <line x1="9" y1="9" x2="15" y2="15" />
-                    </svg>
-                  ) : (
-                    <svg className={`h-5 w-5 ${dotIconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="9 12 11 14 15 10" />
-                    </svg>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl font-semibold text-white">{verdict}</div>
-                  <div className="mt-0.5 text-sm text-white/60">{t("result.confidence", { pct: confidence })}</div>
-                </div>
-              </div>
-              <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                <div className={`h-full rounded-full ${barColor}`} style={{ width: `${confidence}%` }} />
-              </div>
-
-              {faceSwapDetected && (
-                <div className="mt-3 flex items-center gap-2.5 rounded-lg bg-red-500/15 px-3 py-2 ring-1 ring-red-500/30">
-                  <svg className="h-4 w-4 flex-shrink-0 text-red-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M8 10h.01" />
-                    <path d="M16 10h.01" />
-                    <path d="M9 15c.5.6 1.5 1 3 1s2.5-.4 3-1" />
-                    <path d="M3 8l4-4M21 8l-4-4M3 16l4 4M21 16l-4 4" />
-                  </svg>
-                  <div className="flex-1 text-sm">
-                    <span className="font-medium text-red-100">{t("result.faceSwapDetected")}</span>
-                    <span className="ml-1.5 text-red-200/70">{t("result.faceSwapMatch", { pct: faceSwapConfidencePct })}</span>
-                  </div>
+          {/* Verdict card — designed for screenshot virality (like TikTok result cards) */}
+          <div className={`verdict-card overflow-hidden rounded-2xl border ${cardBorder}`}>
+            {/* Image + verdict overlay */}
+            <div className={`relative bg-gradient-to-br ${cardBg}`}>
+              {previewUrl && (
+                <div className="flex items-center justify-center bg-black/40 px-5 pt-5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={previewUrl} alt="" className="max-h-[200px] rounded-xl object-contain" />
                 </div>
               )}
-            </div>
-            <div className="flex items-center justify-between border-t border-white/5 bg-black/30 px-5 py-2.5">
-              <div className="flex items-center gap-2 text-[11px] text-white/50">
-                <img src="/scamai-logo.svg" alt="" className="h-3.5 w-auto opacity-80" />
-                <span className="font-mono">{DEMO_SCAN.shareUrl}</span>
+              <div className="p-5">
+                {/* Big verdict stamp */}
+                <div className="flex items-center gap-4">
+                  <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl ${dotBg}`}>
+                    {accentRed ? (
+                      <svg className={`h-8 w-8 ${dotIconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="15" y1="9" x2="9" y2="15" />
+                        <line x1="9" y1="9" x2="15" y2="15" />
+                      </svg>
+                    ) : (
+                      <svg className={`h-8 w-8 ${dotIconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="9 12 11 14 15 10" />
+                      </svg>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className={`text-2xl font-bold sm:text-3xl ${accentRed ? "text-red-400" : "text-emerald-400"}`}>
+                      {isFake ? "AI-GENERATED" : "LIKELY REAL"}
+                    </div>
+                    <div className="mt-0.5 text-sm text-white/60">{verdict}</div>
+                  </div>
+                </div>
+
+                {/* Confidence gauge */}
+                <div className="mt-5">
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-xs uppercase tracking-wider text-white/40">AI confidence</span>
+                    <span className={`text-2xl font-bold tabular-nums ${accentRed ? "text-red-400" : "text-emerald-400"}`}>{confidence}%</span>
+                  </div>
+                  <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-white/10">
+                    <div
+                      className={`h-full rounded-full ${barColor} transition-all duration-1000 ease-out`}
+                      style={{ width: `${confidence}%` }}
+                    />
+                  </div>
+                </div>
+
+                {faceSwapDetected && (
+                  <div className="mt-4 flex items-center gap-2.5 rounded-xl bg-red-500/15 px-4 py-3 ring-1 ring-red-500/30">
+                    <svg className="h-5 w-5 flex-shrink-0 text-red-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M8 10h.01" />
+                      <path d="M16 10h.01" />
+                      <path d="M9 15c.5.6 1.5 1 3 1s2.5-.4 3-1" />
+                      <path d="M3 8l4-4M21 8l-4-4M3 16l4 4M21 16l-4 4" />
+                    </svg>
+                    <div className="flex-1 text-sm">
+                      <span className="font-semibold text-red-100">{t("result.faceSwapDetected")}</span>
+                      <span className="ml-1.5 text-red-200/70">{t("result.faceSwapMatch", { pct: faceSwapConfidencePct })}</span>
+                    </div>
+                  </div>
+                )}
               </div>
-              <span className="text-[11px] text-white/40">{t("result.verified", { sec: latencySec })}</span>
+            </div>
+
+            {/* Brand bar — always visible in screenshots */}
+            <div className="flex items-center justify-between border-t border-white/5 bg-black/50 px-5 py-3">
+              <div className="flex items-center gap-2.5">
+                <img src="/scamai-logo.svg" alt="" className="h-4 w-auto opacity-90" />
+                <span className="text-xs font-semibold text-white/70">ScamAI Eva V1.6</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-white/40">{t("result.verified", { sec: latencySec })}</span>
+                <span className="rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white/60">
+                  Verify yours free → scam.ai
+                </span>
+              </div>
             </div>
           </div>
 
@@ -1306,124 +1366,110 @@ function ModeItem({
   );
 }
 
-function ShareSheet({ onClose, previewUrl }: { onClose: () => void; previewUrl: string | null }) {
+function ShareSheet({ onClose, previewUrl, scan }: { onClose: () => void; previewUrl: string | null; scan: ScanResult | null }) {
   const t = useTranslations("NewLanding");
-  const faceNote = DEMO_SCAN.faceSwap.detected
-    ? ` + face-swap detected (${DEMO_SCAN.faceSwap.confidence}%)`
-    : "";
-  const shareMessage = `ScamAI caught this — ${DEMO_SCAN.confidence}% likely AI-edited${faceNote}. Verify yours: ${DEMO_SCAN.shareUrl}`;
-  const replyMessage = `Hey — I ran the thing you sent through ScamAI. It's ${DEMO_SCAN.confidence}% likely AI-edited${faceNote}. You can check things yourself at scam.ai 👀`;
+  const confidence = scan?.confidencePct ?? DEMO_SCAN.confidence;
+  const isFake = (scan?.verdict ?? DEMO_SCAN.verdict).toLowerCase().includes("ai");
+  const verdictWord = isFake ? "AI-generated" : "real";
+  const shareUrl = "https://scam.ai";
+  const [copied, setCopied] = useState(false);
+  const [replyMode, setReplyMode] = useState<"warn" | "flex" | null>(null);
 
-  const shareUrl = DEMO_SCAN.shareUrl;
-  const emailSubject = encodeURIComponent(`ScamAI: ${DEMO_SCAN.confidence}% likely AI-edited`);
-  const emailBody = encodeURIComponent(shareMessage);
+  const copy = {
+    x: `This image is ${confidence}% ${verdictWord}.\n\nVerified by @ScamAI in 2 seconds. Check yours free: ${shareUrl}`,
+    whatsapp: isFake
+      ? `yo have u seen this?? I ran it through ScamAI and it's ${confidence}% AI-generated. be careful out there\n\ncheck stuff yourself: ${shareUrl}`
+      : `this one's actually legit — ${confidence}% real according to ScamAI. not everything online is fake lol\n\n${shareUrl}`,
+    telegram: `${confidence}% ${verdictWord} — verified by ScamAI Eva V1.6\n\nFree image verification: ${shareUrl}`,
+    facebook: `Is this image real or AI? ScamAI says ${confidence}% ${verdictWord}. You can verify any image free in 2 seconds.`,
+    sms: isFake
+      ? `Hey — that image is ${confidence}% likely AI-generated according to ScamAI. You can check things yourself at scam.ai`
+      : `Checked that image on ScamAI — it's ${confidence}% likely real. You can verify stuff at scam.ai`,
+    email: `I ran an image through ScamAI's AI detection tool — it came back ${confidence}% ${verdictWord}.\n\nYou can verify any image for free at ${shareUrl} — takes about 2 seconds.`,
+    replyWarn: isFake
+      ? `Hey, I checked the image you sent me. ScamAI says it's ${confidence}% AI-generated. Be careful — you can verify stuff yourself at scam.ai`
+      : `Hey, I checked the image you sent. Looks legit — ${confidence}% real according to ScamAI. You can verify things at scam.ai`,
+    replyFlex: isFake
+      ? `Caught it. ${confidence}% AI. Ran it through ScamAI in 2 seconds — scam.ai`
+      : `It's real. ${confidence}% verified by ScamAI — scam.ai`,
+  };
 
-  const channels = useMemo(() => [
-    { id: "whatsapp", name: "WhatsApp", color: "bg-[#25D366]", href: `https://wa.me/?text=${encodeURIComponent(shareMessage)}`, icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z" />
-      </svg>
+  const emailSubject = `Is this image real? ScamAI verdict: ${confidence}% ${verdictWord}`;
+
+  const channels = [
+    { id: "whatsapp", name: "WhatsApp", color: "bg-[#25D366]", href: `https://wa.me/?text=${encodeURIComponent(copy.whatsapp)}`, icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z" /></svg>
     ) },
-    { id: "x", name: "X", color: "bg-black border border-white/20", href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`, icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
+    { id: "x", name: "X", color: "bg-black border border-white/20", href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(copy.x)}`, icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
     ) },
-    { id: "telegram", name: "Telegram", color: "bg-[#26A5E4]", href: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareMessage)}`, icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-      </svg>
+    { id: "telegram", name: "Telegram", color: "bg-[#26A5E4]", href: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(copy.telegram)}`, icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>
     ) },
-    { id: "messages", name: "Messages", color: "bg-[#30D158]", href: `sms:&body=${encodeURIComponent(shareMessage)}`, icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-        <path d="M12 2C6.5 2 2 6 2 11c0 2.5 1.2 4.8 3.2 6.3L4 22l5-2.4c1 .3 2 .4 3 .4 5.5 0 10-4 10-9s-4.5-9-10-9z" />
-      </svg>
+    { id: "messages", name: "Messages", color: "bg-[#30D158]", href: `sms:&body=${encodeURIComponent(copy.sms)}`, icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6"><path d="M12 2C6.5 2 2 6 2 11c0 2.5 1.2 4.8 3.2 6.3L4 22l5-2.4c1 .3 2 .4 3 .4 5.5 0 10-4 10-9s-4.5-9-10-9z" /></svg>
     ) },
-    { id: "email", name: "Email", color: "bg-[#5E5CE6]", href: `mailto:?subject=${emailSubject}&body=${emailBody}`, icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M22 4l-10 8L2 4" />
-      </svg>
+    { id: "email", name: "Email", color: "bg-[#5E5CE6]", href: `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(copy.email)}`, icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 4l-10 8L2 4" /></svg>
     ) },
-    { id: "copyLink", name: t("shareSheet.channels.copyLink"), color: "bg-white/10", href: undefined, icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-        <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
-        <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
-      </svg>
+    { id: "copyLink", name: copied ? "Copied!" : "Copy link", color: copied ? "bg-emerald-500/20" : "bg-white/10", href: undefined, icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" /></svg>
     ) },
-    { id: "saveImage", name: t("shareSheet.channels.saveImage"), color: "bg-white/10", href: undefined, icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
+    { id: "reportError", name: t("shareSheet.channels.reportError"), color: "bg-white/10", href: `mailto:support@scam.ai?subject=${encodeURIComponent(`Wrong verdict`)}&body=${encodeURIComponent(`Hi ScamAI,\n\nI believe the verdict is incorrect.\n\nThe image is actually: [real / AI-generated]\n\nAdditional context:\n`)}`, icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
     ) },
-    { id: "reportError", name: t("shareSheet.channels.reportError"), color: "bg-white/10", href: `mailto:support@scam.ai?subject=${encodeURIComponent(`Wrong verdict on ${shareUrl}`)}&body=${encodeURIComponent(`Hi ScamAI,\n\nI believe the verdict on this scan is incorrect:\n${shareUrl}\n\nThe image is actually: [real / AI-generated]\n\nAdditional context:\n`)}`, icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-        <line x1="12" y1="9" x2="12" y2="13" />
-        <line x1="12" y1="17" x2="12.01" y2="17" />
-      </svg>
-    ) },
-  ], [shareMessage, shareUrl, emailSubject, emailBody, t]);
+  ];
+
+  const replyText = replyMode === "flex" ? copy.replyFlex : copy.replyWarn;
 
   return (
     <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/70 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="w-full max-w-2xl rounded-t-3xl bg-[#111] p-5 pb-8 ring-1 ring-white/10"
+        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-[#111] p-5 pb-8 ring-1 ring-white/10"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-white/20" />
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-white">{t("shareSheet.title")}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-white/60 transition hover:bg-white/10 hover:text-white"
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M6 6l12 12M6 18L18 6" />
-            </svg>
+          <button type="button" onClick={onClose} aria-label="Close" className="flex h-8 w-8 items-center justify-center rounded-full text-white/60 transition hover:bg-white/10 hover:text-white">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M6 18L18 6" /></svg>
           </button>
         </div>
 
+        {/* Mini verdict preview card */}
         <div className="mb-5 overflow-hidden rounded-2xl ring-1 ring-white/10">
-          <div className="bg-gradient-to-br from-red-500/20 via-zinc-900 to-black p-4">
+          <div className={`p-4 ${isFake ? "bg-gradient-to-br from-red-500/15 via-zinc-900 to-black" : "bg-gradient-to-br from-emerald-500/15 via-zinc-900 to-black"}`}>
             <div className="flex items-center gap-3">
-              <div className="h-14 w-14 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-700 to-zinc-900 ring-1 ring-white/10">
-                {previewUrl ? (
+              <div className="h-16 w-16 overflow-hidden rounded-xl bg-gradient-to-br from-zinc-700 to-zinc-900 ring-1 ring-white/10">
+                {previewUrl && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={previewUrl} alt="" className="h-full w-full object-cover" />
-                ) : null}
+                )}
               </div>
               <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-red-300">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-400" />
-                  <span className="font-semibold uppercase tracking-wider">{t("shareSheet.likelyAI")}</span>
-                  {DEMO_SCAN.faceSwap.detected && (
-                    <span className="rounded-sm bg-red-500/25 px-1.5 py-px font-semibold uppercase tracking-wider text-red-100">
-                      {t("shareSheet.faceSwap")}
-                    </span>
-                  )}
+                <div className={`text-xl font-bold ${isFake ? "text-red-400" : "text-emerald-400"}`}>
+                  {isFake ? "AI-GENERATED" : "REAL"}
                 </div>
-                <div className="mt-0.5 text-sm text-white/60">
-                  {t("shareSheet.confidence", { pct: DEMO_SCAN.confidence })}
+                <div className="mt-0.5 flex items-center gap-2">
+                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+                    <div className={`h-full rounded-full ${isFake ? "bg-red-400" : "bg-emerald-400"}`} style={{ width: `${confidence}%` }} />
+                  </div>
+                  <span className={`text-sm font-bold tabular-nums ${isFake ? "text-red-400" : "text-emerald-400"}`}>{confidence}%</span>
                 </div>
               </div>
-              <img src="/scamai-logo.svg" alt="" className="h-5 w-auto opacity-90" />
             </div>
           </div>
-          <div className="flex items-center justify-between bg-black px-4 py-2.5">
-            <span className="font-mono text-xs text-white/50">{DEMO_SCAN.shareUrl}</span>
-            <span className="text-[11px] text-white/40">{t("shareSheet.tapToVerify")}</span>
-          </div>
-          <div className="border-t border-white/5 bg-black px-4 py-1.5 text-[10px] text-white/40">
-            {t("shareSheet.disclaimer")}
+          <div className="flex items-center justify-between bg-black/60 px-4 py-2">
+            <div className="flex items-center gap-2">
+              <img src="/scamai-logo.svg" alt="" className="h-3.5 w-auto opacity-80" />
+              <span className="text-xs font-medium text-white/50">ScamAI Eva V1.6</span>
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-white/30">scam.ai</span>
           </div>
         </div>
 
-        <div className="mb-5 grid grid-cols-4 gap-3 sm:grid-cols-8">
+        {/* Share channels */}
+        <div className="mb-5 grid grid-cols-4 gap-3 sm:grid-cols-7">
           {channels.map((c) => (
             <button
               key={c.id}
@@ -1432,6 +1478,8 @@ function ShareSheet({ onClose, previewUrl }: { onClose: () => void; previewUrl: 
               onClick={() => {
                 if (c.id === "copyLink") {
                   navigator.clipboard.writeText(shareUrl);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
                   return;
                 }
                 if (c.href) {
@@ -1439,7 +1487,7 @@ function ShareSheet({ onClose, previewUrl }: { onClose: () => void; previewUrl: 
                 }
               }}
             >
-              <span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-white ${c.color}`}>
+              <span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-white transition active:scale-90 ${c.color}`}>
                 {c.icon}
               </span>
               <span className="text-[11px] text-white/70">{c.name}</span>
@@ -1447,28 +1495,59 @@ function ShareSheet({ onClose, previewUrl }: { onClose: () => void; previewUrl: 
           ))}
         </div>
 
-        <div className="mb-3 rounded-2xl border border-[#245FFF]/30 bg-[#245FFF]/10 p-4">
-          <div className="mb-1 flex items-center gap-2">
-            <svg className="h-4 w-4 text-[#6B9FFF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        {/* Quick reply — two tones */}
+        <div className="mb-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+          <div className="mb-3 flex items-center gap-2">
+            <svg className="h-4 w-4 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <polyline points="9 17 4 12 9 7" />
               <path d="M20 18v-2a4 4 0 00-4-4H4" />
             </svg>
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#6B9FFF]">
-              {t("shareSheet.replySection")}
+            <span className="text-xs font-semibold uppercase tracking-wider text-white/50">
+              Someone sent you a suspicious image?
             </span>
           </div>
-          <p className="text-sm leading-relaxed text-white/90">&ldquo;{replyMessage}&rdquo;</p>
-          <button
-            type="button"
-            className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245FFF] py-2.5 text-sm font-semibold text-white transition hover:bg-[#1E52E0]"
-          >
-            {t("shareSheet.sendReply")}
-          </button>
-        </div>
 
-        <div className="rounded-xl bg-white/[0.04] p-3">
-          <div className="mb-1 text-[11px] uppercase tracking-wider text-white/40">{t("shareSheet.orShareEverywhere")}</div>
-          <p className="text-xs leading-relaxed text-white/70">{shareMessage}</p>
+          <div className="mb-3 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setReplyMode("warn")}
+              className={`flex-1 rounded-xl px-3 py-2 text-xs font-medium transition ${
+                replyMode === "warn" ? "bg-white/10 text-white" : "bg-white/[0.04] text-white/50 hover:bg-white/[0.07]"
+              }`}
+            >
+              Heads up
+            </button>
+            <button
+              type="button"
+              onClick={() => setReplyMode("flex")}
+              className={`flex-1 rounded-xl px-3 py-2 text-xs font-medium transition ${
+                replyMode === "flex" ? "bg-white/10 text-white" : "bg-white/[0.04] text-white/50 hover:bg-white/[0.07]"
+              }`}
+            >
+              Short & sharp
+            </button>
+          </div>
+
+          {replyMode && (
+            <>
+              <p className="rounded-xl bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/80">
+                &ldquo;{replyText}&rdquo;
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(replyText);
+                }}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-white/10 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15 active:scale-[0.98]"
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                </svg>
+                Copy reply
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
