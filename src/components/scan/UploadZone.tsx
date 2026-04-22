@@ -163,9 +163,6 @@ export function UploadZone({ locale }: { locale: string }) {
         )}
       </div>
 
-      <p className="mt-3 text-center text-[11px] leading-relaxed text-white/30">
-        Your result gets a shareable link so others can verify too. Sign in to control visibility.
-      </p>
 
       {message && !busy && <p className="mt-3 text-center text-xs text-gray-400">{message}</p>}
       {error && (
