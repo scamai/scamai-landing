@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getScanBySlug } from "@/lib/db/scans";
+import { getScanBySlug, getScanViewCount, recordScanEvent } from "@/lib/db/scans";
 import {
   breadcrumbSchema,
   jsonLdProps,
@@ -57,6 +57,9 @@ export default async function ScanPage({ params }: ScanPageProps) {
   const signals = Array.isArray((scan.signals as { list?: unknown[] })?.list)
     ? ((scan.signals as { list: unknown[] }).list as Array<{ type: string; score: number }>)
     : [];
+  const viewCount = await getScanViewCount(scan.id);
+
+  recordScanEvent(scan.id, "view", null).catch(() => {});
 
   const breadcrumbs = [
     { name: "Home", url: `/${locale}` },
@@ -87,6 +90,15 @@ export default async function ScanPage({ params }: ScanPageProps) {
           <p className="text-sm text-gray-400">
             Analyzed by <span className="font-semibold text-white">ScamAI Eva {scan.model_version.includes("v1.6") ? "V1.6" : scan.model_version}</span>{" "}
             · {new Date(scan.created_at).toLocaleString()}
+            {viewCount > 0 && (
+              <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-white/5 px-2 py-0.5 text-xs text-gray-500">
+                <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                {viewCount.toLocaleString()} view{viewCount === 1 ? "" : "s"}
+              </span>
+            )}
           </p>
         </header>
 

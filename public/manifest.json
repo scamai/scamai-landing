@@ -1,11 +1,11 @@
 {
-  "name": "ScamAI - AI Trust Platform",
+  "name": "ScamAI — Verify any image",
   "short_name": "ScamAI",
-  "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time",
+  "description": "Is it real or AI? Drop an image, get a verdict in 2 seconds. Free, no signup for the first 2 scans.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b0b0b",
-  "theme_color": "#66b3ff",
+  "theme_color": "#0b0b0b",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -17,16 +17,27 @@
   ],
   "categories": [
     "security",
-    "utilities",
-    "productivity"
+    "utilities"
   ],
-  "screenshots": [],
+  "share_target": {
+    "action": "/",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "file",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
   "shortcuts": [
     {
-      "name": "Try for Free",
-      "short_name": "Try",
-      "description": "Start detecting deepfakes",
-      "url": "https://app.scam.ai",
+      "name": "Scan an image",
+      "short_name": "Scan",
+      "description": "Verify if an image is AI-generated",
+      "url": "/",
       "icons": [
         {
           "src": "/logo.svg",
@@ -35,10 +46,10 @@
       ]
     },
     {
-      "name": "Documentation",
-      "short_name": "Docs",
-      "description": "Read the documentation",
-      "url": "/resources/documentation",
+      "name": "Trending scans",
+      "short_name": "Trending",
+      "description": "See today's most-scanned suspicious images",
+      "url": "/en/trending",
       "icons": [
         {
           "src": "/logo.svg",

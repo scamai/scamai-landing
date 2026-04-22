@@ -4,33 +4,8 @@ import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type 
 import { useTranslations } from "next-intl";
 import { useUser } from "@/contexts/UserContext";
 
-const ANON_DAILY_LIMIT = 3;
+const ANON_SCAN_LIMIT = 2;
 const FREE_MONTHLY_LIMIT = 20;
-const ANON_KEY = "scamai_anon_scans";
-
-function todayKey() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function readAnonScans(): number {
-  if (typeof window === "undefined") return 0;
-  try {
-    const raw = localStorage.getItem(ANON_KEY);
-    if (!raw) return 0;
-    const { date, count } = JSON.parse(raw);
-    if (date !== todayKey()) return 0;
-    return Number(count) || 0;
-  } catch {
-    return 0;
-  }
-}
-
-function bumpAnonScans(): number {
-  if (typeof window === "undefined") return 0;
-  const next = readAnonScans() + 1;
-  localStorage.setItem(ANON_KEY, JSON.stringify({ date: todayKey(), count: next }));
-  return next;
-}
 
 type ScanResult = {
   verdict: string;
@@ -83,12 +58,8 @@ export default function NewLanding({
   const [scanError, setScanError] = useState<string | null>(null);
   const [gateOpen, setGateOpen] = useState(false);
   const [upgradeGateOpen, setUpgradeGateOpen] = useState(false);
-  const [scansToday, setScansToday] = useState(0);
+  const [anonScansUsed, setAnonScansUsed] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    setScansToday(readAnonScans());
-  }, []);
 
   // Wait for cookie consent to be resolved before showing the intro modal
   useEffect(() => {
@@ -116,7 +87,7 @@ export default function NewLanding({
   };
 
   const startScan = useCallback(() => {
-    if (!user && readAnonScans() >= ANON_DAILY_LIMIT) {
+    if (!user && anonScansUsed >= ANON_SCAN_LIMIT) {
       setGateOpen(true);
       return;
     }
@@ -125,19 +96,11 @@ export default function NewLanding({
       return;
     }
     fileInputRef.current?.click();
-  }, [user]);
+  }, [user, anonScansUsed]);
 
   const handleFile = useCallback(async (file: File) => {
     if (!file.type.startsWith("image/")) {
       setScanError(t("errors.pickImage"));
-      return;
-    }
-    if (!user && readAnonScans() >= ANON_DAILY_LIMIT) {
-      setGateOpen(true);
-      return;
-    }
-    if (user && user.plan === "free" && (user.scansThisMonth ?? 0) >= FREE_MONTHLY_LIMIT) {
-      setUpgradeGateOpen(true);
       return;
     }
     if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -150,21 +113,30 @@ export default function NewLanding({
     try {
       const form = new FormData();
       form.append("file", file);
-      const res = await fetch("/api/scan/detect", { method: "POST", body: form });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
-        throw new Error(err.error || "Scan failed");
+      const res = await fetch("/api/scan", { method: "POST", body: form });
+      const data = await res.json();
+
+      if (res.status === 429) {
+        if (data.reachedAnonLimit) {
+          setAnonScansUsed(data.anonScansUsed ?? ANON_SCAN_LIMIT);
+          setGateOpen(true);
+        } else if (data.upgradeUrl) {
+          setUpgradeGateOpen(true);
+        }
+        setView("home");
+        return;
       }
-      const data: ScanResult = await res.json();
+      if (!res.ok) throw new Error(data.error || "Scan failed");
+
       setScanResult(data);
-      setScansToday(bumpAnonScans());
+      if (!user) setAnonScansUsed(data.anonScansUsed ?? 0);
       setView("result");
     } catch (err) {
       console.error("[scan] failed:", err);
       setScanError(err instanceof Error ? err.message : "Scan failed");
       setView("home");
     }
-  }, [previewUrl, user]);
+  }, [previewUrl, user, t]);
 
   const onFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -180,6 +152,31 @@ export default function NewLanding({
     setModeMenuOpen,
     startScan,
   }), [view, mode, modeMenuOpen, startScan]);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const dragCounter = useRef(0);
+
+  const onDragEnter = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    dragCounter.current += 1;
+    setIsDragging(true);
+  }, []);
+  const onDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    dragCounter.current -= 1;
+    if (dragCounter.current <= 0) {
+      dragCounter.current = 0;
+      setIsDragging(false);
+    }
+  }, []);
+  const onDragOver = useCallback((e: React.DragEvent) => e.preventDefault(), []);
+  const onDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    dragCounter.current = 0;
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file?.type.startsWith("image/")) handleFile(file);
+  }, [handleFile]);
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -200,7 +197,25 @@ export default function NewLanding({
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-black text-white" role="main">
+    <main
+      className="flex min-h-screen flex-col bg-black text-white"
+      role="main"
+      onDragEnter={onDragEnter}
+      onDragLeave={onDragLeave}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+    >
+      {isDragging && (
+        <div className="pointer-events-none fixed inset-0 z-[90] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-3 rounded-3xl border-2 border-dashed border-white/30 px-16 py-12">
+            <svg className="h-12 w-12 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
+            <p className="text-lg font-semibold text-white">Drop image to scan</p>
+            <p className="text-sm text-white/50">We&apos;ll verify it in ~2 seconds</p>
+          </div>
+        </div>
+      )}
       <input
         ref={fileInputRef}
         type="file"
@@ -212,9 +227,10 @@ export default function NewLanding({
       {view === "home" && (
         <HomeView
           onPromptSelect={startScan}
+          onPasteFile={handleFile}
           inputBarProps={inputBarProps}
           error={scanError}
-          scansToday={scansToday}
+          anonScansUsed={anonScansUsed}
         />
       )}
       {view === "scanning" && <ScanningView previewUrl={previewUrl} />}
@@ -243,7 +259,7 @@ export default function NewLanding({
       {introOpen && <IntroModal onClose={closeIntro} />}
       {gateOpen && (
         <RegisterGate
-          scansToday={scansToday}
+          anonScansUsed={anonScansUsed}
           onClose={() => setGateOpen(false)}
         />
       )}
@@ -333,10 +349,10 @@ function GoogleButton({ onClick, loading, label }: { onClick: () => void; loadin
 }
 
 function RegisterGate({
-  scansToday,
+  anonScansUsed,
   onClose,
 }: {
-  scansToday: number;
+  anonScansUsed: number;
   onClose: () => void;
 }) {
   const t = useTranslations("NewLanding");
@@ -358,11 +374,11 @@ function RegisterGate({
         className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#0b0b0b] shadow-2xl ring-1 ring-white/10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative h-44 w-full overflow-hidden bg-black">
-          <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#245FFF]/20 blur-2xl" />
+        <div className="relative h-36 w-full overflow-hidden bg-black">
+          <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-2xl" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-[#3b5ef0] to-[#6b5dff] shadow-2xl ring-4 ring-white/15">
-              <svg className="h-9 w-9 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 shadow-2xl ring-2 ring-white/10">
+              <svg className="h-7 w-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="5" y="11" width="14" height="9" rx="2" />
                 <path d="M8 11V7a4 4 0 018 0v4" />
               </svg>
@@ -371,14 +387,14 @@ function RegisterGate({
         </div>
 
         <div className="px-6 pb-6 pt-5">
-          <div className="text-xs uppercase tracking-widest text-[#6B9FFF]">
-            {t("gate.scansUsed", { used: scansToday, total: ANON_DAILY_LIMIT })}
+          <div className="text-xs uppercase tracking-widest text-white/40">
+            {anonScansUsed}/{ANON_SCAN_LIMIT} free scans used
           </div>
           <h2 className="mt-2 text-xl font-semibold text-white">
             {t("gate.hitLimit")}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
-            {t("gate.signUpDesc", { count: 20 })}
+            Sign in with Google to get <span className="font-semibold text-white">20 free scans every month</span> — no credit card needed.
           </p>
 
           <div className="mt-6 flex flex-col items-center gap-3">
@@ -647,17 +663,33 @@ function IntroModal({ onClose }: { onClose: () => void }) {
 
 function HomeView({
   onPromptSelect,
+  onPasteFile,
   inputBarProps,
   error,
-  scansToday,
+  anonScansUsed,
 }: {
   onPromptSelect: () => void;
+  onPasteFile: (file: File) => void;
   inputBarProps: InputBarProps;
   error: string | null;
-  scansToday: number;
+  anonScansUsed: number;
 }) {
   const t = useTranslations("NewLanding");
-  const scansLeft = Math.max(0, ANON_DAILY_LIMIT - scansToday);
+  const { user } = useUser();
+  const scansLeft = user ? FREE_MONTHLY_LIMIT - (user.scansThisMonth ?? 0) : Math.max(0, ANON_SCAN_LIMIT - anonScansUsed);
+
+  useEffect(() => {
+    const handler = (e: ClipboardEvent) => {
+      const file = e.clipboardData?.files?.[0];
+      if (file?.type.startsWith("image/")) {
+        e.preventDefault();
+        onPasteFile(file);
+      }
+    };
+    document.addEventListener("paste", handler);
+    return () => document.removeEventListener("paste", handler);
+  }, [onPasteFile]);
+
   return (
     <section className="grid min-h-[calc(100vh-3.5rem)] place-items-center px-6 pt-20 pb-40 md:px-8 md:pb-16 md:pt-20">
       <div className="mx-auto w-full max-w-2xl md:flex md:flex-col md:items-center md:gap-7">
@@ -674,22 +706,39 @@ function HomeView({
           </h1>
         </div>
 
-        {/* Desktop: inline input below the greeting (Gemini web pattern) */}
+        {/* Paste-first prompt */}
+        <button
+          type="button"
+          onClick={onPromptSelect}
+          className="group mt-6 flex items-center gap-2 rounded-full border border-dashed border-white/20 bg-white/[0.03] px-5 py-3 text-sm text-white/50 transition hover:border-white/30 hover:bg-white/[0.06] hover:text-white/70 md:mt-0"
+        >
+          <kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px] text-white/60">
+            {typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.userAgent) ? "⌘V" : "Ctrl+V"}
+          </kbd>
+          <span>Paste an image to scan instantly</span>
+          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-white/40 group-hover:bg-white/60" />
+        </button>
+
+        {/* Desktop: inline input below the greeting */}
         <div className="hidden w-full md:block">
           <InputBar {...inputBarProps} />
           <div className="mt-2 text-center text-xs text-white/40">
             {scansLeft > 0
-              ? `${t("home.scansLeft", { count: scansLeft, total: ANON_DAILY_LIMIT })} · `
-              : `${t("home.scansUsed")} · `}
-            <a
-              href="https://app.scam.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 underline decoration-white/20 hover:text-white"
-            >
-              {t("home.signUpFree")}
-            </a>
+              ? `${scansLeft} free scan${scansLeft === 1 ? "" : "s"} left · `
+              : "Scan limit reached · "}
+            {!user && (
+              <button
+                type="button"
+                onClick={onPromptSelect}
+                className="text-white/60 underline decoration-white/20 hover:text-white"
+              >
+                Sign in for 20/month free
+              </button>
+            )}
           </div>
+          <p className="mt-1.5 text-center text-xs text-amber-200/60">
+            Scan results are public by default. Don&apos;t upload private or sensitive images.
+          </p>
         </div>
 
         {/* Active pills */}
@@ -1133,7 +1182,7 @@ function ResultView({
           </div>
 
           {/* AI disclaimer */}
-          <p className="flex items-start gap-1.5 px-1 text-[11px] leading-relaxed text-white/40">
+          <p className="flex items-start gap-1.5 px-1 text-xs leading-relaxed text-white/50 sm:text-sm">
             <svg className="mt-[2px] h-3 w-3 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 8v4" />
