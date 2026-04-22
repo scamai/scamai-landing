@@ -192,12 +192,6 @@ export default function NewLanding({
                 {t("home.headline")}
               </h1>
             </div>
-            {/* Skeleton paste prompt */}
-            <div className="mt-6 flex items-center gap-2 rounded-full border border-dashed border-white/20 bg-white/[0.03] px-5 py-3 text-sm text-white/50 md:mt-0">
-              <kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px] text-white/60">⌘V</kbd>
-              <span>Paste an image to scan instantly</span>
-              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-white/40" />
-            </div>
             {/* Skeleton input bar */}
             <div className="hidden w-full md:block">
               <div className="liquid-glass rounded-[28px] px-4 py-3">
@@ -735,19 +729,6 @@ function HomeView({
             {t("home.headline")}
           </h1>
         </div>
-
-        {/* Paste-first prompt */}
-        <button
-          type="button"
-          onClick={onPromptSelect}
-          className="group mt-6 flex items-center gap-2 rounded-full border border-dashed border-white/20 bg-white/[0.03] px-5 py-3 text-sm text-white/50 transition hover:border-white/30 hover:bg-white/[0.06] hover:text-white/70 md:mt-0"
-        >
-          <kbd className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px] text-white/60">
-            {typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.userAgent) ? "⌘V" : "Ctrl+V"}
-          </kbd>
-          <span>Paste an image to scan instantly</span>
-          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-white/40 group-hover:bg-white/60" />
-        </button>
 
         {/* Desktop: inline input below the greeting */}
         <div className="hidden w-full md:block">
