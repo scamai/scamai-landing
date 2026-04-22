@@ -766,8 +766,8 @@ function HomeView({
               </button>
             )}
           </div>
-          <p className="mt-1.5 text-center text-xs text-amber-200/60">
-            Scan results are public by default. Don&apos;t upload private or sensitive images.
+          <p className="mt-1.5 text-center text-[11px] text-white/25">
+            Results are shareable so others can verify too
           </p>
         </div>
 

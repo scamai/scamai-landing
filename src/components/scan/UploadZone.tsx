@@ -163,8 +163,8 @@ export function UploadZone({ locale }: { locale: string }) {
         )}
       </div>
 
-      <p className="mt-3 text-center text-xs leading-relaxed text-amber-200/80 sm:text-sm">
-        Your scan result page will be public at scam.ai/scan/[id]. Don&rsquo;t upload private or sensitive images. Registered users can make scans private.
+      <p className="mt-3 text-center text-[11px] leading-relaxed text-white/30">
+        Your result gets a shareable link so others can verify too. Sign in to control visibility.
       </p>
 
       {message && !busy && <p className="mt-3 text-center text-xs text-gray-400">{message}</p>}
