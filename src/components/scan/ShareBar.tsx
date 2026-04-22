@@ -51,14 +51,16 @@ export function ShareBar({ slug, verdictLabel, confidence }: Props) {
     <div className="sticky bottom-0 z-20 -mx-5 bg-gradient-to-t from-black via-black/95 to-transparent px-5 py-4 sm:static sm:mx-0 sm:bg-transparent sm:p-0">
       <div className="flex flex-wrap items-center gap-2">
       <span className="mr-1 text-xs uppercase tracking-wider text-gray-500">Share</span>
-      {typeof navigator !== "undefined" && "share" in navigator && (
-        <Button
-          label="Share..."
-          onClick={() => {
+      <Button
+        label="Share..."
+        onClick={() => {
+          if ("share" in navigator) {
             navigator.share({ title: text, url }).catch(() => {});
-          }}
-        />
-      )}
+          } else {
+            navigator.clipboard.writeText(`${text} ${url}`);
+          }
+        }}
+      />
       <Button label="Copy link" onClick={() => share("copy")} />
       {copied && <span className="text-xs text-emerald-400">Copied.</span>}
       <Button label="X / Twitter" onClick={() => share("twitter")} />
