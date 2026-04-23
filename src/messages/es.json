@@ -1747,5 +1747,165 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "Imagen",
+      "checkVideo": "Video",
+      "checkAudio": "Audio",
+      "screenshot": "Captura",
+      "checkPhone": "Teléfono",
+      "checkEmail": "Correo",
+      "freeNote": "hasta 5s gratis",
+      "comingSoon": "próximamente"
+    },
+    "scanStages": {
+      "scanning": "Escaneando",
+      "readingPixels": "Leyendo píxeles",
+      "crossReferencing": "Comparando referencias",
+      "verifying": "Verificando"
+    },
+    "errors": {
+      "pickImage": "Selecciona una imagen (JPG, PNG, WebP)."
+    },
+    "inputBar": {
+      "askAboutScan": "Pregunta sobre este escaneo…",
+      "dropMedia": "Arrastra imagen, audio o video…"
+    },
+    "mode": {
+      "fast": "Rápido",
+      "full": "Completo",
+      "pro": "Pro",
+      "fastSub": "Escaneo en 2s · veredicto binario",
+      "fullSub": "Señales · detección de deepfake"
+    },
+    "home": {
+      "greeting": "Hola,",
+      "headline": "¿Qué quieres verificar?",
+      "scansLeft": "{count} de {total} escaneos gratuitos restantes hoy",
+      "scansUsed": "Escaneos gratuitos del día agotados",
+      "signUpFree": "Regístrate gratis para 20/mes",
+      "comingSoonHint": "Vota y lo construiremos más rápido",
+      "vote": "votar",
+      "voted": "votado"
+    },
+    "scanning": {
+      "userQuestion": "¿Esto es real o es IA?"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — rápido",
+      "verified": "Verificado · {sec}s",
+      "faceSwapDetected": "Intercambio de rostro detectado",
+      "faceSwapMatch": "· {pct}% de coincidencia en la región facial",
+      "disclaimer": "La IA puede equivocarse. Siempre verifica con la fuente antes de actuar.",
+      "share": "Compartir",
+      "download": "Descargar",
+      "signalsCount": "{count} señales respaldan este resultado",
+      "signalsSub": "Análisis completo · detección de deepfake",
+      "scanAnother": "Escanear otra imagen"
+    },
+    "gate": {
+      "scansUsed": "{used}/{total} escaneos gratuitos usados hoy",
+      "hitLimit": "Has alcanzado el límite gratuito de hoy",
+      "signUpDesc": "Regístrate gratis para seguir verificando — {count} escaneos/mes, sin tarjeta de crédito. Tu contador se reinicia a medianoche.",
+      "signUpFree": "Registrarse gratis",
+      "haveAccount": "Ya tengo una cuenta",
+      "maybeLater": "Quizás después"
+    },
+    "intro": {
+      "title": "ScamAI ahora analiza audio y video",
+      "desc1": "Arrastra cualquier contenido sospechoso: capturas, clips o notas de voz. Te diremos si fue editado con IA en unos 2 segundos.",
+      "desc2Prefix": "Actualiza a",
+      "desc2Full": "Completo",
+      "desc2Suffix": "para análisis de señales y detección de deepfake.",
+      "close": "Cerrar",
+      "tryIt": "Pruébalo"
+    },
+    "shareSheet": {
+      "title": "Compartir este resultado",
+      "likelyAI": "Probablemente IA",
+      "faceSwap": "Intercambio de rostro",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "Toca para verificar la tuya",
+      "disclaimer": "La IA puede equivocarse — verifica con la fuente.",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "Mensajes",
+        "email": "Correo",
+        "copyLink": "Copiar enlace",
+        "saveImage": "Guardar imagen",
+        "reportError": "Reportar error"
+      },
+      "replySection": "Responde a quien te lo envió",
+      "sendReply": "Enviar respuesta →",
+      "orShareEverywhere": "O comparte en todas partes"
+    }
+  },
+  "NewNav": {
+    "research": "Investigación",
+    "pricing": "Precios",
+    "company": "Empresa",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "logIn": "Log In",
+    "logOut": "Cerrar sesión"
+  },
+  "PricingPage": {
+    "headline": "Gratis para empezar. {price}/mes cuando lo necesites.",
+    "tiers": {
+      "free": {
+        "label": "Gratis",
+        "price": "Gratis",
+        "note": "Inicio con Google / Apple",
+        "features": {
+          "scans": "20 escaneos/mes",
+          "history": "Historial de escaneos",
+          "publicUrl": "URL de resultado público"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/mes",
+        "annual": "o $39/año",
+        "badge": "Más popular",
+        "features": {
+          "scans": "100 escaneos/mes",
+          "privateScans": "Escaneos privados disponibles",
+          "signalBreakdown": "Análisis de señales",
+          "history": "Historial de escaneos"
+        },
+        "cta": "Obtener Plus — $4/mes"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/mes",
+        "annual": "o $79/año",
+        "features": {
+          "scans": "500 escaneos/mes",
+          "private": "Privado por defecto",
+          "signalBreakdown": "Análisis completo de señales",
+          "history": "Historial + exportar PDF"
+        },
+        "cta": "Obtener Pro — $9/mes"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "Personalizado",
+        "note": "Modelo empresarial",
+        "features": {
+          "volume": "Volumen de escaneo personalizado",
+          "model": "Acceso a modelo dedicado",
+          "api": "Integración API",
+          "support": "SLA + soporte prioritario"
+        },
+        "cta": "Contactar ventas"
+      }
+    },
+    "checkoutAlert": "El pago con Stripe estará disponible pronto — contáctanos para acceso anticipado."
   }
 }

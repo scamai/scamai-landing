@@ -1747,5 +1747,165 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "صورة",
+      "checkVideo": "فيديو",
+      "checkAudio": "صوت",
+      "screenshot": "لقطة شاشة",
+      "checkPhone": "رقم الهاتف",
+      "checkEmail": "بريد إلكتروني",
+      "freeNote": "حتى 5 ثوانٍ مجانًا",
+      "comingSoon": "قريبًا"
+    },
+    "scanStages": {
+      "scanning": "جارٍ الفحص",
+      "readingPixels": "قراءة البكسلات",
+      "crossReferencing": "مقارنة مرجعية",
+      "verifying": "جارٍ التحقق"
+    },
+    "errors": {
+      "pickImage": "يرجى اختيار صورة (JPG، PNG، WebP)."
+    },
+    "inputBar": {
+      "askAboutScan": "اسأل عن هذا الفحص…",
+      "dropMedia": "أسقط صورة أو صوت أو فيديو…"
+    },
+    "mode": {
+      "fast": "سريع",
+      "full": "كامل",
+      "pro": "Pro",
+      "fastSub": "فحص في ثانيتين · نتيجة ثنائية",
+      "fullSub": "إشارات · كشف التزييف العميق"
+    },
+    "home": {
+      "greeting": "مرحبًا،",
+      "headline": "ماذا تريد أن نتحقق منه؟",
+      "scansLeft": "متبقي {count} من {total} فحص مجاني اليوم",
+      "scansUsed": "نفدت الفحوصات المجانية اليومية",
+      "signUpFree": "سجّل مجانًا واحصل على 20 فحص/شهر",
+      "comingSoonHint": "صوّت وسنبنيها أسرع",
+      "vote": "صوّت",
+      "voted": "تم"
+    },
+    "scanning": {
+      "userQuestion": "هل هذا حقيقي أم ذكاء اصطناعي؟"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — سريع",
+      "verified": "تم التحقق · {sec} ثانية",
+      "faceSwapDetected": "تم اكتشاف تبديل وجه",
+      "faceSwapMatch": "· تطابق {pct}% في منطقة الوجه",
+      "disclaimer": "الذكاء الاصطناعي قد يخطئ. تحقق دائمًا من المصدر قبل اتخاذ أي إجراء.",
+      "share": "مشاركة",
+      "download": "تنزيل",
+      "signalsCount": "{count} إشارة تدعم هذه النتيجة",
+      "signalsSub": "تحليل كامل · كشف التزييف العميق",
+      "scanAnother": "فحص صورة أخرى"
+    },
+    "gate": {
+      "scansUsed": "تم استخدام {used}/{total} فحص مجاني اليوم",
+      "hitLimit": "لقد وصلت إلى الحد المجاني اليوم",
+      "signUpDesc": "سجّل مجانًا لمواصلة التحقق — {count} فحص/شهر، بدون بطاقة ائتمان. يتم تجديد الرصيد المجاني عند منتصف الليل.",
+      "signUpFree": "التسجيل مجانًا",
+      "haveAccount": "لديّ حساب بالفعل",
+      "maybeLater": "ربما لاحقًا"
+    },
+    "intro": {
+      "title": "ScamAI الآن يفحص الصوت والفيديو",
+      "desc1": "أسقط أي محتوى مشبوه — لقطات شاشة أو مقاطع أو رسائل صوتية. سنخبرك إذا كان معدّلًا بالذكاء الاصطناعي في نحو ثانيتين.",
+      "desc2Prefix": "ترقَّ إلى",
+      "desc2Full": "الكامل",
+      "desc2Suffix": "للحصول على تحليل الإشارات وكشف التزييف العميق.",
+      "close": "إغلاق",
+      "tryIt": "جرّبه"
+    },
+    "shareSheet": {
+      "title": "مشاركة هذه النتيجة",
+      "likelyAI": "على الأرجح ذكاء اصطناعي",
+      "faceSwap": "تبديل وجه",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "انقر للتحقق من صورتك",
+      "disclaimer": "الذكاء الاصطناعي قد يخطئ — تحقق من المصدر.",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "الرسائل",
+        "email": "البريد الإلكتروني",
+        "copyLink": "نسخ الرابط",
+        "saveImage": "حفظ الصورة",
+        "reportError": "الإبلاغ عن خطأ"
+      },
+      "replySection": "ردّ على من أرسل لك هذا",
+      "sendReply": "إرسال الرد →",
+      "orShareEverywhere": "أو شاركه في كل مكان"
+    }
+  },
+  "NewNav": {
+    "research": "الأبحاث",
+    "pricing": "الأسعار",
+    "company": "الشركة",
+    "about": "من نحن",
+    "contact": "تواصل معنا",
+    "logIn": "Log In",
+    "logOut": "تسجيل الخروج"
+  },
+  "PricingPage": {
+    "headline": "ابدأ مجانًا. {price}/شهر عندما تحتاج المزيد.",
+    "tiers": {
+      "free": {
+        "label": "مجاني",
+        "price": "مجاني",
+        "note": "تسجيل الدخول بـ Google / Apple",
+        "features": {
+          "scans": "20 فحص/شهر",
+          "history": "سجل الفحوصات",
+          "publicUrl": "رابط نتيجة عام"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/شهر",
+        "annual": "أو $39/سنة",
+        "badge": "الأكثر شعبية",
+        "features": {
+          "scans": "100 فحص/شهر",
+          "privateScans": "فحوصات خاصة متاحة",
+          "signalBreakdown": "تحليل الإشارات",
+          "history": "سجل الفحوصات"
+        },
+        "cta": "احصل على Plus — $4/شهر"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/شهر",
+        "annual": "أو $79/سنة",
+        "features": {
+          "scans": "500 فحص/شهر",
+          "private": "خاص بشكل افتراضي",
+          "signalBreakdown": "تحليل إشارات كامل",
+          "history": "سجل الفحوصات + تصدير PDF"
+        },
+        "cta": "احصل على Pro — $9/شهر"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "مخصص",
+        "note": "نموذج مؤسسي",
+        "features": {
+          "volume": "حجم فحص مخصص",
+          "model": "وصول مخصص للنموذج",
+          "api": "تكامل API",
+          "support": "SLA + دعم ذو أولوية"
+        },
+        "cta": "تواصل مع المبيعات"
+      }
+    },
+    "checkoutAlert": "الدفع عبر Stripe قادم قريبًا — تواصل معنا للوصول المبكر."
   }
 }

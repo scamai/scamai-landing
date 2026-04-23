@@ -132,6 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K2WNMJV8');`}</Script>
         <StructuredData />
+        <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive" />
         <link rel="alternate" type="application/rss+xml" title="ScamAI News" href="/feed.xml" />
       </head>
       <body className={`${inter.variable} antialiased bg-[#0b0b0b]`}>

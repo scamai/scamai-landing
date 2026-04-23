@@ -74,6 +74,7 @@ export default function CookieConsent() {
     setConsent("accepted");
     setVisible(false);
     loadGA();
+    window.dispatchEvent(new Event("cookie-consent-set"));
 
     // Track consent after GA loads
     setTimeout(() => {
@@ -91,6 +92,7 @@ export default function CookieConsent() {
     setConsent("declined");
     setVisible(false);
     removeGACookies();
+    window.dispatchEvent(new Event("cookie-consent-set"));
   }, []);
 
   if (consent !== "pending" || !visible) return null;
@@ -110,7 +112,7 @@ export default function CookieConsent() {
             <p className="text-xs text-gray-400 leading-relaxed">
               We use cookies and analytics to understand how you use our site and improve your experience.
               You can accept or decline non-essential cookies.{" "}
-              <Link href="/cookies" className="text-[#245FFF] hover:underline">
+              <Link href="/cookies" className="text-white/60 underline decoration-white/20 hover:text-white">
                 Cookie Policy
               </Link>
             </p>
@@ -124,7 +126,7 @@ export default function CookieConsent() {
             </button>
             <button
               onClick={handleAccept}
-              className="flex-1 sm:flex-none rounded-full bg-[#245FFF] px-5 py-2 text-xs font-semibold text-white transition hover:bg-[#1d4acc]"
+              className="flex-1 sm:flex-none rounded-full bg-white px-5 py-2 text-xs font-semibold text-black transition hover:bg-white/90"
             >
               Accept
             </button>

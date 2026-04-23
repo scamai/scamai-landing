@@ -2,20 +2,28 @@ import type { Metadata } from "next";
 import NewLanding from "@/components/new-site/NewLanding";
 
 export const metadata: Metadata = {
-  title: "ScamAI — Detect Deepfakes & AI-Generated Media",
+  title: "Is it real or AI? · ScamAI",
   description:
-    "Detect synthetic media, deepfakes, and AI-generated images in real-time. Free tool with industry-leading accuracy. SOC 2 Type II compliant.",
+    "Drop an image, video, or voice clip and ScamAI tells you if it's AI-edited in about 2 seconds. Eva v1.6 detects deepfakes and AI-generated media across 120+ generator types. Free to try, no signup needed.",
   keywords: [
-    "deepfake detection",
+    "verify image ai",
+    "is this image ai generated",
+    "deepfake detector free",
+    "check if image is ai",
+    "ai image detector",
     "detect deepfake",
     "ai generated image detector",
     "synthetic media detection",
-    "fake video detector",
-    "ai image detection free",
-    "deepfake detector free",
+    "how to spot a deepfake",
+    "whatsapp forward verification",
   ],
 };
 
-export default function HomePage() {
-  return <NewLanding />;
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return <NewLanding locale={locale} />;
 }

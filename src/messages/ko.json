@@ -1747,5 +1747,165 @@
         }
       }
     }
+  },
+  "NewLanding": {
+    "suggestions": {
+      "checkImage": "이미지",
+      "checkVideo": "영상",
+      "checkAudio": "오디오",
+      "screenshot": "스크린샷",
+      "checkPhone": "전화번호",
+      "checkEmail": "이메일",
+      "freeNote": "최대 5초 무료",
+      "comingSoon": "출시 예정"
+    },
+    "scanStages": {
+      "scanning": "스캔 중",
+      "readingPixels": "픽셀 분석 중",
+      "crossReferencing": "교차 검증 중",
+      "verifying": "확인 중"
+    },
+    "errors": {
+      "pickImage": "이미지를 선택해 주세요 (JPG, PNG, WebP)."
+    },
+    "inputBar": {
+      "askAboutScan": "이 스캔에 대해 질문하기…",
+      "dropMedia": "이미지, 오디오 또는 동영상을 드롭하세요…"
+    },
+    "mode": {
+      "fast": "빠른",
+      "full": "전체",
+      "pro": "Pro",
+      "fastSub": "2초 스캔 · 판정 결과",
+      "fullSub": "신호 분석 · 딥페이크 탐지"
+    },
+    "home": {
+      "greeting": "안녕하세요,",
+      "headline": "무엇을 검증할까요?",
+      "scansLeft": "오늘 무료 스캔 {count}/{total}회 남음",
+      "scansUsed": "오늘 무료 스캔을 모두 사용했습니다",
+      "signUpFree": "무료 가입하고 월 20회 이용",
+      "comingSoonHint": "투표하면 더 빨리 만들어요",
+      "vote": "투표",
+      "voted": "완료"
+    },
+    "scanning": {
+      "userQuestion": "이것은 진짜인가요, AI인가요?"
+    },
+    "result": {
+      "confidence": "{pct}% AI index",
+      "modelLabel": "ScamAI Eva v1.6 — 빠른",
+      "verified": "검증 완료 · {sec}초",
+      "faceSwapDetected": "얼굴 교체 감지됨",
+      "faceSwapMatch": "· 얼굴 영역 일치율 {pct}%",
+      "disclaimer": "AI는 틀릴 수 있습니다. 행동하기 전에 반드시 출처를 확인하세요.",
+      "share": "공유",
+      "download": "다운로드",
+      "signalsCount": "{count}개의 신호가 이 결과를 뒷받침합니다",
+      "signalsSub": "전체 분석 · 딥페이크 탐지",
+      "scanAnother": "다른 이미지 스캔"
+    },
+    "gate": {
+      "scansUsed": "오늘 무료 스캔 {used}/{total}회 사용",
+      "hitLimit": "오늘의 무료 한도에 도달했습니다",
+      "signUpDesc": "무료 가입하고 계속 검증하세요 — 월 {count}회 스캔, 신용카드 불필요. 무료 횟수는 자정에 초기화됩니다.",
+      "signUpFree": "무료 가입",
+      "haveAccount": "이미 계정이 있습니다",
+      "maybeLater": "나중에"
+    },
+    "intro": {
+      "title": "ScamAI가 오디오와 동영상 검사를 지원합니다",
+      "desc1": "의심스러운 것을 드롭하세요 — 스크린샷, 클립 또는 음성 메시지. 약 2초 안에 AI 편집 여부를 알려드립니다.",
+      "desc2Prefix": "업그레이드하여",
+      "desc2Full": "전체",
+      "desc2Suffix": "모드로 신호 분석과 딥페이크 탐지를 이용하세요.",
+      "close": "닫기",
+      "tryIt": "사용해 보기"
+    },
+    "shareSheet": {
+      "title": "이 결과 공유",
+      "likelyAI": "AI 가능성",
+      "faceSwap": "얼굴 교체",
+      "confidence": "{pct}% AI index",
+      "tapToVerify": "탭하여 내 이미지 검증",
+      "disclaimer": "AI는 틀릴 수 있습니다 — 출처를 확인하세요.",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "x": "X",
+        "telegram": "Telegram",
+        "messages": "메시지",
+        "email": "이메일",
+        "copyLink": "링크 복사",
+        "saveImage": "이미지 저장",
+        "reportError": "오류 신고"
+      },
+      "replySection": "보낸 사람에게 답장",
+      "sendReply": "답장 보내기 →",
+      "orShareEverywhere": "또는 어디서든 공유"
+    }
+  },
+  "NewNav": {
+    "research": "연구",
+    "pricing": "요금제",
+    "company": "회사",
+    "about": "소개",
+    "contact": "문의",
+    "logIn": "Log In",
+    "logOut": "로그아웃"
+  },
+  "PricingPage": {
+    "headline": "무료로 시작하세요. 본격 이용은 월 {price}.",
+    "tiers": {
+      "free": {
+        "label": "무료",
+        "price": "무료",
+        "note": "Google / Apple 로그인",
+        "features": {
+          "scans": "월 20회 스캔",
+          "history": "스캔 기록",
+          "publicUrl": "공개 결과 URL"
+        }
+      },
+      "plus": {
+        "label": "Plus",
+        "price": "$4",
+        "perMonth": "/월",
+        "annual": "또는 $39/년",
+        "badge": "가장 인기",
+        "features": {
+          "scans": "월 100회 스캔",
+          "privateScans": "비공개 스캔 지원",
+          "signalBreakdown": "신호 분석",
+          "history": "스캔 기록"
+        },
+        "cta": "Plus 시작 — $4/월"
+      },
+      "pro": {
+        "label": "Pro",
+        "price": "$9",
+        "perMonth": "/월",
+        "annual": "또는 $79/년",
+        "features": {
+          "scans": "월 500회 스캔",
+          "private": "기본 비공개",
+          "signalBreakdown": "전체 신호 분석",
+          "history": "스캔 기록 + PDF 내보내기"
+        },
+        "cta": "Pro 시작 — $9/월"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "price": "맞춤형",
+        "note": "엔터프라이즈 모델",
+        "features": {
+          "volume": "맞춤형 스캔 용량",
+          "model": "전용 모델 액세스",
+          "api": "API 연동",
+          "support": "SLA + 우선 지원"
+        },
+        "cta": "영업팀 문의"
+      }
+    },
+    "checkoutAlert": "Stripe 결제가 곧 출시됩니다 — 얼리 액세스는 문의해 주세요."
   }
 }

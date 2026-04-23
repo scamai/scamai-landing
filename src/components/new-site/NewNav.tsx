@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import CommandPalette from "./CommandPalette";
 import { trackCTA, trackNav, trackOutbound } from "@/lib/analytics";
+import { useUser } from "@/contexts/UserContext";
 
 type NavChild = {
   label: string;
@@ -15,6 +15,7 @@ type NavChild = {
 };
 
 type NavItem = {
+  id: string;
   label: string;
   href: string;
   hasDropdown?: boolean;
@@ -33,63 +34,42 @@ const navIcons = {
   book: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>,
 };
 
-const navItems: NavItem[] = [
-  {
-    label: "Product",
-    href: "/products",
-    hasDropdown: true,
-    children: [
-      {
-        label: "AI Detection",
-        href: "/products/ai-detection",
-        description: "Deepfake and synthetic media detection",
-        icon: navIcons.vision,
-      },
-      {
-        label: "Audio",
-        href: "/products/audio-detection",
-        description: "Voice cloning and synthetic audio detection",
-        icon: navIcons.audio,
-      },
-      {
-        label: "Documentation",
-        href: "https://docu.scam.ai",
-        external: true,
-        description: "API guides and integration examples",
-        icon: navIcons.book,
-      },
-    ]
-  },
-  { label: "Pricing", href: "/pricing" },
-  {
-    label: "Company",
-    href: "/company",
-    hasDropdown: true,
-    children: [
-      {
-        label: "About Us",
-        href: "/about",
-        description: "Learn about our mission and team"
-      },
-      {
-        label: "Research",
-        href: "/research",
-        description: "Publications, benchmarks, and technical deep-dives"
-      },
-      {
-        label: "Newsletter",
-        href: "/newsletter",
-        description: "Weekly insights on deepfake technology and AI security"
-      },
-      {
-        label: "Security & Compliance",
-        href: "https://reality-inc.trust.site/",
-        external: true,
-        description: "Security certifications, compliance standards, and data protection policies"
-      },
-    ]
-  },
-];
+function useNavItems(): NavItem[] {
+  const t = useTranslations("NewNav");
+  return [
+    { id: "research", label: t("research"), href: "/research" },
+    { id: "pricing", label: t("pricing"), href: "/pricing" },
+    {
+      id: "company",
+      label: t("company"),
+      href: "/company",
+      hasDropdown: true,
+      children: [
+        {
+          label: t("aboutUs"),
+          href: "/about",
+          description: t("aboutDesc"),
+        },
+        {
+          label: t("research"),
+          href: "/research",
+          description: t("researchDesc"),
+        },
+        {
+          label: t("newsletter"),
+          href: "/newsletter",
+          description: t("newsletterDesc"),
+        },
+        {
+          label: "Security & Compliance",
+          href: "https://reality-inc.trust.site/",
+          external: true,
+          description: t("securityDesc"),
+        },
+      ],
+    },
+  ];
+}
 
 const languages = [
   { code: "en", name: "English" },
@@ -107,15 +87,18 @@ export default function NewNav() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const locale = useLocale();
+  const t = useTranslations("NewNav");
+  const { user, logout } = useUser();
+  const navItems = useNavItems();
   const router = useRouter();
   const pathname = usePathname();
-  const isLandingPage = pathname === "/" || pathname === "";
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
   const companyDropdownRef = useRef<HTMLDivElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
+  const accountDropdownRef = useRef<HTMLDivElement>(null);
 
   const currentLanguage = languages.find((lang) => lang.code === locale) || languages[0];
 
@@ -131,21 +114,14 @@ export default function NewNav() {
 
       const insideCompany = (companyDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
       if (!insideCompany) setCompanyOpen(false);
+
+      if (accountDropdownRef.current && !accountDropdownRef.current.contains(target)) {
+        setAccountOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setSearchOpen((prev) => !prev);
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -163,21 +139,31 @@ export default function NewNav() {
     setLangOpen(false);
   };
 
-  const announcementHeight = isLandingPage ? 36 : 0;
+  const announcementHeight = 0;
 
   return (
     <>
-      {isLandingPage && (
-        <div className="fixed top-0 left-0 right-0 w-full bg-[#0021f3] py-2 text-center z-50" style={{ height: '36px' }}>
-          <p className="text-xs sm:text-sm text-white leading-tight">
-            Scam.ai raised $2.6M and joined Berkeley SkyDeck
-          </p>
-        </div>
-      )}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
-      <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
-        <Link href="/" className={`flex items-center ${open ? 'invisible' : ''}`}>
+      <header className={`transition-all duration-300 ${open ? 'bg-black' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <nav className="relative flex w-full items-center justify-between px-3 py-2 sm:px-4">
+        {/* Hamburger (left) — all viewports */}
+        <button
+          className="flex h-11 w-11 items-center justify-center text-white"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label="Open menu"
+        >
+          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M4 7h16" />
+            <path d="M4 12h16" />
+            <path d="M4 17h16" />
+          </svg>
+        </button>
+
+        {/* Logo (centered, all viewports) */}
+        <Link
+          href="/"
+          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${open ? 'invisible' : ''}`}
+        >
           <img
             src="/scamai-logo.svg"
             alt="ScamAI"
@@ -185,130 +171,86 @@ export default function NewNav() {
           />
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => {
-            if (item.children) {
-              const isProduct = item.label === "Product";
-              const isCompany = item.label === "Company";
-              const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
-              const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
-              const dropdownRef = isProduct ? productsDropdownRef : (isCompany ? companyDropdownRef : null);
-              
-              return (
-                <div key={item.href} className="relative" ref={dropdownRef}>
-                  <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center gap-1 text-sm font-medium text-white transition-colors duration-150 hover:text-white/80"
-                  >
-                    {item.label}
-                    <svg
-                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              );
-            }
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-1 text-sm font-medium text-white transition hover:text-white/80"
-              >
-                {item.label}
-                {item.hasDropdown && (
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                )}
-              </Link>
-            );
-          })}
-        </div>
-
+        {/* Account / Log In (desktop only, right) */}
         <div className="hidden items-center gap-3 md:flex">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text min-w-[180px] lg:min-w-[220px]"
-            aria-label="Search"
-          >
-            <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span className="flex-1 text-left">Search...</span>
-            <kbd className="hidden lg:inline-flex items-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-gray-600 font-medium">
-              ⌘K
-            </kbd>
-          </button>
-          <a
-            href="https://app.scam.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
-            onClick={() => trackCTA("log_in", "nav")}
-          >
-            Log In
-          </a>
-          <a
-            href="https://cal.com/scamai/15min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
-            onClick={() => trackCTA("book_demo", "nav")}
-          >
-            Book a demo
-          </a>
+          {user ? (
+            <div className="relative" ref={accountDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setAccountOpen((v) => !v)}
+                className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full ring-2 ring-white/20 transition hover:ring-white/40"
+              >
+                {user.avatarUrl ? (
+                  <img src={user.avatarUrl} alt="" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-[#245FFF] text-sm font-bold text-white">
+                    {(user.name?.[0] || user.email[0]).toUpperCase()}
+                  </div>
+                )}
+              </button>
+              {accountOpen && (
+                <div className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl">
+                  <div className="border-b border-white/5 px-4 py-3">
+                    <p className="truncate text-sm font-medium text-white">{user.name || user.email}</p>
+                    {user.name && <p className="truncate text-xs text-white/50">{user.email}</p>}
+                    <span className="mt-1 inline-block rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/60">
+                      {user.plan}
+                    </span>
+                  </div>
+                  <div className="py-1">
+                    <button
+                      type="button"
+                      onClick={async () => { await logout(); setAccountOpen(false); }}
+                      className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+                    >
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                      </svg>
+                      {t("logOut")}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <a
+              href="https://app.scam.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+              onClick={() => trackCTA("log_in", "nav")}
+            >
+              {t("logIn")}
+            </a>
+          )}
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="flex h-11 w-11 items-center justify-center text-white"
-            aria-label="Search"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-          <button
-            className="flex h-11 w-11 items-center justify-center text-white"
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label="Open menu"
-          >
-            <span className="text-2xl">{open ? "" : "☰"}</span>
-          </button>
-        </div>
+        {/* Mobile right spacer to keep logo centered */}
+        <span className="h-11 w-11 md:hidden" aria-hidden="true" />
+
       </nav>
 
-      {/* Mobile Full-Screen Menu */}
+      {/* Backdrop — clickable to close */}
       <div
-        className={`fixed left-0 right-0 bottom-0 z-[100] bg-[#0b0b0b] transition-transform duration-300 ease-in-out md:hidden ${
-          open ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed inset-0 z-[99] bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${
+          open ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Sidebar — collapsible panel that slides in from the LEFT */}
+      <div
+        className={`fixed left-0 bottom-0 z-[100] w-72 max-w-[85vw] border-r border-white/5 bg-black shadow-2xl transition-transform duration-300 ease-in-out ${
+          open ? 'translate-x-0' : '-translate-x-full'
         }`}
         style={{ top: `${announcementHeight}px` }}
       >
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
             <Link href="/" onClick={() => setOpen(false)}>
               <img
                 src="/scamai-logo.svg"
@@ -330,8 +272,8 @@ export default function NewNav() {
             <div className="flex flex-col gap-1">
               {navItems.map((item) => {
                 if (item.children) {
-                  const isProduct = item.label === "Product";
-                  const isCompany = item.label === "Company";
+                  const isProduct = item.id === "product";
+                  const isCompany = item.id === "company";
                   const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
                   const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
                   
@@ -339,7 +281,7 @@ export default function NewNav() {
                     <div key={item.href}>
                       <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-gray-700"
+                        className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-white/5"
                       >
                         {item.label}
                         <svg
@@ -358,34 +300,6 @@ export default function NewNav() {
                       </button>
                       {isOpen && (
                         <div className="py-3 pl-2 space-y-3">
-                          {/* Talk with Team Card for Mobile */}
-                          {isProduct && (
-                            <a
-                              href="https://cal.com/scamai/15min"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-3 p-4 rounded-lg bg-white/5"
-                              onClick={() => {
-                                setOpen(false);
-                                setIsOpen(false);
-                              }}
-                            >
-                              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                                </svg>
-                              </div>
-                              <div className="flex-1">
-                                <h3 className="text-sm font-semibold text-white mb-0.5">
-                                  Talk with the Team
-                                </h3>
-                                <p className="text-xs text-gray-500">
-                                  Schedule a call
-                                </p>
-                              </div>
-                            </a>
-                          )}
-
                           {item.children.map((child) => {
                             const mobileContent = (
                               <div className="flex items-start gap-3">
@@ -440,7 +354,7 @@ export default function NewNav() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block py-4 text-lg font-medium text-white border-b border-gray-700"
+                    className="block py-4 text-lg font-medium text-white border-b border-white/5"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
@@ -451,7 +365,7 @@ export default function NewNav() {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-gray-700 px-6 py-4">
+          <div className="border-t border-white/5 px-6 py-4">
             {/* Language Selector - Commented Out
             <div className="mb-4">
               <button
@@ -513,24 +427,39 @@ export default function NewNav() {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">
-              <a
-                href="https://app.scam.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
-                onClick={() => setOpen(false)}
-              >
-                Log In
-              </a>
-              <a
-                href="https://cal.com/scamai/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-6 py-3 text-center text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition"
-                onClick={() => setOpen(false)}
-              >
-                Book a demo
-              </a>
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-white/20">
+                    {user.avatarUrl ? (
+                      <img src={user.avatarUrl} alt="" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-[#245FFF] text-sm font-bold text-white">
+                        {(user.name?.[0] || user.email[0]).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-white">{user.name || user.email}</p>
+                    <button
+                      type="button"
+                      onClick={async () => { await logout(); setOpen(false); }}
+                      className="text-xs text-white/50 transition hover:text-white/80"
+                    >
+                      {t("logOut")}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href="https://app.scam.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
+                  onClick={() => setOpen(false)}
+                >
+                  {t("logIn")}
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -539,7 +468,7 @@ export default function NewNav() {
     
     <div 
       ref={dropdownPanelRef}
-      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 ${
+      className={`fixed left-0 right-0 w-full overflow-hidden bg-black transition-all duration-200 z-30 ${
         (productsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
       }`}
       style={{
@@ -555,38 +484,9 @@ export default function NewNav() {
         {/* Products Grid */}
         {productsOpen && (
           <div className="flex gap-6">
-            {/* Talk with Team Card */}
-            <div className="flex-shrink-0" style={{ width: '220px' }}>
-              <a
-                href="https://cal.com/scamai/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
-              >
-                <div className="flex flex-col h-full justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4">
-                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-sm font-semibold text-white mb-2">
-                      Talk with the Team
-                    </h3>
-                  </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Schedule call
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-              </a>
-            </div>
-
             {/* Products List */}
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {navItems.find(item => item.label === "Product")?.children?.map((child) => {
+              {navItems.find(item => item.id === "product")?.children?.map((child) => {
                 const content = (
                   <>
                     <div className="flex items-center gap-2 mb-1">
@@ -634,7 +534,7 @@ export default function NewNav() {
           <div className="flex gap-4">
             {/* Company List */}
             <div className="flex-1">
-              {navItems.find(item => item.label === "Company")?.children?.map((child) => (
+              {navItems.find(item => item.id === "company")?.children?.map((child) => (
                 child.external ? (
                   <a
                     key={child.label}
@@ -681,7 +581,6 @@ export default function NewNav() {
       </div>
     </div>
     </div>
-    <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
