@@ -113,7 +113,7 @@ export default function NewLanding({
     try {
       const form = new FormData();
       form.append("file", file);
-      const res = await fetch("/api/scan", { method: "POST", body: form });
+      const res = await fetch("/api/scan/detect", { method: "POST", body: form });
       const data = await res.json();
 
       if (res.status === 429) {
