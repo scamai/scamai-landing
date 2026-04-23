@@ -254,6 +254,7 @@ export default function TrialDetectSection() {
     if (getScanCount() >= 2 && !isRegistered()) {
       setShowGate(true);
       showGateRef.current = true;
+      setState("loading"); // Show loading immediately so "Register Now" isn't clickable before result is stored
     }
     executeScan();
   };
@@ -345,7 +346,7 @@ export default function TrialDetectSection() {
                 Detect deepfakes <span className="text-[#245FFF]">instantly</span>
               </h2>
               <p className="text-base sm:text-lg text-gray-300 max-w-xl mx-auto">
-                Upload any image and our AI will check for face swaps and AI-generated content in seconds. No sign-up needed — 3 free scans per day.
+                Upload any image and our AI will check for face swaps and AI-generated content in seconds. No sign-up needed for your first 2 scans.
               </p>
             </div>
           </AnimatedSection>
