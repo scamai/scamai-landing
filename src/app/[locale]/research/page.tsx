@@ -53,6 +53,11 @@ const researchCategories: ResearchCategory[] = [
         link: "https://arxiv.org/abs/2603.01433",
       },
       {
+        title: "When the Forger Is the Judge: GPT-Image-2 Cannot Recognize Its Own Faked Documents",
+        authors: "Jiaqi Wu, Yuchen Zhou, Dennis Tsang Ng, Xingyu Shen, Kidus Zewde, Ankit Raj, Tommy Duong, Simiao Ren",
+        link: "https://arxiv.org/abs/2604.25213",
+      },
+      {
         title: "AIForge-Doc: A Benchmark for Detecting AI-Forged Tampering in Financial and Form Documents",
         authors: "Jiaqi Wu, Yuchen Zhou, Muduo Xu, Zisheng Liang, Simiao Ren, Jiayu Xue, Meige Yang, Siying Chen, Jingheng Huan",
         link: "https://arxiv.org/abs/2602.20569",
@@ -85,6 +90,11 @@ const researchCategories: ResearchCategory[] = [
     category: "AI-Generated Detection",
     tags: ["AI Detection", "Benchmark"],
     papers: [
+      {
+        title: "GPT-Image-2 in the Wild: A Twitter Dataset of Self-Reported AI-Generated Images from the First Week of Deployment",
+        authors: "Kidus Zewde, Simiao Ren, Xingyu Shen, Jenny Wu, Yuchen Zhou, Tommy Duong, Zikang Zhang, Ethan Traister",
+        link: "https://arxiv.org/abs/2604.25370",
+      },
       {
         title: "How well are open sourced AI-generated image detection models out-of-the-box: A comprehensive benchmark study",
         authors: "Simiao Ren, Yuchen Zhou, Xingyu Shen, Kidus Zewde, Tommy Duong, George Huang, Neo Tiangratanakul, Dennis Ng, En Wei, Jiayu Xue",
