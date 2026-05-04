@@ -80,6 +80,26 @@ const DATASETS: Record<string, { name: string; link: string; citation: string }>
   note={Authors affiliated with ScamAI}
 }`,
   },
+  "gpt-image-2-twitter": {
+    name: "GPT-Image-2 Twitter Dataset (GPT-image-2.0X)",
+    link: "https://drive.google.com/file/d/1lUNzgpMtTOWW0oDZLi6WlUbiKwzdswUA/view?usp=sharing",
+    citation: `@article{zewde2026gptimage2,
+  title={GPT-Image-2 in the Wild: A Twitter Dataset of Self-Reported AI-Generated Images from the First Week of Deployment},
+  author={Zewde, Kidus and Ren, Simiao and Shen, Xingyu and Wu, Jenny and Zhou, Yuchen and Duong, Tommy and Zhang, Zikang and Traister, Ethan},
+  journal={arXiv preprint arXiv:2604.25370},
+  year={2026}
+}`,
+  },
+  "aiforge-doc-v2": {
+    name: "AIForge-Doc v2.0 (GPT-Image-2 document forgeries)",
+    link: "https://drive.google.com/file/d/14rUt2SIOHSSEW_gYeywIaXtRTaYcwr4T/view?usp=drive_link",
+    citation: `@article{wu2026forger,
+  title={When the Forger Is the Judge: GPT-Image-2 Cannot Recognize Its Own Faked Documents},
+  author={Wu, Jiaqi and Zhou, Yuchen and Ng, Dennis Tsang and Shen, Xingyu and Zewde, Kidus and Raj, Ankit and Duong, Tommy and Ren, Simiao},
+  journal={arXiv preprint arXiv:2604.25213},
+  year={2026}
+}`,
+  },
 };
 
 // GET /api/dataset-access?token=xxx → redirect to Google Drive (one-time use)
