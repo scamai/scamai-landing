@@ -114,9 +114,17 @@ export default function NewLanding({
       const form = new FormData();
       form.append("file", file);
       const res = await fetch("/api/scan/detect", { method: "POST", body: form });
-      const data = await res.json();
+      const raw = await res.text();
+      let data: {
+        error?: string;
+        reachedAnonLimit?: boolean;
+        anonScansUsed?: number;
+        upgradeUrl?: string;
+        [k: string]: unknown;
+      } | null = null;
+      try { data = raw ? JSON.parse(raw) : null; } catch { /* non-JSON body (e.g. proxy 502 HTML) */ }
 
-      if (res.status === 429) {
+      if (res.status === 429 && data) {
         if (data.reachedAnonLimit) {
           setAnonScansUsed(data.anonScansUsed ?? ANON_SCAN_LIMIT);
           setGateOpen(true);
@@ -126,9 +134,15 @@ export default function NewLanding({
         setView("home");
         return;
       }
-      if (!res.ok) throw new Error(data.error || "Scan failed");
+      if (!res.ok) {
+        if (res.status >= 502 && res.status <= 504) {
+          throw new Error("Our scanner is temporarily unavailable. Please try again in a moment.");
+        }
+        throw new Error(data?.error || `Scan failed (${res.status})`);
+      }
+      if (!data) throw new Error("Scan failed: invalid response from server");
 
-      setScanResult(data);
+      setScanResult(data as unknown as ScanResult);
       if (!user) setAnonScansUsed(data.anonScansUsed ?? 0);
       setView("result");
     } catch (err) {
