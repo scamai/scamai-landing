@@ -359,6 +359,10 @@ export function getPublishedPaperSlugs(): string[] {
   return researchPapers.filter((p) => !p.coming && p.slug).map((p) => p.slug);
 }
 
+export function getAllPaperSlugs(): string[] {
+  return researchPapers.filter((p) => p.slug).map((p) => p.slug);
+}
+
 export function getDatasetsForPaper(slug: string): ResearchDataset[] {
   return researchDatasets.filter((d) => d.paperSlug === slug);
 }
