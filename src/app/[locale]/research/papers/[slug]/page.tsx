@@ -6,7 +6,7 @@ import { locales } from "@/i18n/config";
 import {
   getPaperBySlug,
   getDatasetsForPaper,
-  getPublishedPaperSlugs,
+  getAllPaperSlugs,
   researchPapers,
 } from "@/lib/research/data";
 import { DatasetAccessButton } from "@/components/research/DatasetAccessButton";
@@ -14,19 +14,30 @@ import { DatasetAccessButton } from "@/components/research/DatasetAccessButton";
 type Params = { locale: Locale; slug: string };
 
 export async function generateStaticParams() {
-  const slugs = getPublishedPaperSlugs();
+  const slugs = getAllPaperSlugs();
   return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
   const { locale, slug } = await params;
   const paper = getPaperBySlug(slug);
-  if (!paper || paper.coming) {
+  if (!paper) {
     return generatePageMetadata({
       locale,
       path: `/research/papers/${slug}`,
       title: "Paper not found",
       description: "This research paper could not be found.",
+      noindex: true,
+    });
+  }
+
+  if (paper.coming) {
+    return generatePageMetadata({
+      locale,
+      path: `/research/papers/${paper.slug}`,
+      title: `${paper.title} – Coming Soon`,
+      description: `Upcoming ScamAI research: ${paper.title}. ${paper.category} research from the ScamAI team — paper to be published.`,
+      keywords: ["research paper", "coming soon", paper.category.toLowerCase(), ...paper.tags],
       noindex: true,
     });
   }
@@ -51,7 +62,7 @@ export default async function PaperDetailPage({
 }) {
   const { locale, slug } = await params;
   const paper = getPaperBySlug(slug);
-  if (!paper || paper.coming) notFound();
+  if (!paper) notFound();
 
   const datasets = getDatasetsForPaper(paper.slug);
 
@@ -104,10 +115,12 @@ export default async function PaperDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+      {!paper.coming && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
 
       <main>
         <section className="mx-auto max-w-3xl px-4 sm:px-8 pb-14 sm:pb-20" style={{ paddingTop: "180px" }}>
@@ -124,6 +137,11 @@ export default async function PaperDetailPage({
           </nav>
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
+            {paper.coming && (
+              <span className="rounded-full bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 text-[10px] font-semibold text-amber-300 uppercase tracking-wider">
+                Coming Soon
+              </span>
+            )}
             {paper.tags.map((tag) => (
               <span key={tag} className="rounded-full bg-[#245FFF]/10 px-2.5 py-0.5 text-[10px] font-semibold text-[#245FFF]">
                 {tag}
@@ -134,6 +152,14 @@ export default async function PaperDetailPage({
           <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.2] mb-6">
             {paper.title}
           </h1>
+
+          {paper.coming && (
+            <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.04] p-5 sm:p-6 mb-8">
+              <p className="text-sm text-amber-200/90 leading-relaxed">
+                This paper is currently in preparation by the ScamAI Research team. The arXiv link, authors, and citation will be published here when the paper is released. Sign up for our research updates to be notified.
+              </p>
+            </div>
+          )}
 
           {paper.authors && (
             <p className="text-sm text-gray-400 leading-relaxed mb-8">{paper.authors}</p>

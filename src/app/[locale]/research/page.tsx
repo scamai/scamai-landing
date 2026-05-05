@@ -116,12 +116,15 @@ export default function ResearchPage() {
                           </svg>
                           <div className="flex-1 min-w-0">
                             {paper.coming ? (
-                              <span className="text-sm leading-snug text-gray-500 italic">
+                              <Link
+                                href={`/research/papers/${paper.slug}`}
+                                className="text-sm leading-snug text-gray-500 italic hover:text-gray-300 transition-colors"
+                              >
                                 <span className="inline-block rounded bg-white/5 border border-gray-800/60 px-1.5 py-0.5 text-[10px] font-medium text-gray-500 not-italic mr-2">
                                   Coming
                                 </span>
                                 {paper.title}
-                              </span>
+                              </Link>
                             ) : (
                               <>
                                 <Link
