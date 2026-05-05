@@ -6,15 +6,39 @@ import { trackNewsletterSignup, trackOutbound } from "@/lib/analytics";
 
 export default function NewFooter() {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email || status === "loading") return;
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/newsletter-subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          source: "footer",
+          referrer: typeof window !== "undefined" ? window.location.href : "",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMessage(data.error || "Something went wrong. Please try again.");
+        return;
+      }
       trackNewsletterSignup("footer");
-      setSubscribed(true);
+      setStatus("success");
       setEmail("");
-      setTimeout(() => setSubscribed(false), 3000);
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network error. Please try again.");
     }
   };
 
@@ -30,22 +54,31 @@ export default function NewFooter() {
           <p className="text-sm text-gray-400 mb-6 max-w-md mx-auto">
             Weekly insights on deepfakes, synthetic media, and AI security — straight to your inbox.
           </p>
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" noValidate>
             <input
               type="email"
               placeholder="you@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="flex-1 rounded-full bg-white/5 border border-white/10 px-5 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF]/50 focus:ring-1 focus:ring-[#245FFF]/30 transition"
+              disabled={status === "loading"}
+              aria-label="Email address"
+              className="flex-1 rounded-full bg-white/5 border border-white/10 px-5 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF]/50 focus:ring-1 focus:ring-[#245FFF]/30 transition disabled:opacity-60"
             />
             <button
               type="submit"
-              className="rounded-full bg-[#245FFF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1d4acc] transition-colors whitespace-nowrap"
+              disabled={status === "loading"}
+              className="rounded-full bg-[#245FFF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1d4acc] transition-colors whitespace-nowrap disabled:opacity-60"
             >
-              {subscribed ? "Subscribed!" : "Subscribe"}
+              {status === "loading" ? "Subscribing…" : status === "success" ? "Subscribed!" : "Subscribe"}
             </button>
           </form>
+          {status === "success" && (
+            <p className="mt-3 text-xs text-emerald-400">Thanks — check your inbox for a confirmation.</p>
+          )}
+          {status === "error" && (
+            <p className="mt-3 text-xs text-red-400">{errorMessage}</p>
+          )}
         </div>
 
         {/* Footer columns */}
