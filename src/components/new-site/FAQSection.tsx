@@ -3,44 +3,69 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackFAQ } from "@/lib/analytics";
+import Link from "next/link";
 
 interface FAQItem {
   question: string;
   answer: string;
 }
 
+// Convert plain-text answers to React elements with linkified URLs
+function LinkifiedAnswer({ text }: { text: string }) {
+  const urlRegex = /(https?:\/\/[^\s<]+)/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(urlRegex)) {
+    const before = text.slice(lastIndex, match.index);
+    if (before) parts.push(<span key={`t-${lastIndex}`}>{before}</span>);
+    const href = match[1];
+    parts.push(
+      <a key={`l-${match.index}`} href={href} target="_blank" rel="noopener noreferrer" className="text-[#245FFF] hover:underline">
+        {href.replace(/^https?:\/\//, "")}
+      </a>
+    );
+    lastIndex = match.index! + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(<span key={`t-${lastIndex}`}>{text.slice(lastIndex)}</span>);
+  }
+
+  return <p className="text-gray-300 leading-relaxed">{parts}</p>;
+}
+
 const faqData: FAQItem[] = [
   {
     question: "What is included in the free tier?",
-    answer: "The free tier includes 200 images per month analyzed with our Eva-v1-Fast model. This includes GenAI detection, deepfake analysis, API access, and dashboard analytics. No credit card required to get started."
+    answer: "The free tier includes 200 images per month analyzed with our Eva-v1-Fast model. This includes GenAI detection, deepfake analysis, API access, and dashboard analytics. No credit card required to get started. Sign up free at https://app.scam.ai"
   },
   {
     question: "What's the difference between Eva-v1-Fast and Eva-v1-Pro?",
-    answer: "Eva-v1-Fast is our standard model optimized for speed and efficiency, perfect for most use cases. Eva-v1-Pro is our advanced model with significantly lower false positives and enhanced detection capabilities, available exclusively for Enterprise customers. Pro provides deeper analysis and more sophisticated detection for high-stakes applications like KYC verification and fraud prevention."
+    answer: "Eva-v1-Fast is our standard model optimized for speed and efficiency, perfect for most use cases. Eva-v1-Pro is our advanced model with significantly lower false positives and enhanced detection capabilities, available exclusively for Enterprise customers. Pro provides deeper analysis for high-stakes applications like KYC verification and fraud prevention. Compare models at https://scam.ai/products/ai-detection"
   },
   {
     question: "How does pricing work after the free tier?",
-    answer: "After your 200 free images per month, you pay $0.05 per image analyzed. You can also add optional features like Adaptive Defense (+$0.008/image), Active Liveness (+$0.008/image), or Express Lane (+$0.008/image) for enhanced capabilities."
+    answer: "After your 200 free images per month, you pay $0.05 per image analyzed. You can also add optional features like Adaptive Defense (+$0.008/image), Active Liveness (+$0.008/image), or Express Lane (+$0.008/image). View full pricing at https://scam.ai/pricing"
   },
   {
     question: "What types of media can I analyze?",
-    answer: "Our platform supports analysis of images, audio files, and video content. We detect GenAI-generated content, deepfakes, synthetic media, face swaps, voice clones, and various forms of media manipulation across all supported formats."
+    answer: "Our platform supports analysis of images, audio files, and video content at https://scam.ai/products/ai-detection. We detect GenAI-generated content, deepfakes, synthetic media, face swaps, voice clones, and various forms of media manipulation across all supported formats."
   },
   {
     question: "Do you offer volume discounts?",
-    answer: "Yes! For organizations processing more than 2,000 images per month, we offer custom Enterprise pricing with volume discounts, dedicated support, and access to advanced models like Eva-v1-Pro and Thinking. Contact our sales team to discuss your specific needs."
+    answer: "Yes! For organizations processing more than 2,000 images per month, we offer custom Enterprise pricing with volume discounts, dedicated support, and access to advanced models like Eva-v1-Pro and Thinking. Contact our sales team at https://scam.ai/platform to discuss your specific needs."
   },
   {
     question: "What is the Thinking feature?",
-    answer: "Thinking is our advanced reasoning capability available exclusively in the Enterprise tier. It provides deeper analysis and context-aware detection, helping identify sophisticated manipulation techniques and providing detailed explanations of detection results."
+    answer: "Thinking is our advanced reasoning capability available exclusively in the Enterprise tier. It provides deeper analysis and context-aware detection, helping identify sophisticated manipulation techniques. Learn more at https://scam.ai/platform"
   },
   {
     question: "How accurate is your detection?",
-    answer: "Our Eva models are continuously trained on the latest GenAI and deepfake techniques. Eva-v1-Fast provides strong accuracy for most use cases, while Eva-v1-Pro delivers higher precision with significantly lower false positives for enterprise applications. Detection confidence scores are provided with each analysis, and our Adaptive Defense add-on provides real-time protection against emerging threats. Accuracy varies by media type and attack technique — contact us for benchmark details relevant to your use case."
+    answer: "Our Eva models are continuously trained on the latest GenAI and deepfake techniques. Eva-v1-Fast provides strong accuracy for most use cases, while Eva-v1-Pro delivers higher precision with significantly lower false positives for enterprise applications. Detection confidence scores are provided with each analysis. View benchmarks at https://scam.ai/products/ai-detection"
   },
   {
     question: "Can I integrate this into my existing application?",
-    answer: "Absolutely! We provide a RESTful API for easy integration into any application. Our API supports synchronous and asynchronous processing, webhooks for notifications, and comprehensive documentation. Enterprise customers receive dedicated integration support."
+    answer: "Absolutely! We provide a RESTful API for easy integration. Our API supports synchronous and asynchronous processing, webhooks for notifications, and comprehensive documentation. Enterprise customers receive dedicated integration support. See the API docs at https://scam.ai/platform"
   },
   {
     question: "What is your data retention policy?",
@@ -48,9 +73,22 @@ const faqData: FAQItem[] = [
   },
   {
     question: "How do I get started?",
-    answer: "Simply sign up for a free account at app.scam.ai to get immediate access to 200 free image analyses per month with our Eva-v1-Fast model. No credit card required. You can upgrade to paid plans or contact sales for Enterprise options at any time."
+    answer: "Simply sign up for a free account at https://app.scam.ai to get immediate access to 200 free image analyses per month with our Eva-v1-Fast model. No credit card required. Upgrade to paid plans at https://scam.ai/pricing or contact sales for Enterprise options."
   }
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -63,7 +101,12 @@ export default function FAQSection() {
   };
 
   return (
-    <section 
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+    <section
       className="landing-section relative overflow-hidden bg-black" 
       aria-label="Frequently Asked Questions"
       style={{ paddingTop: '80px', paddingBottom: '80px' }}
@@ -128,9 +171,7 @@ export default function FAQSection() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 pb-4 sm:px-8 sm:pb-8">
-                      <p className="text-gray-300 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                      <LinkifiedAnswer text={faq.answer} />
                     </div>
                   </motion.div>
                 )}
@@ -158,5 +199,6 @@ export default function FAQSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

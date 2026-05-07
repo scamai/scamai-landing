@@ -10,7 +10,7 @@ const Bento = ({}: BentoProps) => (
                 src="/bento-v1-images/bento-5-grid.svg"
                 width={352}
                 height={352}
-                alt=""
+                alt="ScamAI real-time deepfake detection speed benchmark showing sub-second AI analysis results"
             />
         </div>
         <div className={styles.tooltip}>
@@ -20,7 +20,7 @@ const Bento = ({}: BentoProps) => (
                     src="/bento-v1-images/bento-5-plus.svg"
                     width={8}
                     height={9}
-                    alt=""
+                    alt="Performance improvement indicator"
                 />
             </div>
         </div>
