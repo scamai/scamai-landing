@@ -104,6 +104,47 @@ export default async function LocaleLayout({
 
   return (
     <Providers locale={locale} messages={messages}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: "ScamAI",
+                url: "https://scam.ai",
+                logo: "https://scam.ai/scamai-logo.svg",
+                sameAs: [
+                  "https://twitter.com/scamai",
+                  "https://linkedin.com/company/scamai",
+                  "https://www.producthunt.com/products/scam-ai",
+                ],
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  url: "https://cal.com/scamai/15min",
+                },
+              },
+              {
+                "@type": "WebSite",
+                name: "ScamAI",
+                url: "https://scam.ai",
+                description: "All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time.",
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: {
+                    "@type": "EntryPoint",
+                    urlTemplate: "https://scam.ai/search?q={search_term_string}",
+                  },
+                  "query-input": "required name=search_term_string",
+                },
+                publisher: { "@type": "Organization", name: "ScamAI", url: "https://scam.ai" },
+              },
+            ],
+          }),
+        }}
+      />
       <NewNav />
       {children}
       <NewFooter />
