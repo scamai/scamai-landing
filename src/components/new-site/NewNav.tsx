@@ -108,6 +108,15 @@ export default function NewNav() {
   const [companyOpen, setCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -298,243 +307,6 @@ export default function NewNav() {
           </button>
         </div>
       </nav>
-
-      {/* Mobile Full-Screen Menu */}
-      <div
-        className={`fixed left-0 right-0 bottom-0 z-[100] bg-[#0b0b0b] transition-transform duration-300 ease-in-out md:hidden ${
-          open ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ top: `${announcementHeight}px` }}
-      >
-        <div className="flex h-full flex-col">
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
-            <Link href="/" onClick={() => setOpen(false)}>
-              <img
-                src="/scamai-logo.svg"
-                alt="ScamAI"
-                className="h-8 w-auto"
-              />
-            </Link>
-            <button
-              onClick={() => setOpen(false)}
-              className="flex h-11 w-11 items-center justify-center text-white text-3xl leading-none"
-              aria-label="Close menu"
-            >
-              ×
-            </button>
-          </div>
-
-          {/* Menu Items */}
-          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
-            <div className="flex flex-col gap-1">
-              {navItems.map((item) => {
-                if (item.children) {
-                  const isProduct = item.label === "Product";
-                  const isCompany = item.label === "Company";
-                  const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
-                  const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
-                  
-                  return (
-                    <div key={item.href}>
-                      <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-gray-700"
-                      >
-                        {item.label}
-                        <svg
-                          className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </button>
-                      {isOpen && (
-                        <div className="py-3 pl-2 space-y-3">
-                          {/* Talk with Team Card for Mobile */}
-                          {isProduct && (
-                            <a
-                              href="https://cal.com/scamai/15min"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-3 p-4 rounded-lg bg-white/5"
-                              onClick={() => {
-                                setOpen(false);
-                                setIsOpen(false);
-                              }}
-                            >
-                              <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                                </svg>
-                              </div>
-                              <div className="flex-1">
-                                <h3 className="text-sm font-semibold text-white mb-0.5">
-                                  Talk with the Team
-                                </h3>
-                                <p className="text-xs text-gray-500">
-                                  Schedule a call
-                                </p>
-                              </div>
-                            </a>
-                          )}
-
-                          {item.children.map((child) => {
-                            const mobileContent = (
-                              <div className="flex items-start gap-3">
-                                {child.icon && (
-                                  <span className="text-[#245FFF] mt-0.5 flex-shrink-0">{child.icon}</span>
-                                )}
-                                <div>
-                                  <h3 className="text-sm font-medium text-white mb-1">
-                                    {child.label}
-                                  </h3>
-                                  {child.description && (
-                                    <p className="text-xs text-gray-500 leading-relaxed">
-                                      {child.description}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                            return child.external || child.href.includes('#') ? (
-                              <a
-                                key={child.label}
-                                href={child.href}
-                                {...(child.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                                className="block p-4 rounded-lg hover:bg-white/5"
-                                onClick={() => {
-                                  setOpen(false);
-                                  setIsOpen(false);
-                                }}
-                              >
-                                {mobileContent}
-                              </a>
-                            ) : (
-                              <Link
-                                key={child.label}
-                                href={child.href}
-                                className="block p-4 rounded-lg hover:bg-white/5"
-                                onClick={() => {
-                                  setOpen(false);
-                                  setIsOpen(false);
-                                }}
-                              >
-                                {mobileContent}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block py-4 text-lg font-medium text-white border-b border-gray-700"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="border-t border-gray-700 px-6 py-4">
-            {/* Language Selector - Commented Out
-            <div className="mb-4">
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="w-full flex items-center justify-between py-2 text-base text-gray-900"
-              >
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="h-5 w-5 text-gray-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span>{currentLanguage.name}</span>
-                </div>
-                <svg
-                  className={`h-5 w-5 text-gray-500 transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {langOpen && (
-                <div className="mt-2 max-h-48 overflow-y-auto bg-gray-50 rounded-lg">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        switchLocale(lang.code);
-                        setLangOpen(false);
-                      }}
-                      className={`w-full px-4 py-2 text-left text-sm transition ${
-                        locale === lang.code
-                          ? "bg-[#235BF3]/10 text-[#235BF3]"
-                          : "text-gray-700 hover:bg-gray-100"
-                      }`}
-                    >
-                      {lang.name}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            */}
-
-            {/* Action Buttons */}
-            <div className="flex flex-col gap-3">
-              <a
-                href="https://app.scam.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
-                onClick={() => setOpen(false)}
-              >
-                Log In
-              </a>
-              <a
-                href="https://cal.com/scamai/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-6 py-3 text-center text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition"
-                onClick={() => setOpen(false)}
-              >
-                Book a demo
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
     
     <div 
@@ -681,6 +453,183 @@ export default function NewNav() {
       </div>
     </div>
     </div>
+
+    {/* Mobile Full-Screen Menu — rendered at root to avoid backdrop-filter containment on iOS */}
+    <div
+      className={`fixed left-0 right-0 bottom-0 z-[60] bg-[#0b0b0b] transition-transform duration-300 ease-in-out md:hidden ${
+        open ? 'translate-x-0' : 'translate-x-full pointer-events-none'
+      }`}
+      style={{ top: `${announcementHeight}px` }}
+    >
+      <div className="flex h-full flex-col">
+        {/* Header */}
+        <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-gray-800">
+          <Link href="/" onClick={() => setOpen(false)}>
+            <img
+              src="/scamai-logo.svg"
+              alt="ScamAI"
+              className="h-8 w-auto"
+            />
+          </Link>
+          <button
+            onClick={() => setOpen(false)}
+            className="flex h-11 w-11 items-center justify-center text-white text-3xl leading-none"
+            aria-label="Close menu"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Menu Items — min-h-0 overrides flex min-height:auto so overflow scrolling works */}
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 sm:px-6 py-4">
+          <div className="flex flex-col gap-1">
+            {navItems.map((item) => {
+              if (item.children) {
+                const isProduct = item.label === "Product";
+                const isCompany = item.label === "Company";
+                const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
+                const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
+
+                return (
+                  <div key={item.href}>
+                    <button
+                      onClick={() => setIsOpen(!isOpen)}
+                      className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-gray-700"
+                    >
+                      {item.label}
+                      <svg
+                        className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {isOpen && (
+                      <div className="py-3 pl-2 space-y-3">
+                        {isProduct && (
+                          <a
+                            href="https://cal.com/scamai/15min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 p-4 rounded-lg bg-white/5"
+                            onClick={() => {
+                              setOpen(false);
+                              setIsOpen(false);
+                            }}
+                          >
+                            <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                              </svg>
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="text-sm font-semibold text-white mb-0.5">
+                                Talk with the Team
+                              </h3>
+                              <p className="text-xs text-gray-500">
+                                Schedule a call
+                              </p>
+                            </div>
+                          </a>
+                        )}
+
+                        {item.children.map((child) => {
+                          const mobileContent = (
+                            <div className="flex items-start gap-3">
+                              {child.icon && (
+                                <span className="text-[#245FFF] mt-0.5 flex-shrink-0">{child.icon}</span>
+                              )}
+                              <div>
+                                <h3 className="text-sm font-medium text-white mb-1">
+                                  {child.label}
+                                </h3>
+                                {child.description && (
+                                  <p className="text-xs text-gray-500 leading-relaxed">
+                                    {child.description}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                          return child.external || child.href.includes('#') ? (
+                            <a
+                              key={child.label}
+                              href={child.href}
+                              {...(child.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                              className="block p-4 rounded-lg hover:bg-white/5"
+                              onClick={() => {
+                                setOpen(false);
+                                setIsOpen(false);
+                              }}
+                            >
+                              {mobileContent}
+                            </a>
+                          ) : (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              className="block p-4 rounded-lg hover:bg-white/5"
+                              onClick={() => {
+                                setOpen(false);
+                                setIsOpen(false);
+                              }}
+                            >
+                              {mobileContent}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block py-4 text-lg font-medium text-white border-b border-gray-700"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="flex-shrink-0 border-t border-gray-700 px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          <div className="flex flex-col gap-3">
+            <a
+              href="https://app.scam.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
+              onClick={() => setOpen(false)}
+            >
+              Log In
+            </a>
+            <a
+              href="https://cal.com/scamai/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full px-6 py-3 text-center text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition"
+              onClick={() => setOpen(false)}
+            >
+              Book a demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <CommandPalette isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
