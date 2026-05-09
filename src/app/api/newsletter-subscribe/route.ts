@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { upsertSubscriber } from "@/lib/db/contacts";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
+const resendAudienceId = process.env.RESEND_AUDIENCE_ID;
 
 const NOTIFY_EMAILS = ["dennisng@scam.ai", "benren@scam.ai"];
 
@@ -48,7 +50,23 @@ export async function POST(req: NextRequest) {
 
   console.log("[newsletter]", JSON.stringify({ email, source, referrer, ip, timestamp }));
 
+  // Store in Neon Postgres
+  try {
+    await upsertSubscriber(email, source, referrer, ip);
+  } catch (err) {
+    console.error("[newsletter] DB insert failed:", err);
+  }
+
   if (resend) {
+    // Add to Resend audience for campaign targeting
+    if (resendAudienceId) {
+      resend.contacts.create({
+        email,
+        audienceId: resendAudienceId,
+        unsubscribed: false,
+      }).catch((err) => console.error("[newsletter] Resend contact create failed:", err));
+    }
+
     resend.emails.send({
       from: "ScamAI <hello@scam.ai>",
       to: [email],

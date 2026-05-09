@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import crypto from "crypto";
+import { logDatasetAccess } from "@/lib/db/contacts";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
+const resendAudienceId = process.env.RESEND_AUDIENCE_ID;
 
 // Rate limit: max 10 requests per IP per hour
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -164,12 +166,28 @@ export async function POST(req: Request) {
 
     console.log("[Dataset Access]", { email, dataset: dataset.name, ip });
 
+    // Store in Neon Postgres
+    try {
+      await logDatasetAccess(email, datasetId, dataset.name, ip);
+    } catch (err) {
+      console.error("[Dataset Access] DB insert failed:", err);
+    }
+
     // Generate a short-lived token instead of exposing the link
     const token = crypto.randomBytes(32).toString("hex");
     tokenStore.set(token, { link: dataset.link, expiresAt: Date.now() + TOKEN_TTL });
 
     // Fire-and-forget emails: (1) dataset link to user, (2) access log to team
     if (resend) {
+      // Add to Resend audience so dataset users can receive updates
+      if (resendAudienceId) {
+        resend.contacts.create({
+          email,
+          audienceId: resendAudienceId,
+          unsubscribed: false,
+        }).catch((err) => console.error("[Dataset Access] Resend contact create failed:", err));
+      }
+
       // Email the user with the dataset download link
       resend.emails.send({
         from: "ScamAI Research <data@scam.ai>",

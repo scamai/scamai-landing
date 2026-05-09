@@ -36,6 +36,34 @@ CREATE TABLE IF NOT EXISTS news_sources (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- Subscribers: newsletter signups
+CREATE TABLE IF NOT EXISTS subscribers (
+  id SERIAL PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  source TEXT NOT NULL DEFAULT 'footer',
+  referrer TEXT,
+  ip TEXT,
+  subscribed_at TIMESTAMPTZ DEFAULT NOW(),
+  active BOOLEAN DEFAULT TRUE
+);
+
+CREATE INDEX IF NOT EXISTS idx_subscribers_email ON subscribers(email);
+CREATE INDEX IF NOT EXISTS idx_subscribers_subscribed_at ON subscribers(subscribed_at DESC);
+
+-- Dataset access log: who downloaded what
+CREATE TABLE IF NOT EXISTS dataset_access_log (
+  id SERIAL PRIMARY KEY,
+  email TEXT NOT NULL,
+  dataset_id TEXT NOT NULL,
+  dataset_name TEXT NOT NULL,
+  ip TEXT,
+  accessed_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_dataset_access_log_email ON dataset_access_log(email);
+CREATE INDEX IF NOT EXISTS idx_dataset_access_log_dataset_id ON dataset_access_log(dataset_id);
+CREATE INDEX IF NOT EXISTS idx_dataset_access_log_accessed_at ON dataset_access_log(accessed_at DESC);
+
 -- Migration: Add slug column to existing tables
 -- ALTER TABLE newsletters ADD COLUMN IF NOT EXISTS slug TEXT;
 -- CREATE INDEX IF NOT EXISTS idx_newsletters_slug ON newsletters(slug);
