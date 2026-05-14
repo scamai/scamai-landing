@@ -241,25 +241,8 @@ export async function POST(req: Request) {
           { status: 502 }
         );
       }
-
-      // Internal access log to the team — fire-and-forget (non-critical)
-      resend.emails.send({
-        from: "ScamAI Research <data@scam.ai>",
-        to: ["dennisng@scam.ai", "benren@scam.ai"],
-        subject: `[Log] Dataset accessed: ${dataset.name}`,
-        html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 500px;">
-            <h2 style="font-size: 16px; margin: 0 0 16px;">Dataset Access Log</h2>
-            <table style="font-size: 14px; border-collapse: collapse;">
-              <tr><td style="padding: 4px 12px 4px 0; color: #888;">Dataset</td><td>${dataset.name}</td></tr>
-              <tr><td style="padding: 4px 12px 4px 0; color: #888;">Email</td><td>${email}</td></tr>
-              <tr><td style="padding: 4px 12px 4px 0; color: #888;">IP</td><td>${ip}</td></tr>
-              <tr><td style="padding: 4px 12px 4px 0; color: #888;">Time</td><td>${new Date().toISOString()}</td></tr>
-            </table>
-          </div>
-        `,
-        text: `Dataset Access Log\n\nDataset: ${dataset.name}\nEmail: ${email}\nIP: ${ip}\nTime: ${new Date().toISOString()}`,
-      }).catch((err) => console.error("[Dataset Access] Log email failed:", err));
+      // Access log is persisted to the dataset_access_log Neon table above,
+      // so no team notification email is sent.
     }
 
     return NextResponse.json({ ok: true, token });
