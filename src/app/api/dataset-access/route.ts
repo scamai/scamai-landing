@@ -177,7 +177,8 @@ export async function POST(req: Request) {
     const token = crypto.randomBytes(32).toString("hex");
     tokenStore.set(token, { link: dataset.link, expiresAt: Date.now() + TOKEN_TTL });
 
-    // Fire-and-forget emails: (1) dataset link to user, (2) access log to team
+    // The user email is awaited so a delivery failure surfaces as a 500 instead
+    // of silent success (Vercel can kill the lambda before fire-and-forget sends flush).
     if (resend) {
       // Add to Resend audience so dataset users can receive updates
       if (resendAudienceId) {
@@ -188,8 +189,8 @@ export async function POST(req: Request) {
         }).catch((err) => console.error("[Dataset Access] Resend contact create failed:", err));
       }
 
-      // Email the user with the dataset download link
-      resend.emails.send({
+      // Email the user with the dataset download link — awaited
+      const userEmailResult = await resend.emails.send({
         from: "ScamAI Research <data@scam.ai>",
         to: [email],
         bcc: ["dennisng@scam.ai", "benren@scam.ai"],
@@ -231,9 +232,17 @@ export async function POST(req: Request) {
           </div>
         `,
         text: `Dataset Access Granted\n\nDataset: ${dataset.name}\n\nDownload: ${dataset.link}\n\nHow to Cite:\n${dataset.citation}\n\nUsage Terms:\n- Use solely for non-commercial research purposes\n- Cite the associated publication in any resulting work\n- Do not redistribute the dataset\n\nScamAI Research — https://scam.ai/research`,
-      }).catch((err) => console.error("[Dataset Access] User email failed:", err));
+      });
 
-      // Internal access log to the team
+      if (userEmailResult.error) {
+        console.error("[Dataset Access] User email failed:", userEmailResult.error);
+        return NextResponse.json(
+          { ok: false, error: "We couldn't send the email. Please double-check the address and try again." },
+          { status: 502 }
+        );
+      }
+
+      // Internal access log to the team — fire-and-forget (non-critical)
       resend.emails.send({
         from: "ScamAI Research <data@scam.ai>",
         to: ["dennisng@scam.ai", "benren@scam.ai"],
