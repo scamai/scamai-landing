@@ -2,8 +2,9 @@
 
 import { Bento46, Bento53 } from "@/components/bento";
 import { BentoV1_18, BentoV1_20 } from "@/components/bento-v1";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Link } from "@/i18n/navigation";
 
 // Animated Section Component
 function AnimatedSection({ 
@@ -341,6 +342,9 @@ export default function AudioDetectionPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <AudioFAQAccordion />
+
       {/* CTA Section */}
       <section className="landing-section relative overflow-hidden bg-black">
         <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 py-20 sm:py-24 lg:py-32">
@@ -358,10 +362,109 @@ export default function AudioDetectionPage() {
               >
                 Contact Sales
               </a>
+              <p className="mt-6 text-sm text-gray-400">
+                Also need image and video deepfake detection?{" "}
+                <Link href="/products/ai-detection" className="text-[#245FFF] hover:underline">
+                  Explore AI Image Detection →
+                </Link>
+              </p>
+              <p className="mt-2 text-sm text-gray-400">
+                View{" "}
+                <Link href="/pricing" className="text-[#245FFF] hover:underline">
+                  pricing plans
+                </Link>{" "}
+                starting at $0.05/file.
+              </p>
             </div>
           </AnimatedSection>
         </div>
       </section>
     </main>
+  );
+}
+
+const audioFaqs = [
+  {
+    question: "How accurate is ScamAI voice clone and audio deepfake detection?",
+    answer: "ScamAI achieves 98.5% accuracy for voice clone detection, identifying synthetic voices from platforms like ElevenLabs, PlayHT, Resemble AI, and Azure TTS. Processing time is under 3 seconds per audio file.",
+  },
+  {
+    question: "What types of audio deepfakes can ScamAI detect?",
+    answer: "ScamAI detects voice clones (ElevenLabs, Resemble AI, PlayHT, Azure TTS), text-to-speech generated audio, audio deepfakes, spliced or manipulated audio recordings, and real-time synthetic voice streams.",
+  },
+  {
+    question: "What audio formats does ScamAI support?",
+    answer: "ScamAI supports MP3, WAV, M4A, FLAC, and OGG audio formats. Real-time audio stream analysis is also available for live call monitoring and voice authentication.",
+  },
+  {
+    question: "Can ScamAI detect voice phishing (vishing) attacks?",
+    answer: "Yes. ScamAI audio detection is used by call centers, banks, and financial services to identify voice phishing attacks in real-time. It detects cloned voices attempting to impersonate executives, customers, or authority figures.",
+  },
+  {
+    question: "What is voice clone detection?",
+    answer: "Voice clone detection identifies audio that has been artificially generated or cloned using AI speech synthesis tools such as ElevenLabs, PlayHT, or Azure TTS. ScamAI's Eva-v1 audio model analyzes spectral and temporal artifacts — patterns invisible to human ears — that distinguish synthetic voices from genuine recordings, achieving 98.5% accuracy.",
+  },
+  {
+    question: "Can the audio deepfake detection API process real-time streams?",
+    answer: "Yes. ScamAI provides a real-time streaming endpoint for live call monitoring, processing each audio segment in under 3 seconds. This enables call centers and financial institutions to screen synthetic media and voice clones during active calls, preventing fraud in real time.",
+  },
+];
+
+function AudioFAQAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section className="landing-section relative overflow-hidden bg-black" aria-label="Frequently Asked Questions">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 py-20 sm:py-24 lg:py-32">
+        <div className="text-center mb-12">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs">FAQ</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-[1.1]">
+            Voice Clone Detection Questions
+          </h2>
+        </div>
+        <div className="space-y-4">
+          {audioFaqs.map((faq, index) => (
+            <div
+              key={index}
+              className="rounded-2xl border border-gray-800 overflow-hidden transition-colors duration-300 hover:border-gray-700"
+              style={{ background: openIndex === index ? "rgba(36, 95, 255, 0.03)" : "rgba(17, 24, 39, 0.3)" }}
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full px-6 py-5 flex items-start justify-between text-left transition-colors hover:bg-gray-800/30"
+                aria-expanded={openIndex === index}
+              >
+                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{faq.question}</span>
+                <motion.svg
+                  animate={{ rotate: openIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-5 h-5 text-[#245FFF] flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </motion.svg>
+              </button>
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-5">
+                      <p className="text-gray-300 leading-relaxed" data-speakable>{faq.answer}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

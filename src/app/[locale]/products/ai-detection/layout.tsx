@@ -96,6 +96,22 @@ const aiDetectionFaqSchema = {
         text: 'Eva-v1-Fast processes images in under 2 seconds, suitable for real-time content moderation and high-volume KYC screening. Eva-v1-Pro processes in under 4 seconds for forensic-grade analysis and high-stakes identity verification.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Is there a free deepfake detector I can try?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. ScamAI includes 200 free image analyses per month — no credit card required. Sign up at app.scam.ai to get instant access to the deepfake detector with the Eva-v1-Fast model. Upgrade to pay-as-you-go ($0.05/image) or Enterprise when your volume grows.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I integrate deepfake detection into my app via API?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. ScamAI provides a REST API that integrates in under 10 minutes. Make a POST request with your image URL, receive a JSON response with is_deepfake boolean, confidence score, and model used. SDKs for Python and JavaScript are available, with full documentation at scam.ai/en/resources/documentation.',
+      },
+    },
   ],
 };
 

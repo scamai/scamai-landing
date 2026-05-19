@@ -166,11 +166,20 @@ export const pageMetadata = {
     dateModified: '2026-02-02',
   },
   products: {
-    title: 'Products - AI Detection Solutions',
+    title: 'Deepfake Detection Products — AI Image & Voice Clone Detection',
     description:
-      'Comprehensive suite of AI-powered detection tools for synthetic media, deepfakes, and fraud prevention. Vision, audio, and database solutions.',
-    keywords: ['AI products', 'detection solutions', 'API integration'],
-    dateModified: '2026-02-02',
+      'Detect AI-generated images, deepfake videos, and voice clones with one API. Image deepfake detection at 95.3% accuracy. Voice clone detection at 98.5% accuracy. Free to start.',
+    keywords: [
+      'deepfake detection',
+      'deepfake detector',
+      'AI image detector',
+      'voice clone detection',
+      'detect AI generated images',
+      'deepfake detection API',
+      'synthetic media detection',
+      'deepfake detection free',
+    ],
+    dateModified: '2026-05-18',
   },
   aiDetection: {
     title: 'Image & Video Deepfake Detection - 95.3% Accuracy',
@@ -182,8 +191,11 @@ export const pageMetadata = {
       'video detection',
       'face swap detection',
       'synthetic image',
+      'deepfake detection free',
+      'deepfake detection API',
+      'detect AI generated images',
     ],
-    dateModified: '2026-01-15',
+    dateModified: '2026-05-18',
   },
   audioDetection: {
     title: 'Voice Clone & Synthetic Audio Detection',
@@ -194,8 +206,9 @@ export const pageMetadata = {
       'audio deepfake',
       'synthetic voice',
       'voice phishing',
+      'synthetic media detection',
     ],
-    dateModified: '2025-11-05',
+    dateModified: '2026-05-18',
   },
   scamDatabase: {
     title: 'Scam Database - Comprehensive Fraud Intelligence',

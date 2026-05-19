@@ -153,10 +153,20 @@ const nextConfig: NextConfig = {
         destination: '/en/resources/security-compliance',
         permanent: true,
       },
-      // Old research/models redirects to products
+      // Research redirects to locale-prefixed paths
       {
-        source: '/research/:slug*',
-        destination: '/en/products',
+        source: '/research',
+        destination: '/en/research',
+        permanent: true,
+      },
+      {
+        source: '/research/datasets/:slug*',
+        destination: '/en/research/datasets/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/research/papers/:slug*',
+        destination: '/en/research/papers/:slug*',
         permanent: true,
       },
       {

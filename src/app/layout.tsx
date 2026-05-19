@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import StructuredData from "@/components/seo/StructuredData";
 import { Analytics } from "@vercel/analytics/next";
 const IS_VERCEL = process.env.VERCEL === '1';
 import CookieConsent from "@/components/CookieConsent";
@@ -131,7 +130,6 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K2WNMJV8');`}</Script>
-        <StructuredData />
         <link rel="alternate" type="application/rss+xml" title="ScamAI News" href="/feed.xml" />
       </head>
       <body className={`${inter.variable} antialiased bg-[#0b0b0b]`}>
