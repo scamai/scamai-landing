@@ -56,21 +56,43 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
   const baseUrl = 'https://scam.ai';
   const articleUrl = `${baseUrl}/${locale}/newsletter/${newsletter.slug || id}`;
 
+  // Parse human-readable date (e.g. "February 23, 2026") to ISO 8601 for schema
+  const isoDate = (() => {
+    const parsed = new Date(newsletter.date);
+    return isNaN(parsed.getTime()) ? newsletter.date : parsed.toISOString().split('T')[0];
+  })();
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: newsletter.title,
     description: newsletter.executiveSummary?.slice(0, 160) || '',
-    datePublished: newsletter.date,
-    dateModified: newsletter.date,
+    datePublished: isoDate,
+    dateModified: isoDate,
     url: articleUrl,
     mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+    image: [
+      {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/en/opengraph-image`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    keywords: ['deepfake news', 'AI security', 'synthetic media', 'deepfake detection', 'weekly digest'],
+    articleSection: 'Deepfake Weekly',
+    inLanguage: locale,
     author: { '@type': 'Organization', name: 'Reality Inc.', url: baseUrl },
     publisher: {
       '@type': 'Organization',
       name: 'ScamAI',
       url: baseUrl,
-      logo: { '@type': 'ImageObject', url: `${baseUrl}/scamai-logo.svg` },
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/scamai-logo.svg`,
+        width: 400,
+        height: 100,
+      },
     },
   };
 

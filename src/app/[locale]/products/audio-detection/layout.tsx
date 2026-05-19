@@ -96,6 +96,22 @@ const audioDetectionFaqSchema = {
         text: 'Yes. ScamAI audio detection is used by call centers, banks, and financial services to identify voice phishing attacks in real-time. It detects cloned voices attempting to impersonate executives, customers, or authority figures.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What is voice clone detection?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Voice clone detection identifies audio that has been artificially generated or cloned using AI speech synthesis tools such as ElevenLabs, PlayHT, or Azure TTS. ScamAI\'s Eva-v1 audio model analyzes spectral and temporal artifacts — patterns invisible to human ears — that distinguish synthetic voices from genuine recordings, achieving 98.5% accuracy.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can the audio deepfake detection API process real-time streams?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. ScamAI provides a real-time streaming endpoint for live call monitoring, processing each audio segment in under 3 seconds. This enables call centers and financial institutions to screen synthetic media and voice clones during active calls, preventing fraud in real time.',
+      },
+    },
   ],
 };
 

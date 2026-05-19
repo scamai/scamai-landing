@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import NewLanding from "@/components/new-site/NewLanding";
+import StructuredData from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
   title: "ScamAI — Deepfake Detection Tool | Detect AI-Generated Media & Synthetic Content",
@@ -17,5 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <NewLanding />;
+  return (
+    <>
+      <StructuredData />
+      <NewLanding />
+    </>
+  );
 }

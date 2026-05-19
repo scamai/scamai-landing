@@ -1,5 +1,6 @@
 import { generatePageMetadata, pageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
+import { Link } from '@/i18n/navigation';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -33,7 +34,7 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2">
             {/* AI Detection */}
-            <a
+            <Link
               href="/products/ai-detection"
               className="group rounded-lg border border-gray-800 bg-gray-900/40 p-8 hover:border-[#66b3ff] transition-colors"
             >
@@ -43,17 +44,17 @@ export default function ProductsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-white">AI Detection</h3>
+              <h3 className="mb-3 text-2xl font-bold text-white">AI Image & Video Deepfake Detection</h3>
               <p className="mb-4 text-gray-300">
-                Detect deepfakes in images and videos with 95.3%* accuracy. Identify face swaps, manipulated faces, and synthetic generation.
+                Detect AI-generated images and deepfake videos with 95.3%* accuracy using the Eva-v1 model. Identify face swaps, GAN-generated images, and diffusion model outputs from Stable Diffusion, DALL-E, and Midjourney. Integrates via REST API in under 10 minutes.
               </p>
               <div className="text-[#66b3ff] group-hover:underline">
-                Learn more →
+                Explore AI deepfake detection →
               </div>
-            </a>
+            </Link>
 
             {/* Audio Detection */}
-            <a 
+            <Link
               href="/products/audio-detection"
               className="group rounded-lg border border-gray-800 bg-gray-900/40 p-8 hover:border-[#66b3ff] transition-colors"
             >
@@ -62,14 +63,14 @@ export default function ProductsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-white">Audio Detection</h3>
+              <h3 className="mb-3 text-2xl font-bold text-white">Voice Clone & Synthetic Audio Detection</h3>
               <p className="mb-4 text-gray-300">
-                Identify AI-generated voices and voice cloning with 98.5% accuracy. Detect synthetic speech from major AI models.
+                Detect voice clones, AI-generated speech, and synthetic audio with 98.5% accuracy in under 3 seconds. Identifies outputs from ElevenLabs, PlayHT, Azure TTS, and other voice synthesis platforms. Supports real-time stream analysis for call center fraud prevention.
               </p>
               <div className="text-[#66b3ff] group-hover:underline">
-                Learn more →
+                Explore voice clone detection →
               </div>
-            </a>
+            </Link>
 
           </div>
         </div>
@@ -136,19 +137,26 @@ export default function ProductsPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
               <h3 className="mb-2 text-lg font-bold text-white">Social Media</h3>
-              <p className="text-sm text-gray-300">Content moderation and user protection</p>
+              <p className="text-sm text-gray-300 mb-3">Automatically flag deepfake content and synthetic media before it spreads. Protect users from manipulated videos and AI-generated disinformation at scale.</p>
+              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">AI deepfake detection →</Link>
             </div>
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">Finance</h3>
-              <p className="text-sm text-gray-300">KYC verification and fraud prevention</p>
+              <h3 className="mb-2 text-lg font-bold text-white">Financial Services</h3>
+              <p className="text-sm text-gray-300 mb-3">Detect deepfake identity fraud during KYC and loan applications at 95.3% accuracy. Protect call centers against synthetic identity attacks and voice-phishing with real-time voice clone detection.</p>
+              <div className="flex flex-col gap-1">
+                <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">AI deepfake detection for KYC →</Link>
+                <Link href="/products/audio-detection" className="text-xs text-[#66b3ff] hover:underline">Voice clone detection →</Link>
+              </div>
             </div>
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">Media</h3>
-              <p className="text-sm text-gray-300">Fact-checking and source verification</p>
+              <h3 className="mb-2 text-lg font-bold text-white">Media & Publishing</h3>
+              <p className="text-sm text-gray-300 mb-3">Verify image and video authenticity before publication. Detect AI-generated images and manipulated footage to maintain editorial integrity and prevent misinformation.</p>
+              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">Detect AI generated images →</Link>
             </div>
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">E-commerce</h3>
-              <p className="text-sm text-gray-300">Profile and product authenticity</p>
+              <h3 className="mb-2 text-lg font-bold text-white">E-commerce & Dating</h3>
+              <p className="text-sm text-gray-300 mb-3">Verify profile photos and product images are authentic. Stop synthetic identity scams and fake listings with automated deepfake detection via API.</p>
+              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">Deepfake detection API →</Link>
             </div>
           </div>
         </div>
