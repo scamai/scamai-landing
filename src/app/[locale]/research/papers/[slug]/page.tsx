@@ -202,7 +202,7 @@ export default async function PaperDetailPage({
               <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Associated datasets</h2>
               <div className="space-y-3">
                 {datasets.map((d) => (
-                  <div key={d.id} className="flex items-start justify-between gap-3 rounded-lg border border-gray-800/60 bg-white/[0.02] p-4">
+                  <div key={d.id} className="flex items-center justify-between gap-4 rounded-lg border border-gray-800/60 bg-white/[0.02] p-4">
                     <div className="flex-1 min-w-0">
                       <Link
                         href={`/research/datasets/${d.id}`}
@@ -214,7 +214,7 @@ export default async function PaperDetailPage({
                         <p className="mt-1 text-xs text-gray-500 leading-relaxed line-clamp-2">{d.description}</p>
                       )}
                     </div>
-                    <DatasetAccessButton dataset={d} variant="card" label="Access" />
+                    <DatasetAccessButton dataset={d} variant="inline" label="Access" />
                   </div>
                 ))}
               </div>
