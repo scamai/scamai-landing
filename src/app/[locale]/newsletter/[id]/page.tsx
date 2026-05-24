@@ -19,12 +19,28 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   const { locale, id } = await params;
   const newsletter = await getNewsletter(id);
 
+  // Extract topic-specific keywords from newsletter content
+  const sectionKeywords = newsletter?.sections
+    ?.map((s) => s.title.toLowerCase())
+    .filter((t) => t.length > 3) ?? [];
+  const sourceKeywords = newsletter?.top3Articles
+    ?.map((a) => a.source.toLowerCase())
+    .filter((s) => s.length > 2) ?? [];
+  const keywords = [
+    'deepfake news',
+    'AI security news',
+    'synthetic media',
+    'deepfake weekly',
+    ...sectionKeywords.slice(0, 4),
+    ...sourceKeywords.slice(0, 2),
+  ];
+
   return generatePageMetadata({
     locale,
-    path: `/newsletter/${id}`,
-    title: newsletter ? `${newsletter.title} - Edition ${newsletter.edition}` : 'Newsletter',
+    path: `/newsletter/${newsletter?.slug || id}`,
+    title: newsletter ? `${newsletter.title} | Deepfake Weekly` : 'Deepfake Weekly Newsletter | ScamAI',
     description: newsletter?.executiveSummary?.slice(0, 160) || 'Read the latest Deepfake Weekly newsletter from ScamAI.',
-    keywords: ['newsletter', 'deepfake news', 'AI security', 'weekly digest'],
+    keywords,
   });
 }
 
@@ -62,6 +78,16 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
     return isNaN(parsed.getTime()) ? newsletter.date : parsed.toISOString().split('T')[0];
   })();
 
+  const schemaKeywords = [
+    'deepfake news',
+    'AI security news',
+    'synthetic media',
+    'deepfake detection',
+    'deepfake weekly',
+    ...newsletter.sections.map((s) => s.title.toLowerCase()).slice(0, 4),
+    ...newsletter.top3Articles.map((a) => a.source.toLowerCase()).slice(0, 2),
+  ];
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
@@ -79,7 +105,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
         height: 630,
       },
     ],
-    keywords: ['deepfake news', 'AI security', 'synthetic media', 'deepfake detection', 'weekly digest'],
+    keywords: schemaKeywords.join(', '),
     articleSection: 'Deepfake Weekly',
     inLanguage: locale,
     author: { '@type': 'Organization', name: 'Reality Inc.', url: baseUrl },

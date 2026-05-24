@@ -301,7 +301,7 @@ export default function NewLanding() {
 
               <AnimatedSection delay={0.3}>
                 <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  Deepfake detection platform
+                  AI trust platform
                 </h1>
               </AnimatedSection>
 
@@ -495,7 +495,7 @@ export default function NewLanding() {
                   AI-POWERED SECURITY
                 </p>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1] lg:mb-8">
-                  Stop deepfake fraud<br />with <span className="text-[#245FFF]">AI defense</span>
+                  Fight AI threats<br />with <span className="text-[#245FFF]">AI defense</span>
                 </h2>
                 <p className="max-w-xl text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
                   According to Deloitte, AI-generated deepfake fraud is projected to cost businesses over $40 billion by 2027. Our <span className="font-semibold text-white">Eva-v1</span> models adapt as fast as the threats themselves — achieving <span className="font-semibold text-white">95.3% detection accuracy</span> in under 4 seconds, stopping fraud and protecting your revenue in real-time.
@@ -554,7 +554,7 @@ export default function NewLanding() {
                 THE PLATFORM
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                Why teams choose our <span className="text-[#245FFF]">deepfake detection API</span>
+                Why teams choose <span className="text-[#245FFF]">us</span>
               </h2>
             </div>
           </AnimatedSection>
