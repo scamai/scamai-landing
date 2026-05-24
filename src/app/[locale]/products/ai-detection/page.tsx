@@ -427,7 +427,7 @@ function FAQAccordion() {
         <div className="text-center mb-12">
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs">FAQ</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white leading-[1.1]">
-            Deepfake Detection Questions
+            AI Image Detection Questions
           </h2>
         </div>
         <div className="space-y-4">
