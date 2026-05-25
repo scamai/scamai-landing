@@ -73,6 +73,7 @@ const navItems: NavItem[] = [
     ],
   },
   { label: "Pricing", href: "/pricing" },
+  { label: "Learn", href: "/learn" },
   {
     label: "Company",
     href: "/company",
