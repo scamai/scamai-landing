@@ -3,6 +3,7 @@ import { locales } from '@/i18n/config'
 import { getPublishedNewsletters } from '@/lib/db/newsletters'
 import { getAllIndustrySlugs } from '@/lib/solutions/industries'
 import { getAllCompetitorSlugs } from '@/lib/compare/competitors'
+import { getAllArticleSlugs } from '@/lib/learn/articles'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://scam.ai'
@@ -117,6 +118,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           ...Object.fromEntries(locales.map(l => [l, `${baseUrl}/${l}/compare`])),
           'x-default': `${baseUrl}/en/compare`,
+        }
+      }
+    })
+  })
+
+  // Add learn articles
+  const articleSlugs = getAllArticleSlugs()
+  articleSlugs.forEach(slug => {
+    locales.forEach(locale => {
+      sitemapEntries.push({
+        url: `${baseUrl}/${locale}/learn/${slug}`,
+        lastModified: new Date('2026-05-23'),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+        alternates: {
+          languages: {
+            ...Object.fromEntries(locales.map(l => [l, `${baseUrl}/${l}/learn/${slug}`])),
+            'x-default': `${baseUrl}/en/learn/${slug}`,
+          }
+        }
+      })
+    })
+  })
+
+  // Add learn hub
+  locales.forEach(locale => {
+    sitemapEntries.push({
+      url: `${baseUrl}/${locale}/learn`,
+      lastModified: new Date('2026-05-23'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+      alternates: {
+        languages: {
+          ...Object.fromEntries(locales.map(l => [l, `${baseUrl}/${l}/learn`])),
+          'x-default': `${baseUrl}/en/learn`,
         }
       }
     })
