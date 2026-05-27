@@ -106,6 +106,10 @@ export default function NewNav() {
   const [langOpen, setLangOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
+  // Mobile accordion uses its own state so the desktop click-outside handler
+  // and desktop mega-menu panel can't interfere with the mobile menu.
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -117,6 +121,21 @@ export default function NewNav() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  // When the viewport grows to desktop, force the mobile menu closed so the
+  // body scroll-lock is released and the header isn't stuck in mobile state.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setOpen(false);
+        setMobileProductsOpen(false);
+        setMobileCompanyOpen(false);
+      }
+    };
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -301,9 +320,10 @@ export default function NewNav() {
           <button
             className="flex h-11 w-11 items-center justify-center text-white"
             onClick={() => setOpen((prev) => !prev)}
-            aria-label="Open menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
           >
-            <span className="text-2xl">{open ? "" : "☰"}</span>
+            <span className="text-2xl">☰</span>
           </button>
         </div>
       </nav>
@@ -311,7 +331,7 @@ export default function NewNav() {
     
     <div 
       ref={dropdownPanelRef}
-      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 ${
+      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 hidden md:block ${
         (productsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
       }`}
       style={{
@@ -472,7 +492,11 @@ export default function NewNav() {
             />
           </Link>
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              setMobileProductsOpen(false);
+              setMobileCompanyOpen(false);
+            }}
             className="flex h-11 w-11 items-center justify-center text-white text-3xl leading-none"
             aria-label="Close menu"
           >
@@ -487,8 +511,8 @@ export default function NewNav() {
               if (item.children) {
                 const isProduct = item.label === "Product";
                 const isCompany = item.label === "Company";
-                const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
-                const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
+                const isOpen = isProduct ? mobileProductsOpen : (isCompany ? mobileCompanyOpen : false);
+                const setIsOpen = isProduct ? setMobileProductsOpen : (isCompany ? setMobileCompanyOpen : () => {});
 
                 return (
                   <div key={item.href}>
