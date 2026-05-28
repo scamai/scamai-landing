@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic';
 import { generatePageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
 import NewsletterDetail from '@/components/newsletter/NewsletterDetail';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { getPublishedNewsletter, getPublishedNewsletterBySlug } from '@/lib/db/newsletters';
 
 async function getNewsletter(idOrSlug: string) {
@@ -58,7 +58,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
               This newsletter edition could not be found or is no longer available.
             </p>
             <Link
-              href={`/${locale}/newsletter`}
+              href="/newsletter"
               className="inline-block rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-gray-100"
             >
               View All Newsletters
@@ -143,6 +143,37 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <NewsletterDetail newsletter={newsletter} locale={locale} />
+
+      {/* Internal links to products — distributes link equity and helps readers take action */}
+      <section className="border-t border-gray-800/60 px-4 sm:px-6 py-12">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-6">
+            Detect the threats covered in this newsletter
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Link
+              href="/products/ai-detection"
+              className="group rounded-xl border border-gray-800/60 bg-white/[0.02] p-5 hover:border-[#245FFF]/30 hover:bg-[#245FFF]/[0.02] transition-all"
+            >
+              <p className="text-xs font-semibold text-[#245FFF] uppercase tracking-wider mb-1">AI Image &amp; Video</p>
+              <p className="text-sm font-semibold text-white group-hover:text-[#245FFF] transition-colors mb-1">
+                Deepfake Detection API →
+              </p>
+              <p className="text-xs text-gray-600">95.3% accuracy · under 4 seconds · 200 free/month</p>
+            </Link>
+            <Link
+              href="/products/audio-detection"
+              className="group rounded-xl border border-gray-800/60 bg-white/[0.02] p-5 hover:border-[#245FFF]/30 hover:bg-[#245FFF]/[0.02] transition-all"
+            >
+              <p className="text-xs font-semibold text-[#245FFF] uppercase tracking-wider mb-1">Voice &amp; Audio</p>
+              <p className="text-sm font-semibold text-white group-hover:text-[#245FFF] transition-colors mb-1">
+                Voice Clone Detection API →
+              </p>
+              <p className="text-xs text-gray-600">98.5% accuracy · real-time streams · call center use cases</p>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
