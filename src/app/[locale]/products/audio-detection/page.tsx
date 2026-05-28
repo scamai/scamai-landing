@@ -3,7 +3,15 @@
 import { Bento46, Bento53 } from "@/components/bento";
 import { BentoV1_18, BentoV1_20 } from "@/components/bento-v1";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, Suspense } from "react";
+
+function BentoSkeleton() {
+  return (
+    <div className="w-full h-full rounded-xl bg-white/[0.02] border border-gray-800/40 flex items-center justify-center animate-pulse">
+      <div className="w-16 h-16 rounded-full bg-white/[0.03]" />
+    </div>
+  );
+}
 import { Link } from "@/i18n/navigation";
 
 // Animated Section Component
@@ -124,7 +132,7 @@ export default function AudioDetectionPage() {
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <Bento46 />
+                  <Suspense fallback={<BentoSkeleton />}><Bento46 /></Suspense>
                 </div>
               </div>
             </div>
@@ -135,7 +143,7 @@ export default function AudioDetectionPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-28">
               <div className="order-2 lg:order-1 relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <BentoV1_20 />
+                  <Suspense fallback={<BentoSkeleton />}><BentoV1_20 /></Suspense>
                 </div>
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center" style={{ minHeight: '400px' }}>
@@ -171,7 +179,7 @@ export default function AudioDetectionPage() {
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <Bento53 />
+                  <Suspense fallback={<BentoSkeleton />}><Bento53 /></Suspense>
                 </div>
               </div>
             </div>
@@ -182,7 +190,7 @@ export default function AudioDetectionPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="order-2 lg:order-1 relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <BentoV1_18 />
+                  <Suspense fallback={<BentoSkeleton />}><BentoV1_18 /></Suspense>
                 </div>
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center" style={{ minHeight: '400px' }}>
@@ -374,6 +382,16 @@ export default function AudioDetectionPage() {
                   pricing plans
                 </Link>{" "}
                 starting at $0.05/file.
+              </p>
+              <p className="mt-2 text-sm text-gray-500">
+                Built on published research:{" "}
+                <Link href="/research/papers/deepfake-detectors-in-reality" className="text-gray-400 hover:text-[#245FFF] transition-colors">
+                  Do deepfake detectors work in reality?
+                </Link>
+                {" "}·{" "}
+                <Link href="/research/papers/open-source-ai-detection-benchmark" className="text-gray-400 hover:text-[#245FFF] transition-colors">
+                  Open-source detector benchmark
+                </Link>
               </p>
             </div>
           </AnimatedSection>
