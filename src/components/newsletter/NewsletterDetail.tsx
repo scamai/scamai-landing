@@ -184,7 +184,7 @@ export default function NewsletterDetail({
           <section>
             {newsletter.top3Articles.map((article, index) => (
               <div
-                key={index}
+                key={article.url || index}
                 style={{
                   marginBottom: index < newsletter.top3Articles.length - 1 ? 52 : 0,
                 }}
@@ -247,7 +247,7 @@ export default function NewsletterDetail({
 
         {/* Additional Sections */}
         {newsletter.sections.length > 0 && newsletter.sections.map((section, sIndex) => (
-          <section key={sIndex}>
+          <section key={section.title || sIndex}>
             {/* Section divider */}
             <div
               style={{
@@ -274,7 +274,7 @@ export default function NewsletterDetail({
 
             {section.articles.map((article, aIndex) => (
               <div
-                key={aIndex}
+                key={article.url || aIndex}
                 style={{
                   marginBottom: aIndex < section.articles.length - 1 ? 36 : 0,
                 }}

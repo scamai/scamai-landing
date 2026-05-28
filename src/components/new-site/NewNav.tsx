@@ -60,19 +60,44 @@ const navItems: NavItem[] = [
       },
     ]
   },
+  { label: "Pricing", href: "/pricing" },
   {
     label: "Solutions",
     href: "/solutions",
     hasDropdown: true,
     children: [
-      { label: "Fintech & Banking", href: "/solutions/fintech", description: "KYC deepfake protection and identity fraud prevention", icon: navIcons.shield },
-      { label: "KYC Verification", href: "/solutions/kyc", description: "Stop deepfake fraud in onboarding flows", icon: navIcons.idCard },
-      { label: "Call Centers", href: "/solutions/call-centers", description: "Voice clone detection and vishing prevention", icon: navIcons.audio },
-      { label: "Media & Publishing", href: "/solutions/media", description: "AI-generated content detection for newsrooms", icon: navIcons.doc },
-      { label: "Dating Apps", href: "/solutions/dating", description: "Fake profile and voice catfishing prevention", icon: navIcons.vision },
+      {
+        label: "Fintech & Banking",
+        href: "/solutions/fintech",
+        description: "KYC deepfake protection and identity fraud prevention",
+        icon: navIcons.shield,
+      },
+      {
+        label: "KYC Verification",
+        href: "/solutions/kyc",
+        description: "Stop deepfake fraud in onboarding flows",
+        icon: navIcons.idCard,
+      },
+      {
+        label: "Call Centers",
+        href: "/solutions/call-centers",
+        description: "Voice clone detection and vishing prevention",
+        icon: navIcons.audio,
+      },
+      {
+        label: "Media & Publishing",
+        href: "/solutions/media",
+        description: "AI-generated content detection for newsrooms",
+        icon: navIcons.doc,
+      },
+      {
+        label: "Dating Apps",
+        href: "/solutions/dating",
+        description: "Fake profile and voice catfishing prevention",
+        icon: navIcons.vision,
+      },
     ],
   },
-  { label: "Pricing", href: "/pricing" },
   { label: "Learn", href: "/learn" },
   {
     label: "Company",
@@ -120,6 +145,11 @@ export default function NewNav() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
+  // Mobile accordion uses its own state so the desktop click-outside handler
+  // and desktop mega-menu panel can't interfere with the mobile menu.
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -131,6 +161,22 @@ export default function NewNav() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  // When the viewport grows to desktop, force the mobile menu closed so the
+  // body scroll-lock is released and the header isn't stuck in mobile state.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setOpen(false);
+        setMobileProductsOpen(false);
+        setMobileSolutionsOpen(false);
+        setMobileCompanyOpen(false);
+      }
+    };
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -221,7 +267,7 @@ export default function NewNav() {
               const isOpen = isProduct ? productsOpen : isSolutions ? solutionsOpen : (isCompany ? companyOpen : false);
               const setIsOpen = isProduct ? setProductsOpen : isSolutions ? setSolutionsOpen : (isCompany ? setCompanyOpen : () => {});
               const dropdownRef = isProduct ? productsDropdownRef : isSolutions ? solutionsDropdownRef : (isCompany ? companyDropdownRef : null);
-              
+
               return (
                 <div key={item.href} className="relative" ref={dropdownRef}>
                   <button
@@ -320,17 +366,18 @@ export default function NewNav() {
           <button
             className="flex h-11 w-11 items-center justify-center text-white"
             onClick={() => setOpen((prev) => !prev)}
-            aria-label="Open menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
           >
-            <span className="text-2xl">{open ? "" : "☰"}</span>
+            <span className="text-2xl">☰</span>
           </button>
         </div>
       </nav>
     </header>
-    
-    <div 
+
+    <div
       ref={dropdownPanelRef}
-      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 ${
+      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 hidden md:block ${
         (productsOpen || solutionsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
       }`}
       style={{
@@ -423,7 +470,7 @@ export default function NewNav() {
         {/* Solutions Grid */}
         {solutionsOpen && (
           <div className="flex gap-6">
-            {/* View all card */}
+            {/* All Industries Card */}
             <div className="flex-shrink-0" style={{ width: '220px' }}>
               <Link
                 href="/solutions"
@@ -432,15 +479,16 @@ export default function NewNav() {
               >
                 <div className="flex flex-col h-full justify-between">
                   <div>
-                    <div className="w-10 h-10 rounded-full bg-[#245FFF]/10 flex items-center justify-center mb-4">
-                      <svg className="w-5 h-5 text-[#245FFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0l-4-4m4 4l-4 4" />
+                    <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4">
+                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                       </svg>
                     </div>
-                    <h3 className="text-sm font-semibold text-white mb-2">All Industries</h3>
-                    <p className="text-xs text-gray-500">8 industry-specific deepfake detection solutions</p>
+                    <h3 className="text-sm font-semibold text-white mb-2">
+                      All Industries
+                    </h3>
                   </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all mt-3">
+                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
                     View all
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -450,7 +498,7 @@ export default function NewNav() {
               </Link>
             </div>
 
-            {/* Industry links */}
+            {/* Solutions List */}
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-3">
               {navItems.find(item => item.label === "Solutions")?.children?.map((child) => (
                 <Link
@@ -460,11 +508,17 @@ export default function NewNav() {
                   onClick={() => setSolutionsOpen(false)}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    {child.icon && <span className="text-[#245FFF] flex-shrink-0">{child.icon}</span>}
-                    <h3 className="text-sm font-medium text-white">{child.label}</h3>
+                    {child.icon && (
+                      <span className="text-[#245FFF] flex-shrink-0">{child.icon}</span>
+                    )}
+                    <h3 className="text-sm font-medium text-white">
+                      {child.label}
+                    </h3>
                   </div>
                   {child.description && (
-                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 pl-6">{child.description}</p>
+                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 pl-6">
+                      {child.description}
+                    </p>
                   )}
                 </Link>
               ))}
@@ -543,7 +597,12 @@ export default function NewNav() {
             />
           </Link>
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              setMobileProductsOpen(false);
+              setMobileSolutionsOpen(false);
+              setMobileCompanyOpen(false);
+            }}
             className="flex h-11 w-11 items-center justify-center text-white text-3xl leading-none"
             aria-label="Close menu"
           >
@@ -559,8 +618,8 @@ export default function NewNav() {
                 const isProduct = item.label === "Product";
                 const isSolutions = item.label === "Solutions";
                 const isCompany = item.label === "Company";
-                const isOpen = isProduct ? productsOpen : isSolutions ? solutionsOpen : (isCompany ? companyOpen : false);
-                const setIsOpen = isProduct ? setProductsOpen : isSolutions ? setSolutionsOpen : (isCompany ? setCompanyOpen : () => {});
+                const isOpen = isProduct ? mobileProductsOpen : isSolutions ? mobileSolutionsOpen : (isCompany ? mobileCompanyOpen : false);
+                const setIsOpen = isProduct ? setMobileProductsOpen : isSolutions ? setMobileSolutionsOpen : (isCompany ? setMobileCompanyOpen : () => {});
 
                 return (
                   <div key={item.href}>
@@ -610,6 +669,31 @@ export default function NewNav() {
                               </p>
                             </div>
                           </a>
+                        )}
+
+                        {isSolutions && (
+                          <Link
+                            href="/solutions"
+                            className="flex items-center gap-3 p-4 rounded-lg bg-white/5"
+                            onClick={() => {
+                              setOpen(false);
+                              setIsOpen(false);
+                            }}
+                          >
+                            <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                              </svg>
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="text-sm font-semibold text-white mb-0.5">
+                                All Industries
+                              </h3>
+                              <p className="text-xs text-gray-500">
+                                View all solutions
+                              </p>
+                            </div>
+                          </Link>
                         )}
 
                         {item.children.map((child) => {
