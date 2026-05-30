@@ -241,6 +241,36 @@ export default async function PaperDetailPage({
                 ))}
             </ul>
           </div>
+
+          {!paper.coming && paper.category !== "Interview Tech" && (
+            <div className="rounded-xl border border-[#245FFF]/20 bg-[#245FFF]/[0.03] p-5 sm:p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#245FFF] mb-2">
+                Try it in production
+              </p>
+              <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                ScamAI's Eva-v1 model applies this research at production scale — 95.3% accuracy, under 4 seconds, 200 free detections per month.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/products/ai-detection"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#245FFF] px-5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-[#1d4acc]"
+                >
+                  AI Image &amp; Video Detection
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <a
+                  href="https://app.scam.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-gray-700 bg-white/[0.03] px-5 py-2.5 text-xs font-semibold text-white transition-all hover:border-[#245FFF]/40"
+                >
+                  Start free
+                </a>
+              </div>
+            </div>
+          )}
         </section>
       </main>
     </div>

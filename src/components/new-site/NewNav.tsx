@@ -62,6 +62,44 @@ const navItems: NavItem[] = [
   },
   { label: "Pricing", href: "/pricing" },
   {
+    label: "Solutions",
+    href: "/solutions",
+    hasDropdown: true,
+    children: [
+      {
+        label: "Fintech & Banking",
+        href: "/solutions/fintech",
+        description: "KYC deepfake protection and identity fraud prevention",
+        icon: navIcons.shield,
+      },
+      {
+        label: "KYC Verification",
+        href: "/solutions/kyc",
+        description: "Stop deepfake fraud in onboarding flows",
+        icon: navIcons.idCard,
+      },
+      {
+        label: "Call Centers",
+        href: "/solutions/call-centers",
+        description: "Voice clone detection and vishing prevention",
+        icon: navIcons.audio,
+      },
+      {
+        label: "Media & Publishing",
+        href: "/solutions/media",
+        description: "AI-generated content detection for newsrooms",
+        icon: navIcons.doc,
+      },
+      {
+        label: "Dating Apps",
+        href: "/solutions/dating",
+        description: "Fake profile and voice catfishing prevention",
+        icon: navIcons.vision,
+      },
+    ],
+  },
+  { label: "Learn", href: "/learn" },
+  {
     label: "Company",
     href: "/company",
     hasDropdown: true,
@@ -105,10 +143,12 @@ export default function NewNav() {
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [companyOpen, setCompanyOpen] = useState(false);
   // Mobile accordion uses its own state so the desktop click-outside handler
   // and desktop mega-menu panel can't interfere with the mobile menu.
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -130,6 +170,7 @@ export default function NewNav() {
       if (e.matches) {
         setOpen(false);
         setMobileProductsOpen(false);
+        setMobileSolutionsOpen(false);
         setMobileCompanyOpen(false);
       }
     };
@@ -142,6 +183,7 @@ export default function NewNav() {
   const isLandingPage = pathname === "/" || pathname === "";
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
+  const solutionsDropdownRef = useRef<HTMLDivElement>(null);
   const companyDropdownRef = useRef<HTMLDivElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
 
@@ -156,6 +198,9 @@ export default function NewNav() {
       // Panel is SEPARATE from button ref - only close if click is outside BOTH button and panel
       const insideProducts = (productsDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
       if (!insideProducts) setProductsOpen(false);
+
+      const insideSolutions = (solutionsDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
+      if (!insideSolutions) setSolutionsOpen(false);
 
       const insideCompany = (companyDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
       if (!insideCompany) setCompanyOpen(false);
@@ -217,11 +262,12 @@ export default function NewNav() {
           {navItems.map((item) => {
             if (item.children) {
               const isProduct = item.label === "Product";
+              const isSolutions = item.label === "Solutions";
               const isCompany = item.label === "Company";
-              const isOpen = isProduct ? productsOpen : (isCompany ? companyOpen : false);
-              const setIsOpen = isProduct ? setProductsOpen : (isCompany ? setCompanyOpen : () => {});
-              const dropdownRef = isProduct ? productsDropdownRef : (isCompany ? companyDropdownRef : null);
-              
+              const isOpen = isProduct ? productsOpen : isSolutions ? solutionsOpen : (isCompany ? companyOpen : false);
+              const setIsOpen = isProduct ? setProductsOpen : isSolutions ? setSolutionsOpen : (isCompany ? setCompanyOpen : () => {});
+              const dropdownRef = isProduct ? productsDropdownRef : isSolutions ? solutionsDropdownRef : (isCompany ? companyDropdownRef : null);
+
               return (
                 <div key={item.href} className="relative" ref={dropdownRef}>
                   <button
@@ -328,21 +374,21 @@ export default function NewNav() {
         </div>
       </nav>
     </header>
-    
-    <div 
+
+    <div
       ref={dropdownPanelRef}
       className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 hidden md:block ${
-        (productsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
+        (productsOpen || solutionsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
       }`}
       style={{
         top: `${announcementHeight + 48}px`,
-        maxHeight: (productsOpen || companyOpen) ? '500px' : '0',
-        paddingTop: (productsOpen || companyOpen) ? '32px' : '0',
-        paddingBottom: (productsOpen || companyOpen) ? '32px' : '0'
+        maxHeight: (productsOpen || solutionsOpen || companyOpen) ? '500px' : '0',
+        paddingTop: (productsOpen || solutionsOpen || companyOpen) ? '32px' : '0',
+        paddingBottom: (productsOpen || solutionsOpen || companyOpen) ? '32px' : '0'
       }}
     >
       <div className={`mx-auto max-w-6xl px-4 transition-opacity duration-200 ${
-        (productsOpen || companyOpen) ? 'opacity-100' : 'opacity-0'
+        (productsOpen || solutionsOpen || companyOpen) ? 'opacity-100' : 'opacity-0'
       }`}>
         {/* Products Grid */}
         {productsOpen && (
@@ -421,6 +467,65 @@ export default function NewNav() {
           </div>
         )}
 
+        {/* Solutions Grid */}
+        {solutionsOpen && (
+          <div className="flex gap-6">
+            {/* All Industries Card */}
+            <div className="flex-shrink-0" style={{ width: '220px' }}>
+              <Link
+                href="/solutions"
+                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
+                onClick={() => setSolutionsOpen(false)}
+              >
+                <div className="flex flex-col h-full justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4">
+                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-sm font-semibold text-white mb-2">
+                      All Industries
+                    </h3>
+                  </div>
+                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                    View all
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Solutions List */}
+            <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-3">
+              {navItems.find(item => item.label === "Solutions")?.children?.map((child) => (
+                <Link
+                  key={child.label}
+                  href={child.href}
+                  className="group block p-4 rounded-lg hover:bg-white/5 transition-colors duration-150"
+                  onClick={() => setSolutionsOpen(false)}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    {child.icon && (
+                      <span className="text-[#245FFF] flex-shrink-0">{child.icon}</span>
+                    )}
+                    <h3 className="text-sm font-medium text-white">
+                      {child.label}
+                    </h3>
+                  </div>
+                  {child.description && (
+                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 pl-6">
+                      {child.description}
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Company Grid */}
         {companyOpen && (
           <div className="flex gap-4">
@@ -495,6 +600,7 @@ export default function NewNav() {
             onClick={() => {
               setOpen(false);
               setMobileProductsOpen(false);
+              setMobileSolutionsOpen(false);
               setMobileCompanyOpen(false);
             }}
             className="flex h-11 w-11 items-center justify-center text-white text-3xl leading-none"
@@ -510,9 +616,10 @@ export default function NewNav() {
             {navItems.map((item) => {
               if (item.children) {
                 const isProduct = item.label === "Product";
+                const isSolutions = item.label === "Solutions";
                 const isCompany = item.label === "Company";
-                const isOpen = isProduct ? mobileProductsOpen : (isCompany ? mobileCompanyOpen : false);
-                const setIsOpen = isProduct ? setMobileProductsOpen : (isCompany ? setMobileCompanyOpen : () => {});
+                const isOpen = isProduct ? mobileProductsOpen : isSolutions ? mobileSolutionsOpen : (isCompany ? mobileCompanyOpen : false);
+                const setIsOpen = isProduct ? setMobileProductsOpen : isSolutions ? setMobileSolutionsOpen : (isCompany ? setMobileCompanyOpen : () => {});
 
                 return (
                   <div key={item.href}>
@@ -562,6 +669,31 @@ export default function NewNav() {
                               </p>
                             </div>
                           </a>
+                        )}
+
+                        {isSolutions && (
+                          <Link
+                            href="/solutions"
+                            className="flex items-center gap-3 p-4 rounded-lg bg-white/5"
+                            onClick={() => {
+                              setOpen(false);
+                              setIsOpen(false);
+                            }}
+                          >
+                            <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                              </svg>
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="text-sm font-semibold text-white mb-0.5">
+                                All Industries
+                              </h3>
+                              <p className="text-xs text-gray-500">
+                                View all solutions
+                              </p>
+                            </div>
+                          </Link>
                         )}
 
                         {item.children.map((child) => {

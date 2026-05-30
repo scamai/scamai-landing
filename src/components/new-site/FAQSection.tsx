@@ -77,19 +77,6 @@ const faqData: FAQItem[] = [
   }
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqData.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer,
-    },
-  })),
-};
-
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -102,10 +89,6 @@ export default function FAQSection() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
     <section
       className="landing-section relative overflow-hidden bg-black" 
       aria-label="Frequently Asked Questions"
