@@ -2,9 +2,17 @@
 
 import { Bento33, Bento45, Bento55 } from "@/components/bento";
 import { BentoV1_8 } from "@/components/bento-v1";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { useParams } from "next/navigation";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useRef, useState, Suspense } from "react";
+
+function BentoSkeleton() {
+  return (
+    <div className="w-full h-full rounded-xl bg-white/[0.02] border border-gray-800/40 flex items-center justify-center animate-pulse">
+      <div className="w-16 h-16 rounded-full bg-white/[0.03]" />
+    </div>
+  );
+}
+import { Link } from "@/i18n/navigation";
 
 // Animated Section Component
 function AnimatedSection({ 
@@ -128,7 +136,7 @@ export default function AIDetectionPage() {
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <Bento45 />
+                  <Suspense fallback={<BentoSkeleton />}><Bento45 /></Suspense>
                 </div>
               </div>
             </div>
@@ -139,7 +147,7 @@ export default function AIDetectionPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-28">
               <div className="order-2 lg:order-1 relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <Bento33 />
+                  <Suspense fallback={<BentoSkeleton />}><Bento33 /></Suspense>
                 </div>
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center" style={{ minHeight: '400px' }}>
@@ -175,7 +183,7 @@ export default function AIDetectionPage() {
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <Bento55 />
+                  <Suspense fallback={<BentoSkeleton />}><Bento55 /></Suspense>
                 </div>
               </div>
             </div>
@@ -186,7 +194,7 @@ export default function AIDetectionPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="order-2 lg:order-1 relative flex items-center justify-center" style={{ minHeight: '400px' }}>
                 <div className="w-full max-w-[400px]" style={{ height: '400px', transform: 'scale(1.2)' }}>
-                  <BentoV1_8 />
+                  <Suspense fallback={<BentoSkeleton />}><BentoV1_8 /></Suspense>
                 </div>
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center" style={{ minHeight: '400px' }}>
@@ -346,6 +354,9 @@ export default function AIDetectionPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQAccordion />
+
       {/* CTA Section */}
       <section className="landing-section relative overflow-hidden bg-black">
         <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 py-20 sm:py-24 lg:py-32">
@@ -367,10 +378,119 @@ export default function AIDetectionPage() {
                   Get Started Free
                 </span>
               </a>
+              <p className="mt-6 text-sm text-gray-400">
+                Also need audio deepfake detection?{" "}
+                <Link href="/products/audio-detection" className="text-[#245FFF] hover:underline">
+                  Explore Voice Clone Detection →
+                </Link>
+              </p>
+              <p className="mt-2 text-sm text-gray-400">
+                View{" "}
+                <Link href="/pricing" className="text-[#245FFF] hover:underline">
+                  pricing plans
+                </Link>{" "}
+                starting at $0.05/image.
+              </p>
+              <p className="mt-2 text-sm text-gray-500">
+                Built on published research:{" "}
+                <Link href="/research/papers/deepfake-detectors-in-reality" className="text-gray-400 hover:text-[#245FFF] transition-colors">
+                  Do deepfake detectors work in reality?
+                </Link>
+                {" "}·{" "}
+                <Link href="/research/papers/open-source-ai-detection-benchmark" className="text-gray-400 hover:text-[#245FFF] transition-colors">
+                  Open-source detector benchmark
+                </Link>
+              </p>
             </div>
           </AnimatedSection>
         </div>
       </section>
     </main>
+  );
+}
+
+const aiFaqs = [
+  {
+    question: "How accurate is ScamAI image and video deepfake detection?",
+    answer: "ScamAI achieves 95.3% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.",
+  },
+  {
+    question: "What types of deepfakes can ScamAI detect in images and videos?",
+    answer: "ScamAI detects face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney, Flux), video deepfakes with frame-by-frame and temporal analysis, synthetic faces, and 4K video manipulation.",
+  },
+  {
+    question: "What image and video formats does ScamAI support?",
+    answer: "ScamAI supports JPG, PNG, GIF, and WebP image formats, and MP4, MOV, and AVI video formats. 4K video analysis is supported with frame-by-frame deepfake detection.",
+  },
+  {
+    question: "How fast is ScamAI deepfake detection?",
+    answer: "Eva-v1-Fast processes images in under 2 seconds, suitable for real-time content moderation and high-volume KYC screening. Eva-v1-Pro processes in under 4 seconds for forensic-grade analysis and high-stakes identity verification.",
+  },
+  {
+    question: "Is there a free deepfake detector I can try?",
+    answer: "Yes. ScamAI includes 200 free image analyses per month — no credit card required. Sign up at app.scam.ai to get instant access to the deepfake detector with the Eva-v1-Fast model. Upgrade to pay-as-you-go ($0.05/image) or Enterprise when your volume grows.",
+  },
+  {
+    question: "Can I integrate deepfake detection into my app via API?",
+    answer: "Yes. ScamAI provides a REST API that integrates in under 10 minutes. Make a POST request with your image URL, receive a JSON response with is_deepfake boolean, confidence score, and model used. SDKs for Python and JavaScript are available.",
+  },
+];
+
+function FAQAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section className="landing-section relative overflow-hidden bg-black" aria-label="Frequently Asked Questions">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 py-20 sm:py-24 lg:py-32">
+        <div className="text-center mb-12">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs">FAQ</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-[1.1]">
+            AI Image Detection Questions
+          </h2>
+        </div>
+        <div className="space-y-4">
+          {aiFaqs.map((faq, index) => (
+            <div
+              key={index}
+              className="rounded-2xl border border-gray-800 overflow-hidden transition-colors duration-300 hover:border-gray-700"
+              style={{ background: openIndex === index ? "rgba(36, 95, 255, 0.03)" : "rgba(17, 24, 39, 0.3)" }}
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full px-6 py-5 flex items-start justify-between text-left transition-colors hover:bg-gray-800/30"
+                aria-expanded={openIndex === index}
+              >
+                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{faq.question}</span>
+                <motion.svg
+                  animate={{ rotate: openIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-5 h-5 text-[#245FFF] flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </motion.svg>
+              </button>
+              <AnimatePresence initial={false}>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-5">
+                      <p className="text-gray-300 leading-relaxed" data-speakable>{faq.answer}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

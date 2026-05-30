@@ -371,6 +371,7 @@ export default function NewLanding() {
                     loop
                     muted
                     playsInline
+                    poster="/en/opengraph-image"
                     className="w-full h-auto rounded-xl"
                   >
                     <source src="/dashboard.mp4" type="video/mp4" />

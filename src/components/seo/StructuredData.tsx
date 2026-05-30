@@ -48,11 +48,6 @@ export default function StructuredData() {
     "memberOf": {
       "@type": "Organization",
       "name": "Berkeley SkyDeck"
-    },
-    "funding": {
-      "@type": "MonetaryAmount",
-      "currency": "USD",
-      "value": "2600000"
     }
   };
 
@@ -62,7 +57,20 @@ export default function StructuredData() {
     "name": "ScamAI",
     "url": "https://scam.ai",
     "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes",
-    "inLanguage": ["en", "es", "pt", "ja", "ko", "zh-CN", "zh-TW", "id", "fr", "de", "ar"]
+    "inLanguage": ["en", "es", "pt", "ja", "ko", "zh-CN", "zh-TW", "id", "fr", "de", "ar"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://scam.ai/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ScamAI",
+      "url": "https://scam.ai"
+    }
   };
 
   const softwareSchema = {
@@ -246,6 +254,36 @@ export default function StructuredData() {
     ]
   };
 
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "ScamAI Deepfake Detection Platform — Product Demo",
+    "description": "See ScamAI's deepfake detection platform in action. Detect AI-generated images, deepfake videos, and synthetic media in real-time with 95.3% accuracy using the Eva-v1 model.",
+    "thumbnailUrl": "https://scam.ai/en/opengraph-image",
+    "contentUrl": "https://scam.ai/dashboard.mp4",
+    "uploadDate": "2024-06-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ScamAI",
+      "url": "https://scam.ai",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://scam.ai/scamai-logo.svg"
+      }
+    }
+  };
+
+  const speakableSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ScamAI — Deepfake Detection Platform",
+    "url": "https://scam.ai",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "[data-speakable]"]
+    }
+  };
+
   return (
     <>
       <script
@@ -271,6 +309,14 @@ export default function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }}
       />
     </>
   );

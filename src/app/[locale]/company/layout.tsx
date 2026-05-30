@@ -1,5 +1,6 @@
 import { generatePageMetadata, pageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
+import PageSchema from '@/components/seo/PageSchema';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -10,10 +11,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   });
 }
 
-export default function CompanyLayout({
+export default async function CompanyLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: Locale }>;
 }) {
-  return <>{children}</>;
+  const { locale } = await params;
+  return (
+    <>
+      <PageSchema locale={locale} path="/company" breadcrumbs={[{ name: 'Company' }]} />
+      {children}
+    </>
+  );
 }
