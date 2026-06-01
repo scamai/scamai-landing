@@ -418,3 +418,38 @@ footer {
     overflow-x: hidden;
   }
 }
+
+/* Computex 2026 event banner (brand accent #6d5dfb) */
+.cx-banner-shell {
+  background:
+    radial-gradient(120% 180% at 12% 50%, rgba(109, 93, 251, 0.16), transparent 60%),
+    radial-gradient(120% 180% at 90% 50%, rgba(109, 93, 251, 0.1), transparent 55%),
+    linear-gradient(180deg, #0b1022, #080a14);
+}
+.cx-banner-sheen {
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(109, 93, 251, 0.16) 48%,
+    rgba(179, 169, 255, 0.16) 54%,
+    transparent 64%
+  );
+  background-size: 250% 100%;
+  animation: cxBannerSheen 7.5s linear infinite;
+}
+@keyframes cxBannerSheen {
+  from {
+    background-position: 160% 0;
+  }
+  to {
+    background-position: -160% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cx-banner-sheen {
+    animation: none;
+  }
+  .cx-ping {
+    animation: none;
+  }
+}
