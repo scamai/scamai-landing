@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import CommandPalette from "./CommandPalette";
+import ComputexBanner, { useEventBanner, BANNER_HEIGHT } from "./ComputexBanner";
 import { trackCTA, trackNav, trackOutbound } from "@/lib/analytics";
 
 type NavChild = {
@@ -199,6 +200,7 @@ export default function NewNav() {
   const router = useRouter();
   const pathname = usePathname();
   const isLandingPage = pathname === "/" || pathname === "";
+  const { visible: bannerVisible, dismiss: dismissBanner } = useEventBanner();
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
   const solutionsDropdownRef = useRef<HTMLDivElement>(null);
@@ -254,17 +256,20 @@ export default function NewNav() {
     setLangOpen(false);
   };
 
-  const announcementHeight = isLandingPage ? 36 : 0;
+  const showBanner = isLandingPage && bannerVisible;
+  const announcementHeight = showBanner ? BANNER_HEIGHT : 0;
 
   return (
     <>
-      {isLandingPage && (
-        <div className="fixed top-0 left-0 right-0 w-full bg-[#0021f3] py-2 text-center z-50" style={{ height: '36px' }}>
-          <p className="text-xs sm:text-sm text-white leading-tight">
-            Scam.ai raised $2.6M and joined Berkeley SkyDeck
-          </p>
-        </div>
-      )}
+      {/* Computex 2026 event banner — replaces the "$2.6M / Berkeley SkyDeck"
+          strip for the event window (Jun 2–5). To revert after the event,
+          restore the strip below and drop ComputexBanner:
+          <div className="fixed top-0 left-0 right-0 w-full bg-[#0021f3] py-2 text-center z-50" style={{ height: '36px' }}>
+            <p className="text-xs sm:text-sm text-white leading-tight">
+              Scam.ai raised $2.6M and joined Berkeley SkyDeck
+            </p>
+          </div> */}
+      {showBanner && <ComputexBanner onDismiss={dismissBanner} />}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
