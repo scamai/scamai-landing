@@ -4,6 +4,9 @@ import { Bento46, Bento53 } from "@/components/bento";
 import { BentoV1_18, BentoV1_20 } from "@/components/bento-v1";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState, Suspense } from "react";
+import { getIndustryBySlug } from "@/lib/solutions/industries";
+import { getArticleBySlug } from "@/lib/learn/articles";
+import { audioDetectionSolutionLinks, audioDetectionLearnLinks, audioDetectionCompareLink } from "@/lib/internal-links";
 
 function BentoSkeleton() {
   return (
@@ -393,6 +396,37 @@ export default function AudioDetectionPage() {
                   Open-source detector benchmark
                 </Link>
               </p>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="mt-14 mx-auto max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4 text-center">Industry Solutions & Learning</p>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {audioDetectionSolutionLinks.map((slug) => {
+                  const sol = getIndustryBySlug(slug);
+                  if (!sol) return null;
+                  return (
+                    <Link key={slug} href={`/solutions/${slug}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
+                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{sol.name}</span>
+                      <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </Link>
+                  );
+                })}
+                {audioDetectionLearnLinks.map((slug) => {
+                  const article = getArticleBySlug(slug);
+                  if (!article) return null;
+                  return (
+                    <Link key={slug} href={`/learn/${slug}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
+                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{article.title}</span>
+                      <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </Link>
+                  );
+                })}
+                <Link href={`/compare/${audioDetectionCompareLink}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
+                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">ScamAI vs Sensity AI</span>
+                  <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </Link>
+              </div>
             </div>
           </AnimatedSection>
         </div>

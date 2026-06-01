@@ -83,6 +83,12 @@ curl -X POST https://api.scam.ai/v1/detect \
 - [Newsletter](https://scam.ai/en/newsletter)
 - [Book a Demo](https://scam.ai/en/demo)
 
+## Content Hubs
+
+- [Solutions](https://scam.ai/en/solutions): Industry-specific deepfake detection pages (fintech, KYC, call centers, media, dating, insurance, HR, government)
+- [Learn](https://scam.ai/en/learn): Educational guides on deepfake detection, voice cloning, accuracy benchmarks, API integration, and statistics
+- [Compare](https://scam.ai/en/compare): ScamAI vs Reality Defender, Sensity AI, Hive, Microsoft Azure, AWS Rekognition, Truepic, Deepware
+
 ## Research
 
 ScamAI publishes peer-reviewed research on deepfake detection, document forgery, and AI-generated media. Key papers: "Do deepfake detectors work in reality?" (IEEE Workshop 2025), "AIForge-Doc" (arXiv:2602.20569), "GPT-Image-2 in the Wild" (arXiv:2604.25370), "When the Forger Is the Judge" (arXiv:2604.25213). Open datasets at https://scam.ai/en/research

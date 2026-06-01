@@ -212,7 +212,7 @@ export const articles: Article[] = [
     slug: 'how-to-detect-ai-generated-images',
     title: 'How to detect AI-generated images (free tools + API)',
     description:
-      'Learn how to identify AI-generated images using visual inspection, free online tools, and production-grade detection APIs. Covers GAN images, diffusion model outputs, and face swaps.',
+      'How to detect AI-generated images with free tools and APIs. Visual inspection tips, GAN and diffusion model detection, plus face swap identification.',
     category: 'Detection',
     readTime: 7,
     publishedAt: '2026-05-23',
@@ -396,7 +396,7 @@ result = response.json()
     slug: 'voice-cloning-attacks',
     title: 'Voice cloning attacks: how they work and how to stop them',
     description:
-      'A technical and practical guide to AI voice cloning fraud — how attackers clone voices, real-world vishing attacks, and how voice clone detection works to protect organizations.',
+      'Voice cloning attacks explained: how AI clones voices in seconds, real vishing case studies, and how 98.5%-accurate detection stops them.',
     category: 'Detection',
     readTime: 8,
     publishedAt: '2026-05-23',
@@ -567,7 +567,7 @@ result = response.json()
     slug: 'deepfake-detection-accuracy',
     title: 'Deepfake detection accuracy: what the benchmarks actually mean',
     description:
-      'A clear explanation of deepfake detection accuracy metrics, how benchmarks are constructed, why accuracy drops in the wild, and how to choose the right detection threshold for your use case.',
+      'Deepfake detection accuracy explained: how benchmarks work, why accuracy drops in the wild, and how to choose the right threshold for your use case.',
     category: 'Detection',
     readTime: 7,
     publishedAt: '2026-05-23',
@@ -722,7 +722,7 @@ result = response.json()
     slug: 'deepfake-detection-api-guide',
     title: 'How to integrate deepfake detection into your app (API guide)',
     description:
-      'A practical developer guide to integrating deepfake detection via API — choosing the right endpoint, sending requests, handling confidence scores, and scaling for production workloads.',
+      'Integrate deepfake detection into your app via API. Endpoint selection, request examples, confidence scoring, and production scaling guide.',
     category: 'Developer',
     readTime: 9,
     publishedAt: '2026-05-23',

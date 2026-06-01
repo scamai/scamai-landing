@@ -5,6 +5,9 @@ import { Link } from '@/i18n/navigation';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { getIndustryBySlug } from '@/lib/solutions/industries';
+import { getArticleBySlug } from '@/lib/learn/articles';
+import { getCompetitorBySlug } from '@/lib/compare/competitors';
+import { solutionToLearnLinks, solutionToCompareLinks } from '@/lib/internal-links';
 import { notFound } from 'next/navigation';
 
 function AnimatedSection({
@@ -223,11 +226,52 @@ export default function IndustryPage() {
                 </Link>
                 .
               </p>
+              <IndustryCrossLinks slug={slug} />
             </div>
           </AnimatedSection>
         </div>
       </section>
     </main>
+  );
+}
+
+function IndustryCrossLinks({ slug }: { slug: string }) {
+  const learnSlugs = solutionToLearnLinks[slug] || [];
+  const compareSlug = solutionToCompareLinks[slug];
+  const learnArticles = learnSlugs.map(s => getArticleBySlug(s)).filter(Boolean);
+  const competitor = compareSlug ? getCompetitorBySlug(compareSlug) : null;
+
+  if (learnArticles.length === 0 && !competitor) return null;
+
+  return (
+    <div className="mt-10 mx-auto max-w-2xl">
+      <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4">Related resources</p>
+      <div className="space-y-2">
+        {learnArticles.map((article) => (
+          <Link
+            key={article!.slug}
+            href={`/learn/${article!.slug}`}
+            className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
+          >
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{article!.title}</span>
+            <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        ))}
+        {competitor && (
+          <Link
+            href={`/compare/${competitor.slug}`}
+            className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
+          >
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Compare: ScamAI vs {competitor.name}</span>
+            <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        )}
+      </div>
+    </div>
   );
 }
 

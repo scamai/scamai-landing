@@ -1747,5 +1747,34 @@
         }
       }
     }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": { "title": "Detección de deepfakes para fintech y banca", "metaDescription": "Detección de deepfakes para KYC fintech con 95.3% de precisión. Detecta identidades sintéticas y documentos falsificados en menos de 4 segundos.", "headline": "Detección de deepfakes para fintech y banca" },
+      "dating": { "title": "Detección de deepfakes y perfiles falsos para apps de citas", "metaDescription": "Detecta perfiles falsos generados por IA y catfishing de voz en apps de citas. 95.3% de precisión. 200 análisis gratis al mes.", "headline": "Detección de deepfakes y perfiles falsos para apps de citas" },
+      "call-centers": { "title": "Detección de clonación de voz para centros de llamadas", "metaDescription": "Detección de clonación de voz en centros de llamadas con 98.5% de precisión. Detecta ataques vishing en tiempo real. Certificación SOC 2.", "headline": "Detección de clonación de voz para centros de llamadas" },
+      "kyc": { "title": "Detener el fraude deepfake en la verificación de identidad KYC", "metaDescription": "Detecta selfies deepfake y documentos de identidad editados con IA en procesos KYC. 95.3% de precisión en menos de 4 segundos.", "headline": "Detener el fraude deepfake en la verificación de identidad KYC" },
+      "media": { "title": "Detección de contenido generado por IA para medios", "metaDescription": "API de detección de deepfakes para redacciones. Verifica imágenes, video y audio antes de publicar. 95.3% de precisión, 200 gratis/mes.", "headline": "Detección de contenido generado por IA para medios y redacciones" },
+      "insurance": { "title": "Detectar fraude generado por IA en reclamaciones de seguros", "metaDescription": "Detecta fotos editadas con IA y documentos falsificados en reclamaciones de seguros. $0.05/imagen, certificación SOC 2.", "headline": "Detectar fraude generado por IA en reclamaciones de seguros" },
+      "hr": { "title": "Detectar deepfakes en entrevistas remotas de trabajo", "metaDescription": "Detecta deepfakes y herramientas de voz IA en entrevistas remotas. ScamAI verifica la autenticidad de video y audio para equipos de RRHH.", "headline": "Detectar deepfakes en entrevistas remotas y contratación por video" },
+      "government": { "title": "Detección de medios sintéticos para gobierno y sector público", "metaDescription": "Detección de medios sintéticos para agencias gubernamentales. Detecta videos deepfake e imágenes generadas por IA a escala. SLA empresarial.", "headline": "Detección de medios sintéticos para gobierno y sector público" }
+    },
+    "compare": {
+      "reality-defender": { "title": "ScamAI vs Reality Defender: Comparación de detección de deepfakes", "metaDescription": "ScamAI vs Reality Defender: $0.05/imagen vs contratos anuales, 200 imágenes gratis vs ninguna. Comparación completa.", "tagline": "ScamAI vs Reality Defender: Comparación de detección de deepfakes" },
+      "sensity": { "title": "ScamAI vs Sensity AI: Comparación de detección de deepfakes", "metaDescription": "ScamAI vs Sensity AI: imágenes, video, audio y documentos en una API. $0.05/imagen, 200 gratis/mes. Comparación completa.", "tagline": "ScamAI vs Sensity AI: Comparación de detección de deepfakes" },
+      "hive": { "title": "ScamAI vs Hive Moderation: Comparación de detección de deepfakes", "metaDescription": "ScamAI vs Hive: 95.3% detección de deepfakes vs moderación general. Detección de clones de voz + falsificación de documentos.", "tagline": "ScamAI vs Hive Moderation: Comparación de detección de deepfakes" },
+      "microsoft-azure": { "title": "ScamAI vs Microsoft Azure AI Content Safety", "metaDescription": "ScamAI vs Azure: 95.3% detección de deepfakes especializada vs clasificador general. Incluye detección de clones de voz.", "tagline": "ScamAI vs Microsoft Azure AI: Comparación de detección de deepfakes" },
+      "aws-rekognition": { "title": "ScamAI vs AWS Rekognition: Comparación de detección de deepfakes", "metaDescription": "ScamAI vs AWS Rekognition: modelo dedicado de detección de deepfakes vs análisis facial general.", "tagline": "ScamAI vs AWS Rekognition: Comparación de detección de deepfakes" },
+      "truepic": { "title": "ScamAI vs Truepic: Comparación de detección de deepfakes", "metaDescription": "ScamAI vs Truepic: detección de deepfakes por IA en cualquier imagen vs proveniencia C2PA que requiere hardware especial.", "tagline": "ScamAI vs Truepic: Comparación de detección de deepfakes" },
+      "deepware": { "title": "ScamAI vs Deepware: Comparación de detección de deepfakes", "metaDescription": "ScamAI vs Deepware: API empresarial con SLA 99.9% y SOC 2 vs escáner gratuito para consumidores.", "tagline": "ScamAI vs Deepware: Comparación de detección de deepfakes" }
+    },
+    "learn": {
+      "what-is-a-deepfake": { "title": "¿Qué es un deepfake? Cómo funcionan y cómo detectarlos", "description": "Guía completa sobre deepfakes: qué son, cómo los crea la IA, por qué son una amenaza de seguridad y cómo funciona la tecnología de detección." },
+      "how-to-detect-ai-generated-images": { "title": "Cómo detectar imágenes generadas por IA (herramientas gratis + API)", "description": "Cómo detectar imágenes generadas por IA con herramientas gratuitas y APIs. Consejos de inspección visual y detección de modelos GAN y difusión." },
+      "voice-cloning-attacks": { "title": "Ataques de clonación de voz: cómo funcionan y cómo detenerlos", "description": "Ataques de clonación de voz explicados: cómo la IA clona voces en segundos, casos reales de vishing y cómo la detección los detiene." },
+      "deepfake-detection-accuracy": { "title": "Precisión de detección de deepfakes: qué significan los benchmarks", "description": "Precisión de detección de deepfakes explicada: cómo funcionan los benchmarks y cómo elegir el umbral correcto para tu caso de uso." },
+      "deepfake-detection-api-guide": { "title": "Cómo integrar detección de deepfakes en tu app (guía API)", "description": "Integra detección de deepfakes en tu app vía API. Selección de endpoints, ejemplos de solicitudes y guía de escalado en producción." },
+      "deepfake-statistics-2026": { "title": "Estadísticas de deepfakes 2026: los números que necesitas saber", "description": "La colección definitiva de estadísticas de deepfakes para 2026: pérdidas por fraude, benchmarks de detección e impacto regulatorio." }
+    }
   }
 }

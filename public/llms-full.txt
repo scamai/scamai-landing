@@ -189,6 +189,35 @@ curl -X POST https://api.scam.ai/v1/detect \
 - [Terms of Service](https://scam.ai/en/terms): Usage terms
 - [MSA](https://scam.ai/en/msa): Master Service Agreement
 
+## Content Hubs
+
+### Industry Solutions (https://scam.ai/en/solutions)
+- [Fintech & Banking](https://scam.ai/en/solutions/fintech): KYC deepfake protection and identity fraud prevention
+- [KYC Verification](https://scam.ai/en/solutions/kyc): Deepfake selfie and ID document detection for onboarding
+- [Call Centers](https://scam.ai/en/solutions/call-centers): Real-time voice clone detection for vishing prevention
+- [Media & Publishing](https://scam.ai/en/solutions/media): AI-generated content detection for newsrooms
+- [Dating Apps](https://scam.ai/en/solutions/dating): Fake profile and voice catfishing prevention
+- [Insurance](https://scam.ai/en/solutions/insurance): AI claims fraud and synthetic evidence detection
+- [HR & Hiring](https://scam.ai/en/solutions/hr): Remote interview deepfake detection
+- [Government](https://scam.ai/en/solutions/government): Synthetic media detection for public sector
+
+### Learn Hub (https://scam.ai/en/learn)
+- [What is a deepfake?](https://scam.ai/en/learn/what-is-a-deepfake): Complete guide to deepfakes — how they work and detection methods
+- [How to detect AI-generated images](https://scam.ai/en/learn/how-to-detect-ai-generated-images): Free tools and APIs for detection
+- [Voice cloning attacks](https://scam.ai/en/learn/voice-cloning-attacks): How they work and how to stop them
+- [Deepfake detection accuracy](https://scam.ai/en/learn/deepfake-detection-accuracy): Benchmarks explained and threshold selection
+- [API integration guide](https://scam.ai/en/learn/deepfake-detection-api-guide): Developer guide for deepfake detection API
+- [Deepfake statistics 2026](https://scam.ai/en/learn/deepfake-statistics-2026): Key numbers on fraud losses, detection, and regulation
+
+### Competitor Comparisons (https://scam.ai/en/compare)
+- [ScamAI vs Reality Defender](https://scam.ai/en/compare/reality-defender): $0.05/image vs annual contracts, 200 free vs none
+- [ScamAI vs Sensity AI](https://scam.ai/en/compare/sensity): Broader coverage (image + audio + documents) vs intelligence focus
+- [ScamAI vs Hive Moderation](https://scam.ai/en/compare/hive): Purpose-built deepfake detection vs general moderation
+- [ScamAI vs Microsoft Azure](https://scam.ai/en/compare/microsoft-azure): Deepfake-specific 95.3% vs general content safety
+- [ScamAI vs AWS Rekognition](https://scam.ai/en/compare/aws-rekognition): Dedicated deepfake model vs general face analysis
+- [ScamAI vs Truepic](https://scam.ai/en/compare/truepic): AI detection on any image vs C2PA provenance needing camera hardware
+- [ScamAI vs Deepware](https://scam.ai/en/compare/deepware): Enterprise API with SLA vs consumer scanner
+
 ## Research & Publications
 
 ScamAI (Reality Inc.) publishes peer-reviewed research and open datasets in deepfake detection, document forgery, and AI-generated media analysis. All papers are authored by the ScamAI research team.
