@@ -2,6 +2,17 @@ import { generatePageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
 import { Link } from '@/i18n/navigation';
 import { industries } from '@/lib/solutions/industries';
+import {
+  Landmark,
+  Heart,
+  Phone,
+  ScanFace,
+  Newspaper,
+  ShieldCheck,
+  Users,
+  Building2,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -23,15 +34,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   });
 }
 
-const industryIcons: Record<string, string> = {
-  fintech: '🏦',
-  dating: '💬',
-  'call-centers': '📞',
-  kyc: '🪪',
-  media: '📰',
-  insurance: '🛡️',
-  hr: '👤',
-  government: '🏛️',
+const industryIcons: Record<string, LucideIcon> = {
+  fintech: Landmark,
+  dating: Heart,
+  'call-centers': Phone,
+  kyc: ScanFace,
+  media: Newspaper,
+  insurance: ShieldCheck,
+  hr: Users,
+  government: Building2,
 };
 
 export default async function SolutionsPage({ params }: { params: Promise<{ locale: Locale }> }) {
@@ -59,7 +70,14 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
                 href={`/solutions/${industry.slug}`}
                 className="group rounded-2xl border border-gray-800/60 bg-white/[0.02] p-7 hover:border-[#245FFF]/40 hover:bg-[#245FFF]/[0.03] transition-all duration-200"
               >
-                <div className="text-2xl mb-4">{industryIcons[industry.slug] ?? '🔍'}</div>
+                {(() => {
+                  const Icon = industryIcons[industry.slug];
+                  return Icon ? (
+                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-gray-800 bg-white/[0.03]">
+                      <Icon className="h-5 w-5 text-[#245FFF]" strokeWidth={1.5} />
+                    </div>
+                  ) : null;
+                })()}
                 <h2 className="text-lg font-bold text-white mb-2 group-hover:text-[#245FFF] transition-colors">
                   {industry.name}
                 </h2>
