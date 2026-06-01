@@ -88,7 +88,7 @@ export const competitors: Competitor[] = [
       'Reality Defender pricing',
     ],
     metaDescription:
-      'ScamAI vs Reality Defender: transparent per-image pricing vs annual contracts, 200 free images vs no free tier, 10-minute self-serve API vs custom onboarding. Full deepfake detection comparison.',
+      'ScamAI vs Reality Defender: $0.05/image vs annual contracts, 200 free images vs none, 10-min API setup vs custom onboarding. Full comparison.',
   },
   {
     slug: 'sensity',
@@ -160,7 +160,7 @@ export const competitors: Competitor[] = [
       'deepfake detection Sensity',
     ],
     metaDescription:
-      'ScamAI vs Sensity AI: broader synthetic media coverage (images, video, audio, documents), transparent per-image pricing vs enterprise contracts, and a 200-image free tier. Full comparison.',
+      'ScamAI vs Sensity AI: images, video, audio, and documents in one API. $0.05/image vs enterprise contracts, 200 free/month. Full comparison.',
   },
   {
     slug: 'hive',
@@ -232,7 +232,7 @@ export const competitors: Competitor[] = [
       'Hive Moderation pricing',
     ],
     metaDescription:
-      'ScamAI vs Hive Moderation: purpose-built deepfake detection at 95.3% vs general content moderation, plus voice clone detection not offered by Hive. Transparent per-image pricing.',
+      'ScamAI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.',
   },
   {
     slug: 'microsoft-azure',
@@ -304,7 +304,7 @@ export const competitors: Competitor[] = [
       'Microsoft Azure synthetic media',
     ],
     metaDescription:
-      'ScamAI vs Microsoft Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general content safety, plus voice clone and document forgery detection Azure does not offer.',
+      'ScamAI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.',
   },
   {
     slug: 'aws-rekognition',
@@ -448,7 +448,7 @@ export const competitors: Competitor[] = [
       'content credentials vs deepfake detection',
     ],
     metaDescription:
-      'ScamAI vs Truepic: AI deepfake detection that works on any image vs C2PA cryptographic provenance requiring camera hardware. ScamAI detects deepfakes retroactively without C2PA metadata.',
+      'ScamAI vs Truepic: AI deepfake detection on any image vs C2PA provenance needing camera hardware. Works retroactively, no metadata required.',
   },
   {
     slug: 'deepware',
@@ -520,7 +520,7 @@ export const competitors: Competitor[] = [
       'enterprise deepfake API',
     ],
     metaDescription:
-      'ScamAI vs Deepware: enterprise production API with 99.9% SLA and SOC 2 vs consumer scanner with no API. ScamAI adds voice clone detection, KYC integration, and enterprise compliance.',
+      'ScamAI vs Deepware: production API with 99.9% SLA and SOC 2 vs free consumer scanner. Enterprise KYC integration + voice clone detection.',
   },
 ];
 

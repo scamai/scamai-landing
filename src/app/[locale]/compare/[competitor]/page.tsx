@@ -5,6 +5,9 @@ import { Link } from '@/i18n/navigation';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { getCompetitorBySlug } from '@/lib/compare/competitors';
+import { getIndustryBySlug } from '@/lib/solutions/industries';
+import { getArticleBySlug } from '@/lib/learn/articles';
+import { compareToSolutionLinks, compareToLearnLinks } from '@/lib/internal-links';
 import { notFound } from 'next/navigation';
 
 function AnimatedSection({
@@ -230,11 +233,53 @@ export default function ComparePage() {
                 </Link>
                 .
               </p>
+              <CompareCrossLinks slug={slug} />
             </div>
           </AnimatedSection>
         </div>
       </section>
     </main>
+  );
+}
+
+function CompareCrossLinks({ slug }: { slug: string }) {
+  const solutionSlugs = compareToSolutionLinks[slug] || [];
+  const learnSlugs = compareToLearnLinks[slug] || [];
+  const solutions = solutionSlugs.map(s => getIndustryBySlug(s)).filter(Boolean);
+  const articles = learnSlugs.map(s => getArticleBySlug(s)).filter(Boolean);
+
+  if (solutions.length === 0 && articles.length === 0) return null;
+
+  return (
+    <div className="mt-10 mx-auto max-w-2xl">
+      <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4">Explore further</p>
+      <div className="space-y-2">
+        {solutions.map((sol) => (
+          <Link
+            key={sol!.slug}
+            href={`/solutions/${sol!.slug}`}
+            className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
+          >
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{sol!.name} solution</span>
+            <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        ))}
+        {articles.map((article) => (
+          <Link
+            key={article!.slug}
+            href={`/learn/${article!.slug}`}
+            className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
+          >
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{article!.title}</span>
+            <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
 

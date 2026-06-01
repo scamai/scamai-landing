@@ -20,6 +20,8 @@ function BentoSkeleton() {
 import PricingSection from "./PricingSection";
 import FAQSection from "./FAQSection";
 import SolutionsSection from "./SolutionsSection";
+import { getArticleBySlug } from "@/lib/learn/articles";
+import { topLearnArticles } from "@/lib/internal-links";
 
 type FileWithPreview = {
   file: File;
@@ -611,6 +613,40 @@ export default function NewLanding() {
 
       {/* Session6: Pricing */}
       <PricingSection />
+
+      <div className="section-divider" />
+
+      {/* Resources — cross-links to learn, solutions, compare */}
+      <section className="landing-section relative overflow-hidden bg-black">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 py-16 sm:py-20">
+          <div className="text-center mb-10">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-3 sm:text-[10px]">RESOURCES</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Learn about deepfake detection</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3 mb-8">
+            {topLearnArticles.map((slug) => {
+              const article = getArticleBySlug(slug);
+              if (!article) return null;
+              return (
+                <Link
+                  key={slug}
+                  href={`/learn/${slug}`}
+                  className="group rounded-xl border border-gray-800/60 bg-white/[0.02] p-5 hover:border-[#245FFF]/30 hover:bg-[#245FFF]/[0.02] transition-all"
+                >
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-600 mb-2">{article.category}</p>
+                  <p className="text-sm font-semibold text-white group-hover:text-[#245FFF] transition-colors leading-snug mb-2">{article.title}</p>
+                  <p className="text-xs text-gray-600">{article.readTime} min read</p>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <Link href="/learn" className="text-[#245FFF] hover:underline">All guides →</Link>
+            <Link href="/solutions" className="text-[#245FFF] hover:underline">Industry solutions →</Link>
+            <Link href="/compare" className="text-[#245FFF] hover:underline">Compare tools →</Link>
+          </div>
+        </div>
+      </section>
 
       <div className="section-divider" />
 

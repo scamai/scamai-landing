@@ -1,17 +1,36 @@
 import { getPublishedNewsletters } from '@/lib/db/newsletters';
+import { articles } from '@/lib/learn/articles';
 
 export async function GET() {
   const newsletters = await getPublishedNewsletters();
   const baseUrl = 'https://scam.ai';
 
-  const items = newsletters
+  const allItems = [
+    ...newsletters.map((nl) => ({
+      title: nl.title,
+      link: `${baseUrl}/en/newsletter/${nl.slug || nl.id}`,
+      pubDate: new Date(nl.date),
+      description: nl.summary || '',
+      category: 'Newsletter',
+    })),
+    ...articles.map((a) => ({
+      title: a.title,
+      link: `${baseUrl}/en/learn/${a.slug}`,
+      pubDate: new Date(a.publishedAt),
+      description: a.description,
+      category: a.category,
+    })),
+  ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+
+  const items = allItems
     .map(
-      (nl) => `    <item>
-      <title>${escapeXml(nl.title)}</title>
-      <link>${baseUrl}/en/newsletter/${nl.slug || nl.id}</link>
-      <guid isPermaLink="true">${baseUrl}/en/newsletter/${nl.slug || nl.id}</guid>
-      <pubDate>${new Date(nl.date).toUTCString()}</pubDate>
-      <description>${escapeXml(nl.summary || '')}</description>
+      (item) => `    <item>
+      <title>${escapeXml(item.title)}</title>
+      <link>${item.link}</link>
+      <guid isPermaLink="true">${item.link}</guid>
+      <pubDate>${item.pubDate.toUTCString()}</pubDate>
+      <description>${escapeXml(item.description)}</description>
+      <category>${escapeXml(item.category)}</category>
     </item>`
     )
     .join('\n');
@@ -19,7 +38,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ScamAI News</title>
+    <title>ScamAI — Deepfake Detection Insights</title>
     <link>${baseUrl}/en/newsletter</link>
     <description>Weekly insights on deepfake technology, AI security, and synthetic media detection from ScamAI.</description>
     <language>en</language>
