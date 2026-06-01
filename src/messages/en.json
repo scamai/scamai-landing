@@ -1711,5 +1711,34 @@
         }
       }
     }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": { "title": "Deepfake detection for fintech and banking", "metaDescription": "Deepfake detection for fintech KYC at 95.3% accuracy. Detect synthetic identities, forged documents, and voice clones in under 4 seconds. SOC 2 certified.", "headline": "Deepfake detection for fintech and banking" },
+      "dating": { "title": "Deepfake and fake profile detection for dating apps", "metaDescription": "Detect AI-generated fake profiles and voice catfishing on dating apps. ScamAI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.", "headline": "Deepfake and fake profile detection for dating apps" },
+      "call-centers": { "title": "Voice clone detection for call centers", "metaDescription": "Voice clone detection for call centers at 98.5% accuracy. Detect vishing attacks in real time, under 3 seconds. SOC 2 certified, 10-minute API setup.", "headline": "Voice clone detection for call centers" },
+      "kyc": { "title": "Stop deepfake fraud in KYC identity verification", "metaDescription": "Detect deepfake selfies and AI-edited ID documents in KYC onboarding. ScamAI's Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.", "headline": "Stop deepfake fraud in KYC identity verification" },
+      "media": { "title": "AI-generated content detection for media and newsrooms", "metaDescription": "Deepfake detection API for newsrooms. Verify images, video, and audio for AI generation before publication. 95.3% accuracy, 200 free/month.", "headline": "AI-generated content detection for media and newsrooms" },
+      "insurance": { "title": "Detect AI-generated fraud in insurance claims", "metaDescription": "Detect AI-edited photos and forged documents in insurance claims. ScamAI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.", "headline": "Detect AI-generated fraud in insurance claims" },
+      "hr": { "title": "Detect deepfakes in remote interviews and video hiring", "metaDescription": "Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. ScamAI verifies video and audio authenticity for HR teams and hiring platforms.", "headline": "Detect deepfakes in remote interviews and video hiring" },
+      "government": { "title": "Synthetic media detection for government and public sector", "metaDescription": "Synthetic media detection for government agencies. Detect deepfake videos and AI-generated imagery at scale. Enterprise SLA, SOC 2 certified.", "headline": "Synthetic media detection for government and public sector" }
+    },
+    "compare": {
+      "reality-defender": { "title": "ScamAI vs Reality Defender: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Reality Defender: $0.05/image vs annual contracts, 200 free images vs none, 10-min API setup vs custom onboarding. Full comparison.", "tagline": "ScamAI vs Reality Defender: Deepfake Detection Comparison" },
+      "sensity": { "title": "ScamAI vs Sensity AI: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Sensity AI: images, video, audio, and documents in one API. $0.05/image vs enterprise contracts, 200 free/month. Full comparison.", "tagline": "ScamAI vs Sensity AI: Deepfake Detection Comparison" },
+      "hive": { "title": "ScamAI vs Hive Moderation: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.", "tagline": "ScamAI vs Hive Moderation: Deepfake Detection Comparison" },
+      "microsoft-azure": { "title": "ScamAI vs Microsoft Azure AI Content Safety", "metaDescription": "ScamAI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.", "tagline": "ScamAI vs Microsoft Azure AI Content Safety: Deepfake Detection Comparison" },
+      "aws-rekognition": { "title": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison", "metaDescription": "ScamAI vs AWS Rekognition: dedicated deepfake detection model vs general face analysis, plus voice clone and document forgery detection not available in Rekognition.", "tagline": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison" },
+      "truepic": { "title": "ScamAI vs Truepic: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Truepic: AI deepfake detection on any image vs C2PA provenance needing camera hardware. Works retroactively, no metadata required.", "tagline": "ScamAI vs Truepic: Deepfake Detection Comparison" },
+      "deepware": { "title": "ScamAI vs Deepware: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Deepware: production API with 99.9% SLA and SOC 2 vs free consumer scanner. Enterprise KYC integration + voice clone detection.", "tagline": "ScamAI vs Deepware: Deepfake Detection Comparison" }
+    },
+    "learn": {
+      "what-is-a-deepfake": { "title": "What is a deepfake? How they work and how to detect them", "description": "A complete guide to deepfakes — what they are, how AI creates them, why they're a growing security threat, and how detection technology works." },
+      "how-to-detect-ai-generated-images": { "title": "How to detect AI-generated images (free tools + API)", "description": "How to detect AI-generated images with free tools and APIs. Visual inspection tips, GAN and diffusion model detection, plus face swap identification." },
+      "voice-cloning-attacks": { "title": "Voice cloning attacks: how they work and how to stop them", "description": "Voice cloning attacks explained: how AI clones voices in seconds, real vishing case studies, and how 98.5%-accurate detection stops them." },
+      "deepfake-detection-accuracy": { "title": "Deepfake detection accuracy: what the benchmarks actually mean", "description": "Deepfake detection accuracy explained: how benchmarks work, why accuracy drops in the wild, and how to choose the right threshold for your use case." },
+      "deepfake-detection-api-guide": { "title": "How to integrate deepfake detection into your app (API guide)", "description": "Integrate deepfake detection into your app via API. Endpoint selection, request examples, confidence scoring, and production scaling guide." },
+      "deepfake-statistics-2026": { "title": "Deepfake statistics 2026: the numbers you need to know", "description": "The definitive collection of deepfake statistics for 2026 — covering fraud losses, detection accuracy benchmarks, industry impact, and regulatory response." }
+    }
   }
 }

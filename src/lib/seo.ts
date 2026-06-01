@@ -34,6 +34,7 @@ export function generatePageMetadata({
   locales.forEach((loc) => {
     languages[loc] = `${baseUrl}/${loc}${path}`;
   });
+  languages['x-default'] = `${baseUrl}/en${path}`;
 
   return {
     title: fullTitle,
