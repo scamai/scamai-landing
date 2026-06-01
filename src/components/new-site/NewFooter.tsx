@@ -115,6 +115,8 @@ export default function NewFooter() {
             <Link href="/products/ai-detection" className="block text-gray-500 hover:text-white transition-colors">AI Detection</Link>
             <Link href="/products/audio-detection" className="block text-gray-500 hover:text-white transition-colors">Audio Detection</Link>
             <Link href="/pricing" className="block text-gray-500 hover:text-white transition-colors">Pricing</Link>
+            <Link href="/solutions" className="block text-gray-500 hover:text-white transition-colors">Solutions</Link>
+            <Link href="/compare" className="block text-gray-500 hover:text-white transition-colors">Compare</Link>
           </nav>
 
           <nav className="space-y-3 text-sm" aria-label="Resources navigation">
@@ -122,6 +124,7 @@ export default function NewFooter() {
             <a href="https://docu.scam.ai" target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-white transition-colors">Documentation</a>
             <a href="https://reality-inc.trust.site/" target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-white transition-colors">Security & Compliance</a>
             <Link href="/newsletter" className="block text-gray-500 hover:text-white transition-colors">Newsletter</Link>
+            <Link href="/learn" className="block text-gray-500 hover:text-white transition-colors">Learn</Link>
           </nav>
 
           <nav className="space-y-3 text-sm" aria-label="Company navigation">

@@ -1747,5 +1747,34 @@
         }
       }
     }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": { "title": "Deepfake-Erkennung für Fintech und Banken", "metaDescription": "Deepfake-Erkennung für Fintech-KYC mit 95,3% Genauigkeit. Erkennt synthetische Identitäten und gefälschte Dokumente in unter 4 Sekunden. SOC 2 zertifiziert.", "headline": "Deepfake-Erkennung für Fintech und Banken" },
+      "dating": { "title": "Deepfake- und Fake-Profil-Erkennung für Dating-Apps", "metaDescription": "Erkennt KI-generierte Fake-Profile und Voice-Catfishing in Dating-Apps. 95,3% Genauigkeit. 200 kostenlose Analysen pro Monat.", "headline": "Deepfake- und Fake-Profil-Erkennung für Dating-Apps" },
+      "call-centers": { "title": "Stimmenklonierung-Erkennung für Call Center", "metaDescription": "Stimmenklonierung-Erkennung für Call Center mit 98,5% Genauigkeit. Erkennt Vishing-Angriffe in Echtzeit. SOC 2 zertifiziert.", "headline": "Stimmenklonierung-Erkennung für Call Center" },
+      "kyc": { "title": "Deepfake-Betrug bei KYC-Identitätsverifizierung stoppen", "metaDescription": "Erkennt Deepfake-Selfies und KI-bearbeitete Ausweisdokumente bei KYC-Onboarding. 95,3% Genauigkeit in unter 4 Sekunden.", "headline": "Deepfake-Betrug bei KYC-Identitätsverifizierung stoppen" },
+      "media": { "title": "KI-generierte Inhaltserkennung für Medien und Redaktionen", "metaDescription": "Deepfake-Erkennungs-API für Redaktionen. Überprüfen Sie Bilder, Videos und Audio vor der Veröffentlichung. 95,3% Genauigkeit.", "headline": "KI-generierte Inhaltserkennung für Medien und Redaktionen" },
+      "insurance": { "title": "KI-generierten Betrug bei Versicherungsansprüchen erkennen", "metaDescription": "Erkennt KI-bearbeitete Fotos und gefälschte Dokumente bei Versicherungsansprüchen. $0,05/Bild, SOC 2 zertifiziert.", "headline": "KI-generierten Betrug bei Versicherungsansprüchen erkennen" },
+      "hr": { "title": "Deepfakes in Remote-Interviews und Video-Recruiting erkennen", "metaDescription": "Erkennt Deepfakes, KI-Stimmtools und synthetische Avatare in Remote-Interviews. Video- und Audio-Authentizitätsprüfung für HR-Teams.", "headline": "Deepfakes in Remote-Interviews und Video-Recruiting erkennen" },
+      "government": { "title": "Synthetische Medienerkennung für Regierung und öffentlichen Sektor", "metaDescription": "Synthetische Medienerkennung für Behörden. Erkennt Deepfake-Videos und KI-generierte Bilder im großen Maßstab. Enterprise SLA, SOC 2.", "headline": "Synthetische Medienerkennung für Regierung und öffentlichen Sektor" }
+    },
+    "compare": {
+      "reality-defender": { "title": "ScamAI vs Reality Defender: Deepfake-Erkennung Vergleich", "metaDescription": "ScamAI vs Reality Defender: $0,05/Bild vs Jahresverträge, 200 kostenlose Bilder vs keine. Vollständiger Vergleich.", "tagline": "ScamAI vs Reality Defender: Deepfake-Erkennung Vergleich" },
+      "sensity": { "title": "ScamAI vs Sensity AI: Deepfake-Erkennung Vergleich", "metaDescription": "ScamAI vs Sensity AI: Bilder, Videos, Audio und Dokumente in einer API. $0,05/Bild, 200 kostenlos/Monat.", "tagline": "ScamAI vs Sensity AI: Deepfake-Erkennung Vergleich" },
+      "hive": { "title": "ScamAI vs Hive Moderation: Deepfake-Erkennung Vergleich", "metaDescription": "ScamAI vs Hive: 95,3% Deepfake-Erkennung vs allgemeine Moderation. Stimmenklonierung + Dokumentenfälschung.", "tagline": "ScamAI vs Hive Moderation: Deepfake-Erkennung Vergleich" },
+      "microsoft-azure": { "title": "ScamAI vs Microsoft Azure AI Content Safety", "metaDescription": "ScamAI vs Azure: 95,3% spezialisierte Deepfake-Erkennung vs allgemeiner Sicherheitsklassifikator. Stimmenklonierung inklusive.", "tagline": "ScamAI vs Microsoft Azure AI: Deepfake-Erkennung Vergleich" },
+      "aws-rekognition": { "title": "ScamAI vs AWS Rekognition: Deepfake-Erkennung Vergleich", "metaDescription": "ScamAI vs AWS Rekognition: Dediziertes Deepfake-Erkennungsmodell vs allgemeine Gesichtsanalyse.", "tagline": "ScamAI vs AWS Rekognition: Deepfake-Erkennung Vergleich" },
+      "truepic": { "title": "ScamAI vs Truepic: Deepfake-Erkennung Vergleich", "metaDescription": "ScamAI vs Truepic: KI-Deepfake-Erkennung für jedes Bild vs C2PA-Provenienz mit Kamerahardware.", "tagline": "ScamAI vs Truepic: Deepfake-Erkennung Vergleich" },
+      "deepware": { "title": "ScamAI vs Deepware: Deepfake-Erkennung Vergleich", "metaDescription": "ScamAI vs Deepware: Enterprise-API mit 99,9% SLA und SOC 2 vs kostenloser Verbraucher-Scanner.", "tagline": "ScamAI vs Deepware: Deepfake-Erkennung Vergleich" }
+    },
+    "learn": {
+      "what-is-a-deepfake": { "title": "Was ist ein Deepfake? Funktionsweise und Erkennung", "description": "Kompletter Leitfaden zu Deepfakes: Was sie sind, wie KI sie erstellt, warum sie eine Sicherheitsbedrohung sind und wie Erkennungstechnologie funktioniert." },
+      "how-to-detect-ai-generated-images": { "title": "KI-generierte Bilder erkennen (kostenlose Tools + API)", "description": "So erkennen Sie KI-generierte Bilder mit kostenlosen Tools und APIs. Tipps zur visuellen Inspektion, GAN- und Diffusionsmodell-Erkennung." },
+      "voice-cloning-attacks": { "title": "Stimmenklonierung-Angriffe: Funktionsweise und Abwehr", "description": "Stimmenklonierung-Angriffe erklärt: Wie KI Stimmen in Sekunden klont, echte Vishing-Fälle und wie 98,5%-genaue Erkennung sie stoppt." },
+      "deepfake-detection-accuracy": { "title": "Deepfake-Erkennungsgenauigkeit: Was die Benchmarks bedeuten", "description": "Deepfake-Erkennungsgenauigkeit erklärt: Wie Benchmarks funktionieren, warum die Genauigkeit in der Praxis sinkt, und die richtige Schwelle wählen." },
+      "deepfake-detection-api-guide": { "title": "Deepfake-Erkennung in Ihre App integrieren (API-Leitfaden)", "description": "Integrieren Sie Deepfake-Erkennung per API in Ihre App. Endpoint-Auswahl, Anfrage-Beispiele, Konfidenz-Scoring und Produktions-Skalierung." },
+      "deepfake-statistics-2026": { "title": "Deepfake-Statistiken 2026: Die wichtigsten Zahlen", "description": "Die umfassende Sammlung der Deepfake-Statistiken für 2026: Betrugsverluste, Erkennungs-Benchmarks, Branchenauswirkungen und regulatorische Reaktion." }
+    }
   }
 }

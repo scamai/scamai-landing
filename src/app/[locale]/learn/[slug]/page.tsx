@@ -6,6 +6,9 @@ import { notFound } from 'next/navigation';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getArticleBySlug, getRelatedArticles, type ContentBlock } from '@/lib/learn/articles';
+import { getIndustryBySlug } from '@/lib/solutions/industries';
+import { getCompetitorBySlug } from '@/lib/compare/competitors';
+import { learnToSolutionLinks, learnToCompareLinks } from '@/lib/internal-links';
 
 const categoryColors: Record<string, string> = {
   Fundamentals: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
@@ -122,6 +125,46 @@ function FAQAccordion({ faqs }: { faqs: { question: string; answer: string }[] }
   );
 }
 
+function LearnCrossLinks({ slug }: { slug: string }) {
+  const solutionSlugs = learnToSolutionLinks[slug] || [];
+  const compareSlug = learnToCompareLinks[slug];
+  const solutions = solutionSlugs.map(s => getIndustryBySlug(s)).filter(Boolean);
+  const competitor = compareSlug ? getCompetitorBySlug(compareSlug) : null;
+
+  if (solutions.length === 0 && !competitor) return null;
+
+  return (
+    <section className="mb-12">
+      <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4">Explore further</p>
+      <div className="space-y-2">
+        {solutions.map((sol) => (
+          <Link
+            key={sol!.slug}
+            href={`/solutions/${sol!.slug}`}
+            className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
+          >
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Solution: {sol!.name}</span>
+            <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        ))}
+        {competitor && (
+          <Link
+            href={`/compare/${competitor.slug}`}
+            className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
+          >
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Compare: ScamAI vs {competitor.name}</span>
+            <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function LearnArticlePage() {
   const params = useParams();
   const slug = params.slug as string;
@@ -209,6 +252,9 @@ export default function LearnArticlePage() {
             </Link>
           )}
         </section>
+
+        {/* Cross-links to solutions and comparisons */}
+        <LearnCrossLinks slug={slug} />
 
         {/* Related articles */}
         {related.length > 0 && (

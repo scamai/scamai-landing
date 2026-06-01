@@ -2,6 +2,7 @@ import { generatePageMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
 import { locales } from '@/i18n/config';
 import { getIndustryBySlug, getAllIndustrySlugs } from '@/lib/solutions/industries';
+import { getSeoTranslation } from '@/lib/seo-translations';
 import { notFound } from 'next/navigation';
 
 type Params = { locale: Locale; industry: string };
@@ -17,11 +18,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   if (!industry) {
     return generatePageMetadata({ locale, path: `/solutions/${slug}`, title: 'Not found', description: '', noindex: true });
   }
+  const seo = await getSeoTranslation(locale, 'solutions', slug);
   return generatePageMetadata({
     locale,
     path: `/solutions/${slug}`,
-    title: `${industry.headline} | ScamAI`,
-    description: industry.metaDescription,
+    title: seo?.title ?? `${industry.headline} | ScamAI`,
+    description: seo?.metaDescription ?? industry.metaDescription,
     keywords: industry.keywords,
     dateModified: '2026-05-23',
   });
@@ -38,6 +40,8 @@ export default async function IndustryLayout({
   const industry = getIndustryBySlug(slug);
   if (!industry) notFound();
 
+  const seo = await getSeoTranslation(locale, 'solutions', slug);
+
   const breadcrumbSchema = generateBreadcrumbSchema(locale, [
     { name: 'Solutions', path: '/solutions' },
     { name: industry.name },
@@ -46,9 +50,9 @@ export default async function IndustryLayout({
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: industry.faqs.map((faq) => ({
+    mainEntity: industry.faqs.map((faq, i) => ({
       '@type': 'Question',
-      name: faq.question,
+      name: seo?.faqQuestions?.[i] ?? faq.question,
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
   };

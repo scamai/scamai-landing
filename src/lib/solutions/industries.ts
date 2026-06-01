@@ -107,7 +107,7 @@ export const industries: Industry[] = [
       'voice clone banking fraud',
     ],
     metaDescription:
-      'Protect fintech KYC and banking onboarding from deepfake fraud. ScamAI detects synthetic identities, AI-edited documents, and voice clone attacks with 95.3% accuracy. SOC 2 Type II certified.',
+      'Deepfake detection for fintech KYC at 95.3% accuracy. Detect synthetic identities, forged documents, and voice clones in under 4 seconds. SOC 2 certified.',
   },
   {
     slug: 'dating',
@@ -200,7 +200,7 @@ export const industries: Industry[] = [
       'synthetic face detection dating',
     ],
     metaDescription:
-      'Protect dating app users from AI-generated fake profiles and voice catfishing. ScamAI API detects synthetic faces, deepfakes, and cloned voices at profile upload. 200 free analyses per month.',
+      'Detect AI-generated fake profiles and voice catfishing on dating apps. ScamAI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.',
   },
   {
     slug: 'call-centers',
@@ -293,7 +293,7 @@ export const industries: Industry[] = [
       'real-time audio deepfake detection',
     ],
     metaDescription:
-      'Protect call centers from vishing and voice clone fraud. ScamAI detects AI-cloned voices in real time with 98.5% accuracy. SOC 2 Type II certified. Integrates in under 10 minutes.',
+      'Voice clone detection for call centers at 98.5% accuracy. Detect vishing attacks in real time, under 3 seconds. SOC 2 certified, 10-minute API setup.',
   },
   {
     slug: 'kyc',
@@ -479,7 +479,7 @@ export const industries: Industry[] = [
       'synthetic media journalism',
     ],
     metaDescription:
-      'Verify images, video, and audio for AI generation before publication. ScamAI\'s deepfake detection API protects newsrooms and media organizations. 200 free analyses per month.',
+      'Deepfake detection API for newsrooms. Verify images, video, and audio for AI generation before publication. 95.3% accuracy, 200 free/month.',
   },
   {
     slug: 'insurance',
@@ -572,7 +572,7 @@ export const industries: Industry[] = [
       'AI-edited photo insurance',
     ],
     metaDescription:
-      'Detect AI-edited photos, synthetic video, and forged documents in insurance claims. ScamAI\'s deepfake detection API protects insurers from synthetic media fraud. SOC 2 Type II certified.',
+      'Detect AI-edited photos and forged documents in insurance claims. ScamAI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.',
   },
   {
     slug: 'hr',
@@ -758,7 +758,7 @@ export const industries: Industry[] = [
       'deepfake political video',
     ],
     metaDescription:
-      'Detect deepfake videos, AI-generated imagery, and synthetic audio in government and public sector contexts. ScamAI provides enterprise-grade synthetic media detection with SOC 2 compliance.',
+      'Synthetic media detection for government agencies. Detect deepfake videos and AI-generated imagery at scale. Enterprise SLA, SOC 2 certified.',
   },
 ];
 

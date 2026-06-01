@@ -4,6 +4,7 @@ import { generatePageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
 import NewsletterDetail from '@/components/newsletter/NewsletterDetail';
 import { Link } from '@/i18n/navigation';
+import { redirect } from 'next/navigation';
 import { getPublishedNewsletter, getPublishedNewsletterBySlug } from '@/lib/db/newsletters';
 
 async function getNewsletter(idOrSlug: string) {
@@ -47,6 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
 export default async function NewsletterDetailPage({ params }: { params: Promise<{ locale: Locale; id: string }> }) {
   const { locale, id } = await params;
   const newsletter = await getNewsletter(id);
+
+  // Redirect numeric IDs to slug-based URL for canonical consistency
+  if (newsletter && /^\d+$/.test(id) && newsletter.slug) {
+    redirect(`/${locale}/newsletter/${newsletter.slug}`);
+  }
 
   if (!newsletter) {
     return (

@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     path: '/compare',
     title: 'ScamAI vs Competitors — Deepfake Detection Comparison',
     description:
-      'Compare ScamAI with Reality Defender, Sensity AI, Hive Moderation, Microsoft Azure, AWS Rekognition, Truepic, and Deepware. Transparent pricing, free tier, and self-serve API.',
+      'Compare ScamAI vs Reality Defender, Sensity, Hive, Azure, AWS, Truepic, and Deepware. Pricing, accuracy, and feature comparison tables.',
     keywords: [
       'deepfake detection comparison',
       'ScamAI vs Reality Defender',
