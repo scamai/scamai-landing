@@ -291,69 +291,92 @@ export default function FaceswapPlayground() {
   const peopleAheadCount = Math.max(0, (state.queuePosition ?? 1) - 1);
   const queueEta = peopleAheadCount > 0 ? peopleAheadCount * PER_PLAY_SECONDS : null;
 
-  // ─── Face picker — preset gallery + your own upload (shared desktop/mobile) ─
+  // ─── Face picker — two sections: presets + your uploads ──────────────────
   const FacePicker = ({ compact = false }: { compact?: boolean }) => {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
-    return (
-      <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
-        {library.map((f) => {
-          const active = selected === f.url;
-          return (
-            <div key={f.url} className="group relative">
-              <button
-                type="button"
-                onClick={() => onPickFace(f.url)}
-                title={f.preset ? `${f.name} — demo preset` : "Become this face"}
-                className={`block overflow-hidden rounded-lg ring-2 transition ${
-                  active
-                    ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
-                    : f.preset
-                    ? "ring-amber-400/70 hover:ring-amber-300"
-                    : "ring-white/10 hover:ring-white/30"
-                }`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={f.url} alt={f.label} className={`${size} object-cover`} />
-                {f.preset && (
-                  <>
-                    {/* preset marker: lock badge + name caption — set apart from
-                        the deletable "user uploaded" items */}
-                    <span className="absolute left-0.5 top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-black/65 text-amber-300">
-                      <Lock className="h-2.5 w-2.5" />
-                    </span>
-                    <span className="absolute inset-x-0 bottom-0 truncate bg-black/65 px-1 py-px text-center text-[8px] font-semibold leading-tight text-amber-200">
-                      {f.name}
-                    </span>
-                  </>
-                )}
-              </button>
-              {/* Delete — only for the disguised library items. Presets are fixed
-                  (no button). Seed faces return on reload; an own-upload is gone. */}
-              {!f.preset && (
-                <button
-                  type="button"
-                  onClick={() => removeFace(f.url)}
-                  aria-label="Remove this face"
-                  title="Remove"
-                  className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
-                >
-                  <X className="h-2.5 w-2.5" />
-                </button>
-              )}
-            </div>
-          );
-        })}
+    const presetFaces = library.filter((f) => !f.custom);
+    const uploadedFaces = library.filter((f) => f.custom);
 
-        {/* + upload your own face */}
-        <button
-          type="button"
-          onClick={() => fileInputRef.current?.click()}
-          title="Upload your own face"
-          className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
-        >
-          <Plus className="h-4 w-4" />
-          <span className="text-[8px] font-medium">Upload</span>
-        </button>
+    const renderFace = (f: Face) => {
+      const active = selected === f.url;
+      return (
+        <div key={f.url} className="group relative">
+          <button
+            type="button"
+            onClick={() => onPickFace(f.url)}
+            title={f.preset ? `${f.name} — demo preset` : "Become this face"}
+            className={`block overflow-hidden rounded-lg ring-2 transition ${
+              active
+                ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
+                : f.preset
+                ? "ring-amber-400/70 hover:ring-amber-300"
+                : "ring-white/10 hover:ring-white/30"
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={f.url} alt={f.label} className={`${size} object-cover`} />
+            {f.preset && (
+              <>
+                <span className="absolute left-0.5 top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-black/65 text-amber-300">
+                  <Lock className="h-2.5 w-2.5" />
+                </span>
+                <span className="absolute inset-x-0 bottom-0 truncate bg-black/65 px-1 py-px text-center text-[8px] font-semibold leading-tight text-amber-200">
+                  {f.name}
+                </span>
+              </>
+            )}
+          </button>
+          {!f.preset && (
+            <button
+              type="button"
+              onClick={() => removeFace(f.url)}
+              aria-label="Remove this face"
+              title="Remove"
+              className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
+            >
+              <X className="h-2.5 w-2.5" />
+            </button>
+          )}
+        </div>
+      );
+    };
+
+    return (
+      <div className="space-y-4">
+        {/* ── Preset faces ── */}
+        <div>
+          <div className="mb-2 flex items-baseline gap-1.5">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+              Preset faces
+            </span>
+            <span className="text-[9px] text-white/22">· StyleGAN2 AI-generated</span>
+          </div>
+          <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
+            {presetFaces.map(renderFace)}
+          </div>
+        </div>
+
+        {/* ── Your uploads ── */}
+        <div>
+          <div className="mb-2">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+              Your uploads
+            </span>
+          </div>
+          <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
+            {uploadedFaces.map(renderFace)}
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              title="Upload your own face"
+              className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
+            >
+              <Plus className="h-4 w-4" />
+              <span className="text-[8px] font-medium">Upload</span>
+            </button>
+          </div>
+        </div>
+
         <input ref={fileInputRef} type="file" accept="image/*" onChange={onAddFace} className="hidden" />
       </div>
     );

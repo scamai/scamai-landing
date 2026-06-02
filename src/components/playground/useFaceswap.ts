@@ -214,7 +214,7 @@ export function useFaceswap() {
             }
             case "control": {
               // Promoted out of the queue → (re)send the offer.
-              if (data.action === "start_connection" && postOfferRef.current) {
+              if (data.action === "start_connection" && !cancelledRef.current && postOfferRef.current) {
                 postOfferRef.current().catch((e) => {
                   if (!cancelledRef.current) patch({ phase: "error", error: (e as Error).message });
                 });
@@ -333,6 +333,11 @@ export function useFaceswap() {
         const postOffer = async () => {
           const current = pcRef.current;
           if (!current || cancelledRef.current) return;
+          // Roll back any pending local offer before re-negotiating (queue re-promotion
+          // calls postOffer a second time while the PC is still in have-local-offer).
+          if (current.signalingState === "have-local-offer") {
+            await current.setLocalDescription({ type: "rollback" });
+          }
           const offer = await current.createOffer();
           await current.setLocalDescription(offer);
 
