@@ -221,7 +221,7 @@ function LiveCallScanner() {
                       <circle cx="11" cy="11" r="7" />
                       <path d="m21 21-4.3-4.3" />
                     </svg>
-                    Halo scanning audio + video
+                    Halo scanning video
                   </span>
                   <span className="font-mono text-sm text-gray-400">
                     {confidence.toFixed(1)}%
@@ -239,7 +239,7 @@ function LiveCallScanner() {
           <rect x="5" y="11" width="14" height="10" rx="2" />
           <path d="M8 11V7a4 4 0 0 1 8 0v4" />
         </svg>
-        Runs 100% on your device &middot; nothing uploaded
+        Runs 100% on your device &middot; no recording, nothing sent
       </div>
     </div>
   );
@@ -287,8 +287,8 @@ const ICP: Record<
     stat: "~$25M",
     statLabel: "lost in a single deepfake video call (Arup, 2024)",
     bullets: [
-      "Flags synthetic faces and cloned voices live, before the transfer is approved.",
-      "Protects treasury, AP, and exec assistants on every Zoom, Teams, and Meet call.",
+      "Flags synthetic faces and faceswaps live, before the transfer is approved.",
+      "Protects treasury, AP, and exec assistants on every Zoom, Teams, Meet, WebEx, and Slack call.",
       "Leaves an on-device audit trail for fraud and compliance review.",
     ],
   },
@@ -318,8 +318,8 @@ const ICP: Record<
     stat: "1 in 4",
     statLabel: "candidate profiles projected fake by 2028 (Gartner)",
     bullets: [
-      "Detects face-swap and lip-sync manipulation live during remote interviews.",
-      "Catches voice-clone and audio-injection used to mask a stand-in.",
+      "Detects face-swap and AI-generated face replacements live during remote interviews.",
+      "Catches faceswaps used to disguise a stand-in during the interview.",
       "Gives recruiters a confidence read without sending video to a third party.",
     ],
   },
@@ -331,7 +331,7 @@ const ICP: Record<
 const DIFFERENTIATORS = [
   {
     title: "Private by design",
-    body: "Audio and video never leave the device. No cloud upload means no new honeypot of sensitive calls, and a far simpler path through legal, IT, and GDPR review.",
+    body: "Video frames are analyzed in memory and discarded \u2014 nothing is recorded, stored, or transmitted. No cloud upload means no new honeypot of sensitive calls, and a far simpler path through legal, IT, and GDPR review.",
     icon: (
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
     ),
@@ -343,7 +343,7 @@ const DIFFERENTIATORS = [
   },
   {
     title: "Runs on the NPU",
-    body: "Halo uses the neural engine already in modern laptops and phones. That means no per-minute cloud GPU bill, predictable cost at scale, and protection that works even on a flaky connection.",
+    body: "Halo uses the NPU in Snapdragon-powered Windows PCs. That means no per-minute cloud GPU bill, predictable cost at scale, and protection that works even on a flaky connection. On non-Snapdragon PCs, Halo falls back to CPU inference.",
     icon: (
       <>
         <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -360,7 +360,7 @@ const DIFFERENTIATORS = [
 const OBJECTIONS = [
   {
     q: "“Deepfakes will just evolve to evade it.”",
-    a: "Halo looks for the physical artifacts generation leaves behind across both audio and video, not a fixed list of known fakes. Models update on-device, and combining signals from voice and face raises the bar for any single evasion technique.",
+    a: "Halo uses an ensemble of two complementary neural networks that must agree before issuing a verdict. It looks for the artifacts that generation leaves behind in video, not a fixed list of known fakes. Models update on-device, and the multi-model approach raises the bar for any single evasion technique.",
   },
   {
     q: "“Won't it flag my real executives?”",
@@ -368,7 +368,7 @@ const OBJECTIONS = [
   },
   {
     q: "“Will it slow down my calls?”",
-    a: "Inference runs on the device's neural engine in parallel with the call, not on the CPU path your conferencing app uses. There's no upload, so it adds no network latency and no measurable hit to call quality.",
+    a: "Inference runs on the device\u2019s NPU in parallel with the call, not on the CPU your conferencing app uses. There\u2019s no upload, so it adds no network latency and no measurable impact on call quality.",
   },
   {
     q: "“What about recording and compliance?”",
@@ -382,7 +382,7 @@ const OBJECTIONS = [
 const COMPETE_ROWS = [
   { label: "Works in real time on the live call", halo: true, cloud: false, platform: "partial", identity: false },
   { label: "Media stays on the device", halo: true, cloud: false, platform: false, identity: false },
-  { label: "Works across Zoom, Teams, Meet & phone", halo: true, cloud: "partial", platform: false, identity: false },
+  { label: "Works across Zoom, Teams, Meet, WebEx & 10+ apps", halo: true, cloud: "partial", platform: false, identity: false },
   { label: "No per-minute cloud GPU cost", halo: true, cloud: false, platform: "partial", identity: true },
   { label: "Detects synthetic media (not just liveness)", halo: true, cloud: true, platform: false, identity: "partial" },
   { label: "Protects the whole call, not just login", halo: true, cloud: true, platform: "partial", identity: false },
@@ -403,78 +403,28 @@ function Cell({ v }: { v: boolean | "partial" }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Pricing                                                            */
-/* ------------------------------------------------------------------ */
-const TIERS = [
-  {
-    name: "Team",
-    price: "TBD",
-    unit: "per protected seat / mo",
-    blurb: "For teams that want their highest-risk people covered fast.",
-    features: [
-      "Up to 50 protected seats",
-      "Real-time call detection (video + voice)",
-      "Zoom, Teams & Meet support",
-      "Email support",
-    ],
-    cta: "Start free trial",
-    highlight: false,
-  },
-  {
-    name: "Business",
-    price: "TBD",
-    unit: "per protected seat / mo",
-    blurb: "For finance, HR, and security orgs standardizing on Halo.",
-    features: [
-      "Unlimited seats",
-      "Admin console & policy controls",
-      "On-device audit trail & export",
-      "SSO / SCIM",
-      "Priority support",
-    ],
-    cta: "Contact sales",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    unit: "per device / annual",
-    blurb: "For regulated environments with custom deployment needs.",
-    features: [
-      "Everything in Business",
-      "MDM / managed deployment",
-      "Custom detection thresholds",
-      "Data-residency & compliance review",
-      "Dedicated solutions engineer",
-    ],
-    cta: "Talk to us",
-    highlight: false,
-  },
-];
-
-/* ------------------------------------------------------------------ */
 /* FAQ                                                                */
 /* ------------------------------------------------------------------ */
 const FAQ = [
   {
     q: "What is Halo?",
-    a: "Halo is an on-device deepfake detection system that watches your video and voice calls in real time and flags synthetic faces and cloned voices before they can fool you. It catches deepfakes on your calls — on your device, in real time.",
+    a: "Halo is an on-device deepfake detection application that monitors your video calls in real time and flags synthetic faces and faceswaps before they can fool you. It runs entirely on your Windows PC \u2014 no video frames ever leave your machine.",
   },
   {
     q: "Does my call data get uploaded anywhere?",
-    a: "No. All detection runs locally on your device's neural engine. Raw audio and video never leave your machine — Halo keeps only the verdict and the metadata you choose to retain.",
+    a: "No. All detection runs locally on your device\u2019s NPU (or CPU). Halo analyzes live frames in memory and discards them \u2014 it does not record, store, or transmit meeting video. Only detection verdicts and session metadata are kept, stored locally on your machine.",
   },
   {
     q: "Which apps does Halo work with?",
-    a: "Halo runs alongside your calls across major conferencing tools including Zoom, Microsoft Teams, and Google Meet, as well as standard phone and VoIP audio.",
+    a: "Halo works with 10+ meeting applications including Zoom, Microsoft Teams, Google Meet, WebEx, Skype, Slack huddles, GoTo Meeting, and others \u2014 both native desktop apps and browser-based meetings.",
   },
   {
     q: "Will it slow down my calls or drain my battery?",
-    a: "Inference runs on the dedicated NPU / neural engine in modern laptops and phones, in parallel with your call. There is no network round-trip, so it adds no upload latency and minimal overhead.",
+    a: "Inference runs on the dedicated NPU in Snapdragon-powered Windows PCs, in parallel with your call. On non-Snapdragon hardware, it falls back to CPU. There is no network round-trip, so it adds no latency and minimal overhead.",
   },
   {
     q: "How accurate is it, and what about false positives?",
-    a: "Halo returns a calibrated confidence score rather than a hard block, and combines audio and video signals to reduce false alarms. Teams configure their own alerting threshold for the level of caution they need.",
+    a: "Halo uses an ensemble of two complementary AI models that must agree before a verdict is issued. This dramatically reduces false positives compared to single-model detectors. Each participant gets a verdict \u2014 Safe, Suspicious, or Deepfake \u2014 not a raw score.",
   },
   {
     q: "How is this different from my conferencing app's built-in security?",
@@ -482,7 +432,7 @@ const FAQ = [
   },
   {
     q: "What devices does Halo support?",
-    a: "Halo targets modern devices with a neural engine — recent Macs, Windows laptops with an NPU, and flagship phones. Reach out for the current supported-device list and pilot details.",
+    a: "Halo runs on Windows 10/11. It supports both Snapdragon ARM64 (with NPU acceleration, ~235ms per frame) and x86/x64 (CPU fallback, ~800ms per frame). Minimum 4\u00a0GB RAM, ~1\u00a0GB disk space.",
   },
 ];
 
@@ -563,8 +513,8 @@ function WaitlistForm() {
         </p>
         <p className="text-xs text-gray-400">
           {state === "already_subscribed"
-            ? "We already have your email \u2014 we\u2019ll reach out the moment Halo is ready."
-            : "Thanks for joining! We\u2019ll reach out the moment Halo is ready for your device."}
+            ? "Your 50% first-year discount is locked in \u2014 we\u2019ll reach out the moment Halo is ready."
+            : "As an early member, you\u2019ll get 50% off your first year. We\u2019ll reach out the moment Halo is ready."}
         </p>
       </div>
     );
@@ -647,7 +597,7 @@ export default function HaloLanding() {
             <Reveal delay={0.3}>
               <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-gray-300 lg:mx-0">
                 On your device, in real time. Halo flags synthetic faces and
-                cloned voices live on every call &mdash; before they cost you a
+                faceswaps live on every call &mdash; before they cost you a
                 wire transfer or a bad hire.
               </p>
             </Reveal>
@@ -674,7 +624,7 @@ export default function HaloLanding() {
             </Reveal>
             <Reveal delay={0.5}>
               <p className="mt-6 text-xs text-gray-500">
-                Coming soon &middot; macOS &amp; Windows &middot; nothing leaves your device
+                Windows &middot; Snapdragon NPU accelerated &middot; nothing leaves your device
               </p>
             </Reveal>
           </div>
@@ -700,10 +650,10 @@ export default function HaloLanding() {
               <span className="text-[#245FFF]">get attacked</span>.
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg">
-              Real-time face-swaps and voice clones are good enough to pass as a
+              Real-time face-swaps are good enough to pass as a
               colleague on a live video call. Email filters and login checks
               never see them &mdash; the fraud happens in the conversation
-              itself. The call is the one channel nobody is defending.
+              itself.
             </p>
           </Reveal>
         </div>
@@ -846,9 +796,9 @@ export default function HaloLanding() {
           </Reveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
-              { n: "01", t: "Install once", b: "Download Halo to your laptop or phone. It runs quietly next to your conferencing app — no plugins for every platform." },
-              { n: "02", t: "Scans locally, live", b: "As you talk, Halo analyzes the incoming audio and video frame-by-frame on the device's neural engine." },
-              { n: "03", t: "Flags in real time", b: "If a face or voice looks synthetic, Halo surfaces a confidence alert during the call — in time to stop and verify." },
+              { n: "01", t: "Install once", b: "Download Halo to your Windows PC. It sits in the system tray next to your conferencing app — no plugins, no browser extensions." },
+              { n: "02", t: "Scans locally, live", b: "As you talk, Halo analyzes every face in the video frame-by-frame on the device\u2019s NPU — roughly 4 times per second on Snapdragon." },
+              { n: "03", t: "Flags in real time", b: "If a face looks synthetic, Halo surfaces an alert during the call — in time to stop and verify." },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 0.12}>
                 <div className="relative h-full rounded-2xl border border-white/10 bg-white/[0.02] p-7">
@@ -939,77 +889,6 @@ export default function HaloLanding() {
 
       <div className="section-divider" />
 
-      {/* ============================ PRICING ======================== */}
-      <section className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <Reveal>
-            <div className="mb-14 text-center">
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">
-                Pricing
-              </p>
-              <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl">
-                Priced per person you protect
-              </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-base text-gray-400 sm:text-lg">
-                No per-minute cloud bill, because there is no cloud. Cover your
-                highest-risk people first, then roll out across the org.
-              </p>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {TIERS.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.1}>
-                <div
-                  className={`relative flex h-full flex-col rounded-2xl border p-7 ${
-                    t.highlight
-                      ? "border-[#245FFF]/60 bg-[#245FFF]/[0.06]"
-                      : "border-white/10 bg-white/[0.02]"
-                  }`}
-                >
-                  {t.highlight && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#245FFF] px-3 py-1 text-[11px] font-semibold text-white">
-                      Most popular
-                    </span>
-                  )}
-                  <h3 className="text-lg font-semibold text-white">{t.name}</h3>
-                  <div className="mt-4 flex items-baseline gap-1.5">
-                    <span className="text-4xl font-bold text-white">{t.price}</span>
-                  </div>
-                  <p className="mt-1 text-xs text-gray-500">{t.unit}</p>
-                  <p className="mt-4 text-sm text-gray-400">{t.blurb}</p>
-                  <ul className="mt-6 space-y-3">
-                    {t.features.map((f) => (
-                      <li key={f} className="flex gap-2.5 text-sm text-gray-300">
-                        <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#245FFF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                          <path d="M20 6 9 17l-5-5" />
-                        </svg>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href="#waitlist"
-                    onClick={() => trackCTA(`pricing_${t.name.toLowerCase()}`, "halo_pricing")}
-                    className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
-                      t.highlight
-                        ? "bg-[#245FFF] text-white hover:bg-[#1d4acc]"
-                        : "border border-white/15 text-white hover:bg-white/5"
-                    }`}
-                  >
-                    {t.cta}
-                  </a>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <p className="mt-6 text-center text-xs text-gray-500">
-            Figures shown are placeholders pending launch pricing.
-          </p>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
       {/* ============================== FAQ ========================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/20 to-black" />
@@ -1085,8 +964,11 @@ export default function HaloLanding() {
             <p className="mx-auto mt-5 max-w-xl text-base text-gray-300 sm:text-lg">
               Halo is in early access. Join the waitlist and we&apos;ll let you know the moment it&apos;s ready for your device.
             </p>
+            <p className="mx-auto mt-3 max-w-xl text-sm font-medium text-[#7ea2ff]">
+              Join now and get 50% off your first year.
+            </p>
             <WaitlistForm />
-            <p className="mt-6 text-xs text-gray-500">Coming soon on Windows &amp; Snapdragon &middot; macOS next &middot; Enterprise deployment available</p>
+            <p className="mt-6 text-xs text-gray-500">Available on Windows &middot; Snapdragon NPU accelerated &middot; x86/x64 supported</p>
           </Reveal>
         </div>
       </section>
