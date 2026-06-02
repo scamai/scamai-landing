@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import { trackCTA, trackOutbound } from "@/lib/analytics";
 import DeveloperSection from "./DeveloperSection";
 import HaloSpotlight from "./HaloSpotlight";
+import TrustedBy from "./TrustedBy";
 import dynamic from "next/dynamic";
 
 // Live face-swap demo — client-only (WebRTC / getUserMedia), no SSR.
@@ -352,45 +353,11 @@ export default function NewLanding() {
               </AnimatedSection>
             </div>
           </div>
-
-          {/* Product visual — sits in the remaining ~30vh, peeks above fold */}
-          <AnimatedSection delay={0.7}>
-            <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 sm:px-10 lg:px-8">
-              <div className="overflow-hidden rounded-xl">
-                <div className="relative">
-                  <video
-                    ref={(el) => {
-                      if (el) {
-                        el.currentTime = 4;
-                        const handleTimeUpdate = () => {
-                          if (el.ended || el.currentTime < 4) {
-                            el.currentTime = 4;
-                            el.play();
-                          }
-                        };
-                        el.addEventListener('ended', handleTimeUpdate);
-                        el.addEventListener('loadedmetadata', () => { el.currentTime = 4; });
-                      }
-                    }}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    poster="/en/opengraph-image"
-                    className="w-full h-auto rounded-xl"
-                  >
-                    <source src="/dashboard.mp4" type="video/mp4" />
-                  </video>
-                  {/* Gradient fade at bottom */}
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent" />
-                </div>
-              </div>
-              {/* Glow effect behind the frame */}
-              <div className="pointer-events-none absolute -inset-4 -z-10 rounded-2xl bg-[#245FFF]/5 blur-2xl" />
-            </div>
-          </AnimatedSection>
         </div>
       </section>
+
+      {/* Trusted-by partner / investor logo marquee */}
+      <TrustedBy />
 
       {/* Live "Deepfake is here" face-swap playground */}
       <FaceswapPlayground />
