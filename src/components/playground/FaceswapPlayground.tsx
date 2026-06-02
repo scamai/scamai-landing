@@ -2,19 +2,25 @@
 
 // ─── FaceswapPlayground — "Deepfake is here" live demo ──────────────────────
 //
-// Sits directly below the hero. Lets a visitor swap their own face onto a
-// preset identity in real time (powered by the live faker-100 WebRTC engine via
-// useFaceswap). The visceral point: a convincing deepfake of *you* takes two
-// seconds and a webcam — which is exactly why on-device detection (Halo) is the
-// payoff CTA at the end.
+// Sits below the hero. A visitor swaps their own face onto a preset identity in
+// real time (live faker-100 WebRTC engine via useFaceswap). The point: a
+// convincing deepfake of *you* takes 30s and a webcam — which is why Halo
+// (on-device detection) is the payoff CTA.
 //
-// Visual language blends the snapdragon booth UI (dark stage, macOS window
-// chrome, on-device verdict chrome) with scam.ai's violet/blue accent.
+// Layout is built to fit ONE screen, including small laptops and phones:
+//   desktop → two columns (copy + face picker | stage)
+//   mobile  → compact stack (headline → stage → face row → start)
+// Stage height is viewport-relative (vh) so it never pushes the section past a
+// single screen. 30s per play, replay re-queues, queue shows position + ETA.
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square } from "lucide-react";
 import { useFaceswap } from "./useFaceswap";
+
+const DEMO_SECONDS = 30;
+const PER_PLAY_SECONDS = 30; // used for queue ETA estimate
+const HALO_HREF = "/halo";
 
 const PRESET_FACES: { label: string; url: string }[] = [
   { label: "Audrey Hepburn", url: "/playground-faces/hepburn.jpg" },
@@ -24,9 +30,6 @@ const PRESET_FACES: { label: string; url: string }[] = [
   { label: "Princess Diana", url: "/playground-faces/diana.jpg" },
 ];
 
-const HALO_HREF = "/halo";
-
-// Fetch an image → RAW base64 (no data: prefix — backend b64decodes directly).
 async function urlToBase64(url: string): Promise<string> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`face asset ${url} → ${res.status}`);
@@ -40,18 +43,22 @@ async function urlToBase64(url: string): Promise<string> {
   return dataUrl.split(",")[1] || dataUrl;
 }
 
+const fmt = (s: number) => `0:${String(Math.max(0, s)).padStart(2, "0")}`;
+
 type Step = "intro" | "consent" | "running" | "ended";
 
 export default function FaceswapPlayground() {
   const { state, start, stop, setFace } = useFaceswap();
   const [step, setStep] = useState<Step>("intro");
   const [selected, setSelected] = useState(PRESET_FACES[0].url);
+  const [secondsLeft, setSecondsLeft] = useState(DEMO_SECONDS);
 
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const selfViewRef = useRef<HTMLVideoElement>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
+  const secondsRef = useRef(DEMO_SECONDS);
 
-  // Bind the swapped output stream to the stage <video>.
+  // Bind swapped output stream.
   useEffect(() => {
     const v = remoteVideoRef.current;
     if (v && state.remoteStream && v.srcObject !== state.remoteStream) {
@@ -60,10 +67,25 @@ export default function FaceswapPlayground() {
     }
   }, [state.remoteStream]);
 
-  // Surface fatal errors / time-expiry from the engine.
+  // Engine-side end (time exhausted / backend close).
   useEffect(() => {
     if (state.phase === "ended") setStep("ended");
   }, [state.phase]);
+
+  // 30s countdown — starts when the swap goes live, ends → CTA.
+  useEffect(() => {
+    if (step !== "running" || state.phase !== "live") return;
+    const id = setInterval(() => {
+      secondsRef.current -= 1;
+      setSecondsLeft(secondsRef.current);
+      if (secondsRef.current <= 0) {
+        clearInterval(id);
+        stop();
+        setStep("ended");
+      }
+    }, 1000);
+    return () => clearInterval(id);
+  }, [step, state.phase, stop]);
 
   const beginConsent = useCallback(() => setStep("consent"), []);
 
@@ -74,19 +96,18 @@ export default function FaceswapPlayground() {
         audio: false,
       });
       localStreamRef.current = localStream;
-      // Bind self-view PiP.
       const sv = selfViewRef.current;
       if (sv) {
         sv.srcObject = localStream;
         sv.play().catch(() => {});
       }
+      secondsRef.current = DEMO_SECONDS;
+      setSecondsLeft(DEMO_SECONDS);
       const targetB64 = await urlToBase64(selected);
       setStep("running");
       await start({ targetFaceB64: targetB64, localStream });
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : "Could not access your camera.";
-      // Camera-permission denial is the common case — keep the user on intro.
-      alert(msg.includes("Permission") || msg.includes("denied") ? "Camera access is required for the demo." : msg);
+    } catch {
+      alert("Camera access is required for the live demo.");
       setStep("intro");
     }
   }, [selected, start]);
@@ -98,7 +119,7 @@ export default function FaceswapPlayground() {
         try {
           setFace(await urlToBase64(url));
         } catch {
-          /* keep current face */
+          /* keep current */
         }
       }
     },
@@ -108,243 +129,207 @@ export default function FaceswapPlayground() {
   const reset = useCallback(() => {
     stop();
     localStreamRef.current = null;
+    secondsRef.current = DEMO_SECONDS;
+    setSecondsLeft(DEMO_SECONDS);
     setStep("intro");
   }, [stop]);
 
   const connecting = step === "running" && (state.phase === "connecting" || state.phase === "queued");
   const live = step === "running" && state.phase === "live";
+  const queueEta = state.queuePosition ? state.queuePosition * PER_PLAY_SECONDS : null;
+
+  // ─── Face picker (shared desktop/mobile) ──────────────────────────────────
+  const FacePicker = ({ compact = false }: { compact?: boolean }) => (
+    <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
+      {PRESET_FACES.map((f) => {
+        const active = selected === f.url;
+        return (
+          <button
+            key={f.url}
+            type="button"
+            onClick={() => onPickFace(f.url)}
+            className={`group flex flex-col items-center gap-1 rounded-xl p-1 transition ${active ? "bg-[#6d5dfb]/10" : "hover:bg-white/5"}`}
+            title={`Become ${f.label}`}
+          >
+            <span
+              className={`relative block overflow-hidden rounded-lg ring-2 transition ${
+                active ? "ring-[#6d5dfb] shadow-[0_0_18px_-4px_rgba(109,93,251,0.7)]" : "ring-white/10 group-hover:ring-white/25"
+              }`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={f.url} alt={f.label} className={compact ? "h-12 w-12 object-cover" : "h-14 w-14 object-cover"} />
+            </span>
+            <span className={`text-[10px] font-medium transition ${active ? "text-white" : "text-white/45"}`}>{f.label.split(" ")[0]}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  // ─── The swap stage card ──────────────────────────────────────────────────
+  const Stage = () => (
+    <div className="w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0c0d11] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+      {/* title bar */}
+      <div className="flex items-center gap-2 border-b border-white/[0.07] bg-[#15171c] px-4 py-2">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+        <span className="ml-2 flex items-center gap-1.5 text-[11px] font-medium text-white/40">
+          <ScanFace className="h-3.5 w-3.5" /> Live face swap · scam.ai
+        </span>
+        {live && (
+          <span className="ml-auto flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-300">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+            </span>
+            <span className="tabular-nums">{fmt(secondsLeft)}</span>
+          </span>
+        )}
+      </div>
+
+      {/* stage body — viewport-relative height keeps the section within one screen */}
+      <div className="relative w-full bg-black h-[38vh] sm:h-[44vh] lg:h-[46vh] max-h-[440px]">
+        <video
+          ref={remoteVideoRef}
+          autoPlay
+          playsInline
+          muted
+          className="h-full w-full object-contain"
+          style={{ transform: "scaleX(-1)", display: live ? "block" : "none" }}
+        />
+
+        {/* self-view PiP */}
+        <div
+          className="absolute bottom-3 right-3 z-10 overflow-hidden rounded-xl border border-white/15 bg-black ring-1 ring-[#6d5dfb]/30 shadow-lg"
+          style={{ display: step === "running" ? "block" : "none" }}
+        >
+          <video ref={selfViewRef} autoPlay playsInline muted className="h-20 w-[60px] -scale-x-100 object-cover sm:h-24 sm:w-[72px]" />
+          <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/80 drop-shadow">You</span>
+        </div>
+
+        {/* overlays */}
+        {step === "intro" && (
+          <Overlay>
+            <ScanFace className="mb-2 h-8 w-8 text-[#6d5dfb]" />
+            <p className="text-sm text-white/70">Pick a face, then start the demo.</p>
+          </Overlay>
+        )}
+        {step === "consent" && (
+          <Overlay>
+            <ShieldCheck className="mb-2 h-8 w-8 text-[#6d5dfb]" />
+            <h3 className="text-base font-semibold text-white">Camera access</h3>
+            <p className="mt-1.5 max-w-xs text-[12px] leading-relaxed text-white/55">
+              Your camera streams to our servers for live processing only. Nothing is stored.
+            </p>
+            <div className="mt-4 flex gap-2.5">
+              <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#6d5dfb] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff] active:scale-[0.98]">
+                <Camera className="h-4 w-4" /> Allow &amp; start
+              </button>
+              <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
+                Cancel
+              </button>
+            </div>
+          </Overlay>
+        )}
+        {connecting && (
+          <Overlay>
+            <Spinner />
+            <p className="mt-3 text-xs tracking-wide text-white/55">{state.status || "Warming up the swap engine…"}</p>
+            {state.phase === "queued" && (
+              <p className="mt-1 text-[11px] text-white/40">
+                {state.queuePosition ? `You're #${state.queuePosition} in line` : "You're in line"}
+                {queueEta ? ` · ~${queueEta}s` : ""}
+              </p>
+            )}
+          </Overlay>
+        )}
+        {state.phase === "error" && step === "running" && (
+          <Overlay>
+            <AlertTriangle className="mb-2 h-7 w-7 text-red-400" />
+            <p className="max-w-xs text-sm text-white/70">{state.error}</p>
+            <button onClick={reset} className="mt-4 rounded-full bg-[#6d5dfb] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff]">
+              Try again
+            </button>
+          </Overlay>
+        )}
+        {step === "ended" && (
+          <Overlay>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6d5dfb]">That took 30 seconds.</p>
+            <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device, in real time.</h3>
+            <Link href={HALO_HREF} className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]">
+              Meet Halo — deepfake defense <ArrowRight className="h-4 w-4" />
+            </Link>
+            <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/50 transition hover:text-white">
+              <RefreshCw className="h-3.5 w-3.5" /> Run the demo again
+            </button>
+          </Overlay>
+        )}
+      </div>
+
+      {/* control bar */}
+      <div className="flex items-center justify-between border-t border-white/[0.07] bg-[#101216] px-4 py-2.5">
+        <span className="flex items-center gap-1.5 text-[11px] text-white/40">
+          <ShieldCheck className="h-3.5 w-3.5" /> Processed live · never stored
+        </span>
+        {live ? (
+          <button onClick={reset} className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10">
+            <Square className="h-3 w-3" /> Stop
+          </button>
+        ) : step === "intro" ? (
+          <button onClick={beginConsent} className="inline-flex items-center gap-2 rounded-full bg-[#6d5dfb] px-5 py-1.5 text-sm font-semibold text-white shadow-[0_0_20px_-6px_rgba(109,93,251,0.8)] transition hover:bg-[#7d6dff] active:scale-[0.98]">
+            <Camera className="h-4 w-4" /> Start
+          </button>
+        ) : (
+          <span className="text-[11px] text-white/30">—</span>
+        )}
+      </div>
+    </div>
+  );
 
   return (
-    <section id="playground" className="relative w-full overflow-hidden bg-[#050505] py-20 sm:py-28">
-      {/* Radar-scan glow backdrop */}
+    <section id="playground" className="relative w-full overflow-hidden bg-[#050505] py-8 sm:py-12 lg:py-14">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(70% 50% at 50% 0%, rgba(36,95,255,0.16), transparent 60%), radial-gradient(50% 40% at 50% 100%, rgba(109,93,251,0.12), transparent 70%)",
-        }}
+        style={{ background: "radial-gradient(70% 50% at 50% 0%, rgba(36,95,255,0.16), transparent 60%)" }}
       />
-
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5">
-        {/* Section header */}
+        {/* compact header */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-red-300">
+          <span className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-red-300 sm:text-[11px]">
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-500" />
             </span>
             Deepfake is here
           </span>
-          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-[44px] sm:leading-[1.05]">
+          <h2 className="mt-3 text-xl font-semibold tracking-tight text-white sm:text-2xl lg:text-[32px] lg:leading-[1.05]">
             See how easy it is to fake a face.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-white/55">
-            Pick an identity, turn on your camera, and watch a real-time deepfake of
-            yourself — no install, no green screen. This is the attack. The defense
-            runs on-device.
+          <p className="mx-auto mt-2 max-w-lg text-[13px] leading-relaxed text-white/55 sm:text-[14px]">
+            Turn on your camera and watch a real-time deepfake of yourself. This is the attack — the defense runs on-device.
           </p>
         </div>
 
-        {/* Stage — macOS-style window */}
-        <div className="mx-auto mt-12 max-w-3xl">
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0c0d11] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-            {/* Title bar */}
-            <div className="flex items-center gap-2 border-b border-white/[0.07] bg-[#15171c] px-4 py-2.5">
-              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-              <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-              <span className="ml-2 flex items-center gap-1.5 text-[11px] font-medium text-white/40">
-                <ScanFace className="h-3.5 w-3.5" />
-                Live face swap · scam.ai
-              </span>
-              {live && (
-                <span className="ml-auto flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-300">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-                  </span>
-                  Live
-                </span>
-              )}
+        {/* desktop: two columns · mobile: stack */}
+        <div className="mt-5 grid items-center gap-5 sm:mt-7 lg:grid-cols-12">
+          {/* left: face picker + start (desktop) / below stage (mobile via order) */}
+          <div className="order-2 lg:order-1 lg:col-span-4">
+            <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40 lg:text-left">
+              {step === "running" && live ? "Tap to switch faces live" : "Pick a face"}
+            </p>
+            <div className="lg:block">
+              <FacePicker compact />
             </div>
-
-            {/* Stage body */}
-            <div className="relative aspect-video w-full bg-black">
-              {/* Swapped output — mirrored to read like a mirror */}
-              <video
-                ref={remoteVideoRef}
-                autoPlay
-                playsInline
-                muted
-                className="h-full w-full object-contain"
-                style={{ transform: "scaleX(-1)", display: live ? "block" : "none" }}
-              />
-
-              {/* Self-view PiP (always mounted so getUserMedia binds; shown while running) */}
-              <div
-                className="absolute bottom-3 right-3 z-10 overflow-hidden rounded-xl border border-white/15 bg-black ring-1 ring-[#6d5dfb]/30 shadow-lg"
-                style={{ display: step === "running" ? "block" : "none" }}
-              >
-                <video
-                  ref={selfViewRef}
-                  autoPlay
-                  playsInline
-                  muted
-                  className="h-24 w-[72px] -scale-x-100 object-cover sm:h-32 sm:w-24"
-                />
-                <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/80 drop-shadow">
-                  You
-                </span>
-              </div>
-
-              {/* Intro overlay */}
-              {step === "intro" && (
-                <Overlay>
-                  <ScanFace className="mb-3 h-9 w-9 text-[#6d5dfb]" />
-                  <p className="text-sm text-white/70">Pick a face below, then start the demo.</p>
-                </Overlay>
-              )}
-
-              {/* Consent overlay */}
-              {step === "consent" && (
-                <Overlay>
-                  <ShieldCheck className="mb-3 h-9 w-9 text-[#6d5dfb]" />
-                  <h3 className="text-lg font-semibold text-white">Camera access</h3>
-                  <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-white/55">
-                    Your camera streams to our servers for live processing only. Nothing
-                    is stored. By continuing you agree to the live demo.
-                  </p>
-                  <div className="mt-6 flex gap-3">
-                    <button
-                      onClick={launch}
-                      className="inline-flex items-center gap-2 rounded-full bg-[#6d5dfb] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(109,93,251,0.8)] transition hover:bg-[#7d6dff] active:scale-[0.98]"
-                    >
-                      <Camera className="h-4 w-4" />
-                      Allow & start
-                    </button>
-                    <button
-                      onClick={() => setStep("intro")}
-                      className="rounded-full px-5 py-2.5 text-sm font-medium text-white/60 transition hover:text-white"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </Overlay>
-              )}
-
-              {/* Connecting / queued */}
-              {connecting && (
-                <Overlay>
-                  <Spinner />
-                  <p className="mt-3 text-xs tracking-wide text-white/55">
-                    {state.status || "Warming up the swap engine…"}
-                  </p>
-                  {state.phase === "queued" && state.queuePosition ? (
-                    <p className="mt-1 text-[11px] text-white/35">Position #{state.queuePosition}</p>
-                  ) : null}
-                </Overlay>
-              )}
-
-              {/* Error */}
-              {state.phase === "error" && step === "running" && (
-                <Overlay>
-                  <AlertTriangle className="mb-3 h-8 w-8 text-red-400" />
-                  <p className="max-w-sm text-sm text-white/70">{state.error}</p>
-                  <button
-                    onClick={reset}
-                    className="mt-5 rounded-full bg-[#6d5dfb] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#7d6dff]"
-                  >
-                    Try again
-                  </button>
-                </Overlay>
-              )}
-
-              {/* Ended → Halo CTA */}
-              {step === "ended" && (
-                <Overlay>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#6d5dfb]">
-                    That took two seconds.
-                  </p>
-                  <h3 className="mt-2 max-w-md text-xl font-semibold text-white sm:text-2xl">
-                    Anyone can fake a face. Catch it on-device, in real time.
-                  </h3>
-                  <Link
-                    href={HALO_HREF}
-                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]"
-                  >
-                    Meet Halo — deepfake defense
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <button
-                    onClick={reset}
-                    className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/50 transition hover:text-white"
-                  >
-                    <RefreshCw className="h-3.5 w-3.5" />
-                    Run the demo again
-                  </button>
-                </Overlay>
-              )}
-            </div>
-
-            {/* Control bar */}
-            <div className="flex items-center justify-between border-t border-white/[0.07] bg-[#101216] px-4 py-3">
-              <span className="flex items-center gap-1.5 text-[11px] text-white/40">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Processed live · never stored
-              </span>
-              {live ? (
-                <button
-                  onClick={reset}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10"
-                >
-                  <Square className="h-3 w-3" />
-                  Stop
-                </button>
-              ) : step === "intro" ? (
-                <button
-                  onClick={beginConsent}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#6d5dfb] px-5 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(109,93,251,0.8)] transition hover:bg-[#7d6dff] active:scale-[0.98]"
-                >
-                  <Camera className="h-4 w-4" />
-                  Start the live demo
-                </button>
-              ) : (
-                <span className="text-[11px] text-white/30">—</span>
-              )}
-            </div>
+            <p className="mt-4 hidden items-center gap-1.5 text-[11px] text-white/35 lg:flex">
+              <Camera className="h-3.5 w-3.5" /> 30-second live demo · no install
+            </p>
           </div>
 
-          {/* Face picker */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            {PRESET_FACES.map((f) => {
-              const active = selected === f.url;
-              return (
-                <button
-                  key={f.url}
-                  type="button"
-                  onClick={() => onPickFace(f.url)}
-                  className={`group flex flex-col items-center gap-1.5 rounded-2xl p-1.5 transition ${
-                    active ? "bg-[#6d5dfb]/10" : "hover:bg-white/5"
-                  }`}
-                  title={`Become ${f.label}`}
-                >
-                  <span
-                    className={`relative block overflow-hidden rounded-xl ring-2 transition ${
-                      active
-                        ? "ring-[#6d5dfb] shadow-[0_0_24px_-4px_rgba(109,93,251,0.7)]"
-                        : "ring-white/10 group-hover:ring-white/25"
-                    }`}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={f.url} alt={f.label} className="h-16 w-16 object-cover sm:h-[72px] sm:w-[72px]" />
-                  </span>
-                  <span className={`text-[11px] font-medium transition ${active ? "text-white" : "text-white/50"}`}>
-                    {f.label}
-                  </span>
-                </button>
-              );
-            })}
+          {/* right: stage */}
+          <div className="order-1 lg:order-2 lg:col-span-8">
+            <Stage />
           </div>
         </div>
       </div>
@@ -361,7 +346,5 @@ function Overlay({ children }: { children: React.ReactNode }) {
 }
 
 function Spinner() {
-  return (
-    <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-white/15 border-t-[#6d5dfb]" />
-  );
+  return <div className="h-9 w-9 animate-spin rounded-full border-[3px] border-white/15 border-t-[#6d5dfb]" />;
 }
