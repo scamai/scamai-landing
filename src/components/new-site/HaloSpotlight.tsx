@@ -8,7 +8,6 @@
 // the Qualcomm / Snapdragon X partnership announced at Computex Taipei 2026.
 // Echoes the launch poster: "Real-Time. Secure. Private." + on-device framing.
 
-import { motion } from "framer-motion";
 import { ShieldCheck, Cpu, Lock, Zap, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
@@ -116,19 +115,13 @@ export default function HaloSpotlight() {
             <div className="relative flex aspect-[4/3] items-center justify-center bg-[#06080e]">
               <p className="absolute left-4 top-3 text-[11px] text-white/40">Analyzing…</p>
 
-              {/* Scanning ring */}
+              {/* Scanning ring — CSS animations (no framer-motion, SSR-safe) */}
               <div className="relative flex h-40 w-40 items-center justify-center">
-                <motion.span
-                  className="absolute inset-0 rounded-full border-2 border-[#245FFF]/70"
-                  style={{ borderTopColor: "transparent", borderRightColor: "transparent" }}
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
+                <span
+                  className="absolute inset-0 animate-spin rounded-full border-2 border-[#245FFF]/70 [border-right-color:transparent] [border-top-color:transparent]"
+                  style={{ animationDuration: "2.4s" }}
                 />
-                <motion.span
-                  className="absolute inset-3 rounded-full border border-[#245FFF]/40"
-                  animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.9, 0.5] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                />
+                <span className="absolute inset-3 animate-pulse rounded-full border border-[#245FFF]/40" />
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/[0.04]">
                   <svg viewBox="0 0 24 24" className="h-9 w-9 text-white/55" fill="currentColor">
                     <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-9 2-9 6v2h18v-2c0-4-5-6-9-6z" />
