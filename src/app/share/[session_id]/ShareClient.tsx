@@ -7,16 +7,13 @@ import { ArrowRight, RefreshCw } from "lucide-react";
 
 interface Props {
   sessionId: string;
-  initialVideoUrl: string | null;
 }
 
-export default function ShareClient({ sessionId, initialVideoUrl }: Props) {
-  const [videoUrl, setVideoUrl] = useState(initialVideoUrl);
-  const [loading, setLoading] = useState(!initialVideoUrl);
+export default function ShareClient({ sessionId }: Props) {
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [retries, setRetries] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Poll for the video if it wasn't ready at SSR time (upload still in progress)
   useEffect(() => {
     if (videoUrl || retries >= 8) return;
     const t = setTimeout(async () => {
@@ -24,11 +21,11 @@ export default function ShareClient({ sessionId, initialVideoUrl }: Props) {
         const res = await fetch(`/api/share/${sessionId}`);
         if (res.ok) {
           const data = (await res.json()) as { url?: string };
-          if (data.url) { setVideoUrl(data.url); setLoading(false); return; }
+          if (data.url) { setVideoUrl(data.url); return; }
         }
       } catch { /* retry */ }
       setRetries((r) => r + 1);
-    }, 3000);
+    }, retries === 0 ? 500 : 3000);
     return () => clearTimeout(t);
   }, [sessionId, videoUrl, retries]);
 
@@ -39,29 +36,19 @@ export default function ShareClient({ sessionId, initialVideoUrl }: Props) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-[#050505] px-4 py-12">
-      {/* Logo */}
       <Link href="/" className="mb-8 block">
         <Image src="/scamai-logo.svg" alt="scam.ai" width={100} height={25} priority />
       </Link>
 
-      {/* Video stage */}
       <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
         {videoUrl ? (
-          <video
-            ref={videoRef}
-            src={videoUrl}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full"
-          />
+          <video ref={videoRef} src={videoUrl} autoPlay loop muted playsInline className="w-full" />
         ) : (
           <div className="flex aspect-video items-center justify-center">
-            {loading && retries < 8 ? (
+            {retries < 8 ? (
               <div className="flex flex-col items-center gap-3 text-white/40">
                 <RefreshCw className="h-6 w-6 animate-spin" />
-                <span className="text-sm">Video is being processed…</span>
+                <span className="text-sm">Loading your deepfake…</span>
               </div>
             ) : (
               <span className="text-sm text-white/30">Video not available.</span>
@@ -70,7 +57,6 @@ export default function ShareClient({ sessionId, initialVideoUrl }: Props) {
         )}
       </div>
 
-      {/* Copy */}
       <div className="mt-8 max-w-sm text-center">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">
           That took 30 seconds.
@@ -83,7 +69,6 @@ export default function ShareClient({ sessionId, initialVideoUrl }: Props) {
         </p>
       </div>
 
-      {/* CTAs */}
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <Link
           href="/#playground"
@@ -99,9 +84,7 @@ export default function ShareClient({ sessionId, initialVideoUrl }: Props) {
         </Link>
       </div>
 
-      <p className="mt-10 text-[11px] text-white/20">
-        AI-generated deepfake · scam.ai
-      </p>
+      <p className="mt-10 text-[11px] text-white/20">AI-generated deepfake · scam.ai</p>
     </main>
   );
 }
