@@ -119,6 +119,8 @@ export default function FaceswapPlayground() {
   const sessionIdRef = useRef<string>(Math.random().toString(36).slice(2) + Date.now().toString(36));
   const recorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
+  const [shareReady, setShareReady] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   // Revoke any uploaded-face object URLs when the component unmounts.
   useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
@@ -139,7 +141,7 @@ export default function FaceswapPlayground() {
     reader.onload = async () => {
       try {
         const base64 = (reader.result as string).split(",")[1];
-        await fetch("/api/playground/collect", {
+        const res = await fetch("/api/playground/collect", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -149,28 +151,104 @@ export default function FaceswapPlayground() {
             session_id: sessionIdRef.current,
           }),
         });
+        if (res.ok) setShareReady(true);
       } catch { /* silent */ }
     };
     reader.readAsDataURL(blob);
   }, []);
 
-  // ─── MediaRecorder: capture swapped stream when live ─────────────────────
+  // ─── MediaRecorder: canvas compositing with watermark ────────────────────
   useEffect(() => {
     if (state.phase !== "live" || !state.remoteStream) return;
-    const mimeType = ["video/webm;codecs=vp8", "video/webm", "video/mp4"].find(
-      (t) => MediaRecorder.isTypeSupported(t)
-    ) ?? "";
-    const recorder = new MediaRecorder(state.remoteStream, mimeType ? { mimeType } : {});
-    chunksRef.current = [];
-    recorder.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data); };
-    recorder.onstop = () => {
-      if (chunksRef.current.length > 0) {
-        uploadRecording(new Blob(chunksRef.current, { type: mimeType || "video/webm" }));
-      }
+
+    let cancelled = false;
+    const rafState = { id: 0 };
+    let recorder: MediaRecorder | null = null;
+
+    (async () => {
+      // Ensure Inter font is available before measuring/drawing text
+      await document.fonts.ready;
+      if (cancelled) return;
+
+      const stream = state.remoteStream!;
+      const track = stream.getVideoTracks()[0];
+      const { width: W = 1280, height: H = 720 } = track?.getSettings() ?? {};
+
+      // Hidden video element to source frames from
+      const videoEl = document.createElement("video");
+      videoEl.srcObject = stream;
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      try { await videoEl.play(); } catch { /* ok */ }
+      if (cancelled) return;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext("2d")!;
+
+      // Pre-load scam.ai logo
+      const logo = new Image();
+      await new Promise<void>((res) => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
+      if (cancelled) return;
+
+      // Pre-compute watermark layout once (avoids per-frame measureText)
+      const logoH = 18;
+      const logoW = Math.round(logoH * (1012 / 256)); // SVG viewBox is 1012×256
+      const label = "AI-generated";
+      ctx.font = "500 11px Inter, ui-sans-serif, system-ui, sans-serif";
+      const labelW = ctx.measureText(label).width;
+      const gap = 6;
+      const pad = 14;
+      const wX = W - logoW - gap - labelW - pad;
+      const wY = H - logoH - pad;
+      const bgW = logoW + gap + labelW + 16;
+      const bgH = logoH + 10;
+
+      const draw = () => {
+        if (!cancelled && videoEl.readyState >= 2) {
+          ctx.drawImage(videoEl, 0, 0, W, H);
+          // Pill backdrop for legibility on any background
+          ctx.fillStyle = "rgba(0,0,0,0.32)";
+          ctx.beginPath();
+          ctx.roundRect(wX - 8, wY - 5, bgW, bgH, 5);
+          ctx.fill();
+          // Logo (white SVG paths render correctly on transparent background)
+          ctx.globalAlpha = 0.82;
+          ctx.drawImage(logo, wX, wY, logoW, logoH);
+          ctx.globalAlpha = 1;
+          // Label — Inter 500, sized at 11px, vertically centred with logo
+          ctx.font = "500 11px Inter, ui-sans-serif, system-ui, sans-serif";
+          ctx.fillStyle = "rgba(255,255,255,0.82)";
+          ctx.textBaseline = "middle";
+          ctx.fillText(label, wX + logoW + gap, wY + logoH / 2);
+          ctx.textBaseline = "alphabetic";
+        }
+        rafState.id = requestAnimationFrame(draw);
+      };
+      draw();
+
+      const mimeType = ["video/webm;codecs=vp8", "video/webm", "video/mp4"]
+        .find((t) => MediaRecorder.isTypeSupported(t)) ?? "";
+      const rec = new MediaRecorder(canvas.captureStream(30), mimeType ? { mimeType } : {});
+      recorder = rec;
+      chunksRef.current = [];
+      rec.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data); };
+      rec.onstop = () => {
+        cancelAnimationFrame(rafState.id);
+        videoEl.srcObject = null;
+        if (chunksRef.current.length > 0)
+          uploadRecording(new Blob(chunksRef.current, { type: mimeType || "video/webm" }));
+      };
+      rec.start(1000);
+      recorderRef.current = rec;
+    })().catch(() => {});
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafState.id);
+      if (recorder?.state !== "inactive") recorder?.stop();
     };
-    recorder.start(1000);
-    recorderRef.current = recorder;
-    return () => { if (recorder.state !== "inactive") recorder.stop(); };
   }, [state.phase, state.remoteStream, uploadRecording]);
 
   // Bind swapped output stream.
@@ -315,11 +393,26 @@ export default function FaceswapPlayground() {
     []
   );
 
+  const handleShare = useCallback(async () => {
+    const url = `https://scam.ai/share/${sessionIdRef.current}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "I deepfaked myself in 30 seconds", url });
+      } catch { /* user dismissed */ }
+    } else {
+      await navigator.clipboard.writeText(url).catch(() => {});
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, []);
+
   const reset = useCallback(() => {
     stop();
     localStreamRef.current = null;
     secondsRef.current = DEMO_SECONDS;
     setSecondsLeft(DEMO_SECONDS);
+    setShareReady(false);
+    setCopied(false);
     setStep("intro");
   }, [stop]);
 
@@ -621,9 +714,19 @@ export default function FaceswapPlayground() {
           <Overlay>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
             <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device, in real time.</h3>
-            <Link href={HALO_HREF} className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]">
-              Meet Halo — deepfake defense <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+              <Link href={HALO_HREF} className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]">
+                Meet Halo <ArrowRight className="h-4 w-4" />
+              </Link>
+              <button
+                onClick={handleShare}
+                disabled={!shareReady}
+                title={shareReady ? "Share your deepfake" : "Saving your video…"}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 disabled:opacity-40 disabled:cursor-wait active:scale-[0.98]"
+              >
+                {copied ? "Link copied!" : shareReady ? <>Share <ArrowRight className="h-4 w-4" /></> : "Saving…"}
+              </button>
+            </div>
             <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/50 transition hover:text-white">
               <RefreshCw className="h-3.5 w-3.5" /> Run the demo again
             </button>
