@@ -342,13 +342,12 @@ const DIFFERENTIATORS = [
     icon: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />,
   },
   {
-    title: "Runs on the NPU",
-    body: "Halo uses the NPU in Snapdragon-powered Windows PCs. That means no per-minute cloud GPU bill, predictable cost at scale, and protection that works even on a flaky connection. On non-Snapdragon PCs, Halo falls back to CPU inference.",
+    title: "Secure by design",
+    body: "AI models are encrypted at rest and decrypted only in process memory during inference. No video frames, face images, or biometric data ever leave your machine — not to our servers, not to any cloud, not anywhere.",
     icon: (
       <>
-        <rect x="4" y="4" width="16" height="16" rx="2" />
-        <rect x="9" y="9" width="6" height="6" />
-        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3" />
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </>
     ),
   },
@@ -380,12 +379,12 @@ const OBJECTIONS = [
 /* Competitive framing                                                */
 /* ------------------------------------------------------------------ */
 const COMPETE_ROWS = [
-  { label: "Works in real time on the live call", halo: true, cloud: false, platform: "partial", identity: false },
-  { label: "Media stays on the device", halo: true, cloud: false, platform: false, identity: false },
-  { label: "Works across Zoom, Teams, Meet, WebEx & 10+ apps", halo: true, cloud: "partial", platform: false, identity: false },
-  { label: "No per-minute cloud GPU cost", halo: true, cloud: false, platform: "partial", identity: true },
-  { label: "Detects synthetic media (not just liveness)", halo: true, cloud: true, platform: false, identity: "partial" },
-  { label: "Protects the whole call, not just login", halo: true, cloud: true, platform: "partial", identity: false },
+  { label: "Works in real time on the live call", halo: true, cloud: false, platform: "partial" },
+  { label: "Media stays on the device", halo: true, cloud: false, platform: false },
+  { label: "Works across Zoom, Teams, Meet, WebEx & 10+ apps", halo: true, cloud: "partial", platform: false },
+  { label: "No per-minute cloud GPU cost", halo: true, cloud: false, platform: "partial" },
+  { label: "Detects synthetic media (not just liveness)", halo: true, cloud: true, platform: false },
+  { label: "Protects the whole call, not just login", halo: true, cloud: true, platform: "partial" },
 ];
 
 function Cell({ v }: { v: boolean | "partial" }) {
@@ -624,7 +623,7 @@ export default function HaloLanding() {
             </Reveal>
             <Reveal delay={0.5}>
               <p className="mt-6 text-xs text-gray-500">
-                Windows &middot; Snapdragon NPU accelerated &middot; nothing leaves your device
+                Nothing leaves your device.
               </p>
             </Reveal>
           </div>
@@ -864,7 +863,6 @@ export default function HaloLanding() {
                     <th className="px-4 py-4 text-center text-sm font-bold text-[#245FFF]">Halo</th>
                     <th className="px-4 py-4 text-center text-sm font-medium text-gray-400">Cloud detection APIs</th>
                     <th className="px-4 py-4 text-center text-sm font-medium text-gray-400">Platform-native</th>
-                    <th className="px-4 py-4 text-center text-sm font-medium text-gray-400">Identity / KYC</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -874,7 +872,6 @@ export default function HaloLanding() {
                       <td className="bg-[#245FFF]/[0.04] px-4 py-4 text-center"><Cell v={r.halo} /></td>
                       <td className="px-4 py-4 text-center"><Cell v={r.cloud as boolean | "partial"} /></td>
                       <td className="px-4 py-4 text-center"><Cell v={r.platform as boolean | "partial"} /></td>
-                      <td className="px-4 py-4 text-center"><Cell v={r.identity as boolean | "partial"} /></td>
                     </tr>
                   ))}
                 </tbody>
@@ -958,8 +955,8 @@ export default function HaloLanding() {
         <div className="relative z-10 mx-auto max-w-3xl px-5 text-center sm:px-8">
           <Reveal>
             <h2 className="text-3xl font-bold leading-[1.12] sm:text-4xl lg:text-5xl">
-              Halo catches deepfakes on your calls
-              <br className="hidden sm:block" /> &mdash; on your device, in real time.
+              Halo catches deepfakes on your calls.
+              <br className="hidden sm:block" /> On your device, in real time.
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base text-gray-300 sm:text-lg">
               Halo is in early access. Join the waitlist and we&apos;ll let you know the moment it&apos;s ready for your device.
@@ -968,7 +965,7 @@ export default function HaloLanding() {
               Join now and get 50% off your first year.
             </p>
             <WaitlistForm />
-            <p className="mt-6 text-xs text-gray-500">Available on Windows &middot; Snapdragon NPU accelerated &middot; x86/x64 supported</p>
+            <p className="mt-6 text-xs text-gray-500">Available on Windows &middot; Nothing leaves your device</p>
           </Reveal>
         </div>
       </section>
