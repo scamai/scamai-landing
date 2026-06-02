@@ -555,7 +555,7 @@ export default function HaloLanding() {
           maskImage: "radial-gradient(70% 60% at 50% 20%, #000 30%, transparent 80%)",
         }} />
 
-        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-[130px] sm:px-8 lg:grid-cols-2 lg:gap-10 lg:pb-28">
+        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-[130px] sm:px-8 lg:grid-cols-[7fr_5fr] lg:gap-10 lg:pb-28">
           {/* copy */}
           <div className="text-center lg:text-left">
             <Reveal delay={0.1}>
