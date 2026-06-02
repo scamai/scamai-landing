@@ -555,7 +555,7 @@ export default function HaloLanding() {
           maskImage: "radial-gradient(70% 60% at 50% 20%, #000 30%, transparent 80%)",
         }} />
 
-        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-[130px] sm:px-8 lg:grid-cols-[7fr_5fr] lg:gap-10 lg:pb-28">
+        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-[80px] sm:px-8 sm:pt-[130px] lg:grid-cols-[7fr_5fr] lg:gap-10 lg:pb-28">
           {/* copy */}
           <div className="text-center lg:text-left">
             <Reveal delay={0.1}>
@@ -577,7 +577,7 @@ export default function HaloLanding() {
               </p>
             </Reveal>
             <Reveal delay={0.4}>
-              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                 <a
                   href="#waitlist"
                   className="rainbow-button inline-block"
