@@ -15,7 +15,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square, Plus } from "lucide-react";
+import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square, Plus, X } from "lucide-react";
 import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
@@ -35,6 +35,35 @@ const PRESET_FACES: Face[] = [
   { label: "AI-generated face", url: "/playground-faces/ai-white-woman.jpg" },
   { label: "AI-generated face", url: "/playground-faces/ai-black-man.jpg" },
 ];
+
+// Recognizable demo faces — same selection + framing as the Snapdragon booth
+// gallery (face-detected, padded square crop, 768px). These render exactly like
+// a visitor's own uploads (no caption, deletable), so the picker reads as one
+// shared library rather than a vendor-curated set. Hardcoded ⇒ they always come
+// back on reload; a visitor's own uploads do not (see onAddFace / library seed).
+const CELEBRITY_FACES: Face[] = [
+  { label: "Saved face", url: "/playground-faces/celeb/steve-jobs.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/princess-diana.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/barack-obama.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/malala-yousafzai.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/liu-yifei.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/choi-min-sik.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/rinko-kikuchi.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/taylor-swift.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/tom-hanks.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/beyonce.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/lady-gaga.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/elon-musk.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/albert-einstein.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/jack-ma.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/jackie-chan.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
+];
+
+// The gallery seed: AI presets + recognizable faces, all presented as a single
+// "uploaded by users" library. These persist across reloads (hardcoded); only
+// the visitor's own uploads are ephemeral.
+const SEED_FACES: Face[] = [...PRESET_FACES, ...CELEBRITY_FACES];
 
 type Face = { label: string; url: string; custom?: boolean };
 
@@ -58,8 +87,11 @@ type Step = "intro" | "consent" | "running" | "ended";
 export default function FaceswapPlayground() {
   const { state, start, stop, setFace } = useFaceswap();
   const [step, setStep] = useState<Step>("intro");
-  const [selected, setSelected] = useState(PRESET_FACES[0].url);
-  const [customFaces, setCustomFaces] = useState<Face[]>([]);
+  const [selected, setSelected] = useState(SEED_FACES[0].url);
+  // The face library. Seeded with the persistent faces on every mount (so they
+  // survive a reload); a visitor's own uploads are appended in-memory only and
+  // vanish on reload. `custom: true` marks a real upload (object URL to revoke).
+  const [library, setLibrary] = useState<Face[]>(() => [...SEED_FACES]);
   const [secondsLeft, setSecondsLeft] = useState(DEMO_SECONDS);
   const [camError, setCamError] = useState("");
 
@@ -162,7 +194,8 @@ export default function FaceswapPlayground() {
       e.target.value = ""; // allow re-selecting the same file
       if (!file || !file.type.startsWith("image/")) return;
       const url = URL.createObjectURL(file);
-      setCustomFaces((prev) => [...prev, { label: "Your photo", url, custom: true }]);
+      objectUrlsRef.current.push(url);
+      setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true }]);
       setSelected(url);
       if (step === "running" && state.phase === "live") {
         try {
@@ -173,6 +206,28 @@ export default function FaceswapPlayground() {
       }
     },
     [step, state.phase, setFace]
+  );
+
+  // Remove a face from the library. Persistent (seed) faces come back on the
+  // next reload; an own-upload's object URL is revoked here so it's truly gone.
+  // If the removed face was selected, fall back to the first remaining face.
+  const removeFace = useCallback(
+    (url: string) => {
+      if (url.startsWith("blob:")) {
+        try {
+          URL.revokeObjectURL(url);
+        } catch {
+          /* already revoked */
+        }
+        objectUrlsRef.current = objectUrlsRef.current.filter((u) => u !== url);
+      }
+      setLibrary((prev) => {
+        const next = prev.filter((f) => f.url !== url);
+        setSelected((sel) => (sel === url ? next[0]?.url ?? "" : sel));
+        return next;
+      });
+    },
+    []
   );
 
   const reset = useCallback(() => {
@@ -192,24 +247,33 @@ export default function FaceswapPlayground() {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
     return (
       <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
-        {[...PRESET_FACES, ...customFaces].map((f) => {
+        {library.map((f) => {
           const active = selected === f.url;
           return (
-            <button
-              key={f.url}
-              type="button"
-              onClick={() => onPickFace(f.url)}
-              title={f.custom ? "Your uploaded face" : "Become this face"}
-              className={`relative block overflow-hidden rounded-lg ring-2 transition ${
-                active ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]" : "ring-white/10 hover:ring-white/30"
-              }`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={f.url} alt={f.label} className={`${size} object-cover`} />
-              {f.custom && (
-                <span className="absolute bottom-0 left-0 right-0 bg-black/60 py-px text-center text-[8px] font-medium text-white">You</span>
-              )}
-            </button>
+            <div key={f.url} className="group relative">
+              <button
+                type="button"
+                onClick={() => onPickFace(f.url)}
+                title="Become this face"
+                className={`block overflow-hidden rounded-lg ring-2 transition ${
+                  active ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]" : "ring-white/10 hover:ring-white/30"
+                }`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={f.url} alt={f.label} className={`${size} object-cover`} />
+              </button>
+              {/* Delete — removes from the shared library. Seed faces return on
+                  reload; an own-upload is gone for good. */}
+              <button
+                type="button"
+                onClick={() => removeFace(f.url)}
+                aria-label="Remove this face"
+                title="Remove"
+                className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
+              >
+                <X className="h-2.5 w-2.5" />
+              </button>
+            </div>
           );
         })}
 
