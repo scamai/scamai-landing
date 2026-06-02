@@ -129,7 +129,7 @@ export default function NewFooter() {
 
           <nav className="space-y-3 text-sm" aria-label="Company navigation">
             <h3 className="font-semibold text-white">Company</h3>
-            <Link href="/company" className="block text-gray-500 hover:text-white transition-colors">About</Link>
+            <Link href="/about" className="block text-gray-500 hover:text-white transition-colors">About</Link>
             <Link href="/research" className="block text-gray-500 hover:text-white transition-colors">Research</Link>
             <Link href="/contact" className="block text-gray-500 hover:text-white transition-colors">Contact</Link>
             <a href="https://checkreality.ai" target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-white transition-colors">For Business — checkreality.ai</a>
