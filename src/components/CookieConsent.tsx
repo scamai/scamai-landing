@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 
 const CONSENT_KEY = "scamai_cookie_consent";
 const GA_ID = "G-NNX4SFN50V";
