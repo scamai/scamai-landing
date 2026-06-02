@@ -20,8 +20,8 @@ const PRESET_FACES: { label: string; url: string }[] = [
   { label: "Audrey Hepburn", url: "/playground-faces/hepburn.jpg" },
   { label: "Einstein", url: "/playground-faces/einstein.jpg" },
   { label: "JFK", url: "/playground-faces/jfk.jpg" },
-  { label: "Synthetic A", url: "/playground-faces/person-1.jpg" },
-  { label: "Synthetic B", url: "/playground-faces/person-2.jpg" },
+  { label: "Steve Jobs", url: "/playground-faces/jobs.jpg" },
+  { label: "Princess Diana", url: "/playground-faces/diana.jpg" },
 ];
 
 const HALO_HREF = "/halo";
