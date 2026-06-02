@@ -192,7 +192,7 @@ export default function FaceswapPlayground() {
       if (cancelled) return;
 
       // Pre-compute watermark layout once (avoids per-frame measureText)
-      const logoH = 18;
+      const logoH = 28;
       const logoW = Math.round(logoH * (1012 / 256)); // SVG viewBox is 1012×256
       const label = "AI-generated";
       ctx.font = "500 11px Inter, ui-sans-serif, system-ui, sans-serif";
@@ -618,7 +618,7 @@ export default function FaceswapPlayground() {
         {live && (
           <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 rounded-md bg-black/35 px-2 py-1 backdrop-blur-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/scamai-logo.svg" alt="scam.ai" className="h-3.5 w-auto opacity-75" />
+            <img src="/scamai-logo.svg" alt="scam.ai" className="h-5 w-auto opacity-75" />
             <span className="text-[9px] font-medium text-white/55">AI-generated</span>
           </div>
         )}
