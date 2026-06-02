@@ -103,10 +103,13 @@ export default function HaloSpotlight() {
         <div className="relative mx-auto w-full max-w-md">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-2 border-b border-white/[0.07] bg-[#11141b] px-4 py-2.5">
-              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-              <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-              <span className="ml-2 text-[11px] font-medium text-white/40">Live call · Halo</span>
+              <span className="flex items-center gap-1.5 text-[11px] font-medium text-white/45">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+                </span>
+                Live call
+              </span>
               <span className="ml-auto text-[11px] tabular-nums text-white/30">12:04</span>
             </div>
 
