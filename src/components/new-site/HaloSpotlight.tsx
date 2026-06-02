@@ -47,11 +47,7 @@ export default function HaloSpotlight() {
             <img src="/qualcomm-logo.svg" alt="Qualcomm" className="h-[18px] w-auto opacity-90" />
           </div>
 
-          <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-200">
-            On-device deepfake detection · Computex Taipei · Jun 2–5
-          </p>
-
-          <h2 className="mt-5 text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-[44px]">
+          <h2 className="mt-6 text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-[44px]">
             Meet Halo — deepfake defense that runs on your device.
           </h2>
 
