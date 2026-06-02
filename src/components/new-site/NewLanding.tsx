@@ -302,7 +302,7 @@ export default function NewLanding() {
         <HeroBackground className="" />
         <div className="relative z-10 w-full">
           {/* Text area — centered in ~70vh */}
-          <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 pt-[120px] text-center sm:px-10 lg:px-8">
+          <div className="flex min-h-[82vh] flex-col items-center justify-center px-5 pb-10 pt-[136px] text-center sm:px-10 sm:pb-14 lg:px-8">
             <div className="mx-auto flex max-w-4xl flex-col items-center space-y-4 sm:space-y-5">
               <AnimatedSection delay={0.2}>
                 <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.18em] uppercase sm:text-[11px]">
