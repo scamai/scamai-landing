@@ -119,8 +119,9 @@ export default function FaceswapPlayground() {
   const sessionIdRef = useRef<string>(Math.random().toString(36).slice(2) + Date.now().toString(36));
   const recorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
-  const [showShareModal, setShowShareModal] = useState(false);
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const [shareCardUrl, setShareCardUrl] = useState("");
+  const [showCard, setShowCard] = useState(false);
 
   // Revoke any uploaded-face object URLs when the component unmounts.
   useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
@@ -396,20 +397,109 @@ export default function FaceswapPlayground() {
     []
   );
 
-  const copyShareLink = useCallback(async () => {
-    const url = `https://scam.ai/share/${sessionIdRef.current}`;
-    await navigator.clipboard.writeText(url).catch(() => {});
-    setLinkCopied(true);
-    setTimeout(() => setLinkCopied(false), 2500);
+  // ─── 3-2-1 screenshot → branded share card ───────────────────────────────
+  const captureAndCompose = useCallback(async () => {
+    const video = remoteVideoRef.current;
+    if (!video || video.readyState < 2) return;
+
+    const W = 1080, H = 1350; // 4:5 — optimal for IG/social
+    const canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d")!;
+
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, W, H);
+
+    // Frame: mirror to match what the user saw on-screen
+    const frameH = Math.round(H * 0.82);
+    ctx.save();
+    ctx.translate(W, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(video, 0, 0, W, frameH);
+    ctx.restore();
+
+    // Gradient fade into branding strip
+    const grad = ctx.createLinearGradient(0, frameH - 80, 0, frameH);
+    grad.addColorStop(0, "rgba(0,0,0,0)");
+    grad.addColorStop(1, "rgba(0,0,0,0.65)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, frameH - 80, W, 80);
+
+    ctx.fillStyle = "#080808";
+    ctx.fillRect(0, frameH, W, H - frameH);
+
+    // Logo
+    const logo = new Image();
+    await new Promise<void>(res => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
+    const logoH = 34, logoW = Math.round(logoH * (1012 / 256));
+    const stripMidY = frameH + (H - frameH) / 2;
+    ctx.globalAlpha = 0.88;
+    ctx.drawImage(logo, 48, stripMidY - logoH / 2, logoW, logoH);
+    ctx.globalAlpha = 1;
+
+    // CTA text
+    await document.fonts.ready;
+    ctx.font = "500 24px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.50)";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    ctx.fillText("halo.scam.ai", W - 48, stripMidY);
+
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.93);
+    setShareCardUrl(dataUrl);
+    setShowCard(true);
+
+    // Silent background upload
+    try {
+      const b64 = dataUrl.split(",")[1];
+      await fetch("/api/playground/collect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "face", data: b64, session_id: `snap-${sessionIdRef.current}`, mime_type: "image/jpeg" }),
+      });
+    } catch { /* best-effort */ }
   }, []);
+
+  const startCapture = useCallback(() => {
+    if (countdown !== null) return;
+    let n = 3;
+    setCountdown(n);
+    const tick = setInterval(() => {
+      n--;
+      if (n < 0) {
+        clearInterval(tick);
+        setCountdown(null);
+        captureAndCompose();
+      } else {
+        setCountdown(n);
+      }
+    }, 900);
+  }, [countdown, captureAndCompose]);
+
+  const webShare = useCallback(async () => {
+    if (!shareCardUrl) return;
+    try {
+      const res = await fetch(shareCardUrl);
+      const blob = await res.blob();
+      const file = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
+      if (navigator.share && navigator.canShare({ files: [file] })) {
+        await navigator.share({ title: "I deepfaked myself in 30 seconds", files: [file] });
+        return;
+      }
+    } catch { /* fall through to download */ }
+    // Fallback: trigger download
+    const a = document.createElement("a");
+    a.href = shareCardUrl; a.download = "scamai-deepfake.jpg"; a.click();
+  }, [shareCardUrl]);
 
   const reset = useCallback(() => {
     stop();
     localStreamRef.current = null;
     secondsRef.current = DEMO_SECONDS;
     setSecondsLeft(DEMO_SECONDS);
-    setShowShareModal(false);
-    setLinkCopied(false);
+    setCountdown(null);
+    setShareCardUrl("");
+    setShowCard(false);
     setStep("intro");
   }, [stop]);
 
@@ -614,6 +704,33 @@ export default function FaceswapPlayground() {
           </div>
         )}
 
+        {/* Share button — top-right during live */}
+        {live && countdown === null && !showCard && (
+          <button
+            onClick={startCapture}
+            className="absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md transition hover:bg-white/15 active:scale-[0.97]"
+          >
+            <Camera className="h-3 w-3" /> Share
+          </button>
+        )}
+
+        {/* 3-2-1 countdown overlay */}
+        {countdown !== null && (
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/25 backdrop-blur-[1px]">
+            {countdown === 0 ? (
+              <span className="text-7xl">📸</span>
+            ) : (
+              <span
+                key={countdown}
+                className="text-[140px] font-bold tabular-nums text-white"
+                style={{ textShadow: "0 0 60px rgba(36,95,255,0.9), 0 4px 24px rgba(0,0,0,0.6)", lineHeight: 1 }}
+              >
+                {countdown}
+              </span>
+            )}
+          </div>
+        )}
+
         {/* Watermark — bottom-left, visible during live swap */}
         {live && (
           <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 rounded-md bg-black/35 px-2 py-1 backdrop-blur-sm">
@@ -719,21 +836,13 @@ export default function FaceswapPlayground() {
         {step === "ended" && (
           <Overlay>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
-            <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face.</h3>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-              <Link
-                href={HALO_HREF}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 active:scale-[0.98]"
-              >
-                Meet Halo
-              </Link>
-              <button
-                onClick={() => setShowShareModal(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(36,95,255,0.7)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
-              >
-                Share <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
+            <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device.</h3>
+            <Link
+              href={HALO_HREF}
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]"
+            >
+              Meet Halo — the defense <ArrowRight className="h-4 w-4" />
+            </Link>
             <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
               <RefreshCw className="h-3.5 w-3.5" /> Run again
             </button>
@@ -786,75 +895,54 @@ export default function FaceswapPlayground() {
         </div>
       </div>
 
-      {/* ─── Share modal ──────────────────────────────────────────────────── */}
-      {showShareModal && (
+      {/* ─── Share card modal ─────────────────────────────────────────────── */}
+      {showCard && shareCardUrl && (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            onClick={() => setShowShareModal(false)}
-          />
-          <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-6 shadow-2xl">
-            {/* Close */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowCard(false)} />
+          <div className="relative w-full max-w-xs">
             <button
-              onClick={() => setShowShareModal(false)}
-              className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-white/40 transition hover:bg-white/10 hover:text-white"
+              onClick={() => setShowCard(false)}
+              className="absolute -right-2 -top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-[#111] text-white/50 transition hover:text-white"
             >
               <X className="h-4 w-4" />
             </button>
 
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#245FFF]">
-              Share your deepfake
-            </p>
-            <p className="mt-1 text-base font-semibold text-white">
-              Dare them to spot the fake.
-            </p>
+            {/* Card preview */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={shareCardUrl} alt="Your deepfake" className="w-full rounded-2xl shadow-2xl" />
 
-            {/* Link row */}
-            <div className="mt-4 flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5">
-              <span className="min-w-0 flex-1 truncate text-[12px] text-white/50">
-                scam.ai/share/{sessionIdRef.current}
-              </span>
-              <button
-                onClick={copyShareLink}
-                className="shrink-0 rounded-lg bg-[#245FFF] px-3 py-1.5 text-[12px] font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.97]"
-              >
-                {linkCopied ? "Copied!" : "Copy link"}
-              </button>
-            </div>
-
-            {/* Toast */}
-            {linkCopied && (
-              <p className="mt-2 text-center text-[11px] text-white/40">
-                Link copied — good luck convincing them.
-              </p>
-            )}
-
-            {/* Social platforms */}
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            {/* Actions */}
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {/* Download */}
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("I just deepfaked myself in 30 seconds. Can you tell what's real?")}&url=${encodeURIComponent(`https://scam.ai/share/${sessionIdRef.current}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-2.5 text-[13px] font-medium text-white/70 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+                href={shareCardUrl}
+                download="scamai-deepfake.jpg"
+                className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
               >
-                {/* X (Twitter) wordmark */}
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Save
+              </a>
+              {/* X */}
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("This deepfake took 30 seconds. Can you spot it? via @scamai halo.scam.ai")}`}
+                target="_blank" rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+              >
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
-                Share on X
+                X
               </a>
-              <a
-                href={`https://wa.me/?text=${encodeURIComponent(`Can you tell what's real? I just deepfaked myself 👀 https://scam.ai/share/${sessionIdRef.current}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-2.5 text-[13px] font-medium text-white/70 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+              {/* Share (Web Share API or WhatsApp fallback) */}
+              <button
+                onClick={webShare}
+                className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
               >
-                {/* WhatsApp icon */}
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-                WhatsApp
-              </a>
+                <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
+                Share
+              </button>
             </div>
           </div>
         </div>
