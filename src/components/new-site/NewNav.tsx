@@ -283,7 +283,7 @@ export default function NewNav() {
       {showBanner && <ComputexBanner onDismiss={dismissBanner} />}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-        <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 lg:px-6">
+        <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
         <Link href="/" className={`flex shrink-0 items-center ${open ? 'invisible' : ''}`}>
           <img
             src="/scamai-logo.svg"
