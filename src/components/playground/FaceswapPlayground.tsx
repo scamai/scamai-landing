@@ -28,12 +28,12 @@ const HALO_HREF = "/halo";
 // detection). See /public/playground-faces. Labels are alt-text only — never
 // rendered as captions (we don't tag faces by race in the UI).
 const AI_FACES: Face[] = [
-  { label: "AI-generated face", url: "/playground-faces/ai-asian-woman.jpg" },
-  { label: "AI-generated face", url: "/playground-faces/ai-white-man.jpg" },
-  { label: "AI-generated face", url: "/playground-faces/ai-black-woman.jpg" },
-  { label: "AI-generated face", url: "/playground-faces/ai-asian-man.jpg" },
-  { label: "AI-generated face", url: "/playground-faces/ai-white-woman.jpg" },
-  { label: "AI-generated face", url: "/playground-faces/ai-black-man.jpg" },
+  { label: "AI-generated face", url: "/playground-faces/ai-asian-woman.jpg", synthetic: true },
+  { label: "AI-generated face", url: "/playground-faces/ai-white-man.jpg",   synthetic: true },
+  { label: "AI-generated face", url: "/playground-faces/ai-black-woman.jpg", synthetic: true },
+  { label: "AI-generated face", url: "/playground-faces/ai-asian-man.jpg",   synthetic: true },
+  { label: "AI-generated face", url: "/playground-faces/ai-white-woman.jpg", synthetic: true },
+  { label: "AI-generated face", url: "/playground-faces/ai-black-man.jpg",   synthetic: true },
 ];
 
 // Fixed house presets — public-domain photos of deceased historical figures.
@@ -67,12 +67,11 @@ const CELEBRITY_FACES: Face[] = [
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
 ];
 
-// Gallery seed order: fixed presets first (named, locked), then the "uploaded by
-// users" pool (recognizable faces, then AI synthetic). All persist across reloads
-// (hardcoded); only a visitor's own uploads are ephemeral.
-const SEED_FACES: Face[] = [...PRESET_FIGURES, ...CELEBRITY_FACES, ...AI_FACES];
+// Gallery seed: AI synthetic first (locked preset section), then named figures +
+// celebrities (appear in the "uploads" section alongside real user uploads).
+const SEED_FACES: Face[] = [...AI_FACES, ...PRESET_FIGURES, ...CELEBRITY_FACES];
 
-type Face = { label: string; url: string; custom?: boolean; preset?: boolean; name?: string };
+type Face = { label: string; url: string; custom?: boolean; preset?: boolean; synthetic?: boolean; name?: string };
 
 // Draw the image through a canvas so:
 //   1. EXIF rotation is baked in (phones store pixels sideways but mark them
@@ -258,7 +257,8 @@ export default function FaceswapPlayground() {
   // If the removed face was selected, fall back to the first remaining face.
   const removeFace = useCallback(
     (url: string) => {
-      if (PRESET_FIGURES.some((p) => p.url === url)) return; // presets are fixed
+      if (AI_FACES.some((f) => f.url === url)) return; // synthetic faces are fixed
+      if (PRESET_FIGURES.some((p) => p.url === url)) return; // preset figures are fixed
       if (url.startsWith("blob:")) {
         try {
           URL.revokeObjectURL(url);
@@ -294,8 +294,8 @@ export default function FaceswapPlayground() {
   // ─── Face picker — two sections: presets + your uploads ──────────────────
   const FacePicker = ({ compact = false }: { compact?: boolean }) => {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
-    const presetFaces = library.filter((f) => !f.custom);
-    const uploadedFaces = library.filter((f) => f.custom);
+    const syntheticFaces = library.filter((f) => f.synthetic);
+    const uploadedFaces = library.filter((f) => !f.synthetic);
 
     const renderFace = (f: Face) => {
       const active = selected === f.url;
@@ -326,7 +326,7 @@ export default function FaceswapPlayground() {
               </>
             )}
           </button>
-          {!f.preset && (
+          {!f.preset && !f.synthetic && (
             <button
               type="button"
               onClick={() => removeFace(f.url)}
@@ -343,7 +343,7 @@ export default function FaceswapPlayground() {
 
     return (
       <div className="space-y-4">
-        {/* ── Preset faces ── */}
+        {/* ── Preset faces (StyleGAN2 synthetic only) ── */}
         <div>
           <div className="mb-2 flex items-baseline gap-1.5">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
@@ -352,7 +352,7 @@ export default function FaceswapPlayground() {
             <span className="text-[9px] text-white/22">· StyleGAN2 AI-generated</span>
           </div>
           <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
-            {presetFaces.map(renderFace)}
+            {syntheticFaces.map(renderFace)}
           </div>
         </div>
 
