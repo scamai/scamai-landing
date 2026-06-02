@@ -69,7 +69,7 @@ export default function HaloSpotlight() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
+          <div className="mt-8 flex flex-wrap items-center gap-3 lg:items-start">
             <Link
               href="/halo"
               onClick={() => trackCTA("meet_halo", "halo_spotlight")}
