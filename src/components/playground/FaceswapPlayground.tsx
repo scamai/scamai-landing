@@ -319,18 +319,14 @@ export default function FaceswapPlayground() {
             <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40 lg:text-left">
               {step === "running" && live ? "Tap to switch faces live" : "Pick a face"}
             </p>
-            <div className="lg:block">
-              <FacePicker compact />
-            </div>
+            <div className="lg:block">{FacePicker({ compact: true })}</div>
             <p className="mt-4 hidden items-center gap-1.5 text-[11px] text-white/35 lg:flex">
               <Camera className="h-3.5 w-3.5" /> 30-second live demo · no install
             </p>
           </div>
 
           {/* right: stage */}
-          <div className="order-1 lg:order-2 lg:col-span-8">
-            <Stage />
-          </div>
+          <div className="order-1 lg:order-2 lg:col-span-8">{Stage()}</div>
         </div>
       </div>
     </section>
