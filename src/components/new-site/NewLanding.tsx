@@ -341,7 +341,7 @@ export default function NewLanding() {
                   </Link>
                   <a
                     href="#playground"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition hover:text-white"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 hover:text-white"
                     onClick={() => trackCTA("try_faceswap", "hero")}
                   >
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
