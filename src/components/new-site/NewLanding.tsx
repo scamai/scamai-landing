@@ -305,50 +305,50 @@ export default function NewLanding() {
           <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 pt-[120px] text-center sm:px-10 lg:px-8">
             <div className="mx-auto flex max-w-4xl flex-col items-center space-y-4 sm:space-y-5">
               <AnimatedSection delay={0.2}>
-                <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-semibold text-gray-300 tracking-[0.18em] uppercase sm:text-[11px]">
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.18em] uppercase sm:text-[11px]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#245FFF]" />
-                  On-device deepfake detection · Qualcomm Snapdragon X
+                  Introducing Halo · On-device deepfake detection with Qualcomm
                 </p>
               </AnimatedSection>
 
               <AnimatedSection delay={0.3}>
                 <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  The AI firewall against deepfakes and synthetic fraud.
+                  Verify what&apos;s real. Protect what matters.
                 </h1>
               </AnimatedSection>
 
               <AnimatedSection delay={0.4}>
                 <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
                   <p className="text-center">
-                    Real-time detection that protects your{" "}
-                    <span className="font-semibold text-white">calls, KYC flows, and identity verification</span>{" "}
-                    from generative-AI attacks — running{" "}
-                    <span className="font-semibold text-white">on-device</span>, in real time.
+                    Deepfakes and voice clones are everywhere — on your video calls, your
+                    DMs, your screen. scam.ai catches them{" "}
+                    <span className="font-semibold text-white">in real time</span>, so you
+                    always know who&apos;s really on the other side.
                   </p>
                 </div>
               </AnimatedSection>
 
               <AnimatedSection delay={0.5}>
                 <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center gap-4">
-                  <a
-                    href="#playground"
-                    className="rainbow-button inline-block"
-                    onClick={() => trackCTA("try_demo", "hero")}
-                  >
-                    <span className="rainbow-button-inner">
-                      Try the live demo
-                    </span>
-                  </a>
                   <Link
                     href="/halo"
+                    className="rainbow-button inline-block"
+                    onClick={() => trackCTA("visit_halo", "hero")}
+                  >
+                    <span className="rainbow-button-inner">
+                      Visit Halo
+                    </span>
+                  </Link>
+                  <a
+                    href="#playground"
                     className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition hover:text-white"
-                    onClick={() => trackCTA("meet_halo", "hero")}
+                    onClick={() => trackCTA("try_faceswap", "hero")}
                   >
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
                     </svg>
-                    Meet Halo
-                  </Link>
+                    Try online faceswapping
+                  </a>
                 </div>
               </AnimatedSection>
             </div>
