@@ -22,12 +22,14 @@ const DEMO_SECONDS = 30;
 const PER_PLAY_SECONDS = 30; // used for queue ETA estimate
 const HALO_HREF = "/halo";
 
+// Public-domain figures only (likeness rights expired + photo confirmed PD,
+// links vetted by the team). No living/recent estates. See /public/playground-faces.
 const PRESET_FACES: { label: string; url: string }[] = [
-  { label: "Audrey Hepburn", url: "/playground-faces/hepburn.jpg" },
   { label: "Einstein", url: "/playground-faces/einstein.jpg" },
   { label: "JFK", url: "/playground-faces/jfk.jpg" },
-  { label: "Steve Jobs", url: "/playground-faces/jobs.jpg" },
-  { label: "Princess Diana", url: "/playground-faces/diana.jpg" },
+  { label: "Tesla", url: "/playground-faces/tesla.jpg" },
+  { label: "Lincoln", url: "/playground-faces/lincoln.jpg" },
+  { label: "Curie", url: "/playground-faces/curie.jpg" },
 ];
 
 async function urlToBase64(url: string): Promise<string> {
