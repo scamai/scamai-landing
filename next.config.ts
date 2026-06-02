@@ -29,8 +29,12 @@ const nextConfig: NextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.vercel-insights.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://cdn.vercel-insights.com https://va.vercel-scripts.com https://vitals.vercel-insights.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; media-src 'self' blob:;" },
+          // camera=(self): the homepage faceswap playground needs getUserMedia
+          // on this origin. Mic/geo stay fully disabled (demo is video-only).
+          { key: 'Permissions-Policy', value: 'camera=(self), microphone=(), geolocation=()' },
+          // connect-src additions: api.liveface.app (+wss) for the faceswap WebRTC
+          // signaling; dek-issuance...run.app for the Halo waitlist DEK endpoint.
+          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.vercel-insights.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://cdn.vercel-insights.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://api.liveface.app wss://api.liveface.app https://dek-issuance-40198490972.us-central1.run.app; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; media-src 'self' blob:;" },
         ],
       },
     ];

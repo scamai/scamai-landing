@@ -157,6 +157,9 @@ html {
 
 html {
   scroll-behavior: smooth;
+  /* Offset in-page anchor jumps (#playground, #halo, …) so the target isn't
+     hidden under the fixed Computex banner (56px) + nav (~48px). */
+  scroll-padding-top: 116px;
 }
 
 /* Dark-only theme: no light overrides */
@@ -348,6 +351,25 @@ header {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* Trusted-by marquee (mirrors checkreality.ai): two rows, opposite directions.
+   Each row renders its logo group twice; -50% loops seamlessly. */
+@keyframes trust-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-scroll {
+  animation: trust-scroll 38s linear infinite;
+}
+.animate-scroll-reverse {
+  animation: trust-scroll 38s linear infinite reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll,
+  .animate-scroll-reverse {
+    animation: none;
   }
 }
 

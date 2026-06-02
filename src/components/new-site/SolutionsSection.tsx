@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
 function AnimatedCard({
@@ -33,7 +34,30 @@ function AnimatedCard({
   );
 }
 
-const solutions = [
+type Solution = {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  href?: string;
+  highlight?: boolean;
+  badge?: string;
+};
+
+const solutions: Solution[] = [
+  {
+    title: "Halo — On-Device Detection",
+    description: "Real-time deepfake detection on your Zoom, Teams & Meet calls. Runs on the Qualcomm Snapdragon X NPU — nothing leaves your device.",
+    href: "/halo",
+    highlight: true,
+    badge: "New · with Qualcomm",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+      </svg>
+    ),
+  },
   {
     title: "Deepfake",
     description: "Detect face swaps, lip-sync attacks, and AI-generated faces across images and video in real time.",
@@ -136,19 +160,50 @@ function SolutionCard({
   solution: (typeof solutions)[number];
   delay: number;
 }) {
+  const inner = (
+    <div
+      className={`group relative h-full rounded-xl sm:rounded-2xl border p-4 sm:p-6 transition-all duration-300 ${
+        solution.highlight
+          ? "border-[#245FFF]/40 bg-[#245FFF]/[0.06] hover:border-[#245FFF]/70 hover:bg-[#245FFF]/[0.10]"
+          : "border-gray-800/60 bg-white/[0.02] hover:border-[#245FFF]/30 hover:bg-white/[0.04]"
+      }`}
+    >
+      {solution.badge && (
+        <span className="absolute right-3 top-3 rounded-full bg-[#245FFF] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+          {solution.badge}
+        </span>
+      )}
+      <div className="mb-3 sm:mb-4 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#245FFF]/10 text-[#245FFF]">
+        {solution.icon}
+      </div>
+      <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5 sm:mb-2 leading-tight">
+        {solution.title}
+      </h3>
+      <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+        {solution.description}
+      </p>
+      {solution.href && (
+        <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#245FFF]">
+          Learn more
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </span>
+      )}
+    </div>
+  );
+
   return (
     <AnimatedCard delay={delay}>
-      <div className="group relative h-full rounded-xl sm:rounded-2xl border border-gray-800/60 bg-white/[0.02] p-4 sm:p-6 transition-all duration-300 hover:border-[#245FFF]/30 hover:bg-white/[0.04]">
-        <div className="mb-3 sm:mb-4 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#245FFF]/10 text-[#245FFF]">
-          {solution.icon}
-        </div>
-        <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5 sm:mb-2 leading-tight">
-          {solution.title}
-        </h3>
-        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-          {solution.description}
-        </p>
-      </div>
+      {solution.href ? (
+        <Link
+          href={solution.href}
+          onClick={() => trackCTA("meet_halo", "solutions_card")}
+          className="block h-full"
+        >
+          {inner}
+        </Link>
+      ) : (
+        inner
+      )}
     </AnimatedCard>
   );
 }

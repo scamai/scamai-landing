@@ -8,6 +8,15 @@ import { BentoV1_3, BentoV1_5, BentoV1_26, BentoV1_28 } from "@/components/bento
 import { Suspense } from "react";
 import { trackCTA, trackOutbound } from "@/lib/analytics";
 import DeveloperSection from "./DeveloperSection";
+import HaloSpotlight from "./HaloSpotlight";
+import TrustedBy from "./TrustedBy";
+import dynamic from "next/dynamic";
+
+// Live face-swap demo — client-only (WebRTC / getUserMedia), no SSR.
+const FaceswapPlayground = dynamic(
+  () => import("@/components/playground/FaceswapPlayground"),
+  { ssr: false }
+);
 
 // Skeleton loader for bento visual components
 function BentoSkeleton() {
@@ -296,98 +305,65 @@ export default function NewLanding() {
           <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 pt-[120px] text-center sm:px-10 lg:px-8">
             <div className="mx-auto flex max-w-4xl flex-col items-center space-y-4 sm:space-y-5">
               <AnimatedSection delay={0.2}>
-                <p className="text-[10px] font-semibold text-gray-400 tracking-[0.15em] uppercase sm:text-xs">
-                  All-in-one
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.18em] uppercase sm:text-[11px]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#245FFF]" />
+                  Introducing Halo · On-device deepfake detection with Qualcomm
                 </p>
               </AnimatedSection>
 
               <AnimatedSection delay={0.3}>
-                <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                  AI trust platform
+                <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
+                  Verify what&apos;s real. Protect what matters.
                 </h1>
               </AnimatedSection>
 
               <AnimatedSection delay={0.4}>
                 <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
-                  <div className="text-center space-y-2">
-                    <p>
-                      <span className="font-semibold text-white">Detect synthetic media and deepfakes in real time</span>.
-                    </p>
-                    <p>
-                      <span className="font-semibold text-white">Industry-leading accuracy</span> that fights fraud and unifies trust signals.
-                    </p>
-                  </div>
+                  <p className="text-center">
+                    Deepfakes and voice clones are everywhere — on your video calls, your
+                    DMs, your screen. scam.ai catches them{" "}
+                    <span className="font-semibold text-white">in real time</span>, so you
+                    always know who&apos;s really on the other side.
+                  </p>
                 </div>
               </AnimatedSection>
 
               <AnimatedSection delay={0.5}>
                 <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center gap-4">
-                  <a
-                    href="https://app.scam.ai"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/halo"
                     className="rainbow-button inline-block"
-                    onClick={() => trackCTA("start_free", "hero")}
+                    onClick={() => trackCTA("visit_halo", "hero")}
                   >
                     <span className="rainbow-button-inner">
-                      Start for Free
+                      Visit Halo
                     </span>
-                  </a>
+                  </Link>
                   <a
-                    href="https://app.scam.ai"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition hover:text-white"
-                    onClick={() => trackCTA("see_platform", "hero")}
+                    href="#playground"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 hover:text-white"
+                    onClick={() => trackCTA("try_faceswap", "hero")}
                   >
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
                     </svg>
-                    See the platform
+                    See how easy deepfake is
                   </a>
                 </div>
               </AnimatedSection>
             </div>
           </div>
-
-          {/* Product visual — sits in the remaining ~30vh, peeks above fold */}
-          <AnimatedSection delay={0.7}>
-            <div className="relative mx-auto w-full max-w-4xl px-5 pb-16 sm:px-10 lg:px-8">
-              <div className="overflow-hidden rounded-xl">
-                <div className="relative">
-                  <video
-                    ref={(el) => {
-                      if (el) {
-                        el.currentTime = 4;
-                        const handleTimeUpdate = () => {
-                          if (el.ended || el.currentTime < 4) {
-                            el.currentTime = 4;
-                            el.play();
-                          }
-                        };
-                        el.addEventListener('ended', handleTimeUpdate);
-                        el.addEventListener('loadedmetadata', () => { el.currentTime = 4; });
-                      }
-                    }}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    poster="/en/opengraph-image"
-                    className="w-full h-auto rounded-xl"
-                  >
-                    <source src="/dashboard.mp4" type="video/mp4" />
-                  </video>
-                  {/* Gradient fade at bottom */}
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent" />
-                </div>
-              </div>
-              {/* Glow effect behind the frame */}
-              <div className="pointer-events-none absolute -inset-4 -z-10 rounded-2xl bg-[#245FFF]/5 blur-2xl" />
-            </div>
-          </AnimatedSection>
         </div>
       </section>
+
+      {/* Trusted-by partner / investor logo marquee */}
+      <TrustedBy />
+
+      {/* Live "Deepfake is here" face-swap playground */}
+      <FaceswapPlayground />
+
+      {/* Halo + Qualcomm partnership spotlight (the defense) */}
+      <HaloSpotlight />
 
       {/* AI-Powered Security — merged section */}
       <section className="landing-section relative overflow-hidden" aria-label="AI-Powered Security - Deepfake Protection" style={{
