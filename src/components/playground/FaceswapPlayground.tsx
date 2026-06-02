@@ -326,10 +326,10 @@ export default function FaceswapPlayground() {
         {/* ── Preset faces (StyleGAN2 synthetic only) ── */}
         <div>
           <div className="mb-2 flex items-baseline gap-1.5">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#245FFF]/80">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
               Preset faces
             </span>
-            <span className="text-[9px] text-white/30">· StyleGAN2 AI-generated</span>
+            <span className="text-[9px] text-white/40">· StyleGAN2 AI-generated</span>
           </div>
           <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
             {syntheticFaces.map(renderFace)}
@@ -339,14 +339,14 @@ export default function FaceswapPlayground() {
         {/* ── Uploads section ── */}
         <div>
           <div className="mb-1 flex items-baseline gap-1.5">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/60">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
               Your uploads
             </span>
-            <span className="text-[9px] text-white/30">
+            <span className="text-[9px] text-white/40">
               · {uploadedFaces.length}/{MAX_UPLOADS}
             </span>
           </div>
-          <p className="mb-2 text-[9px] leading-snug text-white/25">
+          <p className="mb-2 text-[9px] leading-snug text-white/40">
             Only upload faces with the subject&apos;s consent.
           </p>
           <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
@@ -556,7 +556,7 @@ export default function FaceswapPlayground() {
         <div className="mt-5 grid items-center gap-5 sm:mt-7 lg:grid-cols-12">
           {/* left: face picker + start (desktop) / below stage (mobile via order) */}
           <div className="order-2 lg:order-1 lg:col-span-4">
-            <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 lg:text-left">
+            <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white lg:text-left">
               {step === "running" && live ? "Tap to switch faces live" : "Pick a face"}
             </p>
             <div className="lg:block">{FacePicker({ compact: true })}</div>
