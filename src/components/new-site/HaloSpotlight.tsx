@@ -60,9 +60,8 @@ export default function HaloSpotlight() {
             You just saw how easy a deepfake is. Halo is a Windows desktop app that
             watches your video meetings in real time and flags{" "}
             <span className="font-semibold text-white">deepfaked faces and AI-generated content</span>{" "}
-            on screen. Every model runs on the{" "}
-            <span className="font-semibold text-white">Qualcomm Snapdragon X2 NPU</span> —
-            so no meeting data ever leaves your device.
+            on screen — high-accuracy detection that runs{" "}
+            <span className="font-semibold text-white">entirely on your device</span>.
           </p>
 
           {/* Real-Time · Secure · Private pillars */}
