@@ -157,6 +157,9 @@ html {
 
 html {
   scroll-behavior: smooth;
+  /* Offset in-page anchor jumps (#playground, #halo, …) so the target isn't
+     hidden under the fixed Computex banner (56px) + nav (~48px). */
+  scroll-padding-top: 116px;
 }
 
 /* Dark-only theme: no light overrides */
