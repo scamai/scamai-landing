@@ -1,0 +1,8 @@
+# Project Correction Rules
+
+- [2026-06-02] playground-ui (edge-case): When splitting a face gallery into "preset" vs "user upload" sections, verify which items truly belong to each — don't label real celebrity photos as "StyleGAN2 AI-generated" and don't lock famous-figure photos that should blend in as user uploads. Instead check the actual generation method (synthetic flag) before assigning section and lock status.
+- [2026-06-02] hero-mobile (edge-case): Desktop top-padding values (pt-[136px]) are wrong on mobile where nav is ~64px — always make pt responsive (e.g. pt-[88px] sm:pt-[128px]). Also audit pill/badge text length: anything >40 chars will wrap on 375px screens and must have a shorter mobile variant.
+- [2026-06-02] nav-breakpoint (edge-case): `md:` (768px) breakpoint for a full desktop nav bar with 5 items + search + 2 buttons causes overflow — always use `lg:` (1024px) as the desktop/mobile threshold for navigation. Verify total nav width at the breakpoint before committing.
+- [2026-06-02] admin-viewer (settings-disconnect): Don't build a web admin viewer unless explicitly asked — ask how the user wants to view collected data before building a UI for it. Internal dashboards add complexity that the user may not want.
+- [2026-06-02] branding-surface (edge-case): Use the brand that owns the surface — scam.ai for playground watermarks/share pages, not sub-brand Halo. Check which product the page belongs to before picking brand copy or domain references.
+- [2026-06-02] share-ux (edge-case): Never gate a share button on upload completion — the link is always instant (Loom pattern). Backend state (saving, processing) must never surface as user-facing copy. Share modal should always be ready at demo-end.
