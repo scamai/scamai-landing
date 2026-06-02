@@ -228,8 +228,7 @@ export default function FaceswapPlayground() {
       const file = e.target.files?.[0];
       e.target.value = ""; // allow re-selecting the same file
       if (!file || !file.type.startsWith("image/")) return;
-      const customCount = library.filter((f) => f.custom).length;
-      if (customCount >= MAX_UPLOADS) return;
+      if (library.filter((f) => !f.synthetic).length >= MAX_UPLOADS) return;
       const url = URL.createObjectURL(file);
       objectUrlsRef.current.push(url);
       setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true }]);
@@ -288,8 +287,7 @@ export default function FaceswapPlayground() {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
     const syntheticFaces = library.filter((f) => f.synthetic);
     const uploadedFaces = library.filter((f) => !f.synthetic);
-    const customCount = library.filter((f) => f.custom).length;
-    const atCap = customCount >= MAX_UPLOADS;
+    const atCap = uploadedFaces.length >= MAX_UPLOADS;
 
     const renderFace = (f: Face) => {
       const active = selected === f.url;
@@ -345,7 +343,7 @@ export default function FaceswapPlayground() {
               Your uploads
             </span>
             <span className="text-[9px] text-white/30">
-              · {customCount}/{MAX_UPLOADS}
+              · {uploadedFaces.length}/{MAX_UPLOADS}
             </span>
           </div>
           <p className="mb-2 text-[9px] leading-snug text-white/25">
