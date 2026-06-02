@@ -62,7 +62,7 @@ const MAX_UPLOADS = 24;
 // (appear in the "uploads" section alongside real user uploads).
 const SEED_FACES: Face[] = [...AI_FACES, ...CELEBRITY_FACES];
 
-type Face = { label: string; url: string; custom?: boolean; preset?: boolean; synthetic?: boolean; name?: string };
+type Face = { label: string; url: string; custom?: boolean; preset?: boolean; synthetic?: boolean; shared?: boolean; name?: string };
 
 // Draw the image through a canvas so:
 //   1. EXIF rotation is baked in (phones store pixels sideways but mark them
@@ -109,6 +109,8 @@ export default function FaceswapPlayground() {
   const [library, setLibrary] = useState<Face[]>(() => [...SEED_FACES]);
   const [secondsLeft, setSecondsLeft] = useState(DEMO_SECONDS);
   const [camError, setCamError] = useState("");
+  const [showConsent, setShowConsent] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const selfViewRef = useRef<HTMLVideoElement>(null);
@@ -231,7 +233,8 @@ export default function FaceswapPlayground() {
       if (library.filter((f) => !f.synthetic).length >= MAX_UPLOADS) return;
       const url = URL.createObjectURL(file);
       objectUrlsRef.current.push(url);
-      setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true }]);
+      // shared is always false for now (pool is full)
+      setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true, shared: false }]);
       setSelected(url);
       if (step === "running" && state.phase === "live") {
         try {
@@ -291,20 +294,37 @@ export default function FaceswapPlayground() {
 
     const renderFace = (f: Face) => {
       const active = selected === f.url;
+      // custom uploads: teal ring for private, green for shared
+      const ringClass = active
+        ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
+        : f.custom
+        ? f.shared
+          ? "ring-emerald-500/50 hover:ring-emerald-400/70"
+          : "ring-teal-500/40 hover:ring-teal-400/60"
+        : "ring-white/10 hover:ring-white/30";
       return (
         <div key={f.url} className="group relative">
           <button
             type="button"
             onClick={() => onPickFace(f.url)}
             title="Become this face"
-            className={`block overflow-hidden rounded-lg ring-2 transition ${
-              active
-                ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
-                : "ring-white/10 hover:ring-white/30"
-            }`}
+            className={`block overflow-hidden rounded-lg ring-2 transition-[box-shadow,ring-color] ${ringClass}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={f.url} alt={f.label} className={`${size} object-cover`} />
+            {/* Private / shared badge on custom uploads */}
+            {f.custom && (
+              <span className="absolute bottom-0.5 right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-black/70">
+                {f.shared ? (
+                  // share icon
+                  <svg className="h-2 w-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                  </svg>
+                ) : (
+                  <Lock className="h-2 w-2 text-teal-400" />
+                )}
+              </span>
+            )}
           </button>
           {!f.synthetic && (
             <button
@@ -312,7 +332,7 @@ export default function FaceswapPlayground() {
               onClick={() => removeFace(f.url)}
               aria-label="Remove this face"
               title="Remove"
-              className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
+              className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition-[background-color] hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
             >
               <X className="h-2.5 w-2.5" />
             </button>
@@ -336,27 +356,24 @@ export default function FaceswapPlayground() {
           </div>
         </div>
 
-        {/* ── Uploads section ── */}
+        {/* ── User uploads section ── */}
         <div>
           <div className="mb-1 flex items-baseline gap-1.5">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
-              Your uploads
+              User uploads
             </span>
             <span className="text-[9px] text-white/40">
               · {uploadedFaces.length}/{MAX_UPLOADS}
             </span>
           </div>
-          <p className="mb-2 text-[9px] leading-snug text-white/40">
-            Only upload faces with the subject&apos;s consent.
-          </p>
           <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
             {uploadedFaces.map(renderFace)}
             {!atCap && (
               <button
                 type="button"
-                onClick={() => fileInputRef.current?.click()}
+                onClick={() => { setConsentChecked(false); setShowConsent(true); }}
                 title="Upload your own face"
-                className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
+                className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition-[border-color,color] hover:border-[#245FFF]/60 hover:text-white`}
               >
                 <Plus className="h-4 w-4" />
                 <span className="text-[8px] font-medium">Upload</span>
@@ -366,6 +383,66 @@ export default function FaceswapPlayground() {
         </div>
 
         <input ref={fileInputRef} type="file" accept="image/*" onChange={onAddFace} className="hidden" />
+
+        {/* ── Consent dialog ── */}
+        {showConsent && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowConsent(false)} />
+            <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-6 shadow-2xl">
+              <h3 className="mb-1 text-sm font-semibold text-white">Upload a face</h3>
+              <p className="mb-5 text-[11px] leading-relaxed text-white/45">
+                Photos are processed locally and never stored on our servers.
+              </p>
+
+              {/* Consent checkbox */}
+              <label className="flex cursor-pointer items-start gap-3 rounded-lg p-3 ring-1 ring-white/10 hover:ring-white/20 transition-[box-shadow]">
+                <input
+                  type="checkbox"
+                  checked={consentChecked}
+                  onChange={(e) => setConsentChecked(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[#245FFF]"
+                />
+                <span className="text-[12px] leading-snug text-white/75">
+                  I have the subject&apos;s consent to use their photo in this demo.
+                </span>
+              </label>
+
+              {/* Share to pool — always disabled (pool full) */}
+              <div className="mt-3 flex items-start gap-3 rounded-lg p-3 ring-1 ring-white/5 opacity-50 cursor-not-allowed">
+                <input type="checkbox" disabled className="mt-0.5 h-4 w-4 shrink-0 cursor-not-allowed" />
+                <div>
+                  <span className="text-[12px] leading-snug text-white/50">
+                    Add to public swap pool
+                  </span>
+                  <span className="ml-2 inline-flex items-center rounded-full bg-white/5 px-1.5 py-0.5 text-[9px] font-medium text-white/35">
+                    Pool full
+                  </span>
+                  <p className="mt-0.5 text-[10px] text-white/30">
+                    Your face stays private — only you can use it.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowConsent(false)}
+                  className="flex-1 rounded-full border border-white/15 py-2.5 text-sm font-medium text-white/60 transition-[background-color] hover:bg-white/5"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  disabled={!consentChecked}
+                  onClick={() => { setShowConsent(false); fileInputRef.current?.click(); }}
+                  className="flex-1 rounded-full bg-[#245FFF] py-2.5 text-sm font-semibold text-white transition-[background-color] hover:bg-[#3d74ff] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Choose photo
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
