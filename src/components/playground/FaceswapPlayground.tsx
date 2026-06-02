@@ -113,6 +113,7 @@ export default function FaceswapPlayground() {
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const selfViewRef = useRef<HTMLVideoElement>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
+  const hasGrantedCameraRef = useRef(false); // skip consent step on re-runs
   const fileInputRef = useRef<HTMLInputElement>(null);
   const objectUrlsRef = useRef<string[]>([]);
   const secondsRef = useRef(DEMO_SECONDS);
@@ -305,6 +306,7 @@ export default function FaceswapPlayground() {
         audio: false,
       });
       localStreamRef.current = localStream;
+      hasGrantedCameraRef.current = true; // remember permission was granted
       const sv = selfViewRef.current;
       if (sv) {
         sv.srcObject = localStream;
@@ -523,14 +525,14 @@ export default function FaceswapPlayground() {
     setCountdown(n);
     const tick = setInterval(() => {
       n--;
-      if (n < 0) {
+      if (n <= 0) {
         clearInterval(tick);
-        setCountdown(null);
+        setCountdown(null); // hide immediately — no emoji, just capture
         captureAndCompose();
       } else {
         setCountdown(n);
       }
-    }, 900);
+    }, 1000);
   }, [countdown, captureAndCompose]);
 
   const webShare = useCallback(async () => {
@@ -550,15 +552,23 @@ export default function FaceswapPlayground() {
   }, [shareCardUrl]);
 
   const reset = useCallback(() => {
-    stop();
+    stop(); // closes WebRTC + stops camera tracks (indicator turns off)
     localStreamRef.current = null;
     secondsRef.current = DEMO_SECONDS;
     setSecondsLeft(DEMO_SECONDS);
     setCountdown(null);
     setShareCardUrl("");
     setShowCard(false);
-    setStep("intro");
+    // Skip consent screen on re-runs — auto-launch via effect below
+    setStep(hasGrantedCameraRef.current ? "consent" : "intro");
   }, [stop]);
+
+  // Auto-launch when returning to consent with prior permission granted
+  useEffect(() => {
+    if (step === "consent" && !camError && hasGrantedCameraRef.current) {
+      launch();
+    }
+  }, [step, camError, launch]);
 
   const connecting = step === "running" && (state.phase === "connecting" || state.phase === "queued");
   const live = step === "running" && state.phase === "live";
@@ -771,29 +781,26 @@ export default function FaceswapPlayground() {
           </button>
         )}
 
-        {/* 3-2-1 countdown overlay + viewfinder */}
+        {/* 3-2-1 countdown overlay + 9:16 viewfinder */}
         {countdown !== null && (
           <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/20">
-            {/* Corner viewfinder brackets */}
-            {countdown > 0 && (
-              <div className="pointer-events-none absolute inset-[15%]">
-                {/* TL */ }<span className="absolute left-0 top-0 h-10 w-10 border-l-2 border-t-2 border-white/80 rounded-tl-sm" />
-                {/* TR */ }<span className="absolute right-0 top-0 h-10 w-10 border-r-2 border-t-2 border-white/80 rounded-tr-sm" />
-                {/* BL */ }<span className="absolute bottom-0 left-0 h-10 w-10 border-b-2 border-l-2 border-white/80 rounded-bl-sm" />
-                {/* BR */ }<span className="absolute bottom-0 right-0 h-10 w-10 border-b-2 border-r-2 border-white/80 rounded-br-sm" />
-              </div>
-            )}
-            {countdown === 0 ? (
-              <span className="text-7xl">📸</span>
-            ) : (
-              <span
-                key={countdown}
-                className="text-[140px] font-bold tabular-nums text-white"
-                style={{ textShadow: "0 0 60px rgba(36,95,255,0.9), 0 4px 24px rgba(0,0,0,0.6)", lineHeight: 1 }}
-              >
-                {countdown}
-              </span>
-            )}
+            {/* 9:16 portrait viewfinder — matches exactly what gets captured in the card */}
+            <div
+              className="pointer-events-none absolute"
+              style={{ height: "100%", aspectRatio: "9/16" }}
+            >
+              <span className="absolute left-0 top-0 h-9 w-9 border-l-[3px] border-t-[3px] border-white/75" />
+              <span className="absolute right-0 top-0 h-9 w-9 border-r-[3px] border-t-[3px] border-white/75" />
+              <span className="absolute bottom-0 left-0 h-9 w-9 border-b-[3px] border-l-[3px] border-white/75" />
+              <span className="absolute bottom-0 right-0 h-9 w-9 border-b-[3px] border-r-[3px] border-white/75" />
+            </div>
+            <span
+              key={countdown}
+              className="text-[140px] font-bold tabular-nums text-white"
+              style={{ textShadow: "0 0 60px rgba(36,95,255,0.9), 0 4px 24px rgba(0,0,0,0.6)", lineHeight: 1 }}
+            >
+              {countdown}
+            </span>
           </div>
         )}
 
