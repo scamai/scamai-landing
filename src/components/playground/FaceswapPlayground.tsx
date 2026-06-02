@@ -166,30 +166,11 @@ export default function FaceswapPlayground() {
     </div>
   );
 
-  // ─── The swap stage card ──────────────────────────────────────────────────
+  // ─── The swap stage — a clean video frame (no app-window chrome) ──────────
+  const peopleAhead = Math.max(0, (state.queuePosition ?? 1) - 1);
   const Stage = () => (
-    <div className="w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0c0d11] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-      {/* title bar */}
-      <div className="flex items-center gap-2 border-b border-white/[0.07] bg-[#15171c] px-4 py-2">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-        <span className="ml-2 flex items-center gap-1.5 text-[11px] font-medium text-white/40">
-          <ScanFace className="h-3.5 w-3.5" /> Live face swap · scam.ai
-        </span>
-        {live && (
-          <span className="ml-auto flex items-center gap-1.5 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-300">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
-            </span>
-            <span className="tabular-nums">{fmt(secondsLeft)}</span>
-          </span>
-        )}
-      </div>
-
-      {/* stage body — viewport-relative height keeps the section within one screen */}
-      <div className="relative w-full bg-black h-[38vh] sm:h-[44vh] lg:h-[46vh] max-h-[440px]">
+    <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+      <div className="relative w-full bg-black h-[40vh] sm:h-[46vh] lg:h-[48vh] max-h-[460px]">
         <video
           ref={remoteVideoRef}
           autoPlay
@@ -198,6 +179,27 @@ export default function FaceswapPlayground() {
           className="h-full w-full object-contain"
           style={{ transform: "scaleX(-1)", display: live ? "block" : "none" }}
         />
+
+        {/* top-left: live countdown OR idle label */}
+        {live ? (
+          <div className="absolute left-3 top-3 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
+            </span>
+            <span className="tabular-nums">{fmt(secondsLeft)}</span>
+            <span className="text-white/40">left</span>
+          </div>
+        ) : (
+          <div className="absolute left-3 top-3 z-10 flex items-center gap-1.5 text-[11px] font-medium text-white/40">
+            <ScanFace className="h-3.5 w-3.5" /> Live face swap
+          </div>
+        )}
+
+        {/* top-right: privacy reassurance */}
+        <div className="absolute right-3 top-3 z-10 hidden items-center gap-1 text-[10px] text-white/30 sm:flex">
+          <ShieldCheck className="h-3 w-3" /> never stored
+        </div>
 
         {/* self-view PiP */}
         <div
@@ -208,13 +210,33 @@ export default function FaceswapPlayground() {
           <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/80 drop-shadow">You</span>
         </div>
 
-        {/* overlays */}
+        {/* floating Stop while live */}
+        {live && (
+          <button
+            onClick={reset}
+            className="absolute bottom-3 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-4 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-md transition hover:bg-white/10"
+          >
+            <Square className="h-3 w-3" /> Stop
+          </button>
+        )}
+
+        {/* ── Overlays ── */}
         {step === "intro" && (
           <Overlay>
-            <ScanFace className="mb-2 h-8 w-8 text-[#245FFF]" />
-            <p className="text-sm text-white/70">Pick a face, then start the demo.</p>
+            <ScanFace className="mb-3 h-9 w-9 text-[#245FFF]" />
+            <p className="text-sm text-white/70">Pick a face below, then go live.</p>
+            <button
+              onClick={beginConsent}
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
+            >
+              <Camera className="h-4 w-4" /> Start the live demo
+            </button>
+            <p className="mt-4 flex items-center gap-1.5 text-[11px] text-white/40">
+              <ShieldCheck className="h-3.5 w-3.5" /> Processed live · never stored
+            </p>
           </Overlay>
         )}
+
         {step === "consent" && (
           <Overlay>
             <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
@@ -223,7 +245,7 @@ export default function FaceswapPlayground() {
               Your camera streams to our servers for live processing only. Nothing is stored.
             </p>
             <div className="mt-4 flex gap-2.5">
-              <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff] active:scale-[0.98]">
+              <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.98]">
                 <Camera className="h-4 w-4" /> Allow &amp; start
               </button>
               <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
@@ -232,27 +254,46 @@ export default function FaceswapPlayground() {
             </div>
           </Overlay>
         )}
-        {connecting && (
+
+        {/* queued — prominent position card */}
+        {step === "running" && state.phase === "queued" && (
+          <Overlay>
+            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#245FFF]/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#245FFF]" />
+              </span>
+              Demo is busy
+            </div>
+            <div className="mt-3 text-5xl font-bold tabular-nums text-white">#{state.queuePosition ?? 1}</div>
+            <p className="mt-1 text-sm text-white/70">your place in line</p>
+            <p className="mt-2 text-xs text-white/45">
+              {peopleAhead === 0
+                ? "You're next — starting any second…"
+                : `${peopleAhead} ${peopleAhead === 1 ? "person" : "people"} ahead · ~${queueEta}s wait`}
+            </p>
+            <p className="mt-4 text-[11px] text-white/30">We'll start your swap automatically — no need to refresh.</p>
+          </Overlay>
+        )}
+
+        {/* connecting (not queued) */}
+        {connecting && state.phase !== "queued" && (
           <Overlay>
             <Spinner />
             <p className="mt-3 text-xs tracking-wide text-white/55">{state.status || "Warming up the swap engine…"}</p>
-            {state.phase === "queued" && (
-              <p className="mt-1 text-[11px] text-white/40">
-                {state.queuePosition ? `You're #${state.queuePosition} in line` : "You're in line"}
-                {queueEta ? ` · ~${queueEta}s` : ""}
-              </p>
-            )}
           </Overlay>
         )}
+
         {state.phase === "error" && step === "running" && (
           <Overlay>
             <AlertTriangle className="mb-2 h-7 w-7 text-red-400" />
             <p className="max-w-xs text-sm text-white/70">{state.error}</p>
-            <button onClick={reset} className="mt-4 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff]">
+            <button onClick={reset} className="mt-4 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#3d74ff]">
               Try again
             </button>
           </Overlay>
         )}
+
         {step === "ended" && (
           <Overlay>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
@@ -264,24 +305,6 @@ export default function FaceswapPlayground() {
               <RefreshCw className="h-3.5 w-3.5" /> Run the demo again
             </button>
           </Overlay>
-        )}
-      </div>
-
-      {/* control bar */}
-      <div className="flex items-center justify-between border-t border-white/[0.07] bg-[#101216] px-4 py-2.5">
-        <span className="flex items-center gap-1.5 text-[11px] text-white/40">
-          <ShieldCheck className="h-3.5 w-3.5" /> Processed live · never stored
-        </span>
-        {live ? (
-          <button onClick={reset} className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10">
-            <Square className="h-3 w-3" /> Stop
-          </button>
-        ) : step === "intro" ? (
-          <button onClick={beginConsent} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-1.5 text-sm font-semibold text-white shadow-[0_0_20px_-6px_rgba(36,95,255,0.8)] transition hover:bg-[#7d6dff] active:scale-[0.98]">
-            <Camera className="h-4 w-4" /> Start
-          </button>
-        ) : (
-          <span className="text-[11px] text-white/30">—</span>
         )}
       </div>
     </div>
