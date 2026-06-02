@@ -51,10 +51,10 @@ const CELEBRITY_FACES: Face[] = [
   { label: "Saved face", url: "/playground-faces/celeb/rinko-kikuchi.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/taylor-swift.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/tom-hanks.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/beyonce.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/lady-gaga.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/elon-musk.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/albert-einstein.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/jfk.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/jack-ma.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/jackie-chan.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
@@ -138,6 +138,17 @@ export default function FaceswapPlayground() {
 
   const launch = useCallback(async () => {
     setCamError("");
+    // getUserMedia is only exposed in a secure context (HTTPS or localhost).
+    // Over plain http:// on a LAN IP the browser hides navigator.mediaDevices,
+    // which would otherwise fall through to the vague generic error below — call
+    // it out so local/booth testing over http:// isn't mistaken for a bug.
+    if (typeof window !== "undefined" && (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia)) {
+      setCamError(
+        "Live camera needs a secure (HTTPS) connection. Open this page over https:// or via localhost — a plain http:// address such as a LAN IP blocks camera access in the browser."
+      );
+      setStep("consent");
+      return;
+    }
     try {
       const localStream = await navigator.mediaDevices.getUserMedia({
         video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: "user" },
