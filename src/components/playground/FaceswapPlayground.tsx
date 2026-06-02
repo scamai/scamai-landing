@@ -535,20 +535,31 @@ export default function FaceswapPlayground() {
     }, 1000);
   }, [countdown, captureAndCompose]);
 
+  const [shareCopied, setShareCopied] = useState(false);
+
   const webShare = useCallback(async () => {
     if (!shareCardUrl) return;
+    // Try native share with image file (works on mobile / Safari)
     try {
       const res = await fetch(shareCardUrl);
       const blob = await res.blob();
       const file = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
-      if (navigator.share && navigator.canShare({ files: [file] })) {
+      if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({ title: "I deepfaked myself in 30 seconds", files: [file] });
         return;
       }
-    } catch { /* fall through to download */ }
-    // Fallback: trigger download
-    const a = document.createElement("a");
-    a.href = shareCardUrl; a.download = "scamai-deepfake.jpg"; a.click();
+    } catch { /* user dismissed or unsupported */ }
+    // Try URL-only share (desktop Safari, some browsers)
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "Detect deepfakes", url: "https://scam.ai/halo" });
+        return;
+      } catch { /* user dismissed */ }
+    }
+    // Fallback: copy link to clipboard
+    await navigator.clipboard.writeText("https://scam.ai/halo").catch(() => {});
+    setShareCopied(true);
+    setTimeout(() => setShareCopied(false), 2000);
   }, [shareCardUrl]);
 
   const reset = useCallback(() => {
@@ -559,6 +570,7 @@ export default function FaceswapPlayground() {
     setCountdown(null);
     setShareCardUrl("");
     setShowCard(false);
+    setShareCopied(false);
     // Skip consent screen on re-runs — auto-launch via effect below
     setStep(hasGrantedCameraRef.current ? "consent" : "intro");
   }, [stop]);
@@ -1013,13 +1025,13 @@ export default function FaceswapPlayground() {
                 </svg>
                 X
               </a>
-              {/* Share (Web Share API or WhatsApp fallback) */}
+              {/* Share — system share sheet (mobile) or copy link (desktop) */}
               <button
                 onClick={webShare}
                 className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
               >
                 <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
-                Share
+                {shareCopied ? "Copied!" : "Share"}
               </button>
             </div>
           </div>
