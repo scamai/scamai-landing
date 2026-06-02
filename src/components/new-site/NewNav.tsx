@@ -356,7 +356,7 @@ export default function NewNav() {
         <div className="hidden items-center gap-3 lg:flex">
           <button
             onClick={() => setSearchOpen(true)}
-            className="flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text min-w-[180px] lg:min-w-[220px]"
+            className="flex w-[160px] xl:w-[210px] items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text"
             aria-label="Search"
           >
             <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -371,7 +371,7 @@ export default function NewNav() {
             href="https://app.scam.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("log_in", "nav")}
           >
             Log In
@@ -380,7 +380,7 @@ export default function NewNav() {
             href="https://cal.com/scamai/15min"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("book_demo", "nav")}
           >
             Book a demo
