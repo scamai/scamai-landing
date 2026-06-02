@@ -342,36 +342,14 @@ const DIFFERENTIATORS = [
     icon: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />,
   },
   {
-    title: "Secure by design",
-    body: "AI models are encrypted at rest and decrypted only in process memory during inference. No video frames, face images, or biometric data ever leave your machine — not to our servers, not to any cloud, not anywhere.",
+    title: "Smaller attack surface",
+    body: "Cloud detectors add APIs, uploads, and third-party storage — each one a target. Halo keeps everything on the device: no network calls during detection, no frames in transit, no external servers holding your call data. Fewer moving parts, fewer ways in.",
     icon: (
       <>
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </>
     ),
-  },
-];
-
-/* ------------------------------------------------------------------ */
-/* Objections                                                         */
-/* ------------------------------------------------------------------ */
-const OBJECTIONS = [
-  {
-    q: "“Deepfakes will just evolve to evade it.”",
-    a: "Halo uses an ensemble of two complementary neural networks that must agree before issuing a verdict. It looks for the artifacts that generation leaves behind in video, not a fixed list of known fakes. Models update on-device, and the multi-model approach raises the bar for any single evasion technique.",
-  },
-  {
-    q: "“Won't it flag my real executives?”",
-    a: "Halo reports a calibrated confidence score, not a blunt block. Teams set their own threshold for alerting, and genuine participants clear instantly &mdash; the goal is a heads-up on the high-risk call, not friction on every call.",
-  },
-  {
-    q: "“Will it slow down my calls?”",
-    a: "Inference runs on the device\u2019s NPU in parallel with the call, not on the CPU your conferencing app uses. There\u2019s no upload, so it adds no network latency and no measurable impact on call quality.",
-  },
-  {
-    q: "“What about recording and compliance?”",
-    a: "Because analysis is local, raw call media is never sent anywhere. Halo keeps only the verdict and metadata you choose to retain, which keeps you on the right side of consent and data-residency rules.",
   },
 ];
 
@@ -588,9 +566,7 @@ export default function HaloLanding() {
             </Reveal>
             <Reveal delay={0.2}>
               <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-                Halo catches deepfakes
-                <br />
-                on your calls.
+                Halo catches deepfakes on your calls.
               </h1>
             </Reveal>
             <Reveal delay={0.3}>
@@ -804,34 +780,6 @@ export default function HaloLanding() {
                   <span className="font-mono text-sm font-bold text-[#245FFF]">{s.n}</span>
                   <h3 className="mt-3 text-lg font-semibold text-white">{s.t}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-gray-400">{s.b}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="section-divider" />
-
-      {/* ====================== OBJECTION HANDLING =================== */}
-      <section className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-5xl px-5 sm:px-8">
-          <Reveal>
-            <div className="mb-14 text-center">
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400 sm:text-xs">
-                Straight answers
-              </p>
-              <h2 className="text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl">
-                The hard questions, answered
-              </h2>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {OBJECTIONS.map((o, i) => (
-              <Reveal key={i} delay={(i % 2) * 0.1}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/[0.02] p-7">
-                  <h3 className="mb-3 font-semibold text-white">{o.q}</h3>
-                  <p className="text-sm leading-relaxed text-gray-400">{o.a}</p>
                 </div>
               </Reveal>
             ))}
