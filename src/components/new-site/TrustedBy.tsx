@@ -12,12 +12,14 @@
 
 type Logo = { src: string; alt: string; w: number; h: number };
 
+// sbi-holdings.png dropped: it ships an opaque white background (0% transparent
+// pixels) so the white-silhouette filter turns it into a solid grey block.
 const ROW_1: Logo[] = [
   { src: "/trusted/qualcomm.png", alt: "Qualcomm", w: 150, h: 34 },
   { src: "/trusted/lg-uplus.png", alt: "LG U+", w: 110, h: 36 },
   { src: "/trusted/hp.png", alt: "HP", w: 44, h: 44 },
-  { src: "/trusted/sbi-holdings.png", alt: "SBI Holdings", w: 130, h: 34 },
   { src: "/trusted/trulioo.png", alt: "Trulioo", w: 120, h: 34 },
+  { src: "/trusted/quotr.png", alt: "Quotr", w: 120, h: 34 },
 ];
 
 const ROW_2: Logo[] = [
@@ -25,7 +27,6 @@ const ROW_2: Logo[] = [
   { src: "/trusted/honestly.png", alt: "Honestly", w: 130, h: 34 },
   { src: "/trusted/finalround.png", alt: "Final Round AI", w: 140, h: 34 },
   { src: "/trusted/ditto.svg", alt: "Ditto", w: 90, h: 34 },
-  { src: "/trusted/quotr.png", alt: "Quotr", w: 120, h: 34 },
   { src: "/trusted/llama-venture.svg", alt: "Llama Venture", w: 130, h: 34 },
 ];
 
