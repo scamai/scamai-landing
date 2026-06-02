@@ -29,7 +29,7 @@ const LOGOS: Logo[] = [
 
 // grayscale → invert: dark ink becomes light, white backgrounds become black
 // (vanish on our dark page), internal shapes preserved. 55% → 100% on hover.
-const LOGO_CLASS = "max-h-9 w-auto opacity-55 transition-opacity hover:opacity-100 [filter:grayscale(1)_invert(1)]";
+const LOGO_CLASS = "h-8 w-auto opacity-55 transition-opacity hover:opacity-100 [filter:grayscale(1)_invert(1)]";
 
 function LogoGroup() {
   return (
