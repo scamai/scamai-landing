@@ -20,7 +20,6 @@ const LOGOS: Logo[] = [
   { src: "/trusted/ucberkeley.png", alt: "UC Berkeley", w: 48, h: 48 },
   { src: "/trusted/trulioo.png", alt: "Trulioo", w: 120, h: 34 },
   { src: "/trusted/beta-fellowship.png", alt: "Beta Fellowship", w: 44, h: 44 },
-  { src: "/trusted/sentilink.svg", alt: "SentiLink", w: 130, h: 34 },
   { src: "/trusted/honestly.png", alt: "Honestly", w: 130, h: 34 },
   { src: "/trusted/finalround.png", alt: "Final Round AI", w: 140, h: 34 },
   { src: "/trusted/ditto.svg", alt: "Ditto", w: 90, h: 34 },
