@@ -15,22 +15,28 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square } from "lucide-react";
+import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square, Plus } from "lucide-react";
 import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
 const PER_PLAY_SECONDS = 30; // used for queue ETA estimate
 const HALO_HREF = "/halo";
 
-// Public-domain figures only (likeness rights expired + photo confirmed PD,
-// links vetted by the team). No living/recent estates. See /public/playground-faces.
-const PRESET_FACES: { label: string; url: string }[] = [
-  { label: "Einstein", url: "/playground-faces/einstein.jpg" },
-  { label: "JFK", url: "/playground-faces/jfk.jpg" },
-  { label: "Tesla", url: "/playground-faces/tesla.jpg" },
-  { label: "Lincoln", url: "/playground-faces/lincoln.jpg" },
-  { label: "Curie", url: "/playground-faces/curie.jpg" },
+// 100% AI-generated faces (StyleGAN2) — no real person, no likeness rights, no
+// biometric data. A balanced synthetic set: Black / White / Asian × woman / man.
+// Vetted frontal portraits from the Snapdragon booth demo gallery (clean face
+// detection). See /public/playground-faces. Labels are alt-text only — never
+// rendered as captions (we don't tag faces by race in the UI).
+const PRESET_FACES: Face[] = [
+  { label: "AI-generated face", url: "/playground-faces/ai-asian-woman.jpg" },
+  { label: "AI-generated face", url: "/playground-faces/ai-white-man.jpg" },
+  { label: "AI-generated face", url: "/playground-faces/ai-black-woman.jpg" },
+  { label: "AI-generated face", url: "/playground-faces/ai-asian-man.jpg" },
+  { label: "AI-generated face", url: "/playground-faces/ai-white-woman.jpg" },
+  { label: "AI-generated face", url: "/playground-faces/ai-black-man.jpg" },
 ];
+
+type Face = { label: string; url: string; custom?: boolean };
 
 async function urlToBase64(url: string): Promise<string> {
   const res = await fetch(url);
@@ -53,12 +59,18 @@ export default function FaceswapPlayground() {
   const { state, start, stop, setFace } = useFaceswap();
   const [step, setStep] = useState<Step>("intro");
   const [selected, setSelected] = useState(PRESET_FACES[0].url);
+  const [customFaces, setCustomFaces] = useState<Face[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(DEMO_SECONDS);
 
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const selfViewRef = useRef<HTMLVideoElement>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const objectUrlsRef = useRef<string[]>([]);
   const secondsRef = useRef(DEMO_SECONDS);
+
+  // Revoke any uploaded-face object URLs when the component unmounts.
+  useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
 
   // Bind swapped output stream.
   useEffect(() => {
@@ -128,6 +140,28 @@ export default function FaceswapPlayground() {
     [step, state.phase, setFace]
   );
 
+  // Upload your own face — read locally, never stored. The blob URL works with
+  // urlToBase64() (fetch supports blob: URLs) so the swap target is sent to our
+  // server exactly like a preset; the image itself stays on the device otherwise.
+  const onAddFace = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      e.target.value = ""; // allow re-selecting the same file
+      if (!file || !file.type.startsWith("image/")) return;
+      const url = URL.createObjectURL(file);
+      setCustomFaces((prev) => [...prev, { label: "Your photo", url, custom: true }]);
+      setSelected(url);
+      if (step === "running" && state.phase === "live") {
+        try {
+          setFace(await urlToBase64(url));
+        } catch {
+          /* keep current */
+        }
+      }
+    },
+    [step, state.phase, setFace]
+  );
+
   const reset = useCallback(() => {
     stop();
     localStreamRef.current = null;
@@ -140,33 +174,46 @@ export default function FaceswapPlayground() {
   const live = step === "running" && state.phase === "live";
   const queueEta = state.queuePosition ? state.queuePosition * PER_PLAY_SECONDS : null;
 
-  // ─── Face picker (shared desktop/mobile) ──────────────────────────────────
-  const FacePicker = ({ compact = false }: { compact?: boolean }) => (
-    <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
-      {PRESET_FACES.map((f) => {
-        const active = selected === f.url;
-        return (
-          <button
-            key={f.url}
-            type="button"
-            onClick={() => onPickFace(f.url)}
-            className={`group flex flex-col items-center gap-1 rounded-xl p-1 transition ${active ? "bg-[#245FFF]/10" : "hover:bg-white/5"}`}
-            title={`Become ${f.label}`}
-          >
-            <span
+  // ─── Face picker — preset gallery + your own upload (shared desktop/mobile) ─
+  const FacePicker = ({ compact = false }: { compact?: boolean }) => {
+    const size = compact ? "h-12 w-12" : "h-14 w-14";
+    return (
+      <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
+        {[...PRESET_FACES, ...customFaces].map((f) => {
+          const active = selected === f.url;
+          return (
+            <button
+              key={f.url}
+              type="button"
+              onClick={() => onPickFace(f.url)}
+              title={f.custom ? "Your uploaded face" : "Become this face"}
               className={`relative block overflow-hidden rounded-lg ring-2 transition ${
-                active ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]" : "ring-white/10 group-hover:ring-white/25"
+                active ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]" : "ring-white/10 hover:ring-white/30"
               }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={f.url} alt={f.label} className={compact ? "h-12 w-12 object-cover" : "h-14 w-14 object-cover"} />
-            </span>
-            <span className={`text-[10px] font-medium transition ${active ? "text-white" : "text-white/45"}`}>{f.label.split(" ")[0]}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
+              <img src={f.url} alt={f.label} className={`${size} object-cover`} />
+              {f.custom && (
+                <span className="absolute bottom-0 left-0 right-0 bg-black/60 py-px text-center text-[8px] font-medium text-white">You</span>
+              )}
+            </button>
+          );
+        })}
+
+        {/* + upload your own face */}
+        <button
+          type="button"
+          onClick={() => fileInputRef.current?.click()}
+          title="Upload your own face"
+          className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
+        >
+          <Plus className="h-4 w-4" />
+          <span className="text-[8px] font-medium">Upload</span>
+        </button>
+        <input ref={fileInputRef} type="file" accept="image/*" onChange={onAddFace} className="hidden" />
+      </div>
+    );
+  };
 
   // ─── The swap stage — a clean video frame (no app-window chrome) ──────────
   const peopleAhead = Math.max(0, (state.queuePosition ?? 1) - 1);
