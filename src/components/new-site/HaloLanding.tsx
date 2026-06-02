@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { trackCTA } from "@/lib/analytics";
+import { trackCTA, trackEvent } from "@/lib/analytics";
 
 /* ------------------------------------------------------------------ */
 /* Shared scroll-reveal wrapper (mirrors NewLanding's AnimatedSection) */
@@ -490,22 +490,84 @@ const FAQ = [
 /* Page                                                               */
 /* ------------------------------------------------------------------ */
 /* ------------------------------------------------------------------ */
-/* Waitlist signup (app not yet available — capture email)            */
+/* Waitlist signup — calls DEK Issuance API directly                  */
 /* ------------------------------------------------------------------ */
+const HALO_WAITLIST_API =
+  "https://dek-issuance-40198490972.us-central1.run.app/v2/waitlist";
+
+type WaitlistState = "idle" | "loading" | "success" | "already_subscribed" | "error";
+type ErrorKind = "validation" | "rate_limit" | "network" | "unknown";
+
 function WaitlistForm() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [state, setState] = useState<WaitlistState>("idle");
+  const [errorKind, setErrorKind] = useState<ErrorKind | null>(null);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!email.trim() || state === "loading") return;
+
+    setState("loading");
+    setErrorKind(null);
     trackCTA("join_waitlist", "halo_footer");
-    const subject = encodeURIComponent("Halo — waitlist");
-    const body = encodeURIComponent(
-      "Please add me to the ScamAI — Halo waitlist.\n\nEmail: " + email,
+
+    try {
+      const res = await fetch(HALO_WAITLIST_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          source: "halo_landing",
+          referrer: document.referrer || window.location.href,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        const isNew = !data.already_subscribed;
+        setState(isNew ? "success" : "already_subscribed");
+        trackEvent({
+          action: "waitlist_signup",
+          category: "conversion",
+          label: isNew ? "halo_new_signup" : "halo_already_subscribed",
+        });
+        return;
+      }
+
+      if (res.status === 429) {
+        setErrorKind("rate_limit");
+      } else if (res.status === 400) {
+        setErrorKind("validation");
+      } else {
+        setErrorKind("unknown");
+      }
+      setState("error");
+    } catch {
+      setErrorKind("network");
+      setState("error");
+    }
+  }
+
+  if (state === "success" || state === "already_subscribed") {
+    return (
+      <div className="mx-auto mt-9 w-full max-w-md text-center">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#245FFF]/15 border border-[#245FFF]/25 mb-4">
+          <svg className="w-6 h-6 text-[#245FFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p className="text-sm font-semibold text-white mb-1">
+          {state === "already_subscribed"
+            ? "You\u2019re already on the list!"
+            : "You\u2019re on the list!"}
+        </p>
+        <p className="text-xs text-gray-400">
+          {state === "already_subscribed"
+            ? "We already have your email \u2014 we\u2019ll reach out the moment Halo is ready."
+            : "Thanks for joining! We\u2019ll reach out the moment Halo is ready for your device."}
+        </p>
+      </div>
     );
-    window.location.href = `mailto:halo@scam.ai?subject=${subject}&body=${body}`;
-    setSubmitted(true);
   }
 
   return (
@@ -517,17 +579,25 @@ function WaitlistForm() {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@company.com"
         aria-label="Work email"
-        className="w-full rounded-full border border-white/15 bg-black/40 px-5 py-3.5 text-sm text-white placeholder-gray-500 outline-none transition focus:border-[#245FFF]"
+        disabled={state === "loading"}
+        className="w-full rounded-full border border-white/15 bg-black/40 px-5 py-3.5 text-sm text-white placeholder-gray-500 outline-none transition focus:border-[#245FFF] disabled:opacity-50"
       />
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center rounded-full bg-[#245FFF] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1d4acc]"
+        disabled={state === "loading"}
+        className="inline-flex w-full items-center justify-center rounded-full bg-[#245FFF] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#1d4acc] disabled:opacity-50"
       >
-        Join the waitlist
+        {state === "loading" ? "Joining\u2026" : "Join the waitlist"}
       </button>
-      {submitted && (
-        <p className="text-sm text-[#245FFF]">
-          Thanks — your email app should open to confirm. We&apos;ll reach out the moment Halo is ready.
+      {state === "error" && (
+        <p className="text-sm text-red-400">
+          {errorKind === "rate_limit"
+            ? "Too many requests \u2014 please try again in a minute."
+            : errorKind === "validation"
+              ? "Please enter a valid email address."
+              : errorKind === "network"
+                ? "Network error \u2014 please check your connection and try again."
+                : "Something went wrong \u2014 please try again."}
         </p>
       )}
     </form>
