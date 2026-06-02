@@ -148,12 +148,12 @@ export default function FaceswapPlayground() {
             key={f.url}
             type="button"
             onClick={() => onPickFace(f.url)}
-            className={`group flex flex-col items-center gap-1 rounded-xl p-1 transition ${active ? "bg-[#6d5dfb]/10" : "hover:bg-white/5"}`}
+            className={`group flex flex-col items-center gap-1 rounded-xl p-1 transition ${active ? "bg-[#245FFF]/10" : "hover:bg-white/5"}`}
             title={`Become ${f.label}`}
           >
             <span
               className={`relative block overflow-hidden rounded-lg ring-2 transition ${
-                active ? "ring-[#6d5dfb] shadow-[0_0_18px_-4px_rgba(109,93,251,0.7)]" : "ring-white/10 group-hover:ring-white/25"
+                active ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]" : "ring-white/10 group-hover:ring-white/25"
               }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -201,7 +201,7 @@ export default function FaceswapPlayground() {
 
         {/* self-view PiP */}
         <div
-          className="absolute bottom-3 right-3 z-10 overflow-hidden rounded-xl border border-white/15 bg-black ring-1 ring-[#6d5dfb]/30 shadow-lg"
+          className="absolute bottom-3 right-3 z-10 overflow-hidden rounded-xl border border-white/15 bg-black ring-1 ring-[#245FFF]/30 shadow-lg"
           style={{ display: step === "running" ? "block" : "none" }}
         >
           <video ref={selfViewRef} autoPlay playsInline muted className="h-20 w-[60px] -scale-x-100 object-cover sm:h-24 sm:w-[72px]" />
@@ -211,19 +211,19 @@ export default function FaceswapPlayground() {
         {/* overlays */}
         {step === "intro" && (
           <Overlay>
-            <ScanFace className="mb-2 h-8 w-8 text-[#6d5dfb]" />
+            <ScanFace className="mb-2 h-8 w-8 text-[#245FFF]" />
             <p className="text-sm text-white/70">Pick a face, then start the demo.</p>
           </Overlay>
         )}
         {step === "consent" && (
           <Overlay>
-            <ShieldCheck className="mb-2 h-8 w-8 text-[#6d5dfb]" />
+            <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
             <h3 className="text-base font-semibold text-white">Camera access</h3>
             <p className="mt-1.5 max-w-xs text-[12px] leading-relaxed text-white/55">
               Your camera streams to our servers for live processing only. Nothing is stored.
             </p>
             <div className="mt-4 flex gap-2.5">
-              <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#6d5dfb] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff] active:scale-[0.98]">
+              <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff] active:scale-[0.98]">
                 <Camera className="h-4 w-4" /> Allow &amp; start
               </button>
               <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
@@ -248,14 +248,14 @@ export default function FaceswapPlayground() {
           <Overlay>
             <AlertTriangle className="mb-2 h-7 w-7 text-red-400" />
             <p className="max-w-xs text-sm text-white/70">{state.error}</p>
-            <button onClick={reset} className="mt-4 rounded-full bg-[#6d5dfb] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff]">
+            <button onClick={reset} className="mt-4 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#7d6dff]">
               Try again
             </button>
           </Overlay>
         )}
         {step === "ended" && (
           <Overlay>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6d5dfb]">That took 30 seconds.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
             <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device, in real time.</h3>
             <Link href={HALO_HREF} className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]">
               Meet Halo — deepfake defense <ArrowRight className="h-4 w-4" />
@@ -277,7 +277,7 @@ export default function FaceswapPlayground() {
             <Square className="h-3 w-3" /> Stop
           </button>
         ) : step === "intro" ? (
-          <button onClick={beginConsent} className="inline-flex items-center gap-2 rounded-full bg-[#6d5dfb] px-5 py-1.5 text-sm font-semibold text-white shadow-[0_0_20px_-6px_rgba(109,93,251,0.8)] transition hover:bg-[#7d6dff] active:scale-[0.98]">
+          <button onClick={beginConsent} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-1.5 text-sm font-semibold text-white shadow-[0_0_20px_-6px_rgba(36,95,255,0.8)] transition hover:bg-[#7d6dff] active:scale-[0.98]">
             <Camera className="h-4 w-4" /> Start
           </button>
         ) : (
@@ -342,5 +342,5 @@ function Overlay({ children }: { children: React.ReactNode }) {
 }
 
 function Spinner() {
-  return <div className="h-9 w-9 animate-spin rounded-full border-[3px] border-white/15 border-t-[#6d5dfb]" />;
+  return <div className="h-9 w-9 animate-spin rounded-full border-[3px] border-white/15 border-t-[#245FFF]" />;
 }

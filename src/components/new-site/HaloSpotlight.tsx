@@ -122,7 +122,7 @@ export default function HaloSpotlight() {
                   transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
                 />
                 <motion.span
-                  className="absolute inset-3 rounded-full border border-[#6d5dfb]/40"
+                  className="absolute inset-3 rounded-full border border-[#245FFF]/40"
                   animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.9, 0.5] }}
                   transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                 />
