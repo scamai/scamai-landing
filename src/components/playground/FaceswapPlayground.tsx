@@ -771,9 +771,18 @@ export default function FaceswapPlayground() {
           </button>
         )}
 
-        {/* 3-2-1 countdown overlay */}
+        {/* 3-2-1 countdown overlay + viewfinder */}
         {countdown !== null && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/25 backdrop-blur-[1px]">
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/20">
+            {/* Corner viewfinder brackets */}
+            {countdown > 0 && (
+              <div className="pointer-events-none absolute inset-[15%]">
+                {/* TL */ }<span className="absolute left-0 top-0 h-10 w-10 border-l-2 border-t-2 border-white/80 rounded-tl-sm" />
+                {/* TR */ }<span className="absolute right-0 top-0 h-10 w-10 border-r-2 border-t-2 border-white/80 rounded-tr-sm" />
+                {/* BL */ }<span className="absolute bottom-0 left-0 h-10 w-10 border-b-2 border-l-2 border-white/80 rounded-bl-sm" />
+                {/* BR */ }<span className="absolute bottom-0 right-0 h-10 w-10 border-b-2 border-r-2 border-white/80 rounded-br-sm" />
+              </div>
+            )}
             {countdown === 0 ? (
               <span className="text-7xl">📸</span>
             ) : (
@@ -956,7 +965,7 @@ export default function FaceswapPlayground() {
       {showCard && shareCardUrl && (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowCard(false)} />
-          <div className="relative w-full max-w-xs">
+          <div className="relative flex flex-col items-center gap-3" style={{ maxHeight: "90vh" }}>
             <button
               onClick={() => setShowCard(false)}
               className="absolute -right-2 -top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-[#111] text-white/50 transition hover:text-white"
@@ -964,9 +973,14 @@ export default function FaceswapPlayground() {
               <X className="h-4 w-4" />
             </button>
 
-            {/* Card preview */}
+            {/* Card preview — constrained height so buttons always visible */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={shareCardUrl} alt="Your deepfake" className="w-full rounded-2xl shadow-2xl" />
+            <img
+              src={shareCardUrl}
+              alt="Your deepfake"
+              className="rounded-xl shadow-2xl"
+              style={{ maxHeight: "62vh", width: "auto" }}
+            />
 
             {/* Actions */}
             <div className="mt-3 grid grid-cols-3 gap-2">
