@@ -46,28 +46,41 @@ type FileWithPreview = {
 };
 
 // Animated Section Component
-function AnimatedSection({ 
-  children, 
+const HERO_SESSION_KEY = "scamai_hero_seen";
+
+function AnimatedSection({
+  children,
   className = "",
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
+  delay = 0,
+  skipOnRepeat = false,
+}: {
+  children: React.ReactNode;
   className?: string;
   delay?: number;
+  skipOnRepeat?: boolean;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // For hero elements: skip animation after the first session visit.
+  const [skip, setSkip] = useState(false);
+
+  useEffect(() => {
+    if (!skipOnRepeat) return;
+    if (sessionStorage.getItem(HERO_SESSION_KEY)) {
+      setSkip(true);
+    } else {
+      sessionStorage.setItem(HERO_SESSION_KEY, "1");
+    }
+  }, [skipOnRepeat]);
+
+  if (skip) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ 
-        duration: 0.8, 
-        delay,
-        ease: [0.25, 0.1, 0.25, 1.0]
-      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1.0] }}
       className={className}
     >
       {children}
@@ -304,7 +317,7 @@ export default function NewLanding() {
           {/* Text area — centered in ~70vh */}
           <div className="flex min-h-[72vh] flex-col items-center justify-center px-5 pb-6 pt-[88px] text-center sm:min-h-[76vh] sm:px-10 sm:pb-8 sm:pt-[128px] lg:px-8">
             <div className="mx-auto flex max-w-4xl flex-col items-center space-y-3 sm:space-y-4 lg:space-y-5">
-              <AnimatedSection delay={0.2}>
+              <AnimatedSection delay={0.05} skipOnRepeat>
                 <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.15em] uppercase sm:text-[11px] sm:tracking-[0.18em]">
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#245FFF]" />
                   <span className="sm:hidden">Introducing Halo · Qualcomm</span>
@@ -312,13 +325,13 @@ export default function NewLanding() {
                 </p>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.3}>
+              <AnimatedSection delay={0.1} skipOnRepeat>
                 <h1 className="max-w-3xl px-2 text-4xl font-bold leading-[1.1] tracking-tight sm:px-0 sm:text-5xl lg:text-6xl">
                   Verify what&apos;s real. Protect what matters.
                 </h1>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.4}>
+              <AnimatedSection delay={0.15} skipOnRepeat>
                 <div className="max-w-2xl px-4 text-sm leading-[1.65] text-gray-300 sm:px-0 sm:text-base sm:leading-relaxed lg:text-lg">
                   <p className="text-center">
                     Deepfakes and voice clones are everywhere — on your video calls, your
@@ -329,7 +342,7 @@ export default function NewLanding() {
                 </div>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.5}>
+              <AnimatedSection delay={0.2} skipOnRepeat>
                 <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:pt-3">
                   <Link
                     href="/halo"
