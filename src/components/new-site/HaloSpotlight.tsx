@@ -35,9 +35,9 @@ export default function HaloSpotlight() {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 px-5 lg:gap-12 lg:grid-cols-2">
         {/* ─── Left: partnership + copy + CTAs ─── */}
-        <div>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           {/* Co-brand lockup — real logos, not type */}
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -59,7 +59,7 @@ export default function HaloSpotlight() {
           </p>
 
           {/* Real-Time · Secure · Private pillars */}
-          <div className="mt-7 grid grid-cols-3 gap-3 max-w-lg">
+          <div className="mt-7 grid w-full grid-cols-3 gap-2 text-left sm:gap-3 lg:max-w-lg">
             {PILLARS.map(({ icon: Icon, label, desc }) => (
               <div key={label} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-3">
                 <Icon className="h-4 w-4 text-[#245FFF]" />
@@ -69,7 +69,7 @@ export default function HaloSpotlight() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
             <Link
               href="/halo"
               onClick={() => trackCTA("meet_halo", "halo_spotlight")}
@@ -90,7 +90,7 @@ export default function HaloSpotlight() {
         </div>
 
         {/* ─── Right: on-device scanner card ─── */}
-        <div className="relative mx-auto w-full max-w-md">
+        <div className="relative mx-auto w-full max-w-sm sm:max-w-md">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-2 border-b border-white/[0.07] bg-[#11141b] px-4 py-2.5">
               <span className="flex items-center gap-1.5 text-[11px] font-medium text-white/45">
