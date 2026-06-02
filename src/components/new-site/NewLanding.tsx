@@ -302,23 +302,24 @@ export default function NewLanding() {
         <HeroBackground className="" />
         <div className="relative z-10 w-full">
           {/* Text area — centered in ~70vh */}
-          <div className="flex min-h-[76vh] flex-col items-center justify-center px-5 pb-6 pt-[136px] text-center sm:px-10 sm:pb-8 lg:px-8">
-            <div className="mx-auto flex max-w-4xl flex-col items-center space-y-4 sm:space-y-5">
+          <div className="flex min-h-[72vh] flex-col items-center justify-center px-5 pb-6 pt-[88px] text-center sm:min-h-[76vh] sm:px-10 sm:pb-8 sm:pt-[128px] lg:px-8">
+            <div className="mx-auto flex max-w-4xl flex-col items-center space-y-3 sm:space-y-4 lg:space-y-5">
               <AnimatedSection delay={0.2}>
-                <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.18em] uppercase sm:text-[11px]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#245FFF]" />
-                  Introducing Halo · On-device deepfake detection with Qualcomm
+                <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.15em] uppercase sm:text-[11px] sm:tracking-[0.18em]">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#245FFF]" />
+                  <span className="sm:hidden">Introducing Halo · Qualcomm</span>
+                  <span className="hidden sm:inline">Introducing Halo · On-device deepfake detection with Qualcomm</span>
                 </p>
               </AnimatedSection>
 
               <AnimatedSection delay={0.3}>
-                <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
+                <h1 className="max-w-3xl px-2 text-4xl font-bold leading-[1.1] tracking-tight sm:px-0 sm:text-5xl lg:text-6xl">
                   Verify what&apos;s real. Protect what matters.
                 </h1>
               </AnimatedSection>
 
               <AnimatedSection delay={0.4}>
-                <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0">
+                <div className="max-w-2xl px-4 text-sm leading-[1.65] text-gray-300 sm:px-0 sm:text-base sm:leading-relaxed lg:text-lg">
                   <p className="text-center">
                     Deepfakes and voice clones are everywhere — on your video calls, your
                     DMs, your screen. scam.ai catches them{" "}
@@ -329,7 +330,7 @@ export default function NewLanding() {
               </AnimatedSection>
 
               <AnimatedSection delay={0.5}>
-                <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center gap-4">
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:pt-3">
                   <Link
                     href="/halo"
                     className="rainbow-button inline-block"
