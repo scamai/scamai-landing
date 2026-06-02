@@ -410,12 +410,20 @@ export default function FaceswapPlayground() {
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, W, H);
 
-    // Frame: mirror to match what the user saw on-screen
+    // Frame: cover-fit (no distortion) + mirror to match on-screen display
     const frameH = Math.round(H * 0.82);
+    const vW = video.videoWidth || video.clientWidth || 1280;
+    const vH = video.videoHeight || video.clientHeight || 720;
+    // Scale video so it fully covers W × frameH, then crop center
+    const scale = Math.max(W / vW, frameH / vH);
+    const srcW = W / scale;
+    const srcH = frameH / scale;
+    const srcX = (vW - srcW) / 2;
+    const srcY = (vH - srcH) / 2;
     ctx.save();
     ctx.translate(W, 0);
-    ctx.scale(-1, 1);
-    ctx.drawImage(video, 0, 0, W, frameH);
+    ctx.scale(-1, 1); // mirror
+    ctx.drawImage(video, srcX, srcY, srcW, srcH, 0, 0, W, frameH);
     ctx.restore();
 
     // Gradient fade into branding strip
