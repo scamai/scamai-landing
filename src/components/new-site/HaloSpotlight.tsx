@@ -8,7 +8,7 @@
 // the Qualcomm / Snapdragon X partnership announced at Computex Taipei 2026.
 // Echoes the launch poster: "Real-Time. Secure. Private." + on-device framing.
 
-import { ShieldCheck, Cpu, Lock, Zap, ArrowRight } from "lucide-react";
+import { ShieldCheck, Lock, Zap, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
@@ -87,10 +87,6 @@ export default function HaloSpotlight() {
             </Link>
           </div>
 
-          <p className="mt-5 flex items-center gap-1.5 text-[11px] text-white/35">
-            <Cpu className="h-3.5 w-3.5" />
-            Powered by Snapdragon X2 · Windows · Launching 2026
-          </p>
         </div>
 
         {/* ─── Right: on-device scanner card ─── */}
