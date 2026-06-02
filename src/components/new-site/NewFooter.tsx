@@ -82,7 +82,7 @@ export default function NewFooter() {
         </div>
 
         {/* Footer columns */}
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center">
               <img

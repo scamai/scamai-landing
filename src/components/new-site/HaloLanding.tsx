@@ -640,7 +640,7 @@ export default function HaloLanding() {
             "radial-gradient(55% 40% at 80% 10%, rgba(36,95,255,0.10) 0%, rgba(0,0,0,0) 70%)",
         }}
       >
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5">
           {/* toggle */}
           <div className="mb-12 flex justify-center">
             <div className="inline-flex rounded-full border border-white/10 bg-white/[0.03] p-1">
@@ -719,7 +719,7 @@ export default function HaloLanding() {
 
       {/* ================== ON-DEVICE DIFFERENTIATORS ================ */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400 sm:text-xs">
@@ -753,7 +753,7 @@ export default function HaloLanding() {
 
       {/* ========================= HOW IT WORKS ====================== */}
       <section id="how" className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+        <div className="mx-auto max-w-5xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">
@@ -786,7 +786,7 @@ export default function HaloLanding() {
 
       {/* ====================== COMPETITIVE FRAMING ================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">
@@ -832,7 +832,7 @@ export default function HaloLanding() {
       {/* ============================== FAQ ========================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/20 to-black" />
-        <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="relative z-10 mx-auto max-w-3xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">

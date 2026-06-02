@@ -215,7 +215,7 @@ export default function SolutionsSection() {
       aria-label="Solutions - AI Fraud Prevention"
       id="solutions"
     >
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 lg:max-w-7xl py-14 sm:py-20 lg:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-14 sm:py-20 lg:py-28">
         {/* Section Header */}
         <AnimatedCard>
           <div className="text-center mb-8 sm:mb-10 lg:mb-14">

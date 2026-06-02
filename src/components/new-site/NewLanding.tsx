@@ -374,7 +374,7 @@ export default function NewLanding() {
         backgroundRepeat: 'no-repeat'
       }}>
         <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-24 lg:py-32">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-14 sm:py-24 lg:py-32">
           <AnimatedSection>
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="text-left flex flex-col justify-center">
@@ -433,7 +433,7 @@ export default function NewLanding() {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50"></div>
         
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
           {/* Platform Title - no overlay */}
           <AnimatedSection>
             <div className="text-center mb-12 lg:mb-16">
@@ -513,7 +513,7 @@ export default function NewLanding() {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50"></div>
         
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
           {/* Transparent Pricing */}
           <AnimatedSection>
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-16 lg:mb-20">
@@ -595,7 +595,7 @@ export default function NewLanding() {
 
       {/* Resources — cross-links to learn, solutions, compare */}
       <section className="landing-section relative overflow-hidden bg-black">
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 py-16 sm:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center mb-10">
             <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-3 sm:text-[10px]">RESOURCES</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Learn about deepfake detection</h2>

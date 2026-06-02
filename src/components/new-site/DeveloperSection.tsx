@@ -7,7 +7,7 @@ export default function DeveloperSection() {
 
   return (
     <section className="landing-section relative overflow-hidden bg-black" aria-label="Developer Integration">
-      <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-20 sm:py-24 lg:py-32">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-20 sm:py-24 lg:py-32">
         {/* Header Section */}
         <div className="text-center mb-12 lg:mb-16">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] mb-4 sm:text-xs">

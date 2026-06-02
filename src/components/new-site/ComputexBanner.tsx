@@ -57,7 +57,7 @@ export default function ComputexBanner({ onDismiss }: { onDismiss: () => void })
       />
 
       {/* Centered, symmetric content group */}
-      <div className="relative flex h-full items-center justify-center gap-3 px-12 sm:gap-4 sm:px-14">
+      <div className="relative flex h-full items-center justify-center gap-3 px-4 sm:gap-4 sm:px-12">
         {/* live dot */}
         <span aria-hidden className="relative h-2.5 w-2.5 shrink-0">
           <span className="cx-ping absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6d5dfb] opacity-80" />
