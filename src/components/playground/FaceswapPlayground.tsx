@@ -36,22 +36,11 @@ const AI_FACES: Face[] = [
   { label: "AI-generated face", url: "/playground-faces/ai-black-man.jpg",   synthetic: true },
 ];
 
-// Fixed house presets — public-domain photos of deceased historical figures.
-// Unlike the rest of the library these are NOT disguised as user uploads: they
-// carry a name caption + lock marker and cannot be deleted, so the demo always
-// has a guaranteed, low-risk face to swap to. They anchor the front of the strip.
-const PRESET_FIGURES: Face[] = [
-  { label: "Albert Einstein", name: "Einstein", url: "/playground-faces/celeb/albert-einstein.jpg", preset: true },
-  { label: "John F. Kennedy", name: "JFK",      url: "/playground-faces/celeb/jfk.jpg",             preset: true },
-];
-
-// Recognizable demo faces — same selection + framing as the Snapdragon booth
-// gallery (face-detected, padded square crop, 768px). These render exactly like
-// a visitor's own uploads (no caption, deletable), so the picker reads as one
-// shared library rather than a vendor-curated set. Hardcoded ⇒ they come back on
-// reload; a visitor's own uploads do not (see onAddFace / library seed). Ordered
-// for visual variety (alternating) rather than the source's numeric order.
+// Demo faces that appear in the "uploads" section — feel like saved user uploads.
+// All unlocked and deletable; they return on reload since they're hardcoded here.
 const CELEBRITY_FACES: Face[] = [
+  { label: "Saved face", url: "/playground-faces/celeb/albert-einstein.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/jfk.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/princess-diana.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/steve-jobs.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/taylor-swift.jpg" },
@@ -67,9 +56,11 @@ const CELEBRITY_FACES: Face[] = [
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
 ];
 
-// Gallery seed: AI synthetic first (locked preset section), then named figures +
-// celebrities (appear in the "uploads" section alongside real user uploads).
-const SEED_FACES: Face[] = [...AI_FACES, ...PRESET_FIGURES, ...CELEBRITY_FACES];
+const MAX_UPLOADS = 24;
+
+// Gallery seed: AI synthetic first (Preset section), then celebrities
+// (appear in the "uploads" section alongside real user uploads).
+const SEED_FACES: Face[] = [...AI_FACES, ...CELEBRITY_FACES];
 
 type Face = { label: string; url: string; custom?: boolean; preset?: boolean; synthetic?: boolean; name?: string };
 
@@ -237,6 +228,8 @@ export default function FaceswapPlayground() {
       const file = e.target.files?.[0];
       e.target.value = ""; // allow re-selecting the same file
       if (!file || !file.type.startsWith("image/")) return;
+      const customCount = library.filter((f) => f.custom).length;
+      if (customCount >= MAX_UPLOADS) return;
       const url = URL.createObjectURL(file);
       objectUrlsRef.current.push(url);
       setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true }]);
@@ -258,7 +251,6 @@ export default function FaceswapPlayground() {
   const removeFace = useCallback(
     (url: string) => {
       if (AI_FACES.some((f) => f.url === url)) return; // synthetic faces are fixed
-      if (PRESET_FIGURES.some((p) => p.url === url)) return; // preset figures are fixed
       if (url.startsWith("blob:")) {
         try {
           URL.revokeObjectURL(url);
@@ -296,6 +288,8 @@ export default function FaceswapPlayground() {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
     const syntheticFaces = library.filter((f) => f.synthetic);
     const uploadedFaces = library.filter((f) => !f.synthetic);
+    const customCount = library.filter((f) => f.custom).length;
+    const atCap = customCount >= MAX_UPLOADS;
 
     const renderFace = (f: Face) => {
       const active = selected === f.url;
@@ -304,29 +298,17 @@ export default function FaceswapPlayground() {
           <button
             type="button"
             onClick={() => onPickFace(f.url)}
-            title={f.preset ? `${f.name} — demo preset` : "Become this face"}
+            title="Become this face"
             className={`block overflow-hidden rounded-lg ring-2 transition ${
               active
                 ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
-                : f.preset
-                ? "ring-amber-400/70 hover:ring-amber-300"
                 : "ring-white/10 hover:ring-white/30"
             }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={f.url} alt={f.label} className={`${size} object-cover`} />
-            {f.preset && (
-              <>
-                <span className="absolute left-0.5 top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-black/65 text-amber-300">
-                  <Lock className="h-2.5 w-2.5" />
-                </span>
-                <span className="absolute inset-x-0 bottom-0 truncate bg-black/65 px-1 py-px text-center text-[8px] font-semibold leading-tight text-amber-200">
-                  {f.name}
-                </span>
-              </>
-            )}
           </button>
-          {!f.preset && !f.synthetic && (
+          {!f.synthetic && (
             <button
               type="button"
               onClick={() => removeFace(f.url)}
@@ -346,34 +328,42 @@ export default function FaceswapPlayground() {
         {/* ── Preset faces (StyleGAN2 synthetic only) ── */}
         <div>
           <div className="mb-2 flex items-baseline gap-1.5">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#245FFF]/80">
               Preset faces
             </span>
-            <span className="text-[9px] text-white/22">· StyleGAN2 AI-generated</span>
+            <span className="text-[9px] text-white/30">· StyleGAN2 AI-generated</span>
           </div>
           <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
             {syntheticFaces.map(renderFace)}
           </div>
         </div>
 
-        {/* ── Your uploads ── */}
+        {/* ── Uploads section ── */}
         <div>
-          <div className="mb-2">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+          <div className="mb-1 flex items-baseline gap-1.5">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/60">
               Your uploads
             </span>
+            <span className="text-[9px] text-white/30">
+              · {customCount}/{MAX_UPLOADS}
+            </span>
           </div>
+          <p className="mb-2 text-[9px] leading-snug text-white/25">
+            Only upload faces with the subject&apos;s consent.
+          </p>
           <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
             {uploadedFaces.map(renderFace)}
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              title="Upload your own face"
-              className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
-            >
-              <Plus className="h-4 w-4" />
-              <span className="text-[8px] font-medium">Upload</span>
-            </button>
+            {!atCap && (
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                title="Upload your own face"
+                className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
+              >
+                <Plus className="h-4 w-4" />
+                <span className="text-[8px] font-medium">Upload</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -568,7 +558,7 @@ export default function FaceswapPlayground() {
         <div className="mt-5 grid items-center gap-5 sm:mt-7 lg:grid-cols-12">
           {/* left: face picker + start (desktop) / below stage (mobile via order) */}
           <div className="order-2 lg:order-1 lg:col-span-4">
-            <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40 lg:text-left">
+            <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 lg:text-left">
               {step === "running" && live ? "Tap to switch faces live" : "Pick a face"}
             </p>
             <div className="lg:block">{FacePicker({ compact: true })}</div>
