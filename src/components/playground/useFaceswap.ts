@@ -43,7 +43,14 @@ export interface FaceswapState {
   remoteStream: MediaStream | null;
   hasFirstFrame: boolean;
   queuePosition: number | null;
+  // Non-fatal hint, e.g. a target photo with no detectable face. The live
+  // session keeps running on the previous face; the UI shows a dismissible toast.
+  faceWarning: string;
 }
+
+const NO_FACE_HINT = "No face detected in that photo — try a clear, front-facing one.";
+const isNoFaceError = (s: string) =>
+  /no[_ ]?face|front-facing|no face detected|face.*not.*found/i.test(s || "");
 
 interface StartArgs {
   targetFaceB64: string;
@@ -58,6 +65,7 @@ export function useFaceswap() {
     remoteStream: null,
     hasFirstFrame: false,
     queuePosition: null,
+    faceWarning: "",
   });
 
   const wsRef = useRef<WebSocket | null>(null);
@@ -213,6 +221,14 @@ export function useFaceswap() {
               }
               break;
             }
+            case "config_update_result": {
+              // Backend rejects a face switch when the new target has no
+              // detectable face. Non-fatal: keep the current swap, hint the user.
+              if (data.status === "error" && !cancelledRef.current) {
+                patch({ faceWarning: NO_FACE_HINT });
+              }
+              break;
+            }
             case "error": {
               if (data.error_type === "TIME_EXPIRED") {
                 patch({ phase: "ended", status: "" });
@@ -220,7 +236,13 @@ export function useFaceswap() {
               } else if (!cancelledRef.current) {
                 const msg =
                   typeof data.message === "string" && data.message ? data.message : "Backend error.";
-                patch({ phase: "error", error: msg });
+                // A "no face" verdict is user-input, not a connection failure —
+                // don't tear the session down, just surface a dismissible hint.
+                if (isNoFaceError(msg) || isNoFaceError(String(data.error_type))) {
+                  patch({ faceWarning: NO_FACE_HINT });
+                } else {
+                  patch({ phase: "error", error: msg });
+                }
               }
               break;
             }
@@ -256,6 +278,7 @@ export function useFaceswap() {
         hasFirstFrame: false,
         remoteStream: null,
         queuePosition: null,
+        faceWarning: "",
       });
 
       try {
@@ -345,7 +368,17 @@ export function useFaceswap() {
             patch({ phase: "queued", status: "Demo is busy — you're in line…" });
             return; // server will send control:start_connection when a slot frees
           }
-          if (!res.ok) throw new Error(`Server error (${res.status}). Please try again.`);
+          if (!res.ok) {
+            let detail = "";
+            try {
+              const body = await res.clone().json();
+              detail = String(body?.error ?? body?.message ?? "");
+            } catch {
+              /* non-JSON body */
+            }
+            if (res.status === 422 || isNoFaceError(detail)) throw new Error(NO_FACE_HINT);
+            throw new Error(`Server error (${res.status}). Please try again.`);
+          }
 
           const answer = await res.json();
           if (answer.status === "queued") {
@@ -375,6 +408,7 @@ export function useFaceswap() {
   // ─── Switch target face live (no reconnect) ───────────────────────────────
   const setFace = useCallback((targetFaceB64: string) => {
     targetFaceRef.current = targetFaceB64;
+    patch({ faceWarning: "" }); // clear any prior no-face hint on a new attempt
     const ws = wsRef.current;
     if (ws && ws.readyState === WebSocket.OPEN && clientIdRef.current) {
       ws.send(
@@ -385,7 +419,7 @@ export function useFaceswap() {
         })
       );
     }
-  }, []);
+  }, [patch]);
 
   return { state, start, stop, setFace };
 }

@@ -61,6 +61,7 @@ export default function FaceswapPlayground() {
   const [selected, setSelected] = useState(PRESET_FACES[0].url);
   const [customFaces, setCustomFaces] = useState<Face[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(DEMO_SECONDS);
+  const [camError, setCamError] = useState("");
 
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const selfViewRef = useRef<HTMLVideoElement>(null);
@@ -104,6 +105,7 @@ export default function FaceswapPlayground() {
   const beginConsent = useCallback(() => setStep("consent"), []);
 
   const launch = useCallback(async () => {
+    setCamError("");
     try {
       const localStream = await navigator.mediaDevices.getUserMedia({
         video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: "user" },
@@ -120,9 +122,20 @@ export default function FaceswapPlayground() {
       const targetB64 = await urlToBase64(selected);
       setStep("running");
       await start({ targetFaceB64: targetB64, localStream });
-    } catch {
-      alert("Camera access is required for the live demo.");
-      setStep("intro");
+    } catch (e) {
+      // Inline, specific guidance instead of a raw alert — common causes are a
+      // denied permission or the camera being held by another tab/app.
+      const name = (e as Error)?.name || "";
+      const msg =
+        name === "NotAllowedError" || name === "SecurityError"
+          ? "Camera blocked. Click the camera icon in your browser's address bar, allow access, then try again."
+          : name === "NotReadableError" || name === "TrackStartError"
+          ? "Your camera is in use by another tab or app (check other Zoom/Meet/recording tabs). Close it and try again."
+          : name === "NotFoundError" || name === "OverconstrainedError"
+          ? "No camera was found on this device."
+          : "Couldn't access your camera. Please try again.";
+      setCamError(msg);
+      setStep("consent");
     }
   }, [selected, start]);
 
@@ -250,6 +263,13 @@ export default function FaceswapPlayground() {
           <ShieldCheck className="h-3 w-3" /> never stored
         </div>
 
+        {/* non-fatal no-face hint (live session keeps the previous face) */}
+        {state.faceWarning && (
+          <div className="absolute left-1/2 top-3 z-20 flex max-w-[90%] -translate-x-1/2 items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1.5 text-center text-[11px] font-medium text-amber-100 backdrop-blur-md">
+            <AlertTriangle className="h-3.5 w-3.5 shrink-0" /> {state.faceWarning}
+          </div>
+        )}
+
         {/* self-view PiP */}
         <div
           className="absolute bottom-3 right-3 z-10 overflow-hidden rounded-xl border border-white/15 bg-black ring-1 ring-[#245FFF]/30 shadow-lg"
@@ -293,9 +313,15 @@ export default function FaceswapPlayground() {
             <p className="mt-1.5 max-w-xs text-[12px] leading-relaxed text-white/55">
               Your camera streams to our servers for live processing only. Nothing is stored.
             </p>
+            {camError && (
+              <p className="mt-3 flex max-w-xs items-start gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-[12px] leading-relaxed text-red-200">
+                <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                {camError}
+              </p>
+            )}
             <div className="mt-4 flex gap-2.5">
               <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.98]">
-                <Camera className="h-4 w-4" /> Allow &amp; start
+                <Camera className="h-4 w-4" /> {camError ? "Try again" : "Allow & start"}
               </button>
               <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
                 Cancel
