@@ -402,56 +402,97 @@ export default function FaceswapPlayground() {
     const video = remoteVideoRef.current;
     if (!video || video.readyState < 2) return;
 
-    const W = 1080, H = 1350; // 4:5 — optimal for IG/social
+    await document.fonts.ready;
+
+    const W = 1080, H = 1350; // 4:5 — IG / social optimum
     const canvas = document.createElement("canvas");
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext("2d")!;
 
-    ctx.fillStyle = "#000";
+    // ── Background ────────────────────────────────────────────────────
+    ctx.fillStyle = "#080808";
+    ctx.fillRect(0, 0, W, H);
+    const bgGlow = ctx.createRadialGradient(W / 2, 0, 0, W / 2, 0, H * 0.55);
+    bgGlow.addColorStop(0, "rgba(36,95,255,0.14)");
+    bgGlow.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = bgGlow;
     ctx.fillRect(0, 0, W, H);
 
-    // Frame: cover-fit (no distortion) + mirror to match on-screen display
-    const frameH = Math.round(H * 0.82);
-    const vW = video.videoWidth || video.clientWidth || 1280;
-    const vH = video.videoHeight || video.clientHeight || 720;
-    // Scale video so it fully covers W × frameH, then crop center
-    const scale = Math.max(W / vW, frameH / vH);
-    const srcW = W / scale;
-    const srcH = frameH / scale;
-    const srcX = (vW - srcW) / 2;
-    const srcY = (vH - srcH) / 2;
-    ctx.save();
-    ctx.translate(W, 0);
-    ctx.scale(-1, 1); // mirror
-    ctx.drawImage(video, srcX, srcY, srcW, srcH, 0, 0, W, frameH);
-    ctx.restore();
-
-    // Gradient fade into branding strip
-    const grad = ctx.createLinearGradient(0, frameH - 80, 0, frameH);
-    grad.addColorStop(0, "rgba(0,0,0,0)");
-    grad.addColorStop(1, "rgba(0,0,0,0.65)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, frameH - 80, W, 80);
-
-    ctx.fillStyle = "#080808";
-    ctx.fillRect(0, frameH, W, H - frameH);
-
-    // Logo
+    // ── Logo ──────────────────────────────────────────────────────────
     const logo = new Image();
     await new Promise<void>(res => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
-    const logoH = 34, logoW = Math.round(logoH * (1012 / 256));
-    const stripMidY = frameH + (H - frameH) / 2;
+    const logoH = 30, logoW = Math.round(logoH * (1012 / 256));
     ctx.globalAlpha = 0.88;
-    ctx.drawImage(logo, 48, stripMidY - logoH / 2, logoW, logoH);
+    ctx.drawImage(logo, 48, 46, logoW, logoH);
     ctx.globalAlpha = 1;
 
-    // CTA text
-    await document.fonts.ready;
-    ctx.font = "500 24px Inter, ui-sans-serif, system-ui, sans-serif";
+    // ── Red badge: AI-GENERATED DEEPFAKE ─────────────────────────────
+    const badgeY = 108;
+    ctx.fillStyle = "#ef4444";
+    ctx.beginPath(); ctx.arc(48 + 8, badgeY + 10, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.font = "600 22px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.65)";
+    ctx.textBaseline = "top"; ctx.textAlign = "left";
+    ctx.fillText("AI-GENERATED DEEPFAKE", 48 + 22, badgeY);
+
+    // ── Faceswap frame (rounded, cover-fit, mirrored) ─────────────────
+    const fPad = 40, fTop = 152, fW = W - fPad * 2, fH = 730, fR = 20;
+    const vW = video.videoWidth || 1280;
+    const vH = video.videoHeight || 720;
+    const fScale = Math.max(fW / vW, fH / vH);
+    const srcW = fW / fScale, srcH = fH / fScale;
+    const srcX = (vW - srcW) / 2, srcY = (vH - srcH) / 2;
+
+    // clip → mirror → draw
+    ctx.save();
+    ctx.beginPath();
+    if (typeof ctx.roundRect === "function") ctx.roundRect(fPad, fTop, fW, fH, fR);
+    else ctx.rect(fPad, fTop, fW, fH);
+    ctx.clip();
+    ctx.transform(-1, 0, 0, 1, fPad + fW, 0); // mirror within clip
+    ctx.drawImage(video, srcX, srcY, srcW, srcH, 0, fTop, fW, fH);
+    ctx.restore();
+
+    // subtle frame border
+    ctx.strokeStyle = "rgba(255,255,255,0.08)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    if (typeof ctx.roundRect === "function") ctx.roundRect(fPad, fTop, fW, fH, fR);
+    else ctx.rect(fPad, fTop, fW, fH);
+    ctx.stroke();
+
+    // ── Headline ──────────────────────────────────────────────────────
+    const textX = 48;
+    ctx.textAlign = "left"; ctx.textBaseline = "top";
+
+    ctx.font = "700 64px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("This deepfake took", textX, 918);
+    ctx.fillText("30 seconds.", textX, 990);
+
+    ctx.font = "400 32px Inter, ui-sans-serif, system-ui, sans-serif";
     ctx.fillStyle = "rgba(255,255,255,0.50)";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "middle";
-    ctx.fillText("halo.scam.ai", W - 48, stripMidY);
+    ctx.fillText("Anyone can fake a face.", textX, 1082);
+    ctx.fillText("Detect it before they fake yours.", textX, 1124);
+
+    // ── CTA button ────────────────────────────────────────────────────
+    const btnX = 48, btnY = 1188, btnW = W - 96, btnH = 88;
+    ctx.fillStyle = "#245FFF";
+    ctx.beginPath();
+    if (typeof ctx.roundRect === "function") ctx.roundRect(btnX, btnY, btnW, btnH, 14);
+    else ctx.rect(btnX, btnY, btnW, btnH);
+    ctx.fill();
+
+    ctx.font = "600 36px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText("→  halo.scam.ai", W / 2, btnY + btnH / 2);
+
+    // ── Footer ────────────────────────────────────────────────────────
+    ctx.font = "400 22px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.22)";
+    ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+    ctx.fillText("Real-time deepfake detection · scam.ai", W / 2, H - 32);
 
     const dataUrl = canvas.toDataURL("image/jpeg", 0.93);
     setShareCardUrl(dataUrl);
