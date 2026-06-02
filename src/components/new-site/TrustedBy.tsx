@@ -44,8 +44,8 @@ function LogoGroup() {
 
 export default function TrustedBy() {
   return (
-    <section className="overflow-hidden border-y border-white/10 py-12 md:py-16">
-      <div className="mb-6 text-center">
+    <section className="overflow-hidden border-y border-white/10 py-5 md:py-7">
+      <div className="mb-4 text-center">
         <p className="text-[11px] uppercase tracking-[0.12em] text-[#999]" style={{ fontWeight: 450 }}>
           Trusted by customers &amp; backed by people from
         </p>
