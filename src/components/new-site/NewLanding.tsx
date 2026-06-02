@@ -11,12 +11,29 @@ import DeveloperSection from "./DeveloperSection";
 import HaloSpotlight from "./HaloSpotlight";
 import TrustedBy from "./TrustedBy";
 import dynamic from "next/dynamic";
+import React from "react";
 
 // Live face-swap demo — client-only (WebRTC / getUserMedia), no SSR.
 const FaceswapPlayground = dynamic(
   () => import("@/components/playground/FaceswapPlayground"),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="w-full bg-[#050505] py-8 sm:py-12 lg:py-14" /> }
 );
+
+// Error boundary so a FaceswapPlayground crash never kills the whole page.
+class PlaygroundErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 // Skeleton loader for bento visual components
 function BentoSkeleton() {
@@ -374,7 +391,9 @@ export default function NewLanding() {
       <TrustedBy />
 
       {/* Live "Deepfake is here" face-swap playground */}
-      <FaceswapPlayground />
+      <PlaygroundErrorBoundary>
+        <FaceswapPlayground />
+      </PlaygroundErrorBoundary>
 
       {/* Halo + Qualcomm partnership spotlight (the defense) */}
       <HaloSpotlight />

@@ -210,7 +210,11 @@ export default function FaceswapPlayground() {
           // Pill backdrop for legibility on any background
           ctx.fillStyle = "rgba(0,0,0,0.32)";
           ctx.beginPath();
-          ctx.roundRect(wX - 8, wY - 5, bgW, bgH, 5);
+          if (typeof ctx.roundRect === "function") {
+            ctx.roundRect(wX - 8, wY - 5, bgW, bgH, 5);
+          } else {
+            ctx.rect(wX - 8, wY - 5, bgW, bgH);
+          }
           ctx.fill();
           // Logo (white SVG paths render correctly on transparent background)
           ctx.globalAlpha = 0.82;
@@ -716,18 +720,21 @@ export default function FaceswapPlayground() {
           <Overlay>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
             <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face.</h3>
-            <div className="mt-5 flex flex-col items-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+              <Link
+                href={HALO_HREF}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 active:scale-[0.98]"
+              >
+                Meet Halo
+              </Link>
               <button
                 onClick={() => setShowShareModal(true)}
                 className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(36,95,255,0.7)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
               >
-                Share your deepfake <ArrowRight className="h-4 w-4" />
+                Share <ArrowRight className="h-4 w-4" />
               </button>
-              <Link href={HALO_HREF} className="inline-flex items-center gap-1.5 text-xs text-white/50 transition hover:text-white">
-                Meet Halo — the defense <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
             </div>
-            <button onClick={reset} className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
+            <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
               <RefreshCw className="h-3.5 w-3.5" /> Run again
             </button>
           </Overlay>
