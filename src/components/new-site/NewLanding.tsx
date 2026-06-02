@@ -8,6 +8,7 @@ import { BentoV1_3, BentoV1_5, BentoV1_26, BentoV1_28 } from "@/components/bento
 import { Suspense } from "react";
 import { trackCTA, trackOutbound } from "@/lib/analytics";
 import DeveloperSection from "./DeveloperSection";
+import HaloSpotlight from "./HaloSpotlight";
 import dynamic from "next/dynamic";
 
 // Live face-swap demo — client-only (WebRTC / getUserMedia), no SSR.
@@ -393,6 +394,9 @@ export default function NewLanding() {
 
       {/* Live "Deepfake is here" face-swap playground */}
       <FaceswapPlayground />
+
+      {/* Halo + Qualcomm partnership spotlight (the defense) */}
+      <HaloSpotlight />
 
       {/* AI-Powered Security — merged section */}
       <section className="landing-section relative overflow-hidden" aria-label="AI-Powered Security - Deepfake Protection" style={{
