@@ -389,7 +389,7 @@ const FAQ = [
   },
   {
     q: "Does my call data get uploaded anywhere?",
-    a: "No. All detection runs locally on your device\u2019s NPU (or CPU). Halo analyzes live frames in memory and discards them \u2014 it does not record, store, or transmit meeting video. Only detection verdicts and session metadata are kept, stored locally on your machine.",
+    a: "No. All detection runs locally on your device. Halo analyzes live frames in memory and discards them \u2014 it does not record, store, or transmit meeting video. Only detection verdicts and session metadata are kept, stored locally on your machine.",
   },
   {
     q: "Which apps does Halo work with?",
@@ -397,7 +397,7 @@ const FAQ = [
   },
   {
     q: "Will it slow down my calls or drain my battery?",
-    a: "Inference runs on the dedicated NPU in Snapdragon-powered Windows PCs, in parallel with your call. On non-Snapdragon hardware, it falls back to CPU. There is no network round-trip, so it adds no latency and minimal overhead.",
+    a: "Detection runs locally on your device, in parallel with your call. There is no network round-trip, so it adds no latency and minimal overhead.",
   },
   {
     q: "How accurate is it, and what about false positives?",
@@ -409,7 +409,7 @@ const FAQ = [
   },
   {
     q: "What devices does Halo support?",
-    a: "Halo runs on Windows 10/11. It supports both Snapdragon ARM64 (with NPU acceleration, ~235ms per frame) and x86/x64 (CPU fallback, ~800ms per frame). Minimum 4\u00a0GB RAM, ~1\u00a0GB disk space.",
+    a: "Halo runs on Windows 10/11, on both ARM64 and x86/x64 hardware. Minimum 4\u00a0GB RAM, ~1\u00a0GB disk space.",
   },
 ];
 
@@ -772,7 +772,7 @@ export default function HaloLanding() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               { n: "01", t: "Install once", b: "Download Halo to your Windows PC. It sits in the system tray next to your conferencing app — no plugins, no browser extensions." },
-              { n: "02", t: "Scans locally, live", b: "As you talk, Halo analyzes every face in the video frame-by-frame on the device\u2019s NPU — roughly 4 times per second on Snapdragon." },
+              { n: "02", t: "Scans locally, live", b: "As you talk, Halo analyzes every face in the video frame-by-frame on your device — roughly 4 times per second." },
               { n: "03", t: "Flags in real time", b: "If a face looks synthetic, Halo surfaces an alert during the call — in time to stop and verify." },
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 0.12}>
