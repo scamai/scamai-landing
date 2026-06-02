@@ -11,17 +11,17 @@
 
 type Logo = { src: string; alt: string; w: number; h: number };
 
+// Curated to logos that read cleanly as white silhouettes. Dropped LG U+, HP,
+// Final Round, UC Berkeley: their marks are filled circles/shapes/seals that any
+// CSS dark-mode treatment turns into solid white blobs — they need official
+// white-logo files to be added back. Qualcomm uses a proper white vector.
 const LOGOS: Logo[] = [
   { src: "/trusted/product-hunt-potd.png", alt: "Product Hunt — Product of the Day", w: 120, h: 50 },
-  { src: "/trusted/qualcomm.png", alt: "Qualcomm", w: 150, h: 34 },
-  { src: "/trusted/lg-uplus.png", alt: "LG U+", w: 110, h: 36 },
-  { src: "/trusted/hp.png", alt: "HP", w: 44, h: 44 },
+  { src: "/qualcomm-logo.svg", alt: "Qualcomm", w: 150, h: 30 },
   { src: "/trusted/sbi-holdings.png", alt: "SBI Holdings", w: 130, h: 34 },
   { src: "/trusted/trulioo.png", alt: "Trulioo", w: 120, h: 34 },
-  { src: "/trusted/beta-fellowship.png", alt: "Beta Fellowship", w: 44, h: 44 },
   { src: "/trusted/sentilink.svg", alt: "SentiLink", w: 130, h: 34 },
   { src: "/trusted/honestly.png", alt: "Honestly", w: 130, h: 34 },
-  { src: "/trusted/finalround.png", alt: "Final Round AI", w: 140, h: 34 },
   { src: "/trusted/ditto.svg", alt: "Ditto", w: 90, h: 34 },
   { src: "/trusted/quotr.png", alt: "Quotr", w: 120, h: 34 },
   { src: "/trusted/llama-venture.svg", alt: "Llama Venture", w: 130, h: 34 },
