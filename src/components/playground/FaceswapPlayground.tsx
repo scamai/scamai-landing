@@ -286,7 +286,10 @@ export default function FaceswapPlayground() {
 
   const connecting = step === "running" && (state.phase === "connecting" || state.phase === "queued");
   const live = step === "running" && state.phase === "live";
-  const queueEta = state.queuePosition ? state.queuePosition * PER_PLAY_SECONDS : null;
+  // ETA = people AHEAD of you × seconds per session (position 1 means you're
+  // next, no one ahead; position 3 means 2 people ahead → 60s, not 90s).
+  const peopleAheadCount = Math.max(0, (state.queuePosition ?? 1) - 1);
+  const queueEta = peopleAheadCount > 0 ? peopleAheadCount * PER_PLAY_SECONDS : null;
 
   // ─── Face picker — preset gallery + your own upload (shared desktop/mobile) ─
   const FacePicker = ({ compact = false }: { compact?: boolean }) => {
@@ -357,7 +360,7 @@ export default function FaceswapPlayground() {
   };
 
   // ─── The swap stage — a clean video frame (no app-window chrome) ──────────
-  const peopleAhead = Math.max(0, (state.queuePosition ?? 1) - 1);
+  const peopleAhead = peopleAheadCount;
   const Stage = () => (
     <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
       <div className="relative w-full bg-black h-[40vh] sm:h-[46vh] lg:h-[48vh] max-h-[460px]">

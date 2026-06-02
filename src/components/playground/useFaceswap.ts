@@ -382,7 +382,10 @@ export function useFaceswap() {
 
           const answer = await res.json();
           if (answer.status === "queued") {
-            patch({ phase: "queued", status: "Demo is busy — you're in line…" });
+            // Capture queue_position from the offer response so the UI shows
+            // the correct position immediately, before the WS status_update arrives.
+            const pos = typeof answer.queue_position === "number" ? answer.queue_position : null;
+            patch({ phase: "queued", status: "Demo is busy — you're in line…", queuePosition: pos });
             return;
           }
           if (!answer?.sdp || answer.type !== "answer") {
