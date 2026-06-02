@@ -15,7 +15,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square, Plus, X } from "lucide-react";
+import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square, Plus, X, Lock } from "lucide-react";
 import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
@@ -27,7 +27,7 @@ const HALO_HREF = "/halo";
 // Vetted frontal portraits from the Snapdragon booth demo gallery (clean face
 // detection). See /public/playground-faces. Labels are alt-text only — never
 // rendered as captions (we don't tag faces by race in the UI).
-const PRESET_FACES: Face[] = [
+const AI_FACES: Face[] = [
   { label: "AI-generated face", url: "/playground-faces/ai-asian-woman.jpg" },
   { label: "AI-generated face", url: "/playground-faces/ai-white-man.jpg" },
   { label: "AI-generated face", url: "/playground-faces/ai-black-woman.jpg" },
@@ -36,36 +36,44 @@ const PRESET_FACES: Face[] = [
   { label: "AI-generated face", url: "/playground-faces/ai-black-man.jpg" },
 ];
 
+// Fixed house presets — public-domain photos of deceased historical figures.
+// Unlike the rest of the library these are NOT disguised as user uploads: they
+// carry a name caption + lock marker and cannot be deleted, so the demo always
+// has a guaranteed, low-risk face to swap to. They anchor the front of the strip.
+const PRESET_FIGURES: Face[] = [
+  { label: "Albert Einstein", name: "Einstein", url: "/playground-faces/celeb/albert-einstein.jpg", preset: true },
+  { label: "John F. Kennedy", name: "JFK",      url: "/playground-faces/celeb/jfk.jpg",             preset: true },
+];
+
 // Recognizable demo faces — same selection + framing as the Snapdragon booth
 // gallery (face-detected, padded square crop, 768px). These render exactly like
 // a visitor's own uploads (no caption, deletable), so the picker reads as one
-// shared library rather than a vendor-curated set. Hardcoded ⇒ they always come
-// back on reload; a visitor's own uploads do not (see onAddFace / library seed).
+// shared library rather than a vendor-curated set. Hardcoded ⇒ they come back on
+// reload; a visitor's own uploads do not (see onAddFace / library seed). Ordered
+// for visual variety (alternating) rather than the source's numeric order.
 const CELEBRITY_FACES: Face[] = [
-  { label: "Saved face", url: "/playground-faces/celeb/steve-jobs.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/princess-diana.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/barack-obama.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/malala-yousafzai.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/liu-yifei.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/choi-min-sik.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/rinko-kikuchi.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/steve-jobs.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/taylor-swift.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/tom-hanks.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/lady-gaga.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/barack-obama.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/liu-yifei.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/elon-musk.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/albert-einstein.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/jfk.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/jack-ma.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/malala-yousafzai.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/tom-hanks.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/rinko-kikuchi.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/jackie-chan.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/lady-gaga.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/jack-ma.jpg" },
+  { label: "Saved face", url: "/playground-faces/celeb/choi-min-sik.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
 ];
 
-// The gallery seed: AI presets + recognizable faces, all presented as a single
-// "uploaded by users" library. These persist across reloads (hardcoded); only
-// the visitor's own uploads are ephemeral.
-const SEED_FACES: Face[] = [...PRESET_FACES, ...CELEBRITY_FACES];
+// Gallery seed order: fixed presets first (named, locked), then the "uploaded by
+// users" pool (recognizable faces, then AI synthetic). All persist across reloads
+// (hardcoded); only a visitor's own uploads are ephemeral.
+const SEED_FACES: Face[] = [...PRESET_FIGURES, ...CELEBRITY_FACES, ...AI_FACES];
 
-type Face = { label: string; url: string; custom?: boolean };
+type Face = { label: string; url: string; custom?: boolean; preset?: boolean; name?: string };
 
 async function urlToBase64(url: string): Promise<string> {
   const res = await fetch(url);
@@ -224,6 +232,7 @@ export default function FaceswapPlayground() {
   // If the removed face was selected, fall back to the first remaining face.
   const removeFace = useCallback(
     (url: string) => {
+      if (PRESET_FIGURES.some((p) => p.url === url)) return; // presets are fixed
       if (url.startsWith("blob:")) {
         try {
           URL.revokeObjectURL(url);
@@ -265,25 +274,43 @@ export default function FaceswapPlayground() {
               <button
                 type="button"
                 onClick={() => onPickFace(f.url)}
-                title="Become this face"
+                title={f.preset ? `${f.name} — demo preset` : "Become this face"}
                 className={`block overflow-hidden rounded-lg ring-2 transition ${
-                  active ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]" : "ring-white/10 hover:ring-white/30"
+                  active
+                    ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
+                    : f.preset
+                    ? "ring-amber-400/70 hover:ring-amber-300"
+                    : "ring-white/10 hover:ring-white/30"
                 }`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={f.url} alt={f.label} className={`${size} object-cover`} />
+                {f.preset && (
+                  <>
+                    {/* preset marker: lock badge + name caption — set apart from
+                        the deletable "user uploaded" items */}
+                    <span className="absolute left-0.5 top-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-black/65 text-amber-300">
+                      <Lock className="h-2.5 w-2.5" />
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 truncate bg-black/65 px-1 py-px text-center text-[8px] font-semibold leading-tight text-amber-200">
+                      {f.name}
+                    </span>
+                  </>
+                )}
               </button>
-              {/* Delete — removes from the shared library. Seed faces return on
-                  reload; an own-upload is gone for good. */}
-              <button
-                type="button"
-                onClick={() => removeFace(f.url)}
-                aria-label="Remove this face"
-                title="Remove"
-                className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
-              >
-                <X className="h-2.5 w-2.5" />
-              </button>
+              {/* Delete — only for the disguised library items. Presets are fixed
+                  (no button). Seed faces return on reload; an own-upload is gone. */}
+              {!f.preset && (
+                <button
+                  type="button"
+                  onClick={() => removeFace(f.url)}
+                  aria-label="Remove this face"
+                  title="Remove"
+                  className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
+                >
+                  <X className="h-2.5 w-2.5" />
+                </button>
+              )}
             </div>
           );
         })}
