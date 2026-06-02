@@ -93,6 +93,8 @@ export default function CookieConsent() {
     removeGACookies();
   }, []);
 
+  // Don't show on share pages — they have no nav/layout context
+  if (typeof window !== "undefined" && window.location.pathname.startsWith("/share")) return null;
   if (consent !== "pending" || !visible) return null;
 
   return (

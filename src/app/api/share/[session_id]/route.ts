@@ -14,7 +14,7 @@ export async function GET(
   try {
     const sql = getDb();
     const rows = await sql`
-      SELECT blob_url, mime_type, created_at
+      SELECT blob_url, mime_type
       FROM playground_sessions
       WHERE session_id = ${session_id} AND type = 'recording'
       ORDER BY created_at DESC
@@ -22,7 +22,12 @@ export async function GET(
     `;
     if (!rows.length) return NextResponse.json({ error: "not_found" }, { status: 404 });
     return NextResponse.json({ url: rows[0].blob_url, mime_type: rows[0].mime_type });
-  } catch {
+  } catch (err) {
+    const msg = String((err as Error)?.message ?? "");
+    // Table doesn't exist yet — treat as not_found, not server error
+    if (msg.includes("does not exist") || msg.includes("relation")) {
+      return NextResponse.json({ error: "not_found" }, { status: 404 });
+    }
     return NextResponse.json({ error: "db_error" }, { status: 500 });
   }
 }
