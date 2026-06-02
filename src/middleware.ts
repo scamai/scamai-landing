@@ -26,5 +26,5 @@ export default function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|admin|_next|scamai|.*\\..*).*)"],
+  matcher: ["/((?!api|admin|share|_next|scamai|.*\\..*).*)"],
 };
