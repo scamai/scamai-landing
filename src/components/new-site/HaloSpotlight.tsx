@@ -13,9 +13,9 @@ import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
 const PILLARS = [
-  { icon: Zap, label: "Real-Time", desc: "Flags threats during the call" },
-  { icon: Lock, label: "Secure", desc: "Faked faces + AI-made scenes" },
-  { icon: ShieldCheck, label: "Private", desc: "On-device — nothing leaves your PC" },
+  { icon: Zap, label: "Real-Time", desc: "Flags threats during the live call" },
+  { icon: Lock, label: "Secure", desc: "Synthetic faces & faceswaps" },
+  { icon: ShieldCheck, label: "Private", desc: "On-device — no recording, nothing sent" },
 ];
 
 export default function HaloSpotlight() {
@@ -48,15 +48,14 @@ export default function HaloSpotlight() {
           </div>
 
           <h2 className="mt-6 text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-[44px]">
-            Meet Halo — deepfake defense that runs on your device.
+            Halo catches deepfakes on device.
           </h2>
 
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/60">
-            You just saw how easy a deepfake is. Halo is a Windows desktop app that
-            watches your video meetings in real time and flags{" "}
-            <span className="font-semibold text-white">deepfaked faces and AI-generated content</span>{" "}
-            on screen — high-accuracy detection that runs{" "}
-            <span className="font-semibold text-white">entirely on your device</span>.
+            You just saw how easy a deepfake is. On your device, in real time, Halo
+            flags{" "}
+            <span className="font-semibold text-white">synthetic faces and faceswaps</span>{" "}
+            live on every call — before they cost you a wire transfer or a bad hire.
           </p>
 
           {/* Real-Time · Secure · Private pillars */}
@@ -109,15 +108,13 @@ export default function HaloSpotlight() {
             </div>
 
             <div className="relative flex aspect-[4/3] items-center justify-center bg-[#06080e]">
-              <p className="absolute left-4 top-3 text-[11px] text-white/40">Analyzing…</p>
-
-              {/* Scanning ring — CSS animations (no framer-motion, SSR-safe) */}
+              {/* Detected state — Halo caught a faceswap on the call (CSS-only, SSR-safe) */}
               <div className="relative flex h-40 w-40 items-center justify-center">
                 <span
-                  className="absolute inset-0 animate-spin rounded-full border-2 border-[#245FFF]/70 [border-right-color:transparent] [border-top-color:transparent]"
+                  className="absolute inset-0 animate-spin rounded-full border-2 border-red-500/70 [border-right-color:transparent] [border-top-color:transparent]"
                   style={{ animationDuration: "2.4s" }}
                 />
-                <span className="absolute inset-3 animate-pulse rounded-full border border-[#245FFF]/40" />
+                <span className="absolute inset-3 animate-pulse rounded-full border border-red-500/40" />
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/[0.04]">
                   <svg viewBox="0 0 24 24" className="h-9 w-9 text-white/55" fill="currentColor">
                     <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-9 2-9 6v2h18v-2c0-4-5-6-9-6z" />
@@ -125,22 +122,22 @@ export default function HaloSpotlight() {
                 </div>
               </div>
 
-              {/* Verdict strip */}
-              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-xl border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-2.5">
-                <span className="flex items-center gap-2 text-[13px] font-medium text-emerald-200">
+              {/* Verdict strip — deepfake caught */}
+              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-xl border border-red-500/30 bg-red-500/[0.08] px-4 py-2.5">
+                <span className="flex items-center gap-2 text-[13px] font-medium text-red-200">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
                   </span>
-                  No deepfakes detected
+                  Deepfake detected
                 </span>
-                <span className="text-[13px] font-semibold text-white">Clear</span>
+                <span className="text-[13px] font-semibold text-white">Caught</span>
               </div>
             </div>
 
             <div className="flex items-center gap-1.5 border-t border-white/[0.07] bg-[#0a0c12] px-4 py-2.5 text-[11px] text-white/40">
               <Lock className="h-3.5 w-3.5" />
-              Runs 100% on your device · nothing uploaded
+              Runs 100% on your device · no recording, nothing sent
             </div>
           </div>
         </div>
