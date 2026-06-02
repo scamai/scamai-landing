@@ -20,10 +20,10 @@ function AnimatedCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
-        duration: 0.7,
+        duration: 0.45,
         delay,
         ease: [0.25, 0.1, 0.25, 1.0],
       }}
@@ -162,7 +162,7 @@ function SolutionCard({
 }) {
   const inner = (
     <div
-      className={`group relative h-full rounded-xl sm:rounded-2xl border p-4 sm:p-6 transition-all duration-300 ${
+      className={`group relative h-full rounded-xl sm:rounded-2xl border p-4 sm:p-6 transition-[background-color,border-color,box-shadow] duration-300 ${
         solution.highlight
           ? "border-[#245FFF]/40 bg-[#245FFF]/[0.06] hover:border-[#245FFF]/70 hover:bg-[#245FFF]/[0.10]"
           : "border-gray-800/60 bg-white/[0.02] hover:border-[#245FFF]/30 hover:bg-white/[0.04]"
@@ -215,7 +215,7 @@ export default function SolutionsSection() {
       aria-label="Solutions - AI Fraud Prevention"
       id="solutions"
     >
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 lg:max-w-7xl py-14 sm:py-20 lg:py-28">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-14 sm:py-20 lg:py-28">
         {/* Section Header */}
         <AnimatedCard>
           <div className="text-center mb-8 sm:mb-10 lg:mb-14">

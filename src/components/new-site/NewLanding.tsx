@@ -11,12 +11,29 @@ import DeveloperSection from "./DeveloperSection";
 import HaloSpotlight from "./HaloSpotlight";
 import TrustedBy from "./TrustedBy";
 import dynamic from "next/dynamic";
+import React from "react";
 
 // Live face-swap demo — client-only (WebRTC / getUserMedia), no SSR.
 const FaceswapPlayground = dynamic(
   () => import("@/components/playground/FaceswapPlayground"),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="w-full bg-[#050505] py-8 sm:py-12 lg:py-14" /> }
 );
+
+// Error boundary so a FaceswapPlayground crash never kills the whole page.
+class PlaygroundErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 // Skeleton loader for bento visual components
 function BentoSkeleton() {
@@ -46,28 +63,41 @@ type FileWithPreview = {
 };
 
 // Animated Section Component
-function AnimatedSection({ 
-  children, 
+const HERO_SESSION_KEY = "scamai_hero_seen";
+
+function AnimatedSection({
+  children,
   className = "",
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
+  delay = 0,
+  skipOnRepeat = false,
+}: {
+  children: React.ReactNode;
   className?: string;
   delay?: number;
+  skipOnRepeat?: boolean;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // For hero elements: skip animation after the first session visit.
+  const [skip, setSkip] = useState(false);
+
+  useEffect(() => {
+    if (!skipOnRepeat) return;
+    if (sessionStorage.getItem(HERO_SESSION_KEY)) {
+      setSkip(true);
+    } else {
+      sessionStorage.setItem(HERO_SESSION_KEY, "1");
+    }
+  }, [skipOnRepeat]);
+
+  if (skip) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ 
-        duration: 0.8, 
-        delay,
-        ease: [0.25, 0.1, 0.25, 1.0]
-      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1.0] }}
       className={className}
     >
       {children}
@@ -304,7 +334,7 @@ export default function NewLanding() {
           {/* Text area — centered in ~70vh */}
           <div className="flex min-h-[72vh] flex-col items-center justify-center px-5 pb-6 pt-[88px] text-center sm:min-h-[76vh] sm:px-10 sm:pb-8 sm:pt-[128px] lg:px-8">
             <div className="mx-auto flex max-w-4xl flex-col items-center space-y-3 sm:space-y-4 lg:space-y-5">
-              <AnimatedSection delay={0.2}>
+              <AnimatedSection delay={0.05} skipOnRepeat>
                 <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.15em] uppercase sm:text-[11px] sm:tracking-[0.18em]">
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#245FFF]" />
                   <span className="sm:hidden">Introducing Halo · Qualcomm</span>
@@ -312,13 +342,13 @@ export default function NewLanding() {
                 </p>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.3}>
+              <AnimatedSection delay={0.1} skipOnRepeat>
                 <h1 className="max-w-3xl px-2 text-4xl font-bold leading-[1.1] tracking-tight sm:px-0 sm:text-5xl lg:text-6xl">
                   Verify what&apos;s real. Protect what matters.
                 </h1>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.4}>
+              <AnimatedSection delay={0.15} skipOnRepeat>
                 <div className="max-w-2xl px-4 text-sm leading-[1.65] text-gray-300 sm:px-0 sm:text-base sm:leading-relaxed lg:text-lg">
                   <p className="text-center">
                     Deepfakes and voice clones are everywhere — on your video calls, your
@@ -329,7 +359,7 @@ export default function NewLanding() {
                 </div>
               </AnimatedSection>
 
-              <AnimatedSection delay={0.5}>
+              <AnimatedSection delay={0.2} skipOnRepeat>
                 <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:pt-3">
                   <Link
                     href="/halo"
@@ -361,7 +391,9 @@ export default function NewLanding() {
       <TrustedBy />
 
       {/* Live "Deepfake is here" face-swap playground */}
-      <FaceswapPlayground />
+      <PlaygroundErrorBoundary>
+        <FaceswapPlayground />
+      </PlaygroundErrorBoundary>
 
       {/* Halo + Qualcomm partnership spotlight (the defense) */}
       <HaloSpotlight />
@@ -374,7 +406,7 @@ export default function NewLanding() {
         backgroundRepeat: 'no-repeat'
       }}>
         <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-24 lg:py-32">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-14 sm:py-24 lg:py-32">
           <AnimatedSection>
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="text-left flex flex-col justify-center">
@@ -433,7 +465,7 @@ export default function NewLanding() {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50"></div>
         
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
           {/* Platform Title - no overlay */}
           <AnimatedSection>
             <div className="text-center mb-12 lg:mb-16">
@@ -513,7 +545,7 @@ export default function NewLanding() {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50"></div>
         
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 lg:max-w-7xl py-14 sm:py-16 lg:py-20">
           {/* Transparent Pricing */}
           <AnimatedSection>
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-16 lg:mb-20">
@@ -595,7 +627,7 @@ export default function NewLanding() {
 
       {/* Resources — cross-links to learn, solutions, compare */}
       <section className="landing-section relative overflow-hidden bg-black">
-        <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8 py-16 sm:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center mb-10">
             <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-3 sm:text-[10px]">RESOURCES</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Learn about deepfake detection</h2>

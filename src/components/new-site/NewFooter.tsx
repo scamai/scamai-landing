@@ -82,7 +82,7 @@ export default function NewFooter() {
         </div>
 
         {/* Footer columns */}
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center">
               <img
@@ -129,7 +129,7 @@ export default function NewFooter() {
 
           <nav className="space-y-3 text-sm" aria-label="Company navigation">
             <h3 className="font-semibold text-white">Company</h3>
-            <Link href="/company" className="block text-gray-500 hover:text-white transition-colors">About</Link>
+            <Link href="/about" className="block text-gray-500 hover:text-white transition-colors">About</Link>
             <Link href="/research" className="block text-gray-500 hover:text-white transition-colors">Research</Link>
             <Link href="/contact" className="block text-gray-500 hover:text-white transition-colors">Contact</Link>
             <a href="https://checkreality.ai" target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-white transition-colors">For Business — checkreality.ai</a>

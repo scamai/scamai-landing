@@ -14,6 +14,7 @@ type SearchItem = {
 
 const searchItems: SearchItem[] = [
   // Products
+  { label: "Halo", href: "/halo", category: "Products", description: "On-device deepfake detection for live calls — with Qualcomm" },
   { label: "AI Detection", href: "/products/ai-detection", category: "Products", description: "Deepfake and AI-generated content detection" },
   { label: "Audio Detection", href: "/products/audio-detection", category: "Products", description: "Voice cloning and AI-generated audio detection" },
 
@@ -24,7 +25,6 @@ const searchItems: SearchItem[] = [
   { label: "Research", href: "/research", category: "Pages", description: "Publications, benchmarks, and technical reports" },
   { label: "Newsletter", href: "/newsletter", category: "Pages", description: "Weekly deepfake and AI security news" },
   { label: "Contact", href: "/contact", category: "Pages", description: "Get in touch with our team" },
-  { label: "Book a Demo", href: "/demo", category: "Pages", description: "Schedule a personalized demo" },
 
   // Resources
   { label: "Documentation", href: "https://docu.scam.ai", category: "Resources", external: true, description: "API guides and integration examples" },
@@ -138,15 +138,16 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     }
   };
 
-  // Group items by category
-  const grouped = filtered.reduce<Record<string, SearchItem[]>>((acc, item) => {
-    if (!acc[item.category]) acc[item.category] = [];
-    acc[item.category].push(item);
-    return acc;
-  }, {});
-
-  // Flat index tracking across groups
-  let flatIndex = -1;
+  // Group items by category, tagging each with its flat index upfront so
+  // render never mutates a variable (which breaks in React StrictMode).
+  const grouped = filtered.reduce<Record<string, (SearchItem & { flatIdx: number })[]>>(
+    (acc, item, i) => {
+      if (!acc[item.category]) acc[item.category] = [];
+      acc[item.category].push({ ...item, flatIdx: i });
+      return acc;
+    },
+    {}
+  );
 
   if (!isOpen) return null;
 
@@ -207,15 +208,13 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                     {category}
                   </div>
                   {items.map((item) => {
-                    flatIndex++;
-                    const idx = flatIndex;
-                    const isSelected = idx === selectedIndex;
+                    const isSelected = item.flatIdx === selectedIndex;
                     return (
                       <button
                         key={item.label + item.href}
                         data-selected={isSelected}
                         onClick={() => navigate(item)}
-                        onMouseEnter={() => setSelectedIndex(idx)}
+                        onMouseEnter={() => setSelectedIndex(item.flatIdx)}
                         className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${
                           isSelected ? "bg-white/10" : "hover:bg-white/5"
                         }`}

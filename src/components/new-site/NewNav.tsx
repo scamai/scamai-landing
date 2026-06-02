@@ -168,11 +168,15 @@ const languages = [
 export default function NewNav() {
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  // Mobile accordion uses its own state so the desktop click-outside handler
-  // and desktop mega-menu panel can't interfere with the mobile menu.
+  // Single state for desktop dropdowns — guarantees mutual exclusion.
+  const [activeDropdown, setActiveDropdown] = useState<"products" | "solutions" | "company" | null>(null);
+  const productsOpen = activeDropdown === "products";
+  const solutionsOpen = activeDropdown === "solutions";
+  const companyOpen = activeDropdown === "company";
+  const setProductsOpen = (v: boolean) => setActiveDropdown(v ? "products" : null);
+  const setSolutionsOpen = (v: boolean) => setActiveDropdown(v ? "solutions" : null);
+  const setCompanyOpen = (v: boolean) => setActiveDropdown(v ? "company" : null);
+  // Mobile accordion — separate state, desktop handler can't interfere.
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
@@ -188,10 +192,9 @@ export default function NewNav() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  // When the viewport grows to desktop, force the mobile menu closed so the
-  // body scroll-lock is released and the header isn't stuck in mobile state.
+  // When the viewport grows to desktop, force the mobile menu closed.
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const handleChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
         setOpen(false);
@@ -222,23 +225,24 @@ export default function NewNav() {
       if (langDropdownRef.current && !langDropdownRef.current.contains(target)) {
         setLangOpen(false);
       }
-      // Panel is SEPARATE from button ref - only close if click is outside BOTH button and panel
-      const insideProducts = (productsDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
-      if (!insideProducts) setProductsOpen(false);
-
-      const insideSolutions = (solutionsDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
-      if (!insideSolutions) setSolutionsOpen(false);
-
-      const insideCompany = (companyDropdownRef.current?.contains(target)) || (dropdownPanelRef.current?.contains(target));
-      if (!insideCompany) setCompanyOpen(false);
+      // Close the active dropdown if the click is outside both its trigger button and the panel.
+      const triggerRefs = [productsDropdownRef, solutionsDropdownRef, companyDropdownRef];
+      const insideAnyTrigger = triggerRefs.some((r) => r.current?.contains(target));
+      const insidePanel = dropdownPanelRef.current?.contains(target);
+      if (!insideAnyTrigger && !insidePanel) {
+        setActiveDropdown(null);
+      }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+        setOpen(false);
+      }
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setSearchOpen((prev) => !prev);
@@ -278,9 +282,9 @@ export default function NewNav() {
           </div> */}
       {showBanner && <ComputexBanner onDismiss={dismissBanner} />}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
-      <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6">
-        <Link href="/" className={`flex items-center ${open ? 'invisible' : ''}`}>
+      <header className={`transition-[background-color,backdrop-filter,box-shadow] duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
+        <Link href="/" className={`flex shrink-0 items-center ${open ? 'invisible' : ''}`}>
           <img
             src="/scamai-logo.svg"
             alt="ScamAI"
@@ -288,7 +292,7 @@ export default function NewNav() {
           />
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => {
             if (item.children) {
               const isProduct = item.label === "Product";
@@ -349,10 +353,10 @@ export default function NewNav() {
           })}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <button
             onClick={() => setSearchOpen(true)}
-            className="flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text min-w-[180px] lg:min-w-[220px]"
+            className="flex w-[160px] xl:w-[210px] items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text"
             aria-label="Search"
           >
             <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -367,7 +371,7 @@ export default function NewNav() {
             href="https://app.scam.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("log_in", "nav")}
           >
             Log In
@@ -376,14 +380,14 @@ export default function NewNav() {
             href="https://cal.com/scamai/15min"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100"
+            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("book_demo", "nav")}
           >
             Book a demo
           </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => setSearchOpen(true)}
             className="flex h-11 w-11 items-center justify-center text-white"
@@ -399,7 +403,15 @@ export default function NewNav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
-            <span className="text-2xl">☰</span>
+            {open ? (
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
@@ -407,19 +419,14 @@ export default function NewNav() {
 
     <div
       ref={dropdownPanelRef}
-      className={`fixed left-0 right-0 w-full overflow-hidden bg-black/90 backdrop-blur-xl transition-all duration-200 z-30 hidden md:block ${
-        (productsOpen || solutionsOpen || companyOpen) ? 'ease-out pointer-events-auto' : 'ease-in pointer-events-none'
+      className={`fixed left-0 right-0 w-full bg-black/95 backdrop-blur-xl z-30 hidden lg:block transition-[opacity,transform] duration-200 ${
+        activeDropdown
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 -translate-y-1 pointer-events-none'
       }`}
-      style={{
-        top: `${announcementHeight + 48}px`,
-        maxHeight: (productsOpen || solutionsOpen || companyOpen) ? '500px' : '0',
-        paddingTop: (productsOpen || solutionsOpen || companyOpen) ? '32px' : '0',
-        paddingBottom: (productsOpen || solutionsOpen || companyOpen) ? '32px' : '0'
-      }}
+      style={{ top: `${announcementHeight + 48}px` }}
     >
-      <div className={`mx-auto max-w-6xl px-4 transition-opacity duration-200 ${
-        (productsOpen || solutionsOpen || companyOpen) ? 'opacity-100' : 'opacity-0'
-      }`}>
+      <div className="mx-auto max-w-6xl px-4 py-8">
         {/* Products Grid */}
         {productsOpen && (
           <div className="flex gap-6">
@@ -429,7 +436,7 @@ export default function NewNav() {
                 href="https://cal.com/scamai/15min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
+                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-[background-color] duration-150"
               >
                 <div className="flex flex-col h-full justify-between">
                   <div>
@@ -442,7 +449,7 @@ export default function NewNav() {
                       Talk with the Team
                     </h3>
                   </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-[gap]">
                     Schedule call
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -504,7 +511,7 @@ export default function NewNav() {
             <div className="flex-shrink-0" style={{ width: '220px' }}>
               <Link
                 href="/solutions"
-                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
+                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-[background-color] duration-150"
                 onClick={() => setSolutionsOpen(false)}
               >
                 <div className="flex flex-col h-full justify-between">
@@ -518,7 +525,7 @@ export default function NewNav() {
                       All Industries
                     </h3>
                   </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-[gap]">
                     View all
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -611,7 +618,7 @@ export default function NewNav() {
 
     {/* Mobile Full-Screen Menu — rendered at root to avoid backdrop-filter containment on iOS */}
     <div
-      className={`fixed left-0 right-0 bottom-0 z-[60] bg-[#0b0b0b] transition-transform duration-300 ease-in-out md:hidden ${
+      className={`fixed left-0 right-0 bottom-0 z-[60] bg-[#0b0b0b] transition-transform duration-300 ease-in-out lg:hidden ${
         open ? 'translate-x-0' : 'translate-x-full pointer-events-none'
       }`}
       style={{ top: `${announcementHeight}px` }}
@@ -633,10 +640,12 @@ export default function NewNav() {
               setMobileSolutionsOpen(false);
               setMobileCompanyOpen(false);
             }}
-            className="flex h-11 w-11 items-center justify-center text-white text-3xl leading-none"
+            className="flex h-11 w-11 items-center justify-center text-white"
             aria-label="Close menu"
           >
-            ×
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
 

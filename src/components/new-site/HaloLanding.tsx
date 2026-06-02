@@ -7,23 +7,40 @@ import { trackCTA, trackEvent } from "@/lib/analytics";
 /* ------------------------------------------------------------------ */
 /* Shared scroll-reveal wrapper (mirrors NewLanding's AnimatedSection) */
 /* ------------------------------------------------------------------ */
+const HALO_HERO_SESSION_KEY = "scamai_halo_hero_seen";
+
 function Reveal({
   children,
   className = "",
   delay = 0,
+  skipOnRepeat = false,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  skipOnRepeat?: boolean;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [skip, setSkip] = useState(false);
+
+  useEffect(() => {
+    if (!skipOnRepeat) return;
+    if (sessionStorage.getItem(HALO_HERO_SESSION_KEY)) {
+      setSkip(true);
+    } else {
+      sessionStorage.setItem(HALO_HERO_SESSION_KEY, "1");
+    }
+  }, [skipOnRepeat]);
+
+  if (skip) return <div className={className}>{children}</div>;
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.8, delay, ease: [0.25, 0.1, 0.25, 1.0] }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1.0] }}
       className={className}
     >
       {children}
@@ -555,29 +572,29 @@ export default function HaloLanding() {
           maskImage: "radial-gradient(70% 60% at 50% 20%, #000 30%, transparent 80%)",
         }} />
 
-        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-[130px] sm:px-8 lg:grid-cols-[7fr_5fr] lg:gap-10 lg:pb-28">
+        <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-[80px] sm:px-8 sm:pt-[130px] lg:grid-cols-[7fr_5fr] lg:gap-10 lg:pb-28">
           {/* copy */}
           <div className="text-center lg:text-left">
-            <Reveal delay={0.1}>
+            <Reveal delay={0.05} skipOnRepeat>
               <span className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7ea2ff]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#245FFF]" />
                 Now in early access
               </span>
             </Reveal>
-            <Reveal delay={0.2}>
+            <Reveal delay={0.1} skipOnRepeat>
               <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.4rem]">
                 Halo catches deepfakes on device.
               </h1>
             </Reveal>
-            <Reveal delay={0.3}>
+            <Reveal delay={0.15} skipOnRepeat>
               <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-gray-300 lg:mx-0">
                 On your device, in real time. Halo flags synthetic faces and
                 faceswaps live on every call &mdash; before they cost you a
                 wire transfer or a bad hire.
               </p>
             </Reveal>
-            <Reveal delay={0.4}>
-              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
+            <Reveal delay={0.2} skipOnRepeat>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                 <a
                   href="#waitlist"
                   className="rainbow-button inline-block"
@@ -640,7 +657,7 @@ export default function HaloLanding() {
             "radial-gradient(55% 40% at 80% 10%, rgba(36,95,255,0.10) 0%, rgba(0,0,0,0) 70%)",
         }}
       >
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5">
           {/* toggle */}
           <div className="mb-12 flex justify-center">
             <div className="inline-flex rounded-full border border-white/10 bg-white/[0.03] p-1">
@@ -719,7 +736,7 @@ export default function HaloLanding() {
 
       {/* ================== ON-DEVICE DIFFERENTIATORS ================ */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400 sm:text-xs">
@@ -753,7 +770,7 @@ export default function HaloLanding() {
 
       {/* ========================= HOW IT WORKS ====================== */}
       <section id="how" className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+        <div className="mx-auto max-w-5xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">
@@ -786,7 +803,7 @@ export default function HaloLanding() {
 
       {/* ====================== COMPETITIVE FRAMING ================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">
@@ -832,7 +849,7 @@ export default function HaloLanding() {
       {/* ============================== FAQ ========================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/20 to-black" />
-        <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-8">
+        <div className="relative z-10 mx-auto max-w-3xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] sm:text-xs">

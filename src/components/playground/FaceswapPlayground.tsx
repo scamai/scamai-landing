@@ -56,13 +56,11 @@ const CELEBRITY_FACES: Face[] = [
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
 ];
 
-const MAX_UPLOADS = 24;
-
 // Gallery seed: AI synthetic first (Preset section), then celebrities
 // (appear in the "uploads" section alongside real user uploads).
 const SEED_FACES: Face[] = [...AI_FACES, ...CELEBRITY_FACES];
 
-type Face = { label: string; url: string; custom?: boolean; preset?: boolean; synthetic?: boolean; name?: string };
+type Face = { label: string; url: string; custom?: boolean; preset?: boolean; synthetic?: boolean; shared?: boolean; name?: string };
 
 // Draw the image through a canvas so:
 //   1. EXIF rotation is baked in (phones store pixels sideways but mark them
@@ -109,6 +107,8 @@ export default function FaceswapPlayground() {
   const [library, setLibrary] = useState<Face[]>(() => [...SEED_FACES]);
   const [secondsLeft, setSecondsLeft] = useState(DEMO_SECONDS);
   const [camError, setCamError] = useState("");
+  const [showConsent, setShowConsent] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const selfViewRef = useRef<HTMLVideoElement>(null);
@@ -116,9 +116,143 @@ export default function FaceswapPlayground() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const objectUrlsRef = useRef<string[]>([]);
   const secondsRef = useRef(DEMO_SECONDS);
+  const sessionIdRef = useRef<string>(Math.random().toString(36).slice(2) + Date.now().toString(36));
+  const recorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   // Revoke any uploaded-face object URLs when the component unmounts.
   useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
+
+  // ─── Data collection helpers (best-effort, silent on failure) ─────────────
+  const uploadFace = useCallback(async (base64: string) => {
+    try {
+      await fetch("/api/playground/collect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "face", data: base64, session_id: sessionIdRef.current }),
+      });
+    } catch { /* silent */ }
+  }, []);
+
+  const uploadRecording = useCallback((blob: Blob) => {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64 = (reader.result as string).split(",")[1];
+        await fetch("/api/playground/collect", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "recording",
+            data: base64,
+            mime_type: blob.type,
+            session_id: sessionIdRef.current,
+          }),
+        });
+      } catch { /* silent */ }
+    };
+    reader.readAsDataURL(blob);
+  }, []);
+
+  // ─── MediaRecorder: canvas compositing with watermark ────────────────────
+  useEffect(() => {
+    if (state.phase !== "live" || !state.remoteStream) return;
+
+    let cancelled = false;
+    const rafState = { id: 0 };
+    let recorder: MediaRecorder | null = null;
+
+    (async () => {
+      // Ensure Inter font is available before measuring/drawing text
+      await document.fonts.ready;
+      if (cancelled) return;
+
+      const stream = state.remoteStream!;
+      const track = stream.getVideoTracks()[0];
+      const { width: W = 1280, height: H = 720 } = track?.getSettings() ?? {};
+
+      // Hidden video element to source frames from
+      const videoEl = document.createElement("video");
+      videoEl.srcObject = stream;
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+      try { await videoEl.play(); } catch { /* ok */ }
+      if (cancelled) return;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext("2d")!;
+
+      // Pre-load scam.ai logo
+      const logo = new Image();
+      await new Promise<void>((res) => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
+      if (cancelled) return;
+
+      // Pre-compute watermark layout once (avoids per-frame measureText)
+      const logoH = 18;
+      const logoW = Math.round(logoH * (1012 / 256)); // SVG viewBox is 1012×256
+      const label = "AI-generated";
+      ctx.font = "500 11px Inter, ui-sans-serif, system-ui, sans-serif";
+      const labelW = ctx.measureText(label).width;
+      const gap = 6;
+      const pad = 14;
+      const wX = W - logoW - gap - labelW - pad;
+      const wY = H - logoH - pad;
+      const bgW = logoW + gap + labelW + 16;
+      const bgH = logoH + 10;
+
+      const draw = () => {
+        if (!cancelled && videoEl.readyState >= 2) {
+          ctx.drawImage(videoEl, 0, 0, W, H);
+          // Pill backdrop for legibility on any background
+          ctx.fillStyle = "rgba(0,0,0,0.32)";
+          ctx.beginPath();
+          if (typeof ctx.roundRect === "function") {
+            ctx.roundRect(wX - 8, wY - 5, bgW, bgH, 5);
+          } else {
+            ctx.rect(wX - 8, wY - 5, bgW, bgH);
+          }
+          ctx.fill();
+          // Logo (white SVG paths render correctly on transparent background)
+          ctx.globalAlpha = 0.82;
+          ctx.drawImage(logo, wX, wY, logoW, logoH);
+          ctx.globalAlpha = 1;
+          // Label — Inter 500, sized at 11px, vertically centred with logo
+          ctx.font = "500 11px Inter, ui-sans-serif, system-ui, sans-serif";
+          ctx.fillStyle = "rgba(255,255,255,0.82)";
+          ctx.textBaseline = "middle";
+          ctx.fillText(label, wX + logoW + gap, wY + logoH / 2);
+          ctx.textBaseline = "alphabetic";
+        }
+        rafState.id = requestAnimationFrame(draw);
+      };
+      draw();
+
+      const mimeType = ["video/webm;codecs=vp8", "video/webm", "video/mp4"]
+        .find((t) => MediaRecorder.isTypeSupported(t)) ?? "";
+      const rec = new MediaRecorder(canvas.captureStream(30), mimeType ? { mimeType } : {});
+      recorder = rec;
+      chunksRef.current = [];
+      rec.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data); };
+      rec.onstop = () => {
+        cancelAnimationFrame(rafState.id);
+        videoEl.srcObject = null;
+        if (chunksRef.current.length > 0)
+          uploadRecording(new Blob(chunksRef.current, { type: mimeType || "video/webm" }));
+      };
+      rec.start(1000);
+      recorderRef.current = rec;
+    })().catch(() => {});
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafState.id);
+      if (recorder?.state !== "inactive") recorder?.stop();
+    };
+  }, [state.phase, state.remoteStream, uploadRecording]);
 
   // Bind swapped output stream.
   useEffect(() => {
@@ -220,28 +354,23 @@ export default function FaceswapPlayground() {
     [step, state.phase, setFace]
   );
 
-  // Upload your own face — read locally, never stored. The blob URL works with
-  // urlToBase64() (fetch supports blob: URLs) so the swap target is sent to our
-  // server exactly like a preset; the image itself stays on the device otherwise.
   const onAddFace = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
-      e.target.value = ""; // allow re-selecting the same file
+      e.target.value = "";
       if (!file || !file.type.startsWith("image/")) return;
-      if (library.filter((f) => !f.synthetic).length >= MAX_UPLOADS) return;
       const url = URL.createObjectURL(file);
       objectUrlsRef.current.push(url);
-      setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true }]);
+      setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true, shared: false }]);
       setSelected(url);
-      if (step === "running" && state.phase === "live") {
-        try {
-          setFace(await urlToBase64(url));
-        } catch {
-          /* keep current */
-        }
-      }
+      // Encode and store on Aries + swap live if running
+      try {
+        const b64 = await urlToBase64(url);
+        uploadFace(b64);
+        if (step === "running" && state.phase === "live") setFace(b64);
+      } catch { /* keep current */ }
     },
-    [step, state.phase, setFace]
+    [step, state.phase, setFace, uploadFace]
   );
 
   // Remove a face from the library. Persistent (seed) faces come back on the
@@ -267,11 +396,20 @@ export default function FaceswapPlayground() {
     []
   );
 
+  const copyShareLink = useCallback(async () => {
+    const url = `https://scam.ai/share/${sessionIdRef.current}`;
+    await navigator.clipboard.writeText(url).catch(() => {});
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2500);
+  }, []);
+
   const reset = useCallback(() => {
     stop();
     localStreamRef.current = null;
     secondsRef.current = DEMO_SECONDS;
     setSecondsLeft(DEMO_SECONDS);
+    setShowShareModal(false);
+    setLinkCopied(false);
     setStep("intro");
   }, [stop]);
 
@@ -287,24 +425,41 @@ export default function FaceswapPlayground() {
     const size = compact ? "h-12 w-12" : "h-14 w-14";
     const syntheticFaces = library.filter((f) => f.synthetic);
     const uploadedFaces = library.filter((f) => !f.synthetic);
-    const atCap = uploadedFaces.length >= MAX_UPLOADS;
+    const atCap = false; // no upload limit
 
     const renderFace = (f: Face) => {
       const active = selected === f.url;
+      // custom uploads: teal ring for private, green for shared
+      const ringClass = active
+        ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
+        : f.custom
+        ? f.shared
+          ? "ring-emerald-500/50 hover:ring-emerald-400/70"
+          : "ring-teal-500/40 hover:ring-teal-400/60"
+        : "ring-white/10 hover:ring-white/30";
       return (
         <div key={f.url} className="group relative">
           <button
             type="button"
             onClick={() => onPickFace(f.url)}
             title="Become this face"
-            className={`block overflow-hidden rounded-lg ring-2 transition ${
-              active
-                ? "ring-[#245FFF] shadow-[0_0_18px_-4px_rgba(36,95,255,0.7)]"
-                : "ring-white/10 hover:ring-white/30"
-            }`}
+            className={`block overflow-hidden rounded-lg ring-2 transition-[box-shadow,ring-color] ${ringClass}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={f.url} alt={f.label} className={`${size} object-cover`} />
+            {/* Private / shared badge on custom uploads */}
+            {f.custom && (
+              <span className="absolute bottom-0.5 right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-black/70">
+                {f.shared ? (
+                  // share icon
+                  <svg className="h-2 w-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                  </svg>
+                ) : (
+                  <Lock className="h-2 w-2 text-teal-400" />
+                )}
+              </span>
+            )}
           </button>
           {!f.synthetic && (
             <button
@@ -312,7 +467,7 @@ export default function FaceswapPlayground() {
               onClick={() => removeFace(f.url)}
               aria-label="Remove this face"
               title="Remove"
-              className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
+              className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition-[background-color] hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
             >
               <X className="h-2.5 w-2.5" />
             </button>
@@ -336,27 +491,21 @@ export default function FaceswapPlayground() {
           </div>
         </div>
 
-        {/* ── Uploads section ── */}
+        {/* ── User uploads section ── */}
         <div>
-          <div className="mb-1 flex items-baseline gap-1.5">
+          <div className="mb-1">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
-              Your uploads
-            </span>
-            <span className="text-[9px] text-white/40">
-              · {uploadedFaces.length}/{MAX_UPLOADS}
+              User uploads
             </span>
           </div>
-          <p className="mb-2 text-[9px] leading-snug text-white/40">
-            Only upload faces with the subject&apos;s consent.
-          </p>
           <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
             {uploadedFaces.map(renderFace)}
             {!atCap && (
               <button
                 type="button"
-                onClick={() => fileInputRef.current?.click()}
+                onClick={() => { setConsentChecked(false); setShowConsent(true); }}
                 title="Upload your own face"
-                className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition hover:border-[#245FFF]/60 hover:text-white`}
+                className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition-[border-color,color] hover:border-[#245FFF]/60 hover:text-white`}
               >
                 <Plus className="h-4 w-4" />
                 <span className="text-[8px] font-medium">Upload</span>
@@ -366,6 +515,63 @@ export default function FaceswapPlayground() {
         </div>
 
         <input ref={fileInputRef} type="file" accept="image/*" onChange={onAddFace} className="hidden" />
+
+        {/* ── Consent dialog ── */}
+        {showConsent && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowConsent(false)} />
+            <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-6 shadow-2xl">
+              <h3 className="mb-5 text-sm font-semibold text-white">Upload a face</h3>
+
+              {/* Consent checkbox */}
+              <label className="flex cursor-pointer items-start gap-3 rounded-lg p-3 ring-1 ring-white/10 hover:ring-white/20 transition-[box-shadow]">
+                <input
+                  type="checkbox"
+                  checked={consentChecked}
+                  onChange={(e) => setConsentChecked(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[#245FFF]"
+                />
+                <span className="text-[12px] leading-snug text-white/75">
+                  I have the subject&apos;s consent to use their photo in this demo.
+                </span>
+              </label>
+
+              {/* Share to pool — always disabled (pool full) */}
+              <div className="mt-3 flex items-start gap-3 rounded-lg p-3 ring-1 ring-white/5 opacity-50 cursor-not-allowed">
+                <input type="checkbox" disabled className="mt-0.5 h-4 w-4 shrink-0 cursor-not-allowed" />
+                <div>
+                  <span className="text-[12px] leading-snug text-white/50">
+                    Add to public swap pool
+                  </span>
+                  <span className="ml-2 inline-flex items-center rounded-full bg-white/5 px-1.5 py-0.5 text-[9px] font-medium text-white/35">
+                    Pool full
+                  </span>
+                  <p className="mt-0.5 text-[10px] text-white/30">
+                    Your face stays private — only you can use it.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowConsent(false)}
+                  className="flex-1 rounded-full border border-white/15 py-2.5 text-sm font-medium text-white/60 transition-[background-color] hover:bg-white/5"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  disabled={!consentChecked}
+                  onClick={() => { setShowConsent(false); fileInputRef.current?.click(); }}
+                  className="flex-1 rounded-full bg-[#245FFF] py-2.5 text-sm font-semibold text-white transition-[background-color] hover:bg-[#3d74ff] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Choose photo
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -400,15 +606,20 @@ export default function FaceswapPlayground() {
           </div>
         )}
 
-        {/* top-right: privacy reassurance */}
-        <div className="absolute right-3 top-3 z-10 hidden items-center gap-1 text-[10px] text-white/30 sm:flex">
-          <ShieldCheck className="h-3 w-3" /> never stored
-        </div>
 
         {/* non-fatal no-face hint (live session keeps the previous face) */}
         {state.faceWarning && (
           <div className="absolute left-1/2 top-3 z-20 flex max-w-[90%] -translate-x-1/2 items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1.5 text-center text-[11px] font-medium text-amber-100 backdrop-blur-md">
             <AlertTriangle className="h-3.5 w-3.5 shrink-0" /> {state.faceWarning}
+          </div>
+        )}
+
+        {/* Watermark — bottom-left, visible during live swap */}
+        {live && (
+          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 rounded-md bg-black/35 px-2 py-1 backdrop-blur-sm">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/scamai-logo.svg" alt="scam.ai" className="h-3.5 w-auto opacity-75" />
+            <span className="text-[9px] font-medium text-white/55">AI-generated</span>
           </div>
         )}
 
@@ -435,16 +646,13 @@ export default function FaceswapPlayground() {
         {step === "intro" && (
           <Overlay>
             <ScanFace className="mb-3 h-9 w-9 text-[#245FFF]" />
-            <p className="text-sm text-white/70">Pick a face below, then go live.</p>
+            <p className="text-sm text-white/70">Pick a photo, then go live.</p>
             <button
               onClick={beginConsent}
               className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
             >
               <Camera className="h-4 w-4" /> Start the live demo
             </button>
-            <p className="mt-4 flex items-center gap-1.5 text-[11px] text-white/40">
-              <ShieldCheck className="h-3.5 w-3.5" /> Processed live · never stored
-            </p>
           </Overlay>
         )}
 
@@ -452,9 +660,6 @@ export default function FaceswapPlayground() {
           <Overlay>
             <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
             <h3 className="text-base font-semibold text-white">Camera access</h3>
-            <p className="mt-1.5 max-w-xs text-[12px] leading-relaxed text-white/55">
-              Your camera streams to our servers for live processing only. Nothing is stored.
-            </p>
             {camError && (
               <p className="mt-3 flex max-w-xs items-start gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-[12px] leading-relaxed text-red-200">
                 <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
@@ -514,12 +719,23 @@ export default function FaceswapPlayground() {
         {step === "ended" && (
           <Overlay>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
-            <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device, in real time.</h3>
-            <Link href={HALO_HREF} className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]">
-              Meet Halo — deepfake defense <ArrowRight className="h-4 w-4" />
-            </Link>
-            <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/50 transition hover:text-white">
-              <RefreshCw className="h-3.5 w-3.5" /> Run the demo again
+            <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face.</h3>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+              <Link
+                href={HALO_HREF}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10 active:scale-[0.98]"
+              >
+                Meet Halo
+              </Link>
+              <button
+                onClick={() => setShowShareModal(true)}
+                className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(36,95,255,0.7)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
+              >
+                Share <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+            <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
+              <RefreshCw className="h-3.5 w-3.5" /> Run again
             </button>
           </Overlay>
         )}
@@ -569,6 +785,80 @@ export default function FaceswapPlayground() {
           <div className="order-1 lg:order-2 lg:col-span-8">{Stage()}</div>
         </div>
       </div>
+
+      {/* ─── Share modal ──────────────────────────────────────────────────── */}
+      {showShareModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowShareModal(false)}
+          />
+          <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-6 shadow-2xl">
+            {/* Close */}
+            <button
+              onClick={() => setShowShareModal(false)}
+              className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-white/40 transition hover:bg-white/10 hover:text-white"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#245FFF]">
+              Share your deepfake
+            </p>
+            <p className="mt-1 text-base font-semibold text-white">
+              Dare them to spot the fake.
+            </p>
+
+            {/* Link row */}
+            <div className="mt-4 flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5">
+              <span className="min-w-0 flex-1 truncate text-[12px] text-white/50">
+                scam.ai/share/{sessionIdRef.current}
+              </span>
+              <button
+                onClick={copyShareLink}
+                className="shrink-0 rounded-lg bg-[#245FFF] px-3 py-1.5 text-[12px] font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.97]"
+              >
+                {linkCopied ? "Copied!" : "Copy link"}
+              </button>
+            </div>
+
+            {/* Toast */}
+            {linkCopied && (
+              <p className="mt-2 text-center text-[11px] text-white/40">
+                Link copied — good luck convincing them.
+              </p>
+            )}
+
+            {/* Social platforms */}
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("I just deepfaked myself in 30 seconds. Can you tell what's real?")}&url=${encodeURIComponent(`https://scam.ai/share/${sessionIdRef.current}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-2.5 text-[13px] font-medium text-white/70 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+              >
+                {/* X (Twitter) wordmark */}
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                Share on X
+              </a>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(`Can you tell what's real? I just deepfaked myself 👀 https://scam.ai/share/${sessionIdRef.current}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-2.5 text-[13px] font-medium text-white/70 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+              >
+                {/* WhatsApp icon */}
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
