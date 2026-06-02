@@ -194,7 +194,7 @@ export default function PricingSection() {
                     <div
                       key={addon.key}
                       onClick={() => toggle(addon.key)}
-                      className={`flex items-start gap-4 cursor-pointer p-3 sm:p-4 rounded-xl transition-all duration-200 ${
+                      className={`flex items-start gap-4 cursor-pointer p-3 sm:p-4 rounded-xl transition-[background-color,border-color] duration-200 ${
                         addons[addon.key]
                           ? "bg-[#245FFF]/5 border border-[#245FFF]/20"
                           : "border border-transparent hover:bg-white/[0.03]"
@@ -328,7 +328,7 @@ export default function PricingSection() {
         <AnimatedBlock delay={0.3}>
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
             {/* Self-Serve */}
-            <div className={`relative rounded-xl sm:rounded-2xl p-6 sm:p-8 transition-all duration-300 ${
+            <div className={`relative rounded-xl sm:rounded-2xl p-6 sm:p-8 transition-[background-color,border-color,box-shadow] duration-300 ${
               !isEnterprise
                 ? "border border-[#245FFF]/30 bg-[#245FFF]/[0.03]"
                 : "border border-gray-800/60 bg-white/[0.02]"
@@ -376,7 +376,7 @@ export default function PricingSection() {
             </div>
 
             {/* Enterprise */}
-            <div className={`relative rounded-xl sm:rounded-2xl p-6 sm:p-8 transition-all duration-300 ${
+            <div className={`relative rounded-xl sm:rounded-2xl p-6 sm:p-8 transition-[background-color,border-color,box-shadow] duration-300 ${
               isEnterprise
                 ? "border border-[#245FFF]/30 bg-[#245FFF]/[0.03]"
                 : "border border-gray-800/60 bg-white/[0.02]"

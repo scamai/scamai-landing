@@ -162,7 +162,7 @@ function SolutionCard({
 }) {
   const inner = (
     <div
-      className={`group relative h-full rounded-xl sm:rounded-2xl border p-4 sm:p-6 transition-all duration-300 ${
+      className={`group relative h-full rounded-xl sm:rounded-2xl border p-4 sm:p-6 transition-[background-color,border-color,box-shadow] duration-300 ${
         solution.highlight
           ? "border-[#245FFF]/40 bg-[#245FFF]/[0.06] hover:border-[#245FFF]/70 hover:bg-[#245FFF]/[0.10]"
           : "border-gray-800/60 bg-white/[0.02] hover:border-[#245FFF]/30 hover:bg-white/[0.04]"

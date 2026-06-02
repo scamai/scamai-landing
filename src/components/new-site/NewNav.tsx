@@ -282,7 +282,7 @@ export default function NewNav() {
           </div> */}
       {showBanner && <ComputexBanner onDismiss={dismissBanner} />}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
-      <header className={`transition-all duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+      <header className={`transition-[background-color,backdrop-filter,box-shadow] duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
         <Link href="/" className={`flex shrink-0 items-center ${open ? 'invisible' : ''}`}>
           <img
@@ -436,7 +436,7 @@ export default function NewNav() {
                 href="https://cal.com/scamai/15min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
+                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-[background-color] duration-150"
               >
                 <div className="flex flex-col h-full justify-between">
                   <div>
@@ -449,7 +449,7 @@ export default function NewNav() {
                       Talk with the Team
                     </h3>
                   </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-[gap]">
                     Schedule call
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -511,7 +511,7 @@ export default function NewNav() {
             <div className="flex-shrink-0" style={{ width: '220px' }}>
               <Link
                 href="/solutions"
-                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-all duration-150"
+                className="group block h-full p-6 rounded-lg bg-white/5 hover:bg-white/8 transition-[background-color] duration-150"
                 onClick={() => setSolutionsOpen(false)}
               >
                 <div className="flex flex-col h-full justify-between">
@@ -525,7 +525,7 @@ export default function NewNav() {
                       All Industries
                     </h3>
                   </div>
-                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                  <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-[gap]">
                     View all
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
