@@ -566,7 +566,7 @@ export default function HaloLanding() {
             </Reveal>
             <Reveal delay={0.2}>
               <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-                Halo catches deepfakes on your calls.
+                Halo catches deepfakes on device.
               </h1>
             </Reveal>
             <Reveal delay={0.3}>
@@ -577,7 +577,7 @@ export default function HaloLanding() {
               </p>
             </Reveal>
             <Reveal delay={0.4}>
-              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:items-start">
+              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
                 <a
                   href="#waitlist"
                   className="rainbow-button inline-block"
@@ -596,11 +596,6 @@ export default function HaloLanding() {
                   See how it works
                 </a>
               </div>
-            </Reveal>
-            <Reveal delay={0.5}>
-              <p className="mt-6 text-xs text-gray-500">
-                Nothing leaves your device.
-              </p>
             </Reveal>
           </div>
 
