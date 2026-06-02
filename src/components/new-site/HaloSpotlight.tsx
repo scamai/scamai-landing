@@ -14,9 +14,9 @@ import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
 const PILLARS = [
-  { icon: Zap, label: "Real-Time", desc: "Verdict mid-call, not after" },
-  { icon: Lock, label: "Secure", desc: "Catches synthetic faces & voices" },
-  { icon: ShieldCheck, label: "Private", desc: "Nothing leaves your device" },
+  { icon: Zap, label: "Real-Time", desc: "Flags threats during the call" },
+  { icon: Lock, label: "Secure", desc: "Faked faces + AI-made scenes" },
+  { icon: ShieldCheck, label: "Private", desc: "On-device — nothing leaves your PC" },
 ];
 
 export default function HaloSpotlight() {
@@ -57,11 +57,12 @@ export default function HaloSpotlight() {
           </h2>
 
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/60">
-            You just saw how easy a deepfake is. Halo catches synthetic faces and
-            cloned voices live on your Zoom, Teams, and Meet calls — before they cost
-            you a wire transfer or a bad hire. All inference runs on the{" "}
-            <span className="font-semibold text-white">Qualcomm Snapdragon X NPU</span>,
-            so nothing ever leaves the device.
+            You just saw how easy a deepfake is. Halo is a Windows meeting bot that
+            watches your video calls in real time and flags{" "}
+            <span className="font-semibold text-white">deepfaked faces and AI-generated content</span>{" "}
+            on screen. Every model runs on the{" "}
+            <span className="font-semibold text-white">Qualcomm Snapdragon X2 NPU</span> —
+            so no meeting data ever leaves your device.
           </p>
 
           {/* Real-Time · Secure · Private pillars */}
@@ -95,7 +96,7 @@ export default function HaloSpotlight() {
 
           <p className="mt-5 flex items-center gap-1.5 text-[11px] text-white/35">
             <Cpu className="h-3.5 w-3.5" />
-            Powered by Snapdragon X Series · Coming soon on Windows &amp; macOS
+            Powered by Snapdragon X2 · Windows · Launching 2026
           </p>
         </div>
 
@@ -143,7 +144,7 @@ export default function HaloSpotlight() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                   </span>
-                  Halo scanning audio + video
+                  Halo analyzing video
                 </span>
                 <span className="text-[13px] font-semibold tabular-nums text-white">98.7%</span>
               </div>
