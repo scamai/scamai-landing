@@ -57,8 +57,8 @@ export default function HaloSpotlight() {
           </h2>
 
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/60">
-            You just saw how easy a deepfake is. Halo is a Windows meeting bot that
-            watches your video calls in real time and flags{" "}
+            You just saw how easy a deepfake is. Halo is a Windows desktop app that
+            watches your video meetings in real time and flags{" "}
             <span className="font-semibold text-white">deepfaked faces and AI-generated content</span>{" "}
             on screen. Every model runs on the{" "}
             <span className="font-semibold text-white">Qualcomm Snapdragon X2 NPU</span> —
@@ -144,9 +144,9 @@ export default function HaloSpotlight() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
                   </span>
-                  Halo analyzing video
+                  No deepfakes detected
                 </span>
-                <span className="text-[13px] font-semibold tabular-nums text-white">98.7%</span>
+                <span className="text-[13px] font-semibold text-white">Clear</span>
               </div>
             </div>
 
