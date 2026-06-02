@@ -39,9 +39,10 @@ export default function HaloSpotlight() {
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
         {/* ─── Left: partnership + copy + CTAs ─── */}
         <div>
-          {/* Co-brand lockup */}
+          {/* Co-brand lockup — real logos, not type */}
           <div className="flex items-center gap-3">
-            <span className="text-lg font-semibold tracking-tight text-white">scam.ai</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/scamai-logo.svg" alt="scam.ai" className="h-6 w-auto" />
             <span className="h-5 w-px bg-white/25" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/qualcomm-logo.svg" alt="Qualcomm" className="h-[18px] w-auto opacity-90" />
