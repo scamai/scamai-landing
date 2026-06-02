@@ -64,7 +64,6 @@ const CELEBRITY_FACES: Face[] = [
   { label: "Saved face", url: "/playground-faces/celeb/jackie-chan.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/lady-gaga.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/jack-ma.jpg" },
-  { label: "Saved face", url: "/playground-faces/celeb/choi-min-sik.jpg" },
   { label: "Saved face", url: "/playground-faces/celeb/bts-rm.jpg" },
 ];
 
@@ -75,17 +74,35 @@ const SEED_FACES: Face[] = [...PRESET_FIGURES, ...CELEBRITY_FACES, ...AI_FACES];
 
 type Face = { label: string; url: string; custom?: boolean; preset?: boolean; name?: string };
 
+// Draw the image through a canvas so:
+//   1. EXIF rotation is baked in (phones store pixels sideways but mark them
+//      with an EXIF orientation tag; <img> honours it, raw bytes don't).
+//   2. Very large uploads are downscaled to ≤768px — the face swap model
+//      doesn't need more resolution and the smaller payload is faster.
+const MAX_FACE_DIM = 768;
+
 async function urlToBase64(url: string): Promise<string> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`face asset ${url} → ${res.status}`);
-  const blob = await res.blob();
-  const dataUrl = await new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = () => reject(new Error("read failed"));
-    reader.readAsDataURL(blob);
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      let w = img.naturalWidth;
+      let h = img.naturalHeight;
+      if (w > MAX_FACE_DIM || h > MAX_FACE_DIM) {
+        const s = MAX_FACE_DIM / Math.max(w, h);
+        w = Math.round(w * s);
+        h = Math.round(h * s);
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) { reject(new Error("canvas unavailable")); return; }
+      ctx.drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL("image/jpeg", 0.92).split(",")[1]);
+    };
+    img.onerror = () => reject(new Error(`face asset ${url} failed to load`));
+    img.src = url;
   });
-  return dataUrl.split(",")[1] || dataUrl;
 }
 
 const fmt = (s: number) => `0:${String(Math.max(0, s)).padStart(2, "0")}`;
@@ -174,8 +191,15 @@ export default function FaceswapPlayground() {
       setStep("running");
       await start({ targetFaceB64: targetB64, localStream });
     } catch (e) {
-      // Inline, specific guidance instead of a raw alert — common causes are a
-      // denied permission or the camera being held by another tab/app.
+      // If we acquired the camera before the failure (e.g. urlToBase64 threw),
+      // stop the tracks now — otherwise the next "Try again" hits NotReadableError
+      // because the browser still considers the camera claimed.
+      if (localStreamRef.current) {
+        localStreamRef.current.getTracks().forEach((t) => t.stop());
+        localStreamRef.current = null;
+      }
+      if (selfViewRef.current) selfViewRef.current.srcObject = null;
+
       const name = (e as Error)?.name || "";
       const msg =
         name === "NotAllowedError" || name === "SecurityError"
@@ -184,6 +208,8 @@ export default function FaceswapPlayground() {
           ? "Your camera is in use by another tab or app (check other Zoom/Meet/recording tabs). Close it and try again."
           : name === "NotFoundError" || name === "OverconstrainedError"
           ? "No camera was found on this device."
+          : name === "AbortError"
+          ? "Camera request was interrupted — please try again."
           : "Couldn't access your camera. Please try again.";
       setCamError(msg);
       setStep("consent");
