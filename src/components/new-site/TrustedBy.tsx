@@ -2,10 +2,12 @@
 
 // ─── TrustedBy — partner / investor logo marquee ────────────────────────────
 //
-// 1:1 port of checkreality.ai's "trusted by" row: ONE scrolling row, every logo,
-// the exact `grayscale opacity-50 hover:opacity-100` treatment (NO color inverts).
-// Only adaptation for our dark theme: the section is transparent and the edge
-// fades use from-black instead of from-white. Logos under /public/trusted/.
+// One scrolling row mirroring checkreality.ai's "trusted by" structure, on our
+// dark theme. The source logos are dark ink for a white page, so for contrast
+// they're rendered as uniform white silhouettes (brightness(0) invert), 70% →
+// 100% on hover — the standard dark logo-wall treatment. Section is transparent;
+// edge fades use from-black. UC Berkeley (detailed seal → white disc) omitted.
+// Opaque-bg logos had their white keyed out. Logos under /public/trusted/.
 
 type Logo = { src: string; alt: string; w: number; h: number };
 
@@ -15,7 +17,6 @@ const LOGOS: Logo[] = [
   { src: "/trusted/lg-uplus.png", alt: "LG U+", w: 110, h: 36 },
   { src: "/trusted/hp.png", alt: "HP", w: 44, h: 44 },
   { src: "/trusted/sbi-holdings.png", alt: "SBI Holdings", w: 130, h: 34 },
-  { src: "/trusted/ucberkeley.png", alt: "UC Berkeley", w: 50, h: 50 },
   { src: "/trusted/trulioo.png", alt: "Trulioo", w: 120, h: 34 },
   { src: "/trusted/beta-fellowship.png", alt: "Beta Fellowship", w: 44, h: 44 },
   { src: "/trusted/sentilink.svg", alt: "SentiLink", w: 130, h: 34 },
@@ -37,7 +38,9 @@ function LogoGroup() {
           alt={l.alt}
           width={l.w}
           height={l.h}
-          className="opacity-50 grayscale transition-opacity hover:opacity-100"
+          // Uniform white treatment for guaranteed contrast on the dark theme
+          // (the dark-ink source logos are invisible under grayscale alone).
+          className="opacity-70 transition-opacity hover:opacity-100 [filter:brightness(0)_invert(1)]"
         />
       ))}
     </div>
