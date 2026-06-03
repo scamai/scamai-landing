@@ -366,12 +366,9 @@ header {
 .animate-scroll-reverse {
   animation: trust-scroll 38s linear infinite reverse;
 }
-@media (prefers-reduced-motion: reduce) {
-  .animate-scroll,
-  .animate-scroll-reverse {
-    animation: none;
-  }
-}
+/* The logo marquee is core brand content (a slow, steady horizontal scroll),
+   so it keeps animating even under "Reduce Motion" — commonly enabled on iOS,
+   which was stopping the row on phones. */
 
 /* GLOBAL BLACK BACKGROUND - ABSOLUTE PRIORITY */
 *, *::before, *::after {
