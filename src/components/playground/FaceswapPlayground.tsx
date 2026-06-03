@@ -549,47 +549,85 @@ export default function FaceswapPlayground() {
   const SHARE_TEXT =
     "I deepfaked myself in 30 seconds 😳 Can you still tell what's real? Try it → scam.ai/halo";
 
-  const downloadImage = useCallback(() => {
-    if (!shareCardUrl) return;
-    const a = document.createElement("a");
-    a.href = shareCardUrl;
-    a.download = "scamai-deepfake.jpg";
-    a.click();
-  }, [shareCardUrl]);
+  const isIOS =
+    typeof navigator !== "undefined" &&
+    (/iP(hone|ad|od)/.test(navigator.userAgent) ||
+      // iPadOS 13+ reports as Mac; detect via touch
+      (navigator.platform === "MacIntel" && (navigator.maxTouchPoints ?? 0) > 1));
 
-  const saveImage = useCallback(() => {
-    downloadImage();
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
-  }, [downloadImage]);
-
-  // Native share sheet (mobile) — carries the actual image. Desktop falls back
-  // to downloading the image + an instruction to post it.
-  const webShare = useCallback(async () => {
+  // Download the card. Use a blob URL (not the raw data: URL) so it's reliable
+  // across browsers; open in a new tab on iOS Safari, which ignores `download`
+  // and would otherwise navigate away from the playground.
+  const downloadImage = useCallback(async () => {
     if (!shareCardUrl) return;
     try {
       const res = await fetch(shareCardUrl);
       const blob = await res.blob();
-      const file = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
-      if (navigator.share && navigator.canShare?.({ files: [file] })) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "scamai-deepfake.jpg";
+      if (isIOS) a.target = "_blank"; // iOS opens the image to long-press → Save
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 15_000);
+    } catch {
+      const a = document.createElement("a");
+      a.href = shareCardUrl;
+      a.download = "scamai-deepfake.jpg";
+      a.click();
+    }
+  }, [shareCardUrl, isIOS]);
+
+  const saveImage = useCallback(async () => {
+    await downloadImage();
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }, [downloadImage]);
+
+  // Native share sheet (carries the actual image) on mobile / iOS Safari.
+  // Falls back to download + hint everywhere it isn't supported.
+  const webShare = useCallback(async () => {
+    if (!shareCardUrl) return;
+
+    let file: File | null = null;
+    try {
+      const res = await fetch(shareCardUrl);
+      const blob = await res.blob();
+      file = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
+    } catch {
+      /* couldn't build the file — handled by fallback below */
+    }
+
+    if (file && navigator.share && navigator.canShare?.({ files: [file] })) {
+      try {
         await navigator.share({ text: SHARE_TEXT, files: [file] });
-        return;
+      } catch (e) {
+        // AbortError = user dismissed the sheet → do nothing (no download).
+        if ((e as Error)?.name !== "AbortError") {
+          await downloadImage();
+          setShareHint("Image saved — post it anywhere 🚀");
+          setTimeout(() => setShareHint(""), 3500);
+        }
       }
-    } catch { /* user dismissed (AbortError) or unsupported — fall through */ }
-    // Desktop: no API can post an image — save it and tell the user.
-    downloadImage();
+      return;
+    }
+
+    // Desktop / no file-share support: download + tell the user.
+    await downloadImage();
     setShareHint("Image saved — post it to your story 🚀");
     setTimeout(() => setShareHint(""), 3500);
   }, [shareCardUrl, SHARE_TEXT, downloadImage]);
 
-  // Post to X: download the image (so it's ready to attach) then open the
-  // tweet composer with text + real URL. X can't auto-attach web images.
+  // Post to X: open the composer SYNCHRONOUSLY (in the click gesture, so it's
+  // not popup-blocked), then download the image so it's ready to attach.
   const postToX = useCallback(() => {
-    downloadImage();
     const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(SHARE_TEXT)}`;
+    window.open(intent, "_blank", "noopener,noreferrer");
+    void downloadImage();
     setShareHint("Image saved — attach it to your tweet 📎");
     setTimeout(() => setShareHint(""), 3500);
-    setTimeout(() => window.open(intent, "_blank", "noopener,noreferrer"), 400);
   }, [downloadImage, SHARE_TEXT]);
 
   const reset = useCallback(() => {
@@ -1025,19 +1063,15 @@ export default function FaceswapPlayground() {
               <X className="h-4 w-4" />
             </button>
 
-            {/* Preview card (the shareable image) — tagged so it reads as output */}
-            <div className="relative">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={shareCardUrl}
-                alt="Your deepfake"
-                className="rounded-xl shadow-2xl"
-                style={{ maxHeight: "58vh", width: "auto" }}
-              />
-              <span className="pointer-events-none absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.15em] text-white/70 backdrop-blur-sm">
-                Preview
-              </span>
-            </div>
+            {/* Preview card (the shareable image). No overlay tag — it would
+                cover the baked-in scam.ai logo in the card's top-left. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={shareCardUrl}
+              alt="Your deepfake card"
+              className="rounded-xl shadow-2xl"
+              style={{ maxHeight: "58vh", width: "auto" }}
+            />
 
             {/* Action controls — visually distinct panel so it's clearly the toolbar,
                 not part of the card above (the card's blue CTA is baked into the image). */}
