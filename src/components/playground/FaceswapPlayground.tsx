@@ -15,7 +15,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Square, Plus, X, Lock } from "lucide-react";
+import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Plus, X, Lock } from "lucide-react";
 import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
@@ -860,16 +860,6 @@ export default function FaceswapPlayground() {
           <video ref={selfViewRef} autoPlay playsInline muted className="h-20 w-[60px] -scale-x-100 object-cover sm:h-24 sm:w-[72px]" />
           <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/80 drop-shadow">You</span>
         </div>
-
-        {/* floating Stop while live */}
-        {live && (
-          <button
-            onClick={reset}
-            className="absolute bottom-3 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-4 py-1.5 text-xs font-semibold text-white/85 backdrop-blur-md transition hover:bg-white/10"
-          >
-            <Square className="h-3 w-3" /> Stop
-          </button>
-        )}
 
         {/* ── Overlays ── */}
         {step === "intro" && (
