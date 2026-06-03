@@ -345,17 +345,12 @@ const ICP: Record<
 /* ------------------------------------------------------------------ */
 /* Differentiators                                                    */
 /* ------------------------------------------------------------------ */
+// Order mirrors the HaloSpotlight pillars on the homepage:
+// Real-Time \u2192 Secure (smaller attack surface) \u2192 Private.
 const DIFFERENTIATORS = [
   {
-    title: "Private by design",
-    body: "Video frames are analyzed in memory and discarded \u2014 nothing is recorded, stored, or transmitted. No cloud upload means no new honeypot of sensitive calls, and a far simpler path through legal, IT, and GDPR review.",
-    icon: (
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
-    ),
-  },
-  {
     title: "Real-time, no round-trip",
-    body: "Detection happens in the same moment as the call. There's no upload, queue, and download cycle &mdash; so a verdict lands while the call is still happening, not after the money's gone.",
+    body: "Detection happens in the same moment as the call. There's no upload, queue, and download cycle — so a verdict lands while the call is still happening, not after the money's gone.",
     icon: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />,
   },
   {
@@ -366,6 +361,13 @@ const DIFFERENTIATORS = [
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </>
+    ),
+  },
+  {
+    title: "Private by design",
+    body: "Video frames are analyzed in memory and discarded — nothing is recorded, stored, or transmitted. No cloud upload means no new honeypot of sensitive calls, and a far simpler path through legal, IT, and GDPR review.",
+    icon: (
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />
     ),
   },
 ];
