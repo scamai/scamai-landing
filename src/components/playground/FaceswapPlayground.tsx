@@ -554,6 +554,21 @@ export default function FaceswapPlayground() {
     (/iP(hone|ad|od)/.test(navigator.userAgent) ||
       // iPadOS 13+ reports as Mac; detect via touch
       (navigator.platform === "MacIntel" && (navigator.maxTouchPoints ?? 0) > 1));
+  const isMobile =
+    typeof navigator !== "undefined" &&
+    (isIOS || /Android/i.test(navigator.userAgent));
+
+  // Build a File from the rendered card (for the native share sheet).
+  const buildCardFile = useCallback(async (): Promise<File | null> => {
+    if (!shareCardUrl) return null;
+    try {
+      const res = await fetch(shareCardUrl);
+      const blob = await res.blob();
+      return new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
+    } catch {
+      return null;
+    }
+  }, [shareCardUrl]);
 
   // Download the card. Use a blob URL (not the raw data: URL) so it's reliable
   // across browsers; open in a new tab on iOS Safari, which ignores `download`
@@ -580,25 +595,31 @@ export default function FaceswapPlayground() {
     }
   }, [shareCardUrl, isIOS]);
 
+  // Save to the photo album. The web has no direct "write to album" API — the
+  // ONLY way to reach Photos/相册 on a phone is the native share sheet's
+  // "Save Image" action. So on mobile we open the (image-only) sheet; on desktop
+  // we download the file directly.
   const saveImage = useCallback(async () => {
+    const file = await buildCardFile();
+    if (isMobile && file && navigator.share && navigator.canShare?.({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file] }); // sheet → "Save Image" → album
+      } catch (e) {
+        if ((e as Error)?.name !== "AbortError") await downloadImage();
+      }
+      return;
+    }
+    // Desktop: direct file download.
     await downloadImage();
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-  }, [downloadImage]);
+  }, [buildCardFile, isMobile, downloadImage]);
 
   // Native share sheet (carries the actual image) on mobile / iOS Safari.
   // Falls back to download + hint everywhere it isn't supported.
   const webShare = useCallback(async () => {
     if (!shareCardUrl) return;
-
-    let file: File | null = null;
-    try {
-      const res = await fetch(shareCardUrl);
-      const blob = await res.blob();
-      file = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
-    } catch {
-      /* couldn't build the file — handled by fallback below */
-    }
+    const file = await buildCardFile();
 
     if (file && navigator.share && navigator.canShare?.({ files: [file] })) {
       try {
@@ -618,7 +639,7 @@ export default function FaceswapPlayground() {
     await downloadImage();
     setShareHint("Image saved — post it to your story 🚀");
     setTimeout(() => setShareHint(""), 3500);
-  }, [shareCardUrl, SHARE_TEXT, downloadImage]);
+  }, [shareCardUrl, buildCardFile, SHARE_TEXT, downloadImage]);
 
   // Post to X: open the composer SYNCHRONOUSLY (in the click gesture, so it's
   // not popup-blocked), then download the image so it's ready to attach.
