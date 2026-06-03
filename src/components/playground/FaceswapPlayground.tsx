@@ -120,6 +120,10 @@ export default function FaceswapPlayground() {
   const sessionIdRef = useRef<string>(Math.random().toString(36).slice(2) + Date.now().toString(36));
   const recorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
+  // Pre-built share File (set when the card renders) so share handlers can call
+  // navigator.share() synchronously — iOS Safari drops the user-gesture
+  // ("transient activation") if you await before calling share.
+  const shareFileRef = useRef<File | null>(null);
   const [countdown, setCountdown] = useState<number | null>(null);
   const [shareCardUrl, setShareCardUrl] = useState("");
   const [showCard, setShowCard] = useState(false);
@@ -512,6 +516,17 @@ export default function FaceswapPlayground() {
     setShareCardUrl(dataUrl);
     setShowCard(true);
 
+    // Pre-build the share File now so handlers can call navigator.share()
+    // synchronously (preserves the iOS gesture; see shareFileRef).
+    shareFileRef.current = null;
+    canvas.toBlob(
+      (blob) => {
+        if (blob) shareFileRef.current = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
+      },
+      "image/jpeg",
+      0.93
+    );
+
     // Silent background upload
     try {
       const b64 = dataUrl.split(",")[1];
@@ -558,98 +573,106 @@ export default function FaceswapPlayground() {
     typeof navigator !== "undefined" &&
     (isIOS || /Android/i.test(navigator.userAgent));
 
-  // Build a File from the rendered card (for the native share sheet).
-  const buildCardFile = useCallback(async (): Promise<File | null> => {
-    if (!shareCardUrl) return null;
-    try {
-      const res = await fetch(shareCardUrl);
-      const blob = await res.blob();
-      return new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
-    } catch {
-      return null;
-    }
-  }, [shareCardUrl]);
+  // Can we share the pre-built card File via the native sheet right now?
+  const canShareFile = () => {
+    const f = shareFileRef.current;
+    return !!(
+      f &&
+      typeof navigator.share === "function" &&
+      typeof navigator.canShare === "function" &&
+      navigator.canShare({ files: [f] })
+    );
+  };
 
-  // Download the card. Use a blob URL (not the raw data: URL) so it's reliable
-  // across browsers; open in a new tab on iOS Safari, which ignores `download`
-  // and would otherwise navigate away from the playground.
-  const downloadImage = useCallback(async () => {
-    if (!shareCardUrl) return;
-    try {
-      const res = await fetch(shareCardUrl);
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "scamai-deepfake.jpg";
-      if (isIOS) a.target = "_blank"; // iOS opens the image to long-press → Save
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 15_000);
-    } catch {
-      const a = document.createElement("a");
-      a.href = shareCardUrl;
-      a.download = "scamai-deepfake.jpg";
-      a.click();
+  // Download the card. Prefer the pre-built File (synchronous → keeps the user
+  // gesture); fall back to the data URL. Open in a new tab on iOS Safari, which
+  // ignores `download` and would otherwise navigate away from the playground.
+  const downloadImage = useCallback(() => {
+    const file = shareFileRef.current;
+    let url: string;
+    let revoke = false;
+    if (file) {
+      url = URL.createObjectURL(file);
+      revoke = true;
+    } else if (shareCardUrl) {
+      url = shareCardUrl;
+    } else {
+      return;
     }
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "scamai-deepfake.jpg";
+    if (isIOS) a.target = "_blank"; // iOS opens the image to long-press → Save
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    if (revoke) setTimeout(() => URL.revokeObjectURL(url), 15_000);
   }, [shareCardUrl, isIOS]);
 
   // Save to the photo album. The web has no direct "write to album" API — the
   // ONLY way to reach Photos/相册 on a phone is the native share sheet's
-  // "Save Image" action. So on mobile we open the (image-only) sheet; on desktop
-  // we download the file directly.
-  const saveImage = useCallback(async () => {
-    const file = await buildCardFile();
-    if (isMobile && file && navigator.share && navigator.canShare?.({ files: [file] })) {
-      try {
-        await navigator.share({ files: [file] }); // sheet → "Save Image" → album
-      } catch (e) {
-        if ((e as Error)?.name !== "AbortError") await downloadImage();
-      }
+  // "Save Image" action. On mobile we open the (image-only) sheet; on desktop we
+  // download the file directly. navigator.share is called SYNCHRONOUSLY (no await
+  // before it) to preserve the iOS user-gesture.
+  const saveImage = useCallback(() => {
+    if (isMobile && canShareFile()) {
+      navigator
+        .share({ files: [shareFileRef.current!] }) // sheet → "Save Image" → album
+        .catch((e: Error) => {
+          if (e?.name !== "AbortError") downloadImage();
+        });
       return;
     }
-    // Desktop: direct file download.
-    await downloadImage();
+    downloadImage();
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
-  }, [buildCardFile, isMobile, downloadImage]);
+  }, [isMobile, downloadImage]);
 
-  // Native share sheet (carries the actual image) on mobile / iOS Safari.
-  // Falls back to download + hint everywhere it isn't supported.
-  const webShare = useCallback(async () => {
-    if (!shareCardUrl) return;
-    const file = await buildCardFile();
-
-    if (file && navigator.share && navigator.canShare?.({ files: [file] })) {
-      try {
-        await navigator.share({ text: SHARE_TEXT, files: [file] });
-      } catch (e) {
-        // AbortError = user dismissed the sheet → do nothing (no download).
-        if ((e as Error)?.name !== "AbortError") {
-          await downloadImage();
-          setShareHint("Image saved — post it anywhere 🚀");
-          setTimeout(() => setShareHint(""), 3500);
-        }
-      }
+  // Share via native sheet (carries the image) on mobile; download + hint on desktop.
+  const webShare = useCallback(() => {
+    if (canShareFile()) {
+      navigator
+        .share({ text: SHARE_TEXT, files: [shareFileRef.current!] })
+        .catch((e: Error) => {
+          // AbortError = user dismissed the sheet → do nothing.
+          if (e?.name !== "AbortError") {
+            downloadImage();
+            setShareHint("Image saved — post it anywhere 🚀");
+            setTimeout(() => setShareHint(""), 3500);
+          }
+        });
       return;
     }
-
     // Desktop / no file-share support: download + tell the user.
-    await downloadImage();
+    downloadImage();
     setShareHint("Image saved — post it to your story 🚀");
     setTimeout(() => setShareHint(""), 3500);
-  }, [shareCardUrl, buildCardFile, SHARE_TEXT, downloadImage]);
+  }, [SHARE_TEXT, downloadImage]);
 
-  // Post to X: open the composer SYNCHRONOUSLY (in the click gesture, so it's
-  // not popup-blocked), then download the image so it's ready to attach.
+  // Post to X.
+  // - Mobile: the only way to carry the image into X is the native sheet (user
+  //   picks X). Called synchronously to keep the iOS gesture.
+  // - Desktop: open the X web composer (synchronous → not popup-blocked) and
+  //   download the image so it's ready to attach.
   const postToX = useCallback(() => {
+    if (isMobile && canShareFile()) {
+      navigator
+        .share({ text: SHARE_TEXT, files: [shareFileRef.current!] })
+        .catch((e: Error) => {
+          if (e?.name !== "AbortError") {
+            downloadImage();
+            setShareHint("Image saved — open X and attach it 📎");
+            setTimeout(() => setShareHint(""), 3500);
+          }
+        });
+      return;
+    }
     const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(SHARE_TEXT)}`;
     window.open(intent, "_blank", "noopener,noreferrer");
-    void downloadImage();
+    downloadImage();
     setShareHint("Image saved — attach it to your tweet 📎");
     setTimeout(() => setShareHint(""), 3500);
-  }, [downloadImage, SHARE_TEXT]);
+  }, [isMobile, SHARE_TEXT, downloadImage]);
 
   const reset = useCallback(() => {
     stop(); // closes WebRTC + stops camera tracks (indicator turns off)
