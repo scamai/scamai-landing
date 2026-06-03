@@ -535,32 +535,58 @@ export default function FaceswapPlayground() {
     }, 1000);
   }, [countdown, captureAndCompose]);
 
-  const [shareCopied, setShareCopied] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [shareHint, setShareHint] = useState("");
 
+  // Web sharing can't push an image to IG/WhatsApp/X programmatically (no platform
+  // API). The ONLY path that carries the image is the native share sheet via
+  // Web Share API Level 2 (mobile). Everywhere else we download the image — it
+  // already has the logo + scam.ai/halo baked in, so it IS the ad.
+  const SHARE_TEXT =
+    "I deepfaked myself in 30 seconds 😳 Can you still tell what's real? Try it → scam.ai/halo";
+
+  const downloadImage = useCallback(() => {
+    if (!shareCardUrl) return;
+    const a = document.createElement("a");
+    a.href = shareCardUrl;
+    a.download = "scamai-deepfake.jpg";
+    a.click();
+  }, [shareCardUrl]);
+
+  const saveImage = useCallback(() => {
+    downloadImage();
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }, [downloadImage]);
+
+  // Native share sheet (mobile) — carries the actual image. Desktop falls back
+  // to downloading the image + an instruction to post it.
   const webShare = useCallback(async () => {
     if (!shareCardUrl) return;
-    // Try native share with image file (works on mobile / Safari)
     try {
       const res = await fetch(shareCardUrl);
       const blob = await res.blob();
       const file = new File([blob], "scamai-deepfake.jpg", { type: "image/jpeg" });
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
-        await navigator.share({ title: "I deepfaked myself in 30 seconds", files: [file] });
+        await navigator.share({ text: SHARE_TEXT, files: [file] });
         return;
       }
-    } catch { /* user dismissed or unsupported */ }
-    // Try URL-only share (desktop Safari, some browsers)
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "Detect deepfakes", url: "https://scam.ai/halo" });
-        return;
-      } catch { /* user dismissed */ }
-    }
-    // Fallback: copy link to clipboard
-    await navigator.clipboard.writeText("https://scam.ai/halo").catch(() => {});
-    setShareCopied(true);
-    setTimeout(() => setShareCopied(false), 2000);
-  }, [shareCardUrl]);
+    } catch { /* user dismissed (AbortError) or unsupported — fall through */ }
+    // Desktop: no API can post an image — save it and tell the user.
+    downloadImage();
+    setShareHint("Image saved — post it to your story 🚀");
+    setTimeout(() => setShareHint(""), 3500);
+  }, [shareCardUrl, SHARE_TEXT, downloadImage]);
+
+  // Post to X: download the image (so it's ready to attach) then open the
+  // tweet composer with text + real URL. X can't auto-attach web images.
+  const postToX = useCallback(() => {
+    downloadImage();
+    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(SHARE_TEXT)}`;
+    setShareHint("Image saved — attach it to your tweet 📎");
+    setTimeout(() => setShareHint(""), 3500);
+    setTimeout(() => window.open(intent, "_blank", "noopener,noreferrer"), 400);
+  }, [downloadImage, SHARE_TEXT]);
 
   const reset = useCallback(() => {
     stop(); // closes WebRTC + stops camera tracks (indicator turns off)
@@ -570,7 +596,8 @@ export default function FaceswapPlayground() {
     setCountdown(null);
     setShareCardUrl("");
     setShowCard(false);
-    setShareCopied(false);
+    setSaved(false);
+    setShareHint("");
     // Skip consent screen on re-runs — auto-launch via effect below
     setStep(hasGrantedCameraRef.current ? "consent" : "intro");
   }, [stop]);
@@ -1002,38 +1029,41 @@ export default function FaceswapPlayground() {
             />
 
             {/* Actions */}
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {/* Download */}
-              <a
-                href={shareCardUrl}
-                download="scamai-deepfake.jpg"
-                className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+            {/* Primary action: native share (mobile) / save+post (desktop) */}
+            <button
+              onClick={webShare}
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245FFF] py-3 text-sm font-semibold text-white shadow-[0_0_24px_-8px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
+            >
+              <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
+              Share
+            </button>
+
+            {/* Secondary: Save image · Post to X */}
+            <div className="mt-2 grid grid-cols-2 gap-2">
+              <button
+                onClick={saveImage}
+                className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 py-2.5 text-[12px] font-medium text-white/65 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Save
-              </a>
-              {/* X */}
-              <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("This deepfake took 30 seconds. Can you spot it? via @scamai halo.scam.ai")}`}
-                target="_blank" rel="noopener noreferrer"
-                className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+                {saved ? "Saved ✓" : "Save image"}
+              </button>
+              <button
+                onClick={postToX}
+                className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 py-2.5 text-[12px] font-medium text-white/65 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
               >
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
-                X
-              </a>
-              {/* Share — system share sheet (mobile) or copy link (desktop) */}
-              <button
-                onClick={webShare}
-                className="flex flex-col items-center gap-1 rounded-xl border border-white/10 py-2.5 text-[11px] font-medium text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
-              >
-                <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
-                {shareCopied ? "Copied!" : "Share"}
+                Post to X
               </button>
             </div>
+
+            {/* Hint toast (desktop share / X attach instruction) */}
+            {shareHint && (
+              <p className="mt-2 text-center text-[11px] text-white/45">{shareHint}</p>
+            )}
           </div>
         </div>
       )}
