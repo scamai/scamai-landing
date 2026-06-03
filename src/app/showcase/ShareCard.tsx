@@ -56,6 +56,47 @@ function Frame({ children, bg = "#0a0a0a", border, pad = true, style }: { childr
 
 const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
+// ─── Detection watermark (REQUIRED on every face) ───
+// Signals "ScamAI already caught this deepfake" — scan corners + verdict badge.
+function ScanCorners({ color = "#ef4444", len = 16, w = 2, inset = 6 }: { color?: string; len?: number; w?: number; inset?: number }) {
+  const base = { position: "absolute" as const, width: len, height: len, borderColor: color, borderStyle: "solid" as const };
+  return (
+    <>
+      <span style={{ ...base, top: inset, left: inset, borderWidth: `${w}px 0 0 ${w}px` }} />
+      <span style={{ ...base, top: inset, right: inset, borderWidth: `${w}px ${w}px 0 0` }} />
+      <span style={{ ...base, bottom: inset, left: inset, borderWidth: `0 0 ${w}px ${w}px` }} />
+      <span style={{ ...base, bottom: inset, right: inset, borderWidth: `0 ${w}px ${w}px 0` }} />
+    </>
+  );
+}
+
+function DetectBadge({ conf, tone = "#ef4444", light = false, compact = false, style }: { conf: string; tone?: string; light?: boolean; compact?: boolean; style?: React.CSSProperties }) {
+  return (
+    <span
+      style={{
+        position: "absolute",
+        zIndex: 4,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        background: light ? "rgba(255,255,255,0.92)" : "rgba(8,8,10,0.66)",
+        color: light ? "#0a0a0a" : "#fff",
+        fontSize: 8.5,
+        fontWeight: 800,
+        letterSpacing: "0.05em",
+        padding: "3px 7px",
+        borderRadius: 999,
+        backdropFilter: "blur(4px)",
+        whiteSpace: "nowrap",
+        ...style,
+      }}
+    >
+      <span style={{ width: 5, height: 5, borderRadius: "50%", background: tone, boxShadow: `0 0 6px ${tone}` }} />
+      {compact ? "DEEPFAKE" : "DEEPFAKE DETECTED"} · {conf}%
+    </span>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════════
 export default function ShareCard({ id, seed }: Props) {
   const c = conceptOf(id).key;
@@ -79,8 +120,8 @@ export default function ShareCard({ id, seed }: Props) {
             <div style={{ transform: "rotate(-4deg)", background: "#f4f1ea", padding: "9px 9px 34px", borderRadius: 2, boxShadow: "0 14px 30px rgba(0,0,0,0.55)", width: "74%" }}>
               <div style={{ position: "relative", aspectRatio: "1", overflow: "hidden" }}>
                 <Img style={{ width: "100%", height: "100%" }} />
-                <div style={{ position: "absolute", inset: 0, border: "2px solid #ef4444", clipPath: "polygon(0 0,22px 0,22px 3px,3px 3px,3px 22px,0 22px, 0 100%,22px 100%,22px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 22px),0 calc(100% - 22px))" }} />
-                <span style={{ position: "absolute", top: 6, right: 6, background: "#ef4444", color: "#fff", fontSize: 8, fontWeight: 800, padding: "2px 5px", borderRadius: 3 }}>FAKE {conf}%</span>
+                <ScanCorners color="#ef4444" len={18} inset={5} />
+                <DetectBadge conf={conf} style={{ top: 6, left: 6 }} />
               </div>
               <div style={{ fontFamily: "'Bradley Hand', cursive", marginTop: 6, color: "#b91c1c", fontWeight: 700, fontSize: 14, transform: "rotate(-1deg)" }}>{hl[0]} {hl[1]} ✗</div>
             </div>
@@ -104,6 +145,9 @@ export default function ShareCard({ id, seed }: Props) {
         <Frame bg="#000" pad={false}>
           <Img style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(transparent 45%, rgba(0,0,0,0.85) 100%)" }} />
+          {/* detection watermark on the face */}
+          <ScanCorners color="#ef4444" len={26} w={2} inset={48} />
+          <DetectBadge conf={conf} style={{ top: 48, left: "50%", transform: "translateX(-50%)" }} />
           {/* top bug */}
           <div style={{ position: "absolute", top: 14, left: 14, right: 14, display: "flex", justifyContent: "space-between", alignItems: "center", zIndex: 2 }}>
             <Logo />
@@ -137,12 +181,16 @@ export default function ShareCard({ id, seed }: Props) {
             <span style={{ fontFamily: mono, fontSize: 9, color: "rgba(255,255,255,0.45)" }}>{conf}% FAKE</span>
           </div>
           <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", position: "relative" }}>
+            <DetectBadge conf={conf} style={{ top: 4, right: 0 }} />
             <div style={{ display: "flex", alignItems: "flex-end", lineHeight: 0.8 }}>
               <span style={{ fontWeight: 900, fontSize: 96, letterSpacing: "-0.06em", color: "#fff" }}>FAK</span>
               {/* the "E" counter holds the face */}
               <div style={{ position: "relative", width: 70, height: 90 }}>
                 <span style={{ fontWeight: 900, fontSize: 96, letterSpacing: "-0.06em", color: "#fff", position: "absolute", left: -6, top: -6 }}>E</span>
-                <Img style={{ position: "absolute", right: 6, top: 20, width: 40, height: 44, borderRadius: 4, filter: "grayscale(0.2) contrast(1.05)" }} />
+                <div style={{ position: "absolute", right: 6, top: 20, width: 40, height: 44 }}>
+                  <Img style={{ width: "100%", height: "100%", borderRadius: 4, filter: "grayscale(0.2) contrast(1.05)" }} />
+                  <ScanCorners color="#ef4444" len={9} w={2} inset={-1} />
+                </div>
               </div>
               {/* QR as the period */}
               <div style={{ marginLeft: 4, marginBottom: 8 }}><QR size={26} radius={4} /></div>
@@ -183,6 +231,8 @@ export default function ShareCard({ id, seed }: Props) {
             <div style={{ flex: 1, position: "relative" }}>
               <Img style={{ position: "absolute", inset: 0, width: "100%", height: "100%", filter: "contrast(1.05)" }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(transparent 40%, rgba(0,0,0,0.8))" }} />
+              <ScanCorners color="#ef4444" len={18} inset={8} />
+              <DetectBadge conf={conf} compact style={{ top: 8, left: "50%", transform: "translateX(-50%)" }} />
               <div style={{ position: "absolute", left: 12, right: 12, bottom: 12 }}>
                 <div style={{ fontWeight: 800, fontSize: 21, color: "#fff", lineHeight: 1.0, letterSpacing: "-0.02em" }}>{hl[0]}<br />{hl[1]}</div>
                 <div style={{ marginTop: 8 }}><CoBrand /></div>
@@ -203,6 +253,8 @@ export default function ShareCard({ id, seed }: Props) {
           <div style={{ flex: 1, display: "flex", gap: 12, alignItems: "center", position: "relative" }}>
             <div style={{ position: "relative" }}>
               <Img style={{ width: 112, height: 138, borderRadius: 4, filter: "grayscale(0.4) contrast(1.1)", border: "1px solid rgba(255,255,255,0.2)" }} />
+              <ScanCorners color="#ef4444" len={16} inset={4} />
+              <DetectBadge conf={conf} compact style={{ top: 5, left: 5 }} />
               <span style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center", color: "rgba(239,68,68,0.55)", fontWeight: 900, fontSize: 22, transform: "rotate(-18deg)", letterSpacing: "0.1em" }}>SPECIMEN</span>
             </div>
             <div style={{ fontFamily: mono, fontSize: 10, color: "rgba(255,255,255,0.6)", lineHeight: 2 }}>
@@ -234,6 +286,8 @@ export default function ShareCard({ id, seed }: Props) {
           <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.28) 4px)" }} />
           <div style={{ position: "absolute", left: 0, right: 0, top: "38%", height: 2, background: "rgba(120,200,255,0.9)", boxShadow: "0 0 16px 3px rgba(120,200,255,0.7)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(0,0,0,0.7), transparent 40%)" }} />
+          <ScanCorners color="#7dd3fc" len={20} inset={12} />
+          <DetectBadge conf={conf} tone="#7dd3fc" style={{ bottom: 14, left: 14, zIndex: 4 }} />
           <div style={{ position: "absolute", top: 14, left: 14, right: 14, display: "flex", justifyContent: "space-between", zIndex: 2 }}>
             <Logo />
             <span style={{ fontFamily: mono, fontSize: 9, color: "#7dd3fc" }}>SCANNING… {conf}%</span>
@@ -259,7 +313,8 @@ export default function ShareCard({ id, seed }: Props) {
           <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 22 }}>
             <div style={{ position: "relative" }}>
               <Img style={{ width: 104, height: 104, borderRadius: "50%", filter: "grayscale(1) contrast(1.08)" }} />
-              <span style={{ position: "absolute", bottom: -4, right: -4, background: "#ef4444", color: "#fff", fontSize: 8, fontWeight: 800, padding: "3px 7px", borderRadius: 999, border: "2px solid #070707" }}>FAKE</span>
+              <span style={{ position: "absolute", inset: -4, borderRadius: "50%", border: "1px dashed rgba(239,68,68,0.7)" }} />
+              <DetectBadge conf={conf} style={{ bottom: -8, left: "50%", transform: "translateX(-50%)", border: "2px solid #070707" }} />
             </div>
             <div style={{ textAlign: "center" }}>
               <div style={{ fontWeight: 800, fontSize: 26, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1.05 }}>{hl[0]}<br />{hl[1]}</div>
@@ -287,6 +342,8 @@ export default function ShareCard({ id, seed }: Props) {
             <div style={{ position: "relative", margin: "10px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
               <Img style={{ width: "100%", height: 168 }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(115deg,transparent 40%,rgba(255,255,255,0.18) 50%,transparent 60%)" }} />
+              <ScanCorners color="#f7d77a" len={16} inset={5} />
+              <DetectBadge conf={conf} tone="#f7d77a" compact style={{ top: 6, left: 6 }} />
               <span style={{ position: "absolute", top: 6, right: 8, fontFamily: mono, fontSize: 9, color: "#f7d77a", fontWeight: 700 }}>#{no}</span>
             </div>
             <div style={{ fontWeight: 800, fontSize: 20, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.0 }}>{hl[0]} {hl[1]}</div>
@@ -321,6 +378,8 @@ export default function ShareCard({ id, seed }: Props) {
             <div style={{ position: "relative", margin: "8px 0", width: 132, height: 132, border: "1px solid #22ff8855" }}>
               <Img style={{ width: "100%", height: "100%", filter: "grayscale(1) brightness(0.9) sepia(1) hue-rotate(75deg) saturate(3)" }} />
               <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg,transparent,transparent 2px,#22ff8814 3px)" }} />
+              <ScanCorners color="#22ff88" len={14} inset={3} />
+              <DetectBadge conf={conf} tone="#22ff88" compact style={{ bottom: 5, left: 5, background: "rgba(2,6,4,0.8)", color: "#22ff88", fontFamily: mono }} />
             </div>
             <div>&gt; verdict: <span style={{ color: "#ef4444", fontWeight: 700 }}>FAKE</span></div>
             <div style={{ color: "#fff", fontWeight: 700, fontSize: 15, marginTop: 6, fontFamily: "Inter" }}>{hl[0]} {hl[1]}</div>
@@ -347,6 +406,8 @@ export default function ShareCard({ id, seed }: Props) {
             ))}
             <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.3) 3px)" }} />
           </div>
+          <ScanCorners color="#00e0ff" len={22} inset={12} />
+          <DetectBadge conf={conf} tone="#ff003c" style={{ top: 44, left: "50%", transform: "translateX(-50%)" }} />
           <div style={{ position: "absolute", top: 14, left: 14, right: 14, display: "flex", justifyContent: "space-between", zIndex: 2 }}>
             <Logo />
             <span style={{ fontFamily: mono, fontSize: 9, color: "#ff5d7d" }}>SIGNAL CORRUPT</span>
@@ -385,7 +446,8 @@ export default function ShareCard({ id, seed }: Props) {
             <div style={{ position: "relative", margin: "10px 0", border: "2px solid #111" }}>
               <Img style={{ width: "100%", height: 150, filter: "grayscale(1) contrast(1.15)" }} />
               <div style={{ position: "absolute", top: "34%", left: 0, width: "46%", height: 16, background: "#111" }} />
-              <span style={{ position: "absolute", bottom: 6, right: 8, background: "#b91c1c", color: "#fff", fontSize: 9, fontWeight: 800, padding: "2px 6px" }}>FAKE</span>
+              <ScanCorners color="#b91c1c" len={16} inset={5} />
+              <DetectBadge conf={conf} tone="#b91c1c" style={{ bottom: 6, right: 6, background: "rgba(17,17,17,0.85)" }} />
             </div>
             <div style={{ fontWeight: 800, fontSize: 19, letterSpacing: "-0.02em", lineHeight: 1.0 }}>{hl[0]} {hl[1]}</div>
             <div style={{ flex: 1 }} />
@@ -413,6 +475,8 @@ export default function ShareCard({ id, seed }: Props) {
           <div style={{ position: "relative", flex: 1, margin: "10px 0", borderRadius: 12, overflow: "hidden" }}>
             <Img style={{ position: "absolute", inset: 0, width: "100%", height: "100%", filter: "contrast(1.2) sepia(1) hue-rotate(-15deg) saturate(6) brightness(0.95)" }} />
             <div style={{ position: "absolute", top: "30%", left: "30%", width: 64, height: 54, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,40,0,0.55), transparent 70%)", filter: "blur(5px)" }} />
+            <ScanCorners color="#ffb454" len={18} inset={8} />
+            <DetectBadge conf={conf} tone="#ffb454" style={{ top: 8, left: 8 }} />
             {/* reticle holding QR */}
             <div style={{ position: "absolute", right: 12, bottom: 12, width: 64, height: 64 }}>
               <span style={{ position: "absolute", inset: 0, border: "1px solid #ffb454", borderRadius: 6 }} />
