@@ -426,83 +426,66 @@ export default function FaceswapPlayground() {
 
     // ── Gradient overlays ─────────────────────────────────────────────
     // Top: subtle dark for logo legibility
-    const topGrad = ctx.createLinearGradient(0, 0, 0, 260);
-    topGrad.addColorStop(0, "rgba(0,0,0,0.72)");
+    const topGrad = ctx.createLinearGradient(0, 0, 0, 240);
+    topGrad.addColorStop(0, "rgba(0,0,0,0.65)");
     topGrad.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = topGrad; ctx.fillRect(0, 0, W, 260);
+    ctx.fillStyle = topGrad; ctx.fillRect(0, 0, W, 240);
 
-    // Bottom: strong dark for text/CTA
-    const botGrad = ctx.createLinearGradient(0, H - 680, 0, H);
+    // Bottom: tall smooth dark for text/CTA (face fades cleanly into it)
+    const botGrad = ctx.createLinearGradient(0, H - 760, 0, H);
     botGrad.addColorStop(0, "rgba(0,0,0,0)");
-    botGrad.addColorStop(0.35, "rgba(0,0,0,0.82)");
-    botGrad.addColorStop(1, "rgba(0,0,0,0.97)");
-    ctx.fillStyle = botGrad; ctx.fillRect(0, H - 680, W, 680);
+    botGrad.addColorStop(0.32, "rgba(0,0,0,0.55)");
+    botGrad.addColorStop(0.6, "rgba(0,0,0,0.88)");
+    botGrad.addColorStop(1, "rgba(0,0,0,0.98)");
+    ctx.fillStyle = botGrad; ctx.fillRect(0, H - 760, W, 760);
 
     // ── Logo (top-left) ───────────────────────────────────────────────
     const logo = new Image();
     await new Promise<void>(res => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
-    const logoH = 32, logoW = Math.round(logoH * (1012 / 256));
-    ctx.globalAlpha = 0.90;
-    ctx.drawImage(logo, 56, 60, logoW, logoH);
+    const logoH = 34, logoW = Math.round(logoH * (1012 / 256));
+    ctx.globalAlpha = 0.92;
+    ctx.drawImage(logo, 60, 60, logoW, logoH);
     ctx.globalAlpha = 1;
 
-    // ── Live badge (top-right) ────────────────────────────────────────
-    ctx.fillStyle = "rgba(239,68,68,0.9)";
+    // ── Live badge (top-right): red pill + white dot + LIVE AI ────────
+    const badgeW = 132, badgeH = 50, badgeX = W - 60 - badgeW, badgeY = 56;
+    ctx.fillStyle = "#ef4444";
     ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(W - 180, 52, 124, 48, 24);
-    else ctx.rect(W - 180, 52, 124, 48);
+    if (typeof ctx.roundRect === "function") ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 25);
+    else ctx.rect(badgeX, badgeY, badgeW, badgeH);
     ctx.fill();
-    ctx.font = "700 22px Inter, ui-sans-serif, system-ui, sans-serif";
     ctx.fillStyle = "#fff";
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.fillText("⚡ LIVE AI", W - 180 + 62, 52 + 24);
+    ctx.beginPath(); ctx.arc(badgeX + 28, badgeY + badgeH / 2, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.font = "700 23px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    ctx.fillText("LIVE AI", badgeX + 44, badgeY + badgeH / 2 + 1);
 
-    // ── Bottom content ────────────────────────────────────────────────
-    const bx = 56, bBot = H - 60;
-    ctx.textAlign = "left";
+    // ── Bottom content (headline → sub → CTA), single URL mention ─────
+    const bx = 60;
+    const btnH = 112, btnY = H - 92 - btnH; // CTA anchored near bottom
 
-    // URL pill (bottom, above CTA)
-    const pillY = bBot - 288;
-    ctx.fillStyle = "rgba(255,255,255,0.10)";
-    ctx.strokeStyle = "rgba(255,255,255,0.18)"; ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(bx, pillY, 310, 56, 28);
-    else ctx.rect(bx, pillY, 310, 56);
-    ctx.fill(); ctx.stroke();
-    ctx.font = "500 28px Inter, ui-sans-serif, system-ui, sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.80)";
-    ctx.textBaseline = "middle";
-    ctx.fillText("scam.ai/halo", bx + 20, pillY + 28);
+    // Headline (2 lines, large bold)
+    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    ctx.font = "700 86px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("I deepfaked", bx, btnY - 250);
+    ctx.fillText("myself in 30s.", bx, btnY - 156);
 
     // Sub-text
-    ctx.font = "400 36px Inter, ui-sans-serif, system-ui, sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.55)";
-    ctx.textBaseline = "top";
-    ctx.fillText("Can you tell what's real?", bx, bBot - 380);
+    ctx.font = "400 38px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.62)";
+    ctx.fillText("Can you tell what's real?", bx, btnY - 70);
 
-    // Headline (2 lines, large)
-    ctx.font = "700 80px Inter, ui-sans-serif, system-ui, sans-serif";
-    ctx.fillStyle = "#ffffff";
-    ctx.fillText("I deepfaked myself", bx, bBot - 560);
-    ctx.fillText("in 30 seconds.", bx, bBot - 466);
-
-    // ── CTA button ────────────────────────────────────────────────────
-    const btnY = bBot - 208, btnH = 104;
+    // ── CTA button — the ONE URL on the card ──────────────────────────
     ctx.fillStyle = "#245FFF";
     ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(bx, btnY, W - bx * 2, btnH, 16);
+    if (typeof ctx.roundRect === "function") ctx.roundRect(bx, btnY, W - bx * 2, btnH, 18);
     else ctx.rect(bx, btnY, W - bx * 2, btnH);
     ctx.fill();
-    ctx.font = "600 38px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.font = "600 40px Inter, ui-sans-serif, system-ui, sans-serif";
     ctx.fillStyle = "#ffffff";
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.fillText("Detect deepfakes → scam.ai/halo", W / 2, btnY + btnH / 2);
-
-    // Footer
-    ctx.font = "400 24px Inter, ui-sans-serif, system-ui, sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.28)";
-    ctx.textBaseline = "bottom";
-    ctx.fillText("scam.ai · AI deepfake detection platform", W / 2, bBot);
+    ctx.fillText("Try it free  →  scam.ai/halo", W / 2, btnY + btnH / 2 + 1);
 
     const dataUrl = canvas.toDataURL("image/jpeg", 0.93);
     setShareCardUrl(dataUrl);
