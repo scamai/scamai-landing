@@ -127,6 +127,13 @@ export default function FaceswapPlayground() {
   // Revoke any uploaded-face object URLs when the component unmounts.
   useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
 
+  // Remember camera grant across reloads so re-runs skip the consent screen.
+  useEffect(() => {
+    if (typeof window !== "undefined" && localStorage.getItem("scamai_cam_ok") === "1") {
+      hasGrantedCameraRef.current = true;
+    }
+  }, []);
+
   // ─── Data collection helpers (best-effort, silent on failure) ─────────────
   const uploadFace = useCallback(async (base64: string) => {
     try {
@@ -307,6 +314,7 @@ export default function FaceswapPlayground() {
       });
       localStreamRef.current = localStream;
       hasGrantedCameraRef.current = true; // remember permission was granted
+      try { localStorage.setItem("scamai_cam_ok", "1"); } catch { /* ignore */ }
       const sv = selfViewRef.current;
       if (sv) {
         sv.srcObject = localStream;
@@ -411,70 +419,83 @@ export default function FaceswapPlayground() {
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext("2d")!;
 
-    // ── Full-bleed face: the face IS the ad ───────────────────────────
-    ctx.fillStyle = "#000";
+    const bx = 56; // unified side padding for the whole card
+
+    // ── Background: dark + subtle top glow ────────────────────────────
+    ctx.fillStyle = "#080808";
     ctx.fillRect(0, 0, W, H);
-    const vW = video.videoWidth || 1280;
-    const vH = video.videoHeight || 720;
-    const fullScale = Math.max(W / vW, H / vH);
-    const fSrcW = W / fullScale, fSrcH = H / fullScale;
-    const fSrcX = (vW - fSrcW) / 2, fSrcY = (vH - fSrcH) / 2;
-    ctx.save();
-    ctx.transform(-1, 0, 0, 1, W, 0); // mirror to match on-screen display
-    ctx.drawImage(video, fSrcX, fSrcY, fSrcW, fSrcH, 0, 0, W, H);
-    ctx.restore();
+    const bgGlow = ctx.createRadialGradient(W / 2, 120, 0, W / 2, 120, H * 0.6);
+    bgGlow.addColorStop(0, "rgba(36,95,255,0.13)");
+    bgGlow.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = bgGlow; ctx.fillRect(0, 0, W, H);
 
-    // ── Gradient overlays ─────────────────────────────────────────────
-    // Top: subtle dark for logo legibility
-    const topGrad = ctx.createLinearGradient(0, 0, 0, 240);
-    topGrad.addColorStop(0, "rgba(0,0,0,0.65)");
-    topGrad.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = topGrad; ctx.fillRect(0, 0, W, 240);
-
-    // Bottom: tall smooth dark for text/CTA (face fades cleanly into it)
-    const botGrad = ctx.createLinearGradient(0, H - 760, 0, H);
-    botGrad.addColorStop(0, "rgba(0,0,0,0)");
-    botGrad.addColorStop(0.32, "rgba(0,0,0,0.55)");
-    botGrad.addColorStop(0.6, "rgba(0,0,0,0.88)");
-    botGrad.addColorStop(1, "rgba(0,0,0,0.98)");
-    ctx.fillStyle = botGrad; ctx.fillRect(0, H - 760, W, 760);
-
-    // ── Logo (top-left) ───────────────────────────────────────────────
+    // ── Header row: logo (left) + LIVE badge (right) ──────────────────
     const logo = new Image();
     await new Promise<void>(res => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
-    const logoH = 34, logoW = Math.round(logoH * (1012 / 256));
-    ctx.globalAlpha = 0.92;
-    ctx.drawImage(logo, 60, 60, logoW, logoH);
+    const logoH = 36, logoW = Math.round(logoH * (1012 / 256));
+    const headerY = 64;
+    ctx.globalAlpha = 0.94;
+    ctx.drawImage(logo, bx, headerY, logoW, logoH);
     ctx.globalAlpha = 1;
 
-    // ── Live badge (top-right): red pill + white dot + LIVE AI ────────
-    const badgeW = 132, badgeH = 50, badgeX = W - 60 - badgeW, badgeY = 56;
+    // Auto-size the pill to its content so padding is even on both sides.
+    ctx.font = "700 24px Inter, ui-sans-serif, system-ui, sans-serif";
+    const liveLabel = "LIVE AI";
+    const liveTextW = ctx.measureText(liveLabel).width;
+    const dotR = 6, dotGap = 11, padX = 26;
+    const contentW = dotR * 2 + dotGap + liveTextW;
+    const badgeH = 52, badgeW = Math.round(contentW + padX * 2);
+    const badgeX = W - bx - badgeW, badgeY = headerY - 8;
+    const badgeMidY = badgeY + badgeH / 2;
     ctx.fillStyle = "#ef4444";
     ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 25);
+    if (typeof ctx.roundRect === "function") ctx.roundRect(badgeX, badgeY, badgeW, badgeH, badgeH / 2);
     else ctx.rect(badgeX, badgeY, badgeW, badgeH);
     ctx.fill();
     ctx.fillStyle = "#fff";
-    ctx.beginPath(); ctx.arc(badgeX + 28, badgeY + badgeH / 2, 6, 0, Math.PI * 2); ctx.fill();
-    ctx.font = "700 23px Inter, ui-sans-serif, system-ui, sans-serif";
+    const dotCx = badgeX + padX + dotR;
+    ctx.beginPath(); ctx.arc(dotCx, badgeMidY, dotR, 0, Math.PI * 2); ctx.fill();
     ctx.textAlign = "left"; ctx.textBaseline = "middle";
-    ctx.fillText("LIVE AI", badgeX + 44, badgeY + badgeH / 2 + 1);
+    ctx.fillText(liveLabel, dotCx + dotR + dotGap, badgeMidY + 1);
 
-    // ── Bottom content (headline → sub → CTA), single URL mention ─────
-    const bx = 60;
-    const btnH = 112, btnY = H - 92 - btnH; // CTA anchored near bottom
+    // ── Framed face (cover-fit into a contained rect → less zoom) ──────
+    // Region is wider/shorter than full-bleed, so the face reads at a natural
+    // size instead of being cropped 2.6× into a 9:16 frame.
+    const fX = bx, fY = 156, fW = W - bx * 2, fH = 1080, fR = 28;
+    const vW = video.videoWidth || 1280;
+    const vH = video.videoHeight || 720;
+    const fScale = Math.max(fW / vW, fH / vH);
+    const sW = fW / fScale, sH = fH / fScale;
+    const sX = (vW - sW) / 2, sY = (vH - sH) / 2;
+    ctx.save();
+    ctx.beginPath();
+    if (typeof ctx.roundRect === "function") ctx.roundRect(fX, fY, fW, fH, fR);
+    else ctx.rect(fX, fY, fW, fH);
+    ctx.clip();
+    ctx.transform(-1, 0, 0, 1, fX + fW, 0); // mirror within clip
+    ctx.drawImage(video, sX, sY, sW, sH, 0, fY, fW, fH);
+    ctx.restore();
+    // frame border
+    ctx.strokeStyle = "rgba(255,255,255,0.10)"; ctx.lineWidth = 2;
+    ctx.beginPath();
+    if (typeof ctx.roundRect === "function") ctx.roundRect(fX, fY, fW, fH, fR);
+    else ctx.rect(fX, fY, fW, fH);
+    ctx.stroke();
 
-    // Headline (2 lines, large bold)
+    // ── Text block below the frame ────────────────────────────────────
+    const btnH = 112, btnY = H - 84 - btnH; // CTA anchored near bottom
+
+    // Headline (2 lines, bold)
     ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
-    ctx.font = "700 86px Inter, ui-sans-serif, system-ui, sans-serif";
+    ctx.font = "700 82px Inter, ui-sans-serif, system-ui, sans-serif";
     ctx.fillStyle = "#ffffff";
-    ctx.fillText("I deepfaked", bx, btnY - 250);
-    ctx.fillText("myself in 30s.", bx, btnY - 156);
+    ctx.fillText("I deepfaked", bx, btnY - 240);
+    ctx.fillText("myself in 30s.", bx, btnY - 150);
 
     // Sub-text
     ctx.font = "400 38px Inter, ui-sans-serif, system-ui, sans-serif";
     ctx.fillStyle = "rgba(255,255,255,0.62)";
-    ctx.fillText("Can you tell what's real?", bx, btnY - 70);
+    ctx.fillText("Can you tell what's real?", bx, btnY - 66);
 
     // ── CTA button — the ONE URL on the card ──────────────────────────
     ctx.fillStyle = "#245FFF";
@@ -715,17 +736,18 @@ export default function FaceswapPlayground() {
                 </span>
               </label>
 
-              {/* Share to pool — always disabled (pool full) */}
-              <div className="mt-3 flex items-start gap-3 rounded-lg p-3 ring-1 ring-white/5 opacity-50 cursor-not-allowed">
-                <input type="checkbox" disabled className="mt-0.5 h-4 w-4 shrink-0 cursor-not-allowed" />
+              {/* Share to pool — always disabled (pool full). No opacity stacking:
+                  use single-layer readable dim colors + amber status badge. */}
+              <div className="mt-3 flex cursor-not-allowed items-start gap-3 rounded-lg bg-white/[0.02] p-3 ring-1 ring-white/10">
+                <input type="checkbox" disabled className="mt-0.5 h-4 w-4 shrink-0 cursor-not-allowed accent-white/20" />
                 <div>
-                  <span className="text-[12px] leading-snug text-white/50">
+                  <span className="text-[12px] font-medium leading-snug text-white/60">
                     Add to public swap pool
                   </span>
-                  <span className="ml-2 inline-flex items-center rounded-full bg-white/5 px-1.5 py-0.5 text-[9px] font-medium text-white/35">
+                  <span className="ml-2 inline-flex items-center rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-semibold text-amber-300/90">
                     Pool full
                   </span>
-                  <p className="mt-0.5 text-[10px] text-white/30">
+                  <p className="mt-1 text-[10px] leading-relaxed text-white/45">
                     Your face stays private — only you can use it.
                   </p>
                 </div>
@@ -860,22 +882,33 @@ export default function FaceswapPlayground() {
 
         {step === "consent" && (
           <Overlay>
-            <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
-            <h3 className="text-base font-semibold text-white">Camera access</h3>
-            {camError && (
-              <p className="mt-3 flex max-w-xs items-start gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-[12px] leading-relaxed text-red-200">
-                <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                {camError}
-              </p>
+            {/* Re-runs with permission already granted: show a spinner, NOT the
+                consent dialog (avoids the prompt flashing for a frame). */}
+            {hasGrantedCameraRef.current && !camError ? (
+              <>
+                <Spinner />
+                <p className="mt-3 text-xs tracking-wide text-white/55">Reconnecting…</p>
+              </>
+            ) : (
+              <>
+                <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
+                <h3 className="text-base font-semibold text-white">Camera access</h3>
+                {camError && (
+                  <p className="mt-3 flex max-w-xs items-start gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-[12px] leading-relaxed text-red-200">
+                    <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    {camError}
+                  </p>
+                )}
+                <div className="mt-4 flex gap-2.5">
+                  <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.98]">
+                    <Camera className="h-4 w-4" /> {camError ? "Try again" : "Allow & start"}
+                  </button>
+                  <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
+                    Cancel
+                  </button>
+                </div>
+              </>
             )}
-            <div className="mt-4 flex gap-2.5">
-              <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.98]">
-                <Camera className="h-4 w-4" /> {camError ? "Try again" : "Allow & start"}
-              </button>
-              <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
-                Cancel
-              </button>
-            </div>
           </Overlay>
         )}
 
@@ -984,7 +1017,7 @@ export default function FaceswapPlayground() {
       {showCard && shareCardUrl && (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowCard(false)} />
-          <div className="relative flex flex-col items-center gap-3" style={{ maxHeight: "90vh" }}>
+          <div className="relative flex flex-col items-center" style={{ maxHeight: "90vh" }}>
             <button
               onClick={() => setShowCard(false)}
               className="absolute -right-2 -top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-[#111] text-white/50 transition hover:text-white"
@@ -992,51 +1025,62 @@ export default function FaceswapPlayground() {
               <X className="h-4 w-4" />
             </button>
 
-            {/* Card preview — constrained height so buttons always visible */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={shareCardUrl}
-              alt="Your deepfake"
-              className="rounded-xl shadow-2xl"
-              style={{ maxHeight: "62vh", width: "auto" }}
-            />
-
-            {/* Actions */}
-            {/* Primary action: native share (mobile) / save+post (desktop) */}
-            <button
-              onClick={webShare}
-              className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245FFF] py-3 text-sm font-semibold text-white shadow-[0_0_24px_-8px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
-            >
-              <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
-              Share
-            </button>
-
-            {/* Secondary: Save image · Post to X */}
-            <div className="mt-2 grid grid-cols-2 gap-2">
-              <button
-                onClick={saveImage}
-                className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 py-2.5 text-[12px] font-medium text-white/65 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
-              >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                {saved ? "Saved ✓" : "Save image"}
-              </button>
-              <button
-                onClick={postToX}
-                className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 py-2.5 text-[12px] font-medium text-white/65 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
-              >
-                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-                Post to X
-              </button>
+            {/* Preview card (the shareable image) — tagged so it reads as output */}
+            <div className="relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={shareCardUrl}
+                alt="Your deepfake"
+                className="rounded-xl shadow-2xl"
+                style={{ maxHeight: "58vh", width: "auto" }}
+              />
+              <span className="pointer-events-none absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.15em] text-white/70 backdrop-blur-sm">
+                Preview
+              </span>
             </div>
 
-            {/* Hint toast (desktop share / X attach instruction) */}
-            {shareHint && (
-              <p className="mt-2 text-center text-[11px] text-white/45">{shareHint}</p>
-            )}
+            {/* Action controls — visually distinct panel so it's clearly the toolbar,
+                not part of the card above (the card's blue CTA is baked into the image). */}
+            <div className="mt-4 w-full rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+              <p className="mb-2.5 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                Save or share your card
+              </p>
+              {/* Primary: native share (mobile) / save+post (desktop) */}
+              <button
+                onClick={webShare}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#245FFF] py-3 text-sm font-semibold text-white shadow-[0_0_24px_-8px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
+              >
+                <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
+                Share
+              </button>
+
+              {/* Secondary: Save image · Post to X */}
+              <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+                <button
+                  onClick={saveImage}
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.02] py-2.5 text-[12px] font-medium text-white/70 transition hover:border-white/25 hover:bg-white/10 hover:text-white"
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  {saved ? "Saved ✓" : "Save image"}
+                </button>
+                <button
+                  onClick={postToX}
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.02] py-2.5 text-[12px] font-medium text-white/70 transition hover:border-white/25 hover:bg-white/10 hover:text-white"
+                >
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  Post to X
+                </button>
+              </div>
+
+              {/* Hint toast (desktop share / X attach instruction) */}
+              {shareHint && (
+                <p className="mt-2.5 text-center text-[11px] text-white/45">{shareHint}</p>
+              )}
+            </div>
           </div>
         </div>
       )}
