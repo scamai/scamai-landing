@@ -339,27 +339,34 @@ export default function ShareCard({ id, seed }: Props) {
               <Logo />
               <span style={{ background: "#f7d77a", color: "#3a2a00", fontSize: 9, fontWeight: 900, padding: "3px 8px", borderRadius: 999, letterSpacing: "0.05em" }}>✦ RARE</span>
             </div>
-            <div style={{ position: "relative", margin: "10px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
-              <Img style={{ width: "100%", height: 168 }} />
+            <div style={{ position: "relative", margin: "9px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
+              <Img style={{ width: "100%", height: 150 }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(115deg,transparent 40%,rgba(255,255,255,0.18) 50%,transparent 60%)" }} />
               <ScanCorners color="#f7d77a" len={16} inset={5} />
               <DetectBadge conf={conf} tone="#f7d77a" compact style={{ top: 6, left: 6 }} />
               <span style={{ position: "absolute", top: 6, right: 8, fontFamily: mono, fontSize: 9, color: "#f7d77a", fontWeight: 700 }}>#{no}</span>
             </div>
-            <div style={{ fontWeight: 800, fontSize: 20, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.0 }}>{hl[0]} {hl[1]}</div>
-            <div style={{ display: "flex", gap: 6, margin: "9px 0" }}>
+            <div style={{ fontWeight: 800, fontSize: 19, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.0 }}>{hl[0]} {hl[1]}</div>
+            <div style={{ display: "flex", gap: 6, margin: "8px 0" }}>
               {[["REALISM", conf, "#f7d77a"], ["TRUST", "00.3", "#ef4444"]].map(([k, v, col]) => (
-                <div key={k} style={{ flex: 1, background: "rgba(255,255,255,0.05)", borderRadius: 7, padding: "5px 9px" }}>
+                <div key={k} style={{ flex: 1, background: "rgba(255,255,255,0.05)", borderRadius: 7, padding: "4px 9px" }}>
                   <div style={{ fontSize: 8, color: "rgba(255,255,255,0.5)" }}>{k}</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: col as string }}>{v}</div>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: col as string }}>{v}</div>
                 </div>
               ))}
+            </div>
+            {/* Halo intro — what the product is */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(247,215,122,0.08)", border: "1px solid rgba(247,215,122,0.22)", borderRadius: 9, padding: "6px 9px", marginBottom: 8 }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontWeight: 800, fontSize: 12, color: "#f7d77a", whiteSpace: "nowrap" }}>
+                <span style={{ width: 9, height: 9, borderRadius: "50%", border: "2px solid #f7d77a" }} />Halo
+              </span>
+              <span style={{ fontSize: 9.5, color: "rgba(255,255,255,0.66)", lineHeight: 1.25 }}>Real-time deepfake detection, on-device. Free.</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               {/* QR as auth seal */}
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <QR size={42} glow="0 0 10px rgba(247,200,80,0.4)" />
-                <div style={{ fontSize: 9, color: "rgba(255,255,255,0.5)" }}>pull your own<br /><b style={{ color: "#f7d77a" }}>scam.ai/halo</b></div>
+                <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.35 }}>Try it free<br /><b style={{ color: "#f7d77a" }}>scam.ai/halo</b></div>
               </div>
               <CoBrand />
             </div>
