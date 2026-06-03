@@ -432,9 +432,9 @@ export default function FaceswapPlayground() {
     // ── Header row: logo (left) + LIVE badge (right) ──────────────────
     const logo = new Image();
     await new Promise<void>(res => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
-    const logoH = 36, logoW = Math.round(logoH * (1012 / 256));
-    const headerY = 64;
-    ctx.globalAlpha = 0.94;
+    const logoH = 52, logoW = Math.round(logoH * (1012 / 256));
+    const headerY = 60;
+    ctx.globalAlpha = 0.95;
     ctx.drawImage(logo, bx, headerY, logoW, logoH);
     ctx.globalAlpha = 1;
 
@@ -445,7 +445,7 @@ export default function FaceswapPlayground() {
     const dotR = 6, dotGap = 11, padX = 26;
     const contentW = dotR * 2 + dotGap + liveTextW;
     const badgeH = 52, badgeW = Math.round(contentW + padX * 2);
-    const badgeX = W - bx - badgeW, badgeY = headerY - 8;
+    const badgeX = W - bx - badgeW, badgeY = headerY; // align top with logo (both 52 tall)
     const badgeMidY = badgeY + badgeH / 2;
     ctx.fillStyle = "#ef4444";
     ctx.beginPath();
