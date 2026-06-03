@@ -59,7 +59,7 @@ export default function HaloSpotlight() {
           </p>
 
           {/* Real-Time · Secure · Private pillars */}
-          <div className="mt-7 grid w-full grid-cols-3 gap-2 text-left sm:gap-3 lg:max-w-lg">
+          <div className="mt-7 grid w-full grid-cols-1 gap-2 text-left min-[420px]:grid-cols-3 sm:gap-3 lg:max-w-lg">
             {PILLARS.map(({ icon: Icon, label, desc }) => (
               <div key={label} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-3">
                 <Icon className="h-4 w-4 text-[#245FFF]" />
