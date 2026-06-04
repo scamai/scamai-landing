@@ -5,7 +5,7 @@
 // Locked requirements: detection watermark ON the face, integrated QR,
 // randomized copy, real ScamAI + Qualcomm logos.
 
-import { DARES, FACE, HEADLINES, type Tier, pick, qrUrl } from "./data";
+import { FACE, PAIRS, type Tier, pick, qrUrl } from "./data";
 
 type Props = { tier: Tier; idx: number; seed: number };
 
@@ -84,8 +84,8 @@ const mono = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 // ═══════════════════════════════════════════════════════════════════
 export default function ShareCard({ tier, idx, seed }: Props) {
-  const hl = pick(HEADLINES, idx, seed);
-  const dare = pick(DARES, idx, seed, 5);
+  // One pair per roll — setup + punchline stay attached.
+  const { h: hl, p: dare } = pick(PAIRS, idx, seed);
   const conf = (98 + ((idx * 7 + seed) % 190) / 100).toFixed(2);
   const no = String((idx * 137 + seed * 17) % 9999).padStart(4, "0");
 
@@ -121,7 +121,7 @@ export default function ShareCard({ tier, idx, seed }: Props) {
           <QR size={48} glow={tier.glow === "none" ? undefined : tier.glow.replace("26px", "12px").replace("24px", "12px").replace("22px", "12px")} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 900, color: tier.accent, letterSpacing: "0.03em" }}>MAKE YOURS → 30s</div>
-            <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>scan · scam.ai</div>
+            <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>scam.ai</div>
           </div>
         </div>
 
