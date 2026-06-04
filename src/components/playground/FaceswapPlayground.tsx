@@ -719,8 +719,13 @@ export default function FaceswapPlayground() {
     if (isMobile && canShareFile()) {
       navigator
         .share({ files: [shareFileRef.current!] }) // sheet → "Save Image" → album
+        .then(() => trackEvent({ action: "playground_card_share_completed", category: "playground", label: "save" }))
         .catch((e: Error) => {
-          if (e?.name !== "AbortError") downloadImage();
+          if (e?.name === "AbortError") {
+            trackEvent({ action: "playground_card_share_dismissed", category: "playground", label: "save" });
+          } else {
+            downloadImage();
+          }
         });
       return;
     }
@@ -735,9 +740,12 @@ export default function FaceswapPlayground() {
     if (canShareFile()) {
       navigator
         .share({ text: shareTextRef.current, files: [shareFileRef.current!] })
+        .then(() => trackEvent({ action: "playground_card_share_completed", category: "playground", label: "share" }))
         .catch((e: Error) => {
-          // AbortError = user dismissed the sheet → do nothing.
-          if (e?.name !== "AbortError") {
+          // AbortError = user dismissed the sheet.
+          if (e?.name === "AbortError") {
+            trackEvent({ action: "playground_card_share_dismissed", category: "playground", label: "share" });
+          } else {
             downloadImage();
             setShareHint("Image saved — post it anywhere 🚀");
             setTimeout(() => setShareHint(""), 3500);
@@ -761,8 +769,11 @@ export default function FaceswapPlayground() {
     if (isMobile && canShareFile()) {
       navigator
         .share({ text: shareTextRef.current, files: [shareFileRef.current!] })
+        .then(() => trackEvent({ action: "playground_card_share_completed", category: "playground", label: "x" }))
         .catch((e: Error) => {
-          if (e?.name !== "AbortError") {
+          if (e?.name === "AbortError") {
+            trackEvent({ action: "playground_card_share_dismissed", category: "playground", label: "x" });
+          } else {
             downloadImage();
             setShareHint("Image saved — open X and attach it 📎");
             setTimeout(() => setShareHint(""), 3500);

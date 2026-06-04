@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import { trackCTA, trackOutbound } from "@/lib/analytics";
 import DeveloperSection from "./DeveloperSection";
 import HaloSpotlight from "./HaloSpotlight";
+import SectionViewTracker from "@/components/SectionViewTracker";
 import TrustedBy from "./TrustedBy";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -329,6 +330,7 @@ export default function NewLanding() {
     <main className="bg-black text-white" role="main">
       {/* Hero Section — text takes ~70vh, video peeks below */}
       <section className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
+        <SectionViewTracker name="landing_hero" />
         <HeroBackground className="" />
         <div className="relative z-10 w-full">
           {/* Text area — centered in ~70vh */}
@@ -391,11 +393,13 @@ export default function NewLanding() {
       <TrustedBy />
 
       {/* Live "Deepfake is here" face-swap playground */}
+      <SectionViewTracker name="landing_playground" />
       <PlaygroundErrorBoundary>
         <FaceswapPlayground />
       </PlaygroundErrorBoundary>
 
       {/* Halo + Qualcomm partnership spotlight (the defense) */}
+      <SectionViewTracker name="landing_halo_spotlight" />
       <HaloSpotlight />
 
       {/* AI-Powered Security — merged section */}
@@ -405,6 +409,7 @@ export default function NewLanding() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}>
+        <SectionViewTracker name="landing_ai_security" />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-14 sm:py-24 lg:py-32">
           <AnimatedSection>
@@ -454,6 +459,7 @@ export default function NewLanding() {
 
       {/* Features Section: THE PLATFORM + All-in-One + Lightning Fast */}
       <section className="landing-section relative overflow-hidden bg-black" aria-label="Platform Features - Why Teams Choose Us">
+        <SectionViewTracker name="landing_features" />
         {/* Background image wrapper */}
         <div className="absolute inset-0 w-full h-full" style={{
           backgroundImage: 'url(/session3.svg)',
@@ -534,6 +540,7 @@ export default function NewLanding() {
 
       {/* Session4: Transparent Pricing & Global Compliance */}
       <section className="landing-section relative overflow-hidden bg-black" aria-label="Pricing & Compliance">
+        <SectionViewTracker name="landing_pricing" />
         {/* Background image wrapper */}
         <div className="absolute inset-0 w-full h-full" style={{
           backgroundImage: 'url(/session4.svg)',
@@ -627,6 +634,7 @@ export default function NewLanding() {
 
       {/* Resources — cross-links to learn, solutions, compare */}
       <section className="landing-section relative overflow-hidden bg-black">
+        <SectionViewTracker name="landing_resources" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center mb-10">
             <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-3 sm:text-[10px]">RESOURCES</p>
