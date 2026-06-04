@@ -17,7 +17,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import { Link } from "@/i18n/navigation";
 import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Plus, X, Lock } from "lucide-react";
-import { PAIRS, QR_TARGET, rollTier, shareText } from "@/lib/share-card";
+import { PAIRS, QR_TARGET, SHARE_URL_X, rollTier, shareText } from "@/lib/share-card";
+import { trackEvent } from "@/lib/analytics";
 import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
@@ -285,6 +286,24 @@ export default function FaceswapPlayground() {
     if (state.phase === "ended") setStep("ended");
   }, [state.phase]);
 
+  // Funnel events on phase TRANSITIONS only (phase is in deps of several
+  // effects — the ref dedupes re-renders so each step fires exactly once).
+  const trackedPhaseRef = useRef<string>("");
+  useEffect(() => {
+    if (state.phase === trackedPhaseRef.current) return;
+    trackedPhaseRef.current = state.phase;
+    if (state.phase === "live") {
+      trackEvent({ action: "playground_swap_live", category: "playground" });
+    } else if (state.phase === "queued") {
+      trackEvent({ action: "playground_queued", category: "playground" });
+    } else if (state.phase === "error") {
+      trackEvent({ action: "playground_swap_error", category: "playground", label: state.error });
+    } else if (state.phase === "ended") {
+      // Engine closed the session (TIME_EXPIRED). Timer path tracks separately.
+      trackEvent({ action: "playground_session_completed", category: "playground", label: "engine" });
+    }
+  }, [state.phase, state.error]);
+
   // 30s countdown — starts when the swap goes live, ends → CTA.
   useEffect(() => {
     if (step !== "running" || state.phase !== "live") return;
@@ -293,6 +312,7 @@ export default function FaceswapPlayground() {
       setSecondsLeft(secondsRef.current);
       if (secondsRef.current <= 0) {
         clearInterval(id);
+        trackEvent({ action: "playground_session_completed", category: "playground", label: "timer" });
         stop();
         setStep("ended");
       }
@@ -323,6 +343,7 @@ export default function FaceswapPlayground() {
       localStreamRef.current = localStream;
       hasGrantedCameraRef.current = true; // remember permission was granted
       try { localStorage.setItem("scamai_cam_ok", "1"); } catch { /* ignore */ }
+      trackEvent({ action: "playground_camera_granted", category: "playground" });
       const sv = selfViewRef.current;
       if (sv) {
         sv.srcObject = localStream;
@@ -344,6 +365,7 @@ export default function FaceswapPlayground() {
       if (selfViewRef.current) selfViewRef.current.srcObject = null;
 
       const name = (e as Error)?.name || "";
+      trackEvent({ action: "playground_camera_error", category: "playground", label: name || "unknown" });
       const msg =
         name === "NotAllowedError" || name === "SecurityError"
           ? "Camera blocked. Click the camera icon in your browser's address bar, allow access, then try again."
@@ -450,6 +472,9 @@ export default function FaceswapPlayground() {
     const tier = rollTier();
     const pair = PAIRS[Math.floor(Math.random() * PAIRS.length)];
     shareTextRef.current = shareText(pair); // X/share text matches the card
+    // label = tier key → PostHog can break down share-rate by rarity and
+    // verify the 70/20/7/3 distribution actually holds in production.
+    trackEvent({ action: "playground_card_generated", category: "playground", label: tier.key });
     const conf = (98 + Math.random() * 1.9).toFixed(2);
     const cardNo = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
 
@@ -690,6 +715,7 @@ export default function FaceswapPlayground() {
   // download the file directly. navigator.share is called SYNCHRONOUSLY (no await
   // before it) to preserve the iOS user-gesture.
   const saveImage = useCallback(() => {
+    trackEvent({ action: "playground_card_saved", category: "playground", label: isMobile ? "mobile" : "desktop" });
     if (isMobile && canShareFile()) {
       navigator
         .share({ files: [shareFileRef.current!] }) // sheet → "Save Image" → album
@@ -705,6 +731,7 @@ export default function FaceswapPlayground() {
 
   // Share via native sheet (carries the image) on mobile; download + hint on desktop.
   const webShare = useCallback(() => {
+    trackEvent({ action: "playground_card_shared", category: "playground", label: isMobile ? "mobile" : "desktop" });
     if (canShareFile()) {
       navigator
         .share({ text: shareTextRef.current, files: [shareFileRef.current!] })
@@ -730,6 +757,7 @@ export default function FaceswapPlayground() {
   // - Desktop: open the X web composer (synchronous → not popup-blocked) and
   //   download the image so it's ready to attach.
   const postToX = useCallback(() => {
+    trackEvent({ action: "playground_card_posted_x", category: "playground", label: isMobile ? "mobile" : "desktop" });
     if (isMobile && canShareFile()) {
       navigator
         .share({ text: shareTextRef.current, files: [shareFileRef.current!] })
@@ -742,7 +770,10 @@ export default function FaceswapPlayground() {
         });
       return;
     }
-    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTextRef.current)}`;
+    // Drop the trailing "→ scam.ai" from the intent text — the UTM-tagged url
+    // param renders as a t.co link (displays as scam.ai) and is attributable.
+    const intentText = shareTextRef.current.replace(/ → scam\.ai$/, "");
+    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(intentText)}&url=${encodeURIComponent(SHARE_URL_X)}`;
     window.open(intent, "_blank", "noopener,noreferrer");
     downloadImage();
     setShareHint("Image saved — attach it to your tweet 📎");

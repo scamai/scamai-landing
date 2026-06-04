@@ -5,7 +5,12 @@
 // QR / CTA → scam.ai homepage (face-swap playground lives at the top).
 // Halo (detection product) gets only the one-line footer ad.
 
-export const QR_TARGET = "https://scam.ai";
+// UTM-tagged so card-driven arrivals are attributable in GA4/PostHog instead
+// of vanishing into "direct". One medium per surface: qr (card scan), x (tweet
+// intent link). Keep the human-visible share TEXT clean ("→ scam.ai") — the
+// ugly query string only ever lives inside the QR pixels / t.co-wrapped link.
+export const QR_TARGET = "https://scam.ai/?utm_source=share_card&utm_medium=qr&utm_campaign=playground";
+export const SHARE_URL_X = "https://scam.ai/?utm_source=share_card&utm_medium=x&utm_campaign=playground";
 
 // ─── Copy: AUTHORED setup+punchline pairs, drawn as a unit ───
 // Line 1 sets up the face-swap joke, line 2 lands it and nods "your turn".
