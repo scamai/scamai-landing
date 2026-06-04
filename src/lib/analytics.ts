@@ -1,5 +1,17 @@
-// Google Analytics 4 event tracking utility
-// All events fire through gtag() which is loaded conditionally after cookie consent
+// Unified analytics event bus: GA4 + PostHog.
+// Both tools load conditionally AFTER cookie consent (CookieConsent.tsx);
+// every helper below no-ops until then. trackEvent() fans out to both, so
+// component call sites stay tool-agnostic.
+//
+// PostHog specifics:
+// - Traffic goes through the same-origin /ingest reverse proxy
+//   (next.config.ts rewrites) so ad-blockers — common among this site's
+//   security-minded audience — don't drop events.
+// - Safe no-op when NEXT_PUBLIC_POSTHOG_KEY is missing, so teammates
+//   without keys build and run unaffected.
+// - Sentry owns exceptions (capture_exceptions: false) — no double-report.
+
+import posthog from "posthog-js";
 
 type GAEvent = {
   action: string;
@@ -15,14 +27,48 @@ declare global {
   }
 }
 
-/** Core gtag event helper */
-export function trackEvent({ action, category, label, value }: GAEvent) {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", action, {
-    event_category: category,
-    event_label: label,
-    value,
+// ── PostHog lifecycle (called from CookieConsent) ────────────────
+
+let posthogLoaded = false;
+
+/** Init PostHog. Call ONLY after cookie consent — mirrors loadGA(). */
+export function loadPostHog() {
+  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  if (!key || posthogLoaded || typeof window === "undefined") return;
+  posthogLoaded = true;
+  posthog.init(key, {
+    api_host: "/ingest",
+    ui_host: "https://us.posthog.com",
+    // 2025-05-24 defaults: history-API pageviews (SPA navigation),
+    // pageleave, sane autocapture — manual wiring stays business-only.
+    defaults: "2025-05-24",
+    capture_exceptions: false, // Sentry owns errors
+    person_profiles: "identified_only",
+    session_recording: {
+      maskAllInputs: true,
+    },
   });
+}
+
+/** Called when the user declines cookie consent — mirrors removeGACookies(). */
+export function disablePostHog() {
+  if (!posthogLoaded) return;
+  posthog.opt_out_capturing();
+}
+
+/** Core event helper — fans out to GA4 (gtag) AND PostHog. */
+export function trackEvent({ action, category, label, value }: GAEvent) {
+  if (typeof window === "undefined") return;
+  if (window.gtag) {
+    window.gtag("event", action, {
+      event_category: category,
+      event_label: label,
+      value,
+    });
+  }
+  if (posthogLoaded) {
+    posthog.capture(action, { category, label, value });
+  }
 }
 
 // ── Pre-built event helpers ──────────────────────────────────────
@@ -58,6 +104,15 @@ export function trackOutbound(url: string, label: string) {
 export function trackNewsletterSignup(location: string) {
   trackEvent({
     action: "newsletter_signup",
+    category: "conversion",
+    label: location,
+  });
+}
+
+/** Waitlist form submission (scam-insurance, Halo, etc.) */
+export function trackWaitlistSubmit(location: string) {
+  trackEvent({
+    action: "waitlist_submitted",
     category: "conversion",
     label: location,
   });

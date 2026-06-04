@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -10,6 +11,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  // PostHog API calls use a trailing-slash-sensitive path through the
+  // /ingest proxy below; Next's default trailing-slash redirect breaks them.
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {
@@ -36,6 +40,22 @@ const nextConfig: NextConfig = {
           // signaling; dek-issuance...run.app for the Halo waitlist DEK endpoint.
           { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.vercel-insights.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://cdn.vercel-insights.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://api.liveface.app wss://api.liveface.app https://dek-issuance-40198490972.us-central1.run.app; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; media-src 'self' blob:;" },
         ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      // Same-origin reverse proxy for PostHog (consent-gated, see
+      // CookieConsent.tsx). This audience is security-minded — ad-blocker
+      // rates are high, and a direct us.i.posthog.com connection would be
+      // dropped. Same-origin also means CSP connect-src 'self' covers it.
+      {
+        source: "/ingest/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/ingest/:path*",
+        destination: "https://us.i.posthog.com/:path*",
       },
     ];
   },
@@ -182,4 +202,20 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withSentryConfig(withNextIntl(nextConfig), {
+  org: process.env.SENTRY_ORG ?? "reality-inc",
+  project: process.env.SENTRY_PROJECT ?? "scamai-landing",
+  // Sourcemap upload only runs when SENTRY_AUTH_TOKEN is present (Vercel
+  // env). Local/teammate builds without the token stay quiet and green.
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+  // Serve the SDK's events through a first-party route so ad-blockers
+  // (high among this audience) can't drop error reports.
+  tunnelRoute: "/monitoring",
+  disableLogger: true,
+  // Vercel cron-monitor auto-instrumentation: off (no crons here).
+  automaticVercelMonitors: false,
+});
