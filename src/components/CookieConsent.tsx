@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { loadPostHog, disablePostHog } from "@/lib/analytics";
 
 const CONSENT_KEY = "scamai_cookie_consent";
 const GA_ID = "G-NNX4SFN50V";
@@ -62,6 +63,7 @@ export default function CookieConsent() {
 
     if (stored === "accepted") {
       loadGA();
+      loadPostHog();
     } else if (stored === "pending") {
       // Small delay so it doesn't flash on load
       const timer = setTimeout(() => setVisible(true), 800);
@@ -74,6 +76,7 @@ export default function CookieConsent() {
     setConsent("accepted");
     setVisible(false);
     loadGA();
+    loadPostHog();
 
     // Track consent after GA loads
     setTimeout(() => {
@@ -91,6 +94,7 @@ export default function CookieConsent() {
     setConsent("declined");
     setVisible(false);
     removeGACookies();
+    disablePostHog();
   }, []);
 
   // Don't show on share pages — they have no nav/layout context
