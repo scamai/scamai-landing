@@ -15,16 +15,17 @@ function Logo({ h = 15 }: { h?: number }) {
   return <img src="/scamai-logo.svg" alt="scam.ai" style={{ height: h, width: "auto", display: "block" }} />;
 }
 
-function CoBrand() {
+// One-line Halo ad — replaces the logo lockup (Qualcomm stays, tiny, at the end).
+function HaloAd({ accent }: { accent: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 9 }}>
-      {/* scamai svg has more internal padding (1012×256) than qualcomm (783×144) —
-          14.5px vs 10px makes the wordmarks optically equal */}
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+      <span style={{ width: 9, height: 9, borderRadius: "50%", border: `2px solid ${accent}`, flexShrink: 0 }} />
+      <span style={{ fontSize: 9.5, color: "rgba(255,255,255,0.6)", whiteSpace: "nowrap" }}>
+        <b style={{ color: "#fff" }}>Halo</b> · on-device deepfake detection
+      </span>
+      <span style={{ width: 1, height: 10, background: "rgba(255,255,255,0.25)" }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/scamai-logo.svg" alt="ScamAI" style={{ height: 14.5, width: "auto", opacity: 0.9 }} />
-      <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.3)" }} />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/qualcomm-logo.svg" alt="Qualcomm" style={{ height: 10, width: "auto", opacity: 0.9 }} />
+      <img src="/qualcomm-logo.svg" alt="Qualcomm" style={{ height: 8, width: "auto", opacity: 0.7 }} />
     </div>
   );
 }
@@ -124,9 +125,14 @@ export default function ShareCard({ tier, idx, seed }: Props) {
           </div>
         </div>
 
-        {/* real-logo co-brand */}
+        {/* one-line Halo ad (baked into the saved PNG) */}
         <div style={{ marginTop: 9 }}>
-          <CoBrand />
+          <HaloAd accent={tier.accent} />
+        </div>
+
+        {/* drop-rate strip — the brag line, very bottom, baked into the PNG */}
+        <div style={{ marginTop: 7, textAlign: "center", fontFamily: mono, fontSize: 8.5, fontWeight: 700, letterSpacing: "0.14em", color: tier.accent, opacity: 0.95 }}>
+          ✦ {tier.name} · {tier.odds} DROP
         </div>
       </div>
     </div>

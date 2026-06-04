@@ -37,9 +37,8 @@ export default function ShowcasePage() {
           {TIERS.map((tier, i) => (
             <div key={tier.key}>
               <ShareCard tier={tier} idx={i + 1} seed={seed} />
-              <div style={{ marginTop: 11, display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
+              <div style={{ marginTop: 11, textAlign: "center" }}>
                 <span style={{ fontSize: 15, fontWeight: 800, color: tier.accent }}>✦ {tier.name}</span>
-                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.5)" }}>drop rate {tier.odds}</span>
               </div>
             </div>
           ))}

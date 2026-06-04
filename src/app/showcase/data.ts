@@ -12,28 +12,38 @@ export const qrUrl = (size = 200) =>
 export const FACE = "https://randomuser.me/api/portraits/men/32.jpg";
 
 // ─── Random copy pools (re-rolled per share) ───
+// Playful > preachy. The card should make people grin, then scan.
 export const HEADLINES: [string, string][] = [
   ["I deepfaked", "myself in 30s."],
   ["Knock knock.", "Who am I?"],
-  ["That's not me.", "Or is it?"],
-  ["Trust", "no face."],
-  ["Real or fake?", "You decide."],
-  ["This face", "isn't real."],
-  ["Spot the", "fake."],
-  ["I'm not", "real."],
-  ["Don't trust", "this face."],
-  ["30 seconds.", "Zero trust."],
+  ["New face,", "who dis?"],
+  ["POV: I don't", "exist."],
+  ["Plot twist:", "I'm AI."],
+  ["100% me.", "Allegedly."],
+  ["Born 30", "seconds ago."],
+  ["Mom, I can", "explain."],
+  ["Me 2.0", "just dropped."],
+  ["Catfish", "speedrun."],
+  ["Identity:", "404."],
   ["This face", "doesn't exist."],
-  ["Made up.", "In 30 seconds."],
+  ["Face stolen.", "Legally."],
+  ["My twin?", "Never met him."],
+  ["Real or fake?", "You decide."],
+  ["Trust", "no face."],
 ];
 
 // Deepfake dares — the hook that pulls people in (no product copy).
 export const DARES = [
-  "Your turn. 30 seconds.",
+  "Your face. 30 seconds. Go.",
   "Bet you can't spot the fake.",
-  "You'd fall for it too.",
-  "Think you'd catch it?",
+  "Scan if you dare.",
+  "Your group chat does this next.",
+  "Beat my confidence score.",
+  "Your mom couldn't tell. Can you?",
+  "Steal your own face first.",
   "Make yours before they make you.",
+  "You'd fall for it too.",
+  "Do it. Everyone's doing it.",
 ];
 
 // Deterministic seeded pick (stable per card, re-rolls on seed change).
@@ -82,21 +92,9 @@ export const TIERS: Tier[] = [
     shine: 0.12,
   },
   {
-    key: "epic",
-    name: "EPIC",
-    odds: "7%",
-    border: "linear-gradient(135deg,#a78bfa,#f472b6 35%,#60a5fa 60%,#f9a8d4 80%,#a78bfa)",
-    glow: "0 0 24px rgba(167,139,250,0.42)",
-    chipBg: "#c4b5fd",
-    chipText: "#1a0b3a",
-    accent: "#c4b5fd",
-    detect: "#f472b6",
-    shine: 0.2,
-  },
-  {
     key: "gold",
     name: "GOLD",
-    odds: "3%",
+    odds: "7%",
     border: "linear-gradient(135deg,#f7d77a,#b8860b 40%,#fff6d0 55%,#b8860b 70%,#f7d77a)",
     glow: "0 0 26px rgba(247,200,80,0.4)",
     chipBg: "#f7d77a",
@@ -104,5 +102,18 @@ export const TIERS: Tier[] = [
     accent: "#f7d77a",
     detect: "#f7d77a",
     shine: 0.18,
+  },
+  // EPIC outshines gold (holo) → top tier, rarest drop.
+  {
+    key: "epic",
+    name: "EPIC",
+    odds: "3%",
+    border: "linear-gradient(135deg,#a78bfa,#f472b6 35%,#60a5fa 60%,#f9a8d4 80%,#a78bfa)",
+    glow: "0 0 24px rgba(167,139,250,0.42)",
+    chipBg: "#c4b5fd",
+    chipText: "#1a0b3a",
+    accent: "#c4b5fd",
+    detect: "#f472b6",
+    shine: 0.2,
   },
 ];
