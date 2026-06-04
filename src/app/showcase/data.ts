@@ -64,7 +64,7 @@ export const CONCEPTS: Concept[] = [
   { key: "glitch", name: "Glitch Poster", angle: "RGB-torn face, shattered headline, datamosh slices.", qr: "Slice cut through it (still scans)" },
   { key: "redacted", name: "Redacted Doc", angle: "Classified file, black redaction bars, declassified window.", qr: "Tracking-code stamp" },
   { key: "thermal", name: "Thermal Heatmap", angle: "Thermal face, synthetic-region callouts with leader lines.", qr: "Sits inside the scan reticle" },
-  { key: "pull", name: "Trading Card · Play-first", angle: "#8 rebuilt to lure play: rarity odds, a dare, PULL-YOURS seal — zero product copy.", qr: "Big PULL YOURS seal with gold odds" },
+  { key: "pull", name: "Trading Card · Play-first", angle: "#8 rebuilt to lure play: a deepfake dare + MAKE-YOURS seal — zero product copy, rarity stays subtle (gold border only).", qr: "Big MAKE YOURS → 30s seal" },
 ];
 
 export const TOTAL = CONCEPTS.length;
