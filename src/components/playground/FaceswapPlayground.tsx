@@ -568,8 +568,8 @@ export default function FaceswapPlayground() {
     ctx.fillStyle = "rgba(255,255,255,0.55)"; ctx.font = `400 38px ${inter}`;
     ctx.fillText("scam.ai", sealTextX, sealY + sealH / 2 + 52);
 
-    // ── Halo footer ad (one line): ring · Halo · tagline ────────────────
-    const adY = 1782; // centerline
+    // ── Halo footer ad (one line, last element): ring · Halo · tagline ──
+    const adY = 1808; // centerline — sits a touch lower now that the drop strip is gone
     ctx.font = `700 38px ${inter}`;
     const haloW = ctx.measureText("Halo").width;
     const adRest = " · on-device deepfake detection";
@@ -587,19 +587,6 @@ export default function FaceswapPlayground() {
     ax += haloW;
     ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = `400 38px ${inter}`;
     ctx.fillText(adRest, ax, adY + 2);
-
-    // ── Drop-rate brag strip (very bottom, manual letter-spacing) ───────
-    ctx.fillStyle = tier.accent; ctx.font = `700 34px ${monoF}`;
-    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
-    const strip = `✦ ${tier.name} · ${tier.oddsLabel} DROP`;
-    const SPACING = 6;
-    let stripW = SPACING * (strip.length - 1);
-    for (const ch of strip) stripW += ctx.measureText(ch).width;
-    let stripX = (W - stripW) / 2;
-    for (const ch of strip) {
-      ctx.fillText(ch, stripX, 1858);
-      stripX += ctx.measureText(ch).width + SPACING;
-    }
 
     const dataUrl = canvas.toDataURL("image/jpeg", 0.93);
     setShareCardUrl(dataUrl);
