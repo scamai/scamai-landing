@@ -2,11 +2,13 @@
 // FINAL share-card design (play-first trading card) × rarity tiers.
 // Same composition; the TIER (border / badge / glow / accent) is the variable.
 
-export const QR_TARGET = "scam.ai/halo";
+// QR → scam.ai homepage: the face-swap playground sits at the top there.
+// (Halo = the detection product; it only gets the footer ad line.)
+export const QR_TARGET = "scam.ai";
 
 // Real, scannable QR. Always on a white quiet-zone chip.
 export const qrUrl = (size = 200) =>
-  `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=0&qzone=1&data=https://scam.ai/halo`;
+  `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&margin=0&qzone=1&data=https://scam.ai`;
 
 // Fixed placeholder face (real deepfake frame in production).
 export const FACE = "https://randomuser.me/api/portraits/men/32.jpg";

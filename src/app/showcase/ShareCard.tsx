@@ -121,7 +121,7 @@ export default function ShareCard({ tier, idx, seed }: Props) {
           <QR size={48} glow={tier.glow === "none" ? undefined : tier.glow.replace("26px", "12px").replace("24px", "12px").replace("22px", "12px")} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 900, color: tier.accent, letterSpacing: "0.03em" }}>MAKE YOURS → 30s</div>
-            <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>scan · scam.ai/halo</div>
+            <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>scan · scam.ai</div>
           </div>
         </div>
 
