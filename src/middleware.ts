@@ -30,5 +30,5 @@ export const config = {
   // rewrites). Without these exclusions the locale middleware 307s
   // extension-less analytics POSTs to /en/ingest/* → 404 and every event
   // is silently dropped.
-  matcher: ["/((?!api|admin|share|ingest|monitoring|_next|scamai|.*\..*).*)"],
+  matcher: ["/((?!api|admin|share|ingest|monitoring|_next|scamai|.*\\..*).*)"],
 };
