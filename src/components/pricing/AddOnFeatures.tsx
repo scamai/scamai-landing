@@ -61,7 +61,14 @@ export function AddOnFeatures({
         {features.map((feature) => (
           <label
             key={feature.id}
-            className="flex items-start gap-4 cursor-pointer group p-4 rounded-xl hover:bg-gray-800/50 transition-colors"
+            // Whole row reflects checked state — with only the small checkbox
+            // changing, toggles read as "nothing happened" (observed as
+            // $rageclick on "Adaptive Defense" in PostHog).
+            className={`flex items-start gap-4 cursor-pointer group p-4 rounded-xl transition-colors ${
+              feature.checked
+                ? "bg-[#0043FA]/10 border border-[#0043FA]/30"
+                : "border border-transparent hover:bg-gray-800/50"
+            }`}
           >
             <input
               type="checkbox"
