@@ -204,7 +204,8 @@ const nextConfig: NextConfig = {
 
 export default withSentryConfig(withNextIntl(nextConfig), {
   org: process.env.SENTRY_ORG ?? "reality-inc",
-  project: process.env.SENTRY_PROJECT ?? "scamai-landing",
+  // Actual Sentry project slug is "scam-landing" (org reality-inc).
+  project: process.env.SENTRY_PROJECT ?? "scam-landing",
   // Sourcemap upload only runs when SENTRY_AUTH_TOKEN is present (Vercel
   // env). Local/teammate builds without the token stay quiet and green.
   authToken: process.env.SENTRY_AUTH_TOKEN,
