@@ -381,10 +381,21 @@ export default function FaceswapPlayground() {
     }
   }, [selected, start]);
 
+  // Transient "Switching face…" hint. The tile highlights instantly but the
+  // GPU swap takes 1–3s to show in the video — without this, users think the
+  // click did nothing and rapid-fire the picker (observed as $rageclick
+  // seconds after swap_live in PostHog).
+  const [switchingFace, setSwitchingFace] = useState(false);
+  const switchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (switchTimerRef.current) clearTimeout(switchTimerRef.current); }, []);
+
   const onPickFace = useCallback(
     async (url: string) => {
       setSelected(url);
       if (step === "running" && state.phase === "live") {
+        setSwitchingFace(true);
+        if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+        switchTimerRef.current = setTimeout(() => setSwitchingFace(false), 2500);
         try {
           setFace(await urlToBase64(url));
         } catch {
@@ -1010,6 +1021,14 @@ export default function FaceswapPlayground() {
           </div>
         )}
 
+
+        {/* transient face-switch feedback — the GPU swap lags the tile click by 1-3s */}
+        {live && switchingFace && !state.faceWarning && (
+          <div className="absolute left-1/2 top-3 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-md">
+            <span className="h-3 w-3 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+            Switching face…
+          </div>
+        )}
 
         {/* non-fatal no-face hint (live session keeps the previous face) */}
         {state.faceWarning && (
