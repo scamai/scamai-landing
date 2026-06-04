@@ -127,7 +127,9 @@ const navItems: NavItem[] = [
   { label: "Learn", href: "/learn" },
   {
     label: "Company",
-    href: "/company",
+    // Direct to /about — /company is just a redirect shim (kept for old links);
+    // pointing nav there cost a 307→308 double hop on every click.
+    href: "/about",
     hasDropdown: true,
     children: [
       {

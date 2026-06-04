@@ -13,8 +13,11 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
     sendDefaultPii: false,
     // Marketing site: errors matter, perf tracing only needs a sample.
     tracesSampleRate: 0.1,
-    // Session replay lives in PostHog (consent-gated) — not here.
-    integrations: [],
+    // Release health: send anonymous session pings so Releases shows
+    // crash-free rate per deploy. Verified absent from v10 defaults — errors
+    // arrived but sessions stayed at 0 until this was added explicitly.
+    // Session REPLAY lives in PostHog (consent-gated) — this is not that.
+    integrations: [Sentry.browserSessionIntegration()],
 
     // Noise rules ported from the faker-100 portfolio: user-environment
     // failures (extension stubs, ad-block fetch kills) are not our bugs.
