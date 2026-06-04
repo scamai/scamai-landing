@@ -9,24 +9,21 @@ import { CONCEPTS, FACE, HEADLINES, SUBS, conceptOf, pick, qrUrl } from "./data"
 type Props = { id: number; seed: number };
 
 // ─── Atoms ───
-function Logo({ h = 17, dark = false }: { h?: number; dark?: boolean }) {
-  const c = dark ? "#0a0a0a" : "#fff";
-  return (
-    <span style={{ fontWeight: 800, fontSize: h, letterSpacing: "-0.02em", color: c, display: "inline-flex", alignItems: "center", gap: 5 }}>
-      <span style={{ width: h * 0.8, height: h * 0.8, borderRadius: "50%", border: `${Math.max(2, h / 8)}px solid ${c}`, display: "inline-block" }} />
-      scam.ai
-    </span>
-  );
+// Real brand assets. Both SVGs are white-filled — invert(1) for light cards.
+function Logo({ h = 15, dark = false }: { h?: number; dark?: boolean }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/scamai-logo.svg" alt="scam.ai" style={{ height: h, width: "auto", display: "block", filter: dark ? "invert(1)" : undefined }} />;
 }
 
 function CoBrand({ dark = false, align = "center" as "center" | "left" }) {
-  const strong = dark ? "rgba(0,0,0,0.78)" : "rgba(255,255,255,0.85)";
-  const dim = dark ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.4)";
+  const filter = dark ? "invert(1)" : undefined;
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: align === "center" ? "center" : "flex-start", gap: 8, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.05em" }}>
-      <span style={{ color: strong }}>ScamAI</span>
-      <span style={{ color: dim }}>|</span>
-      <span style={{ color: strong }}>Qualcomm</span>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: align === "center" ? "center" : "flex-start", gap: 9 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/scamai-logo.svg" alt="ScamAI" style={{ height: 11, width: "auto", filter, opacity: 0.9 }} />
+      <span style={{ width: 1, height: 11, background: dark ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.3)" }} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/qualcomm-logo.svg" alt="Qualcomm" style={{ height: 10, width: "auto", filter, opacity: 0.9 }} />
     </div>
   );
 }
@@ -429,7 +426,10 @@ export default function ShareCard({ id, seed }: Props) {
           <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: mono, color: "#22ff88" }}>
             {/* QR as inverted terminal block */}
             <QR size={48} chip="#22ff88" radius={2} />
-            <div style={{ fontSize: 10, lineHeight: 1.5 }}>$ open scam.ai/halo<br /><span style={{ opacity: 0.6 }}>ScamAI | Qualcomm</span></div>
+            <div style={{ fontSize: 10, lineHeight: 1.5 }}>
+              $ open scam.ai/halo
+              <div style={{ marginTop: 5 }}><CoBrand align="left" /></div>
+            </div>
           </div>
         </Frame>
       );
