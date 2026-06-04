@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { trackWaitlistSubmit } from "@/lib/analytics";
+import { trackEvent, trackWaitlistSubmit } from "@/lib/analytics";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -38,6 +38,7 @@ export default function WaitlistForm() {
       trackWaitlistSubmit("scam-insurance");
     } catch {
       setState("error");
+      trackEvent({ action: "waitlist_error", category: "conversion", label: "scam-insurance" });
     }
   }
 

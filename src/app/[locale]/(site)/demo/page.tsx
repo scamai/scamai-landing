@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trackCTA } from "@/lib/analytics";
+import { trackCTA, trackEvent } from "@/lib/analytics";
 
 export default function DemoPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,9 +31,12 @@ export default function DemoPage() {
       if (res.ok) {
         setSubmitted(true);
         trackCTA("demo_submitted", "demo_page");
+      } else {
+        trackEvent({ action: "demo_error", category: "conversion", label: `http_${res.status}` });
       }
     } catch {
-      // Silently fail — form still works
+      // Silently fail in the UI — but record it: a broken demo form is lost pipeline.
+      trackEvent({ action: "demo_error", category: "conversion", label: "network" });
     } finally {
       setLoading(false);
     }

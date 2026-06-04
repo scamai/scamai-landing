@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { trackCTA, trackEvent } from "@/lib/analytics";
+import { trackCTA, trackEvent, trackFAQ } from "@/lib/analytics";
+import SectionViewTracker from "@/components/SectionViewTracker";
 
 /* ------------------------------------------------------------------ */
 /* Shared scroll-reveal wrapper (mirrors NewLanding's AnimatedSection) */
@@ -480,17 +481,14 @@ function WaitlistForm() {
         return;
       }
 
-      if (res.status === 429) {
-        setErrorKind("rate_limit");
-      } else if (res.status === 400) {
-        setErrorKind("validation");
-      } else {
-        setErrorKind("unknown");
-      }
+      const kind: ErrorKind = res.status === 429 ? "rate_limit" : res.status === 400 ? "validation" : "unknown";
+      setErrorKind(kind);
       setState("error");
+      trackEvent({ action: "waitlist_error", category: "conversion", label: `halo_${kind}` });
     } catch {
       setErrorKind("network");
       setState("error");
+      trackEvent({ action: "waitlist_error", category: "conversion", label: "halo_network" });
     }
   }
 
@@ -559,6 +557,7 @@ export default function HaloLanding() {
     <main className="bg-black text-white" role="main">
       {/* ============================ HERO ============================ */}
       <section className="relative overflow-hidden bg-black" aria-label="Halo — on-device deepfake detection">
+        <SectionViewTracker name="halo_hero" />
         {/* backdrop */}
         <div
           className="absolute inset-0"
@@ -628,6 +627,7 @@ export default function HaloLanding() {
 
       {/* ===================== THE SHIFT / PROBLEM ==================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
+        <SectionViewTracker name="halo_problem" />
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
           <Reveal>
             <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400 sm:text-xs">
@@ -659,6 +659,7 @@ export default function HaloLanding() {
             "radial-gradient(55% 40% at 80% 10%, rgba(36,95,255,0.10) 0%, rgba(0,0,0,0) 70%)",
         }}
       >
+        <SectionViewTracker name="halo_icp_toggle" />
         <div className="mx-auto max-w-6xl px-5">
           {/* toggle */}
           <div className="mb-12 flex justify-center">
@@ -738,6 +739,7 @@ export default function HaloLanding() {
 
       {/* ================== ON-DEVICE DIFFERENTIATORS ================ */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
+        <SectionViewTracker name="halo_differentiators" />
         <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
@@ -772,6 +774,7 @@ export default function HaloLanding() {
 
       {/* ========================= HOW IT WORKS ====================== */}
       <section id="how" className="relative overflow-hidden bg-black py-20 sm:py-28">
+        <SectionViewTracker name="halo_how_it_works" />
         <div className="mx-auto max-w-5xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
@@ -805,6 +808,7 @@ export default function HaloLanding() {
 
       {/* ====================== COMPETITIVE FRAMING ================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
+        <SectionViewTracker name="halo_comparison" />
         <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <div className="mb-14 text-center">
@@ -850,6 +854,7 @@ export default function HaloLanding() {
 
       {/* ============================== FAQ ========================== */}
       <section className="relative overflow-hidden bg-black py-20 sm:py-28">
+        <SectionViewTracker name="halo_faq" />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/20 to-black" />
         <div className="relative z-10 mx-auto max-w-3xl px-5">
           <Reveal>
@@ -870,7 +875,10 @@ export default function HaloLanding() {
                 style={{ background: openFaq === i ? "rgba(36,95,255,0.03)" : "rgba(17,24,39,0.3)" }}
               >
                 <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  onClick={() => {
+                    if (openFaq !== i) trackFAQ(`halo: ${item.q}`);
+                    setOpenFaq(openFaq === i ? null : i);
+                  }}
                   className="flex w-full items-start justify-between px-5 py-5 text-left sm:px-7"
                   aria-expanded={openFaq === i}
                 >
@@ -907,6 +915,7 @@ export default function HaloLanding() {
 
       {/* ====================== FINAL CTA / WAITLIST ================= */}
       <section id="waitlist" className="relative overflow-hidden bg-black py-24 sm:py-32">
+        <SectionViewTracker name="halo_waitlist" />
         <div
           className="absolute inset-0"
           style={{
