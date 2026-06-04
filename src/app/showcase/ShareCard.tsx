@@ -374,6 +374,49 @@ export default function ShareCard({ id, seed }: Props) {
         </div>
       );
 
+    // ── 13. TRADING CARD · PLAY-FIRST — lure the pull, no product copy ──
+    case "pull": {
+      const dare = pick(["Bet you can't pull a GOLD.", "What's your rarity?", "Beat my pull.", "Odds say you lose.", "Your pull awaits."], id, seed, 5);
+      return (
+        <div style={{ aspectRatio: "9 / 16", width: "100%", borderRadius: 18, padding: 3, background: "linear-gradient(135deg,#f7d77a,#b8860b 40%,#fff6d0 55%,#b8860b 70%,#f7d77a)", boxShadow: "0 0 26px rgba(247,200,80,0.4)" }}>
+          <Frame bg="#0c0a06" border="none">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Logo />
+              <span style={{ background: "#f7d77a", color: "#3a2a00", fontSize: 9, fontWeight: 900, padding: "3px 8px", borderRadius: 999, letterSpacing: "0.05em" }}>✦ RARE · 1 of 247</span>
+            </div>
+            <div style={{ position: "relative", margin: "9px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
+              <Img style={{ width: "100%", height: 158 }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(115deg,transparent 40%,rgba(255,255,255,0.18) 50%,transparent 60%)" }} />
+              <ScanCorners color="#f7d77a" len={16} inset={5} />
+              <DetectBadge conf={conf} tone="#f7d77a" compact style={{ top: 6, left: 6 }} />
+              <span style={{ position: "absolute", top: 6, right: 8, fontFamily: mono, fontSize: 9, color: "#f7d77a", fontWeight: 700 }}>#{no}</span>
+            </div>
+            <div style={{ fontWeight: 800, fontSize: 19, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.0 }}>{hl[0]} {hl[1]}</div>
+            {/* the dare — replaces product copy */}
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#f7d77a", margin: "6px 0 8px" }}>{dare}</div>
+            {/* rarity odds — makes the game legible at a glance */}
+            <div style={{ display: "flex", gap: 5, marginBottom: 9 }}>
+              {[["COMMON", "70%", "rgba(255,255,255,0.45)"], ["RARE", "25%", "#9bbcff"], ["GOLD", "5%", "#f7d77a"]].map(([k, v, col]) => (
+                <div key={k} style={{ flex: 1, textAlign: "center", background: k === "GOLD" ? "rgba(247,215,122,0.12)" : "rgba(255,255,255,0.04)", border: k === "GOLD" ? "1px solid rgba(247,215,122,0.45)" : "1px solid transparent", borderRadius: 7, padding: "4px 2px" }}>
+                  <div style={{ fontSize: 7.5, letterSpacing: "0.06em", color: "rgba(255,255,255,0.45)" }}>{k}</div>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: col as string }}>{v}</div>
+                </div>
+              ))}
+            </div>
+            {/* PULL YOURS seal — QR is the game's entry point */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10, background: "rgba(247,215,122,0.08)", border: "1px solid rgba(247,215,122,0.3)", borderRadius: 10, padding: "8px 10px" }}>
+              <QR size={48} glow="0 0 12px rgba(247,200,80,0.5)" />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 13, fontWeight: 900, color: "#f7d77a", letterSpacing: "0.03em" }}>PULL YOURS → 30s</div>
+                <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>scan · scam.ai/halo</div>
+              </div>
+            </div>
+            <div style={{ marginTop: 8 }}><CoBrand /></div>
+          </Frame>
+        </div>
+      );
+    }
+
     // ── 9. TERMINAL LOG — full console ────────────────────────────
     case "terminal":
       return (
