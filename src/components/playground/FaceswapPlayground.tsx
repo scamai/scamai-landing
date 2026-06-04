@@ -467,10 +467,7 @@ export default function FaceswapPlayground() {
     const cx = 80, cw = W - 160; // content box
 
     // ── Header: real logo (left) + tier chip (right) ───────────────────
-    const [logo, qualcommLogo] = await Promise.all([
-      loadImg("/scamai-logo.svg"),
-      loadImg("/qualcomm-logo.svg"),
-    ]);
+    const logo = await loadImg("/scamai-logo.svg");
     const headerY = 88, logoH = 62, logoW = Math.round(logoH * (1012 / 256));
     ctx.drawImage(logo, cx, headerY, logoW, logoH);
 
@@ -571,16 +568,15 @@ export default function FaceswapPlayground() {
     ctx.fillStyle = "rgba(255,255,255,0.55)"; ctx.font = `400 38px ${inter}`;
     ctx.fillText("scam.ai", sealTextX, sealY + sealH / 2 + 52);
 
-    // ── Halo footer ad (one line): ring · Halo · tagline │ Qualcomm ─────
+    // ── Halo footer ad (one line): ring · Halo · tagline ────────────────
     const adY = 1782; // centerline
     ctx.font = `700 38px ${inter}`;
     const haloW = ctx.measureText("Halo").width;
     const adRest = " · on-device deepfake detection";
     ctx.font = `400 38px ${inter}`;
     const restW = ctx.measureText(adRest).width;
-    const qlH = 36, qlW = Math.round(qlH * (783.6 / 144));
     const ringR = 15, adGap = 18;
-    const totalW = ringR * 2 + adGap + haloW + restW + adGap + 2 + adGap + qlW;
+    const totalW = ringR * 2 + adGap + haloW + restW;
     let ax = (W - totalW) / 2;
     ctx.strokeStyle = tier.accent; ctx.lineWidth = 6;
     ctx.beginPath(); ctx.arc(ax + ringR, adY, ringR, 0, Math.PI * 2); ctx.stroke();
@@ -591,12 +587,6 @@ export default function FaceswapPlayground() {
     ax += haloW;
     ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = `400 38px ${inter}`;
     ctx.fillText(adRest, ax, adY + 2);
-    ax += restW + adGap;
-    ctx.fillStyle = "rgba(255,255,255,0.25)"; ctx.fillRect(ax, adY - 20, 2, 40);
-    ax += 2 + adGap;
-    ctx.globalAlpha = 0.7;
-    ctx.drawImage(qualcommLogo, ax, adY - qlH / 2, qlW, qlH);
-    ctx.globalAlpha = 1;
 
     // ── Drop-rate brag strip (very bottom, manual letter-spacing) ───────
     ctx.fillStyle = tier.accent; ctx.font = `700 34px ${monoF}`;

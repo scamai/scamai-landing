@@ -15,7 +15,7 @@ function Logo({ h = 15 }: { h?: number }) {
   return <img src="/scamai-logo.svg" alt="scam.ai" style={{ height: h, width: "auto", display: "block" }} />;
 }
 
-// One-line Halo ad — replaces the logo lockup (Qualcomm stays, tiny, at the end).
+// One-line Halo ad — replaces the logo lockup.
 function HaloAd({ accent }: { accent: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
@@ -23,9 +23,6 @@ function HaloAd({ accent }: { accent: string }) {
       <span style={{ fontSize: 9.5, color: "rgba(255,255,255,0.6)", whiteSpace: "nowrap" }}>
         <b style={{ color: "#fff" }}>Halo</b> · on-device deepfake detection
       </span>
-      <span style={{ width: 1, height: 10, background: "rgba(255,255,255,0.25)" }} />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/qualcomm-logo.svg" alt="Qualcomm" style={{ height: 8, width: "auto", opacity: 0.7 }} />
     </div>
   );
 }
