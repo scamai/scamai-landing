@@ -39,9 +39,10 @@ export function loadPostHog() {
   posthog.init(key, {
     api_host: "/ingest",
     ui_host: "https://us.posthog.com",
-    // 2025-05-24 defaults: history-API pageviews (SPA navigation),
-    // pageleave, sane autocapture — manual wiring stays business-only.
-    defaults: "2025-05-24",
+    // 2026-05-30 defaults (current, matches PostHog's own snippet):
+    // history-API pageviews (SPA navigation), pageleave, sane autocapture
+    // — manual wiring stays business-only.
+    defaults: "2026-05-30",
     capture_exceptions: false, // Sentry owns errors
     person_profiles: "identified_only",
     session_recording: {
