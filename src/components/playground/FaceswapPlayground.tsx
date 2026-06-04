@@ -918,8 +918,12 @@ export default function FaceswapPlayground() {
 
               {/* Share to pool — always disabled (pool full). No opacity stacking:
                   use single-layer readable dim colors + amber status badge. */}
-              <div className="mt-3 flex cursor-not-allowed items-start gap-3 rounded-lg bg-white/[0.02] p-3 ring-1 ring-white/10">
-                <input type="checkbox" disabled className="mt-0.5 h-4 w-4 shrink-0 cursor-not-allowed accent-white/20" />
+              <div className="mt-3 flex cursor-not-allowed items-start gap-3 rounded-lg bg-white/[0.02] p-3 ring-1 ring-white/5 select-none">
+                {/* Unselectable visual: dashed box + diagonal slash (native disabled
+                    checkboxes still look clickable on dark bg) */}
+                <span aria-hidden className="relative mt-0.5 h-4 w-4 shrink-0 overflow-hidden rounded-[4px] border border-dashed border-white/20 bg-white/[0.03]">
+                  <span className="absolute left-1/2 top-1/2 h-px w-[150%] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white/25" />
+                </span>
                 <div>
                   <span className="text-[12px] font-medium leading-snug text-white/60">
                     Add to public swap pool
