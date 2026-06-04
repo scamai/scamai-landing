@@ -339,8 +339,8 @@ export default function ShareCard({ id, seed }: Props) {
               <Logo />
               <span style={{ background: "#f7d77a", color: "#3a2a00", fontSize: 9, fontWeight: 900, padding: "3px 8px", borderRadius: 999, letterSpacing: "0.05em" }}>✦ RARE</span>
             </div>
-            <div style={{ position: "relative", margin: "9px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
-              <Img style={{ width: "100%", height: 150 }} />
+            <div style={{ position: "relative", flex: 1, minHeight: 0, margin: "9px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
+              <Img style={{ width: "100%", height: "100%" }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(115deg,transparent 40%,rgba(255,255,255,0.18) 50%,transparent 60%)" }} />
               <ScanCorners color="#f7d77a" len={16} inset={5} />
               <DetectBadge conf={conf} tone="#f7d77a" compact style={{ top: 6, left: 6 }} />
@@ -384,8 +384,8 @@ export default function ShareCard({ id, seed }: Props) {
               <Logo />
               <span style={{ background: "#f7d77a", color: "#3a2a00", fontSize: 9, fontWeight: 900, padding: "3px 8px", borderRadius: 999, letterSpacing: "0.05em" }}>✦ RARE · 1 of 247</span>
             </div>
-            <div style={{ position: "relative", margin: "9px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
-              <Img style={{ width: "100%", height: 158 }} />
+            <div style={{ position: "relative", flex: 1, minHeight: 0, margin: "9px 0", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(247,215,122,0.4)" }}>
+              <Img style={{ width: "100%", height: "100%" }} />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(115deg,transparent 40%,rgba(255,255,255,0.18) 50%,transparent 60%)" }} />
               <ScanCorners color="#f7d77a" len={16} inset={5} />
               <DetectBadge conf={conf} tone="#f7d77a" compact style={{ top: 6, left: 6 }} />
