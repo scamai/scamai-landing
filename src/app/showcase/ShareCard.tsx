@@ -5,9 +5,9 @@
 // Locked requirements: detection watermark ON the face, integrated QR,
 // randomized copy, real ScamAI + Qualcomm logos.
 
-import { FACE, PAIRS, type Tier, pick, qrUrl } from "./data";
+import { FACE, PAIRS, type TierDef, pick, qrUrl, tierBorderCSS } from "./data";
 
-type Props = { tier: Tier; idx: number; seed: number };
+type Props = { tier: TierDef; idx: number; seed: number };
 
 // ─── Atoms (real brand assets; SVGs are white-filled) ───
 function Logo({ h = 15 }: { h?: number }) {
@@ -90,7 +90,7 @@ export default function ShareCard({ tier, idx, seed }: Props) {
   const no = String((idx * 137 + seed * 17) % 9999).padStart(4, "0");
 
   return (
-    <div style={{ aspectRatio: "9 / 16", width: "100%", borderRadius: 18, padding: 3, background: tier.border, boxShadow: tier.glow }}>
+    <div style={{ aspectRatio: "9 / 16", width: "100%", borderRadius: 18, padding: 3, background: tierBorderCSS(tier), boxShadow: tier.glow }}>
       <div style={{ position: "relative", height: "100%", borderRadius: 15, overflow: "hidden", background: "#0c0a06", display: "flex", flexDirection: "column", padding: 16 }}>
         {/* header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -132,7 +132,7 @@ export default function ShareCard({ tier, idx, seed }: Props) {
 
         {/* drop-rate strip — the brag line, very bottom, baked into the PNG */}
         <div style={{ marginTop: 7, textAlign: "center", fontFamily: mono, fontSize: 8.5, fontWeight: 700, letterSpacing: "0.14em", color: tier.accent, opacity: 0.95 }}>
-          ✦ {tier.name} · {tier.odds} DROP
+          ✦ {tier.name} · {tier.oddsLabel} DROP
         </div>
       </div>
     </div>

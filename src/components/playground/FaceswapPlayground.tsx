@@ -14,8 +14,10 @@
 // single screen. 30s per play, replay re-queues, queue shows position + ETA.
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import QRCode from "qrcode";
 import { Link } from "@/i18n/navigation";
 import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Plus, X, Lock } from "lucide-react";
+import { PAIRS, QR_TARGET, rollTier, shareText } from "@/lib/share-card";
 import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
@@ -124,6 +126,8 @@ export default function FaceswapPlayground() {
   // navigator.share() synchronously — iOS Safari drops the user-gesture
   // ("transient activation") if you await before calling share.
   const shareFileRef = useRef<File | null>(null);
+  // Share text matches the card's rolled copy pair (set in captureAndCompose).
+  const shareTextRef = useRef("I deepfaked myself in 30 seconds 😳 Real or fake? → scam.ai");
   const [countdown, setCountdown] = useState<number | null>(null);
   const [shareCardUrl, setShareCardUrl] = useState("");
   const [showCard, setShowCard] = useState(false);
@@ -423,94 +427,189 @@ export default function FaceswapPlayground() {
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext("2d")!;
 
-    const bx = 56; // unified side padding for the whole card
+    // ── Helpers ────────────────────────────────────────────────────────
+    const rr = (x: number, y: number, w: number, h: number, r: number) => {
+      ctx.beginPath();
+      if (typeof ctx.roundRect === "function") ctx.roundRect(x, y, w, h, r);
+      else ctx.rect(x, y, w, h);
+    };
+    const rgba = (hex: string, a: number) => {
+      const n = parseInt(hex.slice(1), 16);
+      return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+    };
+    const inter = "Inter, ui-sans-serif, system-ui, sans-serif";
+    const monoF = "ui-monospace, SFMono-Regular, Menlo, monospace";
+    const loadImg = (src: string) =>
+      new Promise<HTMLImageElement>((res) => {
+        const img = new Image();
+        img.onload = img.onerror = () => res(img);
+        img.src = src;
+      });
 
-    // ── Background: dark + subtle top glow ────────────────────────────
-    ctx.fillStyle = "#080808";
+    // ── Roll the card: tier (70/20/7/3) + copy pair + forensic numbers ──
+    const tier = rollTier();
+    const pair = PAIRS[Math.floor(Math.random() * PAIRS.length)];
+    shareTextRef.current = shareText(pair); // X/share text matches the card
+    const conf = (98 + Math.random() * 1.9).toFixed(2);
+    const cardNo = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+
+    // ── Tier border ring + inner card ──────────────────────────────────
+    const RING = 13;
+    const ringGrad = ctx.createLinearGradient(0, 0, W, H); // ≈135°
+    for (const [o, c] of tier.stops) ringGrad.addColorStop(o, c);
+    ctx.fillStyle = ringGrad;
+    // Full-bleed fill (NOT rounded): JPEG has no alpha — rounded outer corners
+    // would export as black notches on white feeds.
     ctx.fillRect(0, 0, W, H);
-    const bgGlow = ctx.createRadialGradient(W / 2, 120, 0, W / 2, 120, H * 0.6);
-    bgGlow.addColorStop(0, "rgba(36,95,255,0.13)");
-    bgGlow.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = bgGlow; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#0c0a06";
+    rr(RING, RING, W - RING * 2, H - RING * 2, 52); ctx.fill();
 
-    // ── Header row: logo (left) + LIVE badge (right) ──────────────────
-    const logo = new Image();
-    await new Promise<void>(res => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
-    const logoH = 52, logoW = Math.round(logoH * (1012 / 256));
-    const headerY = 60;
-    ctx.globalAlpha = 0.95;
-    ctx.drawImage(logo, bx, headerY, logoW, logoH);
-    ctx.globalAlpha = 1;
+    const cx = 80, cw = W - 160; // content box
 
-    // Auto-size the pill to its content so padding is even on both sides.
-    ctx.font = "700 24px Inter, ui-sans-serif, system-ui, sans-serif";
-    const liveLabel = "LIVE AI";
-    const liveTextW = ctx.measureText(liveLabel).width;
-    const dotR = 6, dotGap = 11, padX = 26;
-    const contentW = dotR * 2 + dotGap + liveTextW;
-    const badgeH = 52, badgeW = Math.round(contentW + padX * 2);
-    const badgeX = W - bx - badgeW, badgeY = headerY; // align top with logo (both 52 tall)
-    const badgeMidY = badgeY + badgeH / 2;
-    ctx.fillStyle = "#ef4444";
-    ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(badgeX, badgeY, badgeW, badgeH, badgeH / 2);
-    else ctx.rect(badgeX, badgeY, badgeW, badgeH);
-    ctx.fill();
-    ctx.fillStyle = "#fff";
-    const dotCx = badgeX + padX + dotR;
-    ctx.beginPath(); ctx.arc(dotCx, badgeMidY, dotR, 0, Math.PI * 2); ctx.fill();
-    ctx.textAlign = "left"; ctx.textBaseline = "middle";
-    ctx.fillText(liveLabel, dotCx + dotR + dotGap, badgeMidY + 1);
+    // ── Header: real logo (left) + tier chip (right) ───────────────────
+    const [logo, qualcommLogo] = await Promise.all([
+      loadImg("/scamai-logo.svg"),
+      loadImg("/qualcomm-logo.svg"),
+    ]);
+    const headerY = 88, logoH = 62, logoW = Math.round(logoH * (1012 / 256));
+    ctx.drawImage(logo, cx, headerY, logoW, logoH);
 
-    // ── Framed face (cover-fit into a contained rect → less zoom) ──────
-    // Region is wider/shorter than full-bleed, so the face reads at a natural
-    // size instead of being cropped 2.6× into a 9:16 frame.
-    const fX = bx, fY = 156, fW = W - bx * 2, fH = 1080, fR = 28;
+    ctx.font = `900 36px ${inter}`;
+    const chipLabel = `✦ ${tier.name}`;
+    const chipTextW = ctx.measureText(chipLabel).width;
+    const chipH = 64, chipW = chipTextW + 68;
+    const chipX = W - cx - chipW, chipY = headerY + (logoH - chipH) / 2;
+    ctx.fillStyle = tier.chipBg; rr(chipX, chipY, chipW, chipH, chipH / 2); ctx.fill();
+    ctx.fillStyle = tier.chipText; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(chipLabel, chipX + chipW / 2, chipY + chipH / 2 + 2);
+
+    // ── Face window (dominant) — mirror, cover-fit ──────────────────────
+    const fX = cx, fY = 192, fW = cw, fH = 978, fR = 32;
     const vW = video.videoWidth || 1280;
     const vH = video.videoHeight || 720;
     const fScale = Math.max(fW / vW, fH / vH);
     const sW = fW / fScale, sH = fH / fScale;
     const sX = (vW - sW) / 2, sY = (vH - sH) / 2;
     ctx.save();
-    ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(fX, fY, fW, fH, fR);
-    else ctx.rect(fX, fY, fW, fH);
-    ctx.clip();
+    rr(fX, fY, fW, fH, fR); ctx.clip();
     ctx.transform(-1, 0, 0, 1, fX + fW, 0); // mirror within clip
     ctx.drawImage(video, sX, sY, sW, sH, 0, fY, fW, fH);
+    // holo shine sweep (inside the same clip)
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const shine = ctx.createLinearGradient(fX, fY, fX + fW, fY + fH * 0.55);
+    shine.addColorStop(0.4, "rgba(255,255,255,0)");
+    shine.addColorStop(0.5, rgba("#ffffff", tier.shine));
+    shine.addColorStop(0.6, "rgba(255,255,255,0)");
+    ctx.fillStyle = shine; ctx.fillRect(fX, fY, fW, fH);
     ctx.restore();
-    // frame border
-    ctx.strokeStyle = "rgba(255,255,255,0.10)"; ctx.lineWidth = 2;
-    ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(fX, fY, fW, fH, fR);
-    else ctx.rect(fX, fY, fW, fH);
-    ctx.stroke();
+    ctx.strokeStyle = rgba(tier.accent, 0.33); ctx.lineWidth = 3;
+    rr(fX, fY, fW, fH, fR); ctx.stroke();
 
-    // ── Text block below the frame ────────────────────────────────────
-    const btnH = 112, btnY = H - 84 - btnH; // CTA anchored near bottom
+    // ── Detection watermark ON the face: scan corners + verdict badge ───
+    const cLen = 62, cInset = 22;
+    ctx.strokeStyle = tier.accent; ctx.lineWidth = 8; ctx.lineCap = "square";
+    const corner = (x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) => {
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.lineTo(x3, y3); ctx.stroke();
+    };
+    corner(fX + cInset, fY + cInset + cLen, fX + cInset, fY + cInset, fX + cInset + cLen, fY + cInset);
+    corner(fX + fW - cInset - cLen, fY + cInset, fX + fW - cInset, fY + cInset, fX + fW - cInset, fY + cInset + cLen);
+    corner(fX + cInset, fY + fH - cInset - cLen, fX + cInset, fY + fH - cInset, fX + cInset + cLen, fY + fH - cInset);
+    corner(fX + fW - cInset - cLen, fY + fH - cInset, fX + fW - cInset, fY + fH - cInset, fX + fW - cInset, fY + fH - cInset - cLen);
 
-    // Headline (2 lines, bold)
+    ctx.font = `800 30px ${inter}`;
+    const dLabel = `DEEPFAKE · ${conf}%`;
+    const dTextW = ctx.measureText(dLabel).width;
+    const dDotR = 9, dGap = 14, dPadX = 24, dH = 58;
+    const dW = dPadX * 2 + dDotR * 2 + dGap + dTextW;
+    const dX = fX + 24, dY = fY + 24;
+    ctx.fillStyle = "rgba(8,8,10,0.66)"; rr(dX, dY, dW, dH, dH / 2); ctx.fill();
+    ctx.fillStyle = tier.detect;
+    ctx.beginPath(); ctx.arc(dX + dPadX + dDotR, dY + dH / 2, dDotR, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    ctx.fillText(dLabel, dX + dPadX + dDotR * 2 + dGap, dY + dH / 2 + 2);
+
+    ctx.font = `700 32px ${monoF}`; ctx.fillStyle = tier.accent;
+    ctx.textAlign = "right"; ctx.textBaseline = "top";
+    ctx.fillText(`#${cardNo}`, fX + fW - 28, fY + 30);
+
+    // ── Headline (one line, shrink-to-fit) + punchline ──────────────────
+    const fitFont = (text: string, weight: number, max: number, startPx: number) => {
+      let px = startPx;
+      ctx.font = `${weight} ${px}px ${inter}`;
+      while (ctx.measureText(text).width > max && px > 24) {
+        px -= 2;
+        ctx.font = `${weight} ${px}px ${inter}`;
+      }
+    };
     ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
-    ctx.font = "700 82px Inter, ui-sans-serif, system-ui, sans-serif";
+    const headline = `${pair.h[0]} ${pair.h[1]}`;
     ctx.fillStyle = "#ffffff";
-    ctx.fillText("I deepfaked", bx, btnY - 240);
-    ctx.fillText("myself in 30s.", bx, btnY - 150);
+    fitFont(headline, 800, cw, 78);
+    ctx.fillText(headline, cx, 1284);
+    ctx.fillStyle = tier.accent;
+    fitFont(pair.p, 700, cw, 48);
+    ctx.fillText(pair.p, cx, 1358);
 
-    // Sub-text
-    ctx.font = "400 38px Inter, ui-sans-serif, system-ui, sans-serif";
-    ctx.fillStyle = "rgba(255,255,255,0.62)";
-    ctx.fillText("Can you tell what's real?", bx, btnY - 66);
+    // ── MAKE YOURS seal — offline QR → scam.ai homepage ─────────────────
+    const sealY = 1408, sealH = 292;
+    ctx.fillStyle = rgba(tier.accent, 0.08); rr(cx, sealY, cw, sealH, 40); ctx.fill();
+    ctx.strokeStyle = rgba(tier.accent, 0.3); ctx.lineWidth = 3; rr(cx, sealY, cw, sealH, 40); ctx.stroke();
 
-    // ── CTA button — the ONE URL on the card ──────────────────────────
-    ctx.fillStyle = "#245FFF";
-    ctx.beginPath();
-    if (typeof ctx.roundRect === "function") ctx.roundRect(bx, btnY, W - bx * 2, btnH, 18);
-    else ctx.rect(bx, btnY, W - bx * 2, btnH);
-    ctx.fill();
-    ctx.font = "600 40px Inter, ui-sans-serif, system-ui, sans-serif";
-    ctx.fillStyle = "#ffffff";
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.fillText("Try it free  →  scam.ai/halo", W / 2, btnY + btnH / 2 + 1);
+    const qrCanvas = document.createElement("canvas");
+    try {
+      await QRCode.toCanvas(qrCanvas, QR_TARGET, { width: 416, margin: 1, color: { dark: "#000000", light: "#ffffff" } });
+    } catch { /* QR failure → white chip stays empty; URL text still on card */ }
+    const chipS = 232, qPad = 14;
+    const qX = cx + 30, qY = sealY + (sealH - chipS) / 2;
+    ctx.fillStyle = "#fff"; rr(qX, qY, chipS, chipS, 18); ctx.fill();
+    if (qrCanvas.width > 0) ctx.drawImage(qrCanvas, qX + qPad, qY + qPad, chipS - qPad * 2, chipS - qPad * 2);
+
+    const sealTextX = qX + chipS + 40;
+    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = tier.accent; ctx.font = `900 54px ${inter}`;
+    ctx.fillText("MAKE YOURS → 30s", sealTextX, sealY + sealH / 2 - 8);
+    ctx.fillStyle = "rgba(255,255,255,0.55)"; ctx.font = `400 38px ${inter}`;
+    ctx.fillText("scam.ai", sealTextX, sealY + sealH / 2 + 52);
+
+    // ── Halo footer ad (one line): ring · Halo · tagline │ Qualcomm ─────
+    const adY = 1782; // centerline
+    ctx.font = `700 38px ${inter}`;
+    const haloW = ctx.measureText("Halo").width;
+    const adRest = " · on-device deepfake detection";
+    ctx.font = `400 38px ${inter}`;
+    const restW = ctx.measureText(adRest).width;
+    const qlH = 36, qlW = Math.round(qlH * (783.6 / 144));
+    const ringR = 15, adGap = 18;
+    const totalW = ringR * 2 + adGap + haloW + restW + adGap + 2 + adGap + qlW;
+    let ax = (W - totalW) / 2;
+    ctx.strokeStyle = tier.accent; ctx.lineWidth = 6;
+    ctx.beginPath(); ctx.arc(ax + ringR, adY, ringR, 0, Math.PI * 2); ctx.stroke();
+    ax += ringR * 2 + adGap;
+    ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    ctx.fillStyle = "#fff"; ctx.font = `700 38px ${inter}`;
+    ctx.fillText("Halo", ax, adY + 2);
+    ax += haloW;
+    ctx.fillStyle = "rgba(255,255,255,0.6)"; ctx.font = `400 38px ${inter}`;
+    ctx.fillText(adRest, ax, adY + 2);
+    ax += restW + adGap;
+    ctx.fillStyle = "rgba(255,255,255,0.25)"; ctx.fillRect(ax, adY - 20, 2, 40);
+    ax += 2 + adGap;
+    ctx.globalAlpha = 0.7;
+    ctx.drawImage(qualcommLogo, ax, adY - qlH / 2, qlW, qlH);
+    ctx.globalAlpha = 1;
+
+    // ── Drop-rate brag strip (very bottom, manual letter-spacing) ───────
+    ctx.fillStyle = tier.accent; ctx.font = `700 34px ${monoF}`;
+    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    const strip = `✦ ${tier.name} · ${tier.oddsLabel} DROP`;
+    const SPACING = 6;
+    let stripW = SPACING * (strip.length - 1);
+    for (const ch of strip) stripW += ctx.measureText(ch).width;
+    let stripX = (W - stripW) / 2;
+    for (const ch of strip) {
+      ctx.fillText(ch, stripX, 1858);
+      stripX += ctx.measureText(ch).width + SPACING;
+    }
 
     const dataUrl = canvas.toDataURL("image/jpeg", 0.93);
     setShareCardUrl(dataUrl);
@@ -560,9 +659,8 @@ export default function FaceswapPlayground() {
   // Web sharing can't push an image to IG/WhatsApp/X programmatically (no platform
   // API). The ONLY path that carries the image is the native share sheet via
   // Web Share API Level 2 (mobile). Everywhere else we download the image — it
-  // already has the logo + scam.ai/halo baked in, so it IS the ad.
-  const SHARE_TEXT =
-    "I deepfaked myself in 30 seconds 😳 Can you still tell what's real? Try it → scam.ai/halo";
+  // already has the card branding + QR → scam.ai baked in, so it IS the ad.
+  // Text lives in shareTextRef and matches the card's rolled copy pair.
 
   const isIOS =
     typeof navigator !== "undefined" &&
@@ -632,7 +730,7 @@ export default function FaceswapPlayground() {
   const webShare = useCallback(() => {
     if (canShareFile()) {
       navigator
-        .share({ text: SHARE_TEXT, files: [shareFileRef.current!] })
+        .share({ text: shareTextRef.current, files: [shareFileRef.current!] })
         .catch((e: Error) => {
           // AbortError = user dismissed the sheet → do nothing.
           if (e?.name !== "AbortError") {
@@ -647,7 +745,7 @@ export default function FaceswapPlayground() {
     downloadImage();
     setShareHint("Image saved — post it to your story 🚀");
     setTimeout(() => setShareHint(""), 3500);
-  }, [SHARE_TEXT, downloadImage]);
+  }, [downloadImage]);
 
   // Post to X.
   // - Mobile: the only way to carry the image into X is the native sheet (user
@@ -657,7 +755,7 @@ export default function FaceswapPlayground() {
   const postToX = useCallback(() => {
     if (isMobile && canShareFile()) {
       navigator
-        .share({ text: SHARE_TEXT, files: [shareFileRef.current!] })
+        .share({ text: shareTextRef.current, files: [shareFileRef.current!] })
         .catch((e: Error) => {
           if (e?.name !== "AbortError") {
             downloadImage();
@@ -667,12 +765,12 @@ export default function FaceswapPlayground() {
         });
       return;
     }
-    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(SHARE_TEXT)}`;
+    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTextRef.current)}`;
     window.open(intent, "_blank", "noopener,noreferrer");
     downloadImage();
     setShareHint("Image saved — attach it to your tweet 📎");
     setTimeout(() => setShareHint(""), 3500);
-  }, [isMobile, SHARE_TEXT, downloadImage]);
+  }, [isMobile, downloadImage]);
 
   const reset = useCallback(() => {
     stop(); // closes WebRTC + stops camera tracks (indicator turns off)
