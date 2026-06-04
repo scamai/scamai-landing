@@ -18,9 +18,11 @@ function Logo({ h = 15 }: { h?: number }) {
 function CoBrand() {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 9 }}>
+      {/* scamai svg has more internal padding (1012×256) than qualcomm (783×144) —
+          14.5px vs 10px makes the wordmarks optically equal */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/scamai-logo.svg" alt="ScamAI" style={{ height: 11, width: "auto", opacity: 0.9 }} />
-      <span style={{ width: 1, height: 11, background: "rgba(255,255,255,0.3)" }} />
+      <img src="/scamai-logo.svg" alt="ScamAI" style={{ height: 14.5, width: "auto", opacity: 0.9 }} />
+      <span style={{ width: 1, height: 12, background: "rgba(255,255,255,0.3)" }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/qualcomm-logo.svg" alt="Qualcomm" style={{ height: 10, width: "auto", opacity: 0.9 }} />
     </div>
