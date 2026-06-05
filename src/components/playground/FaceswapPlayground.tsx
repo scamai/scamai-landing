@@ -1037,13 +1037,16 @@ export default function FaceswapPlayground() {
           </div>
         )}
 
-        {/* Share button — top-right during live */}
+        {/* Share button — top-right during live. Filled brand-blue + slow ping:
+            this is the discovery point for the whole share loop, the old ghost
+            style (black/60, text-xs) got missed. */}
         {live && countdown === null && !showCard && (
           <button
             onClick={startCapture}
-            className="absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md transition hover:bg-white/15 active:scale-[0.97]"
+            className="absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full bg-[#245FFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-4px_rgba(36,95,255,0.9)] transition hover:bg-[#3d74ff] active:scale-[0.97]"
           >
-            <Camera className="h-3 w-3" /> Share
+            <span className="absolute -inset-1 -z-10 animate-ping rounded-full bg-[#245FFF]/40 [animation-duration:2.5s]" />
+            <Camera className="h-4 w-4" /> Share
           </button>
         )}
 
