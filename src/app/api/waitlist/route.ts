@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { upsertSubscriber } from "@/lib/db/contacts";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
@@ -37,6 +38,16 @@ export async function POST(req: NextRequest) {
   };
 
   console.log("[waitlist]", JSON.stringify(entry));
+
+  // Persist to Neon (same subscribers table as newsletter — source column
+  // distinguishes waitlist signups). Email notifications alone are not
+  // queryable; this makes waitlist counts visible in the DB.
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  try {
+    await upsertSubscriber(normalizedEmail, "waitlist-scam-insurance", referrer, ip);
+  } catch (err) {
+    console.error("[waitlist] DB insert failed:", err);
+  }
 
   if (resend) {
     // Confirmation email to the subscriber
