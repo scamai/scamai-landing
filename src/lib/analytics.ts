@@ -13,6 +13,8 @@
 
 import posthog from "posthog-js";
 
+import { isInternalTraffic } from "@/lib/internal-traffic";
+
 type GAEvent = {
   action: string;
   category: string;
@@ -35,6 +37,7 @@ let posthogLoaded = false;
 export function loadPostHog() {
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
   if (!key || posthogLoaded || typeof window === "undefined") return;
+  if (isInternalTraffic()) return; // our own IPs / automation — don't pollute
   posthogLoaded = true;
   posthog.init(key, {
     api_host: "/ingest",

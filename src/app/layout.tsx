@@ -121,28 +121,35 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
   const dir = cookieStore.get("NEXT_LOCALE_DIR")?.value || "ltr";
+  // si_internal set by middleware for our own egress IPs — skip GTM and
+  // Vercel Analytics entirely so internal test traffic never reaches them.
+  const isInternal = cookieStore.get("si_internal")?.value === "1";
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning className="bg-[#0b0b0b]">
       <head>
-        <Script id="gtm" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        {!isInternal && (
+          <Script id="gtm" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K2WNMJV8');`}</Script>
+        )}
         <link rel="alternate" type="application/rss+xml" title="ScamAI News" href="/feed.xml" />
       </head>
       <body className={`${inter.variable} antialiased bg-[#0b0b0b]`}>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-K2WNMJV8"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+        {!isInternal && (
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-K2WNMJV8"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         {children}
-        {IS_VERCEL && <Analytics />}
+        {IS_VERCEL && !isInternal && <Analytics />}
         <CookieConsent />
       </body>
     </html>

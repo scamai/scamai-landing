@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { loadPostHog, disablePostHog } from "@/lib/analytics";
+import { isInternalTraffic } from "@/lib/internal-traffic";
 
 const CONSENT_KEY = "scamai_cookie_consent";
 const GA_ID = "G-NNX4SFN50V";
@@ -19,6 +20,7 @@ function getStoredConsent(): ConsentState {
 /** Inject GA4 script tags dynamically after consent */
 function loadGA() {
   if (typeof window === "undefined") return;
+  if (isInternalTraffic()) return; // our own IPs / automation — don't pollute
   if (document.getElementById("ga-script")) return; // already loaded
 
   // gtag.js loader
