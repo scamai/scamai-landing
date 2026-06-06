@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { put } from "@vercel/blob";
+import * as Sentry from "@sentry/nextjs";
 import { getDb } from "@/lib/db";
 
 // ─── Playground data collection ──────────────────────────────────────────────
@@ -74,7 +75,13 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true, url: blob.url });
   } catch (err) {
-    // Don't surface storage errors to the client — collection is best-effort
+    // Don't surface storage errors to the client — collection is best-effort.
+    // But DO report to Sentry: silent failure here cost us every playground
+    // upload between 2026-06-02 and 2026-06-06 (BLOB_READ_WRITE_TOKEN missing).
+    Sentry.captureException(err, {
+      tags: { route: "playground/collect" },
+      extra: { hasBlobToken: Boolean(process.env.BLOB_READ_WRITE_TOKEN) },
+    });
     console.error("[playground/collect]", err);
     return NextResponse.json({ ok: false });
   }
