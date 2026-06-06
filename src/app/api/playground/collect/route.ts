@@ -7,8 +7,12 @@ import { getDb } from "@/lib/db";
 //
 // Receives uploaded face images and faceswap session recordings from the
 // landing-page playground and stores them:
-//   files  → Vercel Blob  (BLOB_READ_WRITE_TOKEN env var required)
+//   files  → Vercel Blob, private store (auth: BLOB_STORE_ID + Vercel OIDC,
+//            injected by the store↔project connection — no RW token needed)
 //   index  → Neon Postgres playground_sessions table (auto-created on first write)
+//
+// Blobs are PRIVATE (user faces + recordings): raw blob URLs are not publicly
+// fetchable. Readers must presign — see /api/share/[session_id].
 //
 // Body: { type: "face"|"recording", data: "<base64>", session_id: string,
 //         mime_type?: string }
@@ -59,9 +63,10 @@ export async function POST(req: NextRequest) {
     const ext = MIME_EXT[resolvedMime] ?? "bin";
     const filename = `playground/${type}/${session_id}-${Date.now()}.${ext}`;
 
-    // Upload to Vercel Blob
+    // Upload to Vercel Blob — store is private-access (scam-landing-playground);
+    // access:"public" is rejected outright ("Cannot use public access on a private store")
     const blob = await put(filename, buffer, {
-      access: "public",
+      access: "private",
       contentType: resolvedMime,
     });
 
@@ -77,10 +82,10 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     // Don't surface storage errors to the client — collection is best-effort.
     // But DO report to Sentry: silent failure here cost us every playground
-    // upload between 2026-06-02 and 2026-06-06 (BLOB_READ_WRITE_TOKEN missing).
+    // upload between 2026-06-02 and 2026-06-06 (access:"public" vs private store).
     Sentry.captureException(err, {
       tags: { route: "playground/collect" },
-      extra: { hasBlobToken: Boolean(process.env.BLOB_READ_WRITE_TOKEN) },
+      extra: { hasBlobStoreId: Boolean(process.env.BLOB_STORE_ID) },
     });
     console.error("[playground/collect]", err);
     return NextResponse.json({ ok: false });

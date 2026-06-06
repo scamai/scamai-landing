@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { issueSignedToken, presignUrl } from "@vercel/blob";
 import { getDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+// Recordings live in a PRIVATE blob store (user faces/recordings — see
+// /api/playground/collect). Raw blob URLs 403 in the browser, so we presign
+// a short-lived GET URL per request. ShareClient re-fetches this endpoint on
+// every page load, so a 1h expiry never strands a viewer mid-session.
+const PRESIGN_TTL_MS = 60 * 60 * 1000;
 
 export async function GET(
   _req: NextRequest,
@@ -21,7 +28,21 @@ export async function GET(
       LIMIT 1
     `;
     if (!rows.length) return NextResponse.json({ error: "not_found" }, { status: 404 });
-    return NextResponse.json({ url: rows[0].blob_url, mime_type: rows[0].mime_type });
+
+    // Blob pathname = URL path (put() returns <store>.blob.vercel-storage.com/<pathname>)
+    const pathname = decodeURIComponent(new URL(rows[0].blob_url).pathname.slice(1));
+    const signedToken = await issueSignedToken({
+      pathname,
+      operations: ["get"],
+      validUntil: Date.now() + PRESIGN_TTL_MS,
+    });
+    const { presignedUrl } = await presignUrl(signedToken, {
+      operation: "get",
+      pathname,
+      access: "private",
+    });
+
+    return NextResponse.json({ url: presignedUrl, mime_type: rows[0].mime_type });
   } catch (err) {
     const msg = String((err as Error)?.message ?? "");
     // Table doesn't exist yet — treat as not_found, not server error
