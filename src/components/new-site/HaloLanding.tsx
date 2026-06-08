@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { trackCTA, trackEvent, trackFAQ } from "@/lib/analytics";
 import SectionViewTracker from "@/components/SectionViewTracker";
-import HaloStickyBar from "@/components/new-site/HaloStickyBar";
+import StickyCtaBar from "@/components/new-site/StickyCtaBar";
 
 /* ------------------------------------------------------------------ */
 /* Shared scroll-reveal wrapper (mirrors NewLanding's AnimatedSection) */
@@ -943,7 +943,15 @@ export default function HaloLanding() {
       </section>
 
       {/* Apple-style floating CTA bar — appears after hero, hides at #waitlist */}
-      <HaloStickyBar />
+      <StickyCtaBar
+        heroId="halo-hero"
+        hideAtId="waitlist"
+        label="Halo"
+        sublabel="Catch deepfakes on your calls"
+        primary={{ text: "Join the waitlist", href: "#waitlist", cta: "join_waitlist" }}
+        secondary={{ text: "Subscribe", href: "#newsletter-signup", cta: "subscribe" }}
+        location="halo_sticky"
+      />
     </main>
   );
 }

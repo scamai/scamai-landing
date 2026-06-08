@@ -11,6 +11,7 @@ import DeveloperSection from "./DeveloperSection";
 import HaloSpotlight from "./HaloSpotlight";
 import SectionViewTracker from "@/components/SectionViewTracker";
 import TrustedBy from "./TrustedBy";
+import StickyCtaBar from "./StickyCtaBar";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -329,7 +330,7 @@ export default function NewLanding() {
   return (
     <main className="bg-black text-white" role="main">
       {/* Hero Section — text takes ~70vh, video peeks below */}
-      <section className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
+      <section id="home-hero" className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
         <SectionViewTracker name="landing_hero" />
         <HeroBackground className="" />
         <div className="relative z-10 w-full">
@@ -672,6 +673,16 @@ export default function NewLanding() {
       {/* Session7: FAQ */}
       <FAQSection />
 
+      {/* Apple-style floating CTA bar — appears after hero, hides at footer newsletter */}
+      <StickyCtaBar
+        heroId="home-hero"
+        hideAtId="newsletter-signup"
+        label="scam.ai"
+        sublabel="Verify what's real, in real time"
+        primary={{ text: "Visit Halo", href: "/halo", cta: "visit_halo" }}
+        secondary={{ text: "See how it works", href: "#playground", cta: "try_faceswap" }}
+        location="home_sticky"
+      />
     </main>
   );
 }
