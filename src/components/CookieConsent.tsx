@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { loadPostHog, disablePostHog } from "@/lib/analytics";
+import { loadPostHog, disablePostHog, trackConsent } from "@/lib/analytics";
 import { isInternalTraffic } from "@/lib/internal-traffic";
 
 const CONSENT_KEY = "scamai_cookie_consent";
@@ -43,6 +43,26 @@ function loadGA() {
   });
 }
 
+/** Cookieless, PII-free server beacon recording the consent decision so the
+ *  accept/decline RATIO — i.e. how much traffic opts out of analytics entirely
+ *  — is queryable. Declined users never load GA/PostHog, so this aggregate is
+ *  the ONLY place that number can come from. Skipped for internal traffic. */
+function beaconConsent(decision: "accepted" | "declined") {
+  if (typeof window === "undefined" || isInternalTraffic()) return;
+  try {
+    fetch("/api/consent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ decision }),
+      keepalive: true,
+    }).catch(() => {
+      /* best-effort telemetry */
+    });
+  } catch {
+    /* best-effort telemetry */
+  }
+}
+
 /** Remove GA cookies when user declines */
 function removeGACookies() {
   const cookies = document.cookie.split(";");
@@ -79,16 +99,11 @@ export default function CookieConsent() {
     setVisible(false);
     loadGA();
     loadPostHog();
-
-    // Track consent after GA loads
-    setTimeout(() => {
-      if (window.gtag) {
-        window.gtag("event", "cookie_consent", {
-          event_category: "privacy",
-          event_label: "accepted",
-        });
-      }
-    }, 1000);
+    // Both tools are live now — record the accept in GA + PostHog (fans out via
+    // trackConsent; replaces the old gtag-only call that PostHog never saw).
+    trackConsent(true);
+    // Cookieless server beacon for the accept/decline ratio (see beaconConsent).
+    beaconConsent("accepted");
   }, []);
 
   const handleDecline = useCallback(() => {
@@ -97,6 +112,9 @@ export default function CookieConsent() {
     setVisible(false);
     removeGACookies();
     disablePostHog();
+    // GA/PostHog are off by the user's choice, so the decline is invisible to
+    // them — the cookieless beacon is the only way to count it.
+    beaconConsent("declined");
   }, []);
 
   // Don't show on share pages — they have no nav/layout context
