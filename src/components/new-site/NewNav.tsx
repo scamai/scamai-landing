@@ -809,7 +809,7 @@ export default function NewNav() {
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
-              onClick={() => setOpen(false)}
+              onClick={() => { trackCTA("log_in", "nav_mobile"); setOpen(false); }}
             >
               Log In
             </a>
@@ -818,7 +818,7 @@ export default function NewNav() {
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full px-6 py-3 text-center text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition"
-              onClick={() => setOpen(false)}
+              onClick={() => { trackCTA("book_demo", "nav_mobile"); setOpen(false); }}
             >
               Book a demo
             </a>
