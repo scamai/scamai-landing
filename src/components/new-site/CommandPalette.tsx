@@ -117,6 +117,17 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     setSelectedIndex(0);
   }, [query]);
 
+  // Track what people search for (debounced, once per settled query) — distinct
+  // from search_select which fires on navigate(). This is the only signal for
+  // zero-result / abandoned searches: what users hunt for but don't find/click.
+  useEffect(() => {
+    if (!isOpen) return;
+    const q = query.trim();
+    if (q.length < 2) return;
+    const t = setTimeout(() => trackSearch(q), 700);
+    return () => clearTimeout(t);
+  }, [query, isOpen]);
+
   // Scroll selected item into view
   useEffect(() => {
     if (listRef.current) {
