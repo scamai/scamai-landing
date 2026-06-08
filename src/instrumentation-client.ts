@@ -28,17 +28,25 @@ import { isInternalTraffic } from "@/lib/internal-traffic";
 if (typeof Node === "function" && Node.prototype) {
   const realRemoveChild = Node.prototype.removeChild;
   Node.prototype.removeChild = function <T extends Node>(this: Node, child: T): T {
+    // Already detached by the extension — the removal React wants has happened.
     if (child.parentNode !== this) return child;
     return realRemoveChild.call(this, child) as T;
   };
 
   const realInsertBefore = Node.prototype.insertBefore;
+  const realAppendChild = Node.prototype.appendChild;
   Node.prototype.insertBefore = function <T extends Node>(
     this: Node,
     newNode: T,
     referenceNode: Node | null
   ): T {
-    if (referenceNode && referenceNode.parentNode !== this) return newNode;
+    // If an extension re-parented the reference node, the real insertBefore
+    // throws. APPEND instead of no-op so React's new node still enters the DOM
+    // (React fixes ordering on the next commit) — a no-op would silently drop a
+    // real insertion and corrupt the UI invisibly.
+    if (referenceNode && referenceNode.parentNode !== this) {
+      return realAppendChild.call(this, newNode) as T;
+    }
     return realInsertBefore.call(this, newNode, referenceNode) as T;
   };
 }
