@@ -14,17 +14,22 @@ import { getDb } from "@/lib/db";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// Cache so the DDL runs once per server instance, not on every consent POST
+// (every banner answer would otherwise cost two extra Neon round-trips).
+let tableReady = false;
 async function ensureTable() {
+  if (tableReady) return;
   const sql = getDb();
   await sql`
     CREATE TABLE IF NOT EXISTS consent_events (
       id         SERIAL PRIMARY KEY,
-      decision   TEXT NOT NULL,
+      decision   TEXT NOT NULL CHECK (decision IN ('accepted', 'declined')),
       country    TEXT,
       created_at TIMESTAMPTZ DEFAULT NOW()
     )
   `;
   await sql`CREATE INDEX IF NOT EXISTS idx_consent_created ON consent_events(created_at DESC)`;
+  tableReady = true;
 }
 
 export async function POST(req: NextRequest) {
