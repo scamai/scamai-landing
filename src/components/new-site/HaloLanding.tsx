@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { trackCTA, trackEvent, trackFAQ } from "@/lib/analytics";
 import SectionViewTracker from "@/components/SectionViewTracker";
+import HaloStickyBar from "@/components/new-site/HaloStickyBar";
 
 /* ------------------------------------------------------------------ */
 /* Shared scroll-reveal wrapper (mirrors NewLanding's AnimatedSection) */
@@ -556,7 +557,7 @@ export default function HaloLanding() {
   return (
     <main className="bg-black text-white" role="main">
       {/* ============================ HERO ============================ */}
-      <section className="relative overflow-hidden bg-black" aria-label="Halo — on-device deepfake detection">
+      <section id="halo-hero" className="relative overflow-hidden bg-black" aria-label="Halo — on-device deepfake detection">
         <SectionViewTracker name="halo_hero" />
         {/* backdrop */}
         <div
@@ -940,6 +941,9 @@ export default function HaloLanding() {
           </Reveal>
         </div>
       </section>
+
+      {/* Apple-style floating CTA bar — appears after hero, hides at #waitlist */}
+      <HaloStickyBar />
     </main>
   );
 }
