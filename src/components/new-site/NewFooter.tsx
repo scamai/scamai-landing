@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { trackNewsletterSignup, trackOutbound } from "@/lib/analytics";
+import { trackNewsletterSignup, trackOutbound, trackEvent } from "@/lib/analytics";
 
 export default function NewFooter() {
   const [email, setEmail] = useState("");
@@ -30,6 +30,18 @@ export default function NewFooter() {
       if (!res.ok) {
         setStatus("error");
         setErrorMessage(data.error || "Something went wrong. Please try again.");
+        // Failure event so a silently-broken signup endpoint is distinguishable
+        // from genuine "no signups" (the blob-outage failure class). audit #12.
+        trackEvent({
+          action: "newsletter_signup_error",
+          category: "conversion",
+          label:
+            res.status === 429
+              ? "rate_limit"
+              : res.status === 400 || res.status === 422
+              ? "validation"
+              : `http_${res.status}`,
+        });
         return;
       }
       trackNewsletterSignup("footer");
@@ -39,6 +51,7 @@ export default function NewFooter() {
     } catch {
       setStatus("error");
       setErrorMessage("Network error. Please try again.");
+      trackEvent({ action: "newsletter_signup_error", category: "conversion", label: "network" });
     }
   };
 
