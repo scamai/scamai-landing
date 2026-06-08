@@ -132,6 +132,13 @@ export default function FaceswapPlayground() {
   const [countdown, setCountdown] = useState<number | null>(null);
   const [shareCardUrl, setShareCardUrl] = useState("");
   const [showCard, setShowCard] = useState(false);
+  // Clean (un-watermarked) copy of the latest live frame, refreshed every rAF
+  // during the swap. captureAndCompose sources from this so the share card can
+  // still be built AFTER the 30s session ends — once stop() runs the live video
+  // frame is gone. cardFrameReady gates the ended-state share entry point.
+  const lastFrameRef = useRef<HTMLCanvasElement | null>(null);
+  const cardFrameReadyRef = useRef(false);
+  const [cardFrameReady, setCardFrameReady] = useState(false);
 
   // Revoke any uploaded-face object URLs when the component unmounts.
   useEffect(() => () => objectUrlsRef.current.forEach((u) => URL.revokeObjectURL(u)), []);
@@ -204,6 +211,13 @@ export default function FaceswapPlayground() {
       canvas.height = H;
       const ctx = canvas.getContext("2d")!;
 
+      // Clean per-frame copy (no watermark) for the post-session share card.
+      let lf = lastFrameRef.current;
+      if (!lf) { lf = document.createElement("canvas"); lastFrameRef.current = lf; }
+      lf.width = W;
+      lf.height = H;
+      const lfCtx = lf.getContext("2d");
+
       // Pre-load scam.ai logo
       const logo = new Image();
       await new Promise<void>((res) => { logo.onload = logo.onerror = () => res(); logo.src = "/scamai-logo.svg"; });
@@ -225,6 +239,15 @@ export default function FaceswapPlayground() {
       const draw = () => {
         if (!cancelled && videoEl.readyState >= 2) {
           ctx.drawImage(videoEl, 0, 0, W, H);
+          // Stash a clean copy before the watermark goes on (used by the share
+          // card, which draws its own corners/badge). Flag readiness once.
+          if (lfCtx) {
+            lfCtx.drawImage(videoEl, 0, 0, W, H);
+            if (!cardFrameReadyRef.current) {
+              cardFrameReadyRef.current = true;
+              setCardFrameReady(true);
+            }
+          }
           // Pill backdrop for legibility on any background
           ctx.fillStyle = "rgba(0,0,0,0.32)";
           ctx.beginPath();
@@ -450,8 +473,20 @@ export default function FaceswapPlayground() {
 
   // ─── 3-2-1 screenshot → branded share card ───────────────────────────────
   const captureAndCompose = useCallback(async () => {
-    const video = remoteVideoRef.current;
-    if (!video || video.readyState < 2) return;
+    // Prefer the stashed clean frame (kept ≤1 frame fresh during the live swap,
+    // and the ONLY frame still available once the session has ended); fall back
+    // to the live video element if the stash hasn't been written yet.
+    const stash = lastFrameRef.current;
+    const liveVideo = remoteVideoRef.current;
+    let frameSrc: CanvasImageSource | null = null;
+    let vW = 1280;
+    let vH = 720;
+    if (stash && stash.width > 0) {
+      frameSrc = stash; vW = stash.width; vH = stash.height;
+    } else if (liveVideo && liveVideo.readyState >= 2) {
+      frameSrc = liveVideo; vW = liveVideo.videoWidth || 1280; vH = liveVideo.videoHeight || 720;
+    }
+    if (!frameSrc) return;
 
     await document.fonts.ready;
 
@@ -518,15 +553,13 @@ export default function FaceswapPlayground() {
 
     // ── Face window (dominant) — mirror, cover-fit ──────────────────────
     const fX = cx, fY = 192, fW = cw, fH = 978, fR = 32;
-    const vW = video.videoWidth || 1280;
-    const vH = video.videoHeight || 720;
     const fScale = Math.max(fW / vW, fH / vH);
     const sW = fW / fScale, sH = fH / fScale;
     const sX = (vW - sW) / 2, sY = (vH - sH) / 2;
     ctx.save();
     rr(fX, fY, fW, fH, fR); ctx.clip();
     ctx.transform(-1, 0, 0, 1, fX + fW, 0); // mirror within clip
-    ctx.drawImage(video, sX, sY, sW, sH, 0, fY, fW, fH);
+    ctx.drawImage(frameSrc, sX, sY, sW, sH, 0, fY, fW, fH);
     // holo shine sweep (inside the same clip)
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     const shine = ctx.createLinearGradient(fX, fY, fX + fW, fY + fH * 0.55);
@@ -812,6 +845,8 @@ export default function FaceswapPlayground() {
     setShowCard(false);
     setSaved(false);
     setShareHint("");
+    setCardFrameReady(false);
+    cardFrameReadyRef.current = false;
     // Skip consent screen on re-runs — auto-launch via effect below
     setStep(hasGrantedCameraRef.current ? "consent" : "intro");
   }, [stop]);
@@ -1180,9 +1215,25 @@ export default function FaceswapPlayground() {
           <Overlay>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
             <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device.</h3>
+            {/* Share is the primary action here — it's the viral loop AND the card
+                carries the Halo ad + QR to scam.ai. The frame was stashed during
+                the live swap, so we can still compose it now (no live video left). */}
+            {cardFrameReady && (
+              <button
+                onClick={() => captureAndCompose()}
+                className="relative mt-5 inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(36,95,255,0.85)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
+              >
+                <span className="absolute -inset-1 -z-10 animate-ping rounded-full bg-[#245FFF]/30 [animation-duration:2.5s]" />
+                <Camera className="h-4 w-4" /> Share your deepfake
+              </button>
+            )}
             <Link
               href={HALO_HREF}
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]"
+              className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98] ${
+                cardFrameReady
+                  ? "mt-3 border border-white/20 text-white hover:bg-white/10"
+                  : "mt-5 bg-white text-black hover:bg-white/90"
+              }`}
             >
               Meet Halo — the defense <ArrowRight className="h-4 w-4" />
             </Link>
