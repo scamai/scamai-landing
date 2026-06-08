@@ -47,6 +47,15 @@ export function loadPostHog() {
     // — manual wiring stays business-only.
     defaults: "2026-05-30",
     capture_exceptions: false, // Sentry owns errors
+    // Cross-subdomain attribution: store the distinct_id cookie at the
+    // registrable domain (.scam.ai), NOT www.scam.ai, so app.scam.ai (the
+    // WorkOS-auth product app, repo scamai/sentinal_dashboard) reads the SAME
+    // distinct_id when it inits PostHog with this same project token. That
+    // stitches the anonymous landing journey to the signed-up user once the app
+    // calls posthog.identify() — the prerequisite for attributing real signups
+    // back to the landing session. posthog-js auto-detects this for real
+    // domains, but we set it explicitly so the behaviour can't silently change.
+    cross_subdomain_cookie: true,
     person_profiles: "identified_only",
     session_recording: {
       maskAllInputs: true,
