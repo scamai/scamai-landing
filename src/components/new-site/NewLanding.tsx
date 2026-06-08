@@ -390,6 +390,7 @@ export default function NewLanding() {
       </section>
 
       {/* Trusted-by partner / investor logo marquee */}
+      <SectionViewTracker name="landing_trusted_by" />
       <TrustedBy />
 
       {/* Live "Deepfake is here" face-swap playground */}
@@ -453,6 +454,7 @@ export default function NewLanding() {
       <div className="section-divider" />
 
       {/* Solutions Section: Product verticals */}
+      <SectionViewTracker name="landing_solutions" />
       <SolutionsSection />
 
       <div className="section-divider" />
