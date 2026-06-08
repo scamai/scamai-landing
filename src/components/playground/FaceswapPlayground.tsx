@@ -481,7 +481,10 @@ export default function FaceswapPlayground() {
     let frameSrc: CanvasImageSource | null = null;
     let vW = 1280;
     let vH = 720;
-    if (stash && stash.width > 0) {
+    // Only trust the stash if a real frame was written THIS session
+    // (cardFrameReadyRef). Otherwise it may hold the previous session's frame or
+    // a just-resized blank canvas — fall back to the live video instead.
+    if (cardFrameReadyRef.current && stash && stash.width > 0) {
       frameSrc = stash; vW = stash.width; vH = stash.height;
     } else if (liveVideo && liveVideo.readyState >= 2) {
       frameSrc = liveVideo; vW = liveVideo.videoWidth || 1280; vH = liveVideo.videoHeight || 720;
@@ -847,6 +850,7 @@ export default function FaceswapPlayground() {
     setShareHint("");
     setCardFrameReady(false);
     cardFrameReadyRef.current = false;
+    lastFrameRef.current = null; // drop the prior session's frame (re-created on next live)
     // Skip consent screen on re-runs — auto-launch via effect below
     setStep(hasGrantedCameraRef.current ? "consent" : "intro");
   }, [stop]);
