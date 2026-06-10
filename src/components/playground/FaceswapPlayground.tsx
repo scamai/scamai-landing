@@ -23,6 +23,12 @@ import { useFaceswap } from "./useFaceswap";
 
 const DEMO_SECONDS = 30;
 const PER_PLAY_SECONDS = 30; // used for queue ETA estimate
+// The backend admits 2 concurrent demo-tier sessions (DEMO_MAX_CONCURRENT),
+// so the line drains 2 at a time — an ETA modelled on a single serial slot
+// overstates the wait ~2× and drives queue abandonment.
+const DEMO_CONCURRENCY = 2;
+// Connect + teardown time around each 30s play (offer→first frame + cleanup).
+const QUEUE_OVERHEAD_SECONDS = 10;
 const HALO_HREF = "/halo";
 
 // 100% AI-generated faces (StyleGAN2) — no real person, no likeness rights, no
@@ -97,6 +103,14 @@ async function urlToBase64(url: string): Promise<string> {
 }
 
 const fmt = (s: number) => `0:${String(Math.max(0, s)).padStart(2, "0")}`;
+
+// Phases where a picked face must reach the hook: live switches the running
+// swap over the WS; queued/busy/connecting must still update the hook's
+// targetFaceRef (setFace's WS send is live-gated) so the promotion /
+// busy-retry re-offer starts with the face the picker highlights — not the
+// one selected before the user got in line.
+const phaseAcceptsFace = (phase: string) =>
+  phase === "live" || phase === "queued" || phase === "busy" || phase === "connecting";
 
 type Step = "intro" | "consent" | "running" | "ended";
 
@@ -324,11 +338,14 @@ export default function FaceswapPlayground() {
       trackEvent({ action: "playground_server_busy", category: "playground" });
     } else if (state.phase === "error") {
       trackEvent({ action: "playground_swap_error", category: "playground", label: state.error });
-    } else if (state.phase === "ended") {
-      // Engine closed the session (TIME_EXPIRED). Timer path tracks separately.
+    } else if (state.phase === "ended" && state.endedReason === "budget") {
+      // Engine killed the session (TIME_EXPIRED = trial budget exhausted).
+      // The client-timer path tracks label "timer" itself — and stop() now
+      // flips phase to 'ended' for recorder cleanup on that path too, so
+      // gating on endedReason prevents a double session_completed event.
       trackEvent({ action: "playground_session_completed", category: "playground", label: "engine" });
     }
-  }, [state.phase, state.error]);
+  }, [state.phase, state.error, state.endedReason]);
 
   // 30s countdown — starts when the swap goes live, ends → CTA.
   useEffect(() => {
@@ -418,15 +435,16 @@ export default function FaceswapPlayground() {
   const onPickFace = useCallback(
     async (url: string) => {
       setSelected(url);
-      if (step === "running" && state.phase === "live") {
+      if (step !== "running" || !phaseAcceptsFace(state.phase)) return;
+      if (state.phase === "live") {
         setSwitchingFace(true);
         if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
         switchTimerRef.current = setTimeout(() => setSwitchingFace(false), 2500);
-        try {
-          setFace(await urlToBase64(url));
-        } catch {
-          /* keep current */
-        }
+      }
+      try {
+        setFace(await urlToBase64(url));
+      } catch {
+        /* keep current */
       }
     },
     [step, state.phase, setFace]
@@ -441,11 +459,12 @@ export default function FaceswapPlayground() {
       objectUrlsRef.current.push(url);
       setLibrary((prev) => [...prev, { label: "Your photo", url, custom: true, shared: false }]);
       setSelected(url);
-      // Encode and store on Aries + swap live if running
+      // Encode and store on Aries + hand to the hook if a session is running
+      // (live = switch now; queued/busy/connecting = used by the re-offer).
       try {
         const b64 = await urlToBase64(url);
         uploadFace(b64);
-        if (step === "running" && state.phase === "live") setFace(b64);
+        if (step === "running" && phaseAcceptsFace(state.phase)) setFace(b64);
       } catch { /* keep current */ }
     },
     [step, state.phase, setFace, uploadFace]
@@ -867,10 +886,14 @@ export default function FaceswapPlayground() {
 
   const connecting = step === "running" && (state.phase === "connecting" || state.phase === "queued");
   const live = step === "running" && state.phase === "live";
-  // ETA = people AHEAD of you × seconds per session (position 1 means you're
-  // next, no one ahead; position 3 means 2 people ahead → 60s, not 90s).
+  // ETA = people AHEAD of you (position 1 means you're next, no one ahead),
+  // drained DEMO_CONCURRENCY at a time, × seconds per session including the
+  // connect/teardown overhead. E.g. 4 ahead → ceil(4/2) × 40s = ~80s.
   const peopleAheadCount = Math.max(0, (state.queuePosition ?? 1) - 1);
-  const queueEta = peopleAheadCount > 0 ? peopleAheadCount * PER_PLAY_SECONDS : null;
+  const queueEta =
+    peopleAheadCount > 0
+      ? Math.ceil(peopleAheadCount / DEMO_CONCURRENCY) * (PER_PLAY_SECONDS + QUEUE_OVERHEAD_SECONDS)
+      : null;
 
   // ─── Face picker — two sections: presets + your uploads ──────────────────
   const FacePicker = ({ compact = false }: { compact?: boolean }) => {
@@ -1240,8 +1263,26 @@ export default function FaceswapPlayground() {
 
         {step === "ended" && (
           <Overlay>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
-            <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device.</h3>
+            {/* 'budget' = the SERVER ended it (cumulative free trial time for
+                this browser is spent) — celebrating "that took 30 seconds"
+                would be a lie, and Run again would just burn a connect cycle
+                to die seconds in. Be honest; keep the Halo CTA. */}
+            {state.endedReason === "budget" ? (
+              <>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300">Demo limit reached</p>
+                <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">
+                  You&apos;ve used up today&apos;s free demo time.
+                </h3>
+                <p className="mt-2 max-w-xs text-xs text-white/50">
+                  Thirty seconds was all it took to fake a face — now meet the defense.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
+                <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device.</h3>
+              </>
+            )}
             {/* Share is the primary action here — it's the viral loop AND the card
                 carries the Halo ad + QR to scam.ai. The frame was stashed during
                 the live swap, so we can still compose it now (no live video left). */}
@@ -1264,9 +1305,13 @@ export default function FaceswapPlayground() {
             >
               Meet Halo — the defense <ArrowRight className="h-4 w-4" />
             </Link>
-            <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
-              <RefreshCw className="h-3.5 w-3.5" /> Run again
-            </button>
+            {/* No Run again on budget exhaustion — the server would kill the
+                next session seconds after it goes live. */}
+            {state.endedReason !== "budget" && (
+              <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
+                <RefreshCw className="h-3.5 w-3.5" /> Run again
+              </button>
+            )}
           </Overlay>
         )}
       </div>

@@ -14,11 +14,19 @@
 //   1. POST /api/faceswap-token {trial_uuid}  → { token, user_uuid, brand_id }
 //      (trial_uuid persists in localStorage — the backend's cumulative trial
 //      budget is keyed on it, so it must survive reloads)
-//   2. WS  {WS}/ws/status?token&user_uuid  → server sends {type:'identity'}
+//   2. WS  {WS}/ws/status?token&user_uuid[&client_id] → {type:'identity'}
+//      · while queued, a dropped WS auto-reconnects (2 attempts, 2s/5s)
+//        presenting our client_id — the backend re-adopts the queue slot
+//        within its eviction grace window (cancels the pending eviction and
+//        pushes an honest position), or answers status:'not_queued' if the
+//        slot is gone → one fresh-PC re-offer
 //   3. GET /api/turn-credentials           → ICE servers (Cloudflare TURN)
 //   4. RTCPeerConnection + addTrack(camera) + ontrack(remote swapped stream)
 //   5. POST {HTTP}/ws/offer  (SDP + target_face_b64) → answer → setRemoteDesc
-//      · 503 = GPU circuit breaker (NOT the queue) → countdown + auto-retry
+//      · 503 = GPU circuit breaker (NOT the queue) → countdown, then retry on
+//        a FRESH PC (the backend buffers breaker-window ICE candidates and
+//        applies every buffered generation on acceptance — a same-PC
+//        rollback+re-offer would get both generations and poison pairing)
 //      · 200 {status:'queued'} = real queue → wait for WS control push
 //      · promotion {type:'control', action:'start_connection'} → FRESH PC
 //        (backend drops all ICE trickled while queued) + re-offer
@@ -50,6 +58,11 @@ const ICE_GRACE_MS = 5_000;
 // 503 circuit-breaker auto-retries before giving up with a manual-retry error.
 const MAX_BUSY_RETRIES = 2;
 const DEFAULT_BUSY_RETRY_S = 10;
+// Status-WS auto-reconnect while queued: bounded attempts at these delays.
+// The backend holds the queue slot for QUEUE_EVICT_GRACE_S (30s) after a WS
+// close, so 2s + 5s lands comfortably inside the grace window; presenting our
+// client_id on reconnect re-adopts the slot and cancels the pending eviction.
+const WS_RECONNECT_DELAYS_MS = [2_000, 5_000];
 
 // ─── Stable trial identity ────────────────────────────────────────────────
 // The backend enforces a cumulative per-trial_uuid budget; a fresh uuid per
@@ -113,6 +126,12 @@ export interface FaceswapState {
   // Non-fatal hint, e.g. a target photo with no detectable face. The live
   // session keeps running on the previous face; the UI shows a dismissible toast.
   faceWarning: string;
+  // Why phase reached 'ended': 'timer' = the client 30s demo countdown ran
+  // out (normal completion); 'budget' = the server killed the session because
+  // the cumulative per-trial_uuid free budget is exhausted (TIME_EXPIRED).
+  // The UI must NOT show the celebratory "That took 30 seconds" screen — or a
+  // Run-again button that burns a connect cycle just to die — on 'budget'.
+  endedReason: "timer" | "budget" | null;
 }
 
 const NO_FACE_HINT = "No face detected in that photo — try a clear, front-facing one.";
@@ -137,6 +156,7 @@ export function useFaceswap() {
     queuePosition: null,
     busyRetryIn: null,
     faceWarning: "",
+    endedReason: null,
   });
 
   const wsRef = useRef<WebSocket | null>(null);
@@ -148,9 +168,16 @@ export function useFaceswap() {
   const userUuidRef = useRef<string>("");
   const targetFaceRef = useRef<string>("");
   const cancelledRef = useRef<boolean>(false);
-  // Holds the function that (re)posts the SDP offer — re-invoked by the busy
-  // (503) auto-retry on the SAME PeerConnection.
-  const postOfferRef = useRef<(() => Promise<void>) | null>(null);
+  // Holds the busy (503) auto-retry path: FRESH PC + re-offer. Same fresh-PC
+  // discipline as promotion — the backend BUFFERS candidates trickled while
+  // an offer is unaccepted (the breaker window included; nothing purges that
+  // buffer for breaker-rejected clients) and applies every buffered
+  // generation when a later offer is accepted. A same-PC rollback+re-offer
+  // (new ufrag, re-gather) would therefore get the dead first-generation
+  // candidates applied alongside its own — the documented ICE-poisoning
+  // failure. Fresh PC also sidesteps Safari's unreliable
+  // setLocalDescription({type:'rollback'}).
+  const busyReofferRef = useRef<(() => Promise<void>) | null>(null);
   // Holds the queue-promotion path: fresh PC + re-offer. The backend drops all
   // ICE trickled pre/while-queued and expects a NEW ufrag on promotion, so
   // re-offering on the old PC would poison ICE pairing.
@@ -165,6 +192,14 @@ export function useFaceswap() {
   const busyTickRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const busyRetriesRef = useRef<number>(0);
   const notQueuedRetriedRef = useRef<boolean>(false);
+  // Last queue position the server reported — a DECREASE restarts the 180s
+  // stall watchdog (the line is moving; killing the wait would be wrong).
+  const lastQueuePosRef = useRef<number | null>(null);
+  // Status-WS reconnect-while-queued bookkeeping (see WS_RECONNECT_DELAYS_MS).
+  const wsReconnectAttemptsRef = useRef<number>(0);
+  const wsReconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Breaks the openStatusWs ↔ scheduleWsReconnect definition cycle.
+  const scheduleWsReconnectRef = useRef<(() => void) | null>(null);
   // Tears down the hidden first-frame probe <video> (see armFirstFrameDetection).
   const frameProbeCleanupRef = useRef<(() => void) | null>(null);
 
@@ -176,11 +211,15 @@ export function useFaceswap() {
   // ─── Teardown ─────────────────────────────────────────────────────────────
   const stop = useCallback(() => {
     cancelledRef.current = true;
-    postOfferRef.current = null;
+    busyReofferRef.current = null;
     promoteRef.current = null;
     if (iceGraceTimerRef.current) {
       clearTimeout(iceGraceTimerRef.current);
       iceGraceTimerRef.current = null;
+    }
+    if (wsReconnectTimerRef.current) {
+      clearTimeout(wsReconnectTimerRef.current);
+      wsReconnectTimerRef.current = null;
     }
     if (firstFrameTimerRef.current) {
       clearTimeout(firstFrameTimerRef.current);
@@ -211,7 +250,18 @@ export function useFaceswap() {
     localStreamRef.current?.getTracks().forEach((t) => t.stop());
     localStreamRef.current = null;
     clientIdRef.current = "";
-  }, []);
+    // The component's MediaRecorder effect is keyed on [phase, remoteStream];
+    // leaving phase 'live' after teardown kept it recording the frozen last
+    // frame indefinitely (junk tail in the eventual upload). Flip to 'ended'
+    // so the effect cleans up and uploads NOW. Only the live→stop path (the
+    // client 30s timer) takes this branch — error/budget paths patch their
+    // own terminal phase BEFORE calling stop(), which must not be clobbered.
+    if (phaseRef.current === "live") {
+      patch({ phase: "ended", remoteStream: null, endedReason: "timer" });
+    } else {
+      patch({ remoteStream: null });
+    }
+  }, [patch]);
 
   useEffect(() => () => stop(), [stop]);
 
@@ -230,8 +280,12 @@ export function useFaceswap() {
   // ─── Queue-wait watchdog ──────────────────────────────────────────────────
   // The real queue (HTTP 200 status:'queued') resolves via a server WS push;
   // if that push is lost (backend restart, WS hiccup) the old code waited
-  // forever. Armed ONCE on entering the queue (position updates don't reset
-  // it); cleared on promotion / not_queued / stop.
+  // forever. The timer RESTARTS whenever the reported position improves
+  // (noteQueueProgress below) — at demo-cap-2 throughput a deep queue
+  // legitimately takes >3 min, and killing a visibly moving line with "the
+  // line didn't move" copy failed exactly the users who waited longest. It
+  // now only fires after 3 minutes of a genuinely frozen position, which is
+  // what the copy claims. Cleared on promotion / re-offer / stop.
   const clearQueueWatchdog = useCallback(() => {
     if (queueWatchdogRef.current) {
       clearTimeout(queueWatchdogRef.current);
@@ -240,13 +294,27 @@ export function useFaceswap() {
   }, []);
 
   const armQueueWatchdog = useCallback(() => {
-    if (queueWatchdogRef.current) return; // already armed — hard cap, no reset
+    if (queueWatchdogRef.current) return; // already armed (reset = clear first)
     queueWatchdogRef.current = setTimeout(() => {
       queueWatchdogRef.current = null;
       if (cancelledRef.current || phaseRef.current !== "queued") return;
       failSession("The line didn't move for 3 minutes — the demo is unusually busy. Please try again later.");
     }, QUEUE_WAIT_TIMEOUT_MS);
   }, [failSession]);
+
+  // Every queued-position report (offer response or WS status_update) comes
+  // through here: a position DECREASE is progress evidence → restart the 180s
+  // stall timer; an unchanged/absent position keeps the running timer.
+  const noteQueueProgress = useCallback(
+    (pos: number | null) => {
+      if (pos !== null && lastQueuePosRef.current !== null && pos < lastQueuePosRef.current) {
+        clearQueueWatchdog(); // the line moved — re-arm from zero
+      }
+      if (pos !== null) lastQueuePosRef.current = pos;
+      armQueueWatchdog();
+    },
+    [armQueueWatchdog, clearQueueWatchdog]
+  );
 
   // ─── First-frame detection + watchdog ─────────────────────────────────────
   // ontrack fires at SDP-apply time, BEFORE any RTP — flipping phase='live'
@@ -444,7 +512,9 @@ export function useFaceswap() {
   // 503 = the backend's GPU breaker REFUSED the offer; the client was never
   // enqueued and no control:start_connection push will ever come (the old code
   // patched phase='queued' here → infinite spinner). Count down retry_after,
-  // then re-post the offer on the same PC; cap at MAX_BUSY_RETRIES.
+  // then re-offer on a FRESH PC (see busyReofferRef — candidates trickled
+  // during the breaker window sit in the backend's pending-ICE buffer and
+  // would poison a same-PC retry); cap at MAX_BUSY_RETRIES.
   const scheduleBusyRetry = useCallback(
     (seconds: number) => {
       if (busyTickRef.current) clearInterval(busyTickRef.current);
@@ -463,8 +533,7 @@ export function useFaceswap() {
         }
         if (busyTickRef.current) clearInterval(busyTickRef.current);
         busyTickRef.current = null;
-        patch({ phase: "connecting", busyRetryIn: null, status: "Retrying…" });
-        postOfferRef.current?.().catch((e) => {
+        busyReofferRef.current?.().catch((e) => {
           failSession((e as Error).message || "Could not start the demo.");
         });
       }, 1000);
@@ -473,11 +542,20 @@ export function useFaceswap() {
   );
 
   // ─── Status WebSocket: resolves with the server-assigned client_id ────────
+  // `reconnect` = re-opening the WS mid-queue after an unexpected drop: skip
+  // the connecting-status copy and present our existing client_id so the
+  // backend re-adopts the queue slot instead of issuing a fresh identity.
   const openStatusWs = useCallback(
-    (token: string, userUuid: string): Promise<string> =>
+    (token: string, userUuid: string, reconnect = false): Promise<string> =>
       new Promise((resolve, reject) => {
         let url = `${WS_STATUS_URL}?token=${encodeURIComponent(token)}`;
         if (userUuid) url += `&user_uuid=${encodeURIComponent(userUuid)}`;
+        // Present our client_id once known. The backend keys queue-slot
+        // re-adoption on this query param: a reconnect inside the eviction
+        // grace window cancels the pending eviction and pushes our honest
+        // position; a stale id gets {status:'not_queued'} right after
+        // identity (see the not_queued handler below).
+        if (clientIdRef.current) url += `&client_id=${encodeURIComponent(clientIdRef.current)}`;
 
         let ws: WebSocket;
         try {
@@ -497,15 +575,30 @@ export function useFaceswap() {
           reject(new Error("Connection timed out. Check your network and retry."));
         }, CONNECT_TIMEOUT_MS);
 
-        ws.onopen = () => patch({ status: "Setting up your session…" });
+        ws.onopen = () => {
+          if (!reconnect) patch({ status: "Setting up your session…" });
+        };
 
         ws.onclose = (ev) => {
           clearTimeout(timeout);
           if (ev.code === 4001) {
-            if (!cancelledRef.current) {
-              patch({ phase: "error", error: "Session expired — please reload and try again." });
-            }
+            // Token rejected. Full teardown, not a bare patch: a 4001 that
+            // arrives AFTER this promise resolved (reject is a no-op then)
+            // would otherwise leave the PC + camera + timers running behind
+            // the error overlay. failSession guards cancelledRef itself.
+            failSession("Session expired — please reload and try again.");
             reject(new Error("Session token rejected"));
+            return;
+          }
+          if (cancelledRef.current) return;
+          // Unexpected drop while waiting in line (laptop sleep, network
+          // switch, proxy idle-timeout over a multi-minute demo-tier wait):
+          // the backend holds our slot for its eviction grace window, so a
+          // quick reconnect presenting client_id re-adopts it — without this
+          // the overlay promised auto-connect while the backend silently
+          // evicted us, stranding the user until the 180s watchdog.
+          if (phaseRef.current === "queued") {
+            scheduleWsReconnectRef.current?.();
           }
         };
 
@@ -548,7 +641,7 @@ export function useFaceswap() {
               } catch {
                 /* swallow */
               }
-              patch({ status: "Starting secure connection…" });
+              if (!reconnect) patch({ status: "Starting secure connection…" });
               resolve(clientId);
               break;
             }
@@ -556,12 +649,16 @@ export function useFaceswap() {
               if (data.status === "queued") {
                 const pos = typeof data.position === "number" ? data.position : null;
                 patch({ phase: "queued", queuePosition: pos, status: "Demo is busy — you're in line…" });
-                armQueueWatchdog();
+                noteQueueProgress(pos);
               } else if (data.status === "not_queued") {
-                // Server says we're NOT in its queue (e.g. queue state lost
-                // across a backend restart) — waiting for a promotion push
-                // would spin forever. Re-POST the offer once, on a fresh PC
-                // (same reason as promotion: our queued-era ICE was dropped).
+                // The backend answers not_queued right after `identity` when
+                // a WS connect PRESENTED a client_id that is neither queued
+                // nor in an active session — i.e. our mid-queue reconnect
+                // arrived after the eviction grace window expired (or queue
+                // state was lost across a backend restart). Our queue card is
+                // stale; waiting for a promotion push would spin forever.
+                // Re-POST the offer once, on a fresh PC (same reason as
+                // promotion: our queued-era ICE was dropped).
                 if (
                   phaseRef.current === "queued" &&
                   !cancelledRef.current &&
@@ -598,7 +695,13 @@ export function useFaceswap() {
             }
             case "error": {
               if (data.error_type === "TIME_EXPIRED") {
-                patch({ phase: "ended", status: "" });
+                // Server-authoritative trial-budget exhaustion (cumulative
+                // per-trial_uuid) — NOT a natural 30s completion. endedReason
+                // 'budget' makes the UI show honest "free demo time used up"
+                // copy instead of the celebratory ended screen. Patched
+                // BEFORE stop() so stop()'s live→ended fallback ('timer')
+                // doesn't claim this transition.
+                patch({ phase: "ended", status: "", endedReason: "budget" });
                 stop();
               } else if (!cancelledRef.current) {
                 const msg =
@@ -616,8 +719,42 @@ export function useFaceswap() {
           }
         };
       }),
-    [armQueueWatchdog, clearQueueWatchdog, failSession, patch, stop]
+    [clearQueueWatchdog, failSession, noteQueueProgress, patch, stop]
   );
+
+  // ─── Bounded WS auto-reconnect while queued ───────────────────────────────
+  // One pending attempt at a time; the attempt counter only resets on a
+  // successful re-adoption (identity received), so a dead network burns
+  // through 2s + 5s and then fails the session honestly. A FAILED attempt's
+  // socket fires onclose, which re-enters here for the next attempt —
+  // .catch() below must NOT also schedule or attempts would double-count.
+  const scheduleWsReconnect = useCallback(() => {
+    if (wsReconnectTimerRef.current) return; // an attempt is already pending
+    const attempt = wsReconnectAttemptsRef.current;
+    if (attempt >= WS_RECONNECT_DELAYS_MS.length) {
+      failSession("Lost the connection while you were in line — please try again.");
+      return;
+    }
+    wsReconnectAttemptsRef.current = attempt + 1;
+    wsReconnectTimerRef.current = setTimeout(() => {
+      wsReconnectTimerRef.current = null;
+      if (cancelledRef.current || phaseRef.current !== "queued") return;
+      openStatusWs(tokenRef.current, userUuidRef.current, true)
+        .then(() => {
+          // Re-adopted within the grace window: the backend cancelled the
+          // pending eviction and pushes our honest position (or not_queued,
+          // handled above). Fresh attempt budget for any future drop.
+          wsReconnectAttemptsRef.current = 0;
+        })
+        .catch(() => {
+          /* the failed socket's onclose chains the next attempt */
+        });
+    }, WS_RECONNECT_DELAYS_MS[attempt]);
+  }, [failSession, openStatusWs]);
+
+  useEffect(() => {
+    scheduleWsReconnectRef.current = scheduleWsReconnect;
+  }, [scheduleWsReconnect]);
 
   // ─── Main entry: connect + start the live swap ────────────────────────────
   const start = useCallback(
@@ -628,6 +765,8 @@ export function useFaceswap() {
       hasFirstFrameRef.current = false;
       busyRetriesRef.current = 0;
       notQueuedRetriedRef.current = false;
+      lastQueuePosRef.current = null;
+      wsReconnectAttemptsRef.current = 0;
       patch({
         phase: "connecting",
         error: "",
@@ -637,6 +776,7 @@ export function useFaceswap() {
         queuePosition: null,
         busyRetryIn: null,
         faceWarning: "",
+        endedReason: null,
       });
 
       try {
@@ -666,16 +806,15 @@ export function useFaceswap() {
         await buildPeerConnection(localStream);
         if (cancelledRef.current) return;
 
-        // 5) offer (re-postable for the busy auto-retry)
+        // 5) offer. Only ever invoked on a FRESHLY built PC (start, queue
+        //    promotion, busy retry, not_queued recovery all run
+        //    buildPeerConnection first), so signalingState is 'stable' here —
+        //    no rollback path. Re-entering on a used PC would re-offer under
+        //    a new ufrag while the backend still buffers the old generation's
+        //    candidates; see busyReofferRef.
         const postOffer = async () => {
           const current = pcRef.current;
           if (!current || cancelledRef.current) return;
-          // Roll back any pending local offer before re-negotiating (the 503
-          // busy auto-retry re-enters here while the PC is still in
-          // have-local-offer; queue promotion does NOT — it builds a fresh PC).
-          if (current.signalingState === "have-local-offer") {
-            await current.setLocalDescription({ type: "rollback" });
-          }
           const offer = await current.createOffer();
           await current.setLocalDescription(offer);
 
@@ -750,10 +889,10 @@ export function useFaceswap() {
             // Real queue (HTTP 200): the server WILL push control:
             // start_connection when a slot frees. Capture queue_position so
             // the UI shows the position immediately, before the WS
-            // status_update arrives; arm the 180s no-promotion watchdog.
+            // status_update arrives; arm the 180s queue-stall watchdog.
             const pos = typeof answer.queue_position === "number" ? answer.queue_position : null;
             patch({ phase: "queued", status: "Demo is busy — you're in line…", queuePosition: pos });
-            armQueueWatchdog();
+            noteQueueProgress(pos);
             return;
           }
           if (!answer?.sdp || answer.type !== "answer") {
@@ -768,22 +907,28 @@ export function useFaceswap() {
           armFirstFrameWatchdog();
         };
 
-        // Queue promotion / not_queued recovery: FRESH PeerConnection (reuse
-        // the already-granted camera stream — never re-getUserMedia), then
-        // re-offer with the SAME client_id. Mirrors FaceSwapService.
-        // retryFromQueue → WebRTCManager.createConnection at this demo's scale.
-        const promote = async () => {
+        // Fresh-PC re-offer shared by queue promotion, not_queued recovery,
+        // AND the busy (503) auto-retry: close the old PC, build a new one
+        // (new ICE ufrag), reuse the already-granted camera stream — never
+        // re-getUserMedia — then re-offer with the SAME client_id. Mirrors
+        // FaceSwapService.retryFromQueue → WebRTCManager.createConnection at
+        // this demo's scale. EVERY re-offer must come through here: the
+        // backend drops queued-era ICE on promotion and buffers (never
+        // purges) breaker-window ICE, so re-offering on an old PC gets stale
+        // candidate generations applied to the eventual session.
+        const reoffer = async (status: string) => {
           const stream = localStreamRef.current;
           if (!stream || cancelledRef.current) return;
           clearQueueWatchdog();
-          patch({ phase: "connecting", status: "Your turn — connecting…", queuePosition: null });
+          lastQueuePosRef.current = null; // leaving the queue — drop stall baseline
+          patch({ phase: "connecting", status, queuePosition: null, busyRetryIn: null });
           await buildPeerConnection(stream);
           if (cancelledRef.current) return;
           await postOffer();
         };
 
-        postOfferRef.current = postOffer;
-        promoteRef.current = promote;
+        busyReofferRef.current = () => reoffer("Retrying…");
+        promoteRef.current = () => reoffer("Your turn — connecting…");
         await postOffer();
       } catch (err) {
         if (cancelledRef.current) return;
@@ -793,9 +938,9 @@ export function useFaceswap() {
     },
     [
       armFirstFrameWatchdog,
-      armQueueWatchdog,
       buildPeerConnection,
       clearQueueWatchdog,
+      noteQueueProgress,
       openStatusWs,
       patch,
       scheduleBusyRetry,
@@ -803,12 +948,21 @@ export function useFaceswap() {
     ]
   );
 
-  // ─── Switch target face live (no reconnect) ───────────────────────────────
+  // ─── Switch target face (live session, or pending while queued/busy) ──────
+  // Always updates targetFaceRef — the promotion / busy-retry re-offer reads
+  // it, so a face picked while waiting in line starts the swap with the face
+  // the picker highlights. The WS config_update only applies to a LIVE
+  // session; pre-live the new face rides in the eventual offer body instead.
   const setFace = useCallback((targetFaceB64: string) => {
     targetFaceRef.current = targetFaceB64;
     patch({ faceWarning: "" }); // clear any prior no-face hint on a new attempt
     const ws = wsRef.current;
-    if (ws && ws.readyState === WebSocket.OPEN && clientIdRef.current) {
+    if (
+      phaseRef.current === "live" &&
+      ws &&
+      ws.readyState === WebSocket.OPEN &&
+      clientIdRef.current
+    ) {
       ws.send(
         JSON.stringify({
           type: "config_update",
