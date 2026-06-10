@@ -11,7 +11,7 @@ import {
 } from "@/lib/research/data";
 import { DatasetAccessButton } from "@/components/research/DatasetAccessButton";
 
-type Params = { locale: Locale; slug: string };
+type Params = { locale: string; slug: string };
 
 export async function generateStaticParams() {
   const slugs = getAllPaperSlugs();
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
-  const { locale, slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const paper = getPaperBySlug(slug);
   if (!paper) {
     return generatePageMetadata({
@@ -60,7 +61,8 @@ export default async function PaperDetailPage({
 }: {
   params: Promise<Params>;
 }) {
-  const { locale, slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const paper = getPaperBySlug(slug);
   if (!paper) notFound();
 

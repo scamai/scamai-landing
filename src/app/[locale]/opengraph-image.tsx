@@ -13,7 +13,7 @@ export async function generateImageParams() {
 export default async function OGImage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale: _locale } = await params;
 

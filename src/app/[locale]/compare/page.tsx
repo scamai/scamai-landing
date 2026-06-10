@@ -3,8 +3,8 @@ import type { Locale } from '@/lib/seo';
 import { Link } from '@/i18n/navigation';
 import { competitors } from '@/lib/compare/competitors';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale as Locale;
   return generatePageMetadata({
     locale,
     path: '/compare',
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   });
 }
 
-export default async function ComparePage({ params }: { params: Promise<{ locale: Locale }> }) {
+export default async function ComparePage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
   return (
     <main className="min-h-screen bg-black text-white">

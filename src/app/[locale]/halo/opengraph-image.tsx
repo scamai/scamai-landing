@@ -14,7 +14,7 @@ export async function generateImageParams() {
 export default async function HaloOGImage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   await params;
 

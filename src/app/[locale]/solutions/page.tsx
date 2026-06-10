@@ -14,8 +14,8 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale as Locale;
   return generatePageMetadata({
     locale,
     path: '/solutions',
@@ -45,7 +45,7 @@ const industryIcons: Record<string, LucideIcon> = {
   government: Building2,
 };
 
-export default async function SolutionsPage({ params }: { params: Promise<{ locale: Locale }> }) {
+export default async function SolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
   return (
     <main className="min-h-screen bg-black text-white">

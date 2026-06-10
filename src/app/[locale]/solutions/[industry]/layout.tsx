@@ -5,7 +5,7 @@ import { getIndustryBySlug, getAllIndustrySlugs } from '@/lib/solutions/industri
 import { getSeoTranslation } from '@/lib/seo-translations';
 import { notFound } from 'next/navigation';
 
-type Params = { locale: Locale; industry: string };
+type Params = { locale: string; industry: string };
 
 export async function generateStaticParams() {
   const slugs = getAllIndustrySlugs();
@@ -13,7 +13,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
-  const { locale, industry: slug } = await params;
+  const { locale: localeParam, industry: slug } = await params;
+  const locale = localeParam as Locale;
   const industry = getIndustryBySlug(slug);
   if (!industry) {
     return generatePageMetadata({ locale, path: `/solutions/${slug}`, title: 'Not found', description: '', noindex: true });
@@ -36,7 +37,8 @@ export default async function IndustryLayout({
   children: React.ReactNode;
   params: Promise<Params>;
 }) {
-  const { locale, industry: slug } = await params;
+  const { locale: localeParam, industry: slug } = await params;
+  const locale = localeParam as Locale;
   const industry = getIndustryBySlug(slug);
   if (!industry) notFound();
 

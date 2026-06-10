@@ -5,7 +5,7 @@ import { getArticleBySlug, getAllArticleSlugs } from '@/lib/learn/articles';
 import { getSeoTranslation } from '@/lib/seo-translations';
 import { notFound } from 'next/navigation';
 
-type Params = { locale: Locale; slug: string };
+type Params = { locale: string; slug: string };
 
 export async function generateStaticParams() {
   const slugs = getAllArticleSlugs();
@@ -13,7 +13,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
-  const { locale, slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const article = getArticleBySlug(slug);
   if (!article) {
     return generatePageMetadata({ locale, path: `/learn/${slug}`, title: 'Not found', description: '', noindex: true });
@@ -36,7 +37,8 @@ export default async function LearnArticleLayout({
   children: React.ReactNode;
   params: Promise<Params>;
 }) {
-  const { locale, slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 

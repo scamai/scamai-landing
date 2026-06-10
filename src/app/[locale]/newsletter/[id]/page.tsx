@@ -16,8 +16,9 @@ async function getNewsletter(idOrSlug: string) {
   return null;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; id: string }> }) {
-  const { locale, id } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
+  const { locale: localeParam, id } = await params;
+  const locale = localeParam as Locale;
   const newsletter = await getNewsletter(id);
 
   // Extract topic-specific keywords from newsletter content
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   });
 }
 
-export default async function NewsletterDetailPage({ params }: { params: Promise<{ locale: Locale; id: string }> }) {
-  const { locale, id } = await params;
+export default async function NewsletterDetailPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
+  const { locale: localeParam, id } = await params;
+  const locale = localeParam as Locale;
   const newsletter = await getNewsletter(id);
 
   // Redirect numeric IDs to slug-based URL for canonical consistency

@@ -5,7 +5,7 @@ import { getCompetitorBySlug, getAllCompetitorSlugs } from '@/lib/compare/compet
 import { getSeoTranslation } from '@/lib/seo-translations';
 import { notFound } from 'next/navigation';
 
-type Params = { locale: Locale; competitor: string };
+type Params = { locale: string; competitor: string };
 
 export async function generateStaticParams() {
   const slugs = getAllCompetitorSlugs();
@@ -13,7 +13,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
-  const { locale, competitor: slug } = await params;
+  const { locale: localeParam, competitor: slug } = await params;
+  const locale = localeParam as Locale;
   const competitor = getCompetitorBySlug(slug);
   if (!competitor) {
     return generatePageMetadata({ locale, path: `/compare/${slug}`, title: 'Not found', description: '', noindex: true });
@@ -36,7 +37,8 @@ export default async function CompareLayout({
   children: React.ReactNode;
   params: Promise<Params>;
 }) {
-  const { locale, competitor: slug } = await params;
+  const { locale: localeParam, competitor: slug } = await params;
+  const locale = localeParam as Locale;
   const competitor = getCompetitorBySlug(slug);
   if (!competitor) notFound();
 

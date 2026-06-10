@@ -3,8 +3,8 @@ import type { Locale } from '@/lib/seo';
 import { Link } from '@/i18n/navigation';
 import { articles } from '@/lib/learn/articles';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale as Locale;
   return generatePageMetadata({
     locale,
     path: '/learn',
@@ -30,7 +30,7 @@ const categoryColors: Record<string, string> = {
   'Research & Data': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
 };
 
-export default async function LearnPage({ params }: { params: Promise<{ locale: Locale }> }) {
+export default async function LearnPage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
   const categories = [...new Set(articles.map((a) => a.category))];
 

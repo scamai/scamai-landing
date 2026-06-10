@@ -5,8 +5,8 @@ import type { Locale } from '@/lib/seo';
 import NewsletterList from '@/components/newsletter/NewsletterList';
 import { getPublishedNewsletters } from '@/lib/db/newsletters';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale as Locale;
   return generatePageMetadata({
     locale,
     path: '/newsletter',
@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   });
 }
 
-export default async function NewsletterPage({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export default async function NewsletterPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale as Locale;
   let newsletters: Awaited<ReturnType<typeof getPublishedNewsletters>> = [];
   try {
     newsletters = await getPublishedNewsletters();

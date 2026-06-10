@@ -10,7 +10,7 @@ import {
 } from "@/lib/research/data";
 import { DatasetAccessButton } from "@/components/research/DatasetAccessButton";
 
-type Params = { locale: Locale; id: string };
+type Params = { locale: string; id: string };
 
 export async function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }) {
-  const { locale, id } = await params;
+  const { locale: localeParam, id } = await params;
+  const locale = localeParam as Locale;
   const dataset = getDatasetById(id);
   if (!dataset) {
     return generatePageMetadata({
@@ -52,7 +53,8 @@ export default async function DatasetDetailPage({
 }: {
   params: Promise<Params>;
 }) {
-  const { locale, id } = await params;
+  const { locale: localeParam, id } = await params;
+  const locale = localeParam as Locale;
   const dataset = getDatasetById(id);
   if (!dataset) notFound();
 
