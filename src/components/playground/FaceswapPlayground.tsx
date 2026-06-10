@@ -319,6 +319,9 @@ export default function FaceswapPlayground() {
       trackEvent({ action: "playground_swap_live", category: "playground" });
     } else if (state.phase === "queued") {
       trackEvent({ action: "playground_queued", category: "playground" });
+    } else if (state.phase === "busy") {
+      // 503 circuit breaker — distinct from queued (auto-retry, no queue slot).
+      trackEvent({ action: "playground_server_busy", category: "playground" });
     } else if (state.phase === "error") {
       trackEvent({ action: "playground_swap_error", category: "playground", label: state.error });
     } else if (state.phase === "ended") {
@@ -1194,6 +1197,26 @@ export default function FaceswapPlayground() {
                 : `${peopleAhead} ${peopleAhead === 1 ? "person" : "people"} ahead · ~${queueEta}s wait`}
             </p>
             <p className="mt-4 text-[11px] text-white/30">We'll start your swap automatically — no need to refresh.</p>
+          </Overlay>
+        )}
+
+        {/* server busy (GPU circuit breaker) — distinct from queued: a
+            breaker-blocked offer never enters the queue, so there is no
+            promotion push to wait for. The hook auto-retries on a countdown;
+            this overlay just makes the wait visible. */}
+        {step === "running" && state.phase === "busy" && (
+          <Overlay>
+            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300">
+              <AlertTriangle className="h-3.5 w-3.5" />
+              Server at capacity
+            </div>
+            <div className="mt-3 text-5xl font-bold tabular-nums text-white">
+              {state.busyRetryIn ?? "…"}
+            </div>
+            <p className="mt-1 text-sm text-white/70">seconds until we retry</p>
+            <p className="mt-4 text-[11px] text-white/30">
+              Every GPU is busy making deepfakes — we&apos;ll retry automatically, no need to refresh.
+            </p>
           </Overlay>
         )}
 
