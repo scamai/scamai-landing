@@ -42,7 +42,7 @@ Disallow: /_next/
 Disallow: /admin/
 
 # Sitemap
-Sitemap: https://scam.ai/sitemap.xml
+Sitemap: https://www.scam.ai/sitemap.xml
 
 # AI context files
 # See https://llmstxt.org/

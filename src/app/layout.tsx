@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://scam.ai"),
+  metadataBase: new URL("https://www.scam.ai"),
   alternates: {
     canonical: "/",
     languages: {
@@ -63,13 +63,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://scam.ai",
+    url: "https://www.scam.ai",
     title: "ScamAI - AI Trust Platform | Deepfake Detection",
     description: "Detect synthetic media and deepfakes in real-time with industry-leading accuracy. SOC 2 Type II compliant. 200 free images per month.",
     siteName: "ScamAI",
     images: [
       {
-        url: "https://scam.ai/en/opengraph-image",
+        url: "/en/opengraph-image",
         width: 1200,
         height: 630,
         alt: "ScamAI - AI Trust Platform for Deepfake Detection",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ScamAI - AI Trust Platform | Deepfake Detection",
     description: "Detect synthetic media and deepfakes in real-time with industry-leading accuracy. SOC 2 Type II compliant.",
-    images: ["https://scam.ai/en/opengraph-image"],
+    images: ["/en/opengraph-image"],
     creator: "@scamai",
     site: "@scamai",
   },

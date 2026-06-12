@@ -45,25 +45,40 @@ export async function generateMetadata(
     ar: "منصة الثقة بالذكاء الاصطناعي الشاملة للكشف عن الوسائط التركيبية والتزييف العميق في الوقت الفعلي. دقة رائدة في الصناعة مع الامتثال SOC 2 Type II.",
   };
 
+  const ogLocales: Record<string, string> = {
+    en: "en_US",
+    es: "es_ES",
+    pt: "pt_BR",
+    ja: "ja_JP",
+    ko: "ko_KR",
+    id: "id_ID",
+    fr: "fr_FR",
+    de: "de_DE",
+    ar: "ar_AR",
+    "zh-CN": "zh_CN",
+    "zh-TW": "zh_TW",
+  };
+
   return {
     title: titles[locale] || titles.en,
     description: descriptions[locale] || descriptions.en,
     alternates: {
-      canonical: locale === defaultLocale ? "/" : `/${locale}`,
-      languages: Object.fromEntries(
-        locales.map((l) => [l, l === defaultLocale ? "/" : `/${l}`])
-      ),
+      canonical: `/${locale}`,
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+        "x-default": "/en",
+      },
     },
     openGraph: {
       type: "website",
-      locale: locale === "zh-CN" ? "zh_CN" : locale === "zh-TW" ? "zh_TW" : locale,
-      url: locale === defaultLocale ? "https://scam.ai" : `https://scam.ai/${locale}`,
+      locale: ogLocales[locale] || ogLocales.en,
+      url: `https://www.scam.ai/${locale}`,
       title: titles[locale] || titles.en,
       description: descriptions[locale] || descriptions.en,
       siteName: "ScamAI",
       images: [
         {
-          url: `https://scam.ai/${locale}/opengraph-image`,
+          url: `/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: "ScamAI - AI Trust Platform for Deepfake Detection",

@@ -6,7 +6,7 @@ import { getAllCompetitorSlugs } from '@/lib/compare/competitors'
 import { getAllArticleSlugs } from '@/lib/learn/articles'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://scam.ai'
+  const baseUrl = 'https://www.scam.ai'
 
   // Static pages
   const routes = [

@@ -4,14 +4,14 @@ export default function StructuredData() {
     "@type": "Organization",
     "name": "ScamAI",
     "legalName": "Reality Inc.",
-    "url": "https://scam.ai",
+    "url": "https://www.scam.ai",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://scam.ai/scamai-logo.svg",
-      "width": "400",
-      "height": "100"
+      "url": "https://www.scam.ai/scamai-logo.svg",
+      "width": 400,
+      "height": 100
     },
-    "image": "https://scam.ai/scamai-logo.svg",
+    "image": "https://www.scam.ai/scamai-logo.svg",
     "foundingDate": "2024",
     "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time with industry-leading accuracy.",
     "slogan": "Building trust in the AI era",
@@ -55,21 +55,13 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "ScamAI",
-    "url": "https://scam.ai",
+    "url": "https://www.scam.ai",
     "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes",
     "inLanguage": ["en", "es", "pt", "ja", "ko", "zh-CN", "zh-TW", "id", "fr", "de", "ar"],
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://scam.ai/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
     "publisher": {
       "@type": "Organization",
       "name": "ScamAI",
-      "url": "https://scam.ai"
+      "url": "https://www.scam.ai"
     }
   };
 
@@ -79,8 +71,8 @@ export default function StructuredData() {
     "name": "ScamAI Platform",
     "applicationCategory": "SecurityApplication",
     "operatingSystem": "Web",
-    "url": "https://scam.ai",
-    "image": "https://scam.ai/scamai-logo.svg",
+    "url": "https://www.scam.ai",
+    "image": "https://www.scam.ai/scamai-logo.svg",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -164,19 +156,19 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "DataCatalog",
     "name": "ScamAI Research Datasets",
-    "url": "https://scam.ai/en/research",
+    "url": "https://www.scam.ai/en/research",
     "description": "Open datasets for benchmarking deepfake detection, document forgery, and synthetic media analysis models.",
     "creator": {
       "@type": "Organization",
       "name": "Reality Inc.",
-      "url": "https://scam.ai"
+      "url": "https://www.scam.ai"
     },
     "dataset": [
       {
         "@type": "Dataset",
         "name": "Real-World Faceswap Dataset (RWFS)",
         "description": "Real-world faceswap samples for benchmarking deepfake detection models.",
-        "url": "https://scam.ai/en/research",
+        "url": "https://www.scam.ai/en/research",
         "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
@@ -184,7 +176,7 @@ export default function StructuredData() {
         "@type": "Dataset",
         "name": "AIForge-Doc",
         "description": "Benchmark dataset for detecting AI-forged tampering in financial and form documents.",
-        "url": "https://scam.ai/en/research",
+        "url": "https://www.scam.ai/en/research",
         "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
@@ -192,7 +184,7 @@ export default function StructuredData() {
         "@type": "Dataset",
         "name": "Adversarial Age Estimation Attack Dataset",
         "description": "Dataset of low-cost cosmetic attacks on age estimation systems.",
-        "url": "https://scam.ai/en/research",
+        "url": "https://www.scam.ai/en/research",
         "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
@@ -200,7 +192,7 @@ export default function StructuredData() {
         "@type": "Dataset",
         "name": "GPT-4o-receipt: Fully-Synthetic AI-Generated Receipt Dataset",
         "description": "Fully synthetic AI-generated financial receipts for document forgery detection research.",
-        "url": "https://scam.ai/en/research",
+        "url": "https://www.scam.ai/en/research",
         "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
@@ -208,7 +200,7 @@ export default function StructuredData() {
         "@type": "Dataset",
         "name": "Simulated Gaze Estimation for Reading Dataset",
         "description": "Simulated gaze estimation data for robust reading and cheating identification research.",
-        "url": "https://scam.ai/en/research",
+        "url": "https://www.scam.ai/en/research",
         "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       }
@@ -259,16 +251,16 @@ export default function StructuredData() {
     "@type": "VideoObject",
     "name": "ScamAI Deepfake Detection Platform — Product Demo",
     "description": "See ScamAI's deepfake detection platform in action. Detect AI-generated images, deepfake videos, and synthetic media in real-time with 95.3% accuracy using the Eva-v1 model.",
-    "thumbnailUrl": "https://scam.ai/en/opengraph-image",
-    "contentUrl": "https://scam.ai/dashboard.mp4",
+    "thumbnailUrl": "https://www.scam.ai/en/opengraph-image",
+    "contentUrl": "https://www.scam.ai/dashboard.mp4",
     "uploadDate": "2024-06-01",
     "publisher": {
       "@type": "Organization",
       "name": "ScamAI",
-      "url": "https://scam.ai",
+      "url": "https://www.scam.ai",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://scam.ai/scamai-logo.svg"
+        "url": "https://www.scam.ai/scamai-logo.svg"
       }
     }
   };
@@ -277,7 +269,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "ScamAI — Deepfake Detection Platform",
-    "url": "https://scam.ai",
+    "url": "https://www.scam.ai",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": ["h1", "[data-speakable]"]
