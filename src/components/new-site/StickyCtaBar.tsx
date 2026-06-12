@@ -16,6 +16,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
@@ -80,6 +81,7 @@ export default function StickyCtaBar({
   location,
   appearAfter = "-40%",
 }: StickyCtaBarProps) {
+  const t = useTranslations("landing.stickyCta");
   const [show, setShow] = useState(false);
   const heroOut = useRef(false);
   const targetIn = useRef(false);
@@ -128,7 +130,7 @@ export default function StickyCtaBar({
           transition={{ duration: 0.5, ease: APPLE_EASE }}
           className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-3 pb-3 sm:bottom-5 sm:px-0 sm:pb-0"
           role="region"
-          aria-label={label}
+          aria-label={label || t("regionLabel")}
         >
           <div className="flex w-full max-w-md items-center gap-2.5 rounded-2xl border border-white/20 bg-[#1c1d24]/95 px-3 py-2.5 shadow-[0_16px_50px_-12px_rgba(0,0,0,0.9)] ring-1 ring-black/40 backdrop-blur-xl sm:w-auto sm:max-w-none sm:gap-3 sm:rounded-full sm:py-2 sm:pl-5 sm:pr-2">
             {/* Label — desktop only */}

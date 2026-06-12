@@ -1,21 +1,27 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import CommandPalette from "./CommandPalette";
 import ComputexBanner, { useEventBanner, BANNER_HEIGHT } from "./ComputexBanner";
 import { trackCTA, trackNav, trackOutbound } from "@/lib/analytics";
 
 type NavChild = {
-  label: string;
+  /** Stable id for resolving the translated label/description at render time. */
+  key: string;
   href: string;
   external?: boolean;
+  /** English fallback label — visible text resolves via t(`items.${id}.children.${key}.label`). */
+  label: string;
   description?: string;
   icon?: React.ReactNode;
 };
 
 type NavItem = {
+  /** Stable id — drives dropdown branching and translation lookup. */
+  id: string;
+  /** English fallback label — visible text resolves via t(`items.${id}.label`). */
   label: string;
   href: string;
   hasDropdown?: boolean;
@@ -35,31 +41,39 @@ const navIcons = {
   halo: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>,
 };
 
+// label/description are English fallbacks; visible text resolves via t() at
+// render time keyed by the stable `id`/`key` (translation lives in the
+// `landing.nav` namespace — never mutate these strings with t() at module scope).
 const navItems: NavItem[] = [
   {
+    id: "product",
     label: "Product",
     href: "/products",
     hasDropdown: true,
     children: [
       {
+        key: "halo",
         label: "Halo · New",
         href: "/halo",
         description: "On-device deepfake detection for live calls — with Qualcomm",
         icon: navIcons.halo,
       },
       {
+        key: "aiDetection",
         label: "AI Detection",
         href: "/products/ai-detection",
         description: "Deepfake and synthetic media detection",
         icon: navIcons.vision,
       },
       {
+        key: "audio",
         label: "Audio",
         href: "/products/audio-detection",
         description: "Voice cloning and synthetic audio detection",
         icon: navIcons.audio,
       },
       {
+        key: "documentation",
         label: "Documentation",
         href: "https://docu.scam.ai",
         external: true,
@@ -68,55 +82,64 @@ const navItems: NavItem[] = [
       },
     ]
   },
-  { label: "Pricing", href: "/pricing" },
+  { id: "pricing", label: "Pricing", href: "/pricing" },
   {
+    id: "solutions",
     label: "Solutions",
     href: "/solutions",
     hasDropdown: true,
     children: [
       {
+        key: "fintech",
         label: "Fintech & Banking",
         href: "/solutions/fintech",
         description: "KYC deepfake protection and identity fraud prevention",
         icon: navIcons.shield,
       },
       {
+        key: "kyc",
         label: "KYC Verification",
         href: "/solutions/kyc",
         description: "Stop deepfake fraud in onboarding flows",
         icon: navIcons.idCard,
       },
       {
+        key: "callCenters",
         label: "Call Centers",
         href: "/solutions/call-centers",
         description: "Voice clone detection and vishing prevention",
         icon: navIcons.audio,
       },
       {
+        key: "media",
         label: "Media & Publishing",
         href: "/solutions/media",
         description: "AI-generated content detection for newsrooms",
         icon: navIcons.doc,
       },
       {
+        key: "dating",
         label: "Dating Apps",
         href: "/solutions/dating",
         description: "Fake profile and voice catfishing prevention",
         icon: navIcons.vision,
       },
       {
+        key: "insurance",
         label: "Insurance",
         href: "/solutions/insurance",
         description: "AI claims fraud and synthetic evidence detection",
         icon: navIcons.shield,
       },
       {
+        key: "hr",
         label: "HR & Hiring",
         href: "/solutions/hr",
         description: "Remote interview deepfake and voice fraud detection",
         icon: navIcons.agent,
       },
       {
+        key: "government",
         label: "Government",
         href: "/solutions/government",
         description: "Synthetic media detection for public sector",
@@ -124,8 +147,9 @@ const navItems: NavItem[] = [
       },
     ],
   },
-  { label: "Learn", href: "/learn" },
+  { id: "learn", label: "Learn", href: "/learn" },
   {
+    id: "company",
     label: "Company",
     // Direct to /about — /company is just a redirect shim (kept for old links);
     // pointing nav there cost a 307→308 double hop on every click.
@@ -133,21 +157,25 @@ const navItems: NavItem[] = [
     hasDropdown: true,
     children: [
       {
+        key: "about",
         label: "About Us",
         href: "/about",
         description: "Learn about our mission and team"
       },
       {
+        key: "research",
         label: "Research",
         href: "/research",
         description: "Publications, benchmarks, and technical deep-dives"
       },
       {
+        key: "newsletter",
         label: "Newsletter",
         href: "/newsletter",
         description: "Weekly insights on deepfake technology and AI security"
       },
       {
+        key: "security",
         label: "Security & Compliance",
         href: "https://reality-inc.trust.site/",
         external: true,
@@ -168,6 +196,14 @@ const languages = [
 ];
 
 export default function NewNav() {
+  const t = useTranslations("landing.nav");
+  // Resolve visible nav text from the stable id/key (set on the module-level
+  // arrays). t() isn't available at module scope, so we resolve at render time.
+  const itemLabel = (item: NavItem) => t(`items.${item.id}.label`);
+  const childLabel = (parentId: string, child: NavChild) =>
+    t(`items.${parentId}.children.${child.key}.label`);
+  const childDescription = (parentId: string, child: NavChild) =>
+    t(`items.${parentId}.children.${child.key}.description`);
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   // Single state for desktop dropdowns — guarantees mutual exclusion.
@@ -303,12 +339,12 @@ export default function NewNav() {
       {showBanner && <ComputexBanner onDismiss={dismissBanner} />}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-[background-color,backdrop-filter,box-shadow] duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-        <a href="#main-content" className="skip-link">Skip to main content</a>
+        <a href="#main-content" className="skip-link">{t("skipToContent")}</a>
         <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
         <Link href="/" className={`flex shrink-0 items-center ${open ? 'invisible' : ''}`}>
           <img
             src="/scamai-logo.svg"
-            alt="ScamAI"
+            alt={t("logoAlt")}
             className="h-8 w-auto"
           />
         </Link>
@@ -316,9 +352,9 @@ export default function NewNav() {
         <div className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => {
             if (item.children) {
-              const isProduct = item.label === "Product";
-              const isSolutions = item.label === "Solutions";
-              const isCompany = item.label === "Company";
+              const isProduct = item.id === "product";
+              const isSolutions = item.id === "solutions";
+              const isCompany = item.id === "company";
               const isOpen = isProduct ? productsOpen : isSolutions ? solutionsOpen : (isCompany ? companyOpen : false);
               const setIsOpen = isProduct ? setProductsOpen : isSolutions ? setSolutionsOpen : (isCompany ? setCompanyOpen : () => {});
               const dropdownRef = isProduct ? productsDropdownRef : isSolutions ? solutionsDropdownRef : (isCompany ? companyDropdownRef : null);
@@ -332,7 +368,7 @@ export default function NewNav() {
                     aria-controls="nav-dropdown-panel"
                     className="flex items-center gap-1 text-sm font-medium text-white transition-colors duration-150 hover:text-white/80"
                   >
-                    {item.label}
+                    {itemLabel(item)}
                     <svg
                       className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
                       fill="none"
@@ -356,7 +392,7 @@ export default function NewNav() {
                 href={item.href}
                 className="flex items-center gap-1 text-sm font-medium text-white transition hover:text-white/80"
               >
-                {item.label}
+                {itemLabel(item)}
                 {item.hasDropdown && (
                   <svg
                     className="h-4 w-4"
@@ -381,12 +417,12 @@ export default function NewNav() {
           <button
             onClick={() => setSearchOpen(true)}
             className="flex w-[160px] xl:w-[210px] items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text"
-            aria-label="Search"
+            aria-label={t("search")}
           >
             <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span className="flex-1 text-left">Search...</span>
+            <span className="flex-1 text-left">{t("searchPlaceholder")}</span>
             <kbd className="hidden lg:inline-flex items-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-gray-600 font-medium">
               ⌘K
             </kbd>
@@ -398,7 +434,7 @@ export default function NewNav() {
             className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("log_in", "nav")}
           >
-            Log In
+            {t("logIn")}
           </a>
           <a
             href="https://cal.com/scamai/15min"
@@ -407,7 +443,7 @@ export default function NewNav() {
             className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("book_demo", "nav")}
           >
-            Book a demo
+            {t("bookDemo")}
           </a>
         </div>
 
@@ -415,7 +451,7 @@ export default function NewNav() {
           <button
             onClick={() => setSearchOpen(true)}
             className="flex h-11 w-11 items-center justify-center text-white"
-            aria-label="Search"
+            aria-label={t("search")}
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -425,7 +461,7 @@ export default function NewNav() {
             ref={hamburgerRef}
             className="flex h-11 w-11 items-center justify-center text-white"
             onClick={() => setOpen((prev) => !prev)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("closeMenu") : t("openMenu")}
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-haspopup="true"
@@ -474,11 +510,11 @@ export default function NewNav() {
                       </svg>
                     </div>
                     <h3 className="text-sm font-semibold text-white mb-2">
-                      Talk with the Team
+                      {t("talkWithTeam.title")}
                     </h3>
                   </div>
                   <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-[gap]">
-                    Schedule call
+                    {t("talkWithTeam.scheduleCall")}
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -489,7 +525,7 @@ export default function NewNav() {
 
             {/* Products List */}
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {navItems.find(item => item.label === "Product")?.children?.map((child) => {
+              {navItems.find(item => item.id === "product")?.children?.map((child) => {
                 const content = (
                   <>
                     <div className="flex items-center gap-2 mb-1">
@@ -497,19 +533,19 @@ export default function NewNav() {
                         <span className="text-[#245FFF] flex-shrink-0">{child.icon}</span>
                       )}
                       <h3 className="text-sm font-medium text-white">
-                        {child.label}
+                        {childLabel("product", child)}
                       </h3>
                     </div>
                     {child.description && (
                       <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 pl-6">
-                        {child.description}
+                        {childDescription("product", child)}
                       </p>
                     )}
                   </>
                 );
                 return child.external || child.href.includes('#') ? (
                   <a
-                    key={child.label}
+                    key={child.key}
                     href={child.href}
                     {...(child.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="group block p-4 rounded-lg hover:bg-white/5 transition-colors duration-150"
@@ -519,7 +555,7 @@ export default function NewNav() {
                   </a>
                 ) : (
                   <Link
-                    key={child.label}
+                    key={child.key}
                     href={child.href}
                     className="group block p-4 rounded-lg hover:bg-white/5 transition-colors duration-150"
                     onClick={() => setProductsOpen(false)}
@@ -550,11 +586,11 @@ export default function NewNav() {
                       </svg>
                     </div>
                     <h3 className="text-sm font-semibold text-white mb-2">
-                      All Industries
+                      {t("allIndustries.title")}
                     </h3>
                   </div>
                   <span className="text-xs text-gray-400 flex items-center gap-1 group-hover:gap-2 transition-[gap]">
-                    View all
+                    {t("allIndustries.viewAll")}
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -565,9 +601,9 @@ export default function NewNav() {
 
             {/* Solutions List */}
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-3">
-              {navItems.find(item => item.label === "Solutions")?.children?.map((child) => (
+              {navItems.find(item => item.id === "solutions")?.children?.map((child) => (
                 <Link
-                  key={child.label}
+                  key={child.key}
                   href={child.href}
                   className="group block p-4 rounded-lg hover:bg-white/5 transition-colors duration-150"
                   onClick={() => setSolutionsOpen(false)}
@@ -577,12 +613,12 @@ export default function NewNav() {
                       <span className="text-[#245FFF] flex-shrink-0">{child.icon}</span>
                     )}
                     <h3 className="text-sm font-medium text-white">
-                      {child.label}
+                      {childLabel("solutions", child)}
                     </h3>
                   </div>
                   {child.description && (
                     <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 pl-6">
-                      {child.description}
+                      {childDescription("solutions", child)}
                     </p>
                   )}
                 </Link>
@@ -596,10 +632,10 @@ export default function NewNav() {
           <div className="flex gap-4">
             {/* Company List */}
             <div className="flex-1">
-              {navItems.find(item => item.label === "Company")?.children?.map((child) => (
+              {navItems.find(item => item.id === "company")?.children?.map((child) => (
                 child.external ? (
                   <a
-                    key={child.label}
+                    key={child.key}
                     href={child.href}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -608,30 +644,30 @@ export default function NewNav() {
                   >
                     <div className="mb-3">
                       <h3 className="text-sm font-medium text-white mb-1">
-                        {child.label}
+                        {childLabel("company", child)}
                       </h3>
                     </div>
                     {child.description && (
                       <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
-                        {child.description}
+                        {childDescription("company", child)}
                       </p>
                     )}
                   </a>
                 ) : (
                   <Link
-                    key={child.label}
+                    key={child.key}
                     href={child.href}
                     className="group block p-5 rounded-lg hover:bg-white/5 transition-colors duration-150"
                     onClick={() => setCompanyOpen(false)}
                   >
                     <div className="mb-3">
                       <h3 className="text-sm font-medium text-white mb-1">
-                        {child.label}
+                        {childLabel("company", child)}
                       </h3>
                     </div>
                     {child.description && (
                       <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
-                        {child.description}
+                        {childDescription("company", child)}
                       </p>
                     )}
                   </Link>
@@ -661,7 +697,7 @@ export default function NewNav() {
           <Link href="/" onClick={() => setOpen(false)}>
             <img
               src="/scamai-logo.svg"
-              alt="ScamAI"
+              alt={t("logoAlt")}
               className="h-8 w-auto"
             />
           </Link>
@@ -673,7 +709,7 @@ export default function NewNav() {
               setMobileCompanyOpen(false);
             }}
             className="flex h-11 w-11 items-center justify-center text-white"
-            aria-label="Close menu"
+            aria-label={t("closeMenu")}
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -686,13 +722,13 @@ export default function NewNav() {
           <div className="flex flex-col gap-1">
             {navItems.map((item) => {
               if (item.children) {
-                const isProduct = item.label === "Product";
-                const isSolutions = item.label === "Solutions";
-                const isCompany = item.label === "Company";
+                const isProduct = item.id === "product";
+                const isSolutions = item.id === "solutions";
+                const isCompany = item.id === "company";
                 const isOpen = isProduct ? mobileProductsOpen : isSolutions ? mobileSolutionsOpen : (isCompany ? mobileCompanyOpen : false);
                 const setIsOpen = isProduct ? setMobileProductsOpen : isSolutions ? setMobileSolutionsOpen : (isCompany ? setMobileCompanyOpen : () => {});
 
-                const panelId = `mobile-accordion-${item.label.toLowerCase()}`;
+                const panelId = `mobile-accordion-${item.id}`;
                 return (
                   <div key={item.href}>
                     <button
@@ -702,7 +738,7 @@ export default function NewNav() {
                       aria-controls={panelId}
                       className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-gray-700"
                     >
-                      {item.label}
+                      {itemLabel(item)}
                       <svg
                         className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                         fill="none"
@@ -737,10 +773,10 @@ export default function NewNav() {
                             </div>
                             <div className="flex-1">
                               <h3 className="text-sm font-semibold text-white mb-0.5">
-                                Talk with the Team
+                                {t("talkWithTeam.title")}
                               </h3>
                               <p className="text-xs text-gray-500">
-                                Schedule a call
+                                {t("talkWithTeam.scheduleCallMobile")}
                               </p>
                             </div>
                           </a>
@@ -762,10 +798,10 @@ export default function NewNav() {
                             </div>
                             <div className="flex-1">
                               <h3 className="text-sm font-semibold text-white mb-0.5">
-                                All Industries
+                                {t("allIndustries.title")}
                               </h3>
                               <p className="text-xs text-gray-500">
-                                View all solutions
+                                {t("allIndustries.viewAllMobile")}
                               </p>
                             </div>
                           </Link>
@@ -779,11 +815,11 @@ export default function NewNav() {
                               )}
                               <div>
                                 <h3 className="text-sm font-medium text-white mb-1">
-                                  {child.label}
+                                  {childLabel(item.id, child)}
                                 </h3>
                                 {child.description && (
                                   <p className="text-xs text-gray-500 leading-relaxed">
-                                    {child.description}
+                                    {childDescription(item.id, child)}
                                   </p>
                                 )}
                               </div>
@@ -791,7 +827,7 @@ export default function NewNav() {
                           );
                           return child.external || child.href.includes('#') ? (
                             <a
-                              key={child.label}
+                              key={child.key}
                               href={child.href}
                               {...(child.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                               className="block p-4 rounded-lg hover:bg-white/5"
@@ -804,7 +840,7 @@ export default function NewNav() {
                             </a>
                           ) : (
                             <Link
-                              key={child.label}
+                              key={child.key}
                               href={child.href}
                               className="block p-4 rounded-lg hover:bg-white/5"
                               onClick={() => {
@@ -828,7 +864,7 @@ export default function NewNav() {
                   className="block py-4 text-lg font-medium text-white border-b border-gray-700"
                   onClick={() => setOpen(false)}
                 >
-                  {item.label}
+                  {itemLabel(item)}
                 </Link>
               );
             })}
@@ -845,7 +881,7 @@ export default function NewNav() {
               className="block w-full px-6 py-3 text-center text-sm font-semibold text-white bg-transparent border border-gray-600 rounded-full hover:bg-gray-800 transition"
               onClick={() => { trackCTA("log_in", "nav_mobile"); setOpen(false); }}
             >
-              Log In
+              {t("logIn")}
             </a>
             <a
               href="https://cal.com/scamai/15min"
@@ -854,7 +890,7 @@ export default function NewNav() {
               className="block w-full px-6 py-3 text-center text-sm font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition"
               onClick={() => { trackCTA("book_demo", "nav_mobile"); setOpen(false); }}
             >
-              Book a demo
+              {t("bookDemo")}
             </a>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { trackPricing, trackCTA } from "@/lib/analytics";
 
 // Animated wrapper consistent with other sections
@@ -71,6 +72,7 @@ const ADDON = { adaptive: 0.008, liveness: 0.008, express: 0.008 };
 const MAX_VOLUME = 2000;
 
 export default function PricingSection() {
+  const t = useTranslations("landing.pricing");
   const [volume, setVolume] = useState(200);
   const [addons, setAddons] = useState({ adaptive: false, liveness: false, express: false });
 
@@ -94,21 +96,24 @@ export default function PricingSection() {
   return (
     <section
       className="landing-section relative overflow-hidden bg-black"
-      aria-label="Pricing"
+      aria-label={t("sectionAriaLabel")}
     >
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-8 py-14 sm:py-20 lg:py-28">
         {/* Header — matches other sections */}
         <AnimatedBlock>
           <div className="text-center mb-10 lg:mb-14">
             <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] mb-3 sm:text-[10px] lg:mb-4">
-              USAGE-BASED PRICING
+              {t("eyebrow")}
             </p>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-3 sm:mb-4 lg:mb-5">
-              Pay only for <span className="text-[#245FFF]">what you use</span>
+              {t.rich("heading", {
+                highlight: (chunks) => <span className="text-[#245FFF]">{chunks}</span>,
+              })}
             </h2>
             <p className="mx-auto max-w-xl text-sm sm:text-base text-gray-500 leading-relaxed">
-              <span className="font-semibold text-white">200 free images/month</span> with Eva-v1-Fast,
-              then $0.05/image. No hidden fees, no contracts.
+              {t.rich("subheading", {
+                strong: (chunks) => <span className="font-semibold text-white">{chunks}</span>,
+              })}
             </p>
           </div>
         </AnimatedBlock>
@@ -120,7 +125,7 @@ export default function PricingSection() {
             <div className="space-y-4 sm:space-y-6">
               {/* Volume slider card */}
               <div className="rounded-xl sm:rounded-2xl border border-gray-800/60 bg-white/[0.02] p-5 sm:p-7">
-                <label htmlFor="pricing-volume" className="mb-5 block text-base sm:text-lg font-semibold text-white">Monthly Volume</label>
+                <label htmlFor="pricing-volume" className="mb-5 block text-base sm:text-lg font-semibold text-white">{t("volume.label")}</label>
                 <div className="relative pt-9 pb-1">
                   <div
                     className="absolute top-0 rounded-full bg-[#245FFF]/10 border border-[#245FFF]/30 px-3 py-1 text-xs font-semibold text-[#245FFF] whitespace-nowrap z-10"
@@ -129,7 +134,7 @@ export default function PricingSection() {
                       transform: "translateX(-50%)",
                     }}
                   >
-                    {volume.toLocaleString()} images
+                    {t("volume.images", { volume: volume.toLocaleString() })}
                   </div>
                   <input
                     id="pricing-volume"
@@ -138,8 +143,8 @@ export default function PricingSection() {
                     max={MAX_VOLUME}
                     step="50"
                     value={volume}
-                    aria-label="Monthly image volume"
-                    aria-valuetext={`${volume.toLocaleString()} images`}
+                    aria-label={t("volume.ariaLabel")}
+                    aria-valuetext={t("volume.images", { volume: volume.toLocaleString() })}
                     onChange={(e) => {
                       const v = Number(e.target.value);
                       setVolume(v);
@@ -164,8 +169,8 @@ export default function PricingSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-white">Need more?</p>
-                        <p className="text-xs text-gray-400">Enterprise plans include volume discounts and dedicated support.</p>
+                        <p className="text-sm font-semibold text-white">{t("enterpriseNudge.title")}</p>
+                        <p className="text-xs text-gray-400">{t("enterpriseNudge.description")}</p>
                       </div>
                     </div>
                     <a
@@ -175,7 +180,7 @@ export default function PricingSection() {
                       className="mt-3 block w-full sm:w-auto sm:inline-block rounded-full bg-[#245FFF] px-4 py-2 text-center text-xs font-semibold text-white hover:bg-[#1d4acc] transition-colors"
                       onClick={() => trackCTA("enterprise_contact", "pricing_slider")}
                     >
-                      Contact Sales
+                      {t("enterpriseNudge.cta")}
                     </a>
                   </div>
                 )}
@@ -183,21 +188,21 @@ export default function PricingSection() {
 
               {/* Add-ons card */}
               <div className="rounded-xl sm:rounded-2xl border border-gray-800/60 bg-white/[0.02] p-5 sm:p-7">
-                <h3 className="mb-1 text-base sm:text-lg font-semibold text-white">Add-ons</h3>
-                <p className="mb-5 text-xs text-gray-500">Optional features to enhance detection</p>
+                <h3 className="mb-1 text-base sm:text-lg font-semibold text-white">{t("addons.title")}</h3>
+                <p className="mb-5 text-xs text-gray-500">{t("addons.subtitle")}</p>
 
                 <div className="space-y-3">
                   {([
-                    { key: "adaptive" as const, label: "Adaptive Defense", desc: "Real-time GenAI, deepfake & injection attack detection", price: ADDON.adaptive },
-                    { key: "liveness" as const, label: "Active Liveness", desc: "Verify real human presence and prevent deepfake spoofing", price: ADDON.liveness },
-                    { key: "express" as const, label: "Express Lane", desc: "Low latency processing with 3s response guarantee", price: ADDON.express },
+                    { key: "adaptive" as const, price: ADDON.adaptive },
+                    { key: "liveness" as const, price: ADDON.liveness },
+                    { key: "express" as const, price: ADDON.express },
                   ]).map((addon) => (
                     <button
                       key={addon.key}
                       type="button"
                       role="switch"
                       aria-checked={addons[addon.key]}
-                      aria-label={addon.label}
+                      aria-label={t(`addons.${addon.key}.label`)}
                       onClick={() => toggle(addon.key)}
                       className={`flex w-full items-start gap-4 text-left cursor-pointer p-3 sm:p-4 rounded-xl transition-[background-color,border-color] duration-200 ${
                         addons[addon.key]
@@ -211,13 +216,13 @@ export default function PricingSection() {
                       <span className="flex-1 min-w-0">
                         <span className="flex items-center justify-between gap-2 mb-0.5">
                           <span className="text-sm font-medium text-white">
-                            {addon.label}
+                            {t(`addons.${addon.key}.label`)}
                           </span>
                           <span className="text-xs font-semibold text-gray-500 whitespace-nowrap">
                             +${addon.price.toFixed(3)}
                           </span>
                         </span>
-                        <span className="block text-xs text-gray-500 leading-relaxed">{addon.desc}</span>
+                        <span className="block text-xs text-gray-500 leading-relaxed">{t(`addons.${addon.key}.desc`)}</span>
                       </span>
                     </button>
                   ))}
@@ -228,11 +233,11 @@ export default function PricingSection() {
             {/* Right — Price Summary */}
             <div className="lg:sticky lg:top-28 h-fit space-y-4">
               <div className="rounded-xl sm:rounded-2xl border border-gray-800/60 bg-white/[0.02] p-5 sm:p-7">
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-5">Summary</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-5">{t("summary.title")}</h3>
 
                 {/* Price per image */}
                 <div className="mb-6 pb-6 border-b border-gray-800/60">
-                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">Per Image</p>
+                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">{t("summary.perImageLabel")}</p>
                   <div className="flex items-baseline gap-1.5">
                     <motion.span
                       key={pricePerCheck.toFixed(3)}
@@ -243,34 +248,34 @@ export default function PricingSection() {
                     >
                       ${pricePerCheck.toFixed(3)}
                     </motion.span>
-                    <span className="text-sm text-gray-500">/image</span>
+                    <span className="text-sm text-gray-500">{t("summary.perImageUnit")}</span>
                   </div>
 
                   {volume <= FREE_CHECKS ? (
                     <div className="mt-3 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2">
-                      <p className="text-xs font-medium text-gray-300">Within free tier (200 images/mo)</p>
+                      <p className="text-xs font-medium text-gray-300">{t("summary.freeTierNote")}</p>
                     </div>
                   ) : (
                     <div className="mt-3 space-y-1.5 text-xs text-gray-400">
                       <div className="flex justify-between">
-                        <span>Base</span>
+                        <span>{t("summary.base")}</span>
                         <span className="text-gray-300">${BASE_PRICE.toFixed(3)}</span>
                       </div>
                       {addons.adaptive && (
                         <div className="flex justify-between">
-                          <span>Adaptive Defense</span>
+                          <span>{t("addons.adaptive.label")}</span>
                           <span className="text-gray-300">+${ADDON.adaptive.toFixed(3)}</span>
                         </div>
                       )}
                       {addons.liveness && (
                         <div className="flex justify-between">
-                          <span>Active Liveness</span>
+                          <span>{t("addons.liveness.label")}</span>
                           <span className="text-gray-300">+${ADDON.liveness.toFixed(3)}</span>
                         </div>
                       )}
                       {addons.express && (
                         <div className="flex justify-between">
-                          <span>Express Lane</span>
+                          <span>{t("addons.express.label")}</span>
                           <span className="text-gray-300">+${ADDON.express.toFixed(3)}</span>
                         </div>
                       )}
@@ -280,7 +285,7 @@ export default function PricingSection() {
 
                 {/* Monthly estimate */}
                 <div className="mb-6">
-                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">Monthly Estimate</p>
+                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">{t("summary.monthlyEstimateLabel")}</p>
                   <div className="flex items-baseline gap-1.5">
                     <motion.span
                       key={monthlyTotal.toFixed(2)}
@@ -291,11 +296,14 @@ export default function PricingSection() {
                     >
                       ${monthlyTotal.toFixed(2)}
                     </motion.span>
-                    <span className="text-sm text-gray-500">/mo</span>
+                    <span className="text-sm text-gray-500">{t("summary.perMonthUnit")}</span>
                   </div>
                   {volume > FREE_CHECKS && (
                     <p className="mt-1 text-[11px] text-gray-600">
-                      {FREE_CHECKS} free + {(volume - FREE_CHECKS).toLocaleString()} paid
+                      {t("summary.freePaidNote", {
+                        free: FREE_CHECKS,
+                        paid: (volume - FREE_CHECKS).toLocaleString(),
+                      })}
                     </p>
                   )}
                 </div>
@@ -308,19 +316,19 @@ export default function PricingSection() {
                   className="block w-full rounded-full bg-[#245FFF] py-3 text-center text-sm font-semibold text-white hover:bg-[#1d4acc] transition-colors"
                   onClick={() => trackCTA("get_started", "pricing_summary")}
                 >
-                  Get Started
+                  {t("summary.cta")}
                 </a>
-                <p className="mt-3 text-center text-[11px] text-gray-600">No setup fees &middot; Cancel anytime</p>
+                <p className="mt-3 text-center text-[11px] text-gray-600">{t("summary.ctaNote")}</p>
               </div>
 
               {/* Base includes */}
               <div className="rounded-xl sm:rounded-2xl border border-gray-800/60 bg-white/[0.02] p-5">
-                <p className="mb-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Includes</p>
+                <p className="mb-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">{t("includes.title")}</p>
                 <ul className="space-y-2 text-xs text-gray-400">
-                  {["GenAI & deepfake detection", "Eva-v1-Fast model", "REST API access", "Dashboard analytics"].map((f) => (
-                    <li key={f} className="flex items-center gap-2">
+                  {["genaiDeepfake", "evaFastModel", "restApi", "dashboardAnalytics"].map((key) => (
+                    <li key={key} className="flex items-center gap-2">
                       <Check />
-                      <span>{f}</span>
+                      <span>{t(`includes.items.${key}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -341,23 +349,23 @@ export default function PricingSection() {
               {!isEnterprise && (
                 <div className="absolute -top-2.5 left-6">
                   <span className="rounded-full bg-[#245FFF] px-3 py-0.5 text-[10px] font-semibold text-white">
-                    Recommended
+                    {t("plans.recommended")}
                   </span>
                 </div>
               )}
 
-              <h3 className="mb-4 text-lg sm:text-xl font-bold text-white">Self-Serve</h3>
+              <h3 className="mb-4 text-lg sm:text-xl font-bold text-white">{t("plans.selfServe.name")}</h3>
 
               <div className="mb-4 flex items-baseline gap-1.5">
                 <span className="text-3xl sm:text-4xl font-bold text-white">
                   ${volume <= FREE_CHECKS ? "0" : pricePerCheck.toFixed(3)}
                 </span>
-                <span className="text-sm text-gray-500">per image</span>
+                <span className="text-sm text-gray-500">{t("plans.selfServe.priceUnit")}</span>
               </div>
 
-              <p className="mb-1 text-xs font-semibold text-gray-300">200 free images/month</p>
+              <p className="mb-1 text-xs font-semibold text-gray-300">{t("plans.selfServe.freeNote")}</p>
               <p className="mb-6 text-xs text-gray-500 leading-relaxed">
-                Flexible pay-as-you-go for teams of all sizes. Start free, scale when ready.
+                {t("plans.selfServe.description")}
               </p>
 
               <a
@@ -367,14 +375,14 @@ export default function PricingSection() {
                 className="mb-6 block w-full rounded-full bg-[#245FFF] py-3 text-center text-sm font-semibold text-white hover:bg-[#1d4acc] transition-colors"
                 onClick={() => trackCTA("get_started_self_serve", "pricing_card")}
               >
-                Get Started
+                {t("plans.selfServe.cta")}
               </a>
 
               <ul className="space-y-2.5 text-xs text-gray-400">
-                {["GenAI Detection", "Deepfake Analysis", "Eva-v1-Fast Model", "API Access", "All optional add-ons"].map((f, i) => (
-                  <li key={f} className="flex items-center">
+                {["genaiDetection", "deepfakeAnalysis", "evaFastModel", "apiAccess", "optionalAddons"].map((key, i) => (
+                  <li key={key} className="flex items-center">
                     <Check muted={i === 4} />
-                    <span className={i === 4 ? "text-gray-600" : ""}>{f}</span>
+                    <span className={i === 4 ? "text-gray-600" : ""}>{t(`plans.selfServe.features.${key}`)}</span>
                   </li>
                 ))}
               </ul>
@@ -389,20 +397,19 @@ export default function PricingSection() {
               {isEnterprise && (
                 <div className="absolute -top-2.5 left-6">
                   <span className="rounded-full bg-[#245FFF] px-3 py-0.5 text-[10px] font-semibold text-white">
-                    Recommended
+                    {t("plans.recommended")}
                   </span>
                 </div>
               )}
 
-              <h3 className="mb-4 text-lg sm:text-xl font-bold text-white">Enterprise</h3>
+              <h3 className="mb-4 text-lg sm:text-xl font-bold text-white">{t("plans.enterprise.name")}</h3>
 
               <div className="mb-4">
-                <span className="text-3xl sm:text-4xl font-bold text-white">Custom</span>
+                <span className="text-3xl sm:text-4xl font-bold text-white">{t("plans.enterprise.price")}</span>
               </div>
 
               <p className="mb-6 text-xs text-gray-500 leading-relaxed">
-                Forensic-grade accuracy with Eva-v1-Pro, lower false positives, advanced Thinking,
-                and dedicated support for high-volume operations.
+                {t("plans.enterprise.description")}
               </p>
 
               <a
@@ -412,22 +419,22 @@ export default function PricingSection() {
                 className="mb-6 block w-full rounded-full border border-white/10 bg-white/[0.04] py-3 text-center text-sm font-semibold text-white hover:bg-white/[0.08] transition-colors"
                 onClick={() => trackCTA("talk_to_sales", "pricing_card")}
               >
-                Talk to sales
+                {t("plans.enterprise.cta")}
               </a>
 
               <ul className="space-y-2.5 text-xs text-gray-400">
                 {[
-                  "Everything in Self-Serve",
-                  "Eva-v1-Pro Model",
-                  "Thinking (Advanced Reasoning)",
-                  "Volume Discounts",
-                  "Priority Support & SLA",
-                  "Dedicated Account Manager",
-                  "Custom Integration",
-                ].map((f) => (
-                  <li key={f} className="flex items-center">
+                  "everythingSelfServe",
+                  "evaProModel",
+                  "thinking",
+                  "volumeDiscounts",
+                  "prioritySupport",
+                  "dedicatedManager",
+                  "customIntegration",
+                ].map((key) => (
+                  <li key={key} className="flex items-center">
                     <Check />
-                    <span>{f}</span>
+                    <span>{t(`plans.enterprise.features.${key}`)}</span>
                   </li>
                 ))}
               </ul>

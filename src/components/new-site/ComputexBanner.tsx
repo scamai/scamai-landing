@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { trackCTA } from "@/lib/analytics";
 
 // Computex 2026 runs Jun 2–5 in Taipei. Auto-hide the day after it closes
@@ -36,6 +37,7 @@ export function useEventBanner() {
 }
 
 export default function ComputexBanner({ onDismiss }: { onDismiss: () => void }) {
+  const t = useTranslations("landing.banner");
   const handleCta = () => {
     // GTM dataLayer push for booking attribution, plus the site's GA helper.
     try {
@@ -47,7 +49,7 @@ export default function ComputexBanner({ onDismiss }: { onDismiss: () => void })
   return (
     <div
       role="region"
-      aria-label="Computex 2026 announcement"
+      aria-label={t("regionLabel")}
       className="cx-banner-shell fixed left-0 right-0 top-0 z-50 w-full overflow-hidden border-b border-white/10 text-white"
       style={{ height: `${BANNER_HEIGHT}px` }}
     >
@@ -66,11 +68,11 @@ export default function ComputexBanner({ onDismiss }: { onDismiss: () => void })
 
         {/* message */}
         <span className="truncate text-sm font-semibold text-gray-100 sm:text-base">
-          Meet us at{" "}
+          {t("messagePrefix")}{" "}
           <span className="font-mono uppercase tracking-[0.14em] text-[#c2bbff]">
-            Computex 2026
+            {t("eventName")}
           </span>{" "}
-          <span className="font-normal text-gray-300">· June 2–5</span>
+          <span className="font-normal text-gray-300">{t("dateLabel")}</span>
         </span>
 
         {/* CTA */}
@@ -82,7 +84,7 @@ export default function ComputexBanner({ onDismiss }: { onDismiss: () => void })
           data-analytics="computex2026_banner_cta"
           className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-900 transition hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
         >
-          Book a meeting
+          {t("cta")}
           <svg
             viewBox="0 0 24 24"
             className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
@@ -102,7 +104,7 @@ export default function ComputexBanner({ onDismiss }: { onDismiss: () => void })
       <button
         type="button"
         onClick={onDismiss}
-        aria-label="Dismiss Computex 2026 announcement"
+        aria-label={t("dismissLabel")}
         className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-md text-gray-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:right-4"
       >
         <svg

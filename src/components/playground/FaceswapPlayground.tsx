@@ -15,6 +15,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Camera, ShieldCheck, RefreshCw, ArrowRight, AlertTriangle, ScanFace, Plus, X, Lock } from "lucide-react";
 import { PAIRS, QR_TARGET, SHARE_URL_X, rollTier, shareText } from "@/lib/share-card";
@@ -131,6 +132,7 @@ const phaseAcceptsFace = (phase: string) =>
 type Step = "intro" | "consent" | "running" | "ended";
 
 export default function FaceswapPlayground() {
+  const t = useTranslations("landing.playground");
   const { state, start, stop, setFace } = useFaceswap();
   const [step, setStep] = useState<Step>("intro");
   const [selected, setSelected] = useState(SEED_FACES[0].url);
@@ -937,7 +939,7 @@ export default function FaceswapPlayground() {
           <button
             type="button"
             onClick={() => onPickFace(f.url)}
-            title="Become this face"
+            title={t("picker.becomeFace")}
             className={`block overflow-hidden rounded-lg ring-2 transition-[box-shadow,ring-color] ${ringClass}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -960,8 +962,8 @@ export default function FaceswapPlayground() {
             <button
               type="button"
               onClick={() => removeFace(f.url)}
-              aria-label="Remove this face"
-              title="Remove"
+              aria-label={t("picker.removeFace")}
+              title={t("picker.remove")}
               className="absolute -right-1.5 -top-1.5 z-10 flex h-4 w-4 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 opacity-0 transition-[background-color] hover:bg-red-500 hover:text-white focus:opacity-100 group-hover:opacity-100"
             >
               <X className="h-2.5 w-2.5" />
@@ -977,9 +979,9 @@ export default function FaceswapPlayground() {
         <div>
           <div className="mb-2 flex items-baseline gap-1.5">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
-              Preset faces
+              {t("picker.presetFaces")}
             </span>
-            <span className="text-[9px] text-white/40">· StyleGAN2 AI-generated</span>
+            <span className="text-[9px] text-white/40">{t("picker.presetMeta")}</span>
           </div>
           <div className={`flex flex-wrap gap-2 ${compact ? "justify-center" : ""}`}>
             {syntheticFaces.map(renderFace)}
@@ -990,7 +992,7 @@ export default function FaceswapPlayground() {
         <div>
           <div className="mb-1">
             <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/55">
-              User uploads
+              {t("picker.userUploads")}
             </span>
           </div>
           <div className={`flex flex-wrap items-center gap-2 ${compact ? "justify-center" : ""}`}>
@@ -999,11 +1001,11 @@ export default function FaceswapPlayground() {
               <button
                 type="button"
                 onClick={() => { setConsentChecked(false); setShowConsent(true); }}
-                title="Upload your own face"
+                title={t("picker.uploadYourFace")}
                 className={`flex ${size} flex-col items-center justify-center gap-0.5 rounded-lg border border-dashed border-white/25 text-white/50 transition-[border-color,color] hover:border-[#245FFF]/60 hover:text-white`}
               >
                 <Plus className="h-4 w-4" />
-                <span className="text-[8px] font-medium">Upload</span>
+                <span className="text-[8px] font-medium">{t("picker.upload")}</span>
               </button>
             )}
           </div>
@@ -1016,7 +1018,7 @@ export default function FaceswapPlayground() {
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowConsent(false)} />
             <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-[#111] p-6 shadow-2xl">
-              <h3 className="mb-5 text-sm font-semibold text-white">Upload a face</h3>
+              <h3 className="mb-5 text-sm font-semibold text-white">{t("uploadDialog.title")}</h3>
 
               {/* Consent checkbox */}
               <label className="flex cursor-pointer items-start gap-3 rounded-lg p-3 ring-1 ring-white/10 hover:ring-white/20 transition-[box-shadow]">
@@ -1027,7 +1029,7 @@ export default function FaceswapPlayground() {
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[#245FFF]"
                 />
                 <span className="text-[12px] leading-snug text-white/75">
-                  I have the subject&apos;s consent to use their photo in this demo.
+                  {t("uploadDialog.consent")}
                 </span>
               </label>
 
@@ -1041,13 +1043,13 @@ export default function FaceswapPlayground() {
                 </span>
                 <div>
                   <span className="text-[12px] font-medium leading-snug text-white/60">
-                    Add to public swap pool
+                    {t("uploadDialog.addToPool")}
                   </span>
                   <span className="ml-2 inline-flex items-center rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-semibold text-amber-300/90">
-                    Pool full
+                    {t("uploadDialog.poolFull")}
                   </span>
                   <p className="mt-1 text-[10px] leading-relaxed text-white/45">
-                    Your face stays private — only you can use it.
+                    {t("uploadDialog.private")}
                   </p>
                 </div>
               </div>
@@ -1058,7 +1060,7 @@ export default function FaceswapPlayground() {
                   onClick={() => setShowConsent(false)}
                   className="flex-1 rounded-full border border-white/15 py-2.5 text-sm font-medium text-white/60 transition-[background-color] hover:bg-white/5"
                 >
-                  Cancel
+                  {t("uploadDialog.cancel")}
                 </button>
                 <button
                   type="button"
@@ -1066,7 +1068,7 @@ export default function FaceswapPlayground() {
                   onClick={() => { setShowConsent(false); fileInputRef.current?.click(); }}
                   className="flex-1 rounded-full bg-[#245FFF] py-2.5 text-sm font-semibold text-white transition-[background-color] hover:bg-[#3d74ff] disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  Choose photo
+                  {t("uploadDialog.choosePhoto")}
                 </button>
               </div>
             </div>
@@ -1098,11 +1100,11 @@ export default function FaceswapPlayground() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
             </span>
             <span className="tabular-nums">{fmt(secondsLeft)}</span>
-            <span className="text-white/40">left</span>
+            <span className="text-white/40">{t("stage.left")}</span>
           </div>
         ) : (
           <div className="absolute left-3 top-3 z-10 flex items-center gap-1.5 text-[11px] font-medium text-white/40">
-            <ScanFace className="h-3.5 w-3.5" /> Live face swap
+            <ScanFace className="h-3.5 w-3.5" /> {t("stage.liveLabel")}
           </div>
         )}
 
@@ -1111,7 +1113,7 @@ export default function FaceswapPlayground() {
         {live && switchingFace && !state.faceWarning && (
           <div className="absolute left-1/2 top-3 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-md">
             <span className="h-3 w-3 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-            Switching face…
+            {t("stage.switchingFace")}
           </div>
         )}
 
@@ -1131,7 +1133,7 @@ export default function FaceswapPlayground() {
             className="absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full bg-[#245FFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-4px_rgba(36,95,255,0.9)] transition hover:bg-[#3d74ff] active:scale-[0.97]"
           >
             <span className="absolute -inset-1 -z-10 animate-ping rounded-full bg-[#245FFF]/40 [animation-duration:2.5s]" />
-            <Camera className="h-4 w-4" /> Share
+            <Camera className="h-4 w-4" /> {t("stage.share")}
           </button>
         )}
 
@@ -1173,19 +1175,19 @@ export default function FaceswapPlayground() {
           style={{ display: step === "running" ? "block" : "none" }}
         >
           <video ref={selfViewRef} autoPlay playsInline muted className="h-20 w-[60px] -scale-x-100 object-cover sm:h-24 sm:w-[72px]" />
-          <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/80 drop-shadow">You</span>
+          <span className="absolute bottom-1 left-1.5 text-[10px] font-medium text-white/80 drop-shadow">{t("stage.you")}</span>
         </div>
 
         {/* ── Overlays ── */}
         {step === "intro" && (
           <Overlay>
             <ScanFace className="mb-3 h-9 w-9 text-[#245FFF]" />
-            <p className="text-sm text-white/70">Pick a photo, then go live.</p>
+            <p className="text-sm text-white/70">{t("intro.tagline")}</p>
             <button
               onClick={beginConsent}
               className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
             >
-              <Camera className="h-4 w-4" /> Start the live demo
+              <Camera className="h-4 w-4" /> {t("intro.start")}
             </button>
           </Overlay>
         )}
@@ -1202,7 +1204,7 @@ export default function FaceswapPlayground() {
             ) : (
               <>
                 <ShieldCheck className="mb-2 h-8 w-8 text-[#245FFF]" />
-                <h3 className="text-base font-semibold text-white">Camera access</h3>
+                <h3 className="text-base font-semibold text-white">{t("consent.title")}</h3>
                 {camError && (
                   <p className="mt-3 flex max-w-xs items-start gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-[12px] leading-relaxed text-red-200">
                     <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
@@ -1211,12 +1213,13 @@ export default function FaceswapPlayground() {
                 )}
                 <div className="mt-4 flex gap-2.5">
                   <button onClick={launch} className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#3d74ff] active:scale-[0.98]">
-                    <Camera className="h-4 w-4" /> {camError ? "Try again" : "Allow & start"}
+                    <Camera className="h-4 w-4" /> {camError ? t("consent.tryAgain") : t("consent.allow")}
                   </button>
                   <button onClick={() => setStep("intro")} className="rounded-full px-4 py-2 text-sm font-medium text-white/60 transition hover:text-white">
-                    Cancel
+                    {t("consent.cancel")}
                   </button>
                 </div>
+                <p className="mt-3 text-[11px] text-white/40">{t("consent.privacy")}</p>
               </>
             )}
           </Overlay>
@@ -1289,18 +1292,18 @@ export default function FaceswapPlayground() {
                 to die seconds in. Be honest; keep the Halo CTA. */}
             {state.endedReason === "budget" ? (
               <>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300">Demo limit reached</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300">{t("ended.budgetEyebrow")}</p>
                 <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">
-                  You&apos;ve used up today&apos;s free demo time.
+                  {t("ended.budgetHeading")}
                 </h3>
                 <p className="mt-2 max-w-xs text-xs text-white/50">
-                  Thirty seconds was all it took to fake a face — now meet the defense.
+                  {t("ended.budgetBody")}
                 </p>
               </>
             ) : (
               <>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">That took 30 seconds.</p>
-                <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">Anyone can fake a face. Catch it on-device.</h3>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#245FFF]">{t("ended.eyebrow")}</p>
+                <h3 className="mt-2 max-w-sm text-lg font-semibold text-white sm:text-xl">{t("ended.heading")}</h3>
               </>
             )}
             {/* Share is the primary action here — it's the viral loop AND the card
@@ -1312,7 +1315,7 @@ export default function FaceswapPlayground() {
                 className="relative mt-5 inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(36,95,255,0.85)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
               >
                 <span className="absolute -inset-1 -z-10 animate-ping rounded-full bg-[#245FFF]/30 [animation-duration:2.5s]" />
-                <Camera className="h-4 w-4" /> Share your deepfake
+                <Camera className="h-4 w-4" /> {t("ended.shareDeepfake")}
               </button>
             )}
             <Link
@@ -1323,13 +1326,13 @@ export default function FaceswapPlayground() {
                   : "mt-5 bg-white text-black hover:bg-white/90"
               }`}
             >
-              Meet Halo — the defense <ArrowRight className="h-4 w-4" />
+              {t("ended.meetHalo")} <ArrowRight className="h-4 w-4" />
             </Link>
             {/* No Run again on budget exhaustion — the server would kill the
                 next session seconds after it goes live. */}
             {state.endedReason !== "budget" && (
               <button onClick={reset} className="mt-3 inline-flex items-center gap-1.5 text-xs text-white/30 transition hover:text-white/60">
-                <RefreshCw className="h-3.5 w-3.5" /> Run again
+                <RefreshCw className="h-3.5 w-3.5" /> {t("ended.runAgain")}
               </button>
             )}
           </Overlay>
@@ -1353,13 +1356,13 @@ export default function FaceswapPlayground() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500/70" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-500" />
             </span>
-            Deepfake is here
+            {t("eyebrow")}
           </span>
           <h2 className="mt-3 text-xl font-semibold tracking-tight text-white sm:text-2xl lg:text-[32px] lg:leading-[1.05]">
-            See how easy it is to fake a face.
+            {t("heading")}
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-[13px] leading-relaxed text-white/55 sm:text-[14px]">
-            Turn on your camera and watch a real-time deepfake of yourself. This is the attack — the defense runs on-device.
+            {t("subhead")}
           </p>
         </div>
 
@@ -1368,11 +1371,11 @@ export default function FaceswapPlayground() {
           {/* left: face picker + start (desktop) / below stage (mobile via order) */}
           <div className="order-2 lg:order-1 lg:col-span-4">
             <p className="mb-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-white lg:text-left">
-              {step === "running" && live ? "Tap to switch faces live" : "Pick a face"}
+              {step === "running" && live ? t("picker.switchLive") : t("picker.pickFace")}
             </p>
             <div className="lg:block">{FacePicker({ compact: true })}</div>
             <p className="mt-4 hidden items-center gap-1.5 text-[11px] text-white/35 lg:flex">
-              <Camera className="h-3.5 w-3.5" /> 30-second live demo · no install
+              <Camera className="h-3.5 w-3.5" /> {t("demoMeta")}
             </p>
           </div>
 
@@ -1398,7 +1401,7 @@ export default function FaceswapPlayground() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={shareCardUrl}
-              alt="Your deepfake card"
+              alt={t("card.imageAlt")}
               className="rounded-xl shadow-2xl"
               style={{ maxHeight: "58vh", width: "auto" }}
             />
@@ -1407,7 +1410,7 @@ export default function FaceswapPlayground() {
                 not part of the card above (the card's blue CTA is baked into the image). */}
             <div className="mt-4 w-full rounded-2xl border border-white/10 bg-white/[0.04] p-3">
               <p className="mb-2.5 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
-                Save or share your card
+                {t("card.title")}
               </p>
               {/* Primary: native share (mobile) / save+post (desktop) */}
               <button
@@ -1415,7 +1418,7 @@ export default function FaceswapPlayground() {
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#245FFF] py-3 text-sm font-semibold text-white shadow-[0_0_24px_-8px_rgba(36,95,255,0.8)] transition hover:bg-[#3d74ff] active:scale-[0.98]"
               >
                 <ArrowRight className="h-4 w-4 rotate-[-45deg]" />
-                Share
+                {t("card.share")}
               </button>
 
               {/* Secondary: Save image · Post to X */}
@@ -1437,7 +1440,7 @@ export default function FaceswapPlayground() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                   )}
-                  {saved ? "Saved" : "Save image"}
+                  {saved ? t("card.saved") : t("card.saveImage")}
                 </button>
                 <button
                   onClick={postToX}
@@ -1446,7 +1449,7 @@ export default function FaceswapPlayground() {
                   <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
-                  Post to X
+                  {t("card.postToX")}
                 </button>
               </div>
 

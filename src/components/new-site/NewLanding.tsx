@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import HeroBackground from "./HeroBackground";
@@ -115,10 +116,11 @@ function AnimatedSection({
 }
 
 export default function NewLanding() {
+  const t = useTranslations("landing.home");
   return (
     <main id="main-content" className="bg-black text-white" role="main">
       {/* Hero Section — text takes ~70vh, video peeks below */}
-      <section id="home-hero" className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
+      <section id="home-hero" className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label={t("hero.ariaLabel")}>
         <SectionViewTracker name="landing_hero" />
         <HeroBackground className="" />
         <div className="relative z-10 w-full">
@@ -128,24 +130,23 @@ export default function NewLanding() {
               <AnimatedSection delay={0.05} skipOnRepeat>
                 <p className="inline-flex items-center gap-2 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/10 px-3 py-1 text-[10px] font-semibold text-blue-200 tracking-[0.15em] uppercase sm:text-[11px] sm:tracking-[0.18em]">
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#245FFF]" />
-                  <span className="sm:hidden">Introducing Halo · Qualcomm</span>
-                  <span className="hidden sm:inline">Introducing Halo · On-device deepfake detection with Qualcomm</span>
+                  <span className="sm:hidden">{t("hero.badgeShort")}</span>
+                  <span className="hidden sm:inline">{t("hero.badge")}</span>
                 </p>
               </AnimatedSection>
 
               <AnimatedSection delay={0.1} skipOnRepeat>
                 <h1 className="max-w-3xl px-2 text-4xl font-bold leading-[1.1] tracking-tight sm:px-0 sm:text-5xl lg:text-6xl">
-                  Verify what&apos;s real. Protect what matters.
+                  {t("hero.headline")}
                 </h1>
               </AnimatedSection>
 
               <AnimatedSection delay={0.15} skipOnRepeat>
                 <div className="max-w-2xl px-4 text-sm leading-[1.65] text-gray-300 sm:px-0 sm:text-base sm:leading-relaxed lg:text-lg">
                   <p className="text-center">
-                    Deepfakes and voice clones are everywhere — on your video calls, your
-                    DMs, your screen. scam.ai catches them{" "}
-                    <span className="font-semibold text-white">in real time</span>, so you
-                    always know who&apos;s really on the other side.
+                    {t.rich("hero.subhead", {
+                      em: (c) => <span className="font-semibold text-white">{c}</span>,
+                    })}
                   </p>
                 </div>
               </AnimatedSection>
@@ -159,7 +160,7 @@ export default function NewLanding() {
                       onClick={() => trackCTA("visit_halo", "hero")}
                     >
                       <span className="rainbow-button-inner">
-                        Visit Halo
+                        {t("hero.visitHalo")}
                       </span>
                     </Link>
                     <a
@@ -170,7 +171,7 @@ export default function NewLanding() {
                       <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
                       </svg>
-                      See how easy it is to fake a face
+                      {t("hero.tryFaceswap")}
                     </a>
                   </div>
                   <a
@@ -180,7 +181,9 @@ export default function NewLanding() {
                     className="inline-flex items-center gap-1.5 text-sm text-white/70 transition hover:text-white"
                     onClick={() => trackCTA("book_demo", "hero")}
                   >
-                    Need custom detection? <span className="font-semibold text-white">Book a demo</span>
+                    {t.rich("hero.bookDemo", {
+                      strong: (c) => <span className="font-semibold text-white">{c}</span>,
+                    })}
                     <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -207,7 +210,7 @@ export default function NewLanding() {
       <HaloSpotlight />
 
       {/* AI-Powered Security — merged section */}
-      <section className="landing-section relative overflow-hidden" aria-label="AI-Powered Security - Deepfake Protection" style={{
+      <section className="landing-section relative overflow-hidden" aria-label={t("aiSecurity.ariaLabel")} style={{
         backgroundImage: 'url(/session1.svg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -220,13 +223,15 @@ export default function NewLanding() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="text-left flex flex-col justify-center">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-4 sm:text-[10px] lg:mb-6">
-                  AI-POWERED SECURITY
+                  {t("aiSecurity.eyebrow")}
                 </p>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1] lg:mb-8">
-                  Fight AI threats<br />with <span className="text-[#245FFF]">AI defense</span>
+                  {t("aiSecurity.headline")}<br />{t("aiSecurity.headlineLine2")} <span className="text-[#245FFF]">{t("aiSecurity.headlineHighlight")}</span>
                 </h2>
                 <p className="max-w-xl text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
-                  According to Deloitte, AI-generated deepfake fraud is projected to cost businesses over $40 billion by 2027. Our <span className="font-semibold text-white">Eva-v1</span> models adapt as fast as the threats themselves — achieving <span className="font-semibold text-white">95.3% detection accuracy</span> in under 4 seconds, stopping fraud and protecting your revenue in real-time.
+                  {t.rich("aiSecurity.body", {
+                    em: (c) => <span className="font-semibold text-white">{c}</span>,
+                  })}
                 </p>
                 <a
                   href="https://app.scam.ai"
@@ -235,7 +240,7 @@ export default function NewLanding() {
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#245FFF] transition hover:gap-3"
                   onClick={() => trackCTA("start_detecting", "ai_security")}
                 >
-                  Start detecting now
+                  {t("aiSecurity.cta")}
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -263,7 +268,7 @@ export default function NewLanding() {
       <div className="section-divider" />
 
       {/* Features Section: THE PLATFORM + All-in-One + Lightning Fast */}
-      <section className="landing-section relative overflow-hidden bg-black" aria-label="Platform Features - Why Teams Choose Us">
+      <section className="landing-section relative overflow-hidden bg-black" aria-label={t("whyChooseUs.ariaLabel")}>
         <SectionViewTracker name="landing_features" />
         {/* Background image wrapper */}
         <div className="absolute inset-0 w-full h-full" style={{
@@ -281,10 +286,10 @@ export default function NewLanding() {
           <AnimatedSection>
             <div className="text-center mb-12 lg:mb-16">
               <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-4 sm:text-[10px] lg:mb-6">
-                THE PLATFORM
+                {t("whyChooseUs.eyebrow")}
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                Why teams choose <span className="text-[#245FFF]">us</span>
+                {t("whyChooseUs.headline")} <span className="text-[#245FFF]">{t("whyChooseUs.headlineHighlight")}</span>
               </h2>
             </div>
           </AnimatedSection>
@@ -294,13 +299,13 @@ export default function NewLanding() {
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-16 lg:mb-20">
               <div className="lg:pl-12 flex flex-col justify-center min-h-0 sm:min-h-[350px]">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  ALL-IN-ONE PLATFORM
+                  {t("allInOne.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  One platform for all media verification needs
+                  {t("allInOne.headline")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Stop juggling multiple detection tools. Scam AI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes.
+                  {t("allInOne.body")}
                 </p>
               </div>
               {/* Bento 3 - All-in-One, right side */}
@@ -327,13 +332,13 @@ export default function NewLanding() {
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center min-h-0 sm:min-h-[400px]">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  LIGHTNING FAST
+                  {t("lightningFast.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Real-time detection at scale
+                  {t("lightningFast.headline")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Eva-v1-Fast processes images in under 2 seconds; Eva-v1-Pro delivers forensic-grade accuracy in under 4 seconds. Supports JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV, and FLAC. Built for high-throughput use cases like KYC verification, content moderation, and call center voice authentication.
+                  {t("lightningFast.body")}
                 </p>
               </div>
             </div>
@@ -344,7 +349,7 @@ export default function NewLanding() {
       <div className="section-divider" />
 
       {/* Session4: Transparent Pricing & Global Compliance */}
-      <section className="landing-section relative overflow-hidden bg-black" aria-label="Pricing & Compliance">
+      <section className="landing-section relative overflow-hidden bg-black" aria-label={t("compliance.ariaLabel")}>
         <SectionViewTracker name="landing_pricing" />
         {/* Background image wrapper */}
         <div className="absolute inset-0 w-full h-full" style={{
@@ -363,16 +368,16 @@ export default function NewLanding() {
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-16 lg:mb-20">
               <div className="lg:pl-12 flex flex-col justify-center min-h-0 sm:min-h-[350px]">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  $ TRANSPARENT PRICING
+                  {t("pricing.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Pay only for what you use.
+                  {t("pricing.headline")}
                 </h3>
                 <p className="text-lg font-semibold text-gray-200 mb-6 sm:text-xl">
-                  200 free images / month
+                  {t("pricing.freeImages")}
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Start with 200 free images monthly with our Eva-v1-Fast model. Pay-as-you-go at $0.05 per image after. Optional add-ons (Adaptive Defense, Active Liveness, Express Lane) at $0.008 per image each. No contracts, no setup fees.
+                  {t("pricing.body")}
                 </p>
               </div>
               {/* Bento 28 - Transparent Pricing, right side */}
@@ -392,14 +397,14 @@ export default function NewLanding() {
               <div className="flex items-center justify-center gap-8 flex-wrap order-2 lg:order-1">
                 <img
                   src="/gdpr-badge.png"
-                  alt="GDPR Compliant Badge"
+                  alt={t("compliance.gdprBadgeAlt")}
                   width={80}
                   height={80}
                   className="h-20 w-20 sm:h-32 sm:w-32 object-contain"
                 />
                 <img
                   src="/soc2-badge.png"
-                  alt="SOC 2 Type II Attested Badge"
+                  alt={t("compliance.soc2BadgeAlt")}
                   width={80}
                   height={80}
                   className="h-20 w-20 sm:h-32 sm:w-32 object-contain"
@@ -407,21 +412,23 @@ export default function NewLanding() {
               </div>
               <div className="order-1 lg:order-2">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  ☑ GLOBAL COMPLIANCE
+                  {t("compliance.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Stay compliant, everywhere.
+                  {t("compliance.headline")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
-                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II attested</strong>. By default we don&apos;t retain your media after processing; enterprise customers can configure custom retention for audit and compliance.
+                  {t.rich("compliance.body", {
+                    strong: (c) => <strong className="text-white">{c}</strong>,
+                  })}
                 </p>
-                <a 
-                  href="https://reality-inc.trust.site/" 
-                  target="_blank" 
+                <a
+                  href="https://reality-inc.trust.site/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-[#245FFF] hover:text-[#1d4acc] font-semibold transition-colors"
                 >
-                  View our Trust Center →
+                  {t("compliance.trustCenter")}
                 </a>
               </div>
             </div>
@@ -446,8 +453,8 @@ export default function NewLanding() {
         <SectionViewTracker name="landing_resources" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <div className="text-center mb-10">
-            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-3 sm:text-[10px]">RESOURCES</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">Learn about deepfake detection</h2>
+            <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-3 sm:text-[10px]">{t("resources.eyebrow")}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">{t("resources.headline")}</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-3 mb-8">
             {topLearnArticles.map((slug) => {
@@ -461,15 +468,15 @@ export default function NewLanding() {
                 >
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 mb-2">{article.category}</p>
                   <p className="text-sm font-semibold text-white group-hover:text-[#245FFF] transition-colors leading-snug mb-2">{article.title}</p>
-                  <p className="text-xs text-gray-400">{article.readTime} min read</p>
+                  <p className="text-xs text-gray-400">{t("resources.readTime", { minutes: article.readTime })}</p>
                 </Link>
               );
             })}
           </div>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/learn" className="text-[#245FFF] hover:underline">All guides →</Link>
-            <Link href="/solutions" className="text-[#245FFF] hover:underline">Industry solutions →</Link>
-            <Link href="/compare" className="text-[#245FFF] hover:underline">Compare tools →</Link>
+            <Link href="/learn" className="text-[#245FFF] hover:underline">{t("resources.allGuides")}</Link>
+            <Link href="/solutions" className="text-[#245FFF] hover:underline">{t("resources.industrySolutions")}</Link>
+            <Link href="/compare" className="text-[#245FFF] hover:underline">{t("resources.compareTools")}</Link>
           </div>
         </div>
       </section>
@@ -484,9 +491,9 @@ export default function NewLanding() {
         heroId="home-hero"
         hideAtId="newsletter-signup"
         label="scam.ai"
-        sublabel="Verify what's real, in real time"
-        primary={{ text: "Visit Halo", href: "/halo", cta: "visit_halo" }}
-        secondary={{ text: "See how it works", href: "#playground", cta: "try_faceswap" }}
+        sublabel={t("stickyCta.sublabel")}
+        primary={{ text: t("stickyCta.primary"), href: "/halo", cta: "visit_halo" }}
+        secondary={{ text: t("stickyCta.secondary"), href: "#playground", cta: "try_faceswap" }}
         location="home_sticky"
       />
     </main>

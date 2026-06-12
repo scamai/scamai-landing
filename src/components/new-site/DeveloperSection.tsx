@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function DeveloperSection() {
+  const t = useTranslations("landing.developer");
   const [activeTab, setActiveTab] = useState<'api' | 'nocode'>('api');
 
   return (
@@ -11,13 +13,13 @@ export default function DeveloperSection() {
         {/* Header Section */}
         <div className="text-center mb-12 lg:mb-16">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] mb-4 sm:text-xs">
-            THE EASIEST TO INTEGRATE
+            {t("eyebrow")}
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-[1.1]">
-            Integrate your way
+            {t("heading")}
           </h2>
           <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
-            Use Scam AI with no code or with a single API call. Go live in minutes.
+            {t("subhead")}
           </p>
         </div>
 
@@ -36,7 +38,7 @@ export default function DeveloperSection() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                 </svg>
-                No-code
+                {t("tabs.nocode")}
               </span>
             </button>
             <button 
@@ -51,7 +53,7 @@ export default function DeveloperSection() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
-                API
+                {t("tabs.api")}
               </span>
             </button>
           </div>
@@ -63,43 +65,43 @@ export default function DeveloperSection() {
             {/* Left Side - Text Content */}
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                No-code
+                {t("nocode.heading")}
               </h3>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
-                Monitor and analyze deepfake detection results in real-time through our intuitive dashboard. Upload media files, view detection confidence scores, and track synthetic content trends — all without writing a single line of code.
+                {t("nocode.body")}
               </p>
 
               {/* Key Points */}
               <div className="mb-8">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
-                  KEY POINTS
+                  {t("keyPointsLabel")}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Visual deepfake detection dashboard</span>
+                    <span className="text-gray-300">{t("nocode.points.dashboard")}</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Drag-and-drop media upload</span>
+                    <span className="text-gray-300">{t("nocode.points.upload")}</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Real-time confidence scoring</span>
+                    <span className="text-gray-300">{t("nocode.points.scoring")}</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
                     <span className="text-gray-300">
-                      Export detection reports & analytics 
-                      <span className="ml-2 text-xs text-[#245FFF] font-semibold">(Enterprise)</span>
+                      {t("nocode.points.export")}
+                      <span className="ml-2 text-xs text-[#245FFF] font-semibold">{t("nocode.points.exportBadge")}</span>
                     </span>
                   </div>
                 </div>
@@ -118,7 +120,7 @@ export default function DeveloperSection() {
                       <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                       <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                     </div>
-                    <span className="text-xs text-gray-400">Scam AI Dashboard</span>
+                    <span className="text-xs text-gray-400">{t("nocode.dashboardCaption")}</span>
                   </div>
                 </div>
                 
@@ -132,7 +134,7 @@ export default function DeveloperSection() {
                     className="w-full h-auto"
                   >
                     <source src="/dashboard.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
+                    {t("videoFallback")}
                   </video>
                 </div>
               </div>
@@ -146,44 +148,44 @@ export default function DeveloperSection() {
             {/* Left Side - Text Content */}
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                API Integration
+                {t("api.heading")}
               </h3>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
-                Integrate deepfake detection into your application with a single API call. Our REST API analyzes images, audio, and video for AI-generated content and returns confidence scores in real-time.
+                {t("api.body1")}
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8">
-                Detect synthetic media, voice clones, and deepfakes with Eva-v1 model. Get instant verdicts with detailed manipulation analysis.
+                {t("api.body2")}
               </p>
 
               {/* Key Points */}
               <div className="mb-8">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
-                  KEY POINTS
+                  {t("keyPointsLabel")}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Detect deepfakes, synthetic media, and voice clones</span>
+                    <span className="text-gray-300">{t("api.points.detect")}</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Real-time confidence scoring & analysis</span>
+                    <span className="text-gray-300">{t("api.points.scoring")}</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Support for images, audio, and video</span>
+                    <span className="text-gray-300">{t("api.points.support")}</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-[#245FFF] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                     </svg>
-                    <span className="text-gray-300">Webhooks for asynchronous processing</span>
+                    <span className="text-gray-300">{t("api.points.webhooks")}</span>
                   </div>
                 </div>
               </div>
@@ -195,7 +197,7 @@ export default function DeveloperSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors"
               >
-                View documentation
+                {t("api.viewDocs")}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -216,14 +218,14 @@ export default function DeveloperSection() {
                   </div>
                   <div className="flex px-2 -mb-px">
                     <div className="px-4 py-2 text-xs font-medium text-white bg-[#0a0a0a] border-t-2 border-[#245FFF] rounded-t">
-                      API Request
+                      {t("api.codeTab")}
                     </div>
                     <div className="ml-auto px-3 py-2">
                       <button className="flex items-center gap-1 px-3 py-1 text-xs font-medium text-white bg-[#245FFF] rounded hover:bg-[#1d4acc] transition-colors">
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
                         </svg>
-                        Try it
+                        {t("api.tryIt")}
                       </button>
                     </div>
                   </div>

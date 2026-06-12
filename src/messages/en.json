@@ -1,4 +1,613 @@
 {
+  "landing": {
+    "home": {
+      "hero": {
+        "ariaLabel": "Hero section - AI Trust Platform",
+        "badgeShort": "Introducing Halo · Qualcomm",
+        "badge": "Introducing Halo · On-device deepfake detection with Qualcomm",
+        "headline": "Verify what’s real. Protect what matters.",
+        "subhead": "Deepfakes and voice clones are everywhere — on your video calls, your DMs, your screen. scam.ai catches them <em>in real time</em>, so you always know who’s really on the other side.",
+        "visitHalo": "Visit Halo",
+        "tryFaceswap": "See how easy it is to fake a face",
+        "bookDemo": "Need custom detection? <strong>Book a demo</strong>"
+      },
+      "aiSecurity": {
+        "ariaLabel": "AI-Powered Security - Deepfake Protection",
+        "eyebrow": "AI-POWERED SECURITY",
+        "headline": "Fight AI threats",
+        "headlineLine2": "with",
+        "headlineHighlight": "AI defense",
+        "body": "According to Deloitte, AI-generated deepfake fraud is projected to cost businesses over $40 billion by 2027. Our <em>Eva-v1</em> models adapt as fast as the threats themselves — achieving <em>95.3% detection accuracy</em> in under 4 seconds, stopping fraud and protecting your revenue in real-time.",
+        "cta": "Start detecting now"
+      },
+      "whyChooseUs": {
+        "ariaLabel": "Platform Features - Why Teams Choose Us",
+        "eyebrow": "THE PLATFORM",
+        "headline": "Why teams choose",
+        "headlineHighlight": "us"
+      },
+      "allInOne": {
+        "eyebrow": "ALL-IN-ONE PLATFORM",
+        "headline": "One platform for all media verification needs",
+        "body": "Stop juggling multiple detection tools. Scam AI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes."
+      },
+      "lightningFast": {
+        "eyebrow": "LIGHTNING FAST",
+        "headline": "Real-time detection at scale",
+        "body": "Eva-v1-Fast processes images in under 2 seconds; Eva-v1-Pro delivers forensic-grade accuracy in under 4 seconds. Supports JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV, and FLAC. Built for high-throughput use cases like KYC verification, content moderation, and call center voice authentication."
+      },
+      "pricing": {
+        "eyebrow": "$ TRANSPARENT PRICING",
+        "headline": "Pay only for what you use.",
+        "freeImages": "200 free images / month",
+        "body": "Start with 200 free images monthly with our Eva-v1-Fast model. Pay-as-you-go at $0.05 per image after. Optional add-ons (Adaptive Defense, Active Liveness, Express Lane) at $0.008 per image each. No contracts, no setup fees."
+      },
+      "compliance": {
+        "ariaLabel": "Pricing & Compliance",
+        "gdprBadgeAlt": "GDPR Compliant Badge",
+        "soc2BadgeAlt": "SOC 2 Type II Attested Badge",
+        "eyebrow": "☑ GLOBAL COMPLIANCE",
+        "headline": "Stay compliant, everywhere.",
+        "body": "Meet data protection requirements across EU, US, and APAC with one integration. <strong>GDPR compliant</strong> and <strong>SOC 2 Type II attested</strong>. By default we don’t retain your media after processing; enterprise customers can configure custom retention for audit and compliance.",
+        "trustCenter": "View our Trust Center →"
+      },
+      "resources": {
+        "eyebrow": "RESOURCES",
+        "headline": "Learn about deepfake detection",
+        "readTime": "{minutes} min read",
+        "allGuides": "All guides →",
+        "industrySolutions": "Industry solutions →",
+        "compareTools": "Compare tools →"
+      },
+      "stickyCta": {
+        "sublabel": "Verify what’s real, in real time",
+        "primary": "Visit Halo",
+        "secondary": "See how it works"
+      }
+    },
+    "nav": {
+      "skipToContent": "Skip to main content",
+      "logoAlt": "Scam AI",
+      "search": "Search",
+      "searchPlaceholder": "Search...",
+      "logIn": "Log In",
+      "bookDemo": "Book a demo",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "talkWithTeam": {
+        "title": "Talk with the Team",
+        "scheduleCall": "Schedule call",
+        "scheduleCallMobile": "Schedule a call"
+      },
+      "allIndustries": {
+        "title": "All Industries",
+        "viewAll": "View all",
+        "viewAllMobile": "View all solutions"
+      },
+      "items": {
+        "product": {
+          "label": "Product",
+          "children": {
+            "halo": {
+              "label": "Halo · New",
+              "description": "On-device deepfake detection for live calls — with Qualcomm"
+            },
+            "aiDetection": {
+              "label": "AI Detection",
+              "description": "Deepfake and synthetic media detection"
+            },
+            "audio": {
+              "label": "Audio",
+              "description": "Voice cloning and synthetic audio detection"
+            },
+            "documentation": {
+              "label": "Documentation",
+              "description": "API guides and integration examples"
+            }
+          }
+        },
+        "pricing": {
+          "label": "Pricing"
+        },
+        "solutions": {
+          "label": "Solutions",
+          "children": {
+            "fintech": {
+              "label": "Fintech & Banking",
+              "description": "KYC deepfake protection and identity fraud prevention"
+            },
+            "kyc": {
+              "label": "KYC Verification",
+              "description": "Stop deepfake fraud in onboarding flows"
+            },
+            "callCenters": {
+              "label": "Call Centers",
+              "description": "Voice clone detection and vishing prevention"
+            },
+            "media": {
+              "label": "Media & Publishing",
+              "description": "AI-generated content detection for newsrooms"
+            },
+            "dating": {
+              "label": "Dating Apps",
+              "description": "Fake profile and voice catfishing prevention"
+            },
+            "insurance": {
+              "label": "Insurance",
+              "description": "AI claims fraud and synthetic evidence detection"
+            },
+            "hr": {
+              "label": "HR & Hiring",
+              "description": "Remote interview deepfake and voice fraud detection"
+            },
+            "government": {
+              "label": "Government",
+              "description": "Synthetic media detection for public sector"
+            }
+          }
+        },
+        "learn": {
+          "label": "Learn"
+        },
+        "company": {
+          "label": "Company",
+          "children": {
+            "about": {
+              "label": "About Us",
+              "description": "Learn about our mission and team"
+            },
+            "research": {
+              "label": "Research",
+              "description": "Publications, benchmarks, and technical deep-dives"
+            },
+            "newsletter": {
+              "label": "Newsletter",
+              "description": "Weekly insights on deepfake technology and AI security"
+            },
+            "security": {
+              "label": "Security & Compliance",
+              "description": "Security certifications, compliance standards, and data protection policies"
+            }
+          }
+        }
+      }
+    },
+    "stickyCta": {
+      "regionLabel": "Scam AI"
+    },
+    "banner": {
+      "regionLabel": "Computex 2026 announcement",
+      "messagePrefix": "Meet us at",
+      "eventName": "Computex 2026",
+      "dateLabel": "· June 2–5",
+      "cta": "Book a meeting",
+      "dismissLabel": "Dismiss Computex 2026 announcement"
+    },
+    "pricing": {
+      "sectionAriaLabel": "Pricing",
+      "eyebrow": "USAGE-BASED PRICING",
+      "heading": "Pay only for <highlight>what you use</highlight>",
+      "subheading": "<strong>200 free images/month</strong> with Eva-v1-Fast, then $0.05/image. No hidden fees, no contracts.",
+      "volume": {
+        "label": "Monthly Volume",
+        "images": "{volume} images",
+        "ariaLabel": "Monthly image volume"
+      },
+      "enterpriseNudge": {
+        "title": "Need more?",
+        "description": "Enterprise plans include volume discounts and dedicated support.",
+        "cta": "Contact Sales"
+      },
+      "addons": {
+        "title": "Add-ons",
+        "subtitle": "Optional features to enhance detection",
+        "adaptive": {
+          "label": "Adaptive Defense",
+          "desc": "Real-time GenAI, deepfake & injection attack detection"
+        },
+        "liveness": {
+          "label": "Active Liveness",
+          "desc": "Verify real human presence and prevent deepfake spoofing"
+        },
+        "express": {
+          "label": "Express Lane",
+          "desc": "Low latency processing with 3s response guarantee"
+        }
+      },
+      "summary": {
+        "title": "Summary",
+        "perImageLabel": "Per Image",
+        "perImageUnit": "/image",
+        "freeTierNote": "Within free tier (200 images/mo)",
+        "base": "Base",
+        "monthlyEstimateLabel": "Monthly Estimate",
+        "perMonthUnit": "/mo",
+        "freePaidNote": "{free} free + {paid} paid",
+        "cta": "Get Started",
+        "ctaNote": "No setup fees · Cancel anytime"
+      },
+      "includes": {
+        "title": "Includes",
+        "items": {
+          "genaiDeepfake": "GenAI & deepfake detection",
+          "evaFastModel": "Eva-v1-Fast model",
+          "restApi": "REST API access",
+          "dashboardAnalytics": "Dashboard analytics"
+        }
+      },
+      "plans": {
+        "recommended": "Recommended",
+        "selfServe": {
+          "name": "Self-Serve",
+          "priceUnit": "per image",
+          "freeNote": "200 free images/month",
+          "description": "Flexible pay-as-you-go for teams of all sizes. Start free, scale when ready.",
+          "cta": "Get Started",
+          "features": {
+            "genaiDetection": "GenAI Detection",
+            "deepfakeAnalysis": "Deepfake Analysis",
+            "evaFastModel": "Eva-v1-Fast Model",
+            "apiAccess": "API Access",
+            "optionalAddons": "All optional add-ons"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "price": "Custom",
+          "description": "Forensic-grade accuracy with Eva-v1-Pro, lower false positives, advanced Thinking, and dedicated support for high-volume operations.",
+          "cta": "Talk to sales",
+          "features": {
+            "everythingSelfServe": "Everything in Self-Serve",
+            "evaProModel": "Eva-v1-Pro Model",
+            "thinking": "Thinking (Advanced Reasoning)",
+            "volumeDiscounts": "Volume Discounts",
+            "prioritySupport": "Priority Support & SLA",
+            "dedicatedManager": "Dedicated Account Manager",
+            "customIntegration": "Custom Integration"
+          }
+        }
+      }
+    },
+    "faq": {
+      "sectionAriaLabel": "Frequently Asked Questions",
+      "eyebrow": "SUPPORT",
+      "heading": "Frequently Asked Questions",
+      "subheading": "Everything you need to know about our GenAI and deepfake detection platform",
+      "items": {
+        "freeTier": {
+          "question": "What is included in the free tier?",
+          "answer": "The free tier includes 200 images per month analyzed with our Eva-v1-Fast model. This includes GenAI detection, deepfake analysis, API access, and dashboard analytics. No credit card required to get started. Sign up free at https://app.scam.ai"
+        },
+        "fastVsPro": {
+          "question": "What’s the difference between Eva-v1-Fast and Eva-v1-Pro?",
+          "answer": "Eva-v1-Fast is our standard model optimized for speed and efficiency, perfect for most use cases. Eva-v1-Pro is our advanced model with significantly lower false positives and enhanced detection capabilities, available exclusively for Enterprise customers. Pro provides deeper analysis for high-stakes applications like KYC verification and fraud prevention. Compare models at https://scam.ai/products/ai-detection"
+        },
+        "pricingAfterFree": {
+          "question": "How does pricing work after the free tier?",
+          "answer": "After your 200 free images per month, you pay $0.05 per image analyzed. You can also add optional features like Adaptive Defense (+$0.008/image), Active Liveness (+$0.008/image), or Express Lane (+$0.008/image). View full pricing at https://scam.ai/pricing"
+        },
+        "mediaTypes": {
+          "question": "What types of media can I analyze?",
+          "answer": "Our platform supports analysis of images, audio files, and video content at https://scam.ai/products/ai-detection. We detect GenAI-generated content, deepfakes, synthetic media, face swaps, voice clones, and various forms of media manipulation across all supported formats."
+        },
+        "volumeDiscounts": {
+          "question": "Do you offer volume discounts?",
+          "answer": "Yes! For organizations processing more than 2,000 images per month, we offer custom Enterprise pricing with volume discounts, dedicated support, and access to advanced models like Eva-v1-Pro and Thinking. Contact our sales team at https://cal.com/scamai/15min to discuss your specific needs."
+        },
+        "thinking": {
+          "question": "What is the Thinking feature?",
+          "answer": "Thinking is our advanced reasoning capability available exclusively in the Enterprise tier. It provides deeper analysis and context-aware detection, helping identify sophisticated manipulation techniques. Learn more at https://www.scam.ai/en/products"
+        },
+        "accuracy": {
+          "question": "How accurate is your detection?",
+          "answer": "Our Eva models are continuously trained on the latest GenAI and deepfake techniques. Eva-v1-Fast provides strong accuracy for most use cases, while Eva-v1-Pro delivers higher precision with significantly lower false positives for enterprise applications. Detection confidence scores are provided with each analysis. View benchmarks at https://scam.ai/products/ai-detection"
+        },
+        "integration": {
+          "question": "Can I integrate this into my existing application?",
+          "answer": "Absolutely! We provide a RESTful API for easy integration. Our API supports synchronous and asynchronous processing, webhooks for notifications, and comprehensive documentation. Enterprise customers receive dedicated integration support. See the API docs at https://docu.scam.ai"
+        },
+        "dataRetention": {
+          "question": "What is your data retention policy?",
+          "answer": "We are GDPR compliant and SOC 2 Type II attested. By default we don’t retain your media after processing. Enterprise customers can configure custom retention policies to meet their specific compliance and audit requirements."
+        },
+        "getStarted": {
+          "question": "How do I get started?",
+          "answer": "Simply sign up for a free account at https://app.scam.ai to get immediate access to 200 free image analyses per month with our Eva-v1-Fast model. No credit card required. Upgrade to paid plans at https://scam.ai/pricing or contact sales for Enterprise options."
+        }
+      },
+      "contact": {
+        "prompt": "Still have questions? We’re here to help.",
+        "cta": "Schedule a Call"
+      }
+    },
+    "solutions": {
+      "eyebrow": "SOLUTIONS",
+      "heading": "The trust infrastructure <br></br>for the <highlight>AI era</highlight>",
+      "subheading": "Detect deepfakes, synthetic media, voice clones, and document fraud — across people, documents, and AI agents.",
+      "learnMore": "Learn more",
+      "talkToSales": "Talk to sales",
+      "cards": {
+        "halo": {
+          "title": "Halo — On-Device Detection",
+          "description": "Real-time deepfake detection on your Zoom, Teams & Meet calls. Runs on the Qualcomm Snapdragon X NPU — nothing leaves your device.",
+          "badge": "New · with Qualcomm"
+        },
+        "deepfake": {
+          "title": "Deepfake",
+          "description": "Detect face swaps, lip-sync attacks, and AI-generated faces across images and video in real time."
+        },
+        "genai": {
+          "title": "GenAI",
+          "description": "Identify synthetic content from diffusion models, GANs, and LLMs before it enters your pipeline."
+        },
+        "voiceClone": {
+          "title": "Voice Clone",
+          "description": "Catch cloned voices and synthetic speech targeting call centers and voice authentication systems."
+        },
+        "remoteNotary": {
+          "title": "Remote Notary",
+          "description": "Verify signer identity during remote notarizations. Stop deepfakes before documents are sealed."
+        },
+        "ageEstimation": {
+          "title": "Age Estimation & IDV",
+          "description": "AI-powered age estimation and ID verification that catches synthetic IDs and manipulated selfies."
+        },
+        "documentForgery": {
+          "title": "Document Forgery",
+          "description": "Forensic analysis of AI-generated and manipulated documents, from bank statements to pay stubs."
+        },
+        "aiAgentScamPrevention": {
+          "title": "AI Agent Scam Prevention",
+          "description": "Block social engineering, prompt injection, and identity spoofing targeting AI-powered workflows."
+        },
+        "remoteInterview": {
+          "title": "Remote Interview Integrity",
+          "description": "Verify candidate identity and detect deepfakes during live video interviews in real time."
+        }
+      }
+    },
+    "developer": {
+      "eyebrow": "THE EASIEST TO INTEGRATE",
+      "heading": "Integrate your way",
+      "subhead": "Use Scam AI with no code or with a single API call. Go live in minutes.",
+      "keyPointsLabel": "KEY POINTS",
+      "videoFallback": "Your browser does not support the video tag.",
+      "tabs": {
+        "nocode": "No-code",
+        "api": "API"
+      },
+      "nocode": {
+        "heading": "No-code",
+        "body": "Monitor and analyze deepfake detection results in real-time through our intuitive dashboard. Upload media files, view detection confidence scores, and track synthetic content trends — all without writing a single line of code.",
+        "dashboardCaption": "Scam AI Dashboard",
+        "points": {
+          "dashboard": "Visual deepfake detection dashboard",
+          "upload": "Drag-and-drop media upload",
+          "scoring": "Real-time confidence scoring",
+          "export": "Export detection reports & analytics ",
+          "exportBadge": "(Enterprise)"
+        }
+      },
+      "api": {
+        "heading": "API Integration",
+        "body1": "Integrate deepfake detection into your application with a single API call. Our REST API analyzes images, audio, and video for AI-generated content and returns confidence scores in real-time.",
+        "body2": "Detect synthetic media, voice clones, and deepfakes with Eva-v1 model. Get instant verdicts with detailed manipulation analysis.",
+        "viewDocs": "View documentation",
+        "codeTab": "API Request",
+        "tryIt": "Try it",
+        "points": {
+          "detect": "Detect deepfakes, synthetic media, and voice clones",
+          "scoring": "Real-time confidence scoring & analysis",
+          "support": "Support for images, audio, and video",
+          "webhooks": "Webhooks for asynchronous processing"
+        }
+      }
+    },
+    "trustedBy": {
+      "heading": "Trusted by customers & backed by people from",
+      "logos": {
+        "productHunt": "Product Hunt — Product of the Day",
+        "qualcomm": "Qualcomm",
+        "lgUplus": "LG U+",
+        "hp": "HP",
+        "sbiHoldings": "SBI Holdings",
+        "ucBerkeley": "UC Berkeley",
+        "trulioo": "Trulioo",
+        "betaFellowship": "Beta Fellowship",
+        "honestly": "Honestly",
+        "finalRound": "Final Round AI",
+        "ditto": "Ditto",
+        "quotr": "Quotr",
+        "llamaVenture": "Llama Venture"
+      }
+    },
+    "footer": {
+      "logoAlt": "Scam AI - AI Trust Platform Logo",
+      "tagline": "All-in-one AI Trust Platform",
+      "social": {
+        "twitter": "Follow us on X (Twitter)",
+        "linkedin": "Follow us on LinkedIn",
+        "github": "View our GitHub"
+      },
+      "newsletter": {
+        "heading": "Stay ahead of AI threats",
+        "subtext": "Weekly insights on deepfakes, synthetic media, and AI security — straight to your inbox.",
+        "placeholder": "you@company.com",
+        "emailLabel": "Email address",
+        "subscribe": "Subscribe",
+        "subscribing": "Subscribing…",
+        "subscribed": "Subscribed!",
+        "successDetail": "Thanks — check your inbox for a confirmation.",
+        "errorGeneric": "Something went wrong. Please try again.",
+        "errorNetwork": "Network error. Please try again."
+      },
+      "nav": {
+        "product": {
+          "aria": "Product navigation",
+          "heading": "Product",
+          "aiDetection": "AI Detection",
+          "audioDetection": "Audio Detection",
+          "pricing": "Pricing",
+          "solutions": "Solutions",
+          "compare": "Compare"
+        },
+        "resources": {
+          "aria": "Resources navigation",
+          "heading": "Resources",
+          "documentation": "Documentation",
+          "security": "Security & Compliance",
+          "newsletter": "Newsletter",
+          "learn": "Learn"
+        },
+        "company": {
+          "aria": "Company navigation",
+          "heading": "Company",
+          "about": "About",
+          "research": "Research",
+          "contact": "Contact",
+          "forBusiness": "For Business — checkreality.ai",
+          "privacy": "Privacy",
+          "terms": "Terms",
+          "cookies": "Cookies"
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Reality Inc. All rights reserved.",
+        "tagline": "Built for trust in the AI era"
+      }
+    },
+    "playground": {
+      "eyebrow": "Deepfake is here",
+      "heading": "See how easy it is to fake a face.",
+      "subhead": "Turn on your camera and watch a real-time deepfake of yourself. This is the attack — the defense runs on-device.",
+      "demoMeta": "30-second live demo · no install",
+      "intro": {
+        "tagline": "Pick a photo, then go live.",
+        "start": "Start the live demo"
+      },
+      "consent": {
+        "title": "Camera access",
+        "allow": "Allow & start",
+        "tryAgain": "Try again",
+        "cancel": "Cancel",
+        "privacy": "Processed live for ~30s, never stored."
+      },
+      "picker": {
+        "pickFace": "Pick a face",
+        "switchLive": "Tap to switch faces live",
+        "becomeFace": "Become this face",
+        "remove": "Remove",
+        "removeFace": "Remove this face",
+        "presetFaces": "Preset faces",
+        "presetMeta": "· StyleGAN2 AI-generated",
+        "userUploads": "User uploads",
+        "upload": "Upload",
+        "uploadYourFace": "Upload your own face"
+      },
+      "uploadDialog": {
+        "title": "Upload a face",
+        "consent": "I have the subject’s consent to use their photo in this demo.",
+        "addToPool": "Add to public swap pool",
+        "poolFull": "Pool full",
+        "private": "Your face stays private — only you can use it.",
+        "cancel": "Cancel",
+        "choosePhoto": "Choose photo"
+      },
+      "stage": {
+        "left": "left",
+        "liveLabel": "Live face swap",
+        "switchingFace": "Switching face…",
+        "share": "Share",
+        "you": "You"
+      },
+      "ended": {
+        "eyebrow": "That took 30 seconds.",
+        "heading": "Anyone can fake a face. Catch it on-device.",
+        "budgetEyebrow": "Demo limit reached",
+        "budgetHeading": "You’ve used up today’s free demo time.",
+        "budgetBody": "Thirty seconds was all it took to fake a face — now meet the defense.",
+        "shareDeepfake": "Share your deepfake",
+        "meetHalo": "Meet Halo — the defense",
+        "runAgain": "Run again"
+      },
+      "card": {
+        "title": "Save or share your card",
+        "share": "Share",
+        "saveImage": "Save image",
+        "saved": "Saved",
+        "postToX": "Post to X",
+        "imageAlt": "Your deepfake card"
+      }
+    },
+    "search": {
+      "dialogLabel": "Site search",
+      "inputAriaLabel": "Search products, pages, and features",
+      "placeholder": "Search products, pages, and features...",
+      "resultsAriaLabel": "Search results",
+      "noResults": "No results found for “{query}”",
+      "hintNavigate": "to navigate",
+      "hintSelect": "to select",
+      "categories": {
+        "products": "Products",
+        "pages": "Pages",
+        "resources": "Resources",
+        "actions": "Actions"
+      },
+      "items": {
+        "halo": {
+          "label": "Halo",
+          "description": "On-device deepfake detection for live calls — with Qualcomm"
+        },
+        "aiDetection": {
+          "label": "AI Detection",
+          "description": "Deepfake and AI-generated content detection"
+        },
+        "audioDetection": {
+          "label": "Audio Detection",
+          "description": "Voice cloning and AI-generated audio detection"
+        },
+        "home": {
+          "label": "Home"
+        },
+        "pricing": {
+          "label": "Pricing",
+          "description": "Plans and pricing details"
+        },
+        "about": {
+          "label": "About Us",
+          "description": "Our mission and milestones"
+        },
+        "research": {
+          "label": "Research",
+          "description": "Publications, benchmarks, and technical reports"
+        },
+        "newsletter": {
+          "label": "Newsletter",
+          "description": "Weekly deepfake and AI security news"
+        },
+        "contact": {
+          "label": "Contact",
+          "description": "Get in touch with our team"
+        },
+        "documentation": {
+          "label": "Documentation",
+          "description": "API guides and integration examples"
+        },
+        "securityCompliance": {
+          "label": "Security & Compliance",
+          "description": "SOC 2 Type II and GDPR compliance"
+        },
+        "logIn": {
+          "label": "Log In",
+          "description": "Access your dashboard"
+        },
+        "bookDemo": {
+          "label": "Book a Demo",
+          "description": "Schedule a 15-minute call"
+        }
+      }
+    }
+  },
   "nav": {
     "products": "Products",
     "industries": "Industries",
@@ -73,9 +682,18 @@
       "freeTrials": "{count} Free Trials",
       "demoCount": "Demo count: {count}/{limit}",
       "tabs": {
-        "image": { "label": "Image Detection", "badge": "" },
-        "voice": { "label": "Voice Clone", "badge": "" },
-        "video": { "label": "Video Deepfake", "badge": "" }
+        "image": {
+          "label": "Image Detection",
+          "badge": ""
+        },
+        "voice": {
+          "label": "Voice Clone",
+          "badge": ""
+        },
+        "video": {
+          "label": "Video Deepfake",
+          "badge": ""
+        }
       },
       "uploadArea": "Upload Area",
       "uploadHint": "Drag & drop an image or paste URL. JPG, PNG, WEBP (Max 5MB)",
@@ -575,7 +1193,11 @@
         "category": "Deepfake Detection",
         "headline": "Defending the Truth in Human Face",
         "subtitle": "Real-Time Deepfake Detection",
-        "tags": ["GenAI", "Deepfake", "Faceswap"]
+        "tags": [
+          "GenAI",
+          "Deepfake",
+          "Faceswap"
+        ]
       },
       "problemSection": {
         "headline": "The Threat: \"Seeing is Believing\" Is a Thing of the Past",
@@ -595,7 +1217,11 @@
         "category": "AI-Generated Media Detection",
         "headline": "Detect AI-Generated Images and Video",
         "subtitle": "Verifying Reality in a Synthetic World",
-        "tags": ["GenAI", "Synthetic Media", "Detection"],
+        "tags": [
+          "GenAI",
+          "Synthetic Media",
+          "Detection"
+        ],
         "visualAlt": "Examples of AI-generated fake news images showing fabricated content"
       },
       "problemSection": {
@@ -612,7 +1238,12 @@
         "category": "AI Voice Clone Detection",
         "headline": "Real-Time AI Voice Clone Detection",
         "subtitle": "Secure Every Conversation",
-        "tags": ["Voice AI", "Audio Synthesis", "Detection", "VoiceGuard"],
+        "tags": [
+          "Voice AI",
+          "Audio Synthesis",
+          "Detection",
+          "VoiceGuard"
+        ],
         "visualAlt": "Example synthetic audio file Sale0625.mp3 generated by minimax.io"
       },
       "problemSection": {
@@ -634,7 +1265,12 @@
         "headline": "Instantly Identify and Neutralize",
         "subtitle": "Malicious Texts",
         "description": "Scam.ai's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
-        "tags": ["Text Analysis", "Scam Detection", "NLP", "Text Guardian"],
+        "tags": [
+          "Text Analysis",
+          "Scam Detection",
+          "NLP",
+          "Text Guardian"
+        ],
         "visualAlt": "Text and Link Analysis"
       },
       "problemSection": {
@@ -741,7 +1377,11 @@
         "headline": "Link & QR Code Detection",
         "subtitle": "Malicious URL Analysis",
         "description": "Identify dangerous links and malicious QR codes. Protect against URL-based attacks and fraud.",
-        "tags": ["URL Analysis", "QR Code", "Link Detection"],
+        "tags": [
+          "URL Analysis",
+          "QR Code",
+          "Link Detection"
+        ],
         "visualAlt": "Link and QR Code Analysis"
       },
       "problemSection": {
@@ -1614,7 +2254,12 @@
         "headline": "The Intelligence Engine Powering",
         "subtitle": "Next-Generation Fraud Defense",
         "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam.ai platform.",
-        "tags": ["Database", "Scam Intelligence", "Research Data", "ScamNet DB"],
+        "tags": [
+          "Database",
+          "Scam Intelligence",
+          "Research Data",
+          "ScamNet DB"
+        ],
         "visualAlt": "ScamNet Database"
       },
       "problemSection": {
@@ -1714,31 +2359,109 @@
   },
   "seoMeta": {
     "solutions": {
-      "fintech": { "title": "Deepfake detection for fintech and banking", "metaDescription": "Deepfake detection for fintech KYC at 95.3% accuracy. Detect synthetic identities, forged documents, and voice clones in under 4 seconds. SOC 2 certified.", "headline": "Deepfake detection for fintech and banking" },
-      "dating": { "title": "Deepfake and fake profile detection for dating apps", "metaDescription": "Detect AI-generated fake profiles and voice catfishing on dating apps. ScamAI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.", "headline": "Deepfake and fake profile detection for dating apps" },
-      "call-centers": { "title": "Voice clone detection for call centers", "metaDescription": "Voice clone detection for call centers at 98.5% accuracy. Detect vishing attacks in real time, under 3 seconds. SOC 2 certified, 10-minute API setup.", "headline": "Voice clone detection for call centers" },
-      "kyc": { "title": "Stop deepfake fraud in KYC identity verification", "metaDescription": "Detect deepfake selfies and AI-edited ID documents in KYC onboarding. ScamAI's Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.", "headline": "Stop deepfake fraud in KYC identity verification" },
-      "media": { "title": "AI-generated content detection for media and newsrooms", "metaDescription": "Deepfake detection API for newsrooms. Verify images, video, and audio for AI generation before publication. 95.3% accuracy, 200 free/month.", "headline": "AI-generated content detection for media and newsrooms" },
-      "insurance": { "title": "Detect AI-generated fraud in insurance claims", "metaDescription": "Detect AI-edited photos and forged documents in insurance claims. ScamAI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.", "headline": "Detect AI-generated fraud in insurance claims" },
-      "hr": { "title": "Detect deepfakes in remote interviews and video hiring", "metaDescription": "Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. ScamAI verifies video and audio authenticity for HR teams and hiring platforms.", "headline": "Detect deepfakes in remote interviews and video hiring" },
-      "government": { "title": "Synthetic media detection for government and public sector", "metaDescription": "Synthetic media detection for government agencies. Detect deepfake videos and AI-generated imagery at scale. Enterprise SLA, SOC 2 certified.", "headline": "Synthetic media detection for government and public sector" }
+      "fintech": {
+        "title": "Deepfake detection for fintech and banking",
+        "metaDescription": "Deepfake detection for fintech KYC at 95.3% accuracy. Detect synthetic identities, forged documents, and voice clones in under 4 seconds. SOC 2 certified.",
+        "headline": "Deepfake detection for fintech and banking"
+      },
+      "dating": {
+        "title": "Deepfake and fake profile detection for dating apps",
+        "metaDescription": "Detect AI-generated fake profiles and voice catfishing on dating apps. ScamAI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.",
+        "headline": "Deepfake and fake profile detection for dating apps"
+      },
+      "call-centers": {
+        "title": "Voice clone detection for call centers",
+        "metaDescription": "Voice clone detection for call centers at 98.5% accuracy. Detect vishing attacks in real time, under 3 seconds. SOC 2 certified, 10-minute API setup.",
+        "headline": "Voice clone detection for call centers"
+      },
+      "kyc": {
+        "title": "Stop deepfake fraud in KYC identity verification",
+        "metaDescription": "Detect deepfake selfies and AI-edited ID documents in KYC onboarding. ScamAI's Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.",
+        "headline": "Stop deepfake fraud in KYC identity verification"
+      },
+      "media": {
+        "title": "AI-generated content detection for media and newsrooms",
+        "metaDescription": "Deepfake detection API for newsrooms. Verify images, video, and audio for AI generation before publication. 95.3% accuracy, 200 free/month.",
+        "headline": "AI-generated content detection for media and newsrooms"
+      },
+      "insurance": {
+        "title": "Detect AI-generated fraud in insurance claims",
+        "metaDescription": "Detect AI-edited photos and forged documents in insurance claims. ScamAI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.",
+        "headline": "Detect AI-generated fraud in insurance claims"
+      },
+      "hr": {
+        "title": "Detect deepfakes in remote interviews and video hiring",
+        "metaDescription": "Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. ScamAI verifies video and audio authenticity for HR teams and hiring platforms.",
+        "headline": "Detect deepfakes in remote interviews and video hiring"
+      },
+      "government": {
+        "title": "Synthetic media detection for government and public sector",
+        "metaDescription": "Synthetic media detection for government agencies. Detect deepfake videos and AI-generated imagery at scale. Enterprise SLA, SOC 2 certified.",
+        "headline": "Synthetic media detection for government and public sector"
+      }
     },
     "compare": {
-      "reality-defender": { "title": "ScamAI vs Reality Defender: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Reality Defender: $0.05/image vs annual contracts, 200 free images vs none, 10-min API setup vs custom onboarding. Full comparison.", "tagline": "ScamAI vs Reality Defender: Deepfake Detection Comparison" },
-      "sensity": { "title": "ScamAI vs Sensity AI: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Sensity AI: images, video, audio, and documents in one API. $0.05/image vs enterprise contracts, 200 free/month. Full comparison.", "tagline": "ScamAI vs Sensity AI: Deepfake Detection Comparison" },
-      "hive": { "title": "ScamAI vs Hive Moderation: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.", "tagline": "ScamAI vs Hive Moderation: Deepfake Detection Comparison" },
-      "microsoft-azure": { "title": "ScamAI vs Microsoft Azure AI Content Safety", "metaDescription": "ScamAI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.", "tagline": "ScamAI vs Microsoft Azure AI Content Safety: Deepfake Detection Comparison" },
-      "aws-rekognition": { "title": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison", "metaDescription": "ScamAI vs AWS Rekognition: dedicated deepfake detection model vs general face analysis, plus voice clone and document forgery detection not available in Rekognition.", "tagline": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison" },
-      "truepic": { "title": "ScamAI vs Truepic: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Truepic: AI deepfake detection on any image vs C2PA provenance needing camera hardware. Works retroactively, no metadata required.", "tagline": "ScamAI vs Truepic: Deepfake Detection Comparison" },
-      "deepware": { "title": "ScamAI vs Deepware: Deepfake Detection Comparison", "metaDescription": "ScamAI vs Deepware: production API with 99.9% SLA and SOC 2 vs free consumer scanner. Enterprise KYC integration + voice clone detection.", "tagline": "ScamAI vs Deepware: Deepfake Detection Comparison" }
+      "reality-defender": {
+        "title": "ScamAI vs Reality Defender: Deepfake Detection Comparison",
+        "metaDescription": "ScamAI vs Reality Defender: $0.05/image vs annual contracts, 200 free images vs none, 10-min API setup vs custom onboarding. Full comparison.",
+        "tagline": "ScamAI vs Reality Defender: Deepfake Detection Comparison"
+      },
+      "sensity": {
+        "title": "ScamAI vs Sensity AI: Deepfake Detection Comparison",
+        "metaDescription": "ScamAI vs Sensity AI: images, video, audio, and documents in one API. $0.05/image vs enterprise contracts, 200 free/month. Full comparison.",
+        "tagline": "ScamAI vs Sensity AI: Deepfake Detection Comparison"
+      },
+      "hive": {
+        "title": "ScamAI vs Hive Moderation: Deepfake Detection Comparison",
+        "metaDescription": "ScamAI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.",
+        "tagline": "ScamAI vs Hive Moderation: Deepfake Detection Comparison"
+      },
+      "microsoft-azure": {
+        "title": "ScamAI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "ScamAI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.",
+        "tagline": "ScamAI vs Microsoft Azure AI Content Safety: Deepfake Detection Comparison"
+      },
+      "aws-rekognition": {
+        "title": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison",
+        "metaDescription": "ScamAI vs AWS Rekognition: dedicated deepfake detection model vs general face analysis, plus voice clone and document forgery detection not available in Rekognition.",
+        "tagline": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison"
+      },
+      "truepic": {
+        "title": "ScamAI vs Truepic: Deepfake Detection Comparison",
+        "metaDescription": "ScamAI vs Truepic: AI deepfake detection on any image vs C2PA provenance needing camera hardware. Works retroactively, no metadata required.",
+        "tagline": "ScamAI vs Truepic: Deepfake Detection Comparison"
+      },
+      "deepware": {
+        "title": "ScamAI vs Deepware: Deepfake Detection Comparison",
+        "metaDescription": "ScamAI vs Deepware: production API with 99.9% SLA and SOC 2 vs free consumer scanner. Enterprise KYC integration + voice clone detection.",
+        "tagline": "ScamAI vs Deepware: Deepfake Detection Comparison"
+      }
     },
     "learn": {
-      "what-is-a-deepfake": { "title": "What is a deepfake? How they work and how to detect them", "description": "A complete guide to deepfakes — what they are, how AI creates them, why they're a growing security threat, and how detection technology works." },
-      "how-to-detect-ai-generated-images": { "title": "How to detect AI-generated images (free tools + API)", "description": "How to detect AI-generated images with free tools and APIs. Visual inspection tips, GAN and diffusion model detection, plus face swap identification." },
-      "voice-cloning-attacks": { "title": "Voice cloning attacks: how they work and how to stop them", "description": "Voice cloning attacks explained: how AI clones voices in seconds, real vishing case studies, and how 98.5%-accurate detection stops them." },
-      "deepfake-detection-accuracy": { "title": "Deepfake detection accuracy: what the benchmarks actually mean", "description": "Deepfake detection accuracy explained: how benchmarks work, why accuracy drops in the wild, and how to choose the right threshold for your use case." },
-      "deepfake-detection-api-guide": { "title": "How to integrate deepfake detection into your app (API guide)", "description": "Integrate deepfake detection into your app via API. Endpoint selection, request examples, confidence scoring, and production scaling guide." },
-      "deepfake-statistics-2026": { "title": "Deepfake statistics 2026: the numbers you need to know", "description": "The definitive collection of deepfake statistics for 2026 — covering fraud losses, detection accuracy benchmarks, industry impact, and regulatory response." }
+      "what-is-a-deepfake": {
+        "title": "What is a deepfake? How they work and how to detect them",
+        "description": "A complete guide to deepfakes — what they are, how AI creates them, why they're a growing security threat, and how detection technology works."
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "How to detect AI-generated images (free tools + API)",
+        "description": "How to detect AI-generated images with free tools and APIs. Visual inspection tips, GAN and diffusion model detection, plus face swap identification."
+      },
+      "voice-cloning-attacks": {
+        "title": "Voice cloning attacks: how they work and how to stop them",
+        "description": "Voice cloning attacks explained: how AI clones voices in seconds, real vishing case studies, and how 98.5%-accurate detection stops them."
+      },
+      "deepfake-detection-accuracy": {
+        "title": "Deepfake detection accuracy: what the benchmarks actually mean",
+        "description": "Deepfake detection accuracy explained: how benchmarks work, why accuracy drops in the wild, and how to choose the right threshold for your use case."
+      },
+      "deepfake-detection-api-guide": {
+        "title": "How to integrate deepfake detection into your app (API guide)",
+        "description": "Integrate deepfake detection into your app via API. Endpoint selection, request examples, confidence scoring, and production scaling guide."
+      },
+      "deepfake-statistics-2026": {
+        "title": "Deepfake statistics 2026: the numbers you need to know",
+        "description": "The definitive collection of deepfake statistics for 2026 — covering fraud losses, detection accuracy benchmarks, industry impact, and regulatory response."
+      }
     }
   }
 }

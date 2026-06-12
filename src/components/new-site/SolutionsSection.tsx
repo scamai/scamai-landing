@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
@@ -35,21 +36,19 @@ function AnimatedCard({
 }
 
 type Solution = {
-  title: string;
-  description: string;
+  id: string;
   icon: ReactNode;
   href?: string;
   highlight?: boolean;
-  badge?: string;
+  hasBadge?: boolean;
 };
 
 const solutions: Solution[] = [
   {
-    title: "Halo — On-Device Detection",
-    description: "Real-time deepfake detection on your Zoom, Teams & Meet calls. Runs on the Qualcomm Snapdragon X NPU — nothing leaves your device.",
+    id: "halo",
     href: "/halo",
     highlight: true,
-    badge: "New · with Qualcomm",
+    hasBadge: true,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="9" />
@@ -59,8 +58,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "Deepfake",
-    description: "Detect face swaps, lip-sync attacks, and AI-generated faces across images and video in real time.",
+    id: "deepfake",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -70,8 +68,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "GenAI",
-    description: "Identify synthetic content from diffusion models, GANs, and LLMs before it enters your pipeline.",
+    id: "genai",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -81,8 +78,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "Voice Clone",
-    description: "Catch cloned voices and synthetic speech targeting call centers and voice authentication systems.",
+    id: "voiceClone",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
@@ -93,8 +89,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "Remote Notary",
-    description: "Verify signer identity during remote notarizations. Stop deepfakes before documents are sealed.",
+    id: "remoteNotary",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -103,8 +98,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "Age Estimation & IDV",
-    description: "AI-powered age estimation and ID verification that catches synthetic IDs and manipulated selfies.",
+    id: "ageEstimation",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -116,8 +110,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "Document Forgery",
-    description: "Forensic analysis of AI-generated and manipulated documents, from bank statements to pay stubs.",
+    id: "documentForgery",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
@@ -127,8 +120,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "AI Agent Scam Prevention",
-    description: "Block social engineering, prompt injection, and identity spoofing targeting AI-powered workflows.",
+    id: "aiAgentScamPrevention",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="4" width="18" height="12" rx="2" />
@@ -140,8 +132,7 @@ const solutions: Solution[] = [
     ),
   },
   {
-    title: "Remote Interview Integrity",
-    description: "Verify candidate identity and detect deepfakes during live video interviews in real time.",
+    id: "remoteInterview",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M23 7l-7 5 7 5V7z" />
@@ -160,6 +151,7 @@ function SolutionCard({
   solution: (typeof solutions)[number];
   delay: number;
 }) {
+  const t = useTranslations("landing.solutions");
   const inner = (
     <div
       className={`group relative h-full rounded-xl sm:rounded-2xl border p-4 sm:p-6 transition-[background-color,border-color,box-shadow] duration-300 ${
@@ -168,23 +160,23 @@ function SolutionCard({
           : "border-gray-800/60 bg-white/[0.02] hover:border-[#245FFF]/30 hover:bg-white/[0.04]"
       }`}
     >
-      {solution.badge && (
+      {solution.hasBadge && (
         <span className="absolute right-3 top-3 rounded-full bg-[#245FFF] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
-          {solution.badge}
+          {t(`cards.${solution.id}.badge`)}
         </span>
       )}
       <div className="mb-3 sm:mb-4 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#245FFF]/10 text-[#245FFF]">
         {solution.icon}
       </div>
       <h3 className="text-sm sm:text-base font-semibold text-white mb-1.5 sm:mb-2 leading-tight">
-        {solution.title}
+        {t(`cards.${solution.id}.title`)}
       </h3>
       <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-        {solution.description}
+        {t(`cards.${solution.id}.description`)}
       </p>
       {solution.href && (
         <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#245FFF]">
-          Learn more
+          {t("learnMore")}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
         </span>
       )}
@@ -209,6 +201,7 @@ function SolutionCard({
 }
 
 export default function SolutionsSection() {
+  const t = useTranslations("landing.solutions");
   return (
     <section
       className="landing-section relative overflow-hidden bg-black"
@@ -220,16 +213,16 @@ export default function SolutionsSection() {
         <AnimatedCard>
           <div className="text-center mb-8 sm:mb-10 lg:mb-14">
             <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] mb-3 sm:text-[10px] lg:mb-4">
-              SOLUTIONS
+              {t("eyebrow")}
             </p>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-3 sm:mb-4 lg:mb-5 px-2 sm:px-0">
-              The trust infrastructure{" "}
-              <br className="hidden sm:block" />
-              for the <span className="text-[#245FFF]">AI era</span>
+              {t.rich("heading", {
+                br: () => <br className="hidden sm:block" />,
+                highlight: (chunks) => <span className="text-[#245FFF]">{chunks}</span>,
+              })}
             </h2>
             <p className="mx-auto max-w-xl text-sm sm:text-base text-gray-500 leading-relaxed px-2 sm:px-0">
-              Detect deepfakes, synthetic media, voice clones, and document
-              fraud — across people, documents, and AI agents.
+              {t("subheading")}
             </p>
           </div>
         </AnimatedCard>
@@ -238,7 +231,7 @@ export default function SolutionsSection() {
         <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {solutions.map((solution, index) => (
             <SolutionCard
-              key={solution.title}
+              key={solution.id}
               solution={solution}
               delay={0.08 * (index + 1)}
             />
@@ -255,7 +248,7 @@ export default function SolutionsSection() {
               className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#1d4acc] hover:shadow-[0_0_24px_-4px_rgba(36,95,255,0.5)]"
               onClick={() => trackCTA("talk_to_sales", "solutions")}
             >
-              Talk to sales
+              {t("talkToSales")}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14" />
                 <path d="M12 5l7 7-7 7" />

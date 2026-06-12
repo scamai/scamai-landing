@@ -1,38 +1,42 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { trackSearch } from "@/lib/analytics";
 
+// Stable item identity is the `key` (used for t() lookups, dedupe, and analytics
+// via the resolved label). Visible label/description/category are resolved at
+// render through t(); href/external/behaviour stay here untouched.
 type SearchItem = {
-  label: string;
+  key: string;
+  categoryKey: string;
   href: string;
-  category: string;
-  description?: string;
   external?: boolean;
+  hasDescription?: boolean;
 };
 
 const searchItems: SearchItem[] = [
   // Products
-  { label: "Halo", href: "/halo", category: "Products", description: "On-device deepfake detection for live calls — with Qualcomm" },
-  { label: "AI Detection", href: "/products/ai-detection", category: "Products", description: "Deepfake and AI-generated content detection" },
-  { label: "Audio Detection", href: "/products/audio-detection", category: "Products", description: "Voice cloning and AI-generated audio detection" },
+  { key: "halo", categoryKey: "products", href: "/halo", hasDescription: true },
+  { key: "aiDetection", categoryKey: "products", href: "/products/ai-detection", hasDescription: true },
+  { key: "audioDetection", categoryKey: "products", href: "/products/audio-detection", hasDescription: true },
 
   // Pages
-  { label: "Home", href: "/", category: "Pages" },
-  { label: "Pricing", href: "/pricing", category: "Pages", description: "Plans and pricing details" },
-  { label: "About Us", href: "/about", category: "Pages", description: "Our mission and milestones" },
-  { label: "Research", href: "/research", category: "Pages", description: "Publications, benchmarks, and technical reports" },
-  { label: "Newsletter", href: "/newsletter", category: "Pages", description: "Weekly deepfake and AI security news" },
-  { label: "Contact", href: "/contact", category: "Pages", description: "Get in touch with our team" },
+  { key: "home", categoryKey: "pages", href: "/" },
+  { key: "pricing", categoryKey: "pages", href: "/pricing", hasDescription: true },
+  { key: "about", categoryKey: "pages", href: "/about", hasDescription: true },
+  { key: "research", categoryKey: "pages", href: "/research", hasDescription: true },
+  { key: "newsletter", categoryKey: "pages", href: "/newsletter", hasDescription: true },
+  { key: "contact", categoryKey: "pages", href: "/contact", hasDescription: true },
 
   // Resources
-  { label: "Documentation", href: "https://docu.scam.ai", category: "Resources", external: true, description: "API guides and integration examples" },
-  { label: "Security & Compliance", href: "https://reality-inc.trust.site/", category: "Resources", external: true, description: "SOC 2 Type II and GDPR compliance" },
+  { key: "documentation", categoryKey: "resources", href: "https://docu.scam.ai", external: true, hasDescription: true },
+  { key: "securityCompliance", categoryKey: "resources", href: "https://reality-inc.trust.site/", external: true, hasDescription: true },
 
   // Quick actions
-  { label: "Log In", href: "https://app.scam.ai", category: "Actions", external: true, description: "Access your dashboard" },
-  { label: "Book a Demo", href: "https://cal.com/scamai/15min", category: "Actions", external: true, description: "Schedule a 15-minute call" },
+  { key: "logIn", categoryKey: "actions", href: "https://app.scam.ai", external: true, hasDescription: true },
+  { key: "bookDemo", categoryKey: "actions", href: "https://cal.com/scamai/15min", external: true, hasDescription: true },
 ];
 
 interface CommandPaletteProps {
@@ -41,6 +45,7 @@ interface CommandPaletteProps {
 }
 
 export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
+  const t = useTranslations("landing.search");
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -52,14 +57,23 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   const optionId = (i: number) => `command-palette-option-${i}`;
   const router = useRouter();
 
+  // Resolve the visible label/description/category for an item from the active
+  // locale. Behaviour (href/external) lives on the item; only display text is t().
+  const itemLabel = (item: SearchItem) => t(`items.${item.key}.label`);
+  const itemDescription = (item: SearchItem) =>
+    item.hasDescription ? t(`items.${item.key}.description`) : undefined;
+  const categoryLabel = (categoryKey: string) => t(`categories.${categoryKey}`);
+
   const filtered = query.length === 0
     ? searchItems
-    : searchItems.filter(
-        (item) =>
-          item.label.toLowerCase().includes(query.toLowerCase()) ||
-          item.description?.toLowerCase().includes(query.toLowerCase()) ||
-          item.category.toLowerCase().includes(query.toLowerCase())
-      );
+    : searchItems.filter((item) => {
+        const q = query.toLowerCase();
+        return (
+          itemLabel(item).toLowerCase().includes(q) ||
+          itemDescription(item)?.toLowerCase().includes(q) ||
+          categoryLabel(item.categoryKey).toLowerCase().includes(q)
+        );
+      });
 
   const close = useCallback(() => {
     onClose();
@@ -69,7 +83,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
   const navigate = useCallback(
     (item: SearchItem) => {
-      trackSearch(query, item.label);
+      // Track the stable key (locale-independent) so search_select analytics
+      // stay consistent across locales rather than recording translated labels.
+      trackSearch(query, item.key);
       close();
       if (item.external) {
         window.open(item.href, "_blank", "noopener,noreferrer");
@@ -193,8 +209,8 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   // render never mutates a variable (which breaks in React StrictMode).
   const grouped = filtered.reduce<Record<string, (SearchItem & { flatIdx: number })[]>>(
     (acc, item, i) => {
-      if (!acc[item.category]) acc[item.category] = [];
-      acc[item.category].push({ ...item, flatIdx: i });
+      if (!acc[item.categoryKey]) acc[item.categoryKey] = [];
+      acc[item.categoryKey].push({ ...item, flatIdx: i });
       return acc;
     },
     {}
@@ -216,7 +232,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Site search"
+          aria-label={t("dialogLabel")}
           className="overflow-hidden rounded-xl border border-white/10 bg-[#111111] shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
@@ -244,8 +260,8 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
               aria-autocomplete="list"
               aria-controls={listboxId}
               aria-activedescendant={filtered[selectedIndex] ? optionId(selectedIndex) : undefined}
-              aria-label="Search products, pages, and features"
-              placeholder="Search products, pages, and features..."
+              aria-label={t("inputAriaLabel")}
+              placeholder={t("placeholder")}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -261,24 +277,26 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
             ref={listRef}
             id={listboxId}
             role="listbox"
-            aria-label="Search results"
+            aria-label={t("resultsAriaLabel")}
             className="max-h-[60vh] overflow-y-auto overscroll-contain p-2"
           >
             {filtered.length === 0 ? (
               <div className="px-4 py-8 text-center text-sm text-gray-500">
-                No results found for &ldquo;{query}&rdquo;
+                {t("noResults", { query })}
               </div>
             ) : (
-              Object.entries(grouped).map(([category, items]) => (
-                <div key={category} role="group" aria-label={category} className="mb-1">
+              Object.entries(grouped).map(([categoryKey, items]) => (
+                <div key={categoryKey} role="group" aria-label={categoryLabel(categoryKey)} className="mb-1">
                   <div className="px-3 py-2 text-xs font-medium text-gray-500" aria-hidden="true">
-                    {category}
+                    {categoryLabel(categoryKey)}
                   </div>
                   {items.map((item) => {
                     const isSelected = item.flatIdx === selectedIndex;
+                    const label = itemLabel(item);
+                    const description = itemDescription(item);
                     return (
                       <button
-                        key={item.label + item.href}
+                        key={item.key + item.href}
                         id={optionId(item.flatIdx)}
                         role="option"
                         aria-selected={isSelected}
@@ -292,7 +310,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-medium text-white truncate">
-                              {item.label}
+                              {label}
                             </span>
                             {item.external && (
                               <svg className="h-3 w-3 flex-shrink-0 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,9 +318,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                               </svg>
                             )}
                           </div>
-                          {item.description && (
+                          {description && (
                             <p className="text-xs text-gray-500 truncate">
-                              {item.description}
+                              {description}
                             </p>
                           )}
                         </div>
@@ -324,11 +342,11 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
             <span className="flex items-center gap-1">
               <kbd className="rounded border border-white/10 bg-white/5 px-1 py-0.5">↑</kbd>
               <kbd className="rounded border border-white/10 bg-white/5 px-1 py-0.5">↓</kbd>
-              to navigate
+              {t("hintNavigate")}
             </span>
             <span className="flex items-center gap-1">
               <kbd className="rounded border border-white/10 bg-white/5 px-1 py-0.5">↵</kbd>
-              to select
+              {t("hintSelect")}
             </span>
           </div>
         </div>
