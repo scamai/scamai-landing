@@ -1,10 +1,15 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { useState, useRef, DragEvent, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 import HeroBackground from "./HeroBackground";
-import { BentoV1_3, BentoV1_5, BentoV1_26, BentoV1_28 } from "@/components/bento-v1";
+// Direct per-file bento imports (NOT the @/components/bento-v1 barrel) so the
+// page chunk only pulls these four bentos' code/CSS, not all 30.
+import BentoV1_3 from "@/components/bento-v1/Bento3";
+import BentoV1_5 from "@/components/bento-v1/Bento5";
+import BentoV1_26 from "@/components/bento-v1/Bento26";
+import BentoV1_28 from "@/components/bento-v1/Bento28";
 import { Suspense } from "react";
 import { trackCTA, trackOutbound } from "@/lib/analytics";
 import DeveloperSection from "./DeveloperSection";
@@ -51,19 +56,6 @@ import SolutionsSection from "./SolutionsSection";
 import { getArticleBySlug } from "@/lib/learn/articles";
 import { topLearnArticles } from "@/lib/internal-links";
 
-type FileWithPreview = {
-  file: File;
-  preview: string;
-  watermarkedImage?: string;
-  status: 'pending' | 'analyzing' | 'completed';
-  result?: {
-    isAI: boolean;
-    confidence: number;
-    type: 'likely_ai_manipulated' | 'likely_real';
-    details?: string;
-  };
-};
-
 // Animated Section Component
 const HERO_SESSION_KEY = "scamai_hero_seen";
 
@@ -80,19 +72,34 @@ function AnimatedSection({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  // For hero elements: skip animation after the first session visit.
-  const [skip, setSkip] = useState(false);
+
+  // Lazy initializer reads sessionStorage safely (guarded for SSR) so there's
+  // no second render / flicker from a useEffect-driven state flip.
+  const [, setSeen] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return sessionStorage.getItem(HERO_SESSION_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
 
   useEffect(() => {
     if (!skipOnRepeat) return;
-    if (sessionStorage.getItem(HERO_SESSION_KEY)) {
-      setSkip(true);
-    } else {
+    try {
       sessionStorage.setItem(HERO_SESSION_KEY, "1");
+    } catch {
+      /* storage unavailable (private mode / disabled) — non-fatal */
     }
+    setSeen(true);
   }, [skipOnRepeat]);
 
-  if (skip) return <div className={className}>{children}</div>;
+  // Hero blocks (skipOnRepeat) are painted fully visible on the first SSR
+  // paint — no opacity:0 gate — so the LCP <h1> is the static server markup
+  // and doesn't wait on ~342KB of framer-motion JS to hydrate.
+  if (skipOnRepeat) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -108,227 +115,8 @@ function AnimatedSection({
 }
 
 export default function NewLanding() {
-  const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    
-    const files = Array.from(e.dataTransfer.files);
-    processFiles(files);
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files);
-      processFiles(files);
-    }
-  };
-
-  const processFiles = (files: File[]) => {
-    const validFiles = files.filter(file => {
-      const type = file.type;
-      return type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/');
-    });
-
-    const newFiles: FileWithPreview[] = validFiles.map(file => ({
-      file,
-      preview: URL.createObjectURL(file),
-      status: 'pending'
-    }));
-
-    setUploadedFiles(prev => [...prev, ...newFiles]);
-  };
-
-  const addWatermark = async (file: File, result: any): Promise<string> => {
-    // Only watermark images
-    if (!file.type.startsWith('image/')) {
-      return URL.createObjectURL(file);
-    }
-
-    try {
-      if (typeof window === "undefined") {
-        return URL.createObjectURL(file);
-      }
-
-      const { default: watermark } = await import("watermarkjs");
-      const options = {
-        init(img: any) {
-          img.crossOrigin = 'anonymous';
-        }
-      };
-
-      const watermarkText = (text: string, offsetFromBottom: number, fontSize: number = 20) => {
-        return (target: any) => {
-          const ctx = target.getContext('2d');
-          if (!ctx) return target;
-
-          const width = target.width;
-          const height = target.height;
-          
-          ctx.save();
-          ctx.globalAlpha = 0.6;
-          ctx.fillStyle = 'white';
-          ctx.font = `bold ${fontSize}px Inter, sans-serif`;
-          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-          ctx.shadowBlur = 4;
-          ctx.shadowOffsetX = 2;
-          ctx.shadowOffsetY = 2;
-          
-          // Measure text width to align right
-          const textWidth = ctx.measureText(text).width;
-          const x = width - textWidth - 20; // 20px padding from right
-          const y = height - offsetFromBottom; // offset from bottom
-          
-          ctx.fillText(text, x, y);
-          ctx.restore();
-
-          return target;
-        };
-      };
-
-      // @ts-ignore - watermarkjs types
-      const result_watermarked = await watermark([file], options)
-        .image(watermarkText('Scam.ai', 100, 24))
-        .then((img: any) => {
-          // @ts-ignore
-          return watermark([img])
-            .image(watermarkText(
-              result.type === 'likely_ai_manipulated' ? 'AI-Manipulated' : 'Verified',
-              70,
-              16
-            ));
-        })
-        .then((img: any) => {
-          // @ts-ignore
-          return watermark([img])
-            .image(watermarkText(`${result.confidence.toFixed(1)}% Confidence`, 40, 14));
-        })
-        .then((img: any) => img.src);
-
-      return result_watermarked;
-    } catch (error) {
-      console.error('Watermark error:', error);
-      return URL.createObjectURL(file);
-    }
-  };
-
-  const analyzeFile = async (index: number) => {
-    setUploadedFiles(prev => prev.map((f, i) => 
-      i === index ? { ...f, status: 'analyzing' as const } : f
-    ));
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Mock result
-    const isAI = Math.random() > 0.5;
-    const mockResult = {
-      isAI,
-      confidence: Math.random() * 100,
-      type: (isAI ? 'likely_ai_manipulated' : 'likely_real') as 'likely_ai_manipulated' | 'likely_real',
-      details: 'Analysis completed using AI detection models'
-    };
-
-    const fileData = uploadedFiles[index];
-    const watermarkedImage = await addWatermark(fileData.file, mockResult);
-
-    setUploadedFiles(prev => prev.map((f, i) => 
-      i === index ? { 
-        ...f, 
-        status: 'completed' as const, 
-        result: mockResult,
-        watermarkedImage 
-      } : f
-    ));
-  };
-
-  const removeFile = (index: number) => {
-    setUploadedFiles(prev => {
-      const newFiles = prev.filter((_, i) => i !== index);
-      URL.revokeObjectURL(prev[index].preview);
-      if (prev[index].watermarkedImage) {
-        URL.revokeObjectURL(prev[index].watermarkedImage!);
-      }
-      return newFiles;
-    });
-  };
-
-  const downloadWatermarkedImage = (fileData: FileWithPreview) => {
-    if (!fileData.watermarkedImage) return;
-
-    const link = document.createElement('a');
-    link.href = fileData.watermarkedImage;
-    link.download = `scamai_verified_${fileData.file.name}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const shareToSocialMedia = async (fileData: FileWithPreview, platform: string) => {
-    const text = `I verified this image with Scam.ai - ${fileData.result?.type === 'likely_ai_manipulated' ? 'AI-Manipulated' : 'Likely Real'} (${fileData.result?.confidence.toFixed(1)}% confidence)`;
-    const url = 'https://scam.ai';
-
-    // Check if Web Share API is supported and we have a watermarked image
-    if (platform === 'native' && navigator.share && fileData.watermarkedImage) {
-      try {
-        // Convert data URL to Blob
-        const response = await fetch(fileData.watermarkedImage);
-        const blob = await response.blob();
-        const file = new File([blob], `scamai_verified_${fileData.file.name}`, { type: blob.type });
-
-        // Check if we can share files
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: 'Scam.ai Verification',
-            text: text,
-            files: [file]
-          });
-          return;
-        } else {
-          // Fallback to sharing just text if files aren't supported
-          await navigator.share({
-            title: 'Scam.ai Verification',
-            text: text,
-            url: url
-          });
-          return;
-        }
-      } catch (error) {
-        console.log('Share cancelled or failed:', error);
-        return;
-      }
-    }
-
-    // Fallback to platform-specific URLs for desktop or when Web Share API isn't available
-    const shareUrls: Record<string, string> = {
-      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-      whatsapp: `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`,
-    };
-
-    if (platform in shareUrls) {
-      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
-    }
-  };
-
-  const getFileType = (file: File) => {
-    if (file.type.startsWith('image/')) return 'Image';
-    if (file.type.startsWith('video/')) return 'Video';
-    if (file.type.startsWith('audio/')) return 'Audio';
-    return 'File';
-  };
   return (
-    <main className="bg-black text-white" role="main">
+    <main id="main-content" className="bg-black text-white" role="main">
       {/* Hero Section — text takes ~70vh, video peeks below */}
       <section id="home-hero" className="landing-section relative overflow-hidden bg-black" style={{ marginBottom: 0, marginTop: 0 }} aria-label="Hero section - AI Trust Platform">
         <SectionViewTracker name="landing_hero" />
@@ -381,7 +169,7 @@ export default function NewLanding() {
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
                     </svg>
-                    See how easy deepfake is
+                    See how easy it is to fake a face
                   </a>
                 </div>
               </AnimatedSection>
@@ -588,14 +376,18 @@ export default function NewLanding() {
           <AnimatedSection delay={0.2}>
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
               <div className="flex items-center justify-center gap-8 flex-wrap order-2 lg:order-1">
-                <img 
-                  src="/gdpr-badge.png" 
-                  alt="GDPR Compliant Badge" 
+                <img
+                  src="/gdpr-badge.png"
+                  alt="GDPR Compliant Badge"
+                  width={80}
+                  height={80}
                   className="h-20 w-20 sm:h-32 sm:w-32 object-contain"
                 />
                 <img
                   src="/soc2-badge.png"
-                  alt="SOC 2 Type II Certified Badge"
+                  alt="SOC 2 Type II Attested Badge"
+                  width={80}
+                  height={80}
                   className="h-20 w-20 sm:h-32 sm:w-32 object-contain"
                 />
               </div>
@@ -607,7 +399,7 @@ export default function NewLanding() {
                   Stay compliant, everywhere.
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
-                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II certified</strong>. No customer data retained after processing — images are deleted immediately after analysis.
+                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II attested</strong>. No customer data retained after processing — images are deleted immediately after analysis.
                 </p>
                 <a 
                   href="https://reality-inc.trust.site/" 
@@ -653,9 +445,9 @@ export default function NewLanding() {
                   href={`/learn/${slug}`}
                   className="group rounded-xl border border-gray-800/60 bg-white/[0.02] p-5 hover:border-[#245FFF]/30 hover:bg-[#245FFF]/[0.02] transition-all"
                 >
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-600 mb-2">{article.category}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 mb-2">{article.category}</p>
                   <p className="text-sm font-semibold text-white group-hover:text-[#245FFF] transition-colors leading-snug mb-2">{article.title}</p>
-                  <p className="text-xs text-gray-600">{article.readTime} min read</p>
+                  <p className="text-xs text-gray-400">{article.readTime} min read</p>
                 </Link>
               );
             })}

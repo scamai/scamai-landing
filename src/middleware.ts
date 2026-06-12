@@ -35,8 +35,10 @@ function clientIp(req: NextRequest): string {
 export default function middleware(req: NextRequest) {
   const response = intlMiddleware(req) as NextResponse;
 
-  // Flag internal traffic (set-only — never unset, stickiness is the point)
-  if (INTERNAL_IPS.has(clientIp(req))) {
+  // Flag internal traffic (set-only — never unset, stickiness is the point).
+  // Gate the write: only emit Set-Cookie when not already flagged, so normal
+  // (already-flagged) responses stay CDN/edge-cacheable.
+  if (INTERNAL_IPS.has(clientIp(req)) && req.cookies.get("si_internal")?.value !== "1") {
     response.cookies.set("si_internal", "1", {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
@@ -44,13 +46,25 @@ export default function middleware(req: NextRequest) {
     });
   }
 
-  // Get resolved locale from next-intl (via request headers)
-  const locale = req.headers.get("x-locale") || defaultLocale;
+  // Get resolved locale from next-intl. v4 emits X-NEXT-INTL-LOCALE; fall back
+  // to the legacy x-locale header, then the default. (Reading the wrong header
+  // silently defaulted every non-en request to "en".)
+  const locale =
+    req.headers.get("X-NEXT-INTL-LOCALE") ||
+    req.headers.get("x-locale") ||
+    defaultLocale;
   const isRtl = rtlLocales.includes(locale as typeof rtlLocales[number]);
+  const dir = isRtl ? "rtl" : "ltr";
 
-  // Set cookie so root layout can read it for lang attribute
-  response.cookies.set("NEXT_LOCALE", locale, { path: "/" });
-  response.cookies.set("NEXT_LOCALE_DIR", isRtl ? "rtl" : "ltr", { path: "/" });
+  // Set cookies so the root layout can read them for the lang/dir attributes.
+  // Gate the writes: only emit Set-Cookie when the value actually changes, so
+  // unchanged responses don't get a per-request Set-Cookie that breaks caching.
+  if (req.cookies.get("NEXT_LOCALE")?.value !== locale) {
+    response.cookies.set("NEXT_LOCALE", locale, { path: "/" });
+  }
+  if (req.cookies.get("NEXT_LOCALE_DIR")?.value !== dir) {
+    response.cookies.set("NEXT_LOCALE_DIR", dir, { path: "/" });
+  }
 
   return response;
 }

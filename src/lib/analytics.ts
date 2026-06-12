@@ -11,7 +11,7 @@
 //   without keys build and run unaffected.
 // - Sentry owns exceptions (capture_exceptions: false) — no double-report.
 
-import posthog from "posthog-js";
+import type { PostHog } from "posthog-js";
 
 import { isInternalTraffic } from "@/lib/internal-traffic";
 
@@ -32,13 +32,19 @@ declare global {
 // ── PostHog lifecycle (called from CookieConsent) ────────────────
 
 let posthogLoaded = false;
+// posthog-js is dynamically imported so its ~61KB doesn't ship in the main
+// bundle — it only loads after consent, inside loadPostHog(). All other
+// helpers read this module-scoped handle and no-op until it's populated.
+let posthog: PostHog | null = null;
 
 /** Init PostHog. Call ONLY after cookie consent — mirrors loadGA(). */
-export function loadPostHog() {
+export async function loadPostHog() {
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
   if (!key || posthogLoaded || typeof window === "undefined") return;
   if (isInternalTraffic()) return; // our own IPs / automation — don't pollute
   posthogLoaded = true;
+  const mod = await import("posthog-js");
+  posthog = mod.default;
   posthog.init(key, {
     api_host: "/ingest",
     ui_host: "https://us.posthog.com",
@@ -65,7 +71,7 @@ export function loadPostHog() {
 
 /** Called when the user declines cookie consent — mirrors removeGACookies(). */
 export function disablePostHog() {
-  if (!posthogLoaded) return;
+  if (!posthogLoaded || !posthog) return;
   posthog.opt_out_capturing();
 }
 
@@ -79,7 +85,7 @@ export function trackEvent({ action, category, label, value }: GAEvent) {
       value,
     });
   }
-  if (posthogLoaded) {
+  if (posthogLoaded && posthog) {
     posthog.capture(action, { category, label, value });
   }
 }
