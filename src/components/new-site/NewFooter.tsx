@@ -76,7 +76,7 @@ export default function NewFooter() {
               required
               disabled={status === "loading"}
               aria-label="Email address"
-              className="flex-1 rounded-full bg-white/5 border border-white/10 px-5 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF]/50 focus:ring-1 focus:ring-[#245FFF]/30 transition disabled:opacity-60"
+              className="flex-1 rounded-full bg-white/5 border border-white/10 px-5 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#245FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#245FFF] transition disabled:opacity-60"
             />
             <button
               type="submit"
@@ -154,7 +154,7 @@ export default function NewFooter() {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-6 text-xs text-gray-600 sm:flex-row sm:items-center sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-6 text-xs text-gray-400 sm:flex-row sm:items-center sm:px-6">
           <span>&copy; 2026 Reality Inc. All rights reserved.</span>
           <span>Built for trust in the AI era</span>
         </div>

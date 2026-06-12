@@ -30,15 +30,13 @@ function AnimatedBlock({
   );
 }
 
-// Toggle switch
-function ToggleSwitch({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
+// Toggle switch — presentational only. The wrapping row is the real interactive
+// `role="switch"` button, so this just renders the visual track/knob.
+function ToggleSwitch({ checked }: { checked: boolean }) {
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      onClick={(e) => { e.stopPropagation(); onChange(!checked); }}
-      className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ${
+    <span
+      aria-hidden="true"
+      className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ${
         checked ? "bg-[#245FFF]" : "bg-gray-700"
       }`}
     >
@@ -47,7 +45,7 @@ function ToggleSwitch({ checked, onChange }: { checked: boolean; onChange: (v: b
           checked ? "translate-x-5" : "translate-x-0"
         }`}
       />
-    </button>
+    </span>
   );
 }
 
@@ -122,7 +120,7 @@ export default function PricingSection() {
             <div className="space-y-4 sm:space-y-6">
               {/* Volume slider card */}
               <div className="rounded-xl sm:rounded-2xl border border-gray-800/60 bg-white/[0.02] p-5 sm:p-7">
-                <label className="mb-5 block text-base sm:text-lg font-semibold text-white">Monthly Volume</label>
+                <label htmlFor="pricing-volume" className="mb-5 block text-base sm:text-lg font-semibold text-white">Monthly Volume</label>
                 <div className="relative pt-9 pb-1">
                   <div
                     className="absolute top-0 rounded-full bg-[#245FFF]/10 border border-[#245FFF]/30 px-3 py-1 text-xs font-semibold text-[#245FFF] whitespace-nowrap z-10"
@@ -134,11 +132,14 @@ export default function PricingSection() {
                     {volume.toLocaleString()} images
                   </div>
                   <input
+                    id="pricing-volume"
                     type="range"
                     min="0"
                     max={MAX_VOLUME}
                     step="50"
                     value={volume}
+                    aria-label="Monthly image volume"
+                    aria-valuetext={`${volume.toLocaleString()} images`}
                     onChange={(e) => {
                       const v = Number(e.target.value);
                       setVolume(v);
@@ -191,30 +192,34 @@ export default function PricingSection() {
                     { key: "liveness" as const, label: "Active Liveness", desc: "Verify real human presence and prevent deepfake spoofing", price: ADDON.liveness },
                     { key: "express" as const, label: "Express Lane", desc: "Low latency processing with 3s response guarantee", price: ADDON.express },
                   ]).map((addon) => (
-                    <div
+                    <button
                       key={addon.key}
+                      type="button"
+                      role="switch"
+                      aria-checked={addons[addon.key]}
+                      aria-label={addon.label}
                       onClick={() => toggle(addon.key)}
-                      className={`flex items-start gap-4 cursor-pointer p-3 sm:p-4 rounded-xl transition-[background-color,border-color] duration-200 ${
+                      className={`flex w-full items-start gap-4 text-left cursor-pointer p-3 sm:p-4 rounded-xl transition-[background-color,border-color] duration-200 ${
                         addons[addon.key]
                           ? "bg-[#245FFF]/5 border border-[#245FFF]/20"
                           : "border border-transparent hover:bg-white/[0.03]"
                       }`}
                     >
-                      <div className="mt-0.5">
-                        <ToggleSwitch checked={addons[addon.key]} onChange={() => toggle(addon.key)} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2 mb-0.5">
+                      <span className="mt-0.5">
+                        <ToggleSwitch checked={addons[addon.key]} />
+                      </span>
+                      <span className="flex-1 min-w-0">
+                        <span className="flex items-center justify-between gap-2 mb-0.5">
                           <span className="text-sm font-medium text-white">
                             {addon.label}
                           </span>
                           <span className="text-xs font-semibold text-gray-500 whitespace-nowrap">
                             +${addon.price.toFixed(3)}
                           </span>
-                        </div>
-                        <p className="text-xs text-gray-500 leading-relaxed">{addon.desc}</p>
-                      </div>
-                    </div>
+                        </span>
+                        <span className="block text-xs text-gray-500 leading-relaxed">{addon.desc}</span>
+                      </span>
+                    </button>
                   ))}
                 </div>
               </div>

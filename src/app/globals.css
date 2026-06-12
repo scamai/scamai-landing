@@ -156,10 +156,16 @@ html {
 }
 
 html {
-  scroll-behavior: smooth;
   /* Offset in-page anchor jumps (#playground, #halo, …) so the target isn't
      hidden under the fixed Computex banner (56px) + nav (~48px). */
   scroll-padding-top: 116px;
+}
+
+/* Smooth scrolling only when the user hasn't asked to reduce motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Dark-only theme: no light overrides */
@@ -374,17 +380,30 @@ header {
     animation-duration: 22s;
   }
 }
-/* The logo marquee is core brand content (a slow, steady horizontal scroll),
-   so it keeps animating even under "Reduce Motion" — commonly enabled on iOS,
-   which was stopping the row on phones. */
+/* Pause the marquee on hover/focus so users can read a logo and so keyboard
+   users tabbing into the row aren't fighting a moving target. */
+.animate-scroll:hover,
+.animate-scroll:focus-within,
+.animate-scroll-reverse:hover,
+.animate-scroll-reverse:focus-within {
+  animation-play-state: paused;
+}
+/* Respect "Reduce Motion": stop the marquee entirely (WCAG 2.2.2). */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll,
+  .animate-scroll-reverse {
+    animation: none !important;
+  }
+}
 
 /* GLOBAL BLACK BACKGROUND - ABSOLUTE PRIORITY */
 *, *::before, *::after {
   box-sizing: border-box;
 }
-.landing-section *, .landing-section *::before, .landing-section *::after {
-  border-color: #000000;
-}
+/* NOTE: a former `.landing-section * { border-color: #000 }` reset was removed —
+   it overrode every Tailwind border-* utility inside landing sections, rendering
+   intended card/FAQ borders black-on-black (invisible). Tailwind's border
+   utilities now drive border colors as authored. */
 
 html {
   background: #000000 !important;
@@ -479,4 +498,35 @@ footer {
   .cx-ping {
     animation: none;
   }
+  /* Kill continuous decorative loops site-wide under "Reduce Motion". */
+  .animate-ping,
+  .animate-spin,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+
+/* ─── Skip link ───────────────────────────────────────────────────────────
+   Visually hidden until focused; on focus it becomes a solid, high-contrast
+   pill at the top-left so keyboard users can jump straight to #main-content. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.5rem 0;
+  background: #245fff;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  left: 0;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }

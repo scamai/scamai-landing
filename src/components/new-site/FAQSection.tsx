@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackFAQ } from "@/lib/analytics";
-import Link from "next/link";
 
 interface FAQItem {
   question: string;
@@ -53,11 +52,11 @@ const faqData: FAQItem[] = [
   },
   {
     question: "Do you offer volume discounts?",
-    answer: "Yes! For organizations processing more than 2,000 images per month, we offer custom Enterprise pricing with volume discounts, dedicated support, and access to advanced models like Eva-v1-Pro and Thinking. Contact our sales team at https://scam.ai/platform to discuss your specific needs."
+    answer: "Yes! For organizations processing more than 2,000 images per month, we offer custom Enterprise pricing with volume discounts, dedicated support, and access to advanced models like Eva-v1-Pro and Thinking. Contact our sales team at https://cal.com/scamai/15min to discuss your specific needs."
   },
   {
     question: "What is the Thinking feature?",
-    answer: "Thinking is our advanced reasoning capability available exclusively in the Enterprise tier. It provides deeper analysis and context-aware detection, helping identify sophisticated manipulation techniques. Learn more at https://scam.ai/platform"
+    answer: "Thinking is our advanced reasoning capability available exclusively in the Enterprise tier. It provides deeper analysis and context-aware detection, helping identify sophisticated manipulation techniques. Learn more at https://www.scam.ai/en/products"
   },
   {
     question: "How accurate is your detection?",
@@ -65,11 +64,11 @@ const faqData: FAQItem[] = [
   },
   {
     question: "Can I integrate this into my existing application?",
-    answer: "Absolutely! We provide a RESTful API for easy integration. Our API supports synchronous and asynchronous processing, webhooks for notifications, and comprehensive documentation. Enterprise customers receive dedicated integration support. See the API docs at https://scam.ai/platform"
+    answer: "Absolutely! We provide a RESTful API for easy integration. Our API supports synchronous and asynchronous processing, webhooks for notifications, and comprehensive documentation. Enterprise customers receive dedicated integration support. See the API docs at https://docu.scam.ai"
   },
   {
     question: "What is your data retention policy?",
-    answer: "We are GDPR compliant and SOC 2 Type II certified. Your data security is our priority. We only retain data as necessary for service delivery and provide full data retention controls. Enterprise customers can customize retention policies to meet their specific compliance requirements."
+    answer: "We are GDPR compliant and SOC 2 Type II attested. Your data security is our priority. We only retain data as necessary for service delivery and provide full data retention controls. Enterprise customers can customize retention policies to meet their specific compliance requirements."
   },
   {
     question: "How do I get started?",
@@ -123,6 +122,8 @@ export default function FAQSection() {
                 onClick={() => toggleQuestion(index)}
                 className="w-full px-4 py-4 sm:px-8 sm:py-6 flex items-start justify-between text-left transition-colors hover:bg-gray-800/30"
                 aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
+                id={`faq-question-${index}`}
               >
                 <span className="text-base sm:text-lg font-semibold text-white pr-8 leading-relaxed">
                   {faq.question}
@@ -147,6 +148,9 @@ export default function FAQSection() {
               <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div
+                    id={`faq-answer-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${index}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

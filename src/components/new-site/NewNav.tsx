@@ -194,6 +194,22 @@ export default function NewNav() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Move focus into the mobile menu when it opens, and back to the hamburger
+  // when it closes — so keyboard users aren't stranded.
+  const wasOpen = useRef(false);
+  useEffect(() => {
+    if (open) {
+      const firstLink = mobileMenuRef.current?.querySelector<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      firstLink?.focus();
+    } else if (wasOpen.current) {
+      // Only steal focus back on an actual open→close transition, not on mount.
+      hamburgerRef.current?.focus();
+    }
+    wasOpen.current = open;
+  }, [open]);
+
   // When the viewport grows to desktop, force the mobile menu closed.
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -214,6 +230,8 @@ export default function NewNav() {
   const isLandingPage = pathname === "/" || pathname === "";
   const { visible: bannerVisible, dismiss: dismissBanner } = useEventBanner();
   const langDropdownRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
   const solutionsDropdownRef = useRef<HTMLDivElement>(null);
   const companyDropdownRef = useRef<HTMLDivElement>(null);
@@ -285,6 +303,7 @@ export default function NewNav() {
       {showBanner && <ComputexBanner onDismiss={dismissBanner} />}
       <div className="fixed left-0 right-0 z-40" style={{ top: `${announcementHeight}px` }}>
       <header className={`transition-[background-color,backdrop-filter,box-shadow] duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
         <Link href="/" className={`flex shrink-0 items-center ${open ? 'invisible' : ''}`}>
           <img
@@ -308,6 +327,9 @@ export default function NewNav() {
                 <div key={item.href} className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setIsOpen(!isOpen)}
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
+                    aria-controls="nav-dropdown-panel"
                     className="flex items-center gap-1 text-sm font-medium text-white transition-colors duration-150 hover:text-white/80"
                   >
                     {item.label}
@@ -400,10 +422,13 @@ export default function NewNav() {
             </svg>
           </button>
           <button
+            ref={hamburgerRef}
             className="flex h-11 w-11 items-center justify-center text-white"
             onClick={() => setOpen((prev) => !prev)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-haspopup="true"
           >
             {open ? (
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -421,6 +446,7 @@ export default function NewNav() {
 
     <div
       ref={dropdownPanelRef}
+      id="nav-dropdown-panel"
       className={`fixed left-0 right-0 w-full bg-black/95 backdrop-blur-xl z-30 hidden lg:block transition-[opacity,transform] duration-200 ${
         activeDropdown
           ? 'opacity-100 translate-y-0 pointer-events-auto'
@@ -620,6 +646,10 @@ export default function NewNav() {
 
     {/* Mobile Full-Screen Menu — rendered at root to avoid backdrop-filter containment on iOS */}
     <div
+      ref={mobileMenuRef}
+      id="mobile-menu"
+      inert={!open}
+      aria-hidden={!open}
       className={`fixed left-0 right-0 bottom-0 z-[60] bg-[#0b0b0b] transition-transform duration-300 ease-in-out lg:hidden ${
         open ? 'translate-x-0' : 'translate-x-full pointer-events-none'
       }`}
@@ -662,10 +692,14 @@ export default function NewNav() {
                 const isOpen = isProduct ? mobileProductsOpen : isSolutions ? mobileSolutionsOpen : (isCompany ? mobileCompanyOpen : false);
                 const setIsOpen = isProduct ? setMobileProductsOpen : isSolutions ? setMobileSolutionsOpen : (isCompany ? setMobileCompanyOpen : () => {});
 
+                const panelId = `mobile-accordion-${item.label.toLowerCase()}`;
                 return (
                   <div key={item.href}>
                     <button
                       onClick={() => setIsOpen(!isOpen)}
+                      aria-expanded={isOpen}
+                      aria-haspopup="true"
+                      aria-controls={panelId}
                       className="w-full flex items-center justify-between py-4 text-lg font-medium text-white border-b border-gray-700"
                     >
                       {item.label}
@@ -684,7 +718,7 @@ export default function NewNav() {
                       </svg>
                     </button>
                     {isOpen && (
-                      <div className="py-3 pl-2 space-y-3">
+                      <div id={panelId} className="py-3 pl-2 space-y-3">
                         {isProduct && (
                           <a
                             href="https://cal.com/scamai/15min"

@@ -45,6 +45,11 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  // Element that had focus before the dialog opened, restored on close.
+  const previouslyFocused = useRef<HTMLElement | null>(null);
+  const listboxId = "command-palette-listbox";
+  const optionId = (i: number) => `command-palette-option-${i}`;
   const router = useRouter();
 
   const filtered = query.length === 0
@@ -102,14 +107,49 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, close]);
 
-  // Focus input when opened
+  // Focus input when opened; restore focus to the trigger on close.
   useEffect(() => {
     if (isOpen) {
+      // Remember what had focus so we can return to it when the dialog closes.
+      previouslyFocused.current = document.activeElement as HTMLElement | null;
       // Use requestAnimationFrame for more reliable focus timing across browsers
       requestAnimationFrame(() => {
         inputRef.current?.focus();
       });
+    } else if (previouslyFocused.current) {
+      previouslyFocused.current.focus?.();
+      previouslyFocused.current = null;
     }
+  }, [isOpen]);
+
+  // Trap focus inside the dialog while open — keep Tab/Shift+Tab within it.
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey) {
+        if (active === first || !dialog.contains(active)) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (active === last || !dialog.contains(active)) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleTab);
+    return () => document.removeEventListener("keydown", handleTab);
   }, [isOpen]);
 
   // Reset selection when query changes
@@ -172,7 +212,14 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
       {/* Dialog */}
       <div className="relative z-10 mx-auto mt-[min(12vh,120px)] sm:mt-[min(20vh,120px)] w-full max-w-xl px-3 sm:px-4">
-        <div className="overflow-hidden rounded-xl border border-white/10 bg-[#111111] shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site search"
+          className="overflow-hidden rounded-xl border border-white/10 bg-[#111111] shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        >
           {/* Search input */}
           <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3">
             <svg
@@ -192,11 +239,17 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
               ref={inputRef}
               type="text"
               autoFocus
+              role="combobox"
+              aria-expanded="true"
+              aria-autocomplete="list"
+              aria-controls={listboxId}
+              aria-activedescendant={filtered[selectedIndex] ? optionId(selectedIndex) : undefined}
+              aria-label="Search products, pages, and features"
               placeholder="Search products, pages, and features..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent text-sm text-white placeholder-gray-500 outline-none"
+              className="flex-1 bg-transparent text-sm text-white placeholder-gray-500 outline-none rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#245FFF]"
             />
             <kbd className="hidden rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[11px] text-gray-500 sm:inline-block">
               Esc
@@ -206,6 +259,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
           {/* Results */}
           <div
             ref={listRef}
+            id={listboxId}
+            role="listbox"
+            aria-label="Search results"
             className="max-h-[60vh] overflow-y-auto overscroll-contain p-2"
           >
             {filtered.length === 0 ? (
@@ -214,8 +270,8 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
               </div>
             ) : (
               Object.entries(grouped).map(([category, items]) => (
-                <div key={category} className="mb-1">
-                  <div className="px-3 py-2 text-xs font-medium text-gray-500">
+                <div key={category} role="group" aria-label={category} className="mb-1">
+                  <div className="px-3 py-2 text-xs font-medium text-gray-500" aria-hidden="true">
                     {category}
                   </div>
                   {items.map((item) => {
@@ -223,6 +279,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                     return (
                       <button
                         key={item.label + item.href}
+                        id={optionId(item.flatIdx)}
+                        role="option"
+                        aria-selected={isSelected}
                         data-selected={isSelected}
                         onClick={() => navigate(item)}
                         onMouseEnter={() => setSelectedIndex(item.flatIdx)}

@@ -1,5 +1,3 @@
-"use client";
-
 // ─── TrustedBy — partner / investor logo marquee ────────────────────────────
 //
 // One scrolling row mirroring checkreality.ai's "trusted by" set, on our dark
@@ -31,9 +29,9 @@ const LOGOS: Logo[] = [
 const BASE_CLASS = "w-auto opacity-55 transition-opacity hover:opacity-100 [filter:grayscale(1)_invert(1)]";
 const LOGO_CLASS = `h-8 ${BASE_CLASS}`;
 
-function LogoGroup() {
+function LogoGroup({ ariaHidden = false }: { ariaHidden?: boolean }) {
   return (
-    <div className="flex shrink-0 items-center" style={{ gap: "2.75rem", paddingRight: "2.75rem" }}>
+    <div className="flex shrink-0 items-center" style={{ gap: "2.75rem", paddingRight: "2.75rem" }} aria-hidden={ariaHidden}>
       {LOGOS.map((l, i) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img key={`${l.alt}-${i}`} src={l.src} alt={l.alt} width={l.w} height={l.h} className={l.cls ? `${l.cls} ${BASE_CLASS}` : LOGO_CLASS} />
@@ -55,7 +53,7 @@ export default function TrustedBy() {
         <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-12 bg-gradient-to-l from-black to-transparent md:w-24" />
         <div className="flex animate-scroll" style={{ willChange: "transform" }}>
           <LogoGroup />
-          <LogoGroup />
+          <LogoGroup ariaHidden />
         </div>
       </div>
     </section>
