@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { getClientIp } from "@/lib/security/client-ip";
 
 // ─── TURN credentials proxy ─────────────────────────────────────────────────
 //
@@ -21,7 +22,31 @@ const STUN_ONLY = {
   iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
 };
 
-export async function GET() {
+// Per-IP backstop: 60 credential fetches / minute / IP. NOTE: in-memory map —
+// resets on serverless cold start (interim measure).
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 60;
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || record.resetTime < now) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+  if (record.count >= RATE_LIMIT_MAX) return false;
+  record.count++;
+  return true;
+}
+
+export async function GET(req: NextRequest) {
+  if (!checkRateLimit(getClientIp(req))) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again shortly." },
+      { status: 429, headers: { "Cache-Control": "no-store" } }
+    );
+  }
   try {
     const upstream = await fetch(UPSTREAM, {
       signal: AbortSignal.timeout(8_000),

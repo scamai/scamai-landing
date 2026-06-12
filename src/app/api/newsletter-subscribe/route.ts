@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { upsertSubscriber } from "@/lib/db/contacts";
+import { htmlEscape } from "@/lib/security/html-escape";
+import { getClientIp } from "@/lib/security/client-ip";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
@@ -25,7 +27,7 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = getClientIp(req);
   if (!checkRateLimit(ip)) {
     return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
   }
@@ -102,17 +104,20 @@ export async function POST(req: NextRequest) {
       text: `Welcome to ScamAI\n\nYou're subscribed — weekly insights on deepfakes, synthetic media, and AI security are on their way.\n\nEach issue covers the latest AI threats, new generator releases, and notable incidents — written by the ScamAI Research team.\n\nYou can unsubscribe at any time by replying to this email.\n\nScamAI — https://scam.ai`,
     }).catch((err) => console.error("[newsletter] Confirmation email failed:", err));
 
+    // Internal notification. User-controlled values (email, source, referrer)
+    // are htmlEscape'd so crafted input can't inject markup/script into the
+    // email a team member opens. (ip/timestamp are server-derived.)
     resend.emails.send({
       from: "ScamAI <hello@scam.ai>",
       to: NOTIFY_EMAILS,
-      subject: `[Newsletter] New subscriber: ${email}`,
+      subject: `[Newsletter] New subscriber: ${htmlEscape(email)}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 500px;">
           <h2 style="font-size: 16px; margin: 0 0 16px;">New Newsletter Subscriber</h2>
           <table style="font-size: 14px; border-collapse: collapse;">
-            <tr><td style="padding: 4px 12px 4px 0; color: #888;">Email</td><td>${email}</td></tr>
-            <tr><td style="padding: 4px 12px 4px 0; color: #888;">Source</td><td>${source}</td></tr>
-            ${referrer ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Referrer</td><td>${referrer}</td></tr>` : ""}
+            <tr><td style="padding: 4px 12px 4px 0; color: #888;">Email</td><td>${htmlEscape(email)}</td></tr>
+            <tr><td style="padding: 4px 12px 4px 0; color: #888;">Source</td><td>${htmlEscape(source)}</td></tr>
+            ${referrer ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Referrer</td><td>${htmlEscape(referrer)}</td></tr>` : ""}
             <tr><td style="padding: 4px 12px 4px 0; color: #888;">IP</td><td>${ip}</td></tr>
             <tr><td style="padding: 4px 12px 4px 0; color: #888;">Time</td><td>${timestamp}</td></tr>
           </table>

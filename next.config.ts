@@ -33,6 +33,10 @@ const nextConfig: NextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // HSTS: 2-year max-age, applied to subdomains, eligible for the
+          // browser preload list. (No HSTS header existed in this config before;
+          // Vercel serves HTTPS-only, so committing to it here is safe.)
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
           // camera=(self): the homepage faceswap playground needs getUserMedia
           // on this origin. Mic/geo stay fully disabled (demo is video-only).
           { key: 'Permissions-Policy', value: 'camera=(self), microphone=(), geolocation=()' },

@@ -1,11 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { upsertSubscriber } from "@/lib/db/contacts";
+import { htmlEscape } from "@/lib/security/html-escape";
+import { getClientIp } from "@/lib/security/client-ip";
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const NOTIFY_EMAILS = ["dennisng@scam.ai", "benren@scam.ai"];
+
+// Rate limit: max 5 requests per IP per hour. Each accepted call fires TWO
+// Resend emails (subscriber confirmation + internal notification), so abuse is
+// a direct cost vector. NOTE: in-memory map — resets on serverless cold start
+// (interim backstop; a persistent KV limiter is a follow-up).
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || record.resetTime < now) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+  if (record.count >= RATE_LIMIT_MAX) return false;
+  record.count++;
+  return true;
+}
 
 type WaitlistEntry = {
   email: string;
@@ -18,6 +40,11 @@ type WaitlistEntry = {
 };
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req);
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+  }
+
   const body = await req.json();
   const { email, utm_source, utm_medium, utm_campaign, utm_content, referrer } = body;
 
@@ -42,7 +69,6 @@ export async function POST(req: NextRequest) {
   // Persist to Neon (same subscribers table as newsletter — source column
   // distinguishes waitlist signups). Email notifications alone are not
   // queryable; this makes waitlist counts visible in the DB.
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   try {
     await upsertSubscriber(normalizedEmail, "waitlist-scam-insurance", referrer, ip);
   } catch (err) {
@@ -86,20 +112,24 @@ export async function POST(req: NextRequest) {
       text: `Welcome to the scam.ai waitlist!\n\nYou're in — we'll let you know as soon as scam.ai is ready.\n\nAs an early adopter, you'll get your first 3 months free when we launch.\n\nscam.ai blocks scam calls, texts, and emails before they reach you — and backs it up with insurance-backed reimbursement if anything gets through.\n\nQuestions? Just reply to this email.\n\nScamAI — https://scam.ai`,
     }).catch((err) => console.error("[waitlist] Confirmation email failed:", err));
 
-    // Internal notification to the team
+    // Internal notification to the team.
+    // Every user-controlled value is htmlEscape'd before interpolation so a
+    // crafted UTM/referrer/email can't inject markup or script into the email
+    // a team member opens.
     resend.emails.send({
       from: "ScamAI <hello@scam.ai>",
       to: NOTIFY_EMAILS,
-      subject: `[Waitlist] New signup: ${normalizedEmail}`,
+      subject: `[Waitlist] New signup: ${htmlEscape(normalizedEmail)}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 500px;">
           <h2 style="font-size: 16px; margin: 0 0 16px;">New Waitlist Signup</h2>
           <table style="font-size: 14px; border-collapse: collapse;">
-            <tr><td style="padding: 4px 12px 4px 0; color: #888;">Email</td><td>${normalizedEmail}</td></tr>
-            ${utm_source ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Source</td><td>${utm_source}</td></tr>` : ""}
-            ${utm_medium ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Medium</td><td>${utm_medium}</td></tr>` : ""}
-            ${utm_campaign ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Campaign</td><td>${utm_campaign}</td></tr>` : ""}
-            ${referrer ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Referrer</td><td>${referrer}</td></tr>` : ""}
+            <tr><td style="padding: 4px 12px 4px 0; color: #888;">Email</td><td>${htmlEscape(normalizedEmail)}</td></tr>
+            ${utm_source ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Source</td><td>${htmlEscape(utm_source)}</td></tr>` : ""}
+            ${utm_medium ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Medium</td><td>${htmlEscape(utm_medium)}</td></tr>` : ""}
+            ${utm_campaign ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Campaign</td><td>${htmlEscape(utm_campaign)}</td></tr>` : ""}
+            ${utm_content ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Content</td><td>${htmlEscape(utm_content)}</td></tr>` : ""}
+            ${referrer ? `<tr><td style="padding: 4px 12px 4px 0; color: #888;">Referrer</td><td>${htmlEscape(referrer)}</td></tr>` : ""}
             <tr><td style="padding: 4px 12px 4px 0; color: #888;">Time</td><td>${entry.timestamp}</td></tr>
           </table>
         </div>

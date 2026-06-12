@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from 'resend';
+import { getClientIp } from "@/lib/security/client-ip";
 
 // Initialize Resend only if API key is available
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -33,7 +34,7 @@ function checkRateLimit(ip: string): boolean {
 export async function POST(req: Request) {
   try {
     // Rate limit by IP
-    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    const ip = getClientIp(req);
     if (!checkRateLimit(ip)) {
       return NextResponse.json({ ok: false, error: 'Too many requests. Please try again later.' }, { status: 429 });
     }

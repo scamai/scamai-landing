@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getClientIp } from "@/lib/security/client-ip";
 
 // ─── Faceswap demo session-token proxy ──────────────────────────────────────
 //
@@ -36,6 +37,26 @@ const UPSTREAM =
 // is dropped so garbage can't flow into the upstream's uuid-typed columns.
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
+// Local per-IP backstop: 10 token mints / minute / IP. This COMPLEMENTS the
+// upstream's own per-IP limiter (we forward the end-user IP) — it caps how fast
+// a single visitor can hammer this proxy regardless of upstream behavior.
+// NOTE: in-memory map — resets on serverless cold start (interim measure).
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || record.resetTime < now) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+  if (record.count >= RATE_LIMIT_MAX) return false;
+  record.count++;
+  return true;
+}
+
 // Token format (faker-100 lib/face-token.ts): <base64url(JSON payload)>.<hex sig>
 function decodeBrandId(token: string): string {
   try {
@@ -50,6 +71,16 @@ function decodeBrandId(token: string): string {
 
 export async function POST(req: NextRequest) {
   try {
+    // End-user IP (Vercel sets x-forwarded-for / x-real-ip on the way in).
+    // getClientIp reads the trustworthy last x-forwarded-for entry / x-real-ip.
+    const ip = getClientIp(req);
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "RATE_LIMITED", message: "Too many requests. Please try again shortly." },
+        { status: 429, headers: { "Cache-Control": "no-store" } }
+      );
+    }
+
     // Client-persisted trial identity (see useFaceswap getPlaygroundUuid).
     // Invalid/missing → omit; the upstream mints a fresh uuid (budget resets,
     // but the token still works).
@@ -63,17 +94,13 @@ export async function POST(req: NextRequest) {
       /* empty / non-JSON body — proceed without trial_uuid */
     }
 
-    // End-user IP (Vercel sets x-forwarded-for / x-real-ip on the way in).
-    const ip =
-      req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-      req.headers.get("x-real-ip") ||
-      "";
-
     const upstream = await fetch(UPSTREAM, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(ip ? { "x-forwarded-for": ip } : {}),
+        // Only forward a real IP — getClientIp returns "unknown" when no proxy
+        // header is present (local/dev), which we must not forward upstream.
+        ...(ip && ip !== "unknown" ? { "x-forwarded-for": ip } : {}),
       },
       body: JSON.stringify({
         context: "playground",

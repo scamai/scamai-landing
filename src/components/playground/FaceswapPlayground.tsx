@@ -104,6 +104,22 @@ async function urlToBase64(url: string): Promise<string> {
 
 const fmt = (s: number) => `0:${String(Math.max(0, s)).padStart(2, "0")}`;
 
+// Cryptographically strong, unguessable session id. Prefer crypto.randomUUID
+// (36-char lowercase hex+hyphen); fall back to 16 random bytes hex-encoded for
+// older browsers. Output is plain lowercase [a-z0-9-], so it (and the
+// `snap-`-prefixed variant) satisfies the collect route's
+// /^[a-zA-Z0-9_-]{1,80}$/ guard.
+function makeSessionId(): string {
+  const c = typeof crypto !== "undefined" ? crypto : undefined;
+  if (c?.randomUUID) return c.randomUUID();
+  if (c?.getRandomValues) {
+    const bytes = c.getRandomValues(new Uint8Array(16));
+    return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  }
+  // Last-resort fallback (no Web Crypto): still better than nothing.
+  return `${Date.now().toString(16)}-${Math.random().toString(16).slice(2)}`;
+}
+
 // Phases where a picked face must reach the hook: live switches the running
 // swap over the WS; queued/busy/connecting must still update the hook's
 // targetFaceRef (setFace's WS send is live-gated) so the promotion /
@@ -134,7 +150,11 @@ export default function FaceswapPlayground() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const objectUrlsRef = useRef<string[]>([]);
   const secondsRef = useRef(DEMO_SECONDS);
-  const sessionIdRef = useRef<string>(Math.random().toString(36).slice(2) + Date.now().toString(36));
+  // Cryptographically strong session id (keys private blobs holding biometric
+  // face/recording uploads — must not be guessable). Lowercase alphanumeric +
+  // hyphen so it (and the `snap-`-prefixed variant) passes the collect route's
+  // /^[a-zA-Z0-9_-]{1,80}$/ guard.
+  const sessionIdRef = useRef<string>(makeSessionId());
   const recorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
   // Pre-built share File (set when the card renders) so share handlers can call
