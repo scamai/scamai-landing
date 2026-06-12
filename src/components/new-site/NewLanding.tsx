@@ -151,25 +151,39 @@ export default function NewLanding() {
               </AnimatedSection>
 
               <AnimatedSection delay={0.2} skipOnRepeat>
-                <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:pt-3">
-                  <Link
-                    href="/halo"
-                    className="rainbow-button inline-block"
-                    onClick={() => trackCTA("visit_halo", "hero")}
-                  >
-                    <span className="rainbow-button-inner">
-                      Visit Halo
-                    </span>
-                  </Link>
+                <div className="flex flex-col items-center gap-3 pt-1 sm:pt-3">
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <Link
+                      href="/halo"
+                      className="rainbow-button inline-block"
+                      onClick={() => trackCTA("visit_halo", "hero")}
+                    >
+                      <span className="rainbow-button-inner">
+                        Visit Halo
+                      </span>
+                    </Link>
+                    <a
+                      href="#playground"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 hover:text-white"
+                      onClick={() => trackCTA("try_faceswap", "hero")}
+                    >
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
+                      </svg>
+                      See how easy it is to fake a face
+                    </a>
+                  </div>
                   <a
-                    href="#playground"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 hover:text-white"
-                    onClick={() => trackCTA("try_faceswap", "hero")}
+                    href="https://cal.com/scamai/15min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-white/70 transition hover:text-white"
+                    onClick={() => trackCTA("book_demo", "hero")}
                   >
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"/>
+                    Need custom detection? <span className="font-semibold text-white">Book a demo</span>
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                    See how easy it is to fake a face
                   </a>
                 </div>
               </AnimatedSection>
@@ -286,7 +300,7 @@ export default function NewLanding() {
                   One platform for all media verification needs
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed" data-speakable>
-                  Stop juggling multiple detection tools. ScamAI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes.
+                  Stop juggling multiple detection tools. Scam AI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes.
                 </p>
               </div>
               {/* Bento 3 - All-in-One, right side */}
@@ -399,7 +413,7 @@ export default function NewLanding() {
                   Stay compliant, everywhere.
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6" data-speakable>
-                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II attested</strong>. No customer data retained after processing — images are deleted immediately after analysis.
+                  Meet data protection requirements across EU, US, and APAC with one integration. <strong className="text-white">GDPR compliant</strong> and <strong className="text-white">SOC 2 Type II attested</strong>. By default we don&apos;t retain your media after processing; enterprise customers can configure custom retention for audit and compliance.
                 </p>
                 <a 
                   href="https://reality-inc.trust.site/" 

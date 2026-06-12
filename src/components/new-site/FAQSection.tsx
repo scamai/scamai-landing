@@ -68,7 +68,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: "What is your data retention policy?",
-    answer: "We are GDPR compliant and SOC 2 Type II attested. Your data security is our priority. We only retain data as necessary for service delivery and provide full data retention controls. Enterprise customers can customize retention policies to meet their specific compliance requirements."
+    answer: "We are GDPR compliant and SOC 2 Type II attested. By default we don't retain your media after processing. Enterprise customers can configure custom retention policies to meet their specific compliance and audit requirements."
   },
   {
     question: "How do I get started?",

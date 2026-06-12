@@ -18,17 +18,17 @@ export async function generateMetadata(
   const isRtl = rtlLocales.includes(locale);
 
   const titles: Record<string, string> = {
-    en: "ScamAI — AI Trust Platform | Deepfake Detection & Synthetic Media Verification",
-    es: "ScamAI — Plataforma de Confianza IA | Detección de Deepfakes",
-    pt: "ScamAI — Plataforma de Confiança IA | Detecção de Deepfake",
-    ja: "ScamAI — AI信任プラットフォーム | ディープフェイク検出",
-    ko: "ScamAI — AI 신뢰 플랫폼 | 딥페이크 탐지",
-    "zh-CN": "ScamAI — AI信任平台 | 深度伪造检测",
-    "zh-TW": "ScamAI — AI信任平台 | 深度偽造檢測",
-    id: "ScamAI — Platform Kepercayaan AI | Deteksi Deepfake",
-    fr: "ScamAI — Plateforme de Confiance IA | Détection de Deepfake",
-    de: "ScamAI — KI-Vertrauensplattform | Deepfake-Erkennung",
-    ar: "ScamAI — منصة الثقة بالذكاء الاصطناعي | كشف التزييف العميق",
+    en: "Scam AI — AI Trust Platform | Deepfake Detection & Synthetic Media Verification",
+    es: "Scam AI — Plataforma de Confianza IA | Detección de Deepfakes",
+    pt: "Scam AI — Plataforma de Confiança IA | Detecção de Deepfake",
+    ja: "Scam AI — AI信任プラットフォーム | ディープフェイク検出",
+    ko: "Scam AI — AI 신뢰 플랫폼 | 딥페이크 탐지",
+    "zh-CN": "Scam AI — AI信任平台 | 深度伪造检测",
+    "zh-TW": "Scam AI — AI信任平台 | 深度偽造檢測",
+    id: "Scam AI — Platform Kepercayaan AI | Deteksi Deepfake",
+    fr: "Scam AI — Plateforme de Confiance IA | Détection de Deepfake",
+    de: "Scam AI — KI-Vertrauensplattform | Deepfake-Erkennung",
+    ar: "Scam AI — منصة الثقة بالذكاء الاصطناعي | كشف التزييف العميق",
   };
 
   const descriptions: Record<string, string> = {
@@ -75,13 +75,13 @@ export async function generateMetadata(
       url: `https://www.scam.ai/${locale}`,
       title: titles[locale] || titles.en,
       description: descriptions[locale] || descriptions.en,
-      siteName: "ScamAI",
+      siteName: "Scam AI",
       images: [
         {
           url: `/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "ScamAI - AI Trust Platform for Deepfake Detection",
+          alt: "Scam AI - AI Trust Platform for Deepfake Detection",
         },
       ],
     },

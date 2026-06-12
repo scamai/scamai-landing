@@ -1,7 +1,7 @@
 import { Link } from "@/i18n/navigation";
 
 export default function NewPage({
-  title = "ScamAI",
+  title = "Scam AI",
   subtitle = "A clean slate. Built for trust, speed, and safety.",
 }: {
   title?: string;

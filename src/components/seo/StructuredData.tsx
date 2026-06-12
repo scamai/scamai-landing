@@ -2,7 +2,7 @@ export default function StructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ScamAI",
+    "name": "Scam AI",
     "legalName": "Reality Inc.",
     "url": "https://www.scam.ai",
     "logo": {
@@ -54,13 +54,13 @@ export default function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "ScamAI",
+    "name": "Scam AI",
     "url": "https://www.scam.ai",
     "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes",
     "inLanguage": ["en", "es", "pt", "ja", "ko", "zh-CN", "zh-TW", "id", "fr", "de", "ar"],
     "publisher": {
       "@type": "Organization",
-      "name": "ScamAI",
+      "name": "Scam AI",
       "url": "https://www.scam.ai"
     }
   };
@@ -68,7 +68,7 @@ export default function StructuredData() {
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "ScamAI Platform",
+    "name": "Scam AI Platform",
     "applicationCategory": "SecurityApplication",
     "operatingSystem": "Web",
     "url": "https://www.scam.ai",
@@ -103,50 +103,50 @@ export default function StructuredData() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is ScamAI?",
+        "name": "What is Scam AI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ScamAI is an AI-powered platform for detecting deepfakes and synthetic media in real-time. We provide AI detection, audio detection, and GenAI content verification with industry-leading accuracy."
+          "text": "Scam AI is an AI-powered platform for detecting deepfakes and synthetic media in real-time. We provide AI detection, audio detection, and GenAI content verification with industry-leading accuracy."
         }
       },
       {
         "@type": "Question",
-        "name": "How accurate is ScamAI's deepfake detection?",
+        "name": "How accurate is Scam AI's deepfake detection?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ScamAI's Eva-v1 models are continuously trained on the latest synthetic media techniques with processing times under 4 seconds. Accuracy varies by media type and attack technique — contact us for benchmark details relevant to your use case."
+          "text": "Scam AI's Eva-v1 models are continuously trained on the latest synthetic media techniques with processing times under 4 seconds. Accuracy varies by media type and attack technique — contact us for benchmark details relevant to your use case."
         }
       },
       {
         "@type": "Question",
-        "name": "Is ScamAI compliant with security standards?",
+        "name": "Is Scam AI compliant with security standards?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, ScamAI is SOC 2 Type II compliant and GDPR compliant, ensuring enterprise-grade security and data protection."
+          "text": "Yes, Scam AI is SOC 2 Type II compliant and GDPR compliant, ensuring enterprise-grade security and data protection."
         }
       },
       {
         "@type": "Question",
-        "name": "How much does ScamAI cost?",
+        "name": "How much does Scam AI cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ScamAI offers 200 free images per month for free. Pay-as-you-go pricing starts at $0.05 per image. Optional add-ons (face attributes, liveness detection, ID document verification) are $0.008 per image each. Enterprise pricing is available for high-volume users."
+          "text": "Scam AI offers 200 free images per month for free. Pay-as-you-go pricing starts at $0.05 per image. Optional add-ons (face attributes, liveness detection, ID document verification) are $0.008 per image each. Enterprise pricing is available for high-volume users."
         }
       },
       {
         "@type": "Question",
-        "name": "How does ScamAI compare to other deepfake detection tools?",
+        "name": "How does Scam AI compare to other deepfake detection tools?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ScamAI offers both vision and audio detection in a single platform with sub-4-second processing, and provides a developer-friendly API with integration in under 10 minutes. Unlike many competitors, ScamAI offers a free tier of 200 images per month, transparent per-image pricing, and is SOC 2 Type II and GDPR compliant."
+          "text": "Scam AI offers both vision and audio detection in a single platform with sub-4-second processing, and provides a developer-friendly API with integration in under 10 minutes. Unlike many competitors, Scam AI offers a free tier of 200 images per month, transparent per-image pricing, and is SOC 2 Type II and GDPR compliant."
         }
       },
       {
         "@type": "Question",
-        "name": "What industries use ScamAI?",
+        "name": "What industries use Scam AI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ScamAI is used across financial services for KYC verification, content platforms for moderation, call centers for voice authentication, media organizations for content verification, HR departments for remote interview verification, insurance for claims validation, and government agencies for public sector security."
+          "text": "Scam AI is used across financial services for KYC verification, content platforms for moderation, call centers for voice authentication, media organizations for content verification, HR departments for remote interview verification, insurance for claims validation, and government agencies for public sector security."
         }
       }
     ]
@@ -155,7 +155,7 @@ export default function StructuredData() {
   const datasetsSchema = {
     "@context": "https://schema.org",
     "@type": "DataCatalog",
-    "name": "ScamAI Research Datasets",
+    "name": "Scam AI Research Datasets",
     "url": "https://www.scam.ai/en/research",
     "description": "Open datasets for benchmarking deepfake detection, document forgery, and synthetic media analysis models.",
     "creator": {
@@ -210,18 +210,18 @@ export default function StructuredData() {
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to detect deepfakes with ScamAI API",
-    "description": "Integrate ScamAI deepfake detection into your application in under 10 minutes using the REST API.",
+    "name": "How to detect deepfakes with Scam AI API",
+    "description": "Integrate Scam AI deepfake detection into your application in under 10 minutes using the REST API.",
     "totalTime": "PT10M",
     "tool": [
-      { "@type": "HowToTool", "name": "ScamAI API key (free at app.scam.ai)" },
+      { "@type": "HowToTool", "name": "Scam AI API key (free at app.scam.ai)" },
       { "@type": "HowToTool", "name": "Python, JavaScript, or cURL" }
     ],
     "step": [
       {
         "@type": "HowToStep",
         "position": 1,
-        "name": "Create a free ScamAI account",
+        "name": "Create a free Scam AI account",
         "text": "Sign up at app.scam.ai to get your API key. The free tier includes 200 images per month with no credit card required.",
         "url": "https://app.scam.ai"
       },
@@ -249,14 +249,14 @@ export default function StructuredData() {
   const videoSchema = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "name": "ScamAI Deepfake Detection Platform — Product Demo",
-    "description": "See ScamAI's deepfake detection platform in action. Detect AI-generated images, deepfake videos, and synthetic media in real-time with 95.3% accuracy using the Eva-v1 model.",
+    "name": "Scam AI Deepfake Detection Platform — Product Demo",
+    "description": "See Scam AI's deepfake detection platform in action. Detect AI-generated images, deepfake videos, and synthetic media in real-time with 95.3% accuracy using the Eva-v1 model.",
     "thumbnailUrl": "https://www.scam.ai/en/opengraph-image",
     "contentUrl": "https://www.scam.ai/dashboard.mp4",
     "uploadDate": "2024-06-01",
     "publisher": {
       "@type": "Organization",
-      "name": "ScamAI",
+      "name": "Scam AI",
       "url": "https://www.scam.ai",
       "logo": {
         "@type": "ImageObject",
@@ -268,7 +268,7 @@ export default function StructuredData() {
   const speakableSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "ScamAI — Deepfake Detection Platform",
+    "name": "Scam AI — Deepfake Detection Platform",
     "url": "https://www.scam.ai",
     "speakable": {
       "@type": "SpeakableSpecification",

@@ -16,8 +16,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "ScamAI - AI Trust Platform | Deepfake Detection & Synthetic Media Verification",
-    template: "%s | ScamAI"
+    default: "Scam AI - AI Trust Platform | Deepfake Detection & Synthetic Media Verification",
+    template: "%s | Scam AI"
   },
   description: "All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time. Industry-leading accuracy with SOC 2 Type II compliance. 200 free images per month.",
   keywords: [
@@ -64,22 +64,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.scam.ai",
-    title: "ScamAI - AI Trust Platform | Deepfake Detection",
+    title: "Scam AI - AI Trust Platform | Deepfake Detection",
     description: "Detect synthetic media and deepfakes in real-time with industry-leading accuracy. SOC 2 Type II compliant. 200 free images per month.",
-    siteName: "ScamAI",
+    siteName: "Scam AI",
     images: [
       {
         url: "/en/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "ScamAI - AI Trust Platform for Deepfake Detection",
+        alt: "Scam AI - AI Trust Platform for Deepfake Detection",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ScamAI - AI Trust Platform | Deepfake Detection",
+    title: "Scam AI - AI Trust Platform | Deepfake Detection",
     description: "Detect synthetic media and deepfakes in real-time with industry-leading accuracy. SOC 2 Type II compliant.",
     images: ["/en/opengraph-image"],
     creator: "@scamai",
@@ -135,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K2WNMJV8');`}</Script>
         )}
-        <link rel="alternate" type="application/rss+xml" title="ScamAI News" href="/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title="Scam AI News" href="/feed.xml" />
       </head>
       <body className={`${inter.variable} antialiased bg-[#0b0b0b]`}>
         {!isInternal && (

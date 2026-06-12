@@ -3,7 +3,7 @@ import NewLanding from "@/components/new-site/NewLanding";
 import StructuredData from "@/components/seo/StructuredData";
 
 const PAGE_TITLE =
-  "ScamAI — Deepfake Detection Tool | Detect AI-Generated Media & Synthetic Content";
+  "Scam AI — Deepfake Detection Tool | Detect AI-Generated Media & Synthetic Content";
 
 const PAGE_DESCRIPTION =
   "Detect synthetic media, deepfakes, and AI-generated images in real-time. Free tool with industry-leading accuracy. SOC 2 Type II compliant.";
@@ -56,7 +56,7 @@ export async function generateMetadata(
           url: `/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "ScamAI - AI Trust Platform for Deepfake Detection",
+          alt: "Scam AI - AI Trust Platform for Deepfake Detection",
         },
       ],
     },

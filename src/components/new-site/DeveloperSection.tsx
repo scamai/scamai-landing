@@ -17,7 +17,7 @@ export default function DeveloperSection() {
             Integrate your way
           </h2>
           <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
-            Use ScamAI with no code or with a single API call. Go live in minutes.
+            Use Scam AI with no code or with a single API call. Go live in minutes.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export default function DeveloperSection() {
                       <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                       <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                     </div>
-                    <span className="text-xs text-gray-400">ScamAI Dashboard</span>
+                    <span className="text-xs text-gray-400">Scam AI Dashboard</span>
                   </div>
                 </div>
                 

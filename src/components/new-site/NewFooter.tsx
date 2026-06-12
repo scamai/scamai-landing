@@ -100,7 +100,7 @@ export default function NewFooter() {
             <div className="flex items-center">
               <img
                 src="/scamai-logo.svg"
-                alt="ScamAI - AI Trust Platform Logo"
+                alt="Scam AI - AI Trust Platform Logo"
                 className="h-8 w-auto"
                 width="120"
                 height="32"
