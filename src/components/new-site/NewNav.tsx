@@ -185,19 +185,21 @@ const navItems: NavItem[] = [
   },
 ];
 
-// All 11 locales (matches src/i18n/config), labelled in their own language.
+// All 11 locales (matches src/i18n/config). `name` = full label shown in the
+// dropdown; `short` = compact trigger label (keeps the nav bar a fixed, tidy
+// width instead of flexing 90–150px between "English" and "Bahasa Indonesia").
 const languages = [
-  { code: "en", name: "English" },
-  { code: "zh-CN", name: "简体中文" },
-  { code: "zh-TW", name: "繁體中文" },
-  { code: "ja", name: "日本語" },
-  { code: "ko", name: "한국어" },
-  { code: "es", name: "Español" },
-  { code: "pt", name: "Português" },
-  { code: "fr", name: "Français" },
-  { code: "de", name: "Deutsch" },
-  { code: "id", name: "Bahasa Indonesia" },
-  { code: "ar", name: "العربية" },
+  { code: "en", name: "English", short: "EN" },
+  { code: "zh-CN", name: "简体中文", short: "简体" },
+  { code: "zh-TW", name: "繁體中文", short: "繁體" },
+  { code: "ja", name: "日本語", short: "日本語" },
+  { code: "ko", name: "한국어", short: "한국어" },
+  { code: "es", name: "Español", short: "ES" },
+  { code: "pt", name: "Português", short: "PT" },
+  { code: "fr", name: "Français", short: "FR" },
+  { code: "de", name: "Deutsch", short: "DE" },
+  { code: "id", name: "Bahasa Indonesia", short: "ID" },
+  { code: "ar", name: "العربية", short: "العربية" },
 ];
 
 export default function NewNav() {
@@ -346,7 +348,11 @@ export default function NewNav() {
       <header className={`transition-[background-color,backdrop-filter,box-shadow] duration-300 ${open ? 'bg-[#0b0b0b]' : scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
         <a href="#main-content" className="skip-link">{t("skipToContent")}</a>
         <nav className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
-        <Link href="/" className={`flex shrink-0 items-center ${open ? 'invisible' : ''}`}>
+        {/* Left group: logo + primary nav travel together, so the menu is
+            left-aligned next to the logo (with a guaranteed gap) instead of
+            center-collapsing onto it when the bar fills up. */}
+        <div className={`flex min-w-0 items-center gap-7 ${open ? 'invisible' : ''}`}>
+        <Link href="/" className="flex shrink-0 items-center">
           <img
             src="/scamai-logo.svg"
             alt={t("logoAlt")}
@@ -354,7 +360,7 @@ export default function NewNav() {
           />
         </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => {
             if (item.children) {
               const isProduct = item.id === "product";
@@ -417,18 +423,20 @@ export default function NewNav() {
             );
           })}
         </div>
+        </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2 xl:gap-2.5 lg:flex">
+          {/* Compact search: icon + ⌘K (full "Search…" box was 160–210px and
+              crowded the bar in longer locales). Opens the command palette. */}
           <button
             onClick={() => setSearchOpen(true)}
-            className="flex w-[160px] xl:w-[210px] items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-3 py-2 text-sm text-gray-500 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-300 cursor-text"
+            className="flex items-center gap-2 rounded-lg bg-white/[0.04] border border-white/10 px-2.5 py-2 text-sm text-gray-400 transition-colors duration-150 hover:bg-white/[0.08] hover:border-white/20 hover:text-gray-200 cursor-pointer"
             aria-label={t("search")}
           >
             <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span className="flex-1 text-left">{t("searchPlaceholder")}</span>
-            <kbd className="hidden lg:inline-flex items-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-gray-600 font-medium">
+            <kbd className="hidden xl:inline-flex items-center rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] text-gray-500 font-medium">
               ⌘K
             </kbd>
           </button>
@@ -440,10 +448,11 @@ export default function NewNav() {
               aria-expanded={langOpen}
               aria-haspopup="true"
               aria-label={t("language")}
-              className="flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10 whitespace-nowrap"
+              title={currentLanguage.name}
+              className="flex items-center gap-1.5 rounded-full px-2.5 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10 whitespace-nowrap"
             >
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.5-2.5 3.5-6 3.5-9S14.5 5.5 12 3m0 18c-2.5-2.5-3.5-6-3.5-9S9.5 5.5 12 3M3.5 9h17M3.5 15h17" /></svg>
-              <span>{currentLanguage.name}</span>
+              <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.5-2.5 3.5-6 3.5-9S14.5 5.5 12 3m0 18c-2.5-2.5-3.5-6-3.5-9S9.5 5.5 12 3M3.5 9h17M3.5 15h17" /></svg>
+              <span className="font-semibold">{currentLanguage.short}</span>
               <svg className={`h-3.5 w-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
             {langOpen && (
@@ -470,7 +479,7 @@ export default function NewNav() {
             href="https://app.scam.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-white/80 bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 whitespace-nowrap shrink-0"
+            className="rounded-full border border-white/80 bg-transparent px-3.5 xl:px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("log_in", "nav")}
           >
             {t("logIn")}
@@ -479,7 +488,7 @@ export default function NewNav() {
             href="https://cal.com/scamai/15min"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 whitespace-nowrap shrink-0"
+            className="rounded-full bg-white px-3.5 xl:px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 whitespace-nowrap shrink-0"
             onClick={() => trackCTA("book_demo", "nav")}
           >
             {t("bookDemo")}
