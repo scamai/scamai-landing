@@ -6,7 +6,8 @@ const IS_VERCEL = process.env.VERCEL === '1';
 import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
 import { cookies } from "next/headers";
-import { rtlLocales } from "@/i18n/config";
+import { getLocale } from "next-intl/server";
+import { rtlLocales, type Locale } from "@/i18n/config";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -118,11 +119,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const locale = cookieStore.get("NEXT_LOCALE")?.value || "en";
-  const dir = cookieStore.get("NEXT_LOCALE_DIR")?.value || "ltr";
+  // Derive lang/dir from the locale next-intl resolves for THIS request (set on
+  // the rewritten request by the next-intl middleware). The old approach read a
+  // NEXT_LOCALE cookie that the middleware wrote one request too late (and from a
+  // header that's absent on the incoming request), so <html lang> was always "en"
+  // and Arabic never got dir="rtl".
+  const locale = await getLocale();
+  const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
   // si_internal set by middleware for our own egress IPs — skip GTM and
   // Vercel Analytics entirely so internal test traffic never reaches them.
+  const cookieStore = await cookies();
   const isInternal = cookieStore.get("si_internal")?.value === "1";
 
   return (

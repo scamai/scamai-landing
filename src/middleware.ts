@@ -2,7 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { defaultLocale, locales, rtlLocales } from "@/i18n/config";
+import { defaultLocale, locales } from "@/i18n/config";
 
 const intlMiddleware = createMiddleware({
   locales,
@@ -46,25 +46,10 @@ export default function middleware(req: NextRequest) {
     });
   }
 
-  // Get resolved locale from next-intl. v4 emits X-NEXT-INTL-LOCALE; fall back
-  // to the legacy x-locale header, then the default. (Reading the wrong header
-  // silently defaulted every non-en request to "en".)
-  const locale =
-    req.headers.get("X-NEXT-INTL-LOCALE") ||
-    req.headers.get("x-locale") ||
-    defaultLocale;
-  const isRtl = rtlLocales.includes(locale as typeof rtlLocales[number]);
-  const dir = isRtl ? "rtl" : "ltr";
-
-  // Set cookies so the root layout can read them for the lang/dir attributes.
-  // Gate the writes: only emit Set-Cookie when the value actually changes, so
-  // unchanged responses don't get a per-request Set-Cookie that breaks caching.
-  if (req.cookies.get("NEXT_LOCALE")?.value !== locale) {
-    response.cookies.set("NEXT_LOCALE", locale, { path: "/" });
-  }
-  if (req.cookies.get("NEXT_LOCALE_DIR")?.value !== dir) {
-    response.cookies.set("NEXT_LOCALE_DIR", dir, { path: "/" });
-  }
+  // NOTE: <html lang>/<dir> are derived in the root layout via next-intl's
+  // getLocale() — not from a cookie written here. The previous cookie approach
+  // read X-NEXT-INTL-LOCALE off the *incoming* request (absent there, so always
+  // "en") and wrote the cookie a request too late, so the lang/dir were wrong.
 
   return response;
 }
