@@ -34,7 +34,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ loc
     '@type': 'CollectionPage',
     name: 'Deepfake Weekly Newsletter',
     description:
-      'Weekly analysis on deepfake technology, synthetic media threats, and AI fraud from ScamAI.',
+      'Weekly analysis on deepfake technology, synthetic media threats, and AI fraud from Scam AI.',
     url: `${baseUrl}/${locale}/newsletter`,
     mainEntity: {
       '@type': 'ItemList',
@@ -61,10 +61,10 @@ export default async function NewsletterPage({ params }: { params: Promise<{ loc
       <section className="relative px-4 py-24 sm:px-6" style={{ paddingTop: '140px' }}>
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="mb-6 text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Deepfake Weekly — ScamAI
+            Deepfake Weekly — Scam AI
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Weekly analysis on deepfake technology, synthetic media threats, and AI fraud — from the team at ScamAI.
+            Weekly analysis on deepfake technology, synthetic media threats, and AI fraud — from the team at Scam AI.
           </p>
         </div>
       </section>

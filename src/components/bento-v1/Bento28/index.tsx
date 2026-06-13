@@ -23,7 +23,7 @@ const Bento = ({}: BentoProps) => (
                         src="/bento-v1-images/bento-28-balls.svg"
                         width={108}
                         height={69}
-                        alt="ScamAI pricing visualization showing pay-as-you-go model with $60 transaction example"
+                        alt="Scam AI pricing visualization showing pay-as-you-go model with $60 transaction example"
                     />
                 </div>
                 <div className={styles.tooltip}>

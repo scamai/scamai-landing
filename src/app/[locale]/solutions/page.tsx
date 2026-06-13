@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/solutions',
     title: 'Deepfake Detection Solutions by Industry',
     description:
-      'ScamAI deepfake detection solutions for fintech, KYC, dating apps, call centers, media, insurance, HR, and government. Purpose-built for your industry.',
+      'Scam AI deepfake detection solutions for fintech, KYC, dating apps, call centers, media, insurance, HR, and government. Purpose-built for your industry.',
     keywords: [
       'deepfake detection by industry',
       'KYC deepfake protection',
@@ -59,7 +59,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
               Deepfake detection for <span className="text-[#245FFF]">every industry</span>
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              ScamAI adapts to the specific fraud patterns, compliance requirements, and workflow needs of your industry.
+              Scam AI adapts to the specific fraud patterns, compliance requirements, and workflow needs of your industry.
             </p>
           </div>
 

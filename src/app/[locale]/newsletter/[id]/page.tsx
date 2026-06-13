@@ -40,8 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return generatePageMetadata({
     locale,
     path: `/newsletter/${newsletter?.slug || id}`,
-    title: newsletter ? `${newsletter.title} | Deepfake Weekly` : 'Deepfake Weekly Newsletter | ScamAI',
-    description: newsletter?.executiveSummary?.slice(0, 160) || 'Read the latest Deepfake Weekly newsletter from ScamAI.',
+    title: newsletter ? `${newsletter.title} | Deepfake Weekly` : 'Deepfake Weekly Newsletter | Scam AI',
+    description: newsletter?.executiveSummary?.slice(0, 160) || 'Read the latest Deepfake Weekly newsletter from Scam AI.',
     keywords,
   });
 }
@@ -119,7 +119,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
     author: { '@type': 'Organization', name: 'Reality Inc.', url: baseUrl },
     publisher: {
       '@type': 'Organization',
-      name: 'ScamAI',
+      name: 'Scam AI',
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',

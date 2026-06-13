@@ -14,11 +14,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const aiDetectionProductSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: 'ScamAI AI Detection',
+  name: 'Scam AI AI Detection',
   description:
     'Detect AI-generated images and deepfake videos with 95.3% accuracy. Real-time processing under 4 seconds. Supports face swaps, GANs, and diffusion model outputs.',
   url: 'https://scam.ai/en/products/ai-detection',
-  brand: { '@type': 'Organization', name: 'ScamAI' },
+  brand: { '@type': 'Organization', name: 'Scam AI' },
   category: 'Security Software',
   image: 'https://scam.ai/en/opengraph-image',
   offers: {
@@ -66,31 +66,31 @@ const aiDetectionFaqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How accurate is ScamAI image and video deepfake detection?',
+      name: 'How accurate is Scam AI image and video deepfake detection?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ScamAI achieves 95.3% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.',
+        text: 'Scam AI achieves 95.3% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What types of deepfakes can ScamAI detect in images and videos?',
+      name: 'What types of deepfakes can Scam AI detect in images and videos?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ScamAI detects face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney, Flux), video deepfakes with frame-by-frame and temporal analysis, synthetic faces, and 4K video manipulation.',
+        text: 'Scam AI detects face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney, Flux), video deepfakes with frame-by-frame and temporal analysis, synthetic faces, and 4K video manipulation.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What image and video formats does ScamAI support?',
+      name: 'What image and video formats does Scam AI support?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ScamAI supports JPG, PNG, GIF, and WebP image formats, and MP4, MOV, and AVI video formats. 4K video analysis is supported with frame-by-frame deepfake detection.',
+        text: 'Scam AI supports JPG, PNG, GIF, and WebP image formats, and MP4, MOV, and AVI video formats. 4K video analysis is supported with frame-by-frame deepfake detection.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How fast is ScamAI deepfake detection?',
+      name: 'How fast is Scam AI deepfake detection?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Eva-v1-Fast processes images in under 2 seconds, suitable for real-time content moderation and high-volume KYC screening. Eva-v1-Pro processes in under 4 seconds for forensic-grade analysis and high-stakes identity verification.',
@@ -101,7 +101,7 @@ const aiDetectionFaqSchema = {
       name: 'Is there a free deepfake detector I can try?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. ScamAI includes 200 free image analyses per month — no credit card required. Sign up at app.scam.ai to get instant access to the deepfake detector with the Eva-v1-Fast model. Upgrade to pay-as-you-go ($0.05/image) or Enterprise when your volume grows.',
+        text: 'Yes. Scam AI includes 200 free image analyses per month — no credit card required. Sign up at app.scam.ai to get instant access to the deepfake detector with the Eva-v1-Fast model. Upgrade to pay-as-you-go ($0.05/image) or Enterprise when your volume grows.',
       },
     },
     {
@@ -109,7 +109,7 @@ const aiDetectionFaqSchema = {
       name: 'Can I integrate deepfake detection into my app via API?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. ScamAI provides a REST API that integrates in under 10 minutes. Make a POST request with your image URL, receive a JSON response with is_deepfake boolean, confidence score, and model used. SDKs for Python and JavaScript are available, with full documentation at scam.ai/en/resources/documentation.',
+        text: 'Yes. Scam AI provides a REST API that integrates in under 10 minutes. Make a POST request with your image URL, receive a JSON response with is_deepfake boolean, confidence score, and model used. SDKs for Python and JavaScript are available, with full documentation at scam.ai/en/resources/documentation.',
       },
     },
   ],

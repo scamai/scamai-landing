@@ -38,9 +38,9 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ScamAI — Deepfake Detection Insights</title>
+    <title>Scam AI — Deepfake Detection Insights</title>
     <link>${baseUrl}/en/newsletter</link>
-    <description>Weekly insights on deepfake technology, AI security, and synthetic media detection from ScamAI.</description>
+    <description>Weekly insights on deepfake technology, AI security, and synthetic media detection from Scam AI.</description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>

@@ -76,7 +76,7 @@ export default async function DatasetDetailPage({
     url: `https://scam.ai/${locale}/research/datasets/${dataset.id}`,
     creator: {
       "@type": "Organization",
-      name: "ScamAI Research",
+      name: "Scam AI Research",
       url: "https://scam.ai/research",
     },
     license: "https://scam.ai/research#terms",

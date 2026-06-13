@@ -82,7 +82,7 @@ export default function AIDetectionPage() {
             <AnimatedSection delay={0.4}>
               <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
                 <p className="text-center">
-                  ScamAI&apos;s Eva-v1 models detect <span className="font-semibold text-white">synthetic media</span>, <span className="font-semibold text-white">manipulated faces</span>, and <span className="font-semibold text-white">deepfake videos</span> with <span className="font-semibold text-white">95.3% accuracy</span> in under 4 seconds. Supports face swaps, GAN-generated images, and diffusion model outputs including Stable Diffusion, DALL-E, Midjourney, and Flux.
+                  Scam AI&apos;s Eva-v1 models detect <span className="font-semibold text-white">synthetic media</span>, <span className="font-semibold text-white">manipulated faces</span>, and <span className="font-semibold text-white">deepfake videos</span> with <span className="font-semibold text-white">95.3% accuracy</span> in under 4 seconds. Supports face swaps, GAN-generated images, and diffusion model outputs including Stable Diffusion, DALL-E, Midjourney, and Flux.
                 </p>
               </div>
             </AnimatedSection>
@@ -431,7 +431,7 @@ export default function AIDetectionPage() {
                   );
                 })}
                 <Link href={`/compare/${aiDetectionCompareLink}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
-                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">ScamAI vs Reality Defender</span>
+                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Scam AI vs Reality Defender</span>
                   <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </Link>
               </div>
@@ -445,28 +445,28 @@ export default function AIDetectionPage() {
 
 const aiFaqs = [
   {
-    question: "How accurate is ScamAI image and video deepfake detection?",
-    answer: "ScamAI achieves 95.3% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.",
+    question: "How accurate is Scam AI image and video deepfake detection?",
+    answer: "Scam AI achieves 95.3% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.",
   },
   {
-    question: "What types of deepfakes can ScamAI detect in images and videos?",
-    answer: "ScamAI detects face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney, Flux), video deepfakes with frame-by-frame and temporal analysis, synthetic faces, and 4K video manipulation.",
+    question: "What types of deepfakes can Scam AI detect in images and videos?",
+    answer: "Scam AI detects face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney, Flux), video deepfakes with frame-by-frame and temporal analysis, synthetic faces, and 4K video manipulation.",
   },
   {
-    question: "What image and video formats does ScamAI support?",
-    answer: "ScamAI supports JPG, PNG, GIF, and WebP image formats, and MP4, MOV, and AVI video formats. 4K video analysis is supported with frame-by-frame deepfake detection.",
+    question: "What image and video formats does Scam AI support?",
+    answer: "Scam AI supports JPG, PNG, GIF, and WebP image formats, and MP4, MOV, and AVI video formats. 4K video analysis is supported with frame-by-frame deepfake detection.",
   },
   {
-    question: "How fast is ScamAI deepfake detection?",
+    question: "How fast is Scam AI deepfake detection?",
     answer: "Eva-v1-Fast processes images in under 2 seconds, suitable for real-time content moderation and high-volume KYC screening. Eva-v1-Pro processes in under 4 seconds for forensic-grade analysis and high-stakes identity verification.",
   },
   {
     question: "Is there a free deepfake detector I can try?",
-    answer: "Yes. ScamAI includes 200 free image analyses per month — no credit card required. Sign up at app.scam.ai to get instant access to the deepfake detector with the Eva-v1-Fast model. Upgrade to pay-as-you-go ($0.05/image) or Enterprise when your volume grows.",
+    answer: "Yes. Scam AI includes 200 free image analyses per month — no credit card required. Sign up at app.scam.ai to get instant access to the deepfake detector with the Eva-v1-Fast model. Upgrade to pay-as-you-go ($0.05/image) or Enterprise when your volume grows.",
   },
   {
     question: "Can I integrate deepfake detection into my app via API?",
-    answer: "Yes. ScamAI provides a REST API that integrates in under 10 minutes. Make a POST request with your image URL, receive a JSON response with is_deepfake boolean, confidence score, and model used. SDKs for Python and JavaScript are available.",
+    answer: "Yes. Scam AI provides a REST API that integrates in under 10 minutes. Make a POST request with your image URL, receive a JSON response with is_deepfake boolean, confidence score, and model used. SDKs for Python and JavaScript are available.",
   },
 ];
 

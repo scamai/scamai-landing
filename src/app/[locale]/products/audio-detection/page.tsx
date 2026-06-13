@@ -423,7 +423,7 @@ export default function AudioDetectionPage() {
                   );
                 })}
                 <Link href={`/compare/${audioDetectionCompareLink}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
-                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">ScamAI vs Sensity AI</span>
+                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Scam AI vs Sensity AI</span>
                   <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </Link>
               </div>
@@ -437,28 +437,28 @@ export default function AudioDetectionPage() {
 
 const audioFaqs = [
   {
-    question: "How accurate is ScamAI voice clone and audio deepfake detection?",
-    answer: "ScamAI achieves 98.5% accuracy for voice clone detection, identifying synthetic voices from platforms like ElevenLabs, PlayHT, Resemble AI, and Azure TTS. Processing time is under 3 seconds per audio file.",
+    question: "How accurate is Scam AI voice clone and audio deepfake detection?",
+    answer: "Scam AI achieves 98.5% accuracy for voice clone detection, identifying synthetic voices from platforms like ElevenLabs, PlayHT, Resemble AI, and Azure TTS. Processing time is under 3 seconds per audio file.",
   },
   {
-    question: "What types of audio deepfakes can ScamAI detect?",
-    answer: "ScamAI detects voice clones (ElevenLabs, Resemble AI, PlayHT, Azure TTS), text-to-speech generated audio, audio deepfakes, spliced or manipulated audio recordings, and real-time synthetic voice streams.",
+    question: "What types of audio deepfakes can Scam AI detect?",
+    answer: "Scam AI detects voice clones (ElevenLabs, Resemble AI, PlayHT, Azure TTS), text-to-speech generated audio, audio deepfakes, spliced or manipulated audio recordings, and real-time synthetic voice streams.",
   },
   {
-    question: "What audio formats does ScamAI support?",
-    answer: "ScamAI supports MP3, WAV, M4A, FLAC, and OGG audio formats. Real-time audio stream analysis is also available for live call monitoring and voice authentication.",
+    question: "What audio formats does Scam AI support?",
+    answer: "Scam AI supports MP3, WAV, M4A, FLAC, and OGG audio formats. Real-time audio stream analysis is also available for live call monitoring and voice authentication.",
   },
   {
-    question: "Can ScamAI detect voice phishing (vishing) attacks?",
-    answer: "Yes. ScamAI audio detection is used by call centers, banks, and financial services to identify voice phishing attacks in real-time. It detects cloned voices attempting to impersonate executives, customers, or authority figures.",
+    question: "Can Scam AI detect voice phishing (vishing) attacks?",
+    answer: "Yes. Scam AI audio detection is used by call centers, banks, and financial services to identify voice phishing attacks in real-time. It detects cloned voices attempting to impersonate executives, customers, or authority figures.",
   },
   {
     question: "What is voice clone detection?",
-    answer: "Voice clone detection identifies audio that has been artificially generated or cloned using AI speech synthesis tools such as ElevenLabs, PlayHT, or Azure TTS. ScamAI's Eva-v1 audio model analyzes spectral and temporal artifacts — patterns invisible to human ears — that distinguish synthetic voices from genuine recordings, achieving 98.5% accuracy.",
+    answer: "Voice clone detection identifies audio that has been artificially generated or cloned using AI speech synthesis tools such as ElevenLabs, PlayHT, or Azure TTS. Scam AI's Eva-v1 audio model analyzes spectral and temporal artifacts — patterns invisible to human ears — that distinguish synthetic voices from genuine recordings, achieving 98.5% accuracy.",
   },
   {
     question: "Can the audio deepfake detection API process real-time streams?",
-    answer: "Yes. ScamAI provides a real-time streaming endpoint for live call monitoring, processing each audio segment in under 3 seconds. This enables call centers and financial institutions to screen synthetic media and voice clones during active calls, preventing fraud in real time.",
+    answer: "Yes. Scam AI provides a real-time streaming endpoint for live call monitoring, processing each audio segment in under 3 seconds. This enables call centers and financial institutions to screen synthetic media and voice clones during active calls, preventing fraud in real time.",
   },
 ];
 

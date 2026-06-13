@@ -338,7 +338,7 @@ export const researchDatasets: ResearchDataset[] = [
   author={Zewde, Kidus and Zhou, Yuchen and Ng, Dennis and Tiangratanakul, Neo and Duong, Tommy and Raj, Ankit and Zhang, Yuxin and Shen, Xingyu and Ren, Simiao},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2026},
-  note={Authors affiliated with ScamAI}
+  note={Authors affiliated with Scam AI}
 }`,
   },
 ];

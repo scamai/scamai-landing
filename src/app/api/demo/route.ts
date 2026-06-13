@@ -69,7 +69,7 @@ export async function POST(req: Request) {
 
     try {
       const { data, error } = await resend.emails.send({
-        from: 'ScamAI Website <noreply@test.get-reality.com>',
+        from: 'Scam AI Website <noreply@test.get-reality.com>',
         to: ['sales@get-reality.com'],
         cc: ['dennisng@scam.ai', 'benren@scam.ai', 'neo@get-reality.com'],
         subject: `New Demo Request - ${company} - ${useCase}`,
@@ -101,7 +101,7 @@ export async function POST(req: Request) {
 
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
               <p style="color: #666; font-size: 14px;">
-                This email was automatically generated from the ScamAI website demo form.
+                This email was automatically generated from the Scam AI website demo form.
               </p>
             </div>
           </div>
@@ -126,7 +126,7 @@ This lead has been submitted through the website demo form. Please follow up to 
 Source: Website Demo Form
 Submitted: ${new Date().toLocaleString()}
 
-This email was automatically generated from the ScamAI website demo form.
+This email was automatically generated from the Scam AI website demo form.
         `
       });
 

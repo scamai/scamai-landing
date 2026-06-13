@@ -11,7 +11,7 @@ export default function ResourcesPage() {
             Everything you need to succeed
           </h1>
           <p className="mb-8 text-lg text-gray-300">
-            Documentation, guides, and resources to help you integrate and get the most out of ScamAI.
+            Documentation, guides, and resources to help you integrate and get the most out of Scam AI.
           </p>
         </div>
       </section>
@@ -75,7 +75,7 @@ export default function ResourcesPage() {
             <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-6">
               <h3 className="mb-3 text-lg font-bold text-white">Quick Start Guide</h3>
               <p className="mb-4 text-sm text-gray-300">
-                Get up and running with ScamAI in under 10 minutes.
+                Get up and running with Scam AI in under 10 minutes.
               </p>
               <a href="https://docu.scam.ai" target="_blank" rel="noopener noreferrer" className="text-sm text-[#66b3ff] hover:underline">
                 Read guide →
@@ -115,7 +115,7 @@ export default function ResourcesPage() {
             <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-6">
               <h3 className="mb-3 text-lg font-bold text-white">GDPR Compliance</h3>
               <p className="mb-4 text-sm text-gray-300">
-                How ScamAI helps you meet GDPR requirements.
+                How Scam AI helps you meet GDPR requirements.
               </p>
               <a href="https://reality-inc.trust.site/" target="_blank" rel="noopener noreferrer" className="text-sm text-[#66b3ff] hover:underline">
                 Learn more →

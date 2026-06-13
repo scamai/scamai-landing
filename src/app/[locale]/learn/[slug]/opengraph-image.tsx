@@ -71,7 +71,7 @@ export default async function OGImage({
           }}
         >
           <img src="https://scam.ai/scamai-logo.svg" style={{ width: '44px', height: '44px' }} alt="" />
-          <span style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>ScamAI</span>
+          <span style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Scam AI</span>
         </div>
 
         <div

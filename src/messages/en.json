@@ -650,7 +650,7 @@
     "about": "About",
     "research": "Research",
     "contact": "Contact",
-    "copyright": "© 2024 Reality Inc. All rights reserved. ScamAI is a product of Reality Inc.",
+    "copyright": "© 2024 Reality Inc. All rights reserved. Scam AI is a product of Reality Inc.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   },
@@ -938,8 +938,8 @@
     },
     "Page": {
       "metadata": {
-        "title": "Business Use Case — ScamAI",
-        "description": "Explore ScamAI's AI misuse prevention solutions tailored for businesses."
+        "title": "Business Use Case — Scam AI",
+        "description": "Explore Scam AI's AI misuse prevention solutions tailored for businesses."
       },
       "hero": {
         "title": "Business Use Cases",
@@ -980,8 +980,8 @@
     },
     "Kyc": {
       "metadata": {
-        "title": "KYC/ID Verification — ScamAI",
-        "description": "Detect forged IDs and deepfakes during onboarding with ScamAI."
+        "title": "KYC/ID Verification — Scam AI",
+        "description": "Detect forged IDs and deepfakes during onboarding with Scam AI."
       },
       "breadcrumb": "KYC/ID Verification",
       "nextLabel": "Dating Apps",
@@ -1018,7 +1018,7 @@
     },
     "Dating": {
       "metadata": {
-        "title": "Dating Apps — ScamAI",
+        "title": "Dating Apps — Scam AI",
         "description": "Stop catfishing with image, video, and voice checks. Block face and voice spoofing in real time."
       },
       "breadcrumb": "Dating Apps",
@@ -1052,7 +1052,7 @@
     },
     "FakeNews": {
       "metadata": {
-        "title": "Fake News & Misinformation — ScamAI",
+        "title": "Fake News & Misinformation — Scam AI",
         "description": "Flag AI-generated media and misleading narratives quickly."
       },
       "breadcrumb": "Fake News & Misinformation",
@@ -1091,7 +1091,7 @@
     },
     "Impersonation": {
       "metadata": {
-        "title": "Impersonation — ScamAI",
+        "title": "Impersonation — Scam AI",
         "description": "Block face and voice spoofing in real time."
       },
       "breadcrumb": "Impersonation",
@@ -1122,7 +1122,7 @@
     },
     "IpCopyright": {
       "metadata": {
-        "title": "IP/Copyright Protection — ScamAI",
+        "title": "IP/Copyright Protection — Scam AI",
         "description": "Detect unauthorized AI remixes and derivative content."
       },
       "breadcrumb": "IP/Copyright Protection",
@@ -1153,7 +1153,7 @@
     },
     "LegalCompliance": {
       "metadata": {
-        "title": "Legal & Compliance — ScamAI",
+        "title": "Legal & Compliance — Scam AI",
         "description": "Verify provenance and meet emerging AI regulations."
       },
       "breadcrumb": "Legal & Compliance",
@@ -1186,8 +1186,8 @@
   "Models": {
     "Deepfakes": {
       "metadata": {
-        "title": "Deepfakes (Faceswap) — ScamAI",
-        "description": "Detect deepfakes and faceswaps with ScamAI's advanced real-time detection."
+        "title": "Deepfakes (Faceswap) — Scam AI",
+        "description": "Detect deepfakes and faceswaps with Scam AI's advanced real-time detection."
       },
       "hero": {
         "category": "Deepfake Detection",
@@ -1210,8 +1210,8 @@
     },
     "AiGeneratedMedia": {
       "metadata": {
-        "title": "AI Image Detection — ScamAI",
-        "description": "Detect AI-generated images and videos with ScamAI's advanced detection technology."
+        "title": "AI Image Detection — Scam AI",
+        "description": "Detect AI-generated images and videos with Scam AI's advanced detection technology."
       },
       "hero": {
         "category": "AI-Generated Media Detection",
@@ -1231,8 +1231,8 @@
     },
     "VoiceClones": {
       "metadata": {
-        "title": "Voice Cloning — ScamAI",
-        "description": "Detect AI voice clones and synthetic audio with ScamAI's real-time detection technology."
+        "title": "Voice Cloning — Scam AI",
+        "description": "Detect AI voice clones and synthetic audio with Scam AI's real-time detection technology."
       },
       "hero": {
         "category": "AI Voice Clone Detection",
@@ -1257,8 +1257,8 @@
     },
     "ScamTextDetection": {
       "metadata": {
-        "title": "Scam Text Detection — ScamAI",
-        "description": "Detect scam text messages and fraudulent communications with ScamAI's advanced detection technology."
+        "title": "Scam Text Detection — Scam AI",
+        "description": "Detect scam text messages and fraudulent communications with Scam AI's advanced detection technology."
       },
       "hero": {
         "category": "Scam Text Detection",
@@ -1369,8 +1369,8 @@
     },
     "LinkQrCode": {
       "metadata": {
-        "title": "Link & QR Code Detection — ScamAI",
-        "description": "Detect malicious links and QR codes with ScamAI's advanced URL analysis technology."
+        "title": "Link & QR Code Detection — Scam AI",
+        "description": "Detect malicious links and QR codes with Scam AI's advanced URL analysis technology."
       },
       "hero": {
         "category": "Link & QR Code Detection",
@@ -1473,7 +1473,7 @@
   "Individuals": {
     "Page": {
       "metadata": {
-        "title": "For Individuals — ScamAI"
+        "title": "For Individuals — Scam AI"
       },
       "hero": {
         "title": "Scam Protection for Individuals",
@@ -1505,7 +1505,7 @@
   "Company": {
     "Partnership": {
       "metadata": {
-        "title": "Partnership — ScamAI"
+        "title": "Partnership — Scam AI"
       },
       "hero": {
         "title": "Partnership",
@@ -1540,14 +1540,14 @@
     },
     "People": {
       "metadata": {
-        "title": "People — ScamAI"
+        "title": "People — Scam AI"
       },
       "title": "People",
       "subtitle": "Coming soon."
     },
     "About": {
       "metadata": {
-        "title": "About Us — ScamAI"
+        "title": "About Us — Scam AI"
       },
       "hero": {
         "kicker": "Company",
@@ -1632,7 +1632,7 @@
       "cta": {
         "people": {
           "title": "People",
-          "subtitle": "Meet the team building ScamAI"
+          "subtitle": "Meet the team building Scam AI"
         },
         "partnership": {
           "title": "Partnership",
@@ -1683,7 +1683,7 @@
   "Stories": {
     "News": {
       "metadata": {
-        "title": "Scam-Related News — ScamAI"
+        "title": "Scam-Related News — Scam AI"
       },
       "hero": {
         "title": "Scam-Related News",
@@ -1764,7 +1764,7 @@
     "TypeOfScamsIndex": {
       "hero": {
         "title": "Types of Scams",
-        "description": "Understanding the different types of scams and how ScamAI protects against them."
+        "description": "Understanding the different types of scams and how Scam AI protects against them."
       },
       "items": [
         {
@@ -2061,7 +2061,7 @@
     },
     "ScamTrends": {
       "metadata": {
-        "title": "Scam Trends — ScamAI"
+        "title": "Scam Trends — Scam AI"
       },
       "title": "Scam Trends",
       "subtitle": "Coming soon."
@@ -2183,11 +2183,11 @@
   "Research": {
     "Page": {
       "metadata": {
-        "title": "Research — ScamAI"
+        "title": "Research — Scam AI"
       },
       "hero": {
         "title": "Research",
-        "description": "Publications, datasets, and long-form analysis from the ScamAI team."
+        "description": "Publications, datasets, and long-form analysis from the Scam AI team."
       },
       "links": {
         "readSummary": "Read summary",
@@ -2246,7 +2246,7 @@
     },
     "ScamNetDatabase": {
       "metadata": {
-        "title": "ScamNet Database — ScamAI",
+        "title": "ScamNet Database — Scam AI",
         "description": "Access the world's largest database of scam patterns and fraudulent content for research."
       },
       "hero": {
@@ -2366,7 +2366,7 @@
       },
       "dating": {
         "title": "Deepfake and fake profile detection for dating apps",
-        "metaDescription": "Detect AI-generated fake profiles and voice catfishing on dating apps. ScamAI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.",
+        "metaDescription": "Detect AI-generated fake profiles and voice catfishing on dating apps. Scam AI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.",
         "headline": "Deepfake and fake profile detection for dating apps"
       },
       "call-centers": {
@@ -2376,7 +2376,7 @@
       },
       "kyc": {
         "title": "Stop deepfake fraud in KYC identity verification",
-        "metaDescription": "Detect deepfake selfies and AI-edited ID documents in KYC onboarding. ScamAI's Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.",
+        "metaDescription": "Detect deepfake selfies and AI-edited ID documents in KYC onboarding. Scam AI's Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.",
         "headline": "Stop deepfake fraud in KYC identity verification"
       },
       "media": {
@@ -2386,12 +2386,12 @@
       },
       "insurance": {
         "title": "Detect AI-generated fraud in insurance claims",
-        "metaDescription": "Detect AI-edited photos and forged documents in insurance claims. ScamAI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.",
+        "metaDescription": "Detect AI-edited photos and forged documents in insurance claims. Scam AI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.",
         "headline": "Detect AI-generated fraud in insurance claims"
       },
       "hr": {
         "title": "Detect deepfakes in remote interviews and video hiring",
-        "metaDescription": "Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. ScamAI verifies video and audio authenticity for HR teams and hiring platforms.",
+        "metaDescription": "Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. Scam AI verifies video and audio authenticity for HR teams and hiring platforms.",
         "headline": "Detect deepfakes in remote interviews and video hiring"
       },
       "government": {
@@ -2402,39 +2402,39 @@
     },
     "compare": {
       "reality-defender": {
-        "title": "ScamAI vs Reality Defender: Deepfake Detection Comparison",
-        "metaDescription": "ScamAI vs Reality Defender: $0.05/image vs annual contracts, 200 free images vs none, 10-min API setup vs custom onboarding. Full comparison.",
-        "tagline": "ScamAI vs Reality Defender: Deepfake Detection Comparison"
+        "title": "Scam AI vs Reality Defender: Deepfake Detection Comparison",
+        "metaDescription": "Scam AI vs Reality Defender: $0.05/image vs annual contracts, 200 free images vs none, 10-min API setup vs custom onboarding. Full comparison.",
+        "tagline": "Scam AI vs Reality Defender: Deepfake Detection Comparison"
       },
       "sensity": {
-        "title": "ScamAI vs Sensity AI: Deepfake Detection Comparison",
-        "metaDescription": "ScamAI vs Sensity AI: images, video, audio, and documents in one API. $0.05/image vs enterprise contracts, 200 free/month. Full comparison.",
-        "tagline": "ScamAI vs Sensity AI: Deepfake Detection Comparison"
+        "title": "Scam AI vs Sensity AI: Deepfake Detection Comparison",
+        "metaDescription": "Scam AI vs Sensity AI: images, video, audio, and documents in one API. $0.05/image vs enterprise contracts, 200 free/month. Full comparison.",
+        "tagline": "Scam AI vs Sensity AI: Deepfake Detection Comparison"
       },
       "hive": {
-        "title": "ScamAI vs Hive Moderation: Deepfake Detection Comparison",
-        "metaDescription": "ScamAI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.",
-        "tagline": "ScamAI vs Hive Moderation: Deepfake Detection Comparison"
+        "title": "Scam AI vs Hive Moderation: Deepfake Detection Comparison",
+        "metaDescription": "Scam AI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.",
+        "tagline": "Scam AI vs Hive Moderation: Deepfake Detection Comparison"
       },
       "microsoft-azure": {
-        "title": "ScamAI vs Microsoft Azure AI Content Safety",
-        "metaDescription": "ScamAI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.",
-        "tagline": "ScamAI vs Microsoft Azure AI Content Safety: Deepfake Detection Comparison"
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.",
+        "tagline": "Scam AI vs Microsoft Azure AI Content Safety: Deepfake Detection Comparison"
       },
       "aws-rekognition": {
-        "title": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison",
-        "metaDescription": "ScamAI vs AWS Rekognition: dedicated deepfake detection model vs general face analysis, plus voice clone and document forgery detection not available in Rekognition.",
-        "tagline": "ScamAI vs AWS Rekognition: Deepfake Detection Comparison"
+        "title": "Scam AI vs AWS Rekognition: Deepfake Detection Comparison",
+        "metaDescription": "Scam AI vs AWS Rekognition: dedicated deepfake detection model vs general face analysis, plus voice clone and document forgery detection not available in Rekognition.",
+        "tagline": "Scam AI vs AWS Rekognition: Deepfake Detection Comparison"
       },
       "truepic": {
-        "title": "ScamAI vs Truepic: Deepfake Detection Comparison",
-        "metaDescription": "ScamAI vs Truepic: AI deepfake detection on any image vs C2PA provenance needing camera hardware. Works retroactively, no metadata required.",
-        "tagline": "ScamAI vs Truepic: Deepfake Detection Comparison"
+        "title": "Scam AI vs Truepic: Deepfake Detection Comparison",
+        "metaDescription": "Scam AI vs Truepic: AI deepfake detection on any image vs C2PA provenance needing camera hardware. Works retroactively, no metadata required.",
+        "tagline": "Scam AI vs Truepic: Deepfake Detection Comparison"
       },
       "deepware": {
-        "title": "ScamAI vs Deepware: Deepfake Detection Comparison",
-        "metaDescription": "ScamAI vs Deepware: production API with 99.9% SLA and SOC 2 vs free consumer scanner. Enterprise KYC integration + voice clone detection.",
-        "tagline": "ScamAI vs Deepware: Deepfake Detection Comparison"
+        "title": "Scam AI vs Deepware: Deepfake Detection Comparison",
+        "metaDescription": "Scam AI vs Deepware: production API with 99.9% SLA and SOC 2 vs free consumer scanner. Enterprise KYC integration + voice clone detection.",
+        "tagline": "Scam AI vs Deepware: Deepfake Detection Comparison"
       }
     },
     "learn": {

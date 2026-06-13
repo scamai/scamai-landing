@@ -10,7 +10,7 @@ export default function AdminHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <div className="flex items-center gap-4">
           <a href="/admin/newsletter" className="flex items-center gap-3">
-            <img src="/scamai-logo.svg" alt="ScamAI" className="h-6 w-auto" />
+            <img src="/scamai-logo.svg" alt="Scam AI" className="h-6 w-auto" />
             <span className="text-sm font-semibold text-gray-400">
               Newsletter CMS
             </span>

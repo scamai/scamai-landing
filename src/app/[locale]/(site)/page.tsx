@@ -51,7 +51,7 @@ export async function generateMetadata(
       url: `https://www.scam.ai/${locale}`,
       title: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
-      siteName: "ScamAI",
+      siteName: "Scam AI",
       images: [
         {
           url: `/${locale}/opengraph-image`,

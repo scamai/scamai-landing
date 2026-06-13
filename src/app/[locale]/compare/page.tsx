@@ -8,13 +8,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return generatePageMetadata({
     locale,
     path: '/compare',
-    title: 'ScamAI vs Competitors — Deepfake Detection Comparison',
+    title: 'Scam AI vs Competitors — Deepfake Detection Comparison',
     description:
-      'Compare ScamAI vs Reality Defender, Sensity, Hive, Azure, AWS, Truepic, and Deepware. Pricing, accuracy, and feature comparison tables.',
+      'Compare Scam AI vs Reality Defender, Sensity, Hive, Azure, AWS, Truepic, and Deepware. Pricing, accuracy, and feature comparison tables.',
     keywords: [
       'deepfake detection comparison',
-      'ScamAI vs Reality Defender',
-      'ScamAI vs Sensity',
+      'Scam AI vs Reality Defender',
+      'Scam AI vs Sensity',
       'deepfake detector alternatives',
       'best deepfake detection tool',
     ],
@@ -33,10 +33,10 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               COMPARISONS
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6">
-              ScamAI vs <span className="text-[#245FFF]">competitors</span>
+              Scam AI vs <span className="text-[#245FFF]">competitors</span>
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              See how ScamAI stacks up against other deepfake detection platforms. Transparent comparisons — including where competitors are stronger.
+              See how Scam AI stacks up against other deepfake detection platforms. Transparent comparisons — including where competitors are stronger.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               >
                 <div className="flex-1 min-w-0">
                   <h2 className="text-base font-bold text-white group-hover:text-[#245FFF] transition-colors mb-1">
-                    ScamAI vs {comp.name}
+                    Scam AI vs {comp.name}
                   </h2>
                   <p className="text-sm text-gray-500 leading-relaxed line-clamp-1">{comp.metaDescription}</p>
                 </div>
@@ -67,7 +67,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               rel="noopener noreferrer"
               className="rainbow-button inline-block"
             >
-              <span className="rainbow-button-inner">Try ScamAI Free — 200 images/month</span>
+              <span className="rainbow-button-inner">Try Scam AI Free — 200 images/month</span>
             </a>
           </div>
         </div>

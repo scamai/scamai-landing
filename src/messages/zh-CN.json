@@ -650,7 +650,7 @@
     "about": "关于",
     "research": "研究",
     "contact": "联系",
-    "copyright": "© 2024 Reality Inc. 保留所有权利。ScamAI 为 Reality Inc. 的产品。",
+    "copyright": "© 2024 Reality Inc. 保留所有权利。Scam AI 为 Reality Inc. 的产品。",
     "privacy": "隐私政策",
     "terms": "服务条款"
   },
@@ -970,8 +970,8 @@
         "description": "为你的 KYC/身份验证流程增加额外安全层。"
       },
       "metadata": {
-        "title": "KYC/ID Verification — ScamAI",
-        "description": "Detect forged IDs and deepfakes during onboarding with ScamAI."
+        "title": "KYC/ID Verification — Scam AI",
+        "description": "Detect forged IDs and deepfakes during onboarding with Scam AI."
       }
     },
     "Dating": {
@@ -1004,7 +1004,7 @@
         "description": "为资料与聊天验证增加额外安全层。"
       },
       "metadata": {
-        "title": "Dating Apps — ScamAI",
+        "title": "Dating Apps — Scam AI",
         "description": "Stop catfishing with image, video, and voice checks. Block face and voice spoofing in real time."
       }
     },
@@ -1043,7 +1043,7 @@
         "description": "为内容真实性检测增加可信层。"
       },
       "metadata": {
-        "title": "Fake News & Misinformation — ScamAI",
+        "title": "Fake News & Misinformation — Scam AI",
         "description": "Flag AI-generated media and misleading narratives quickly."
       }
     },
@@ -1074,7 +1074,7 @@
         "description": "保护通话、登录与 KYC 流程免受冒充攻击。"
       },
       "metadata": {
-        "title": "Impersonation — ScamAI",
+        "title": "Impersonation — Scam AI",
         "description": "Block face and voice spoofing in real time."
       }
     },
@@ -1105,7 +1105,7 @@
         "description": "在上传、直播与素材库中启用自动检测。"
       },
       "metadata": {
-        "title": "IP/Copyright Protection — ScamAI",
+        "title": "IP/Copyright Protection — Scam AI",
         "description": "Detect unauthorized AI remixes and derivative content."
       }
     },
@@ -1136,14 +1136,14 @@
         "description": "在上传、审核与发现流程中加入来源核验。"
       },
       "metadata": {
-        "title": "Legal & Compliance — ScamAI",
+        "title": "Legal & Compliance — Scam AI",
         "description": "Verify provenance and meet emerging AI regulations."
       }
     },
     "Page": {
       "metadata": {
-        "title": "Business Use Case — ScamAI",
-        "description": "Explore ScamAI's AI misuse prevention solutions tailored for businesses."
+        "title": "Business Use Case — Scam AI",
+        "description": "Explore Scam AI's AI misuse prevention solutions tailored for businesses."
       },
       "hero": {
         "title": "Business Use Cases",
@@ -1197,11 +1197,11 @@
     },
     "Page": {
       "metadata": {
-        "title": "Research — ScamAI"
+        "title": "Research — Scam AI"
       },
       "hero": {
         "title": "Research",
-        "description": "Publications, datasets, and long-form analysis from the ScamAI team."
+        "description": "Publications, datasets, and long-form analysis from the Scam AI team."
       },
       "links": {
         "readSummary": "Read summary",
@@ -1252,7 +1252,7 @@
     },
     "ScamNetDatabase": {
       "metadata": {
-        "title": "ScamNet Database — ScamAI",
+        "title": "ScamNet Database — Scam AI",
         "description": "Access the world's largest database of scam patterns and fraudulent content for research."
       },
       "hero": {
@@ -1366,8 +1366,8 @@
   "Models": {
     "Deepfakes": {
       "metadata": {
-        "title": "Deepfakes (Faceswap) — ScamAI",
-        "description": "Detect deepfakes and faceswaps with ScamAI's advanced real-time detection."
+        "title": "Deepfakes (Faceswap) — Scam AI",
+        "description": "Detect deepfakes and faceswaps with Scam AI's advanced real-time detection."
       },
       "hero": {
         "category": "Deepfake Detection",
@@ -1390,8 +1390,8 @@
     },
     "AiGeneratedMedia": {
       "metadata": {
-        "title": "AI Image Detection — ScamAI",
-        "description": "Detect AI-generated images and videos with ScamAI's advanced detection technology."
+        "title": "AI Image Detection — Scam AI",
+        "description": "Detect AI-generated images and videos with Scam AI's advanced detection technology."
       },
       "hero": {
         "category": "AI-Generated Media Detection",
@@ -1411,8 +1411,8 @@
     },
     "VoiceClones": {
       "metadata": {
-        "title": "Voice Cloning — ScamAI",
-        "description": "Detect AI voice clones and synthetic audio with ScamAI's real-time detection technology."
+        "title": "Voice Cloning — Scam AI",
+        "description": "Detect AI voice clones and synthetic audio with Scam AI's real-time detection technology."
       },
       "hero": {
         "category": "AI Voice Clone Detection",
@@ -1437,8 +1437,8 @@
     },
     "ScamTextDetection": {
       "metadata": {
-        "title": "Scam Text Detection — ScamAI",
-        "description": "Detect scam text messages and fraudulent communications with ScamAI's advanced detection technology."
+        "title": "Scam Text Detection — Scam AI",
+        "description": "Detect scam text messages and fraudulent communications with Scam AI's advanced detection technology."
       },
       "hero": {
         "category": "Scam Text Detection",
@@ -1549,8 +1549,8 @@
     },
     "LinkQrCode": {
       "metadata": {
-        "title": "Link & QR Code Detection — ScamAI",
-        "description": "Detect malicious links and QR codes with ScamAI's advanced URL analysis technology."
+        "title": "Link & QR Code Detection — Scam AI",
+        "description": "Detect malicious links and QR codes with Scam AI's advanced URL analysis technology."
       },
       "hero": {
         "category": "Link & QR Code Detection",
@@ -1653,7 +1653,7 @@
   "Individuals": {
     "Page": {
       "metadata": {
-        "title": "For Individuals — ScamAI"
+        "title": "For Individuals — Scam AI"
       },
       "hero": {
         "title": "Scam Protection for Individuals",
@@ -1685,7 +1685,7 @@
   "Company": {
     "Partnership": {
       "metadata": {
-        "title": "Partnership — ScamAI"
+        "title": "Partnership — Scam AI"
       },
       "hero": {
         "title": "Partnership",
@@ -1720,14 +1720,14 @@
     },
     "People": {
       "metadata": {
-        "title": "People — ScamAI"
+        "title": "People — Scam AI"
       },
       "title": "People",
       "subtitle": "Coming soon."
     },
     "About": {
       "metadata": {
-        "title": "About Us — ScamAI"
+        "title": "About Us — Scam AI"
       },
       "hero": {
         "kicker": "Company",
@@ -1812,7 +1812,7 @@
       "cta": {
         "people": {
           "title": "People",
-          "subtitle": "Meet the team building ScamAI"
+          "subtitle": "Meet the team building Scam AI"
         },
         "partnership": {
           "title": "Partnership",
@@ -1863,7 +1863,7 @@
   "Stories": {
     "News": {
       "metadata": {
-        "title": "Scam-Related News — ScamAI"
+        "title": "Scam-Related News — Scam AI"
       },
       "hero": {
         "title": "Scam-Related News",
@@ -1944,7 +1944,7 @@
     "TypeOfScamsIndex": {
       "hero": {
         "title": "Types of Scams",
-        "description": "Understanding the different types of scams and how ScamAI protects against them."
+        "description": "Understanding the different types of scams and how Scam AI protects against them."
       },
       "items": [
         {
@@ -2241,7 +2241,7 @@
     },
     "ScamTrends": {
       "metadata": {
-        "title": "Scam Trends — ScamAI"
+        "title": "Scam Trends — Scam AI"
       },
       "title": "Scam Trends",
       "subtitle": "Coming soon."

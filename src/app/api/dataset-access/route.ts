@@ -80,7 +80,7 @@ const DATASETS: Record<string, { name: string; link: string; citation: string }>
   author={Zewde, Kidus and Zhou, Yuchen and Ng, Dennis and Tiangratanakul, Neo and Duong, Tommy and Raj, Ankit and Zhang, Yuxin and Shen, Xingyu and Ren, Simiao},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2026},
-  note={Authors affiliated with ScamAI}
+  note={Authors affiliated with Scam AI}
 }`,
   },
   "gpt-image-2-twitter": {
@@ -192,7 +192,7 @@ export async function POST(req: Request) {
 
       // Email the user with the dataset download link — awaited
       const userEmailResult = await resend.emails.send({
-        from: "ScamAI Research <data@scam.ai>",
+        from: "Scam AI Research <data@scam.ai>",
         to: [email],
         bcc: ["dennisng@scam.ai", "benren@scam.ai"],
         subject: `Your dataset access: ${dataset.name}`,
@@ -227,12 +227,12 @@ export async function POST(req: Request) {
 
             <div style="padding: 20px 32px; background: #f7f8fa; border-top: 1px solid #e5e7eb;">
               <p style="font-size: 12px; color: #999; margin: 0;">
-                ScamAI Research &mdash; <a href="https://scam.ai/research" style="color: #245FFF; text-decoration: none;">scam.ai/research</a>
+                Scam AI Research &mdash; <a href="https://scam.ai/research" style="color: #245FFF; text-decoration: none;">scam.ai/research</a>
               </p>
             </div>
           </div>
         `,
-        text: `Dataset Access Granted\n\nDataset: ${dataset.name}\n\nDownload: ${dataset.link}\n\nHow to Cite:\n${dataset.citation}\n\nUsage Terms:\n- Use solely for non-commercial research purposes\n- Cite the associated publication in any resulting work\n- Do not redistribute the dataset\n\nScamAI Research — https://scam.ai/research`,
+        text: `Dataset Access Granted\n\nDataset: ${dataset.name}\n\nDownload: ${dataset.link}\n\nHow to Cite:\n${dataset.citation}\n\nUsage Terms:\n- Use solely for non-commercial research purposes\n- Cite the associated publication in any resulting work\n- Do not redistribute the dataset\n\nScam AI Research — https://scam.ai/research`,
       });
 
       if (userEmailResult.error) {

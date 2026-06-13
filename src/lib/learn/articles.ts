@@ -86,7 +86,7 @@ export const articles: Article[] = [
           {
             type: 'callout',
             variant: 'stat',
-            text: 'ScamAI researchers found that GPT-Image-2 cannot reliably recognize its own generated documents — demonstrating how detection must remain ahead of generation (arXiv:2604.25213).',
+            text: 'Scam AI researchers found that GPT-Image-2 cannot reliably recognize its own generated documents — demonstrating how detection must remain ahead of generation (arXiv:2604.25213).',
           },
           {
             type: 'paragraph',
@@ -103,7 +103,7 @@ export const articles: Article[] = [
           },
           {
             type: 'paragraph',
-            text: 'Disinformation deepfakes fabricate false evidence of real people saying or doing things they never did. Political deepfakes have proliferated ahead of elections worldwide. According to ScamAI research, state actors documented 47 influence campaigns using AI-generated media in 2025 alone.',
+            text: 'Disinformation deepfakes fabricate false evidence of real people saying or doing things they never did. Political deepfakes have proliferated ahead of elections worldwide. According to Scam AI research, state actors documented 47 influence campaigns using AI-generated media in 2025 alone.',
           },
           {
             type: 'paragraph',
@@ -111,7 +111,7 @@ export const articles: Article[] = [
           },
           {
             type: 'paragraph',
-            text: 'Document forgery deepfakes use AI to alter financial statements, identity documents, insurance claims, and medical records. ScamAI\'s AIForge-Doc research (arXiv:2602.20569) demonstrated that AI-edited financial documents are undetectable by human reviewers without specialized tools — the study found humans perform near chance level on modern AI-edited documents.',
+            text: 'Document forgery deepfakes use AI to alter financial statements, identity documents, insurance claims, and medical records. Scam AI\'s AIForge-Doc research (arXiv:2602.20569) demonstrated that AI-edited financial documents are undetectable by human reviewers without specialized tools — the study found humans perform near chance level on modern AI-edited documents.',
           },
         ],
       },
@@ -120,7 +120,7 @@ export const articles: Article[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Human detection of deepfakes is unreliable at any level of expertise. ScamAI\'s research ("Do deepfake detectors work in reality?", IEEE Workshop on Security Implications of Deepfakes and Cheapfakes, 2025) found that trained human reviewers correctly identify deepfake faces at rates approaching random chance when evaluating high-quality modern deepfakes. The same study found that older deepfake detectors trained on lab-generated samples also fail significantly when tested against in-the-wild deepfakes.',
+            text: 'Human detection of deepfakes is unreliable at any level of expertise. Scam AI\'s research ("Do deepfake detectors work in reality?", IEEE Workshop on Security Implications of Deepfakes and Cheapfakes, 2025) found that trained human reviewers correctly identify deepfake faces at rates approaching random chance when evaluating high-quality modern deepfakes. The same study found that older deepfake detectors trained on lab-generated samples also fail significantly when tested against in-the-wild deepfakes.',
           },
           {
             type: 'paragraph',
@@ -138,7 +138,7 @@ export const articles: Article[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'AI-based deepfake detection analyzes artifacts that are invisible to the human eye but consistent across how different generation technologies work. ScamAI\'s Eva-v1 model applies several complementary analysis approaches.',
+            text: 'AI-based deepfake detection analyzes artifacts that are invisible to the human eye but consistent across how different generation technologies work. Scam AI\'s Eva-v1 model applies several complementary analysis approaches.',
           },
           {
             type: 'bullets',
@@ -151,7 +151,7 @@ export const articles: Article[] = [
           },
           {
             type: 'paragraph',
-            text: 'Reliable detection requires models trained specifically on synthetic media from contemporary generation tools — not general-purpose computer vision systems. ScamAI\'s Eva-v1 model is continuously updated to detect outputs from new generation tools as they emerge, including GPT-Image-2, Flux, and other platforms that were not available when earlier detection models were trained.',
+            text: 'Reliable detection requires models trained specifically on synthetic media from contemporary generation tools — not general-purpose computer vision systems. Scam AI\'s Eva-v1 model is continuously updated to detect outputs from new generation tools as they emerge, including GPT-Image-2, Flux, and other platforms that were not available when earlier detection models were trained.',
           },
         ],
       },
@@ -160,7 +160,7 @@ export const articles: Article[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'ScamAI\'s Eva-v1 model achieves 95.3% accuracy on image and video deepfake detection, and 98.5% accuracy on voice clone detection. These figures are measured on in-the-wild benchmarks — real deepfakes collected from the internet, not laboratory-generated samples that detection models were trained on.',
+            text: 'Scam AI\'s Eva-v1 model achieves 95.3% accuracy on image and video deepfake detection, and 98.5% accuracy on voice clone detection. These figures are measured on in-the-wild benchmarks — real deepfakes collected from the internet, not laboratory-generated samples that detection models were trained on.',
           },
           {
             type: 'paragraph',
@@ -169,7 +169,7 @@ export const articles: Article[] = [
           {
             type: 'callout',
             variant: 'tip',
-            text: 'ScamAI\'s API returns a confidence score alongside each detection result. Setting your own threshold lets you tune the trade-off between false positives and false negatives for your specific use case.',
+            text: 'Scam AI\'s API returns a confidence score alongside each detection result. Setting your own threshold lets you tune the trade-off between false positives and false negatives for your specific use case.',
           },
         ],
       },
@@ -178,7 +178,7 @@ export const articles: Article[] = [
       {
         question: 'Are all AI-generated images deepfakes?',
         answer:
-          'The term deepfake typically refers to AI-generated or AI-manipulated media involving real people — particularly face swaps, synthetic identities, and voice clones. AI-generated images of landscapes or fictional scenes are not usually called deepfakes, though they raise similar authenticity and verification challenges. Detection tools like ScamAI work across both categories.',
+          'The term deepfake typically refers to AI-generated or AI-manipulated media involving real people — particularly face swaps, synthetic identities, and voice clones. AI-generated images of landscapes or fictional scenes are not usually called deepfakes, though they raise similar authenticity and verification challenges. Detection tools like Scam AI work across both categories.',
       },
       {
         question: 'Can deepfakes be detected with the naked eye?',
@@ -193,12 +193,12 @@ export const articles: Article[] = [
       {
         question: 'How accurate is deepfake detection?',
         answer:
-          'Accuracy varies significantly by tool and test conditions. ScamAI\'s Eva-v1 model achieves 95.3% accuracy on in-the-wild image deepfakes and 98.5% on voice clone detection. Accuracy degrades on adversarially optimized deepfakes designed to evade specific detectors, which is why detection models must be continuously updated as generation technology evolves.',
+          'Accuracy varies significantly by tool and test conditions. Scam AI\'s Eva-v1 model achieves 95.3% accuracy on in-the-wild image deepfakes and 98.5% on voice clone detection. Accuracy degrades on adversarially optimized deepfakes designed to evade specific detectors, which is why detection models must be continuously updated as generation technology evolves.',
       },
       {
         question: 'Can I detect deepfakes for free?',
         answer:
-          'Yes. ScamAI offers 200 free image deepfake analyses per month at app.scam.ai with no credit card required. This includes full API access for integration testing.',
+          'Yes. Scam AI offers 200 free image deepfake analyses per month at app.scam.ai with no credit card required. This includes full API access for integration testing.',
       },
     ],
     ctaHeadline: 'Try deepfake detection for free',
@@ -225,7 +225,7 @@ export const articles: Article[] = [
       'AI image detection tool',
     ],
     intro:
-      'AI image generators have become so sophisticated that detecting their output with the naked eye is no longer reliable. A 2026 study by ScamAI found that open-source AI image detectors fail significantly on in-the-wild generated images (arXiv:2602.07814), and human reviewers perform near chance level on high-quality diffusion model outputs. This guide covers what to look for visually, what free tools exist, and when a detection API is the right solution for your platform.',
+      'AI image generators have become so sophisticated that detecting their output with the naked eye is no longer reliable. A 2026 study by Scam AI found that open-source AI image detectors fail significantly on in-the-wild generated images (arXiv:2602.07814), and human reviewers perform near chance level on high-quality diffusion model outputs. This guide covers what to look for visually, what free tools exist, and when a detection API is the right solution for your platform.',
     sections: [
       {
         heading: 'Why detecting AI-generated images is difficult',
@@ -241,7 +241,7 @@ export const articles: Article[] = [
           {
             type: 'callout',
             variant: 'stat',
-            text: 'ScamAI research (arXiv:2602.07814) found that leading open-source AI image detectors achieve accuracy as low as 50–60% on out-of-distribution generated images — barely better than a coin flip.',
+            text: 'Scam AI research (arXiv:2602.07814) found that leading open-source AI image detectors achieve accuracy as low as 50–60% on out-of-distribution generated images — barely better than a coin flip.',
           },
         ],
       },
@@ -297,7 +297,7 @@ export const articles: Article[] = [
           {
             type: 'bullets',
             items: [
-              'ScamAI (app.scam.ai) — 200 free detections per month via API or web interface. Eva-v1 model covers GAN images, diffusion outputs (Stable Diffusion, DALL-E, Midjourney, Flux, GPT-Image-2), and face swaps. Returns a confidence score.',
+              'Scam AI (app.scam.ai) — 200 free detections per month via API or web interface. Eva-v1 model covers GAN images, diffusion outputs (Stable Diffusion, DALL-E, Midjourney, Flux, GPT-Image-2), and face swaps. Returns a confidence score.',
               'Hive Moderation — free tier available for AI-generated content detection. Broad content moderation platform, less specialized for deepfakes specifically.',
               'Illuminarty — web-based tool focused on detecting AI-generated art. Better on Midjourney and Stable Diffusion outputs.',
             ],
@@ -317,7 +317,7 @@ export const articles: Article[] = [
           },
           {
             type: 'paragraph',
-            text: 'ScamAI\'s detection API accepts image URLs or base64-encoded payloads and returns a JSON response. The integration is minimal — most platforms are up and running in under 10 minutes.',
+            text: 'Scam AI\'s detection API accepts image URLs or base64-encoded payloads and returns a JSON response. The integration is minimal — most platforms are up and running in under 10 minutes.',
           },
           {
             type: 'code',
@@ -344,7 +344,7 @@ result = response.json()
         blocks: [
           {
             type: 'paragraph',
-            text: 'No detection system achieves 100% accuracy. ScamAI\'s Eva-v1 achieves 95.3% accuracy, which means approximately 47 incorrect results per 1,000 images analyzed. These errors divide into false positives (real images flagged as AI-generated) and false negatives (AI images that pass detection).',
+            text: 'No detection system achieves 100% accuracy. Scam AI\'s Eva-v1 achieves 95.3% accuracy, which means approximately 47 incorrect results per 1,000 images analyzed. These errors divide into false positives (real images flagged as AI-generated) and false negatives (AI images that pass detection).',
           },
           {
             type: 'paragraph',
@@ -353,7 +353,7 @@ result = response.json()
           {
             type: 'callout',
             variant: 'tip',
-            text: 'Use ScamAI\'s free tier of 200 images/month to calibrate confidence thresholds on your actual data before deploying at production scale.',
+            text: 'Use Scam AI\'s free tier of 200 images/month to calibrate confidence thresholds on your actual data before deploying at production scale.',
           },
         ],
       },
@@ -365,14 +365,14 @@ result = response.json()
           'No. Modern diffusion models like DALL-E 3, Midjourney v6, and GPT-Image-2 produce photorealistic images that pass visual inspection. Human detection rates on current high-quality AI-generated images approach random chance. AI-based detection tools are required for reliable identification.',
       },
       {
-        question: 'What types of AI-generated images can ScamAI detect?',
+        question: 'What types of AI-generated images can Scam AI detect?',
         answer:
-          'ScamAI\'s Eva-v1 detects outputs from GAN models, diffusion models (Stable Diffusion, DALL-E, Midjourney, Flux, GPT-Image-2), face swap tools (FaceSwap, DeepFaceLive, Reface), and synthetic face generators. It covers both static images and video frames.',
+          'Scam AI\'s Eva-v1 detects outputs from GAN models, diffusion models (Stable Diffusion, DALL-E, Midjourney, Flux, GPT-Image-2), face swap tools (FaceSwap, DeepFaceLive, Reface), and synthetic face generators. It covers both static images and video frames.',
       },
       {
         question: 'Is there a free AI image detector I can use?',
         answer:
-          'Yes. ScamAI provides 200 free image detections per month at app.scam.ai with full API access — no credit card required. This is sufficient for individual use and for testing an integration before scaling.',
+          'Yes. Scam AI provides 200 free image detections per month at app.scam.ai with full API access — no credit card required. This is sufficient for individual use and for testing an integration before scaling.',
       },
       {
         question: 'Does EXIF metadata tell you if an image is AI-generated?',
@@ -382,7 +382,7 @@ result = response.json()
       {
         question: 'How do I detect AI-generated images in bulk for my platform?',
         answer:
-          'Use the ScamAI REST API. Submit image URLs or base64 payloads, receive JSON responses with confidence scores. The API processes each image in under 4 seconds and scales to enterprise volume. Documentation is at scam.ai/en/resources/documentation.',
+          'Use the Scam AI REST API. Submit image URLs or base64 payloads, receive JSON responses with confidence scores. The API processes each image in under 4 seconds and scales to enterprise volume. Documentation is at scam.ai/en/resources/documentation.',
       },
     ],
     ctaHeadline: 'Detect AI-generated images in your platform',
@@ -438,7 +438,7 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'Banking voice authentication bypass is a growing attack vector. Many banks allow customers to authenticate over the phone using voice biometrics. An attacker with a voice clone of the account holder can speak the authentication phrase, bypass voice biometric checks, and gain access to the account. ScamAI\'s audio detection model identifies the spectral and temporal artifacts in cloned audio that voice biometric systems do not check for.',
+            text: 'Banking voice authentication bypass is a growing attack vector. Many banks allow customers to authenticate over the phone using voice biometrics. An attacker with a voice clone of the account holder can speak the authentication phrase, bypass voice biometric checks, and gain access to the account. Scam AI\'s audio detection model identifies the spectral and temporal artifacts in cloned audio that voice biometric systems do not check for.',
           },
           {
             type: 'paragraph',
@@ -465,7 +465,7 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'ScamAI\'s audio detection model analyzes multiple signal layers simultaneously. Spectral artifact analysis examines the distribution of energy across frequency bands for patterns characteristic of specific synthesis methods. Temporal consistency analysis looks at the smoothness of prosody transitions — AI synthesis sometimes produces unnaturally smooth or discontinuous transitions between phonemes. Breath and noise modeling checks whether the ambient and breathing patterns in the audio match the acoustic environment claimed.',
+            text: 'Scam AI\'s audio detection model analyzes multiple signal layers simultaneously. Spectral artifact analysis examines the distribution of energy across frequency bands for patterns characteristic of specific synthesis methods. Temporal consistency analysis looks at the smoothness of prosody transitions — AI synthesis sometimes produces unnaturally smooth or discontinuous transitions between phonemes. Breath and noise modeling checks whether the ambient and breathing patterns in the audio match the acoustic environment claimed.',
           },
           {
             type: 'paragraph',
@@ -474,7 +474,7 @@ result = response.json()
           {
             type: 'callout',
             variant: 'stat',
-            text: 'ScamAI\'s audio detection achieves 98.5% accuracy on voice clone detection, identifying synthetic speech from all major voice synthesis platforms.',
+            text: 'Scam AI\'s audio detection achieves 98.5% accuracy on voice clone detection, identifying synthetic speech from all major voice synthesis platforms.',
           },
         ],
       },
@@ -483,7 +483,7 @@ result = response.json()
         blocks: [
           {
             type: 'paragraph',
-            text: 'For call centers and banking institutions, the most valuable deployment of voice clone detection is real-time — analyzing each inbound call as it happens and alerting agents when synthetic voice patterns are detected. ScamAI\'s streaming endpoint processes audio segments in under 3 seconds and fires webhook alerts when confidence scores exceed a configured threshold.',
+            text: 'For call centers and banking institutions, the most valuable deployment of voice clone detection is real-time — analyzing each inbound call as it happens and alerting agents when synthetic voice patterns are detected. Scam AI\'s streaming endpoint processes audio segments in under 3 seconds and fires webhook alerts when confidence scores exceed a configured threshold.',
           },
           {
             type: 'paragraph',
@@ -538,12 +538,12 @@ result = response.json()
       {
         question: 'Can voice clone detection detect all synthesis platforms?',
         answer:
-          'ScamAI\'s audio model is trained on outputs from all major voice synthesis platforms including ElevenLabs, PlayHT, Resemble AI, Azure TTS, Google TTS, Amazon Polly, and major open-source models. The model is continuously updated as new synthesis tools emerge.',
+          'Scam AI\'s audio model is trained on outputs from all major voice synthesis platforms including ElevenLabs, PlayHT, Resemble AI, Azure TTS, Google TTS, Amazon Polly, and major open-source models. The model is continuously updated as new synthesis tools emerge.',
       },
       {
         question: 'How fast is real-time voice clone detection?',
         answer:
-          'ScamAI\'s audio detection processes each audio segment in under 3 seconds, enabling real-time deployment on live phone calls. The streaming endpoint receives audio in chunks and returns detection results with low enough latency for call center use.',
+          'Scam AI\'s audio detection processes each audio segment in under 3 seconds, enabling real-time deployment on live phone calls. The streaming endpoint receives audio in chunks and returns detection results with low enough latency for call center use.',
       },
       {
         question: 'Can voice clone detection replace voice biometric authentication?',
@@ -580,7 +580,7 @@ result = response.json()
       'deepfake detector performance',
     ],
     intro:
-      'Every deepfake detection provider leads with an accuracy number. ScamAI achieves 95.3%. Another tool claims 99%. A third reports 97% on video deepfakes. These numbers mean almost nothing without understanding how they were measured, on what data, and under what conditions. This guide explains the benchmarking landscape for deepfake detection, what accuracy numbers actually reflect, and how to make a meaningful comparison when choosing a detection system.',
+      'Every deepfake detection provider leads with an accuracy number. Scam AI achieves 95.3%. Another tool claims 99%. A third reports 97% on video deepfakes. These numbers mean almost nothing without understanding how they were measured, on what data, and under what conditions. This guide explains the benchmarking landscape for deepfake detection, what accuracy numbers actually reflect, and how to make a meaningful comparison when choosing a detection system.',
     sections: [
       {
         heading: 'What accuracy means in deepfake detection',
@@ -613,16 +613,16 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'ScamAI\'s research ("How well are open-sourced AI-generated image detection models out-of-the-box?", arXiv:2602.07814) measured 12 leading open-source detection models on out-of-distribution data — deepfakes they were not trained on. Accuracy fell from claimed rates of 90–99% to 50–65% in out-of-distribution conditions. This gap between claimed and real-world accuracy is the central challenge of deepfake detection evaluation.',
+            text: 'Scam AI\'s research ("How well are open-sourced AI-generated image detection models out-of-the-box?", arXiv:2602.07814) measured 12 leading open-source detection models on out-of-distribution data — deepfakes they were not trained on. Accuracy fell from claimed rates of 90–99% to 50–65% in out-of-distribution conditions. This gap between claimed and real-world accuracy is the central challenge of deepfake detection evaluation.',
           },
           {
             type: 'callout',
             variant: 'stat',
-            text: 'ScamAI research found leading open-source detection models achieve only 50–65% accuracy on out-of-distribution deepfakes, despite claiming 90–99% in-distribution.',
+            text: 'Scam AI research found leading open-source detection models achieve only 50–65% accuracy on out-of-distribution deepfakes, despite claiming 90–99% in-distribution.',
           },
           {
             type: 'paragraph',
-            text: 'In-the-wild benchmarks — data collected from real social media, fraud cases, and uploaded user content — provide a much more honest picture of production performance than curated lab datasets. ScamAI\'s Real-World Faceswap Dataset (RWFS) and the GPT-Image-2 Twitter Dataset are specifically designed to test detectors on the actual distribution of deepfakes encountered in production.',
+            text: 'In-the-wild benchmarks — data collected from real social media, fraud cases, and uploaded user content — provide a much more honest picture of production performance than curated lab datasets. Scam AI\'s Real-World Faceswap Dataset (RWFS) and the GPT-Image-2 Twitter Dataset are specifically designed to test detectors on the actual distribution of deepfakes encountered in production.',
           },
         ],
       },
@@ -666,7 +666,7 @@ result = response.json()
         blocks: [
           {
             type: 'paragraph',
-            text: 'ScamAI\'s API returns a confidence score between 0 and 1 for every analyzed image. The detection threshold — the score above which you classify an image as a deepfake — is configurable for your use case. There is no universally correct threshold; it depends on the relative cost of each error type.',
+            text: 'Scam AI\'s API returns a confidence score between 0 and 1 for every analyzed image. The detection threshold — the score above which you classify an image as a deepfake — is configurable for your use case. There is no universally correct threshold; it depends on the relative cost of each error type.',
           },
           {
             type: 'bullets',
@@ -679,7 +679,7 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'Use ScamAI\'s free tier to analyze a sample of your real data and calibrate confidence thresholds before deploying at scale. The 200 free detections per month are specifically suited for this threshold calibration phase.',
+            text: 'Use Scam AI\'s free tier to analyze a sample of your real data and calibrate confidence thresholds before deploying at scale. The 200 free detections per month are specifically suited for this threshold calibration phase.',
           },
         ],
       },
@@ -688,7 +688,7 @@ result = response.json()
       {
         question: 'What is a good accuracy rate for deepfake detection?',
         answer:
-          'Context matters enormously. 95% accuracy on in-the-wild deepfakes is very different from 95% on a controlled laboratory dataset. ScamAI\'s 95.3% is measured on in-the-wild benchmarks including real social media deepfakes and fraud cases — a more meaningful figure than lab-condition accuracy. For production use, also evaluate the false positive rate separately from the false negative rate.',
+          'Context matters enormously. 95% accuracy on in-the-wild deepfakes is very different from 95% on a controlled laboratory dataset. Scam AI\'s 95.3% is measured on in-the-wild benchmarks including real social media deepfakes and fraud cases — a more meaningful figure than lab-condition accuracy. For production use, also evaluate the false positive rate separately from the false negative rate.',
       },
       {
         question: 'Why do different benchmarks show different accuracy figures?',
@@ -698,17 +698,17 @@ result = response.json()
       {
         question: 'Does JPEG compression affect deepfake detection accuracy?',
         answer:
-          'Yes. Aggressive JPEG compression removes frequency-domain artifacts that detection models use to identify AI-generated images. ScamAI\'s models are specifically trained to handle compressed images, but accuracy on heavily compressed content is lower than on uncompressed originals. This is an important consideration for platforms that re-compress uploaded images.',
+          'Yes. Aggressive JPEG compression removes frequency-domain artifacts that detection models use to identify AI-generated images. Scam AI\'s models are specifically trained to handle compressed images, but accuracy on heavily compressed content is lower than on uncompressed originals. This is an important consideration for platforms that re-compress uploaded images.',
       },
       {
-        question: 'What is the false positive rate for ScamAI?',
+        question: 'What is the false positive rate for Scam AI?',
         answer:
-          'At ScamAI\'s default threshold, the false positive rate — real images incorrectly flagged as deepfakes — is approximately 3–5%. By raising the confidence threshold, you can reduce false positives at the cost of a higher false negative rate. The API returns confidence scores that let you tune this trade-off for your specific use case.',
+          'At Scam AI\'s default threshold, the false positive rate — real images incorrectly flagged as deepfakes — is approximately 3–5%. By raising the confidence threshold, you can reduce false positives at the cost of a higher false negative rate. The API returns confidence scores that let you tune this trade-off for your specific use case.',
       },
       {
-        question: 'How often does ScamAI update its detection models?',
+        question: 'How often does Scam AI update its detection models?',
         answer:
-          'ScamAI\'s Eva-v1 models are continuously updated to cover new generation tools as they emerge. Significant updates are made when major new platforms launch. This ensures coverage of GPT-Image-2, new Midjourney versions, and other tools that post-date the initial training data.',
+          'Scam AI\'s Eva-v1 models are continuously updated to cover new generation tools as they emerge. Significant updates are made when major new platforms launch. This ensures coverage of GPT-Image-2, new Midjourney versions, and other tools that post-date the initial training data.',
       },
     ],
     ctaHeadline: 'Test detection accuracy on your own data',
@@ -735,7 +735,7 @@ result = response.json()
       'deepfake API developer',
     ],
     intro:
-      'Integrating deepfake detection into your application requires three things: a production-grade detection API, a clear understanding of how to interpret confidence scores, and a thoughtful integration pattern for your specific use case. ScamAI\'s REST API integrates in under 10 minutes and handles images, videos, and audio. This guide walks through the full integration from authentication to production deployment.',
+      'Integrating deepfake detection into your application requires three things: a production-grade detection API, a clear understanding of how to interpret confidence scores, and a thoughtful integration pattern for your specific use case. Scam AI\'s REST API integrates in under 10 minutes and handles images, videos, and audio. This guide walks through the full integration from authentication to production deployment.',
     sections: [
       {
         heading: 'When your application needs deepfake detection',
@@ -757,7 +757,7 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'If one of these patterns matches your application, adding deepfake detection is a meaningful fraud and trust layer. The engineering investment is minimal — the ScamAI API returns a result in under 4 seconds from a single HTTP request.',
+            text: 'If one of these patterns matches your application, adding deepfake detection is a meaningful fraud and trust layer. The engineering investment is minimal — the Scam AI API returns a result in under 4 seconds from a single HTTP request.',
           },
         ],
       },
@@ -766,7 +766,7 @@ result = response.json()
         blocks: [
           {
             type: 'paragraph',
-            text: 'All ScamAI API requests are authenticated with a Bearer token in the Authorization header. Sign up at app.scam.ai to get an API key. The free tier provides 200 detections per month — enough for integration testing and threshold calibration on real data.',
+            text: 'All Scam AI API requests are authenticated with a Bearer token in the Authorization header. Sign up at app.scam.ai to get an API key. The free tier provides 200 detections per month — enough for integration testing and threshold calibration on real data.',
           },
           {
             type: 'code',
@@ -904,7 +904,7 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'Content moderation at scale: Use an asynchronous pattern. Enqueue uploaded images to a processing queue, process with the ScamAI API, and update the moderation status in your database. This pattern scales to millions of daily uploads without blocking user-facing operations.',
+            text: 'Content moderation at scale: Use an asynchronous pattern. Enqueue uploaded images to a processing queue, process with the Scam AI API, and update the moderation status in your database. This pattern scales to millions of daily uploads without blocking user-facing operations.',
           },
           {
             type: 'paragraph',
@@ -917,7 +917,7 @@ result = response.json()
         blocks: [
           {
             type: 'paragraph',
-            text: 'Before going to production, verify your error handling covers 400 (invalid input — check image format and size), 401 (expired API key), and 429 (rate limit exceeded). The ScamAI enterprise plan provides dedicated throughput with no rate limits and an SLA-backed uptime of 99.9%.',
+            text: 'Before going to production, verify your error handling covers 400 (invalid input — check image format and size), 401 (expired API key), and 429 (rate limit exceeded). The Scam AI enterprise plan provides dedicated throughput with no rate limits and an SLA-backed uptime of 99.9%.',
           },
           {
             type: 'paragraph',
@@ -933,12 +933,12 @@ result = response.json()
     ],
     faqs: [
       {
-        question: 'How long does ScamAI API integration take?',
+        question: 'How long does Scam AI API integration take?',
         answer:
           'Most developers are making their first successful API call within 10 minutes of signing up. The API follows standard REST conventions, returns JSON, and is authenticated with a Bearer token. Full documentation including SDK examples for Python and JavaScript is at scam.ai/en/resources/documentation.',
       },
       {
-        question: 'What image formats does the ScamAI API accept?',
+        question: 'What image formats does the Scam AI API accept?',
         answer:
           'The image detection endpoint accepts JPG, PNG, GIF, and WebP, submitted as a publicly accessible URL or base64-encoded payload. The video endpoint accepts MP4, MOV, and AVI. The audio endpoint accepts MP3, WAV, M4A, FLAC, and OGG.',
       },
@@ -948,14 +948,14 @@ result = response.json()
           'eva-v1-fast processes in under 2 seconds and is optimized for high-throughput and real-time use cases. eva-v1-pro processes in under 4 seconds and achieves 95.3% accuracy — the highest accuracy version. For KYC and high-stakes identity verification, eva-v1-pro is recommended. For content moderation at scale where the extra 2 seconds matters, eva-v1-fast is appropriate.',
       },
       {
-        question: 'Does ScamAI store the images I submit for detection?',
+        question: 'Does Scam AI store the images I submit for detection?',
         answer:
-          'No. ScamAI does not retain images or audio files after processing. Detection is performed in memory and results are returned to the caller. This is required by GDPR compliance and SOC 2 Type II certification.',
+          'No. Scam AI does not retain images or audio files after processing. Detection is performed in memory and results are returned to the caller. This is required by GDPR compliance and SOC 2 Type II certification.',
       },
       {
         question: 'Is there a webhook option for async detection?',
         answer:
-          'Yes. For batch processing workloads, ScamAI supports a webhook callback pattern where you submit media with a callback URL and receive the detection result asynchronously when processing completes. Contact the documentation at scam.ai/en/resources/documentation for details.',
+          'Yes. For batch processing workloads, Scam AI supports a webhook callback pattern where you submit media with a callback URL and receive the detection result asynchronously when processing completes. Contact the documentation at scam.ai/en/resources/documentation for details.',
       },
     ],
     ctaHeadline: 'Start integrating deepfake detection today',
@@ -982,7 +982,7 @@ result = response.json()
       'synthetic media statistics',
     ],
     intro:
-      'The scale of synthetic media production and deepfake fraud has grown faster than almost any other threat category in cybersecurity. This page collects the most important deepfake statistics for 2026 — drawn from government reports, peer-reviewed research, and ScamAI\'s own detection data. We update these figures as new research is published.',
+      'The scale of synthetic media production and deepfake fraud has grown faster than almost any other threat category in cybersecurity. This page collects the most important deepfake statistics for 2026 — drawn from government reports, peer-reviewed research, and Scam AI\'s own detection data. We update these figures as new research is published.',
     sections: [
       {
         heading: 'The growth of deepfake creation',
@@ -994,7 +994,7 @@ result = response.json()
           {
             type: 'bullets',
             items: [
-              '3,000% increase in AI-generated media circulating online between 2022 and 2026 (ScamAI Research)',
+              '3,000% increase in AI-generated media circulating online between 2022 and 2026 (Scam AI Research)',
               'Over 500 million AI-generated images are estimated to be created every day across major platforms as of 2026',
               'Voice cloning models can produce a convincing clone from under 30 seconds of source audio — down from hours of source material required in 2020',
               'GPT-Image-2 generated over 1 million user-reported AI images on Twitter within its first week of deployment (arXiv:2604.25370)',
@@ -1038,8 +1038,8 @@ result = response.json()
           {
             type: 'bullets',
             items: [
-              'ScamAI Eva-v1 model: 95.3% accuracy on in-the-wild image deepfakes (ScamAI internal benchmark, 2026)',
-              'ScamAI audio model: 98.5% accuracy on voice clone detection across major synthesis platforms',
+              'Scam AI Eva-v1 model: 95.3% accuracy on in-the-wild image deepfakes (Scam AI internal benchmark, 2026)',
+              'Scam AI audio model: 98.5% accuracy on voice clone detection across major synthesis platforms',
               'Open-source detection models: 50–65% accuracy on out-of-distribution deepfakes from tools not in training data (arXiv:2602.07814)',
               'Human reviewers: accuracy approaching random chance (50%) on high-quality modern deepfakes',
               'Human reviewers with training: performance improves to approximately 60–65% — still significantly below AI-based detection',
@@ -1049,7 +1049,7 @@ result = response.json()
           {
             type: 'callout',
             variant: 'stat',
-            text: 'Human detection of high-quality deepfakes performs near random chance (50%), compared to ScamAI\'s 95.3% AI-based detection. This gap is the primary argument for automated detection systems.',
+            text: 'Human detection of high-quality deepfakes performs near random chance (50%), compared to Scam AI\'s 95.3% AI-based detection. This gap is the primary argument for automated detection systems.',
           },
         ],
       },
@@ -1063,13 +1063,13 @@ result = response.json()
           {
             type: 'bullets',
             items: [
-              'Financial services — 1 in 7 digital onboarding fraud attempts now involves a deepfake element (ScamAI detection data, 2026)',
+              'Financial services — 1 in 7 digital onboarding fraud attempts now involves a deepfake element (Scam AI detection data, 2026)',
               'Dating platforms — over 70% of romance scam profiles involve AI-generated profile photos (FTC 2025)',
               'Insurance — 280% increase in AI-edited claims photos between 2024 and 2025',
               'Call centers — vishing attack volume doubled year-over-year in 2025, with AI-cloned voices cited in the majority of sophisticated attacks',
               'Media and journalism — the number of deepfake political videos circulating before elections doubled in 2024 compared to 2022',
               'HR and hiring — approximately 1 in 14 remote job applicants now uses AI-assisted video tools during interviews (LinkedIn data, 2025)',
-              'Government — 47 documented state-actor influence campaigns using AI-generated media in 2025 (ScamAI Research)',
+              'Government — 47 documented state-actor influence campaigns using AI-generated media in 2025 (Scam AI Research)',
             ],
           },
         ],
@@ -1139,7 +1139,7 @@ result = response.json()
       {
         question: 'What percentage of deepfakes are detected?',
         answer:
-          'Without systematic detection in place, organizations detect very few deepfakes. Human detection rates on modern deepfakes approach random chance. With AI-based detection like ScamAI, organizations typically find that 1–5% of submitted KYC media contains detectable deepfake characteristics — a figure that varies significantly by industry, geography, and the population being screened.',
+          'Without systematic detection in place, organizations detect very few deepfakes. Human detection rates on modern deepfakes approach random chance. With AI-based detection like Scam AI, organizations typically find that 1–5% of submitted KYC media contains detectable deepfake characteristics — a figure that varies significantly by industry, geography, and the population being screened.',
       },
       {
         question: 'Are deepfakes getting more or less detectable over time?',
@@ -1154,7 +1154,7 @@ result = response.json()
     ],
     ctaHeadline: 'See deepfake detection in action',
     ctaSubheadline: 'Start with 200 free image detections. No credit card required.',
-    ctaLabel: 'Try ScamAI Free',
+    ctaLabel: 'Try Scam AI Free',
     ctaHref: 'https://app.scam.ai',
     relatedSlugs: ['what-is-a-deepfake', 'deepfake-detection-accuracy', 'how-to-detect-ai-generated-images'],
   },

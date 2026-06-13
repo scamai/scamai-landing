@@ -27,7 +27,7 @@ export function generatePageMetadata({
   dateModified,
 }: GenerateMetadataParams): Metadata {
   const fullUrl = `${baseUrl}/${locale}${path}`;
-  const fullTitle = path === '' ? title : `${title} | ScamAI`;
+  const fullTitle = path === '' ? title : `${title} | Scam AI`;
 
   // Generate alternates for all locales
   const languages: Record<string, string> = {};
@@ -44,7 +44,7 @@ export function generatePageMetadata({
       'deepfake detection',
       'synthetic media detection',
       'AI fraud prevention',
-      'ScamAI',
+      'Scam AI',
     ],
     authors: [{ name: 'Reality Inc.' }],
     creator: 'Reality Inc.',
@@ -60,7 +60,7 @@ export function generatePageMetadata({
       url: fullUrl,
       title: fullTitle,
       description,
-      siteName: 'ScamAI',
+      siteName: 'Scam AI',
       images: [
         {
           url: ogImage,
@@ -141,7 +141,7 @@ export function generateSpeakableSchema(
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `ScamAI - ${path || 'Home'}`,
+    name: `Scam AI - ${path || 'Home'}`,
     url: `${baseUrl}/${locale}${path}`,
     speakable: {
       '@type': 'SpeakableSpecification',
@@ -227,13 +227,13 @@ export const pageMetadata = {
   resources: {
     title: 'Resources - Documentation & Learning Center',
     description:
-      'Explore our comprehensive documentation, guides, and resources to get the most out of ScamAI platform.',
+      'Explore our comprehensive documentation, guides, and resources to get the most out of Scam AI platform.',
     keywords: ['documentation', 'resources', 'guides', 'tutorials'],
   },
   documentation: {
     title: 'Documentation - API Reference & Integration Guides',
     description:
-      'Complete API documentation, integration guides, and code examples. Get started with ScamAI in under 10 minutes.',
+      'Complete API documentation, integration guides, and code examples. Get started with Scam AI in under 10 minutes.',
     keywords: ['API documentation', 'integration guide', 'API reference'],
   },
   securityCompliance: {
@@ -251,12 +251,12 @@ export const pageMetadata = {
   about: {
     title: 'About Us - Building Trust in the AI Era',
     description:
-      'Learn about Reality Inc., the team behind ScamAI. Our mission is to build trust and safety in the age of AI-generated content.',
+      'Learn about Reality Inc., the team behind Scam AI. Our mission is to build trust and safety in the age of AI-generated content.',
     keywords: ['about', 'Reality Inc', 'company', 'team', 'mission'],
     dateModified: '2026-02-02',
   },
   company: {
-    title: 'Company - Meet the ScamAI Team',
+    title: 'Company - Meet the Scam AI Team',
     description:
       'Built by a team obsessed with trust, safety, and verification. Learn about our vision and values.',
     keywords: ['company', 'team', 'vision', 'values'],
@@ -268,39 +268,39 @@ export const pageMetadata = {
     keywords: ['contact', 'support', 'sales', 'partnership'],
   },
   news: {
-    title: 'News & Updates - ScamAI',
+    title: 'News & Updates - Scam AI',
     description:
-      'Stay updated with the latest news, product updates, and insights from ScamAI.',
+      'Stay updated with the latest news, product updates, and insights from Scam AI.',
     keywords: ['news', 'updates', 'blog', 'announcements', 'deepfake news'],
   },
   demo: {
-    title: 'Book a Demo - See ScamAI in Action',
+    title: 'Book a Demo - See Scam AI in Action',
     description:
-      'Schedule a personalized demo to see how ScamAI can protect your business from synthetic media and deepfakes.',
+      'Schedule a personalized demo to see how Scam AI can protect your business from synthetic media and deepfakes.',
     keywords: ['demo', 'trial', 'consultation', 'book demo'],
   },
   msa: {
     title: 'Master Service Agreement - Legal Terms',
     description:
-      'Review our Master Service Agreement outlining the terms and conditions for using ScamAI services.',
+      'Review our Master Service Agreement outlining the terms and conditions for using Scam AI services.',
     keywords: ['MSA', 'service agreement', 'legal terms'],
   },
   privacy: {
     title: 'Privacy Policy - Your Data Protection',
     description:
-      'Learn how ScamAI protects your privacy and handles your data. GDPR compliant privacy practices.',
+      'Learn how Scam AI protects your privacy and handles your data. GDPR compliant privacy practices.',
     keywords: ['privacy policy', 'data protection', 'GDPR', 'privacy'],
   },
   terms: {
     title: 'Terms of Service - Usage Terms',
     description:
-      'Read our terms of service outlining the rules and guidelines for using ScamAI platform.',
+      'Read our terms of service outlining the rules and guidelines for using Scam AI platform.',
     keywords: ['terms of service', 'TOS', 'usage terms', 'legal'],
   },
   cookies: {
     title: 'Cookie Policy - How We Use Cookies',
     description:
-      'Learn about how ScamAI uses cookies to improve your experience and our compliance with cookie regulations.',
+      'Learn about how Scam AI uses cookies to improve your experience and our compliance with cookie regulations.',
     keywords: ['cookies', 'cookie policy', 'tracking', 'privacy'],
   },
   research: {
@@ -323,7 +323,7 @@ export const pageMetadata = {
   newsletter: {
     title: 'Deepfake Weekly Newsletter',
     description:
-      'Stay informed with curated weekly insights on deepfake technology, security breaches, and policy updates from ScamAI.',
+      'Stay informed with curated weekly insights on deepfake technology, security breaches, and policy updates from Scam AI.',
     keywords: ['newsletter', 'deepfake news', 'AI security', 'weekly digest', 'threat intelligence'],
   },
 };

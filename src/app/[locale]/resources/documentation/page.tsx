@@ -11,7 +11,7 @@ export default function DocumentationPage() {
             Developer Documentation
           </h1>
           <p className="mb-8 text-lg text-gray-300">
-            Everything you need to integrate ScamAI's deepfake detection API into your application in minutes.
+            Everything you need to integrate Scam AI's deepfake detection API into your application in minutes.
           </p>
           <a
             href="https://app.scam.ai"

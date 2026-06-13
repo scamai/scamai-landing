@@ -20,7 +20,7 @@ const contactFaqSchema = {
       name: 'How quickly can I get started?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'You can start using ScamAI in minutes. Sign up for a free account at app.scam.ai, get your API key, and make your first API call. We provide SDKs and documentation to help you integrate quickly.',
+        text: 'You can start using Scam AI in minutes. Sign up for a free account at app.scam.ai, get your API key, and make your first API call. We provide SDKs and documentation to help you integrate quickly.',
       },
     },
     {
@@ -36,7 +36,7 @@ const contactFaqSchema = {
       name: 'What regions do you operate in?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ScamAI operates globally with data centers in the US, EU, and APAC. We\'re GDPR compliant and can help you meet regional data residency requirements.',
+        text: 'Scam AI operates globally with data centers in the US, EU, and APAC. We\'re GDPR compliant and can help you meet regional data residency requirements.',
       },
     },
     {
@@ -62,7 +62,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'Reality Inc.',
-  alternateName: 'ScamAI',
+  alternateName: 'Scam AI',
   url: 'https://scam.ai',
   address: {
     '@type': 'PostalAddress',

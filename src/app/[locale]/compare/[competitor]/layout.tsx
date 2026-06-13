@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   return generatePageMetadata({
     locale,
     path: `/compare/${slug}`,
-    title: seo?.title ?? `${competitor.tagline} | ScamAI`,
+    title: seo?.title ?? `${competitor.tagline} | Scam AI`,
     description: seo?.metaDescription ?? competitor.metaDescription,
     keywords: competitor.keywords,
     dateModified: '2026-05-23',
@@ -46,7 +46,7 @@ export default async function CompareLayout({
 
   const breadcrumbSchema = generateBreadcrumbSchema(locale, [
     { name: 'Compare', path: '/compare' },
-    { name: `ScamAI vs ${competitor.name}` },
+    { name: `Scam AI vs ${competitor.name}` },
   ]);
 
   const faqSchema = {

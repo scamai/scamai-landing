@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ScamInsurancePage from "@/components/scam-insurance/ScamInsurancePage";
 
 export const metadata: Metadata = {
-  title: "ScamAI — Scam Insurance | Never Worry About Scams Again",
+  title: "Scam AI — Scam Insurance | Never Worry About Scams Again",
   description:
     "scam.ai blocks scam calls, texts, and emails before they ever reach you — and backs it up with insurance-backed reimbursement if anything gets through.",
   keywords: [

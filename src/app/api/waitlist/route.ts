@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
   if (resend) {
     // Confirmation email to the subscriber
     resend.emails.send({
-      from: "ScamAI <hello@scam.ai>",
+      from: "Scam AI <hello@scam.ai>",
       to: [normalizedEmail],
       bcc: NOTIFY_EMAILS,
       subject: "You're on the scam.ai waitlist!",
@@ -104,12 +104,12 @@ export async function POST(req: NextRequest) {
 
           <div style="padding: 20px 32px; background: #f7f8fa; border-top: 1px solid #e5e7eb;">
             <p style="font-size: 12px; color: #999; margin: 0;">
-              ScamAI &mdash; <a href="https://scam.ai" style="color: #245FFF; text-decoration: none;">scam.ai</a>
+              Scam AI &mdash; <a href="https://scam.ai" style="color: #245FFF; text-decoration: none;">scam.ai</a>
             </p>
           </div>
         </div>
       `,
-      text: `Welcome to the scam.ai waitlist!\n\nYou're in — we'll let you know as soon as scam.ai is ready.\n\nAs an early adopter, you'll get your first 3 months free when we launch.\n\nscam.ai blocks scam calls, texts, and emails before they reach you — and backs it up with insurance-backed reimbursement if anything gets through.\n\nQuestions? Just reply to this email.\n\nScamAI — https://scam.ai`,
+      text: `Welcome to the scam.ai waitlist!\n\nYou're in — we'll let you know as soon as scam.ai is ready.\n\nAs an early adopter, you'll get your first 3 months free when we launch.\n\nscam.ai blocks scam calls, texts, and emails before they reach you — and backs it up with insurance-backed reimbursement if anything gets through.\n\nQuestions? Just reply to this email.\n\nScam AI — https://scam.ai`,
     }).catch((err) => console.error("[waitlist] Confirmation email failed:", err));
 
     // Internal notification to the team.
@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
     // crafted UTM/referrer/email can't inject markup or script into the email
     // a team member opens.
     resend.emails.send({
-      from: "ScamAI <hello@scam.ai>",
+      from: "Scam AI <hello@scam.ai>",
       to: NOTIFY_EMAILS,
       subject: `[Waitlist] New signup: ${htmlEscape(normalizedEmail)}`,
       html: `

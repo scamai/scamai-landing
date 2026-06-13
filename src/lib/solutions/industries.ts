@@ -22,7 +22,7 @@ export const industries: Industry[] = [
     eyebrow: 'FINTECH',
     headline: 'Deepfake detection for fintech and banking',
     subheadline:
-      'Protect your onboarding and transaction flows from synthetic identity attacks. ScamAI integrates into KYC pipelines in under 10 minutes, flagging deepfake selfies, AI-generated documents, and voice clone fraud before they reach your agents.',
+      'Protect your onboarding and transaction flows from synthetic identity attacks. Scam AI integrates into KYC pipelines in under 10 minutes, flagging deepfake selfies, AI-generated documents, and voice clone fraud before they reach your agents.',
     stat: { value: '340%', label: 'increase in deepfake KYC fraud attempts in 2025 (Deloitte)' },
     capabilities: [
       {
@@ -72,17 +72,17 @@ export const industries: Industry[] = [
       {
         question: 'How does deepfake detection integrate with existing KYC pipelines?',
         answer:
-          'ScamAI provides a REST API that integrates in under 10 minutes. Submit an image URL or base64 payload and receive a JSON response with is_deepfake boolean, confidence score, and manipulation type. It sits alongside your existing liveness checks and ID verification tools.',
+          'Scam AI provides a REST API that integrates in under 10 minutes. Submit an image URL or base64 payload and receive a JSON response with is_deepfake boolean, confidence score, and manipulation type. It sits alongside your existing liveness checks and ID verification tools.',
       },
       {
-        question: 'What types of identity fraud can ScamAI detect in fintech?',
+        question: 'What types of identity fraud can Scam AI detect in fintech?',
         answer:
-          'ScamAI detects face swaps in selfie verification, GAN-generated identity photos, AI-edited bank statements and documents, and voice-cloned callers attempting to impersonate account holders.',
+          'Scam AI detects face swaps in selfie verification, GAN-generated identity photos, AI-edited bank statements and documents, and voice-cloned callers attempting to impersonate account holders.',
       },
       {
-        question: 'Is ScamAI SOC 2 and GDPR compliant for financial services use?',
+        question: 'Is Scam AI SOC 2 and GDPR compliant for financial services use?',
         answer:
-          'Yes. ScamAI is SOC 2 Type II certified and GDPR compliant. Images are not stored after processing, and full audit logging is available for compliance reporting.',
+          'Yes. Scam AI is SOC 2 Type II certified and GDPR compliant. Images are not stored after processing, and full audit logging is available for compliance reporting.',
       },
       {
         question: 'How fast is deepfake detection for real-time KYC flows?',
@@ -90,9 +90,9 @@ export const industries: Industry[] = [
           'Eva-v1-Fast processes each image in under 2 seconds, suitable for real-time onboarding flows without adding perceptible friction. Eva-v1-Pro processes in under 4 seconds for maximum accuracy.',
       },
       {
-        question: 'Can ScamAI scale for high-volume financial services workloads?',
+        question: 'Can Scam AI scale for high-volume financial services workloads?',
         answer:
-          'Yes. ScamAI offers enterprise plans with SLA-backed uptime of 99.9%, dedicated throughput, and volume pricing. Contact sales@scam.ai for enterprise onboarding.',
+          'Yes. Scam AI offers enterprise plans with SLA-backed uptime of 99.9%, dedicated throughput, and volume pricing. Contact sales@scam.ai for enterprise onboarding.',
       },
     ],
     relatedProduct: 'both',
@@ -115,7 +115,7 @@ export const industries: Industry[] = [
     eyebrow: 'DATING',
     headline: 'Deepfake and fake profile detection for dating apps',
     subheadline:
-      'Romance scammers use AI-generated profile photos and cloned voices to deceive users at scale. ScamAI gives dating platforms the API to automatically verify profile images and audio for synthetic manipulation before matches are made.',
+      'Romance scammers use AI-generated profile photos and cloned voices to deceive users at scale. Scam AI gives dating platforms the API to automatically verify profile images and audio for synthetic manipulation before matches are made.',
     stat: { value: '70%+', label: 'of online romance scam profiles involve AI-generated or manipulated photos' },
     capabilities: [
       {
@@ -163,27 +163,27 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'Can ScamAI detect AI-generated profile photos at upload?',
+        question: 'Can Scam AI detect AI-generated profile photos at upload?',
         answer:
-          'Yes. ScamAI integrates into your upload pipeline via REST API. Each photo is analyzed in under 2 seconds, returning a confidence score and deepfake classification. Photos flagged above your chosen threshold can be held for review or rejected automatically.',
+          'Yes. Scam AI integrates into your upload pipeline via REST API. Each photo is analyzed in under 2 seconds, returning a confidence score and deepfake classification. Photos flagged above your chosen threshold can be held for review or rejected automatically.',
       },
       {
-        question: 'How does ScamAI detect fake profiles built with AI-generated faces?',
+        question: 'How does Scam AI detect fake profiles built with AI-generated faces?',
         answer:
-          'ScamAI\'s Eva-v1 model detects the subtle artifacts left by GAN generators and diffusion models like Stable Diffusion, DALL-E, and Midjourney. Fully synthetic faces that have never existed are identified through frequency-domain and semantic analysis.',
+          'Scam AI\'s Eva-v1 model detects the subtle artifacts left by GAN generators and diffusion models like Stable Diffusion, DALL-E, and Midjourney. Fully synthetic faces that have never existed are identified through frequency-domain and semantic analysis.',
       },
       {
-        question: 'Can ScamAI verify voice messages for voice cloning?',
+        question: 'Can Scam AI verify voice messages for voice cloning?',
         answer:
           'Yes. The Audio Detection API identifies AI-generated or cloned speech from platforms including ElevenLabs, PlayHT, and Resemble AI. It works with MP3, WAV, and OGG files with 98.5% accuracy.',
       },
       {
         question: 'What is the pricing for dating app deepfake detection?',
         answer:
-          'ScamAI is priced at $0.05 per image analyzed, with a free tier of 200 images per month. Volume discounts are available for platforms processing millions of uploads. Contact sales@scam.ai for dating platform pricing.',
+          'Scam AI is priced at $0.05 per image analyzed, with a free tier of 200 images per month. Volume discounts are available for platforms processing millions of uploads. Contact sales@scam.ai for dating platform pricing.',
       },
       {
-        question: 'How quickly can a dating platform integrate ScamAI?',
+        question: 'How quickly can a dating platform integrate Scam AI?',
         answer:
           'Integration takes under 10 minutes with the REST API. SDKs are available for Python and JavaScript. Full documentation is at scam.ai/en/resources/documentation.',
       },
@@ -200,7 +200,7 @@ export const industries: Industry[] = [
       'synthetic face detection dating',
     ],
     metaDescription:
-      'Detect AI-generated fake profiles and voice catfishing on dating apps. ScamAI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.',
+      'Detect AI-generated fake profiles and voice catfishing on dating apps. Scam AI flags synthetic faces at upload with 95.3% accuracy. 200 free/month.',
   },
   {
     slug: 'call-centers',
@@ -208,7 +208,7 @@ export const industries: Industry[] = [
     eyebrow: 'CALL CENTERS',
     headline: 'Voice clone detection for call centers',
     subheadline:
-      'Voice phishing attacks using AI-cloned voices are targeting call centers to steal account credentials, authorize fraudulent transactions, and impersonate executives. ScamAI\'s real-time audio deepfake detection identifies synthetic voices in under 3 seconds — before the fraud succeeds.',
+      'Voice phishing attacks using AI-cloned voices are targeting call centers to steal account credentials, authorize fraudulent transactions, and impersonate executives. Scam AI\'s real-time audio deepfake detection identifies synthetic voices in under 3 seconds — before the fraud succeeds.',
     stat: { value: '$12.5B', label: 'lost globally to voice phishing (vishing) in 2024 — FBI IC3 Report' },
     capabilities: [
       {
@@ -256,29 +256,29 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'Can ScamAI detect voice clones in real-time phone calls?',
+        question: 'Can Scam AI detect voice clones in real-time phone calls?',
         answer:
-          'Yes. ScamAI provides a streaming endpoint that analyzes audio segments in under 3 seconds. It integrates with call center platforms via REST API webhook, firing a fraud alert when synthetic voice patterns are detected mid-call.',
+          'Yes. Scam AI provides a streaming endpoint that analyzes audio segments in under 3 seconds. It integrates with call center platforms via REST API webhook, firing a fraud alert when synthetic voice patterns are detected mid-call.',
       },
       {
-        question: 'What voice synthesis platforms does ScamAI detect?',
+        question: 'What voice synthesis platforms does Scam AI detect?',
         answer:
-          'ScamAI detects output from ElevenLabs, PlayHT, Resemble AI, Azure TTS, Google TTS, Amazon Polly, and other major voice synthesis platforms, including emerging open-source models.',
+          'Scam AI detects output from ElevenLabs, PlayHT, Resemble AI, Azure TTS, Google TTS, Amazon Polly, and other major voice synthesis platforms, including emerging open-source models.',
       },
       {
-        question: 'How accurate is ScamAI audio deepfake detection?',
+        question: 'How accurate is Scam AI audio deepfake detection?',
         answer:
-          'ScamAI achieves 98.5% accuracy for voice clone detection across multiple languages and accents. It detects spectral and temporal artifacts in synthetic speech that are imperceptible to human agents.',
+          'Scam AI achieves 98.5% accuracy for voice clone detection across multiple languages and accents. It detects spectral and temporal artifacts in synthetic speech that are imperceptible to human agents.',
       },
       {
-        question: 'How does ScamAI integrate with existing call center infrastructure?',
+        question: 'How does Scam AI integrate with existing call center infrastructure?',
         answer:
-          'ScamAI provides a REST API that receives audio payloads or streaming audio chunks and returns a detection result. It works alongside existing IVR, CRM, and call management platforms with under 10 minutes integration time.',
+          'Scam AI provides a REST API that receives audio payloads or streaming audio chunks and returns a detection result. It works alongside existing IVR, CRM, and call management platforms with under 10 minutes integration time.',
       },
       {
-        question: 'Is ScamAI compliant for use in regulated call centers?',
+        question: 'Is Scam AI compliant for use in regulated call centers?',
         answer:
-          'Yes. ScamAI is SOC 2 Type II certified and GDPR compliant. Audio is not stored after processing, and full audit logging is available for regulatory reporting.',
+          'Yes. Scam AI is SOC 2 Type II certified and GDPR compliant. Audio is not stored after processing, and full audit logging is available for regulatory reporting.',
       },
     ],
     relatedProduct: 'audio',
@@ -301,7 +301,7 @@ export const industries: Industry[] = [
     eyebrow: 'KYC',
     headline: 'Stop deepfake fraud in KYC identity verification',
     subheadline:
-      'Deepfake attacks are bypassing liveness checks and KYC onboarding flows at scale. ScamAI\'s Eva-v1 model detects synthetic faces, AI-edited documents, and presentation attack spoofs in under 4 seconds — protecting your compliance workflow without adding friction.',
+      'Deepfake attacks are bypassing liveness checks and KYC onboarding flows at scale. Scam AI\'s Eva-v1 model detects synthetic faces, AI-edited documents, and presentation attack spoofs in under 4 seconds — protecting your compliance workflow without adding friction.',
     stat: { value: '95.3%', label: 'detection accuracy on deepfake KYC bypass attempts with Eva-v1-Pro' },
     capabilities: [
       {
@@ -349,19 +349,19 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'How does ScamAI integrate into KYC onboarding pipelines?',
+        question: 'How does Scam AI integrate into KYC onboarding pipelines?',
         answer:
-          'ScamAI provides a REST API — submit a selfie or ID document image URL and receive a detection result in under 4 seconds. It works alongside existing liveness checks from providers like iProov, Jumio, or Onfido without replacing them.',
+          'Scam AI provides a REST API — submit a selfie or ID document image URL and receive a detection result in under 4 seconds. It works alongside existing liveness checks from providers like iProov, Jumio, or Onfido without replacing them.',
       },
       {
-        question: 'What deepfake attacks can ScamAI catch that traditional liveness checks miss?',
+        question: 'What deepfake attacks can Scam AI catch that traditional liveness checks miss?',
         answer:
-          'Traditional liveness checks are optimized for 2D print attacks and basic replay. ScamAI additionally catches deepfake video injections (digital injections directly into the API), GAN-generated synthetic face images, and AI-edited identity documents — attack vectors liveness alone does not cover.',
+          'Traditional liveness checks are optimized for 2D print attacks and basic replay. Scam AI additionally catches deepfake video injections (digital injections directly into the API), GAN-generated synthetic face images, and AI-edited identity documents — attack vectors liveness alone does not cover.',
       },
       {
-        question: 'Is ScamAI compliant for regulated KYC workflows?',
+        question: 'Is Scam AI compliant for regulated KYC workflows?',
         answer:
-          'Yes. ScamAI is SOC 2 Type II certified and GDPR compliant. Images are not stored after processing. A full audit log of all detection events with timestamps and confidence scores is available via API for regulatory documentation.',
+          'Yes. Scam AI is SOC 2 Type II certified and GDPR compliant. Images are not stored after processing. A full audit log of all detection events with timestamps and confidence scores is available via API for regulatory documentation.',
       },
       {
         question: 'How fast is deepfake detection for live KYC flows?',
@@ -369,9 +369,9 @@ export const industries: Industry[] = [
           'Eva-v1-Fast processes in under 2 seconds, adding no perceptible friction to digital onboarding. Eva-v1-Pro provides maximum accuracy in under 4 seconds for higher-risk verification scenarios.',
       },
       {
-        question: 'Can ScamAI detect AI-edited identity documents?',
+        question: 'Can Scam AI detect AI-edited identity documents?',
         answer:
-          'Yes. ScamAI\'s document detection capability (based on the published AIForge-Doc research, arXiv:2602.20569) identifies AI-generated tampering in financial forms, passports, and statements, including edits made with GPT-Image-2 and other generative tools.',
+          'Yes. Scam AI\'s document detection capability (based on the published AIForge-Doc research, arXiv:2602.20569) identifies AI-generated tampering in financial forms, passports, and statements, including edits made with GPT-Image-2 and other generative tools.',
       },
     ],
     relatedProduct: 'ai',
@@ -386,7 +386,7 @@ export const industries: Industry[] = [
       'AI identity fraud detection',
     ],
     metaDescription:
-      'Detect deepfake selfies and AI-edited ID documents in KYC onboarding. ScamAI\'s Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.',
+      'Detect deepfake selfies and AI-edited ID documents in KYC onboarding. Scam AI\'s Eva-v1 model achieves 95.3% accuracy in under 4 seconds. SOC 2 Type II certified.',
   },
   {
     slug: 'media',
@@ -394,8 +394,8 @@ export const industries: Industry[] = [
     eyebrow: 'MEDIA',
     headline: 'AI-generated content detection for media and newsrooms',
     subheadline:
-      'AI-generated images, synthetic audio statements, and deepfake video are entering editorial pipelines at unprecedented speed. ScamAI gives newsrooms and media organizations the API to verify the authenticity of visual and audio content before it reaches audiences.',
-    stat: { value: '3,000%', label: 'increase in AI-generated media circulating online since 2022 (ScamAI Research)' },
+      'AI-generated images, synthetic audio statements, and deepfake video are entering editorial pipelines at unprecedented speed. Scam AI gives newsrooms and media organizations the API to verify the authenticity of visual and audio content before it reaches audiences.',
+    stat: { value: '3,000%', label: 'increase in AI-generated media circulating online since 2022 (Scam AI Research)' },
     capabilities: [
       {
         title: 'Image Authenticity Verification',
@@ -442,29 +442,29 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'Can ScamAI detect AI-generated images from Midjourney and DALL-E?',
+        question: 'Can Scam AI detect AI-generated images from Midjourney and DALL-E?',
         answer:
-          'Yes. ScamAI\'s Eva-v1 model is trained to detect outputs from Stable Diffusion, DALL-E, Midjourney, Flux, and other major generative image models, as well as GAN-generated imagery.',
+          'Yes. Scam AI\'s Eva-v1 model is trained to detect outputs from Stable Diffusion, DALL-E, Midjourney, Flux, and other major generative image models, as well as GAN-generated imagery.',
       },
       {
-        question: 'How does ScamAI detect deepfake videos of public figures?',
+        question: 'How does Scam AI detect deepfake videos of public figures?',
         answer:
-          'ScamAI analyzes video frame by frame for temporal inconsistencies, synthetic face patterns, and generation artifacts. It identifies face swaps and AI-generated statements attributed to real individuals.',
+          'Scam AI analyzes video frame by frame for temporal inconsistencies, synthetic face patterns, and generation artifacts. It identifies face swaps and AI-generated statements attributed to real individuals.',
       },
       {
-        question: 'How can newsrooms integrate ScamAI into editorial workflows?',
+        question: 'How can newsrooms integrate Scam AI into editorial workflows?',
         answer:
-          'ScamAI provides a REST API that newsrooms can integrate into their CMS, DAM, or fact-checking tools. Submit media URLs, receive detection results in under 4 seconds. Full documentation is at scam.ai/en/resources/documentation.',
+          'Scam AI provides a REST API that newsrooms can integrate into their CMS, DAM, or fact-checking tools. Submit media URLs, receive detection results in under 4 seconds. Full documentation is at scam.ai/en/resources/documentation.',
       },
       {
-        question: 'Can ScamAI process large volumes of UGC at newsroom scale?',
+        question: 'Can Scam AI process large volumes of UGC at newsroom scale?',
         answer:
-          'Yes. ScamAI offers enterprise plans with dedicated throughput and batch API endpoints for processing large volumes of submitted images and videos. Contact sales@scam.ai for newsroom-scale pricing.',
+          'Yes. Scam AI offers enterprise plans with dedicated throughput and batch API endpoints for processing large volumes of submitted images and videos. Contact sales@scam.ai for newsroom-scale pricing.',
       },
       {
-        question: 'Is there research backing ScamAI\'s detection capabilities?',
+        question: 'Is there research backing Scam AI\'s detection capabilities?',
         answer:
-          'Yes. ScamAI\'s detection models are based on peer-reviewed research published at IEEE workshops and on arXiv, including "Do deepfake detectors work in reality?" (2025) and "GPT-Image-2 in the Wild" (arXiv:2604.25370).',
+          'Yes. Scam AI\'s detection models are based on peer-reviewed research published at IEEE workshops and on arXiv, including "Do deepfake detectors work in reality?" (2025) and "GPT-Image-2 in the Wild" (arXiv:2604.25370).',
       },
     ],
     relatedProduct: 'both',
@@ -487,7 +487,7 @@ export const industries: Industry[] = [
     eyebrow: 'INSURANCE',
     headline: 'Detect AI-generated fraud in insurance claims',
     subheadline:
-      'Fraudsters are using AI image editors and video generators to fabricate accident scenes, damage photos, and injury evidence. ScamAI\'s detection API screens claims media for synthetic manipulation, protecting insurers from fraudulent payouts.',
+      'Fraudsters are using AI image editors and video generators to fabricate accident scenes, damage photos, and injury evidence. Scam AI\'s detection API screens claims media for synthetic manipulation, protecting insurers from fraudulent payouts.',
     stat: { value: '280%', label: 'increase in AI-edited photo fraud in insurance claims in 2025' },
     capabilities: [
       {
@@ -508,7 +508,7 @@ export const industries: Industry[] = [
       {
         title: 'Fraud Pattern Matching',
         description:
-          'Cross-reference submitted media against known fraud patterns and synthetic media signatures from the ScamAI Scam Database.',
+          'Cross-reference submitted media against known fraud patterns and synthetic media signatures from the Scam AI Scam Database.',
       },
     ],
     useCases: [
@@ -535,29 +535,29 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'Can ScamAI detect AI-edited photos submitted in insurance claims?',
+        question: 'Can Scam AI detect AI-edited photos submitted in insurance claims?',
         answer:
-          'Yes. ScamAI detects subtle AI editing artifacts in photos submitted as claims evidence, including images edited with generative tools to add or remove damage, alter conditions, or fabricate injuries.',
+          'Yes. Scam AI detects subtle AI editing artifacts in photos submitted as claims evidence, including images edited with generative tools to add or remove damage, alter conditions, or fabricate injuries.',
       },
       {
-        question: 'How does ScamAI integrate with claims management systems?',
+        question: 'How does Scam AI integrate with claims management systems?',
         answer:
-          'ScamAI provides a REST API — submit a media URL or file payload and receive a detection result in under 4 seconds. It integrates with Guidewire, Duck Creek, and other CMS platforms via webhook or direct API call.',
+          'Scam AI provides a REST API — submit a media URL or file payload and receive a detection result in under 4 seconds. It integrates with Guidewire, Duck Creek, and other CMS platforms via webhook or direct API call.',
       },
       {
         question: 'What is the ROI of adding deepfake detection to claims processing?',
         answer:
-          'A single fraudulent claim caught by ScamAI can represent tens of thousands of dollars in avoided payout. At $0.05 per image analyzed, the cost per 1,000 claims screened is $50 — a fraction of average fraud losses.',
+          'A single fraudulent claim caught by Scam AI can represent tens of thousands of dollars in avoided payout. At $0.05 per image analyzed, the cost per 1,000 claims screened is $50 — a fraction of average fraud losses.',
       },
       {
-        question: 'Is ScamAI compliant for insurance industry use?',
+        question: 'Is Scam AI compliant for insurance industry use?',
         answer:
-          'Yes. ScamAI is SOC 2 Type II certified and GDPR compliant. All analysis results are logged with timestamps and confidence scores for audit and litigation purposes.',
+          'Yes. Scam AI is SOC 2 Type II certified and GDPR compliant. All analysis results are logged with timestamps and confidence scores for audit and litigation purposes.',
       },
       {
-        question: 'Can ScamAI screen large volumes of claims at high speed?',
+        question: 'Can Scam AI screen large volumes of claims at high speed?',
         answer:
-          'Yes. ScamAI\'s enterprise plan provides batch API endpoints and dedicated throughput for processing thousands of claim images daily. Contact sales@scam.ai for insurance-scale pricing.',
+          'Yes. Scam AI\'s enterprise plan provides batch API endpoints and dedicated throughput for processing thousands of claim images daily. Contact sales@scam.ai for insurance-scale pricing.',
       },
     ],
     relatedProduct: 'both',
@@ -572,7 +572,7 @@ export const industries: Industry[] = [
       'AI-edited photo insurance',
     ],
     metaDescription:
-      'Detect AI-edited photos and forged documents in insurance claims. ScamAI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.',
+      'Detect AI-edited photos and forged documents in insurance claims. Scam AI screens claim evidence for synthetic manipulation. $0.05/image, SOC 2 certified.',
   },
   {
     slug: 'hr',
@@ -580,7 +580,7 @@ export const industries: Industry[] = [
     eyebrow: 'HR',
     headline: 'Detect deepfakes in remote interviews and video hiring',
     subheadline:
-      'Job applicants are using real-time deepfake tools, AI voice changers, and synthetic avatars to impersonate other people or hide their identity during remote interviews. ScamAI gives HR teams and hiring platforms the ability to verify candidate video and audio authenticity.',
+      'Job applicants are using real-time deepfake tools, AI voice changers, and synthetic avatars to impersonate other people or hide their identity during remote interviews. Scam AI gives HR teams and hiring platforms the ability to verify candidate video and audio authenticity.',
     stat: { value: '1 in 14', label: 'remote job applicants now uses AI-assisted video tools during interviews' },
     capabilities: [
       {
@@ -628,24 +628,24 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'Can ScamAI detect deepfake tools used in real-time video interviews?',
+        question: 'Can Scam AI detect deepfake tools used in real-time video interviews?',
         answer:
-          'Yes. ScamAI analyzes video frames for synthetic manipulation patterns produced by real-time deepfake tools. It can process live video feed samples or recorded segments submitted via API.',
+          'Yes. Scam AI analyzes video frames for synthetic manipulation patterns produced by real-time deepfake tools. It can process live video feed samples or recorded segments submitted via API.',
       },
       {
         question: 'What deepfake tools are candidates using in remote interviews?',
         answer:
-          'Common tools include HeyGen, DeepFaceLive, and virtual camera software overlaying synthetic faces. ScamAI detects the generation artifacts these tools produce regardless of the specific software used.',
+          'Common tools include HeyGen, DeepFaceLive, and virtual camera software overlaying synthetic faces. Scam AI detects the generation artifacts these tools produce regardless of the specific software used.',
       },
       {
-        question: 'Can ScamAI verify that a candidate\'s voice matches their submitted identity?',
+        question: 'Can Scam AI verify that a candidate\'s voice matches their submitted identity?',
         answer:
-          'ScamAI\'s audio detection identifies whether a voice is AI-generated or cloned. For identity cross-verification, it flags suspicious audio patterns that suggest the candidate is not who they claim to be.',
+          'Scam AI\'s audio detection identifies whether a voice is AI-generated or cloned. For identity cross-verification, it flags suspicious audio patterns that suggest the candidate is not who they claim to be.',
       },
       {
-        question: 'How do hiring platforms integrate ScamAI?',
+        question: 'How do hiring platforms integrate Scam AI?',
         answer:
-          'ScamAI provides a REST API compatible with any video interview platform, ATS, or HRMS. Submit video or audio file URLs and receive detection results in under 4 seconds. Full API documentation is at scam.ai/en/resources/documentation.',
+          'Scam AI provides a REST API compatible with any video interview platform, ATS, or HRMS. Submit video or audio file URLs and receive detection results in under 4 seconds. Full API documentation is at scam.ai/en/resources/documentation.',
       },
       {
         question: 'What\'s the cost of adding deepfake detection to hiring workflows?',
@@ -665,7 +665,7 @@ export const industries: Industry[] = [
       'AI voice interview fraud',
     ],
     metaDescription:
-      'Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. ScamAI verifies video and audio authenticity for HR teams and hiring platforms.',
+      'Detect deepfakes, AI voice tools, and synthetic avatars in remote job interviews. Scam AI verifies video and audio authenticity for HR teams and hiring platforms.',
   },
   {
     slug: 'government',
@@ -673,7 +673,7 @@ export const industries: Industry[] = [
     eyebrow: 'GOVERNMENT',
     headline: 'Synthetic media detection for government and public sector',
     subheadline:
-      'State actors and disinformation campaigns are using AI-generated images, deepfake videos of officials, and synthetic audio to undermine public trust and influence policy. ScamAI provides government agencies and public sector organizations with enterprise-grade synthetic media detection.',
+      'State actors and disinformation campaigns are using AI-generated images, deepfake videos of officials, and synthetic audio to undermine public trust and influence policy. Scam AI provides government agencies and public sector organizations with enterprise-grade synthetic media detection.',
     stat: { value: '47', label: 'documented state-actor influence campaigns using AI-generated media in 2025' },
     capabilities: [
       {
@@ -721,29 +721,29 @@ export const industries: Industry[] = [
     ],
     faqs: [
       {
-        question: 'Can ScamAI detect deepfake videos of political figures and officials?',
+        question: 'Can Scam AI detect deepfake videos of political figures and officials?',
         answer:
-          'Yes. ScamAI\'s Eva-v1 model detects face swaps, synthetic faces, and deepfake video manipulation at 95.3% accuracy, including AI-generated videos of public figures regardless of which generation tool was used.',
+          'Yes. Scam AI\'s Eva-v1 model detects face swaps, synthetic faces, and deepfake video manipulation at 95.3% accuracy, including AI-generated videos of public figures regardless of which generation tool was used.',
       },
       {
-        question: 'How does ScamAI handle government-scale media volumes?',
+        question: 'How does Scam AI handle government-scale media volumes?',
         answer:
-          'ScamAI offers enterprise API plans with batch processing endpoints, dedicated throughput, and SLA-backed uptime of 99.9%. Contact sales@scam.ai for government procurement and security review.',
+          'Scam AI offers enterprise API plans with batch processing endpoints, dedicated throughput, and SLA-backed uptime of 99.9%. Contact sales@scam.ai for government procurement and security review.',
       },
       {
-        question: 'What compliance certifications does ScamAI hold?',
+        question: 'What compliance certifications does Scam AI hold?',
         answer:
-          'ScamAI is SOC 2 Type II certified and GDPR compliant. Government procurement reviews can request the SOC 2 report and data processing documentation from security@scam.ai.',
+          'Scam AI is SOC 2 Type II certified and GDPR compliant. Government procurement reviews can request the SOC 2 report and data processing documentation from security@scam.ai.',
       },
       {
-        question: 'Is ScamAI used by public sector organizations?',
+        question: 'Is Scam AI used by public sector organizations?',
         answer:
-          'ScamAI\'s platform is deployed for enterprise customers across regulated industries. For specific public sector references, contact sales@scam.ai.',
+          'Scam AI\'s platform is deployed for enterprise customers across regulated industries. For specific public sector references, contact sales@scam.ai.',
       },
       {
-        question: 'Does ScamAI publish research on detecting state-actor deepfakes?',
+        question: 'Does Scam AI publish research on detecting state-actor deepfakes?',
         answer:
-          'Yes. ScamAI\'s research team publishes peer-reviewed work on deepfake detection in the wild, including "GPT-Image-2 in the Wild" (arXiv:2604.25370) and "Do deepfake detectors work in reality?" (IEEE Workshop 2025).',
+          'Yes. Scam AI\'s research team publishes peer-reviewed work on deepfake detection in the wild, including "GPT-Image-2 in the Wild" (arXiv:2604.25370) and "Do deepfake detectors work in reality?" (IEEE Workshop 2025).',
       },
     ],
     relatedProduct: 'both',

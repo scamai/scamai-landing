@@ -63,7 +63,7 @@ const changelogData: ChangelogEntry[] = [
     version: "★",
     title: "Product Hunt - Product of the Day",
     tags: ["Award", "Milestone"],
-    description: "ScamAI was recognized as Product of the Day on Product Hunt! Thank you to our amazing community for the support and feedback."
+    description: "Scam AI was recognized as Product of the Day on Product Hunt! Thank you to our amazing community for the support and feedback."
   },
   {
     date: "January 5, 2025",
@@ -95,7 +95,7 @@ export default function AboutPage() {
               As AI-generated content becomes increasingly sophisticated, the line between real and fake is blurring. Deepfakes and synthetic media threaten trust, security, and truth across industries.
             </p>
             <p>
-              ScamAI was founded to solve this critical challenge. We provide the most accurate, fastest, and most accessible deepfake detection platform in the world.
+              Scam AI was founded to solve this critical challenge. We provide the most accurate, fastest, and most accessible deepfake detection platform in the world.
             </p>
             <p>
               Our technology protects users across social media, financial services, media organizations, and enterprises worldwide.

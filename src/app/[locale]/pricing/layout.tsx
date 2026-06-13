@@ -14,13 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const pricingSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'ScamAI Pricing',
-  description: 'Transparent pricing for ScamAI deepfake detection platform. Start free with 200 images per month.',
+  name: 'Scam AI Pricing',
+  description: 'Transparent pricing for Scam AI deepfake detection platform. Start free with 200 images per month.',
   url: 'https://scam.ai/en/pricing',
   mainEntity: {
     '@type': 'Product',
-    name: 'ScamAI Platform',
-    brand: { '@type': 'Organization', name: 'ScamAI' },
+    name: 'Scam AI Platform',
+    brand: { '@type': 'Organization', name: 'Scam AI' },
     description: 'All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time.',
     offers: [
       {

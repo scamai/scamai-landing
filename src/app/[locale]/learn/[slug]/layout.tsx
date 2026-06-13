@@ -59,7 +59,7 @@ export default async function LearnArticleLayout({
     author: { '@type': 'Organization', name: 'Reality Inc.', url: 'https://scam.ai' },
     publisher: {
       '@type': 'Organization',
-      name: 'ScamAI',
+      name: 'Scam AI',
       url: 'https://scam.ai',
       logo: { '@type': 'ImageObject', url: 'https://scam.ai/scamai-logo.svg', width: 400, height: 100 },
     },

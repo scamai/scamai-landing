@@ -11,7 +11,7 @@ export default function MSAPage() {
             Master Subscription Agreement
           </h1>
           <p className="mb-2 text-lg text-gray-300">
-            ScamAI Platform Services
+            Scam AI Platform Services
           </p>
           <p className="mb-2 text-sm text-gray-400">
             A service of Reality Inc.
@@ -27,7 +27,7 @@ export default function MSAPage() {
             {/* Introduction */}
             <div>
               <p className="text-gray-300 leading-relaxed mb-6">
-                This ScamAI Master Subscription Agreement (&ldquo;MSA&rdquo;) is effective as of the effective date of an applicable signed order form (&ldquo;Order Form&rdquo; and such date the &ldquo;Effective Date&rdquo;) and is by and between Reality Inc., a Delaware corporation doing business as &ldquo;ScamAI&rdquo;, with its principal place of business at 9725 Seawind Way Newark, CA 94560 (&ldquo;Company&rdquo; or &ldquo;ScamAI&rdquo;), and the customer set forth on the Order Form who accepts this MSA (each, a &ldquo;Customer&rdquo;). References to &ldquo;ScamAI&rdquo; in this Agreement refer to the trade name under which Company provides the Services; all contractual rights and obligations hereunder are those of Reality Inc. In the event of any inconsistency or conflict between the terms of this MSA and the terms of any Order Form, the terms of the Order Form shall control. Unless otherwise indicated on an applicable Order Form, certain of Company&rsquo;s obligations under this MSA will not apply, as further described below.
+                This Scam AI Master Subscription Agreement (&ldquo;MSA&rdquo;) is effective as of the effective date of an applicable signed order form (&ldquo;Order Form&rdquo; and such date the &ldquo;Effective Date&rdquo;) and is by and between Reality Inc., a Delaware corporation doing business as &ldquo;Scam AI&rdquo;, with its principal place of business at 9725 Seawind Way Newark, CA 94560 (&ldquo;Company&rdquo; or &ldquo;Scam AI&rdquo;), and the customer set forth on the Order Form who accepts this MSA (each, a &ldquo;Customer&rdquo;). References to &ldquo;Scam AI&rdquo; in this Agreement refer to the trade name under which Company provides the Services; all contractual rights and obligations hereunder are those of Reality Inc. In the event of any inconsistency or conflict between the terms of this MSA and the terms of any Order Form, the terms of the Order Form shall control. Unless otherwise indicated on an applicable Order Form, certain of Company&rsquo;s obligations under this MSA will not apply, as further described below.
               </p>
             </div>
 
@@ -39,7 +39,7 @@ export default function MSAPage() {
               </p>
               <div className="space-y-4">
                 <p className="text-gray-300 leading-relaxed">
-                  <span className="font-semibold text-white">&ldquo;Services&rdquo;</span> mean the ScamAI platform products and services that are ordered by Customer from Company in an Order Form referencing this MSA, including without limitation the Company&rsquo;s proprietary artificial intelligence and machine learning-based detection technologies for identifying synthetic, AI-generated, or manipulated digital content (including deepfake images, video, audio, and documents). Services may include trial access, design partnership services, custom development, integration with Customer&rsquo;s identity verification (KYC/KYB) workflows, and implementation services as specified in the applicable Order Form. Services exclude any products or services provided by third parties, even if Customer has connected those products or services to the Services. Subject to the terms and conditions of this MSA, Company will make the Services available to Customer during the Term.
+                  <span className="font-semibold text-white">&ldquo;Services&rdquo;</span> mean the Scam AI platform products and services that are ordered by Customer from Company in an Order Form referencing this MSA, including without limitation the Company&rsquo;s proprietary artificial intelligence and machine learning-based detection technologies for identifying synthetic, AI-generated, or manipulated digital content (including deepfake images, video, audio, and documents). Services may include trial access, design partnership services, custom development, integration with Customer&rsquo;s identity verification (KYC/KYB) workflows, and implementation services as specified in the applicable Order Form. Services exclude any products or services provided by third parties, even if Customer has connected those products or services to the Services. Subject to the terms and conditions of this MSA, Company will make the Services available to Customer during the Term.
                 </p>
                 <p className="text-gray-300 leading-relaxed">
                   <span className="font-semibold text-white">&ldquo;Customer Data&rdquo;</span> means all data, content, and materials provided by or on behalf of Customer to Company in connection with Customer&rsquo;s use of the Services, including data submitted for detection analysis and verification.
@@ -330,7 +330,7 @@ export default function MSAPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-3">9.11 Trade Name Clarification</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    The parties acknowledge that &ldquo;ScamAI&rdquo; is a trade name and doing-business-as (&ldquo;d/b/a&rdquo;) designation of Reality Inc. All rights, obligations, representations, and warranties of &ldquo;Company&rdquo; under this Agreement are those of Reality Inc. The use of the name &ldquo;ScamAI&rdquo; in connection with the Services, support communications, invoices, marketing materials, and any Order Forms is for branding purposes only and does not create a separate legal entity. Any legal notices, demands, or process must be directed to Reality Inc. at the address set forth in the preamble of this Agreement.
+                    The parties acknowledge that &ldquo;Scam AI&rdquo; is a trade name and doing-business-as (&ldquo;d/b/a&rdquo;) designation of Reality Inc. All rights, obligations, representations, and warranties of &ldquo;Company&rdquo; under this Agreement are those of Reality Inc. The use of the name &ldquo;Scam AI&rdquo; in connection with the Services, support communications, invoices, marketing materials, and any Order Forms is for branding purposes only and does not create a separate legal entity. Any legal notices, demands, or process must be directed to Reality Inc. at the address set forth in the preamble of this Agreement.
                   </p>
                 </div>
               </div>
@@ -439,7 +439,7 @@ export default function MSAPage() {
             {/* Footer */}
             <div className="mt-16 pt-8 border-t border-gray-800">
               <p className="text-sm text-gray-500 italic text-center">
-                This Master Subscription Agreement governs the provision of ScamAI platform services by Reality Inc., doing business as ScamAI.
+                This Master Subscription Agreement governs the provision of Scam AI platform services by Reality Inc., doing business as Scam AI.
               </p>
             </div>
           </div>

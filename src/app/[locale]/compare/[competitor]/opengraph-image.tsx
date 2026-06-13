@@ -14,7 +14,7 @@ export default async function OGImage({
   const competitor = getCompetitorBySlug(slug);
 
   const name = competitor?.name ?? 'Competitor';
-  const tagline = competitor?.tagline ?? `ScamAI vs ${name}`;
+  const tagline = competitor?.tagline ?? `Scam AI vs ${name}`;
   const firstAdvantage = competitor?.advantages[0]?.title ?? '';
 
   return new ImageResponse(
@@ -71,7 +71,7 @@ export default async function OGImage({
           }}
         >
           <img src="https://scam.ai/scamai-logo.svg" style={{ width: '44px', height: '44px' }} alt="" />
-          <span style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>ScamAI</span>
+          <span style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Scam AI</span>
         </div>
 
         <div
@@ -91,7 +91,7 @@ export default async function OGImage({
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '10px' }}>
-            <span style={{ fontSize: '52px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.03em' }}>ScamAI</span>
+            <span style={{ fontSize: '52px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.03em' }}>Scam AI</span>
             <span style={{ fontSize: '36px', fontWeight: 700, color: '#245FFF' }}>vs</span>
             <span style={{ fontSize: '52px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.03em' }}>{name}</span>
           </div>

@@ -24,7 +24,7 @@ export default function PrivacyPage() {
             <div>
               <h2 className="mb-4 text-2xl font-bold text-white">1. Introduction</h2>
               <p className="text-gray-300 leading-relaxed">
-                Reality Inc. ("we," "our," or "us") operates ScamAI, an advanced AI detection platform. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.
+                Reality Inc. ("we," "our," or "us") operates Scam AI, an advanced AI detection platform. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.
               </p>
             </div>
 
@@ -259,7 +259,7 @@ export default function PrivacyPage() {
             <div>
               <h2 className="mb-4 text-2xl font-bold text-white">12. Children's Privacy</h2>
               <p className="text-gray-300 leading-relaxed">
-                ScamAI is not intended for individuals under 18 years of age. We do not knowingly collect personal information from children under 18. If we become aware that we have collected information from a child under 18, we will take steps to delete such information promptly.
+                Scam AI is not intended for individuals under 18 years of age. We do not knowingly collect personal information from children under 18. If we become aware that we have collected information from a child under 18, we will take steps to delete such information promptly.
               </p>
             </div>
 

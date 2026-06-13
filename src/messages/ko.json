@@ -650,15 +650,15 @@
     "about": "소개",
     "research": "연구",
     "contact": "문의하기",
-    "copyright": " 2024 Reality Inc. 모든 권리 보유. ScamAI는 Reality Inc.의 제품입니다.",
+    "copyright": " 2024 Reality Inc. 모든 권리 보유. Scam AI는 Reality Inc.의 제품입니다.",
     "privacy": "개인정보 처리방침",
     "terms": "서비스 약관"
   },
   "Business": {
     "Page": {
       "metadata": {
-        "title": "Business Use Case — ScamAI",
-        "description": "Explore ScamAI's AI misuse prevention solutions tailored for businesses."
+        "title": "Business Use Case — Scam AI",
+        "description": "Explore Scam AI's AI misuse prevention solutions tailored for businesses."
       },
       "hero": {
         "title": "Business Use Cases",
@@ -699,8 +699,8 @@
     },
     "Kyc": {
       "metadata": {
-        "title": "KYC/ID Verification — ScamAI",
-        "description": "Detect forged IDs and deepfakes during onboarding with ScamAI."
+        "title": "KYC/ID Verification — Scam AI",
+        "description": "Detect forged IDs and deepfakes during onboarding with Scam AI."
       },
       "breadcrumb": "KYC/ID Verification",
       "nextLabel": "Dating Apps",
@@ -737,7 +737,7 @@
     },
     "Dating": {
       "metadata": {
-        "title": "Dating Apps — ScamAI",
+        "title": "Dating Apps — Scam AI",
         "description": "Stop catfishing with image, video, and voice checks. Block face and voice spoofing in real time."
       },
       "breadcrumb": "Dating Apps",
@@ -771,7 +771,7 @@
     },
     "FakeNews": {
       "metadata": {
-        "title": "Fake News & Misinformation — ScamAI",
+        "title": "Fake News & Misinformation — Scam AI",
         "description": "Flag AI-generated media and misleading narratives quickly."
       },
       "breadcrumb": "Fake News & Misinformation",
@@ -810,7 +810,7 @@
     },
     "Impersonation": {
       "metadata": {
-        "title": "Impersonation — ScamAI",
+        "title": "Impersonation — Scam AI",
         "description": "Block face and voice spoofing in real time."
       },
       "breadcrumb": "Impersonation",
@@ -841,7 +841,7 @@
     },
     "IpCopyright": {
       "metadata": {
-        "title": "IP/Copyright Protection — ScamAI",
+        "title": "IP/Copyright Protection — Scam AI",
         "description": "Detect unauthorized AI remixes and derivative content."
       },
       "breadcrumb": "IP/Copyright Protection",
@@ -872,7 +872,7 @@
     },
     "LegalCompliance": {
       "metadata": {
-        "title": "Legal & Compliance — ScamAI",
+        "title": "Legal & Compliance — Scam AI",
         "description": "Verify provenance and meet emerging AI regulations."
       },
       "breadcrumb": "Legal & Compliance",
@@ -914,8 +914,8 @@
   "Models": {
     "Deepfakes": {
       "metadata": {
-        "title": "Deepfakes (Faceswap) — ScamAI",
-        "description": "Detect deepfakes and faceswaps with ScamAI's advanced real-time detection."
+        "title": "Deepfakes (Faceswap) — Scam AI",
+        "description": "Detect deepfakes and faceswaps with Scam AI's advanced real-time detection."
       },
       "hero": {
         "category": "Deepfake Detection",
@@ -938,8 +938,8 @@
     },
     "AiGeneratedMedia": {
       "metadata": {
-        "title": "AI Image Detection — ScamAI",
-        "description": "Detect AI-generated images and videos with ScamAI's advanced detection technology."
+        "title": "AI Image Detection — Scam AI",
+        "description": "Detect AI-generated images and videos with Scam AI's advanced detection technology."
       },
       "hero": {
         "category": "AI-Generated Media Detection",
@@ -959,8 +959,8 @@
     },
     "VoiceClones": {
       "metadata": {
-        "title": "Voice Cloning — ScamAI",
-        "description": "Detect AI voice clones and synthetic audio with ScamAI's real-time detection technology."
+        "title": "Voice Cloning — Scam AI",
+        "description": "Detect AI voice clones and synthetic audio with Scam AI's real-time detection technology."
       },
       "hero": {
         "category": "AI Voice Clone Detection",
@@ -985,8 +985,8 @@
     },
     "ScamTextDetection": {
       "metadata": {
-        "title": "Scam Text Detection — ScamAI",
-        "description": "Detect scam text messages and fraudulent communications with ScamAI's advanced detection technology."
+        "title": "Scam Text Detection — Scam AI",
+        "description": "Detect scam text messages and fraudulent communications with Scam AI's advanced detection technology."
       },
       "hero": {
         "category": "Scam Text Detection",
@@ -1097,8 +1097,8 @@
     },
     "LinkQrCode": {
       "metadata": {
-        "title": "Link & QR Code Detection — ScamAI",
-        "description": "Detect malicious links and QR codes with ScamAI's advanced URL analysis technology."
+        "title": "Link & QR Code Detection — Scam AI",
+        "description": "Detect malicious links and QR codes with Scam AI's advanced URL analysis technology."
       },
       "hero": {
         "category": "Link & QR Code Detection",
@@ -1473,7 +1473,7 @@
   "Individuals": {
     "Page": {
       "metadata": {
-        "title": "For Individuals — ScamAI"
+        "title": "For Individuals — Scam AI"
       },
       "hero": {
         "title": "Scam Protection for Individuals",
@@ -1505,7 +1505,7 @@
   "Company": {
     "Partnership": {
       "metadata": {
-        "title": "Partnership — ScamAI"
+        "title": "Partnership — Scam AI"
       },
       "hero": {
         "title": "Partnership",
@@ -1540,14 +1540,14 @@
     },
     "People": {
       "metadata": {
-        "title": "People — ScamAI"
+        "title": "People — Scam AI"
       },
       "title": "People",
       "subtitle": "Coming soon."
     },
     "About": {
       "metadata": {
-        "title": "About Us — ScamAI"
+        "title": "About Us — Scam AI"
       },
       "hero": {
         "kicker": "Company",
@@ -1632,7 +1632,7 @@
       "cta": {
         "people": {
           "title": "People",
-          "subtitle": "Meet the team building ScamAI"
+          "subtitle": "Meet the team building Scam AI"
         },
         "partnership": {
           "title": "Partnership",
@@ -1683,7 +1683,7 @@
   "Stories": {
     "News": {
       "metadata": {
-        "title": "Scam-Related News — ScamAI"
+        "title": "Scam-Related News — Scam AI"
       },
       "hero": {
         "title": "Scam-Related News",
@@ -1764,7 +1764,7 @@
     "TypeOfScamsIndex": {
       "hero": {
         "title": "Types of Scams",
-        "description": "Understanding the different types of scams and how ScamAI protects against them."
+        "description": "Understanding the different types of scams and how Scam AI protects against them."
       },
       "items": [
         {
@@ -2061,7 +2061,7 @@
     },
     "ScamTrends": {
       "metadata": {
-        "title": "Scam Trends — ScamAI"
+        "title": "Scam Trends — Scam AI"
       },
       "title": "Scam Trends",
       "subtitle": "Coming soon."
@@ -2183,11 +2183,11 @@
   "Research": {
     "Page": {
       "metadata": {
-        "title": "Research — ScamAI"
+        "title": "Research — Scam AI"
       },
       "hero": {
         "title": "Research",
-        "description": "Publications, datasets, and long-form analysis from the ScamAI team."
+        "description": "Publications, datasets, and long-form analysis from the Scam AI team."
       },
       "links": {
         "readSummary": "Read summary",
@@ -2246,7 +2246,7 @@
     },
     "ScamNetDatabase": {
       "metadata": {
-        "title": "ScamNet Database — ScamAI",
+        "title": "ScamNet Database — Scam AI",
         "description": "Access the world's largest database of scam patterns and fraudulent content for research."
       },
       "hero": {
@@ -2364,18 +2364,18 @@
       "call-centers": { "title": "콜센터 음성 클론 탐지", "metaDescription": "콜센터 음성 클론 탐지, 정확도 98.5%. 실시간 비싱 공격 탐지. SOC 2 인증. 10분 API 설정.", "headline": "콜센터 음성 클론 탐지" },
       "kyc": { "title": "KYC 본인 확인에서 딥페이크 사기 차단", "metaDescription": "KYC 온보딩에서 딥페이크 셀피와 AI 편집 신분증을 탐지. Eva-v1 모델 정확도 95.3%, 4초 이내.", "headline": "KYC 본인 확인에서 딥페이크 사기 차단" },
       "media": { "title": "미디어 및 뉴스룸 AI 생성 콘텐츠 탐지", "metaDescription": "뉴스룸용 딥페이크 탐지 API. 출판 전 이미지, 비디오, 오디오의 AI 생성을 검증. 정확도 95.3%, 월 200회 무료.", "headline": "미디어 및 뉴스룸 AI 생성 콘텐츠 탐지" },
-      "insurance": { "title": "보험 청구 AI 생성 사기 탐지", "metaDescription": "보험 청구에서 AI 편집 사진과 위조 문서를 탐지. ScamAI로 청구 증거의 합성 조작 스크리닝. $0.05/이미지, SOC 2 인증.", "headline": "보험 청구 AI 생성 사기 탐지" },
+      "insurance": { "title": "보험 청구 AI 생성 사기 탐지", "metaDescription": "보험 청구에서 AI 편집 사진과 위조 문서를 탐지. Scam AI로 청구 증거의 합성 조작 스크리닝. $0.05/이미지, SOC 2 인증.", "headline": "보험 청구 AI 생성 사기 탐지" },
       "hr": { "title": "원격 면접 및 영상 채용 딥페이크 탐지", "metaDescription": "원격 면접에서 딥페이크, AI 음성 도구, 합성 아바타를 탐지. HR 팀 및 채용 플랫폼용 영상·오디오 진위 확인.", "headline": "원격 면접 및 영상 채용 딥페이크 탐지" },
       "government": { "title": "정부 및 공공 부문 합성 미디어 탐지", "metaDescription": "정부 기관용 합성 미디어 탐지. 딥페이크 영상과 AI 생성 이미지를 대규모로 탐지. 엔터프라이즈 SLA, SOC 2 인증.", "headline": "정부 및 공공 부문 합성 미디어 탐지" }
     },
     "compare": {
-      "reality-defender": { "title": "ScamAI vs Reality Defender: 딥페이크 탐지 비교", "metaDescription": "ScamAI vs Reality Defender: 이미지당 $0.05 vs 연간 계약, 200장 무료 vs 없음. 전체 비교.", "tagline": "ScamAI vs Reality Defender: 딥페이크 탐지 비교" },
-      "sensity": { "title": "ScamAI vs Sensity AI: 딥페이크 탐지 비교", "metaDescription": "ScamAI vs Sensity AI: 이미지, 비디오, 오디오, 문서를 하나의 API로. $0.05/이미지, 월 200회 무료.", "tagline": "ScamAI vs Sensity AI: 딥페이크 탐지 비교" },
-      "hive": { "title": "ScamAI vs Hive Moderation: 딥페이크 탐지 비교", "metaDescription": "ScamAI vs Hive: 95.3% 딥페이크 탐지 vs 일반 모더레이션. 음성 클론 + 문서 위조 탐지.", "tagline": "ScamAI vs Hive Moderation: 딥페이크 탐지 비교" },
-      "microsoft-azure": { "title": "ScamAI vs Microsoft Azure AI Content Safety", "metaDescription": "ScamAI vs Azure: 95.3% 전용 딥페이크 탐지 vs 일반 안전 분류기. 음성 클론 탐지 포함.", "tagline": "ScamAI vs Microsoft Azure AI: 딥페이크 탐지 비교" },
-      "aws-rekognition": { "title": "ScamAI vs AWS Rekognition: 딥페이크 탐지 비교", "metaDescription": "ScamAI vs AWS Rekognition: 전용 딥페이크 탐지 모델 vs 일반 얼굴 분석.", "tagline": "ScamAI vs AWS Rekognition: 딥페이크 탐지 비교" },
-      "truepic": { "title": "ScamAI vs Truepic: 딥페이크 탐지 비교", "metaDescription": "ScamAI vs Truepic: 모든 이미지에서 AI 딥페이크 탐지 vs 카메라 하드웨어가 필요한 C2PA.", "tagline": "ScamAI vs Truepic: 딥페이크 탐지 비교" },
-      "deepware": { "title": "ScamAI vs Deepware: 딥페이크 탐지 비교", "metaDescription": "ScamAI vs Deepware: SLA 99.9%와 SOC 2의 엔터프라이즈 API vs 무료 소비자 스캐너.", "tagline": "ScamAI vs Deepware: 딥페이크 탐지 비교" }
+      "reality-defender": { "title": "Scam AI vs Reality Defender: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Reality Defender: 이미지당 $0.05 vs 연간 계약, 200장 무료 vs 없음. 전체 비교.", "tagline": "Scam AI vs Reality Defender: 딥페이크 탐지 비교" },
+      "sensity": { "title": "Scam AI vs Sensity AI: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Sensity AI: 이미지, 비디오, 오디오, 문서를 하나의 API로. $0.05/이미지, 월 200회 무료.", "tagline": "Scam AI vs Sensity AI: 딥페이크 탐지 비교" },
+      "hive": { "title": "Scam AI vs Hive Moderation: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Hive: 95.3% 딥페이크 탐지 vs 일반 모더레이션. 음성 클론 + 문서 위조 탐지.", "tagline": "Scam AI vs Hive Moderation: 딥페이크 탐지 비교" },
+      "microsoft-azure": { "title": "Scam AI vs Microsoft Azure AI Content Safety", "metaDescription": "Scam AI vs Azure: 95.3% 전용 딥페이크 탐지 vs 일반 안전 분류기. 음성 클론 탐지 포함.", "tagline": "Scam AI vs Microsoft Azure AI: 딥페이크 탐지 비교" },
+      "aws-rekognition": { "title": "Scam AI vs AWS Rekognition: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs AWS Rekognition: 전용 딥페이크 탐지 모델 vs 일반 얼굴 분석.", "tagline": "Scam AI vs AWS Rekognition: 딥페이크 탐지 비교" },
+      "truepic": { "title": "Scam AI vs Truepic: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Truepic: 모든 이미지에서 AI 딥페이크 탐지 vs 카메라 하드웨어가 필요한 C2PA.", "tagline": "Scam AI vs Truepic: 딥페이크 탐지 비교" },
+      "deepware": { "title": "Scam AI vs Deepware: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Deepware: SLA 99.9%와 SOC 2의 엔터프라이즈 API vs 무료 소비자 스캐너.", "tagline": "Scam AI vs Deepware: 딥페이크 탐지 비교" }
     },
     "learn": {
       "what-is-a-deepfake": { "title": "딥페이크란? 작동 원리와 탐지 방법", "description": "딥페이크 완전 가이드: AI가 어떻게 만드는지, 왜 보안 위협인지, 탐지 기술이 어떻게 작동하는지." },

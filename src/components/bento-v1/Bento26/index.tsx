@@ -21,7 +21,7 @@ const Bento = ({}: BentoProps) => (
                             src="/bento-v1-images/bento-26-pin.svg"
                             width={14}
                             height={16}
-                            alt="AI Detection pin marker indicating synthetic media identification on ScamAI dashboard"
+                            alt="AI Detection pin marker indicating synthetic media identification on Scam AI dashboard"
                         />
                     </div>
                     <div className={styles.tooltip}>

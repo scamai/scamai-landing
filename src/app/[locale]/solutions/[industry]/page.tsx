@@ -264,7 +264,7 @@ function IndustryCrossLinks({ slug }: { slug: string }) {
             href={`/compare/${competitor.slug}`}
             className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
           >
-            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Compare: ScamAI vs {competitor.name}</span>
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Compare: Scam AI vs {competitor.name}</span>
             <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

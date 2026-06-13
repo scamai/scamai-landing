@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: '/learn',
     title: 'Learn — Deepfake Detection Guides & Resources',
     description:
-      'In-depth guides on deepfake detection, AI-generated image identification, voice clone attacks, and detection APIs. Written by the ScamAI research team.',
+      'In-depth guides on deepfake detection, AI-generated image identification, voice clone attacks, and detection APIs. Written by the Scam AI research team.',
     keywords: [
       'deepfake detection guide',
       'how to detect deepfakes',
@@ -47,7 +47,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
               Deepfake detection <span className="text-[#245FFF]">guides</span>
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              In-depth guides on synthetic media detection, AI image analysis, voice clone fraud, and API integration. Written by the ScamAI research team.
+              In-depth guides on synthetic media detection, AI image analysis, voice clone fraud, and API integration. Written by the Scam AI research team.
             </p>
           </div>
 

@@ -83,7 +83,7 @@ export default function ComparePage() {
             </AnimatedSection>
             <AnimatedSection delay={0.3}>
               <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                ScamAI vs {competitor.name}
+                Scam AI vs {competitor.name}
               </h1>
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
@@ -94,7 +94,7 @@ export default function ComparePage() {
             <AnimatedSection delay={0.5}>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <a href="https://app.scam.ai" target="_blank" rel="noopener noreferrer" className="rainbow-button inline-block">
-                  <span className="rainbow-button-inner">Try ScamAI Free</span>
+                  <span className="rainbow-button-inner">Try Scam AI Free</span>
                 </a>
                 <Link
                   href="/pricing"
@@ -117,7 +117,7 @@ export default function ComparePage() {
                 FEATURE COMPARISON
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white leading-[1.1]">
-                ScamAI vs <span className="text-[#245FFF]">{competitor.name}</span>
+                Scam AI vs <span className="text-[#245FFF]">{competitor.name}</span>
               </h2>
             </div>
           </AnimatedSection>
@@ -128,7 +128,7 @@ export default function ComparePage() {
               <div className="grid grid-cols-3 bg-white/[0.03] border-b border-gray-800/60">
                 <div className="px-5 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Feature</div>
                 <div className="px-5 py-4 text-xs font-semibold text-[#245FFF] uppercase tracking-wider text-center border-x border-gray-800/60">
-                  ScamAI
+                  Scam AI
                 </div>
                 <div className="px-5 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider text-center">
                   {competitor.name}
@@ -157,7 +157,7 @@ export default function ComparePage() {
         </div>
       </section>
 
-      {/* Why ScamAI advantages */}
+      {/* Why Scam AI advantages */}
       <section
         className="landing-section relative overflow-hidden bg-black"
         style={{
@@ -175,7 +175,7 @@ export default function ComparePage() {
                 WHY TEAMS CHOOSE SCAMAI
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                The <span className="text-[#245FFF]">ScamAI</span> advantage
+                The <span className="text-[#245FFF]">Scam AI</span> advantage
               </h2>
             </div>
           </AnimatedSection>
@@ -291,7 +291,7 @@ function CompareFAQ({ faqs, competitorName }: { faqs: { question: string; answer
         <div className="text-center mb-12">
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs">FAQ</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white leading-[1.1]">
-            ScamAI vs {competitorName} — Common Questions
+            Scam AI vs {competitorName} — Common Questions
           </h2>
         </div>
         <div className="space-y-4">

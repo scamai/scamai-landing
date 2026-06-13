@@ -23,7 +23,7 @@ export default function ContactPage() {
             Get in touch
           </h1>
           <p className="mb-8 text-lg text-gray-300">
-            Have questions about ScamAI? Want to discuss enterprise solutions? We're here to help.
+            Have questions about Scam AI? Want to discuss enterprise solutions? We're here to help.
           </p>
         </div>
       </section>
@@ -108,7 +108,7 @@ export default function ContactPage() {
             <div className="rounded-lg border border-gray-800 bg-black p-6">
               <h3 className="mb-3 text-xl font-bold text-white">How quickly can I get started?</h3>
               <p className="text-gray-300">
-                You can start using ScamAI in minutes. Sign up for a free account at app.scam.ai, get your API key, and make your first API call. We provide SDKs and documentation to help you integrate quickly.
+                You can start using Scam AI in minutes. Sign up for a free account at app.scam.ai, get your API key, and make your first API call. We provide SDKs and documentation to help you integrate quickly.
               </p>
             </div>
 
@@ -122,7 +122,7 @@ export default function ContactPage() {
             <div className="rounded-lg border border-gray-800 bg-black p-6">
               <h3 className="mb-3 text-xl font-bold text-white">What regions do you operate in?</h3>
               <p className="text-gray-300">
-                ScamAI operates globally with data centers in the US, EU, and APAC. We're GDPR compliant and can help you meet regional data residency requirements.
+                Scam AI operates globally with data centers in the US, EU, and APAC. We're GDPR compliant and can help you meet regional data residency requirements.
               </p>
             </div>
 

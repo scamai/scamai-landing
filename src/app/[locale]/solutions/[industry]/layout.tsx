@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
   return generatePageMetadata({
     locale,
     path: `/solutions/${slug}`,
-    title: seo?.title ?? `${industry.headline} | ScamAI`,
+    title: seo?.title ?? `${industry.headline} | Scam AI`,
     description: seo?.metaDescription ?? industry.metaDescription,
     keywords: industry.keywords,
     dateModified: '2026-05-23',

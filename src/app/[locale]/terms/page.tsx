@@ -24,7 +24,7 @@ export default function TermsPage() {
             <div>
               <h2 className="mb-4 text-2xl font-bold text-white">1. Agreement to Terms</h2>
               <p className="text-gray-300 leading-relaxed">
-                These Terms of Service ("Terms") govern your use of ScamAI, a service provided by Reality Inc. ("Company," "we," "our," or "us"). By accessing or using our service, you agree to be bound by these Terms.
+                These Terms of Service ("Terms") govern your use of Scam AI, a service provided by Reality Inc. ("Company," "we," "our," or "us"). By accessing or using our service, you agree to be bound by these Terms.
               </p>
             </div>
 
@@ -32,7 +32,7 @@ export default function TermsPage() {
             <div>
               <h2 className="mb-4 text-2xl font-bold text-white">2. Description of Service</h2>
               <p className="text-gray-300 leading-relaxed">
-                ScamAI is an AI-powered detection platform that identifies deepfakes, voice clones, and synthetic media. Our service helps organizations detect and prevent fraud through advanced machine learning technology.
+                Scam AI is an AI-powered detection platform that identifies deepfakes, voice clones, and synthetic media. Our service helps organizations detect and prevent fraud through advanced machine learning technology.
               </p>
             </div>
 
@@ -55,7 +55,7 @@ export default function TermsPage() {
                 <div>
                   <h3 className="mb-2 text-xl font-semibold text-[#245FFF]">4.1 Permitted Uses</h3>
                   <p className="text-gray-300 leading-relaxed mb-2">
-                    You may use ScamAI for legitimate business purposes including:
+                    You may use Scam AI for legitimate business purposes including:
                   </p>
                   <ul className="space-y-2 text-gray-300 list-disc list-inside ml-4">
                     <li>Identity verification and fraud prevention</li>
@@ -158,7 +158,7 @@ export default function TermsPage() {
             <div>
               <h2 className="mb-4 text-2xl font-bold text-white">8. Intellectual Property</h2>
               <p className="text-gray-300 leading-relaxed">
-                ScamAI and all related technology, algorithms, and intellectual property are owned by Reality Inc. You may not copy, modify, or create derivative works based on our service.
+                Scam AI and all related technology, algorithms, and intellectual property are owned by Reality Inc. You may not copy, modify, or create derivative works based on our service.
               </p>
             </div>
 
@@ -177,7 +177,7 @@ export default function TermsPage() {
                 <div>
                   <h3 className="mb-2 text-xl font-semibold text-[#245FFF]">9.2 Limitation of Liability</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    Reality Inc. shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of ScamAI.
+                    Reality Inc. shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of Scam AI.
                   </p>
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function TermsPage() {
             <div>
               <h2 className="mb-4 text-2xl font-bold text-white">18. Entire Agreement</h2>
               <p className="text-gray-300 leading-relaxed">
-                These Terms, together with our Privacy Policy and any additional terms for specific features, constitute the entire agreement between you and Reality Inc. regarding ScamAI and supersede all prior agreements and understandings.
+                These Terms, together with our Privacy Policy and any additional terms for specific features, constitute the entire agreement between you and Reality Inc. regarding Scam AI and supersede all prior agreements and understandings.
               </p>
             </div>
 

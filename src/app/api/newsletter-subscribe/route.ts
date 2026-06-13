@@ -70,19 +70,19 @@ export async function POST(req: NextRequest) {
     }
 
     resend.emails.send({
-      from: "ScamAI <hello@scam.ai>",
+      from: "Scam AI <hello@scam.ai>",
       to: [email],
       bcc: NOTIFY_EMAILS,
-      subject: "You're subscribed to ScamAI",
+      subject: "You're subscribed to Scam AI",
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; color: #1a1a1a;">
           <div style="padding: 40px 32px 24px;">
-            <h1 style="font-size: 22px; font-weight: 700; margin: 0 0 8px;">Welcome to ScamAI</h1>
+            <h1 style="font-size: 22px; font-weight: 700; margin: 0 0 8px;">Welcome to Scam AI</h1>
             <p style="font-size: 14px; color: #666; margin: 0 0 28px;">You're subscribed — weekly insights on deepfakes, synthetic media, and AI security are on their way.</p>
 
             <div style="background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 28px;">
               <p style="font-size: 14px; color: #333; margin: 0 0 12px; line-height: 1.6;">
-                Each issue covers the latest AI threats, new generator releases, and notable incidents — written by the ScamAI Research team.
+                Each issue covers the latest AI threats, new generator releases, and notable incidents — written by the Scam AI Research team.
               </p>
               <p style="font-size: 14px; color: #333; margin: 0; line-height: 1.6;">
                 You can unsubscribe at any time by replying to this email.
@@ -96,19 +96,19 @@ export async function POST(req: NextRequest) {
 
           <div style="padding: 20px 32px; background: #f7f8fa; border-top: 1px solid #e5e7eb;">
             <p style="font-size: 12px; color: #999; margin: 0;">
-              ScamAI &mdash; <a href="https://scam.ai" style="color: #245FFF; text-decoration: none;">scam.ai</a>
+              Scam AI &mdash; <a href="https://scam.ai" style="color: #245FFF; text-decoration: none;">scam.ai</a>
             </p>
           </div>
         </div>
       `,
-      text: `Welcome to ScamAI\n\nYou're subscribed — weekly insights on deepfakes, synthetic media, and AI security are on their way.\n\nEach issue covers the latest AI threats, new generator releases, and notable incidents — written by the ScamAI Research team.\n\nYou can unsubscribe at any time by replying to this email.\n\nScamAI — https://scam.ai`,
+      text: `Welcome to Scam AI\n\nYou're subscribed — weekly insights on deepfakes, synthetic media, and AI security are on their way.\n\nEach issue covers the latest AI threats, new generator releases, and notable incidents — written by the Scam AI Research team.\n\nYou can unsubscribe at any time by replying to this email.\n\nScam AI — https://scam.ai`,
     }).catch((err) => console.error("[newsletter] Confirmation email failed:", err));
 
     // Internal notification. User-controlled values (email, source, referrer)
     // are htmlEscape'd so crafted input can't inject markup/script into the
     // email a team member opens. (ip/timestamp are server-derived.)
     resend.emails.send({
-      from: "ScamAI <hello@scam.ai>",
+      from: "Scam AI <hello@scam.ai>",
       to: NOTIFY_EMAILS,
       subject: `[Newsletter] New subscriber: ${htmlEscape(email)}`,
       html: `

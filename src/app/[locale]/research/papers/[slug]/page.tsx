@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
       locale,
       path: `/research/papers/${paper.slug}`,
       title: `${paper.title} – Coming Soon`,
-      description: `Upcoming ScamAI research: ${paper.title}. ${paper.category} research from the ScamAI team — paper to be published.`,
+      description: `Upcoming Scam AI research: ${paper.title}. ${paper.category} research from the Scam AI team — paper to be published.`,
       keywords: ["research paper", "coming soon", paper.category.toLowerCase(), ...paper.tags],
       noindex: true,
     });
@@ -45,12 +45,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }) 
 
   const description =
     paper.abstract ??
-    `${paper.title}${paper.authors ? ` by ${paper.authors}.` : "."} Research from the ScamAI team on ${paper.category.toLowerCase()}.`;
+    `${paper.title}${paper.authors ? ` by ${paper.authors}.` : "."} Research from the Scam AI team on ${paper.category.toLowerCase()}.`;
 
   return generatePageMetadata({
     locale,
     path: `/research/papers/${paper.slug}`,
-    title: `${paper.title} – ScamAI Research`,
+    title: `${paper.title} – Scam AI Research`,
     description,
     keywords: ["research paper", paper.category.toLowerCase(), ...paper.tags],
   });
@@ -99,10 +99,10 @@ export default async function PaperDetailPage({
       : {}),
     author: authorList.length
       ? authorList.map((name) => ({ "@type": "Person", name }))
-      : { "@type": "Organization", name: "ScamAI Research" },
+      : { "@type": "Organization", name: "Scam AI Research" },
     publisher: {
       "@type": "Organization",
-      name: "ScamAI",
+      name: "Scam AI",
       url: "https://scam.ai",
     },
     keywords: paper.tags.join(", "),
@@ -158,7 +158,7 @@ export default async function PaperDetailPage({
           {paper.coming && (
             <div className="rounded-xl border border-amber-500/20 bg-amber-500/[0.04] p-5 sm:p-6 mb-8">
               <p className="text-sm text-amber-200/90 leading-relaxed">
-                This paper is currently in preparation by the ScamAI Research team. The arXiv link, authors, and citation will be published here when the paper is released. Sign up for our research updates to be notified.
+                This paper is currently in preparation by the Scam AI Research team. The arXiv link, authors, and citation will be published here when the paper is released. Sign up for our research updates to be notified.
               </p>
             </div>
           )}
@@ -250,7 +250,7 @@ export default async function PaperDetailPage({
                 Try it in production
               </p>
               <p className="text-sm text-gray-400 leading-relaxed mb-4">
-                ScamAI's Eva-v1 model applies this research at production scale — 95.3% accuracy, under 4 seconds, 200 free detections per month.
+                Scam AI's Eva-v1 model applies this research at production scale — 95.3% accuracy, under 4 seconds, 200 free detections per month.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link

@@ -87,7 +87,7 @@ export default function ResearchPage() {
                 Publications & Reports
               </h2>
               <p className="text-sm text-gray-500">
-                Research from the ScamAI team across deepfake detection, document forgery, age estimation, and more.
+                Research from the Scam AI team across deepfake detection, document forgery, age estimation, and more.
               </p>
             </div>
           </AnimatedSection>

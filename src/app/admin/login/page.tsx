@@ -21,7 +21,7 @@ function LoginContent() {
         <div className="mb-8 text-center">
           <img
             src="/scamai-logo.svg"
-            alt="ScamAI"
+            alt="Scam AI"
             className="mx-auto mb-4 h-8 w-auto"
           />
           <h1 className="text-xl font-bold text-white">Newsletter Admin</h1>
