@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import NewLanding from "@/components/new-site/NewLanding";
 import StructuredData from "@/components/seo/StructuredData";
 
@@ -63,7 +64,16 @@ export async function generateMetadata(
   };
 }
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // next-intl static-rendering requirement (see [locale]/layout.tsx) — ensures
+  // the prerendered homepage uses the route's locale, not the default.
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <StructuredData />

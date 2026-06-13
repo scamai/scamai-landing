@@ -1,8 +1,9 @@
-import type { AbstractIntlMessages } from "next-intl";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { defaultLocale, locales, rtlLocales, type Locale } from "@/i18n/config";
+import { getMessages, setRequestLocale } from "next-intl/server";
+
+import { locales, rtlLocales, type Locale } from "@/i18n/config";
 import Providers from "@/contexts/Providers";
 import NewNav from "@/components/new-site/NewNav";
 import NewFooter from "@/components/new-site/NewFooter";
@@ -100,22 +101,19 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Required for next-intl static rendering: without this, SSG prerendering
+  // resolves requestLocale to the default locale for some routes, so client
+  // components get English messages in the prerendered HTML (on-demand renders
+  // were fine). Must be called before any next-intl API / message load.
+  setRequestLocale(locale);
+
   const isRtl = rtlLocales.includes(locale);
 
-  const baseMessages = (await import("../../messages/en.json")).default;
-  let localeMessages: AbstractIntlMessages = {};
-  if (locale !== defaultLocale) {
-    try {
-      localeMessages = (await import(`../../messages/${locale}.json`)).default;
-    } catch {
-      localeMessages = {};
-    }
-  }
-
-  const messages = {
-    ...baseMessages,
-    ...localeMessages,
-  } as unknown as AbstractIntlMessages;
+  // Single source of truth: getMessages() reads from i18n/request.ts under the
+  // locale set by setRequestLocale above. (Previously this layout re-imported
+  // and merged messages itself, which diverged from the request context during
+  // SSG prerendering and produced English copy for some locales.)
+  const messages = await getMessages();
 
   return (
     <Providers locale={locale} messages={messages}>
