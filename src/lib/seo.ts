@@ -169,7 +169,7 @@ export const pageMetadata = {
   products: {
     title: 'Deepfake Detection Products — AI Image & Voice Clone Detection',
     description:
-      'Detect AI-generated images, deepfake videos, and voice clones with one API. Image deepfake detection at 95.3% accuracy. Voice clone detection at 98.5% accuracy. Free to start.',
+      'Detect AI-generated images, deepfake videos, and voice clones with one API. Image deepfake detection at 98.2% accuracy. Voice clone detection at 98.5% accuracy. Free to start.',
     keywords: [
       'deepfake detection',
       'deepfake detector',
@@ -183,9 +183,9 @@ export const pageMetadata = {
     dateModified: '2026-05-18',
   },
   aiDetection: {
-    title: 'Image & Video Deepfake Detection - 95.3% Accuracy',
+    title: 'Image & Video Deepfake Detection - 98.2% Accuracy',
     description:
-      'Detect AI-generated images and deepfake videos with 95.3% accuracy. Real-time processing under 4 seconds. Perfect for KYC, content moderation, and fraud prevention.',
+      'Detect AI-generated images and deepfake videos with 98.2% accuracy. Real-time processing under 4 seconds. Perfect for KYC, content moderation, and fraud prevention.',
     keywords: [
       'AI detection',
       'image detection',

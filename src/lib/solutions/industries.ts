@@ -75,7 +75,7 @@ export const industries: Industry[] = [
   },
   {
     slug: 'kyc',
-    stat: { value: '95.3%' },
+    stat: { value: '98.2%' },
     capabilitiesCount: 4,
     useCasesCount: 4,
     useCaseBullets: [3, 3, 3, 3],

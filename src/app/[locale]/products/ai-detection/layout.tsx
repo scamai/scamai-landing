@@ -16,7 +16,7 @@ const aiDetectionProductSchema = {
   '@type': 'Product',
   name: 'Scam AI AI Detection',
   description:
-    'Detect AI-generated images and deepfake videos with 95.3% accuracy. Real-time processing under 4 seconds. Supports face swaps, GANs, and diffusion model outputs.',
+    'Detect AI-generated images and deepfake videos with 98.2% accuracy. Real-time processing under 4 seconds. Supports face swaps, GANs, and diffusion model outputs.',
   url: 'https://scam.ai/en/products/ai-detection',
   brand: { '@type': 'Organization', name: 'Scam AI' },
   category: 'Security Software',
@@ -53,7 +53,7 @@ const aiDetectionProductSchema = {
     ],
   },
   additionalProperty: [
-    { '@type': 'PropertyValue', name: 'Detection Accuracy', value: '95.3%' },
+    { '@type': 'PropertyValue', name: 'Detection Accuracy', value: '98.2%' },
     { '@type': 'PropertyValue', name: 'Processing Time', value: 'Under 4 seconds' },
     { '@type': 'PropertyValue', name: 'Supported Formats', value: 'JPG, PNG, GIF, WebP, MP4, MOV, AVI' },
     { '@type': 'PropertyValue', name: 'Compliance', value: 'SOC 2 Type II, GDPR' },
@@ -69,7 +69,7 @@ const aiDetectionFaqSchema = {
       name: 'How accurate is Scam AI image and video deepfake detection?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Scam AI achieves 95.3% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.',
+        text: 'Scam AI achieves 98.2% accuracy for image and video deepfake detection using the Eva-v1 model. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases, while Eva-v1-Pro processes in under 4 seconds for maximum accuracy with lower false positives.',
       },
     },
     {

@@ -17,7 +17,7 @@
         "headline": "用 AI 防御",
         "headlineLine2": "对抗",
         "headlineHighlight": "AI 威胁",
-        "body": "据 Deloitte 预测，到 2027 年，AI 生成的 deepfake 欺诈将给企业造成超过 $40 billion 的损失。我们的 <em>Eva-v1</em> 模型与威胁同步进化——在 4 秒内实现 <em>95.3% 的检测准确率</em>，实时遏制欺诈、守护你的营收。",
+        "body": "据 Deloitte 预测，到 2027 年，AI 生成的 deepfake 欺诈将给企业造成超过 $40 billion 的损失。我们的 <em>Eva-v1</em> 模型与威胁同步进化——在 4 秒内实现 <em>98.2% 的检测准确率</em>，实时遏制欺诈、守护你的营收。",
         "cta": "立即开始检测"
       },
       "whyChooseUs": {
@@ -831,7 +831,7 @@
         "logTitle": "实时日志 · 已拦截请求",
         "realtime": "实时",
         "logs": [
-          "[00:01:12] FACE-SWAP 尝试已拦截 · 置信度 95.3%*",
+          "[00:01:12] FACE-SWAP 尝试已拦截 · 置信度 98.2%*",
           "[00:01:15] VOICE-CLONE IVR 已标记 · 回退到 OTP",
           "[00:01:19] IMPERSONATION API 被拒绝 · 规则：Vision-Strict"
         ]
@@ -2502,7 +2502,7 @@
     "hero": {
       "eyebrow": "AI 检测",
       "heading": "检测图像和视频中的深度伪造",
-      "body": "Scam AI 的 Eva-v1 模型能以 <em>95.3% 的准确率</em> 在 4 秒内检测 <em>合成媒体</em>、<em>被篡改的人脸</em> 和 <em>深度伪造视频</em>。支持换脸、GAN 生成图像，以及包括 Stable Diffusion、DALL-E、Midjourney 和 Flux 在内的扩散模型输出。",
+      "body": "Scam AI 的 Eva-v1 模型能以 <em>98.2% 的准确率</em> 在 4 秒内检测 <em>合成媒体</em>、<em>被篡改的人脸</em> 和 <em>深度伪造视频</em>。支持换脸、GAN 生成图像，以及包括 Stable Diffusion、DALL-E、Midjourney 和 Flux 在内的扩散模型输出。",
       "cta": "试用 AI 检测"
     },
     "features": {
@@ -2511,7 +2511,7 @@
       "face": {
         "eyebrow": "人脸检测",
         "heading": "人脸篡改检测",
-        "body1": "运用先进的神经网络分析，以 <em>95.3% 的准确率</em> 识别换脸、表情更改和面部属性篡改。可检测来自 Stable Diffusion、DALL-E、Midjourney 和 Flux 等主流生成工具的输出。",
+        "body1": "运用先进的神经网络分析，以 <em>98.2% 的准确率</em> 识别换脸、表情更改和面部属性篡改。可检测来自 Stable Diffusion、DALL-E、Midjourney 和 Flux 等主流生成工具的输出。",
         "body2": "Eva-v1-Fast 处理时间 <em>不到 2 秒</em>，适用于实时审核。Eva-v1-Pro 在 <em>4 秒内</em> 提供取证级结果，适用于 KYC 和法律证据。"
       },
       "video": {
@@ -2580,7 +2580,7 @@
       "items": {
         "accuracy": {
           "question": "Scam AI 的图像和视频深度伪造检测准确度如何？",
-          "answer": "Scam AI 采用 Eva-v1 模型，图像和视频深度伪造检测的准确率达到 95.3%。Eva-v1-Fast 处理时间不到 2 秒，适用于高吞吐量场景；Eva-v1-Pro 处理时间不到 4 秒，以更低的误报率实现最高准确度。"
+          "answer": "Scam AI 采用 Eva-v1 模型，图像和视频深度伪造检测的准确率达到 98.2%。Eva-v1-Fast 处理时间不到 2 秒，适用于高吞吐量场景；Eva-v1-Pro 处理时间不到 4 秒，以更低的误报率实现最高准确度。"
         },
         "types": {
           "question": "Scam AI 能在图像和视频中检测哪些类型的深度伪造？",
@@ -2772,7 +2772,7 @@
         },
         "enhanced-accuracy": {
           "title": "提升检测准确度",
-          "description": "将深度伪造检测准确率提升至 95.3%，处理时间缩短至 4 秒以内。新增 4K 视频分析支持，并增强了音频深度伪造检测算法。"
+          "description": "将深度伪造检测准确率提升至 98.2%，处理时间缩短至 4 秒以内。新增 4K 视频分析支持，并增强了音频深度伪造检测算法。"
         },
         "seed-funding": {
           "title": "种子轮融资——$2.6M",
@@ -2814,7 +2814,7 @@
     "cards": {
       "aiDetection": {
         "title": "AI 图像与视频深度伪造检测",
-        "description": "使用 Eva-v1 模型，以 95.3%* 的准确率检测 AI 生成图像和深度伪造视频。识别换脸、GAN 生成图像，以及来自 Stable Diffusion、DALL-E 和 Midjourney 的扩散模型输出。通过 REST API 在 10 分钟内完成集成。",
+        "description": "使用 Eva-v1 模型，以 98.2%* 的准确率检测 AI 生成图像和深度伪造视频。识别换脸、GAN 生成图像，以及来自 Stable Diffusion、DALL-E 和 Midjourney 的扩散模型输出。通过 REST API 在 10 分钟内完成集成。",
         "link": "了解 AI 深度伪造检测 →"
       },
       "audioDetection": {
@@ -2848,7 +2848,7 @@
       },
       "financial": {
         "title": "金融服务",
-        "description": "在 KYC 和贷款申请过程中以 95.3% 的准确率检测深度伪造身份欺诈。借助实时语音克隆检测，保护呼叫中心免受合成身份攻击和语音网络钓鱼的侵害。",
+        "description": "在 KYC 和贷款申请过程中以 98.2% 的准确率检测深度伪造身份欺诈。借助实时语音克隆检测，保护呼叫中心免受合成身份攻击和语音网络钓鱼的侵害。",
         "linkKyc": "面向 KYC 的 AI 深度伪造检测 →",
         "linkVoice": "语音克隆检测 →"
       },
@@ -3249,7 +3249,7 @@
       "capabilities": {
         "0": {
           "title": "KYC 深度伪造检测",
-          "description": "在客户开户环节以 95.3% 的准确率检测合成人脸与深度伪造自拍，可在 4 秒内标记换脸、GAN 生成图像以及扩散模型输出。"
+          "description": "在客户开户环节以 98.2% 的准确率检测合成人脸与深度伪造自拍，可在 4 秒内标记换脸、GAN 生成图像以及扩散模型输出。"
         },
         "1": {
           "title": "合成身份欺诈防护",
@@ -3326,7 +3326,7 @@
       },
       "ctaHeadline": "立即开始保护您的 KYC 流程",
       "ctaSubheadline": "每月 200 张免费图像额度，无需信用卡。",
-      "metaDescription": "面向金融科技 KYC 的深度伪造检测，准确率达 95.3%。可在 4 秒内检测合成身份、伪造证件与语音克隆。已通过 SOC 2 认证。"
+      "metaDescription": "面向金融科技 KYC 的深度伪造检测，准确率达 98.2%。可在 4 秒内检测合成身份、伪造证件与语音克隆。已通过 SOC 2 认证。"
     },
     "dating": {
       "name": "交友应用",
@@ -3416,7 +3416,7 @@
       },
       "ctaHeadline": "打造更安全的交友平台",
       "ctaSubheadline": "每月 200 次免费图像分析，无需信用卡。",
-      "metaDescription": "检测交友应用上的 AI 生成虚假资料与语音钓鱼。Scam AI 在上传时即以 95.3% 的准确率标记合成人脸。每月 200 次免费。"
+      "metaDescription": "检测交友应用上的 AI 生成虚假资料与语音钓鱼。Scam AI 在上传时即以 98.2% 的准确率标记合成人脸。每月 200 次免费。"
     },
     "call-centers": {
       "name": "呼叫中心",
@@ -3519,7 +3519,7 @@
       "capabilities": {
         "0": {
           "title": "深度伪造自拍检测",
-          "description": "识别在基于自拍的身份核验流程中提交的合成人脸，以 95.3% 的准确率捕捉换脸、GAN 生成图像及扩散模型输出。"
+          "description": "识别在基于自拍的身份核验流程中提交的合成人脸，以 98.2% 的准确率捕捉换脸、GAN 生成图像及扩散模型输出。"
         },
         "1": {
           "title": "证件伪造检测",
@@ -3596,7 +3596,7 @@
       },
       "ctaHeadline": "强化您的 KYC 流程以抵御深度伪造",
       "ctaSubheadline": "每月 200 次免费分析，无需信用卡。",
-      "metaDescription": "在 KYC 开户中检测深度伪造自拍与经 AI 编辑的身份证件。Scam AI 的 Eva-v1 模型在 4 秒内实现 95.3% 的准确率。已通过 SOC 2 Type II 认证。"
+      "metaDescription": "在 KYC 开户中检测深度伪造自拍与经 AI 编辑的身份证件。Scam AI 的 Eva-v1 模型在 4 秒内实现 98.2% 的准确率。已通过 SOC 2 Type II 认证。"
     },
     "media": {
       "name": "媒体与出版",
@@ -3686,7 +3686,7 @@
       },
       "ctaHeadline": "保护您的编辑流程免受合成媒体侵扰",
       "ctaSubheadline": "每月 200 次免费分析，无需信用卡。",
-      "metaDescription": "面向新闻编辑室的深度伪造检测 API。在发布前核验图像、视频和音频是否为 AI 生成。准确率 95.3%，每月 200 次免费。"
+      "metaDescription": "面向新闻编辑室的深度伪造检测 API。在发布前核验图像、视频和音频是否为 AI 生成。准确率 98.2%，每月 200 次免费。"
     },
     "insurance": {
       "name": "保险",
@@ -3935,7 +3935,7 @@
       "faqs": {
         "0": {
           "question": "Scam AI 能否检测政治人物与官员的深度伪造视频？",
-          "answer": "可以。Scam AI 的 Eva-v1 模型以 95.3% 的准确率检测换脸、合成人脸及深度伪造视频篡改，无论使用何种生成工具，都包括公众人物的 AI 生成视频。"
+          "answer": "可以。Scam AI 的 Eva-v1 模型以 98.2% 的准确率检测换脸、合成人脸及深度伪造视频篡改，无论使用何种生成工具，都包括公众人物的 AI 生成视频。"
         },
         "1": {
           "question": "Scam AI 如何应对政府规模的媒体处理量？",
@@ -4121,7 +4121,7 @@
         },
         "2": {
           "question": "对于 KYC，Scam AI 是 Sensity 的理想替代方案吗？",
-          "answer": "是的。Scam AI 的 AI 检测以 95.3% 的准确率覆盖深度伪造自拍、经 AI 编辑的身份证件及生物特征欺诈，符合 SOC 2 Type II 合规，并为实时开户流程提供 4 秒以内的处理速度。"
+          "answer": "是的。Scam AI 的 AI 检测以 98.2% 的准确率覆盖深度伪造自拍、经 AI 编辑的身份证件及生物特征欺诈，符合 SOC 2 Type II 合规，并为实时开户流程提供 4 秒以内的处理速度。"
         },
         "3": {
           "question": "在投入某个方案之前，我能试用 Scam AI 吗？",
@@ -4199,7 +4199,7 @@
       "faqs": {
         "0": {
           "question": "在深度伪造检测方面，Scam AI 与 Hive Moderation 相比如何？",
-          "answer": "Hive 是一个通用内容审核平台，深度伪造检测只是其众多功能之一。Scam AI 专为深度伪造打造，在合成媒体上实现了更高的准确率（95.3%），并提供 Hive 所不具备的语音克隆与证件伪造检测。"
+          "answer": "Hive 是一个通用内容审核平台，深度伪造检测只是其众多功能之一。Scam AI 专为深度伪造打造，在合成媒体上实现了更高的准确率（98.2%），并提供 Hive 所不具备的语音克隆与证件伪造检测。"
         },
         "1": {
           "question": "Scam AI 在内容审核与欺诈防护方面是否同样适用？",
@@ -4283,11 +4283,11 @@
       "faqs": {
         "0": {
           "question": "在深度伪造检测方面，Scam AI 与 Azure AI Content Safety 相比如何？",
-          "answer": "Azure AI Content Safety 广泛检测图像和文本中的有害内容。Scam AI 专为深度伪造与合成媒体欺诈打造，在深度伪造专项攻击上实现了 95.3% 的准确率——涵盖换脸、扩散模型输出、证件伪造及语音克隆——这些都是 Azure 所不覆盖的。"
+          "answer": "Azure AI Content Safety 广泛检测图像和文本中的有害内容。Scam AI 专为深度伪造与合成媒体欺诈打造，在深度伪造专项攻击上实现了 98.2% 的准确率——涵盖换脸、扩散模型输出、证件伪造及语音克隆——这些都是 Azure 所不覆盖的。"
         },
         "1": {
           "question": "在深度伪造方面，Scam AI 比 Azure 更准确吗？",
-          "answer": "Scam AI 的 Eva-v1 模型专门在合成媒体攻击模式上训练，在深度伪造基准上达到 95.3%。Azure AI Content Safety 是一个通用内容安全分类器，未针对深度伪造欺诈场景进行优化。"
+          "answer": "Scam AI 的 Eva-v1 模型专门在合成媒体攻击模式上训练，在深度伪造基准上达到 98.2%。Azure AI Content Safety 是一个通用内容安全分类器，未针对深度伪造欺诈场景进行优化。"
         },
         "2": {
           "question": "Scam AI 能否与 Microsoft Azure 并用？",
@@ -4370,7 +4370,7 @@
         },
         "1": {
           "question": "在 KYC 方面，Scam AI 与 AWS Rekognition 相比如何？",
-          "answer": "Scam AI 专为 KYC 深度伪造检测打造，在合成自拍与身份证件上达到 95.3% 的准确率。AWS Rekognition 可核验人脸活体，但无法检测 AI 生成人脸或深度伪造篡改。"
+          "answer": "Scam AI 专为 KYC 深度伪造检测打造，在合成自拍与身份证件上达到 98.2% 的准确率。AWS Rekognition 可核验人脸活体，但无法检测 AI 生成人脸或深度伪造篡改。"
         },
         "2": {
           "question": "Scam AI 能否与 AWS 服务并用？",

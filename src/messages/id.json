@@ -17,7 +17,7 @@
         "headline": "Lawan ancaman AI",
         "headlineLine2": "dengan",
         "headlineHighlight": "pertahanan AI",
-        "body": "Menurut Deloitte, penipuan deepfake yang dihasilkan AI diproyeksikan merugikan bisnis lebih dari $40 billion pada 2027. Model <em>Eva-v1</em> kami beradaptasi secepat ancaman itu sendiri — mencapai <em>akurasi deteksi 95,3%</em> dalam waktu kurang dari 4 detik, menghentikan penipuan dan melindungi pendapatan Anda secara real time.",
+        "body": "Menurut Deloitte, penipuan deepfake yang dihasilkan AI diproyeksikan merugikan bisnis lebih dari $40 billion pada 2027. Model <em>Eva-v1</em> kami beradaptasi secepat ancaman itu sendiri — mencapai <em>akurasi deteksi 98,2%</em> dalam waktu kurang dari 4 detik, menghentikan penipuan dan melindungi pendapatan Anda secara real time.",
         "cta": "Mulai mendeteksi sekarang"
       },
       "whyChooseUs": {
@@ -1375,7 +1375,7 @@
         "logTitle": "Live log · Blocked Requests",
         "realtime": "Realtime",
         "logs": [
-          "[00:01:12] FACE-SWAP attempt blocked · confidence 95.3%*",
+          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%*",
           "[00:01:15] VOICE-CLONE IVR flagged · fallback to OTP",
           "[00:01:19] IMPERSONATION API denied · rule: Vision-Strict"
         ]
@@ -2502,7 +2502,7 @@
     "hero": {
       "eyebrow": "DETEKSI AI",
       "heading": "Deteksi deepfake pada gambar dan video",
-      "body": "Model Eva-v1 dari Scam AI mendeteksi <em>media sintetis</em>, <em>wajah yang dimanipulasi</em>, dan <em>video deepfake</em> dengan <em>akurasi 95.3%</em> dalam waktu kurang dari 4 detik. Mendukung face swap, gambar hasil GAN, dan keluaran model difusi termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
+      "body": "Model Eva-v1 dari Scam AI mendeteksi <em>media sintetis</em>, <em>wajah yang dimanipulasi</em>, dan <em>video deepfake</em> dengan <em>akurasi 98.2%</em> dalam waktu kurang dari 4 detik. Mendukung face swap, gambar hasil GAN, dan keluaran model difusi termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
       "cta": "Coba Deteksi AI"
     },
     "features": {
@@ -2511,7 +2511,7 @@
       "face": {
         "eyebrow": "DETEKSI WAJAH",
         "heading": "Deteksi Manipulasi Wajah",
-        "body1": "Identifikasi face swap, perubahan ekspresi, dan manipulasi atribut wajah dengan <em>akurasi 95.3%</em> menggunakan analisis jaringan saraf canggih. Mendeteksi keluaran dari perangkat generasi terkemuka termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
+        "body1": "Identifikasi face swap, perubahan ekspresi, dan manipulasi atribut wajah dengan <em>akurasi 98.2%</em> menggunakan analisis jaringan saraf canggih. Mendeteksi keluaran dari perangkat generasi terkemuka termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
         "body2": "Eva-v1-Fast memproses dalam <em>kurang dari 2 detik</em> untuk moderasi real-time. Eva-v1-Pro memberikan hasil berkualitas forensik dalam <em>kurang dari 4 detik</em> untuk KYC dan bukti hukum."
       },
       "video": {
@@ -2580,7 +2580,7 @@
       "items": {
         "accuracy": {
           "question": "Seberapa akurat deteksi deepfake gambar dan video Scam AI?",
-          "answer": "Scam AI mencapai akurasi 95.3% untuk deteksi deepfake gambar dan video menggunakan model Eva-v1. Eva-v1-Fast memproses dalam kurang dari 2 detik untuk kasus penggunaan bervolume tinggi, sementara Eva-v1-Pro memproses dalam kurang dari 4 detik untuk akurasi maksimum dengan lebih sedikit false positive."
+          "answer": "Scam AI mencapai akurasi 98.2% untuk deteksi deepfake gambar dan video menggunakan model Eva-v1. Eva-v1-Fast memproses dalam kurang dari 2 detik untuk kasus penggunaan bervolume tinggi, sementara Eva-v1-Pro memproses dalam kurang dari 4 detik untuk akurasi maksimum dengan lebih sedikit false positive."
         },
         "types": {
           "question": "Jenis deepfake apa saja yang dapat dideteksi Scam AI pada gambar dan video?",
@@ -2772,7 +2772,7 @@
         },
         "enhanced-accuracy": {
           "title": "Peningkatan Akurasi Deteksi",
-          "description": "Meningkatkan akurasi deteksi deepfake menjadi 95.3% dengan waktu pemrosesan berkurang hingga di bawah 4 detik. Menambahkan dukungan untuk analisis video 4K dan algoritme deteksi deepfake audio yang lebih baik."
+          "description": "Meningkatkan akurasi deteksi deepfake menjadi 98.2% dengan waktu pemrosesan berkurang hingga di bawah 4 detik. Menambahkan dukungan untuk analisis video 4K dan algoritme deteksi deepfake audio yang lebih baik."
         },
         "seed-funding": {
           "title": "Putaran Pendanaan Seed - $2.6M",
@@ -2814,7 +2814,7 @@
     "cards": {
       "aiDetection": {
         "title": "Deteksi Deepfake Gambar & Video AI",
-        "description": "Deteksi gambar hasil AI dan video deepfake dengan akurasi 95.3%* menggunakan model Eva-v1. Identifikasi face swap, gambar hasil GAN, dan keluaran model difusi dari Stable Diffusion, DALL-E, dan Midjourney. Terintegrasi melalui REST API dalam kurang dari 10 menit.",
+        "description": "Deteksi gambar hasil AI dan video deepfake dengan akurasi 98.2%* menggunakan model Eva-v1. Identifikasi face swap, gambar hasil GAN, dan keluaran model difusi dari Stable Diffusion, DALL-E, dan Midjourney. Terintegrasi melalui REST API dalam kurang dari 10 menit.",
         "link": "Jelajahi deteksi deepfake AI →"
       },
       "audioDetection": {
@@ -2848,7 +2848,7 @@
       },
       "financial": {
         "title": "Layanan Keuangan",
-        "description": "Deteksi penipuan identitas deepfake saat KYC dan pengajuan pinjaman dengan akurasi 95.3%. Lindungi pusat panggilan dari serangan identitas sintetis dan voice phishing dengan deteksi klona suara real-time.",
+        "description": "Deteksi penipuan identitas deepfake saat KYC dan pengajuan pinjaman dengan akurasi 98.2%. Lindungi pusat panggilan dari serangan identitas sintetis dan voice phishing dengan deteksi klona suara real-time.",
         "linkKyc": "Deteksi deepfake AI untuk KYC →",
         "linkVoice": "Deteksi klona suara →"
       },
@@ -3249,7 +3249,7 @@
       "capabilities": {
         "0": {
           "title": "Deteksi Deepfake KYC",
-          "description": "Deteksi wajah sintetis dan selfie deepfake selama onboarding pelanggan dengan akurasi 95.3%. Menandai face swap, gambar yang dihasilkan GAN, dan keluaran model difusi dalam waktu kurang dari 4 detik."
+          "description": "Deteksi wajah sintetis dan selfie deepfake selama onboarding pelanggan dengan akurasi 98.2%. Menandai face swap, gambar yang dihasilkan GAN, dan keluaran model difusi dalam waktu kurang dari 4 detik."
         },
         "1": {
           "title": "Pencegahan Penipuan Identitas Sintetis",
@@ -3326,7 +3326,7 @@
       },
       "ctaHeadline": "Mulai lindungi pipeline KYC Anda hari ini",
       "ctaSubheadline": "200 gambar gratis per bulan. Tanpa kartu kredit.",
-      "metaDescription": "Deteksi deepfake untuk KYC fintech dengan akurasi 95.3%. Deteksi identitas sintetis, dokumen palsu, dan kloning suara dalam waktu kurang dari 4 detik. Bersertifikat SOC 2."
+      "metaDescription": "Deteksi deepfake untuk KYC fintech dengan akurasi 98.2%. Deteksi identitas sintetis, dokumen palsu, dan kloning suara dalam waktu kurang dari 4 detik. Bersertifikat SOC 2."
     },
     "dating": {
       "name": "Aplikasi Kencan",
@@ -3416,7 +3416,7 @@
       },
       "ctaHeadline": "Bangun platform kencan yang lebih aman",
       "ctaSubheadline": "200 analisis gambar gratis per bulan. Tanpa kartu kredit.",
-      "metaDescription": "Deteksi profil palsu yang dihasilkan AI dan catfishing suara pada aplikasi kencan. Scam AI menandai wajah sintetis saat diunggah dengan akurasi 95.3%. 200 gratis/bulan."
+      "metaDescription": "Deteksi profil palsu yang dihasilkan AI dan catfishing suara pada aplikasi kencan. Scam AI menandai wajah sintetis saat diunggah dengan akurasi 98.2%. 200 gratis/bulan."
     },
     "call-centers": {
       "name": "Pusat Panggilan",
@@ -3519,7 +3519,7 @@
       "capabilities": {
         "0": {
           "title": "Deteksi Selfie Deepfake",
-          "description": "Identifikasi wajah sintetis yang dikirimkan dalam alur verifikasi identitas berbasis selfie, menangkap face swap, gambar yang dihasilkan GAN, dan keluaran model difusi dengan akurasi 95.3%."
+          "description": "Identifikasi wajah sintetis yang dikirimkan dalam alur verifikasi identitas berbasis selfie, menangkap face swap, gambar yang dihasilkan GAN, dan keluaran model difusi dengan akurasi 98.2%."
         },
         "1": {
           "title": "Deteksi Pemalsuan Dokumen Identitas",
@@ -3596,7 +3596,7 @@
       },
       "ctaHeadline": "Perkuat pipeline KYC Anda terhadap deepfake",
       "ctaSubheadline": "200 analisis gratis per bulan. Tanpa kartu kredit.",
-      "metaDescription": "Deteksi selfie deepfake dan dokumen identitas yang disunting AI dalam onboarding KYC. Model Eva-v1 dari Scam AI mencapai akurasi 95.3% dalam waktu kurang dari 4 detik. Bersertifikat SOC 2 Type II."
+      "metaDescription": "Deteksi selfie deepfake dan dokumen identitas yang disunting AI dalam onboarding KYC. Model Eva-v1 dari Scam AI mencapai akurasi 98.2% dalam waktu kurang dari 4 detik. Bersertifikat SOC 2 Type II."
     },
     "media": {
       "name": "Media & Penerbitan",
@@ -3686,7 +3686,7 @@
       },
       "ctaHeadline": "Lindungi pipeline editorial Anda dari media sintetis",
       "ctaSubheadline": "200 analisis gratis per bulan. Tanpa kartu kredit.",
-      "metaDescription": "API deteksi deepfake untuk ruang redaksi. Verifikasi gambar, video, dan audio terhadap generasi AI sebelum publikasi. Akurasi 95.3%, 200 gratis/bulan."
+      "metaDescription": "API deteksi deepfake untuk ruang redaksi. Verifikasi gambar, video, dan audio terhadap generasi AI sebelum publikasi. Akurasi 98.2%, 200 gratis/bulan."
     },
     "insurance": {
       "name": "Asuransi",
@@ -3935,7 +3935,7 @@
       "faqs": {
         "0": {
           "question": "Dapatkah Scam AI mendeteksi video deepfake tokoh politik dan pejabat?",
-          "answer": "Ya. Model Eva-v1 dari Scam AI mendeteksi face swap, wajah sintetis, dan manipulasi video deepfake dengan akurasi 95.3%, termasuk video yang dihasilkan AI dari tokoh publik terlepas dari alat generasi mana yang digunakan."
+          "answer": "Ya. Model Eva-v1 dari Scam AI mendeteksi face swap, wajah sintetis, dan manipulasi video deepfake dengan akurasi 98.2%, termasuk video yang dihasilkan AI dari tokoh publik terlepas dari alat generasi mana yang digunakan."
         },
         "1": {
           "question": "Bagaimana Scam AI menangani volume media berskala pemerintah?",
@@ -4121,7 +4121,7 @@
         },
         "2": {
           "question": "Apakah Scam AI alternatif yang baik untuk Sensity dalam KYC?",
-          "answer": "Ya. Deteksi AI Scam AI mencakup selfie deepfake, dokumen identitas yang disunting AI, dan penipuan biometrik dengan akurasi 95.3% dengan kepatuhan SOC 2 Type II dan pemrosesan di bawah 4 detik untuk alur onboarding langsung."
+          "answer": "Ya. Deteksi AI Scam AI mencakup selfie deepfake, dokumen identitas yang disunting AI, dan penipuan biometrik dengan akurasi 98.2% dengan kepatuhan SOC 2 Type II dan pemrosesan di bawah 4 detik untuk alur onboarding langsung."
         },
         "3": {
           "question": "Dapatkah saya mencoba Scam AI sebelum berkomitmen pada suatu paket?",
@@ -4199,7 +4199,7 @@
       "faqs": {
         "0": {
           "question": "Bagaimana Scam AI dibandingkan dengan Hive Moderation untuk deteksi deepfake?",
-          "answer": "Hive adalah platform moderasi konten umum; deteksi deepfake adalah salah satu dari banyak kemampuannya. Scam AI dirancang khusus untuk deepfake dan mencapai akurasi lebih tinggi (95.3%) pada media sintetis, dengan tambahan deteksi kloning suara dan pemalsuan dokumen yang tidak ditawarkan oleh Hive."
+          "answer": "Hive adalah platform moderasi konten umum; deteksi deepfake adalah salah satu dari banyak kemampuannya. Scam AI dirancang khusus untuk deepfake dan mencapai akurasi lebih tinggi (98.2%) pada media sintetis, dengan tambahan deteksi kloning suara dan pemalsuan dokumen yang tidak ditawarkan oleh Hive."
         },
         "1": {
           "question": "Apakah Scam AI berfungsi untuk moderasi konten sekaligus pencegahan penipuan?",
@@ -4283,11 +4283,11 @@
       "faqs": {
         "0": {
           "question": "Bagaimana Scam AI dibandingkan dengan Azure AI Content Safety untuk deteksi deepfake?",
-          "answer": "Azure AI Content Safety mendeteksi konten berbahaya secara luas di seluruh gambar dan teks. Scam AI dirancang khusus untuk penipuan deepfake dan media sintetis, mencapai akurasi 95.3% pada serangan khusus deepfake — face swap, keluaran model difusi, pemalsuan dokumen, dan kloning suara — yang tidak dicakup oleh Azure."
+          "answer": "Azure AI Content Safety mendeteksi konten berbahaya secara luas di seluruh gambar dan teks. Scam AI dirancang khusus untuk penipuan deepfake dan media sintetis, mencapai akurasi 98.2% pada serangan khusus deepfake — face swap, keluaran model difusi, pemalsuan dokumen, dan kloning suara — yang tidak dicakup oleh Azure."
         },
         "1": {
           "question": "Apakah Scam AI lebih akurat daripada Azure untuk deepfake?",
-          "answer": "Model Eva-v1 dari Scam AI dilatih secara khusus pada pola serangan media sintetis, mencapai 95.3% pada tolok ukur deepfake. Azure AI Content Safety adalah pengklasifikasi keamanan konten umum yang tidak dioptimalkan untuk skenario penipuan deepfake."
+          "answer": "Model Eva-v1 dari Scam AI dilatih secara khusus pada pola serangan media sintetis, mencapai 98.2% pada tolok ukur deepfake. Azure AI Content Safety adalah pengklasifikasi keamanan konten umum yang tidak dioptimalkan untuk skenario penipuan deepfake."
         },
         "2": {
           "question": "Dapatkah Scam AI berfungsi bersama Microsoft Azure?",
@@ -4370,7 +4370,7 @@
         },
         "1": {
           "question": "Bagaimana Scam AI dibandingkan dengan AWS Rekognition untuk KYC?",
-          "answer": "Scam AI dirancang khusus untuk deteksi deepfake KYC dengan akurasi 95.3% pada selfie sintetis dan dokumen identitas. AWS Rekognition dapat memverifikasi liveness wajah tetapi tidak mendeteksi wajah yang dihasilkan AI atau manipulasi deepfake."
+          "answer": "Scam AI dirancang khusus untuk deteksi deepfake KYC dengan akurasi 98.2% pada selfie sintetis dan dokumen identitas. AWS Rekognition dapat memverifikasi liveness wajah tetapi tidak mendeteksi wajah yang dihasilkan AI atau manipulasi deepfake."
         },
         "2": {
           "question": "Dapatkah Scam AI berfungsi bersama layanan AWS?",

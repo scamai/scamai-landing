@@ -17,7 +17,7 @@
         "headline": "Combata as ameaças de IA",
         "headlineLine2": "com",
         "headlineHighlight": "defesa de IA",
-        "body": "Segundo a Deloitte, prevê-se que a fraude com deepfakes gerados por IA custe às empresas mais de $40 billion até 2027. Nossos modelos <em>Eva-v1</em> se adaptam tão rápido quanto as próprias ameaças, alcançando <em>95,3% de precisão de detecção</em> em menos de 4 segundos, barrando fraudes e protegendo a sua receita em tempo real.",
+        "body": "Segundo a Deloitte, prevê-se que a fraude com deepfakes gerados por IA custe às empresas mais de $40 billion até 2027. Nossos modelos <em>Eva-v1</em> se adaptam tão rápido quanto as próprias ameaças, alcançando <em>98,2% de precisão de detecção</em> em menos de 4 segundos, barrando fraudes e protegendo a sua receita em tempo real.",
         "cta": "Comece a detectar agora"
       },
       "whyChooseUs": {
@@ -1375,7 +1375,7 @@
         "logTitle": "Live log · Blocked Requests",
         "realtime": "Realtime",
         "logs": [
-          "[00:01:12] FACE-SWAP attempt blocked · confidence 95.3%*",
+          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%*",
           "[00:01:15] VOICE-CLONE IVR flagged · fallback to OTP",
           "[00:01:19] IMPERSONATION API denied · rule: Vision-Strict"
         ]
@@ -2389,12 +2389,12 @@
     "solutions": {
       "fintech": {
         "title": "Detecção de deepfakes para fintech e bancos",
-        "metaDescription": "Detecção de deepfakes para KYC fintech com 95.3% de precisão. Detecta identidades sintéticas e documentos falsificados em menos de 4 segundos.",
+        "metaDescription": "Detecção de deepfakes para KYC fintech com 98.2% de precisão. Detecta identidades sintéticas e documentos falsificados em menos de 4 segundos.",
         "headline": "Detecção de deepfakes para fintech e bancos"
       },
       "dating": {
         "title": "Detecção de deepfakes e perfis falsos para apps de namoro",
-        "metaDescription": "Detecta perfis falsos gerados por IA e catfishing de voz em apps de namoro. 95.3% de precisão. 200 análises grátis por mês.",
+        "metaDescription": "Detecta perfis falsos gerados por IA e catfishing de voz em apps de namoro. 98.2% de precisão. 200 análises grátis por mês.",
         "headline": "Detecção de deepfakes e perfis falsos para apps de namoro"
       },
       "call-centers": {
@@ -2404,12 +2404,12 @@
       },
       "kyc": {
         "title": "Pare a fraude deepfake na verificação de identidade KYC",
-        "metaDescription": "Detecta selfies deepfake e documentos de identidade editados com IA no processo KYC. 95.3% de precisão em menos de 4 segundos.",
+        "metaDescription": "Detecta selfies deepfake e documentos de identidade editados com IA no processo KYC. 98.2% de precisão em menos de 4 segundos.",
         "headline": "Pare a fraude deepfake na verificação de identidade KYC"
       },
       "media": {
         "title": "Detecção de conteúdo gerado por IA para mídia",
-        "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio antes de publicar. 95.3% de precisão, 200 grátis/mês.",
+        "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio antes de publicar. 98.2% de precisão, 200 grátis/mês.",
         "headline": "Detecção de conteúdo gerado por IA para mídia e redações"
       },
       "insurance": {
@@ -2441,12 +2441,12 @@
       },
       "hive": {
         "title": "Scam AI vs Hive Moderation: Comparação de detecção de deepfakes",
-        "metaDescription": "Scam AI vs Hive: 95.3% detecção de deepfakes vs moderação geral. Detecção de clones de voz + falsificação de documentos.",
+        "metaDescription": "Scam AI vs Hive: 98.2% detecção de deepfakes vs moderação geral. Detecção de clones de voz + falsificação de documentos.",
         "tagline": "Scam AI vs Hive Moderation: Comparação de detecção de deepfakes"
       },
       "microsoft-azure": {
         "title": "Scam AI vs Microsoft Azure AI Content Safety",
-        "metaDescription": "Scam AI vs Azure: 95.3% detecção especializada de deepfakes vs classificador geral. Inclui detecção de clones de voz.",
+        "metaDescription": "Scam AI vs Azure: 98.2% detecção especializada de deepfakes vs classificador geral. Inclui detecção de clones de voz.",
         "tagline": "Scam AI vs Microsoft Azure AI: Comparação de detecção de deepfakes"
       },
       "aws-rekognition": {
@@ -2609,7 +2609,7 @@
     "hero": {
       "eyebrow": "DETECÇÃO DE IA",
       "heading": "Detecte deepfakes em imagens e vídeos",
-      "body": "Os modelos Eva-v1 da Scam AI detectam <em>mídia sintética</em>, <em>rostos manipulados</em> e <em>vídeos deepfake</em> com <em>precisão de 95.3%</em> em menos de 4 segundos. Compatível com face swaps, imagens geradas por GAN e saídas de modelos de difusão, incluindo Stable Diffusion, DALL-E, Midjourney e Flux.",
+      "body": "Os modelos Eva-v1 da Scam AI detectam <em>mídia sintética</em>, <em>rostos manipulados</em> e <em>vídeos deepfake</em> com <em>precisão de 98.2%</em> em menos de 4 segundos. Compatível com face swaps, imagens geradas por GAN e saídas de modelos de difusão, incluindo Stable Diffusion, DALL-E, Midjourney e Flux.",
       "cta": "Testar a detecção de IA"
     },
     "features": {
@@ -2618,7 +2618,7 @@
       "face": {
         "eyebrow": "DETECÇÃO DE ROSTOS",
         "heading": "Detecção de manipulação de rostos",
-        "body1": "Identifique face swaps, mudanças de expressão e manipulações de atributos faciais com <em>precisão de 95.3%</em> usando análise avançada de redes neurais. Detecta saídas das principais ferramentas de geração, incluindo Stable Diffusion, DALL-E, Midjourney e Flux.",
+        "body1": "Identifique face swaps, mudanças de expressão e manipulações de atributos faciais com <em>precisão de 98.2%</em> usando análise avançada de redes neurais. Detecta saídas das principais ferramentas de geração, incluindo Stable Diffusion, DALL-E, Midjourney e Flux.",
         "body2": "O Eva-v1-Fast processa em <em>menos de 2 segundos</em> para moderação em tempo real. O Eva-v1-Pro entrega resultados de nível forense em <em>menos de 4 segundos</em> para KYC e provas legais."
       },
       "video": {
@@ -2687,7 +2687,7 @@
       "items": {
         "accuracy": {
           "question": "Qual é a precisão da detecção de deepfakes em imagens e vídeos da Scam AI?",
-          "answer": "A Scam AI alcança precisão de 95.3% na detecção de deepfakes em imagens e vídeos usando o modelo Eva-v1. O Eva-v1-Fast processa em menos de 2 segundos para casos de uso de alto volume, enquanto o Eva-v1-Pro processa em menos de 4 segundos para máxima precisão com menos falsos positivos."
+          "answer": "A Scam AI alcança precisão de 98.2% na detecção de deepfakes em imagens e vídeos usando o modelo Eva-v1. O Eva-v1-Fast processa em menos de 2 segundos para casos de uso de alto volume, enquanto o Eva-v1-Pro processa em menos de 4 segundos para máxima precisão com menos falsos positivos."
         },
         "types": {
           "question": "Que tipos de deepfakes a Scam AI consegue detectar em imagens e vídeos?",
@@ -2879,7 +2879,7 @@
         },
         "enhanced-accuracy": {
           "title": "Maior precisão de detecção",
-          "description": "Melhoramos a precisão da detecção de deepfakes para 95.3% com tempo de processamento reduzido para menos de 4 segundos. Adicionamos suporte à análise de vídeo em 4K e algoritmos aprimorados de detecção de deepfakes de áudio."
+          "description": "Melhoramos a precisão da detecção de deepfakes para 98.2% com tempo de processamento reduzido para menos de 4 segundos. Adicionamos suporte à análise de vídeo em 4K e algoritmos aprimorados de detecção de deepfakes de áudio."
         },
         "seed-funding": {
           "title": "Rodada de investimento seed: $2.6M",
@@ -2921,7 +2921,7 @@
     "cards": {
       "aiDetection": {
         "title": "Detecção de deepfakes em imagens e vídeos com IA",
-        "description": "Detecte imagens geradas por IA e vídeos deepfake com precisão de 95.3%* usando o modelo Eva-v1. Identifique face swaps, imagens geradas por GAN e saídas de modelos de difusão de Stable Diffusion, DALL-E e Midjourney. Integra-se via REST API em menos de 10 minutos.",
+        "description": "Detecte imagens geradas por IA e vídeos deepfake com precisão de 98.2%* usando o modelo Eva-v1. Identifique face swaps, imagens geradas por GAN e saídas de modelos de difusão de Stable Diffusion, DALL-E e Midjourney. Integra-se via REST API em menos de 10 minutos.",
         "link": "Explore a detecção de deepfakes com IA →"
       },
       "audioDetection": {
@@ -2955,7 +2955,7 @@
       },
       "financial": {
         "title": "Serviços financeiros",
-        "description": "Detecte fraudes de identidade com deepfakes durante o KYC e as solicitações de empréstimo com precisão de 95.3%. Proteja call centers contra ataques de identidade sintética e phishing de voz com detecção de clonagem de voz em tempo real.",
+        "description": "Detecte fraudes de identidade com deepfakes durante o KYC e as solicitações de empréstimo com precisão de 98.2%. Proteja call centers contra ataques de identidade sintética e phishing de voz com detecção de clonagem de voz em tempo real.",
         "linkKyc": "Detecção de deepfakes com IA para KYC →",
         "linkVoice": "Detecção de clonagem de voz →"
       },
@@ -3356,7 +3356,7 @@
       "capabilities": {
         "0": {
           "title": "Detecção de deepfakes em KYC",
-          "description": "Detecte rostos sintéticos e selfies com deepfake durante o onboarding de clientes com 95.3% de precisão. Sinaliza trocas de rosto, imagens geradas por GAN e saídas de modelos de difusão em menos de 4 segundos."
+          "description": "Detecte rostos sintéticos e selfies com deepfake durante o onboarding de clientes com 98.2% de precisão. Sinaliza trocas de rosto, imagens geradas por GAN e saídas de modelos de difusão em menos de 4 segundos."
         },
         "1": {
           "title": "Prevenção de fraude de identidade sintética",
@@ -3433,7 +3433,7 @@
       },
       "ctaHeadline": "Comece hoje a proteger o seu pipeline de KYC",
       "ctaSubheadline": "200 imagens grátis por mês. Sem cartão de crédito.",
-      "metaDescription": "Detecção de deepfakes para KYC em fintechs com 95.3% de precisão. Detecte identidades sintéticas, documentos falsificados e vozes clonadas em menos de 4 segundos. Com certificação SOC 2."
+      "metaDescription": "Detecção de deepfakes para KYC em fintechs com 98.2% de precisão. Detecte identidades sintéticas, documentos falsificados e vozes clonadas em menos de 4 segundos. Com certificação SOC 2."
     },
     "dating": {
       "name": "Apps de relacionamento",
@@ -3523,7 +3523,7 @@
       },
       "ctaHeadline": "Crie uma plataforma de relacionamento mais segura",
       "ctaSubheadline": "200 análises de imagens grátis por mês. Sem cartão de crédito.",
-      "metaDescription": "Detecte perfis falsos gerados por IA e catfishing por voz em apps de relacionamento. A Scam AI sinaliza rostos sintéticos no momento do upload com 95.3% de precisão. 200 grátis por mês."
+      "metaDescription": "Detecte perfis falsos gerados por IA e catfishing por voz em apps de relacionamento. A Scam AI sinaliza rostos sintéticos no momento do upload com 98.2% de precisão. 200 grátis por mês."
     },
     "call-centers": {
       "name": "Call Centers",
@@ -3626,7 +3626,7 @@
       "capabilities": {
         "0": {
           "title": "Detecção de selfies com deepfake",
-          "description": "Identifique rostos sintéticos enviados nos fluxos de verificação de identidade baseados em selfie, capturando trocas de rosto, imagens geradas por GAN e saídas de modelos de difusão com 95.3% de precisão."
+          "description": "Identifique rostos sintéticos enviados nos fluxos de verificação de identidade baseados em selfie, capturando trocas de rosto, imagens geradas por GAN e saídas de modelos de difusão com 98.2% de precisão."
         },
         "1": {
           "title": "Detecção de falsificação de documentos de identidade",
@@ -3703,7 +3703,7 @@
       },
       "ctaHeadline": "Fortaleça o seu pipeline de KYC contra deepfakes",
       "ctaSubheadline": "200 análises grátis por mês. Sem cartão de crédito.",
-      "metaDescription": "Detecte selfies com deepfake e documentos de identidade editados por IA no onboarding KYC. O modelo Eva-v1 da Scam AI alcança 95.3% de precisão em menos de 4 segundos. Com certificação SOC 2 Type II."
+      "metaDescription": "Detecte selfies com deepfake e documentos de identidade editados por IA no onboarding KYC. O modelo Eva-v1 da Scam AI alcança 98.2% de precisão em menos de 4 segundos. Com certificação SOC 2 Type II."
     },
     "media": {
       "name": "Mídia e Publicações",
@@ -3793,7 +3793,7 @@
       },
       "ctaHeadline": "Proteja o seu fluxo editorial contra conteúdo sintético",
       "ctaSubheadline": "200 análises grátis por mês. Sem cartão de crédito.",
-      "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio em busca de geração por IA antes da publicação. 95.3% de precisão, 200 grátis por mês."
+      "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio em busca de geração por IA antes da publicação. 98.2% de precisão, 200 grátis por mês."
     },
     "insurance": {
       "name": "Seguros",
@@ -4042,7 +4042,7 @@
       "faqs": {
         "0": {
           "question": "A Scam AI consegue detectar vídeos deepfake de figuras políticas e autoridades?",
-          "answer": "Sim. O modelo Eva-v1 da Scam AI detecta trocas de rosto, rostos sintéticos e manipulação de vídeo deepfake com 95.3% de precisão, incluindo vídeos gerados por IA de figuras públicas, independentemente da ferramenta de geração usada."
+          "answer": "Sim. O modelo Eva-v1 da Scam AI detecta trocas de rosto, rostos sintéticos e manipulação de vídeo deepfake com 98.2% de precisão, incluindo vídeos gerados por IA de figuras públicas, independentemente da ferramenta de geração usada."
         },
         "1": {
           "question": "Como a Scam AI lida com volumes de mídia em escala governamental?",
@@ -4228,7 +4228,7 @@
         },
         "2": {
           "question": "A Scam AI é uma boa alternativa à Sensity para KYC?",
-          "answer": "Sim. A detecção de IA da Scam AI cobre selfies com deepfake, documentos de identidade editados por IA e fraude biométrica com 95.3% de precisão, com conformidade SOC 2 Type II e processamento em menos de 4 segundos para os fluxos de onboarding ao vivo."
+          "answer": "Sim. A detecção de IA da Scam AI cobre selfies com deepfake, documentos de identidade editados por IA e fraude biométrica com 98.2% de precisão, com conformidade SOC 2 Type II e processamento em menos de 4 segundos para os fluxos de onboarding ao vivo."
         },
         "3": {
           "question": "Posso testar a Scam AI antes de assumir um plano?",
@@ -4306,7 +4306,7 @@
       "faqs": {
         "0": {
           "question": "Como a Scam AI se compara à Hive Moderation para a detecção de deepfakes?",
-          "answer": "A Hive é uma plataforma geral de moderação de conteúdo; a detecção de deepfakes é uma de suas muitas capacidades. A Scam AI é desenvolvida especificamente para deepfakes e alcança maior precisão (95.3%) em conteúdo sintético, com detecção adicional de clonagem de voz e falsificação de documentos que a Hive não oferece."
+          "answer": "A Hive é uma plataforma geral de moderação de conteúdo; a detecção de deepfakes é uma de suas muitas capacidades. A Scam AI é desenvolvida especificamente para deepfakes e alcança maior precisão (98.2%) em conteúdo sintético, com detecção adicional de clonagem de voz e falsificação de documentos que a Hive não oferece."
         },
         "1": {
           "question": "A Scam AI funciona tanto para moderação de conteúdo quanto para prevenção de fraude?",
@@ -4390,11 +4390,11 @@
       "faqs": {
         "0": {
           "question": "Como a Scam AI se compara ao Azure AI Content Safety para a detecção de deepfakes?",
-          "answer": "O Azure AI Content Safety detecta conteúdo nocivo de forma ampla em imagens e texto. A Scam AI é desenvolvida especificamente para fraude com deepfakes e conteúdo sintético, alcançando 95.3% de precisão em ataques específicos de deepfakes (trocas de rosto, saídas de modelos de difusão, falsificação de documentos e vozes clonadas) que o Azure não cobre."
+          "answer": "O Azure AI Content Safety detecta conteúdo nocivo de forma ampla em imagens e texto. A Scam AI é desenvolvida especificamente para fraude com deepfakes e conteúdo sintético, alcançando 98.2% de precisão em ataques específicos de deepfakes (trocas de rosto, saídas de modelos de difusão, falsificação de documentos e vozes clonadas) que o Azure não cobre."
         },
         "1": {
           "question": "A Scam AI é mais precisa que o Azure para deepfakes?",
-          "answer": "O modelo Eva-v1 da Scam AI é treinado especificamente com padrões de ataque de conteúdo sintético, alcançando 95.3% nos benchmarks de deepfakes. O Azure AI Content Safety é um classificador geral de segurança de conteúdo não otimizado para os cenários de fraude com deepfakes."
+          "answer": "O modelo Eva-v1 da Scam AI é treinado especificamente com padrões de ataque de conteúdo sintético, alcançando 98.2% nos benchmarks de deepfakes. O Azure AI Content Safety é um classificador geral de segurança de conteúdo não otimizado para os cenários de fraude com deepfakes."
         },
         "2": {
           "question": "A Scam AI consegue funcionar junto com o Microsoft Azure?",
@@ -4477,7 +4477,7 @@
         },
         "1": {
           "question": "Como a Scam AI se compara ao AWS Rekognition para KYC?",
-          "answer": "A Scam AI é desenvolvida especificamente para a detecção de deepfakes em KYC com 95.3% de precisão em selfies sintéticas e documentos de identidade. O AWS Rekognition pode verificar a vivacidade de um rosto, mas não detecta rostos gerados por IA nem manipulação com deepfakes."
+          "answer": "A Scam AI é desenvolvida especificamente para a detecção de deepfakes em KYC com 98.2% de precisão em selfies sintéticas e documentos de identidade. O AWS Rekognition pode verificar a vivacidade de um rosto, mas não detecta rostos gerados por IA nem manipulação com deepfakes."
         },
         "2": {
           "question": "A Scam AI consegue funcionar junto com os serviços da AWS?",

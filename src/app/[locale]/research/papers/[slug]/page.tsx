@@ -250,7 +250,7 @@ export default async function PaperDetailPage({
                 Try it in production
               </p>
               <p className="text-sm text-gray-400 leading-relaxed mb-4">
-                Scam AI's Eva-v1 model applies this research at production scale — 95.3% accuracy, under 4 seconds, 200 free detections per month.
+                Scam AI's Eva-v1 model applies this research at production scale — 98.2% accuracy, under 4 seconds, 200 free detections per month.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link

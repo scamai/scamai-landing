@@ -144,7 +144,7 @@ function IndustryPageContent({
           <AnimatedSection delay={0.2}>
             <div className="grid grid-cols-3 gap-6 mt-14 rounded-2xl border border-gray-800/60 bg-white/[0.02] p-8">
               <div className="text-center">
-                <p className="text-3xl sm:text-4xl font-bold text-white mb-1">95.3%</p>
+                <p className="text-3xl sm:text-4xl font-bold text-white mb-1">98.2%</p>
                 <p className="text-xs text-gray-500 uppercase tracking-wider">Image accuracy</p>
               </div>
               <div className="text-center border-x border-gray-800/60">

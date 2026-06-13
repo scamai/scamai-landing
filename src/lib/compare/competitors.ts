@@ -32,7 +32,7 @@ export const competitors: Competitor[] = [
     description:
       'Reality Defender is an enterprise deepfake detection platform targeting large organizations with annual contracts. Scam AI offers comparable detection accuracy with transparent per-image pricing, a free tier, and self-serve API access — making it accessible to teams of all sizes.',
     comparison: [
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: 'Under 4 seconds', competitor: null, scamaiWins: true },
       { scamai: '200 images/month', competitor: null, scamaiWins: true },
       { scamai: '$0.05/image, pay-as-you-go', competitor: null, scamaiWins: true },
@@ -61,7 +61,7 @@ export const competitors: Competitor[] = [
     description:
       'Sensity AI (now part of iProov) focuses on deepfake intelligence analytics and biometric liveness verification. Scam AI provides a broader synthetic media detection API covering images, video, audio, and documents — with transparent pricing and self-serve access.',
     comparison: [
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: '200 images/month', competitor: null, scamaiWins: true },
       { scamai: '$0.05/image, pay-as-you-go', competitor: null, scamaiWins: true },
       { scamai: 'Yes, under 10 minutes', competitor: null, scamaiWins: true },
@@ -90,7 +90,7 @@ export const competitors: Competitor[] = [
     description:
       'Hive Moderation is a general-purpose AI content moderation platform covering NSFW, spam, hate speech, and AI-generated detection. Scam AI specializes specifically in deepfakes and synthetic media fraud — offering higher accuracy and faster processing for identity verification, KYC, and anti-fraud use cases.',
     comparison: [
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: '200 images/month', competitor: null, scamaiWins: true },
       { scamai: '$0.05/image', competitor: null, scamaiWins: true },
       { scamai: 'Under 4 seconds', competitor: null, scamaiWins: true },
@@ -111,7 +111,7 @@ export const competitors: Competitor[] = [
       'Hive Moderation pricing',
     ],
     metaDescription:
-      'Scam AI vs Hive Moderation: 95.3% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.',
+      'Scam AI vs Hive Moderation: 98.2% deepfake detection vs general moderation. Voice clone + document forgery detection Hive lacks. $0.05/image.',
   },
   {
     slug: 'microsoft-azure',
@@ -119,7 +119,7 @@ export const competitors: Competitor[] = [
     description:
       'Microsoft Azure AI Content Safety is a broad content safety platform for detecting harmful content across text and images. Scam AI is purpose-built for deepfake detection and synthetic media fraud — delivering higher accuracy on deepfake-specific attack vectors with identity verification and voice clone detection.',
     comparison: [
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: '200 images/month', competitor: null, scamaiWins: false },
       { scamai: '$0.05/image deepfake', competitor: null, scamaiWins: false },
       { scamai: 'Under 10 minutes', competitor: null, scamaiWins: true },
@@ -140,7 +140,7 @@ export const competitors: Competitor[] = [
       'Microsoft Azure synthetic media',
     ],
     metaDescription:
-      'Scam AI vs Azure AI Content Safety: purpose-built 95.3% deepfake detection vs general safety classifier. Voice clone + document forgery included.',
+      'Scam AI vs Azure AI Content Safety: purpose-built 98.2% deepfake detection vs general safety classifier. Voice clone + document forgery included.',
   },
   {
     slug: 'aws-rekognition',
@@ -148,7 +148,7 @@ export const competitors: Competitor[] = [
     description:
       'AWS Rekognition is a general computer vision service for face detection, object recognition, and content moderation. Scam AI is purpose-built for deepfake detection — delivering higher accuracy on synthetic media fraud with voice clone detection and document forgery capabilities not available in Rekognition.',
     comparison: [
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: 'Yes, Eva-v1', competitor: null, scamaiWins: true },
       { scamai: '200 images/month', competitor: 'AWS Free Tier (12 months)', scamaiWins: false },
       { scamai: '$0.05/image', competitor: null, scamaiWins: false },
@@ -179,7 +179,7 @@ export const competitors: Competitor[] = [
     comparison: [
       { scamai: null, competitor: 'C2PA cryptographic provenance', scamaiWins: false },
       { scamai: null, competitor: 'No — requires C2PA camera integration', scamaiWins: true },
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: '200 images/month', competitor: null, scamaiWins: true },
       { scamai: 'Yes (98.5% accuracy)', competitor: null, scamaiWins: true },
       { scamai: 'Under 10 minutes', competitor: null, scamaiWins: true },
@@ -208,7 +208,7 @@ export const competitors: Competitor[] = [
     comparison: [
       { scamai: null, competitor: null, scamaiWins: true },
       { scamai: null, competitor: null, scamaiWins: true },
-      { scamai: '95.3% (Eva-v1)', competitor: null, scamaiWins: true },
+      { scamai: '98.2% (Eva-v1)', competitor: null, scamaiWins: true },
       { scamai: 'Under 4 seconds SLA', competitor: null, scamaiWins: true },
       { scamai: '200 images/month API', competitor: null, scamaiWins: false },
       { scamai: 'Yes (98.5% accuracy)', competitor: null, scamaiWins: true },

@@ -160,11 +160,11 @@ export const articles: Article[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'Scam AI\'s Eva-v1 model achieves 95.3% accuracy on image and video deepfake detection, and 98.5% accuracy on voice clone detection. These figures are measured on in-the-wild benchmarks — real deepfakes collected from the internet, not laboratory-generated samples that detection models were trained on.',
+            text: 'Scam AI\'s Eva-v1 model achieves 98.2% accuracy on image and video deepfake detection, and 98.5% accuracy on voice clone detection. These figures are measured on in-the-wild benchmarks — real deepfakes collected from the internet, not laboratory-generated samples that detection models were trained on.',
           },
           {
             type: 'paragraph',
-            text: 'Accuracy numbers require context. A 95.3% accurate detector applied to 1,000 images will generate approximately 47 incorrect results — either missing real deepfakes (false negatives) or flagging authentic images (false positives). For KYC onboarding, false positives represent friction for legitimate users; false negatives represent fraud risk. Choosing the right sensitivity threshold depends on the specific use case.',
+            text: 'Accuracy numbers require context. A 98.2% accurate detector applied to 1,000 images will generate approximately 47 incorrect results — either missing real deepfakes (false negatives) or flagging authentic images (false positives). For KYC onboarding, false positives represent friction for legitimate users; false negatives represent fraud risk. Choosing the right sensitivity threshold depends on the specific use case.',
           },
           {
             type: 'callout',
@@ -193,7 +193,7 @@ export const articles: Article[] = [
       {
         question: 'How accurate is deepfake detection?',
         answer:
-          'Accuracy varies significantly by tool and test conditions. Scam AI\'s Eva-v1 model achieves 95.3% accuracy on in-the-wild image deepfakes and 98.5% on voice clone detection. Accuracy degrades on adversarially optimized deepfakes designed to evade specific detectors, which is why detection models must be continuously updated as generation technology evolves.',
+          'Accuracy varies significantly by tool and test conditions. Scam AI\'s Eva-v1 model achieves 98.2% accuracy on in-the-wild image deepfakes and 98.5% on voice clone detection. Accuracy degrades on adversarially optimized deepfakes designed to evade specific detectors, which is why detection models must be continuously updated as generation technology evolves.',
       },
       {
         question: 'Can I detect deepfakes for free?',
@@ -344,7 +344,7 @@ result = response.json()
         blocks: [
           {
             type: 'paragraph',
-            text: 'No detection system achieves 100% accuracy. Scam AI\'s Eva-v1 achieves 95.3% accuracy, which means approximately 47 incorrect results per 1,000 images analyzed. These errors divide into false positives (real images flagged as AI-generated) and false negatives (AI images that pass detection).',
+            text: 'No detection system achieves 100% accuracy. Scam AI\'s Eva-v1 achieves 98.2% accuracy, which means approximately 47 incorrect results per 1,000 images analyzed. These errors divide into false positives (real images flagged as AI-generated) and false negatives (AI images that pass detection).',
           },
           {
             type: 'paragraph',
@@ -580,14 +580,14 @@ result = response.json()
       'deepfake detector performance',
     ],
     intro:
-      'Every deepfake detection provider leads with an accuracy number. Scam AI achieves 95.3%. Another tool claims 99%. A third reports 97% on video deepfakes. These numbers mean almost nothing without understanding how they were measured, on what data, and under what conditions. This guide explains the benchmarking landscape for deepfake detection, what accuracy numbers actually reflect, and how to make a meaningful comparison when choosing a detection system.',
+      'Every deepfake detection provider leads with an accuracy number. Scam AI achieves 98.2%. Another tool claims 99%. A third reports 97% on video deepfakes. These numbers mean almost nothing without understanding how they were measured, on what data, and under what conditions. This guide explains the benchmarking landscape for deepfake detection, what accuracy numbers actually reflect, and how to make a meaningful comparison when choosing a detection system.',
     sections: [
       {
         heading: 'What accuracy means in deepfake detection',
         blocks: [
           {
             type: 'paragraph',
-            text: 'In binary classification — is this image a deepfake or not? — accuracy is the percentage of correct predictions across all inputs. An accuracy of 95.3% means the model correctly classifies 953 out of every 1,000 images analyzed. The 47 incorrect results are split between two error types: false positives (real images incorrectly flagged as deepfakes) and false negatives (deepfakes that pass detection as genuine).',
+            text: 'In binary classification — is this image a deepfake or not? — accuracy is the percentage of correct predictions across all inputs. An accuracy of 98.2% means the model correctly classifies 953 out of every 1,000 images analyzed. The 47 incorrect results are split between two error types: false positives (real images incorrectly flagged as deepfakes) and false negatives (deepfakes that pass detection as genuine).',
           },
           {
             type: 'paragraph',
@@ -688,7 +688,7 @@ result = response.json()
       {
         question: 'What is a good accuracy rate for deepfake detection?',
         answer:
-          'Context matters enormously. 95% accuracy on in-the-wild deepfakes is very different from 95% on a controlled laboratory dataset. Scam AI\'s 95.3% is measured on in-the-wild benchmarks including real social media deepfakes and fraud cases — a more meaningful figure than lab-condition accuracy. For production use, also evaluate the false positive rate separately from the false negative rate.',
+          'Context matters enormously. 95% accuracy on in-the-wild deepfakes is very different from 95% on a controlled laboratory dataset. Scam AI\'s 98.2% is measured on in-the-wild benchmarks including real social media deepfakes and fraud cases — a more meaningful figure than lab-condition accuracy. For production use, also evaluate the false positive rate separately from the false negative rate.',
       },
       {
         question: 'Why do different benchmarks show different accuracy figures?',
@@ -945,7 +945,7 @@ result = response.json()
       {
         question: 'What is the difference between eva-v1-fast and eva-v1-pro?',
         answer:
-          'eva-v1-fast processes in under 2 seconds and is optimized for high-throughput and real-time use cases. eva-v1-pro processes in under 4 seconds and achieves 95.3% accuracy — the highest accuracy version. For KYC and high-stakes identity verification, eva-v1-pro is recommended. For content moderation at scale where the extra 2 seconds matters, eva-v1-fast is appropriate.',
+          'eva-v1-fast processes in under 2 seconds and is optimized for high-throughput and real-time use cases. eva-v1-pro processes in under 4 seconds and achieves 98.2% accuracy — the highest accuracy version. For KYC and high-stakes identity verification, eva-v1-pro is recommended. For content moderation at scale where the extra 2 seconds matters, eva-v1-fast is appropriate.',
       },
       {
         question: 'Does Scam AI store the images I submit for detection?',
@@ -1038,7 +1038,7 @@ result = response.json()
           {
             type: 'bullets',
             items: [
-              'Scam AI Eva-v1 model: 95.3% accuracy on in-the-wild image deepfakes (Scam AI internal benchmark, 2026)',
+              'Scam AI Eva-v1 model: 98.2% accuracy on in-the-wild image deepfakes (Scam AI internal benchmark, 2026)',
               'Scam AI audio model: 98.5% accuracy on voice clone detection across major synthesis platforms',
               'Open-source detection models: 50–65% accuracy on out-of-distribution deepfakes from tools not in training data (arXiv:2602.07814)',
               'Human reviewers: accuracy approaching random chance (50%) on high-quality modern deepfakes',
@@ -1049,7 +1049,7 @@ result = response.json()
           {
             type: 'callout',
             variant: 'stat',
-            text: 'Human detection of high-quality deepfakes performs near random chance (50%), compared to Scam AI\'s 95.3% AI-based detection. This gap is the primary argument for automated detection systems.',
+            text: 'Human detection of high-quality deepfakes performs near random chance (50%), compared to Scam AI\'s 98.2% AI-based detection. This gap is the primary argument for automated detection systems.',
           },
         ],
       },
@@ -1111,7 +1111,7 @@ result = response.json()
           },
           {
             type: 'paragraph',
-            text: 'Second, human review cannot scale. Human accuracy at random chance means that adding headcount to manual review of media is an ineffective response. AI detection at 95.3%+ accuracy is the only approach that scales.',
+            text: 'Second, human review cannot scale. Human accuracy at random chance means that adding headcount to manual review of media is an ineffective response. AI detection at 98.2%+ accuracy is the only approach that scales.',
           },
           {
             type: 'paragraph',

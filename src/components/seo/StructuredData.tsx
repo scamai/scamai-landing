@@ -82,7 +82,7 @@ export default function StructuredData() {
     },
     "description": "AI-powered deepfake detection and synthetic media verification platform with real-time analysis.",
     "featureList": [
-      "Real-time deepfake detection with 95.3% accuracy",
+      "Real-time deepfake detection with 98.2% accuracy",
       "AI detection for images and videos",
       "Audio detection for synthetic voices",
       "GenAI content detection",
@@ -250,7 +250,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Scam AI Deepfake Detection Platform — Product Demo",
-    "description": "See Scam AI's deepfake detection platform in action. Detect AI-generated images, deepfake videos, and synthetic media in real-time with 95.3% accuracy using the Eva-v1 model.",
+    "description": "See Scam AI's deepfake detection platform in action. Detect AI-generated images, deepfake videos, and synthetic media in real-time with 98.2% accuracy using the Eva-v1 model.",
     "thumbnailUrl": "https://www.scam.ai/en/opengraph-image",
     "contentUrl": "https://www.scam.ai/dashboard.mp4",
     "uploadDate": "2024-06-01",

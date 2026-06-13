@@ -97,7 +97,7 @@ export default function ProductsPage() {
               <tbody className="text-gray-300">
                 <tr className="border-b border-gray-800/50">
                   <td className="py-4 px-6">{t("comparison.rows.accuracy")}</td>
-                  <td className="py-4 px-6 text-center">95.3%*</td>
+                  <td className="py-4 px-6 text-center">98.2%*</td>
                   <td className="py-4 px-6 text-center">98.5%</td>
                 </tr>
                 <tr className="border-b border-gray-800/50">

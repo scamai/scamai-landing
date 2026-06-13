@@ -167,7 +167,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
               <p className="text-sm font-semibold text-white group-hover:text-[#245FFF] transition-colors mb-1">
                 Deepfake Detection API →
               </p>
-              <p className="text-xs text-gray-600">95.3% accuracy · under 4 seconds · 200 free/month</p>
+              <p className="text-xs text-gray-600">98.2% accuracy · under 4 seconds · 200 free/month</p>
             </Link>
             <Link
               href="/products/audio-detection"
