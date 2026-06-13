@@ -465,7 +465,8 @@
             }
           }
         }
-      }
+      },
+      "language": "Language"
     },
     "stickyCta": {
       "regionLabel": "Scam AI"

@@ -170,7 +170,8 @@
             }
           }
         }
-      }
+      },
+      "language": "Langue"
     },
     "stickyCta": {
       "regionLabel": "Scam AI"

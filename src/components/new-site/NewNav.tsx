@@ -185,14 +185,19 @@ const navItems: NavItem[] = [
   },
 ];
 
+// All 11 locales (matches src/i18n/config), labelled in their own language.
 const languages = [
   { code: "en", name: "English" },
-  { code: "es", name: "Español" },
-  { code: "pt", name: "Português" },
+  { code: "zh-CN", name: "简体中文" },
+  { code: "zh-TW", name: "繁體中文" },
   { code: "ja", name: "日本語" },
   { code: "ko", name: "한국어" },
-  { code: "zh-TW", name: "繁體中文" },
+  { code: "es", name: "Español" },
+  { code: "pt", name: "Português" },
+  { code: "fr", name: "Français" },
+  { code: "de", name: "Deutsch" },
   { code: "id", name: "Bahasa Indonesia" },
+  { code: "ar", name: "العربية" },
 ];
 
 export default function NewNav() {
@@ -427,6 +432,40 @@ export default function NewNav() {
               ⌘K
             </kbd>
           </button>
+          {/* Language switcher */}
+          <div className="relative shrink-0" ref={langDropdownRef}>
+            <button
+              type="button"
+              onClick={() => setLangOpen((v) => !v)}
+              aria-expanded={langOpen}
+              aria-haspopup="true"
+              aria-label={t("language")}
+              className="flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10 whitespace-nowrap"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.5-2.5 3.5-6 3.5-9S14.5 5.5 12 3m0 18c-2.5-2.5-3.5-6-3.5-9S9.5 5.5 12 3M3.5 9h17M3.5 15h17" /></svg>
+              <span>{currentLanguage.name}</span>
+              <svg className={`h-3.5 w-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            {langOpen && (
+              <div role="menu" className="absolute right-0 top-full z-50 mt-2 max-h-[70vh] w-44 overflow-auto rounded-xl border border-white/10 bg-[#0b0b0b] py-1 shadow-2xl">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    role="menuitem"
+                    onClick={() => switchLocale(lang.code)}
+                    aria-current={lang.code === locale ? "true" : undefined}
+                    className={`flex w-full items-center justify-between px-4 py-2 text-left text-sm transition hover:bg-white/10 ${lang.code === locale ? "font-semibold text-white" : "text-white/70"}`}
+                  >
+                    <span>{lang.name}</span>
+                    {lang.code === locale && (
+                      <svg className="h-4 w-4 text-[#245FFF]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clipRule="evenodd" /></svg>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <a
             href="https://app.scam.ai"
             target="_blank"
@@ -874,6 +913,23 @@ export default function NewNav() {
         {/* Footer */}
         <div className="flex-shrink-0 border-t border-gray-700 px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           <div className="flex flex-col gap-3">
+            {/* Language switcher (mobile) */}
+            <div>
+              <p className="mb-2 px-1 text-xs font-medium uppercase tracking-wider text-gray-500">{t("language")}</p>
+              <div className="grid grid-cols-2 gap-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    onClick={() => { switchLocale(lang.code); setOpen(false); }}
+                    aria-current={lang.code === locale ? "true" : undefined}
+                    className={`rounded-full border px-3 py-2 text-sm transition ${lang.code === locale ? "border-[#245FFF] bg-[#245FFF]/10 font-semibold text-white" : "border-gray-700 text-white/70 hover:bg-gray-800"}`}
+                  >
+                    {lang.name}
+                  </button>
+                ))}
+              </div>
+            </div>
             <a
               href="https://app.scam.ai"
               target="_blank"
