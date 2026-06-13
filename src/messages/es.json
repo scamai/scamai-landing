@@ -4659,5 +4659,307 @@
         }
       }
     }
+  },
+  "researchPage": {
+    "hero": {
+      "eyebrow": "Investigación",
+      "title": "Avanzando en la ciencia de la <accent>confianza en la IA</accent>",
+      "description": "Nuestra investigación se centra en la detección de deepfakes, el análisis forense de medios sintéticos y la robustez ante ataques adversarios. Publicamos nuestros hallazgos para hacer avanzar el campo y mantener a nuestros clientes un paso por delante de las amenazas emergentes."
+    },
+    "stats": {
+      "papers": "Artículos de investigación",
+      "areas": "Áreas de investigación",
+      "datasets": "Conjuntos de datos abiertos",
+      "comingSoon": "Próximamente"
+    },
+    "papers": {
+      "heading": "Publicaciones e informes",
+      "description": "Investigación del equipo de Scam AI sobre detección de deepfakes, falsificación de documentos, estimación de edad y más.",
+      "comingBadge": "Próximamente",
+      "viewOn": "Ver en {source}"
+    },
+    "datasets": {
+      "heading": "Conjuntos de datos",
+      "description": "Conjuntos de datos curados para ayudar a los investigadores a evaluar modelos de detección. Cada conjunto de datos tiene su propia página con la cita, el enlace al artículo y una descarga protegida por correo electrónico.",
+      "getAccess": "Obtener acceso"
+    },
+    "cta": {
+      "heading": "¿Te interesa colaborar?",
+      "description": "Colaboramos con instituciones académicas y laboratorios del sector en investigación sobre detección de deepfakes.",
+      "button": "Ponte en contacto"
+    }
+  },
+  "resourcesPage": {
+    "eyebrow": "RECURSOS",
+    "hero": {
+      "heading": "Todo lo que necesitas para tener éxito",
+      "subheading": "Documentación, guías y recursos para ayudarte a integrar Scam AI y aprovecharla al máximo."
+    },
+    "cards": {
+      "documentation": {
+        "title": "Documentación",
+        "description": "Documentación completa de la API, ejemplos de código y guías de integración para empezar en minutos.",
+        "cta": "Ver documentación"
+      },
+      "security": {
+        "title": "Seguridad y cumplimiento",
+        "description": "Conoce nuestras prácticas de seguridad de nivel empresarial, nuestras certificaciones y nuestro cumplimiento de los estándares globales.",
+        "cta": "Ver información de seguridad"
+      }
+    },
+    "popular": {
+      "heading": "Recursos populares",
+      "links": {
+        "quickStart": {
+          "title": "Guía de inicio rápido",
+          "description": "Empieza a usar Scam AI en menos de 10 minutos.",
+          "cta": "Leer la guía"
+        },
+        "apiReference": {
+          "title": "Referencia de la API",
+          "description": "Documentación y ejemplos completos de los endpoints de la API.",
+          "cta": "Ver documentación de la API"
+        },
+        "bestPractices": {
+          "title": "Buenas prácticas",
+          "description": "Optimiza tu integración con estrategias probadas.",
+          "cta": "Más información"
+        },
+        "soc2": {
+          "title": "SOC 2 Type II",
+          "description": "Detalles de nuestra certificación de seguridad y cumplimiento.",
+          "cta": "Ver detalles"
+        },
+        "gdpr": {
+          "title": "Cumplimiento del GDPR",
+          "description": "Cómo Scam AI te ayuda a cumplir los requisitos del GDPR.",
+          "cta": "Más información"
+        },
+        "support": {
+          "title": "Soporte",
+          "description": "Recibe ayuda de nuestro equipo de soporte técnico.",
+          "cta": "Contactar con soporte"
+        }
+      }
+    },
+    "help": {
+      "heading": "¿Necesitas ayuda?",
+      "cards": {
+        "support": {
+          "title": "Contactar con soporte",
+          "description": "Nuestro equipo está aquí para ayudarte con cualquier pregunta.",
+          "cta": "Ponte en contacto"
+        },
+        "docs": {
+          "title": "Leer la documentación",
+          "description": "Guías completas y referencias de la API.",
+          "cta": "Ver documentación"
+        },
+        "security": {
+          "title": "Información de seguridad",
+          "description": "Conoce nuestra seguridad y cumplimiento.",
+          "cta": "Ver seguridad"
+        }
+      }
+    },
+    "cta": {
+      "heading": "¿Listo para empezar?",
+      "subheading": "Empieza a detectar deepfakes con 200 imágenes gratis al mes.",
+      "button": "Empezar gratis"
+    }
+  },
+  "documentationPage": {
+    "hero": {
+      "eyebrow": "DOCUMENTACIÓN",
+      "title": "Documentación para desarrolladores",
+      "subtitle": "Todo lo que necesitas para integrar la API de detección de deepfakes de Scam AI en tu aplicación en minutos.",
+      "cta": "Obtener clave de API"
+    },
+    "quickStart": {
+      "title": "Inicio rápido",
+      "steps": {
+        "signUp": {
+          "title": "Regístrate",
+          "description": "Crea una cuenta gratuita en app.scam.ai y obtén tu clave de API al instante."
+        },
+        "makeCall": {
+          "title": "Realiza una llamada a la API",
+          "description": "Usa nuestra sencilla API REST para analizar archivos de imagen, audio o vídeo."
+        },
+        "getResults": {
+          "title": "Obtén los resultados",
+          "description": "Recibe un análisis instantáneo con puntuaciones de confianza e informes detallados."
+        }
+      },
+      "example": {
+        "title": "Ejemplo básico"
+      }
+    },
+    "endpoints": {
+      "title": "Endpoints de la API",
+      "labels": {
+        "rateLimit": "Límite de tasa:",
+        "maxFileSize": "Tamaño máximo de archivo:",
+        "supportedFormats": "Formatos compatibles:"
+      },
+      "image": {
+        "title": "Detección de imágenes",
+        "description": "Analiza imágenes para detectar deepfakes, intercambios de rostros y generación sintética."
+      },
+      "audio": {
+        "title": "Detección de audio",
+        "description": "Detecta voces generadas por IA, clonación de voz y habla sintética."
+      },
+      "video": {
+        "title": "Detección de vídeo",
+        "description": "Analiza contenido de vídeo para detectar deepfakes y fotogramas manipulados."
+      }
+    },
+    "sdks": {
+      "title": "SDK y bibliotecas",
+      "comingSoon": "Próximamente"
+    },
+    "bestPractices": {
+      "title": "Buenas prácticas",
+      "errorHandling": {
+        "title": "Gestión de errores",
+        "description": "Gestiona siempre los errores de la API de forma controlada. Implementa una lógica de reintento con retroceso exponencial para fallos temporales."
+      },
+      "rateLimiting": {
+        "title": "Limitación de tasa",
+        "description": "Respeta los límites de tasa para evitar errores 429. Implementa una cola de solicitudes para aplicaciones de alto volumen."
+      },
+      "fileOptimization": {
+        "title": "Optimización de archivos",
+        "description": "Comprime los archivos grandes antes de subirlos para reducir el tiempo de procesamiento y los costes. Optimiza la resolución del vídeo cuando sea posible."
+      },
+      "cachingResults": {
+        "title": "Almacenamiento en caché de resultados",
+        "description": "Guarda en caché los resultados de detección del contenido que se comprueba con frecuencia para reducir las llamadas a la API y mejorar los tiempos de respuesta."
+      }
+    },
+    "cta": {
+      "title": "¿Necesitas ayuda para empezar?",
+      "subtitle": "Nuestro equipo está aquí para ayudarte a integrar todo con éxito.",
+      "contactSupport": "Contactar con soporte",
+      "getApiKey": "Obtener clave de API"
+    }
+  },
+  "securityCompliancePage": {
+    "hero": {
+      "eyebrow": "SEGURIDAD Y CUMPLIMIENTO",
+      "heading": "Seguridad y cumplimiento de nivel empresarial",
+      "body": "Creado con una arquitectura centrada en la seguridad y conforme a los estándares globales de protección de datos."
+    },
+    "certifications": {
+      "heading": "Certificaciones y estándares",
+      "soc2": {
+        "description": "Auditado y certificado de forma independiente en materia de seguridad, disponibilidad, integridad del procesamiento, confidencialidad y privacidad."
+      },
+      "gdpr": {
+        "title": "Conforme al GDPR",
+        "description": "Pleno cumplimiento del Reglamento General de Protección de Datos de la UE, incluidas opciones de residencia de datos y controles de privacidad."
+      }
+    },
+    "securityFeatures": {
+      "heading": "Funciones de seguridad",
+      "items": {
+        "encryption": {
+          "title": "Cifrado de extremo a extremo",
+          "description": "Todos los datos en tránsito se cifran con TLS 1.3. Los datos en reposo se cifran con AES-256."
+        },
+        "retention": {
+          "title": "Cero retención de datos",
+          "description": "No almacenamos tus archivos multimedia después del análisis. Los resultados se conservan durante 30 días, salvo que indiques lo contrario."
+        },
+        "apiKeys": {
+          "title": "Gestión de claves de API",
+          "description": "Generación segura de claves de API con capacidades de rotación y control granular de permisos."
+        },
+        "access": {
+          "title": "Controles de acceso",
+          "description": "Control de acceso basado en roles (RBAC) y autenticación multifactor (MFA) para las cuentas de equipo."
+        },
+        "auditLogs": {
+          "title": "Registros de auditoría",
+          "description": "Registros de auditoría completos de todas las llamadas a la API y actividades de la cuenta, con una retención de 1 año."
+        },
+        "ddos": {
+          "title": "Protección contra DDoS",
+          "description": "Protección contra DDoS de nivel empresarial y limitación de tasa para garantizar la disponibilidad del servicio."
+        },
+        "pentest": {
+          "title": "Pruebas de penetración periódicas",
+          "description": "Auditorías de seguridad trimestrales y pruebas de penetración realizadas por terceros independientes."
+        },
+        "incident": {
+          "title": "Respuesta ante incidentes",
+          "description": "Supervisión de seguridad 24/7 con procedimientos documentados de respuesta ante incidentes."
+        },
+        "backup": {
+          "title": "Copia de seguridad y recuperación de datos",
+          "description": "Copias de seguridad automatizadas con recuperación a un momento específico y procedimientos de recuperación ante desastres."
+        }
+      }
+    },
+    "regional": {
+      "heading": "Cumplimiento regional",
+      "items": {
+        "europe": {
+          "title": "Europa (GDPR)",
+          "bullets": [
+            "Residencia de datos en la UE",
+            "Derecho al olvido",
+            "Portabilidad de datos",
+            "Acuerdos de tratamiento"
+          ]
+        },
+        "unitedStates": {
+          "title": "Estados Unidos",
+          "bullets": [
+            "Centros de datos en EE. UU.",
+            "Conforme a la CCPA",
+            "SOC 2 Type II",
+            "FedRAMP en proceso"
+          ]
+        },
+        "asiaPacific": {
+          "title": "Asia-Pacífico",
+          "bullets": [
+            "Centros de datos en APAC",
+            "Conforme a la PDPA",
+            "Almacenamiento local de datos",
+            "Soporte regional"
+          ]
+        }
+      }
+    },
+    "dataPrivacy": {
+      "heading": "Tus datos, tu control",
+      "items": {
+        "noTraining": {
+          "title": "Sin entrenamiento con datos de clientes",
+          "description": "Nunca usamos tus datos para entrenar nuestros modelos sin permiso explícito. Tus archivos multimedia y tus resultados de detección siguen siendo privados."
+        },
+        "retention": {
+          "title": "Retención de datos configurable",
+          "description": "Elige cuánto tiempo conservamos tus datos. Las opciones van desde la eliminación inmediata tras el análisis hasta periodos de retención personalizados de hasta 1 año."
+        },
+        "export": {
+          "title": "Exportación y eliminación de datos",
+          "description": "Exporta tus datos en cualquier momento en formatos estándar. Solicita la eliminación completa de la cuenta con borrado de datos garantizado en un plazo de 30 días."
+        }
+      }
+    },
+    "enterprise": {
+      "heading": "Seguridad empresarial",
+      "body": "¿Necesitas requisitos de seguridad personalizados, despliegue on-premise o infraestructura dedicada?",
+      "cta": "Contactar con ventas para empresas"
+    },
+    "docs": {
+      "heading": "Documentación de seguridad",
+      "body": "¿Quieres revisar nuestras prácticas de seguridad en detalle?",
+      "cta": "Solicitar el informe técnico de seguridad"
+    }
   }
 }

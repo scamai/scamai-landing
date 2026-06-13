@@ -4552,5 +4552,307 @@
         }
       }
     }
+  },
+  "researchPage": {
+    "hero": {
+      "eyebrow": "Riset",
+      "title": "Memajukan ilmu <accent>kepercayaan AI</accent>",
+      "description": "Riset kami berfokus pada deteksi deepfake, forensik media sintetis, dan ketahanan terhadap serangan adversarial. Kami memublikasikan temuan kami untuk memajukan bidang ini dan menjaga pelanggan kami tetap selangkah di depan ancaman yang sedang berkembang."
+    },
+    "stats": {
+      "papers": "Makalah Riset",
+      "areas": "Bidang Riset",
+      "datasets": "Dataset Terbuka",
+      "comingSoon": "Segera Hadir"
+    },
+    "papers": {
+      "heading": "Publikasi & Laporan",
+      "description": "Riset dari tim Scam AI yang mencakup deteksi deepfake, pemalsuan dokumen, estimasi usia, dan lainnya.",
+      "comingBadge": "Segera",
+      "viewOn": "Lihat di {source}"
+    },
+    "datasets": {
+      "heading": "Dataset",
+      "description": "Dataset terkurasi untuk membantu para peneliti membandingkan kinerja model deteksi. Setiap dataset memiliki halamannya sendiri yang dilengkapi sitasi, tautan makalah, dan unduhan yang memerlukan verifikasi email.",
+      "getAccess": "Dapatkan Akses"
+    },
+    "cta": {
+      "heading": "Tertarik untuk berkolaborasi?",
+      "description": "Kami bermitra dengan institusi akademis dan laboratorium industri dalam riset deteksi deepfake.",
+      "button": "Hubungi kami"
+    }
+  },
+  "resourcesPage": {
+    "eyebrow": "SUMBER DAYA",
+    "hero": {
+      "heading": "Semua yang Anda butuhkan untuk berhasil",
+      "subheading": "Dokumentasi, panduan, dan sumber daya untuk membantu Anda mengintegrasikan dan memanfaatkan Scam AI secara maksimal."
+    },
+    "cards": {
+      "documentation": {
+        "title": "Dokumentasi",
+        "description": "Dokumentasi API lengkap, contoh kode, dan panduan integrasi agar Anda dapat memulai dalam hitungan menit.",
+        "cta": "Lihat dokumentasi"
+      },
+      "security": {
+        "title": "Keamanan & Kepatuhan",
+        "description": "Pelajari praktik keamanan kelas enterprise, sertifikasi, dan kepatuhan kami terhadap standar global.",
+        "cta": "Lihat info keamanan"
+      }
+    },
+    "popular": {
+      "heading": "Sumber Daya Populer",
+      "links": {
+        "quickStart": {
+          "title": "Panduan Mulai Cepat",
+          "description": "Mulai menggunakan Scam AI dalam waktu kurang dari 10 menit.",
+          "cta": "Baca panduan"
+        },
+        "apiReference": {
+          "title": "Referensi API",
+          "description": "Dokumentasi dan contoh endpoint API yang lengkap.",
+          "cta": "Lihat dokumen API"
+        },
+        "bestPractices": {
+          "title": "Praktik Terbaik",
+          "description": "Optimalkan integrasi Anda dengan strategi yang teruji.",
+          "cta": "Pelajari lebih lanjut"
+        },
+        "soc2": {
+          "title": "SOC 2 Type II",
+          "description": "Detail sertifikasi keamanan dan kepatuhan kami.",
+          "cta": "Lihat detail"
+        },
+        "gdpr": {
+          "title": "Kepatuhan GDPR",
+          "description": "Bagaimana Scam AI membantu Anda memenuhi persyaratan GDPR.",
+          "cta": "Pelajari lebih lanjut"
+        },
+        "support": {
+          "title": "Dukungan",
+          "description": "Dapatkan bantuan dari tim dukungan teknis kami.",
+          "cta": "Hubungi dukungan"
+        }
+      }
+    },
+    "help": {
+      "heading": "Butuh Bantuan?",
+      "cards": {
+        "support": {
+          "title": "Hubungi Dukungan",
+          "description": "Tim kami siap membantu menjawab pertanyaan apa pun.",
+          "cta": "Hubungi kami"
+        },
+        "docs": {
+          "title": "Baca Dokumentasi",
+          "description": "Panduan komprehensif dan referensi API.",
+          "cta": "Lihat dokumentasi"
+        },
+        "security": {
+          "title": "Info Keamanan",
+          "description": "Pelajari keamanan dan kepatuhan kami.",
+          "cta": "Lihat keamanan"
+        }
+      }
+    },
+    "cta": {
+      "heading": "Siap untuk memulai?",
+      "subheading": "Mulai deteksi deepfake dengan 200 gambar gratis per bulan.",
+      "button": "Mulai Gratis"
+    }
+  },
+  "documentationPage": {
+    "hero": {
+      "eyebrow": "DOKUMENTASI",
+      "title": "Dokumentasi Pengembang",
+      "subtitle": "Semua yang Anda butuhkan untuk mengintegrasikan API deteksi deepfake Scam AI ke dalam aplikasi Anda dalam hitungan menit.",
+      "cta": "Dapatkan Kunci API"
+    },
+    "quickStart": {
+      "title": "Mulai Cepat",
+      "steps": {
+        "signUp": {
+          "title": "Daftar",
+          "description": "Buat akun gratis di app.scam.ai dan dapatkan kunci API Anda secara instan."
+        },
+        "makeCall": {
+          "title": "Lakukan Panggilan API",
+          "description": "Gunakan REST API kami yang sederhana untuk menganalisis berkas gambar, audio, atau video."
+        },
+        "getResults": {
+          "title": "Dapatkan Hasil",
+          "description": "Terima analisis instan dengan skor kepercayaan dan laporan terperinci."
+        }
+      },
+      "example": {
+        "title": "Contoh Dasar"
+      }
+    },
+    "endpoints": {
+      "title": "Endpoint API",
+      "labels": {
+        "rateLimit": "Batas Laju:",
+        "maxFileSize": "Ukuran Berkas Maks:",
+        "supportedFormats": "Format yang Didukung:"
+      },
+      "image": {
+        "title": "Deteksi Gambar",
+        "description": "Analisis gambar untuk deepfake, pertukaran wajah, dan pembuatan sintetis."
+      },
+      "audio": {
+        "title": "Deteksi Audio",
+        "description": "Deteksi suara hasil AI, kloning suara, dan ucapan sintetis."
+      },
+      "video": {
+        "title": "Deteksi Video",
+        "description": "Analisis konten video untuk deepfake dan frame yang dimanipulasi."
+      }
+    },
+    "sdks": {
+      "title": "SDK & Pustaka",
+      "comingSoon": "Segera Hadir"
+    },
+    "bestPractices": {
+      "title": "Praktik Terbaik",
+      "errorHandling": {
+        "title": "Penanganan Kesalahan",
+        "description": "Selalu tangani kesalahan API dengan baik. Terapkan logika percobaan ulang dengan exponential backoff untuk kegagalan sementara."
+      },
+      "rateLimiting": {
+        "title": "Pembatasan Laju",
+        "description": "Patuhi batas laju untuk menghindari kesalahan 429. Terapkan antrean permintaan untuk aplikasi bervolume tinggi."
+      },
+      "fileOptimization": {
+        "title": "Optimasi Berkas",
+        "description": "Kompres berkas besar sebelum mengunggah untuk mengurangi waktu pemrosesan dan biaya. Optimalkan resolusi video bila memungkinkan."
+      },
+      "cachingResults": {
+        "title": "Penyimpanan Hasil dalam Cache",
+        "description": "Simpan hasil deteksi dalam cache untuk konten yang sering diperiksa guna mengurangi panggilan API dan meningkatkan waktu respons."
+      }
+    },
+    "cta": {
+      "title": "Butuh bantuan untuk memulai?",
+      "subtitle": "Tim kami siap membantu Anda melakukan integrasi dengan sukses.",
+      "contactSupport": "Hubungi Dukungan",
+      "getApiKey": "Dapatkan Kunci API"
+    }
+  },
+  "securityCompliancePage": {
+    "hero": {
+      "eyebrow": "KEAMANAN & KEPATUHAN",
+      "heading": "Keamanan dan kepatuhan kelas enterprise",
+      "body": "Dibangun dengan arsitektur yang mengutamakan keamanan dan patuh terhadap standar perlindungan data global."
+    },
+    "certifications": {
+      "heading": "Sertifikasi & Standar",
+      "soc2": {
+        "description": "Diaudit dan disertifikasi secara independen untuk keamanan, ketersediaan, integritas pemrosesan, kerahasiaan, dan privasi."
+      },
+      "gdpr": {
+        "title": "Patuh GDPR",
+        "description": "Kepatuhan penuh terhadap Peraturan Perlindungan Data Umum UE, termasuk opsi residensi data dan kontrol privasi."
+      }
+    },
+    "securityFeatures": {
+      "heading": "Fitur Keamanan",
+      "items": {
+        "encryption": {
+          "title": "Enkripsi Ujung ke Ujung",
+          "description": "Semua data dalam transit dienkripsi menggunakan TLS 1.3. Data saat tersimpan dienkripsi menggunakan AES-256."
+        },
+        "retention": {
+          "title": "Tanpa Penyimpanan Data",
+          "description": "Kami tidak menyimpan berkas media Anda setelah analisis. Hasil disimpan selama 30 hari kecuali Anda menentukan lain."
+        },
+        "apiKeys": {
+          "title": "Manajemen Kunci API",
+          "description": "Pembuatan kunci API yang aman dengan kemampuan rotasi dan kontrol izin yang granular."
+        },
+        "access": {
+          "title": "Kontrol Akses",
+          "description": "Kontrol akses berbasis peran (RBAC) dan autentikasi multifaktor (MFA) untuk akun tim."
+        },
+        "auditLogs": {
+          "title": "Log Audit",
+          "description": "Log audit komprehensif untuk semua panggilan API dan aktivitas akun dengan retensi 1 tahun."
+        },
+        "ddos": {
+          "title": "Perlindungan DDoS",
+          "description": "Perlindungan DDoS kelas enterprise dan pembatasan laju untuk memastikan ketersediaan layanan."
+        },
+        "pentest": {
+          "title": "Pengujian Penetrasi Berkala",
+          "description": "Audit keamanan triwulanan dan pengujian penetrasi oleh pihak ketiga independen."
+        },
+        "incident": {
+          "title": "Respons Insiden",
+          "description": "Pemantauan keamanan 24/7 dengan prosedur respons insiden yang terdokumentasi."
+        },
+        "backup": {
+          "title": "Pencadangan & Pemulihan Data",
+          "description": "Pencadangan otomatis dengan pemulihan ke titik waktu tertentu dan prosedur pemulihan bencana."
+        }
+      }
+    },
+    "regional": {
+      "heading": "Kepatuhan Regional",
+      "items": {
+        "europe": {
+          "title": "Eropa (GDPR)",
+          "bullets": [
+            "Residensi data UE",
+            "Hak untuk dihapus",
+            "Portabilitas data",
+            "Perjanjian pemrosesan"
+          ]
+        },
+        "unitedStates": {
+          "title": "Amerika Serikat",
+          "bullets": [
+            "Pusat data AS",
+            "Patuh CCPA",
+            "SOC 2 Type II",
+            "FedRAMP sedang berlangsung"
+          ]
+        },
+        "asiaPacific": {
+          "title": "Asia Pasifik",
+          "bullets": [
+            "Pusat data APAC",
+            "Patuh PDPA",
+            "Penyimpanan data lokal",
+            "Dukungan regional"
+          ]
+        }
+      }
+    },
+    "dataPrivacy": {
+      "heading": "Data Anda, Kendali Anda",
+      "items": {
+        "noTraining": {
+          "title": "Tanpa Pelatihan pada Data Pelanggan",
+          "description": "Kami tidak pernah menggunakan data Anda untuk melatih model kami tanpa izin eksplisit. Berkas media dan hasil deteksi Anda tetap bersifat pribadi."
+        },
+        "retention": {
+          "title": "Retensi Data yang Dapat Dikonfigurasi",
+          "description": "Pilih berapa lama kami menyimpan data Anda. Opsi berkisar dari penghapusan langsung setelah analisis hingga periode retensi khusus sampai 1 tahun."
+        },
+        "export": {
+          "title": "Ekspor & Penghapusan Data",
+          "description": "Ekspor data Anda kapan saja dalam format standar. Ajukan penghapusan akun secara lengkap dengan jaminan penghapusan data dalam 30 hari."
+        }
+      }
+    },
+    "enterprise": {
+      "heading": "Keamanan Enterprise",
+      "body": "Membutuhkan persyaratan keamanan khusus, penerapan on-premise, atau infrastruktur khusus?",
+      "cta": "Hubungi Penjualan Enterprise"
+    },
+    "docs": {
+      "heading": "Dokumentasi keamanan",
+      "body": "Ingin meninjau praktik keamanan kami secara terperinci?",
+      "cta": "Minta Whitepaper Keamanan"
+    }
   }
 }

@@ -4552,5 +4552,307 @@
         }
       }
     }
+  },
+  "researchPage": {
+    "hero": {
+      "eyebrow": "研究",
+      "title": "推動<accent>AI 信任</accent>科學的發展",
+      "description": "我們的研究聚焦於深度偽造偵測、合成媒體鑑識以及對抗強健性。我們公開發表研究成果，以推動此領域的進展，並協助客戶始終領先於新興威脅。"
+    },
+    "stats": {
+      "papers": "研究論文",
+      "areas": "研究領域",
+      "datasets": "開放資料集",
+      "comingSoon": "即將推出"
+    },
+    "papers": {
+      "heading": "出版品與報告",
+      "description": "來自 Scam AI 團隊的研究，涵蓋深度偽造偵測、文件偽造、年齡推估等多個方向。",
+      "comingBadge": "即將發表",
+      "viewOn": "在 {source} 上檢視"
+    },
+    "datasets": {
+      "heading": "資料集",
+      "description": "精選資料集，協助研究人員對偵測模型進行基準測試。每個資料集皆有獨立頁面，包含引用資訊、論文連結以及須經電子郵件驗證的下載入口。",
+      "getAccess": "取得存取權限"
+    },
+    "cta": {
+      "heading": "有意展開合作？",
+      "description": "我們與學術機構及產業實驗室攜手進行深度偽造偵測研究。",
+      "button": "與我們聯絡"
+    }
+  },
+  "resourcesPage": {
+    "eyebrow": "資源",
+    "hero": {
+      "heading": "助您成功的一切所需",
+      "subheading": "文件、指南與各項資源，協助您順利整合並充分發揮 Scam AI 的價值。"
+    },
+    "cards": {
+      "documentation": {
+        "title": "文件",
+        "description": "完整的 API 文件、程式碼範例與整合指南，助您在數分鐘內快速上手。",
+        "cta": "檢視文件"
+      },
+      "security": {
+        "title": "安全與合規",
+        "description": "瞭解我們的企業級安全實務、認證資格以及對全球標準的合規情況。",
+        "cta": "檢視安全資訊"
+      }
+    },
+    "popular": {
+      "heading": "熱門資源",
+      "links": {
+        "quickStart": {
+          "title": "快速入門指南",
+          "description": "在 10 分鐘內完成 Scam AI 的部署並投入使用。",
+          "cta": "閱讀指南"
+        },
+        "apiReference": {
+          "title": "API 參考",
+          "description": "完整的 API 端點文件與範例。",
+          "cta": "檢視 API 文件"
+        },
+        "bestPractices": {
+          "title": "最佳實務",
+          "description": "藉由經過驗證的策略最佳化您的整合方案。",
+          "cta": "瞭解更多"
+        },
+        "soc2": {
+          "title": "SOC 2 Type II",
+          "description": "我們的安全認證與合規詳情。",
+          "cta": "檢視詳情"
+        },
+        "gdpr": {
+          "title": "GDPR 合規",
+          "description": "Scam AI 如何協助您符合 GDPR 要求。",
+          "cta": "瞭解更多"
+        },
+        "support": {
+          "title": "支援",
+          "description": "取得我們技術支援團隊的協助。",
+          "cta": "聯絡支援團隊"
+        }
+      }
+    },
+    "help": {
+      "heading": "需要協助？",
+      "cards": {
+        "support": {
+          "title": "聯絡支援團隊",
+          "description": "我們的團隊隨時為您解答任何疑問。",
+          "cta": "與我們聯絡"
+        },
+        "docs": {
+          "title": "閱讀文件",
+          "description": "全面的指南與 API 參考。",
+          "cta": "檢視文件"
+        },
+        "security": {
+          "title": "安全資訊",
+          "description": "瞭解我們的安全與合規情況。",
+          "cta": "檢視安全資訊"
+        }
+      }
+    },
+    "cta": {
+      "heading": "準備好開始了嗎？",
+      "subheading": "每月可免費偵測 200 張圖片，立即開始辨識深度偽造。",
+      "button": "免費開始使用"
+    }
+  },
+  "documentationPage": {
+    "hero": {
+      "eyebrow": "文件",
+      "title": "開發者文件",
+      "subtitle": "助您在數分鐘內將 Scam AI 的深度偽造偵測 API 整合至您的應用程式中所需的一切。",
+      "cta": "取得 API 金鑰"
+    },
+    "quickStart": {
+      "title": "快速入門",
+      "steps": {
+        "signUp": {
+          "title": "註冊帳號",
+          "description": "在 app.scam.ai 建立免費帳號，即刻取得您的 API 金鑰。"
+        },
+        "makeCall": {
+          "title": "發起 API 呼叫",
+          "description": "使用我們簡潔的 REST API 分析圖片、音訊或影片檔案。"
+        },
+        "getResults": {
+          "title": "取得結果",
+          "description": "即時取得分析結果，並附帶信賴度評分與詳細報告。"
+        }
+      },
+      "example": {
+        "title": "基礎範例"
+      }
+    },
+    "endpoints": {
+      "title": "API 端點",
+      "labels": {
+        "rateLimit": "速率限制：",
+        "maxFileSize": "最大檔案大小：",
+        "supportedFormats": "支援的格式："
+      },
+      "image": {
+        "title": "圖片偵測",
+        "description": "分析圖片中的深度偽造、換臉以及合成生成內容。"
+      },
+      "audio": {
+        "title": "音訊偵測",
+        "description": "偵測 AI 生成的語音、聲音複製以及合成語音。"
+      },
+      "video": {
+        "title": "影片偵測",
+        "description": "分析影片內容中的深度偽造與遭竄改的影格。"
+      }
+    },
+    "sdks": {
+      "title": "SDK 與函式庫",
+      "comingSoon": "即將推出"
+    },
+    "bestPractices": {
+      "title": "最佳實務",
+      "errorHandling": {
+        "title": "錯誤處理",
+        "description": "請務必妥善處理 API 錯誤。針對暫時性故障，採用指數退避的重試邏輯。"
+      },
+      "rateLimiting": {
+        "title": "速率限制",
+        "description": "遵守速率限制以避免 429 錯誤。對於高流量應用程式，請實作請求佇列。"
+      },
+      "fileOptimization": {
+        "title": "檔案最佳化",
+        "description": "上傳前壓縮大型檔案，以縮短處理時間並降低成本。盡可能最佳化影片解析度。"
+      },
+      "cachingResults": {
+        "title": "快取結果",
+        "description": "為頻繁偵測的內容快取偵測結果，以減少 API 呼叫並提升回應速度。"
+      }
+    },
+    "cta": {
+      "title": "需要協助快速上手？",
+      "subtitle": "我們的團隊隨時助您順利完成整合。",
+      "contactSupport": "聯絡支援團隊",
+      "getApiKey": "取得 API 金鑰"
+    }
+  },
+  "securityCompliancePage": {
+    "hero": {
+      "eyebrow": "安全與合規",
+      "heading": "企業級安全與合規",
+      "body": "採用安全優先的架構打造，並符合全球資料保護標準。"
+    },
+    "certifications": {
+      "heading": "認證與標準",
+      "soc2": {
+        "description": "通過獨立稽核與認證，涵蓋安全性、可用性、處理完整性、機密性與隱私五大面向。"
+      },
+      "gdpr": {
+        "title": "符合 GDPR",
+        "description": "全面遵守歐盟《一般資料保護規則》，提供資料駐留選項與隱私控制功能。"
+      }
+    },
+    "securityFeatures": {
+      "heading": "安全功能",
+      "items": {
+        "encryption": {
+          "title": "端對端加密",
+          "description": "所有傳輸中的資料均採用 TLS 1.3 加密。靜態資料採用 AES-256 加密。"
+        },
+        "retention": {
+          "title": "零資料保留",
+          "description": "分析完成後，我們不會儲存您的媒體檔案。除非您另行指定，否則結果保留 30 天。"
+        },
+        "apiKeys": {
+          "title": "API 金鑰管理",
+          "description": "安全的 API 金鑰產生機制，支援金鑰輪替功能與精細的權限控制。"
+        },
+        "access": {
+          "title": "存取控制",
+          "description": "為團隊帳號提供以角色為基礎的存取控制（RBAC）與多因素驗證（MFA）。"
+        },
+        "auditLogs": {
+          "title": "稽核日誌",
+          "description": "針對所有 API 呼叫與帳號活動的完整稽核日誌，保留期為 1 年。"
+        },
+        "ddos": {
+          "title": "DDoS 防護",
+          "description": "企業級 DDoS 防護與速率限制，確保服務的可用性。"
+        },
+        "pentest": {
+          "title": "定期滲透測試",
+          "description": "由獨立第三方進行季度安全稽核與滲透測試。"
+        },
+        "incident": {
+          "title": "事件回應",
+          "description": "7×24 小時安全監控，並備有完善的事件回應流程文件。"
+        },
+        "backup": {
+          "title": "資料備份與還原",
+          "description": "自動備份，支援時間點還原與災難復原流程。"
+        }
+      }
+    },
+    "regional": {
+      "heading": "區域合規",
+      "items": {
+        "europe": {
+          "title": "歐洲（GDPR）",
+          "bullets": [
+            "歐盟資料駐留",
+            "被遺忘權",
+            "資料可攜權",
+            "資料處理協議"
+          ]
+        },
+        "unitedStates": {
+          "title": "美國",
+          "bullets": [
+            "美國資料中心",
+            "符合 CCPA",
+            "SOC 2 Type II",
+            "FedRAMP 認證進行中"
+          ]
+        },
+        "asiaPacific": {
+          "title": "亞太地區",
+          "bullets": [
+            "亞太資料中心",
+            "符合 PDPA",
+            "本地資料儲存",
+            "區域支援"
+          ]
+        }
+      }
+    },
+    "dataPrivacy": {
+      "heading": "您的資料，由您掌控",
+      "items": {
+        "noTraining": {
+          "title": "不使用客戶資料進行訓練",
+          "description": "未經您的明確許可，我們絕不會使用您的資料來訓練模型。您的媒體檔案與偵測結果始終保持私密。"
+        },
+        "retention": {
+          "title": "可設定的資料保留",
+          "description": "自由設定資料的保留時長。可選範圍從分析後立即刪除，到最長 1 年的自訂保留期。"
+        },
+        "export": {
+          "title": "資料匯出與刪除",
+          "description": "隨時以標準格式匯出您的資料。可申請徹底刪除帳號，並保證於 30 天內完成資料抹除。"
+        }
+      }
+    },
+    "enterprise": {
+      "heading": "企業級安全",
+      "body": "需要客製化的安全要求、地端部署或專屬基礎設施？",
+      "cta": "聯絡企業銷售團隊"
+    },
+    "docs": {
+      "heading": "安全文件",
+      "body": "想要詳細瞭解我們的安全實務？",
+      "cta": "索取安全白皮書"
+    }
   }
 }

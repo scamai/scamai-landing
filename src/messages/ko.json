@@ -4659,5 +4659,307 @@
         }
       }
     }
+  },
+  "researchPage": {
+    "hero": {
+      "eyebrow": "리서치",
+      "title": "<accent>AI 신뢰</accent>의 과학을 발전시킵니다",
+      "description": "저희 리서치는 딥페이크 탐지, 합성 미디어 포렌식, 적대적 견고성에 초점을 맞춥니다. 연구 성과를 공개하여 분야 발전에 기여하고, 고객이 새롭게 부상하는 위협에 항상 앞설 수 있도록 지원합니다."
+    },
+    "stats": {
+      "papers": "연구 논문",
+      "areas": "연구 분야",
+      "datasets": "오픈 데이터셋",
+      "comingSoon": "출시 예정"
+    },
+    "papers": {
+      "heading": "출판물 및 보고서",
+      "description": "딥페이크 탐지, 문서 위조, 연령 추정 등 다양한 분야에 걸친 Scam AI 팀의 리서치입니다.",
+      "comingBadge": "출시 예정",
+      "viewOn": "{source}에서 보기"
+    },
+    "datasets": {
+      "heading": "데이터셋",
+      "description": "연구자가 탐지 모델을 벤치마킹하는 데 도움이 되도록 엄선한 데이터셋입니다. 각 데이터셋에는 인용 정보, 논문 링크, 이메일 인증 기반 다운로드를 제공하는 전용 페이지가 있습니다.",
+      "getAccess": "액세스 받기"
+    },
+    "cta": {
+      "heading": "공동 연구에 관심이 있으신가요?",
+      "description": "저희는 학술 기관 및 산업 연구소와 협력하여 딥페이크 탐지 연구를 진행하고 있습니다.",
+      "button": "문의하기"
+    }
+  },
+  "resourcesPage": {
+    "eyebrow": "리소스",
+    "hero": {
+      "heading": "성공에 필요한 모든 것",
+      "subheading": "Scam AI를 통합하고 최대한 활용할 수 있도록 돕는 문서, 가이드, 리소스를 제공합니다."
+    },
+    "cards": {
+      "documentation": {
+        "title": "문서",
+        "description": "몇 분 만에 시작할 수 있는 완전한 API 문서, 코드 예제, 통합 가이드입니다.",
+        "cta": "문서 보기"
+      },
+      "security": {
+        "title": "보안 및 컴플라이언스",
+        "description": "엔터프라이즈급 보안 관행, 인증, 그리고 글로벌 표준 준수에 대해 알아보세요.",
+        "cta": "보안 정보 보기"
+      }
+    },
+    "popular": {
+      "heading": "인기 리소스",
+      "links": {
+        "quickStart": {
+          "title": "빠른 시작 가이드",
+          "description": "10분 이내에 Scam AI를 시작하고 실행할 수 있습니다.",
+          "cta": "가이드 읽기"
+        },
+        "apiReference": {
+          "title": "API 레퍼런스",
+          "description": "완전한 API 엔드포인트 문서와 예제입니다.",
+          "cta": "API 문서 보기"
+        },
+        "bestPractices": {
+          "title": "모범 사례",
+          "description": "검증된 전략으로 통합을 최적화하세요.",
+          "cta": "자세히 보기"
+        },
+        "soc2": {
+          "title": "SOC 2 Type II",
+          "description": "저희의 보안 인증 및 컴플라이언스 세부 정보입니다.",
+          "cta": "세부 정보 보기"
+        },
+        "gdpr": {
+          "title": "GDPR 준수",
+          "description": "Scam AI가 GDPR 요건 충족을 어떻게 지원하는지 알아보세요.",
+          "cta": "자세히 보기"
+        },
+        "support": {
+          "title": "지원",
+          "description": "기술 지원팀의 도움을 받으세요.",
+          "cta": "지원팀에 문의"
+        }
+      }
+    },
+    "help": {
+      "heading": "도움이 필요하신가요?",
+      "cards": {
+        "support": {
+          "title": "지원팀에 문의",
+          "description": "어떤 질문이든 저희 팀이 도와드립니다.",
+          "cta": "문의하기"
+        },
+        "docs": {
+          "title": "문서 읽기",
+          "description": "포괄적인 가이드와 API 레퍼런스입니다.",
+          "cta": "문서 보기"
+        },
+        "security": {
+          "title": "보안 정보",
+          "description": "저희의 보안 및 컴플라이언스에 대해 알아보세요.",
+          "cta": "보안 보기"
+        }
+      }
+    },
+    "cta": {
+      "heading": "시작할 준비가 되셨나요?",
+      "subheading": "매월 200장의 무료 이미지로 딥페이크 탐지를 시작하세요.",
+      "button": "무료로 시작하기"
+    }
+  },
+  "documentationPage": {
+    "hero": {
+      "eyebrow": "문서",
+      "title": "개발자 문서",
+      "subtitle": "Scam AI의 딥페이크 탐지 API를 몇 분 만에 애플리케이션에 통합하는 데 필요한 모든 것을 제공합니다.",
+      "cta": "API 키 받기"
+    },
+    "quickStart": {
+      "title": "빠른 시작",
+      "steps": {
+        "signUp": {
+          "title": "가입하기",
+          "description": "app.scam.ai에서 무료 계정을 생성하면 즉시 API 키를 받을 수 있습니다."
+        },
+        "makeCall": {
+          "title": "API 호출하기",
+          "description": "간단한 REST API를 사용하여 이미지, 오디오, 비디오 파일을 분석합니다."
+        },
+        "getResults": {
+          "title": "결과 받기",
+          "description": "신뢰도 점수와 상세 보고서가 포함된 분석 결과를 즉시 받아보세요."
+        }
+      },
+      "example": {
+        "title": "기본 예제"
+      }
+    },
+    "endpoints": {
+      "title": "API 엔드포인트",
+      "labels": {
+        "rateLimit": "속도 제한:",
+        "maxFileSize": "최대 파일 크기:",
+        "supportedFormats": "지원 포맷:"
+      },
+      "image": {
+        "title": "이미지 탐지",
+        "description": "이미지를 분석하여 딥페이크, 얼굴 교체, 합성 생성을 탐지합니다."
+      },
+      "audio": {
+        "title": "오디오 탐지",
+        "description": "AI 생성 음성, 음성 복제, 합성 음성을 탐지합니다."
+      },
+      "video": {
+        "title": "비디오 탐지",
+        "description": "비디오 콘텐츠를 분석하여 딥페이크 및 조작된 프레임을 탐지합니다."
+      }
+    },
+    "sdks": {
+      "title": "SDK 및 라이브러리",
+      "comingSoon": "출시 예정"
+    },
+    "bestPractices": {
+      "title": "모범 사례",
+      "errorHandling": {
+        "title": "오류 처리",
+        "description": "API 오류는 항상 적절하게 처리하세요. 일시적인 실패에 대비해 지수 백오프를 적용한 재시도 로직을 구현하세요."
+      },
+      "rateLimiting": {
+        "title": "속도 제한",
+        "description": "429 오류를 방지하려면 속도 제한을 준수하세요. 대용량 요청을 처리하는 애플리케이션에는 요청 큐잉을 구현하세요."
+      },
+      "fileOptimization": {
+        "title": "파일 최적화",
+        "description": "업로드 전에 대용량 파일을 압축하여 처리 시간과 비용을 줄이세요. 가능한 경우 비디오 해상도를 최적화하세요."
+      },
+      "cachingResults": {
+        "title": "결과 캐싱",
+        "description": "자주 확인하는 콘텐츠의 탐지 결과를 캐싱하면 API 호출을 줄이고 응답 시간을 단축할 수 있습니다."
+      }
+    },
+    "cta": {
+      "title": "시작하는 데 도움이 필요하신가요?",
+      "subtitle": "저희 팀이 성공적인 통합을 도와드립니다.",
+      "contactSupport": "지원팀에 문의",
+      "getApiKey": "API 키 받기"
+    }
+  },
+  "securityCompliancePage": {
+    "hero": {
+      "eyebrow": "보안 및 컴플라이언스",
+      "heading": "엔터프라이즈급 보안 및 컴플라이언스",
+      "body": "보안을 최우선으로 하는 아키텍처로 구축되었으며, 글로벌 데이터 보호 표준을 준수합니다."
+    },
+    "certifications": {
+      "heading": "인증 및 표준",
+      "soc2": {
+        "description": "보안, 가용성, 처리 무결성, 기밀성, 개인정보 보호에 대해 독립적인 감사를 받고 인증을 취득했습니다."
+      },
+      "gdpr": {
+        "title": "GDPR 준수",
+        "description": "데이터 레지던시 옵션과 개인정보 보호 제어를 포함하여 EU 일반 데이터 보호 규정을 완벽하게 준수합니다."
+      }
+    },
+    "securityFeatures": {
+      "heading": "보안 기능",
+      "items": {
+        "encryption": {
+          "title": "종단 간 암호화",
+          "description": "전송 중인 모든 데이터는 TLS 1.3으로 암호화됩니다. 저장 데이터는 AES-256으로 암호화됩니다."
+        },
+        "retention": {
+          "title": "데이터 무보존",
+          "description": "분석 후 고객의 미디어 파일을 저장하지 않습니다. 결과는 별도로 지정하지 않는 한 30일 동안 보관됩니다."
+        },
+        "apiKeys": {
+          "title": "API 키 관리",
+          "description": "순환 기능과 세분화된 권한 제어를 갖춘 안전한 API 키 생성을 제공합니다."
+        },
+        "access": {
+          "title": "액세스 제어",
+          "description": "팀 계정을 위한 역할 기반 액세스 제어(RBAC)와 다중 인증(MFA)을 제공합니다."
+        },
+        "auditLogs": {
+          "title": "감사 로그",
+          "description": "모든 API 호출과 계정 활동에 대한 포괄적인 감사 로그를 1년간 보관합니다."
+        },
+        "ddos": {
+          "title": "DDoS 보호",
+          "description": "엔터프라이즈급 DDoS 보호와 속도 제한으로 서비스 가용성을 보장합니다."
+        },
+        "pentest": {
+          "title": "정기 침투 테스트",
+          "description": "독립적인 제3자에 의한 분기별 보안 감사 및 침투 테스트를 실시합니다."
+        },
+        "incident": {
+          "title": "인시던트 대응",
+          "description": "24시간 연중무휴 보안 모니터링과 문서화된 인시던트 대응 절차를 갖추고 있습니다."
+        },
+        "backup": {
+          "title": "데이터 백업 및 복구",
+          "description": "특정 시점 복구와 재해 복구 절차를 갖춘 자동 백업을 제공합니다."
+        }
+      }
+    },
+    "regional": {
+      "heading": "지역별 컴플라이언스",
+      "items": {
+        "europe": {
+          "title": "유럽(GDPR)",
+          "bullets": [
+            "EU 데이터 레지던시",
+            "삭제권",
+            "데이터 이동성",
+            "처리 계약"
+          ]
+        },
+        "unitedStates": {
+          "title": "미국",
+          "bullets": [
+            "미국 데이터센터",
+            "CCPA 준수",
+            "SOC 2 Type II",
+            "FedRAMP 진행 중"
+          ]
+        },
+        "asiaPacific": {
+          "title": "아시아 태평양",
+          "bullets": [
+            "APAC 데이터센터",
+            "PDPA 준수",
+            "로컬 데이터 저장",
+            "지역별 지원"
+          ]
+        }
+      }
+    },
+    "dataPrivacy": {
+      "heading": "당신의 데이터, 당신의 통제권",
+      "items": {
+        "noTraining": {
+          "title": "고객 데이터로 학습하지 않음",
+          "description": "명시적인 동의 없이 고객의 데이터를 모델 학습에 사용하지 않습니다. 고객의 미디어 파일과 탐지 결과는 비공개로 유지됩니다."
+        },
+        "retention": {
+          "title": "구성 가능한 데이터 보존",
+          "description": "데이터 보존 기간을 선택할 수 있습니다. 분석 후 즉시 삭제부터 최대 1년까지의 맞춤형 보존 기간까지 지원합니다."
+        },
+        "export": {
+          "title": "데이터 내보내기 및 삭제",
+          "description": "표준 포맷으로 언제든지 데이터를 내보낼 수 있습니다. 계정의 완전 삭제를 요청하면 30일 이내에 데이터가 확실하게 삭제됩니다."
+        }
+      }
+    },
+    "enterprise": {
+      "heading": "엔터프라이즈 보안",
+      "body": "맞춤형 보안 요건, 온프레미스 배포, 또는 전용 인프라가 필요하신가요?",
+      "cta": "엔터프라이즈 영업팀에 문의"
+    },
+    "docs": {
+      "heading": "보안 문서",
+      "body": "저희의 보안 관행을 자세히 검토하고 싶으신가요?",
+      "cta": "보안 백서 요청"
+    }
   }
 }

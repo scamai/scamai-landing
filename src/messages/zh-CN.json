@@ -4552,5 +4552,307 @@
         }
       }
     }
+  },
+  "researchPage": {
+    "hero": {
+      "eyebrow": "研究",
+      "title": "推动<accent>AI 信任</accent>科学的发展",
+      "description": "我们的研究聚焦于深度伪造检测、合成媒体取证以及对抗鲁棒性。我们公开发布研究成果，以推动该领域的发展，并帮助客户始终领先于新兴威胁。"
+    },
+    "stats": {
+      "papers": "研究论文",
+      "areas": "研究领域",
+      "datasets": "开放数据集",
+      "comingSoon": "即将推出"
+    },
+    "papers": {
+      "heading": "出版物与报告",
+      "description": "来自 Scam AI 团队的研究，涵盖深度伪造检测、文档伪造、年龄估计等多个方向。",
+      "comingBadge": "即将发布",
+      "viewOn": "在 {source} 上查看"
+    },
+    "datasets": {
+      "heading": "数据集",
+      "description": "精选数据集，帮助研究人员对检测模型进行基准测试。每个数据集都有独立页面，包含引用信息、论文链接以及需邮箱验证的下载入口。",
+      "getAccess": "获取访问权限"
+    },
+    "cta": {
+      "heading": "有意开展合作？",
+      "description": "我们与学术机构和行业实验室携手开展深度伪造检测研究。",
+      "button": "联系我们"
+    }
+  },
+  "resourcesPage": {
+    "eyebrow": "资源",
+    "hero": {
+      "heading": "助您成功的一切所需",
+      "subheading": "文档、指南与各类资源，助您顺利集成并充分发挥 Scam AI 的价值。"
+    },
+    "cards": {
+      "documentation": {
+        "title": "文档",
+        "description": "完整的 API 文档、代码示例和集成指南，助您在几分钟内快速上手。",
+        "cta": "查看文档"
+      },
+      "security": {
+        "title": "安全与合规",
+        "description": "了解我们的企业级安全实践、认证资质以及对全球标准的合规情况。",
+        "cta": "查看安全信息"
+      }
+    },
+    "popular": {
+      "heading": "热门资源",
+      "links": {
+        "quickStart": {
+          "title": "快速入门指南",
+          "description": "在 10 分钟内完成 Scam AI 的部署并投入使用。",
+          "cta": "阅读指南"
+        },
+        "apiReference": {
+          "title": "API 参考",
+          "description": "完整的 API 端点文档与示例。",
+          "cta": "查看 API 文档"
+        },
+        "bestPractices": {
+          "title": "最佳实践",
+          "description": "借助经过验证的策略优化您的集成方案。",
+          "cta": "了解更多"
+        },
+        "soc2": {
+          "title": "SOC 2 Type II",
+          "description": "我们的安全认证与合规详情。",
+          "cta": "查看详情"
+        },
+        "gdpr": {
+          "title": "GDPR 合规",
+          "description": "Scam AI 如何帮助您满足 GDPR 要求。",
+          "cta": "了解更多"
+        },
+        "support": {
+          "title": "支持",
+          "description": "获取我们技术支持团队的帮助。",
+          "cta": "联系支持团队"
+        }
+      }
+    },
+    "help": {
+      "heading": "需要帮助？",
+      "cards": {
+        "support": {
+          "title": "联系支持团队",
+          "description": "我们的团队随时为您解答任何疑问。",
+          "cta": "联系我们"
+        },
+        "docs": {
+          "title": "阅读文档",
+          "description": "全面的指南与 API 参考。",
+          "cta": "查看文档"
+        },
+        "security": {
+          "title": "安全信息",
+          "description": "了解我们的安全与合规情况。",
+          "cta": "查看安全信息"
+        }
+      }
+    },
+    "cta": {
+      "heading": "准备好开始了吗？",
+      "subheading": "每月可免费检测 200 张图片，立即开始识别深度伪造。",
+      "button": "免费开始使用"
+    }
+  },
+  "documentationPage": {
+    "hero": {
+      "eyebrow": "文档",
+      "title": "开发者文档",
+      "subtitle": "助您在几分钟内将 Scam AI 的深度伪造检测 API 集成到您的应用中所需的一切。",
+      "cta": "获取 API 密钥"
+    },
+    "quickStart": {
+      "title": "快速入门",
+      "steps": {
+        "signUp": {
+          "title": "注册账号",
+          "description": "在 app.scam.ai 创建免费账号，即刻获取您的 API 密钥。"
+        },
+        "makeCall": {
+          "title": "发起 API 调用",
+          "description": "使用我们简洁的 REST API 分析图片、音频或视频文件。"
+        },
+        "getResults": {
+          "title": "获取结果",
+          "description": "即时获得分析结果，附带置信度评分与详细报告。"
+        }
+      },
+      "example": {
+        "title": "基础示例"
+      }
+    },
+    "endpoints": {
+      "title": "API 端点",
+      "labels": {
+        "rateLimit": "速率限制：",
+        "maxFileSize": "最大文件大小：",
+        "supportedFormats": "支持的格式："
+      },
+      "image": {
+        "title": "图片检测",
+        "description": "分析图片中的深度伪造、换脸以及合成生成内容。"
+      },
+      "audio": {
+        "title": "音频检测",
+        "description": "检测 AI 生成的语音、声音克隆以及合成语音。"
+      },
+      "video": {
+        "title": "视频检测",
+        "description": "分析视频内容中的深度伪造与篡改帧。"
+      }
+    },
+    "sdks": {
+      "title": "SDK 与库",
+      "comingSoon": "即将推出"
+    },
+    "bestPractices": {
+      "title": "最佳实践",
+      "errorHandling": {
+        "title": "错误处理",
+        "description": "始终妥善处理 API 错误。针对临时性故障，采用指数退避的重试逻辑。"
+      },
+      "rateLimiting": {
+        "title": "速率限制",
+        "description": "遵守速率限制以避免 429 错误。对于高并发应用，请实现请求队列。"
+      },
+      "fileOptimization": {
+        "title": "文件优化",
+        "description": "上传前压缩大文件，以缩短处理时间并降低成本。尽可能优化视频分辨率。"
+      },
+      "cachingResults": {
+        "title": "缓存结果",
+        "description": "为频繁检测的内容缓存检测结果，以减少 API 调用并提升响应速度。"
+      }
+    },
+    "cta": {
+      "title": "需要帮助快速上手？",
+      "subtitle": "我们的团队随时助您顺利完成集成。",
+      "contactSupport": "联系支持团队",
+      "getApiKey": "获取 API 密钥"
+    }
+  },
+  "securityCompliancePage": {
+    "hero": {
+      "eyebrow": "安全与合规",
+      "heading": "企业级安全与合规",
+      "body": "采用安全优先的架构构建，符合全球数据保护标准。"
+    },
+    "certifications": {
+      "heading": "认证与标准",
+      "soc2": {
+        "description": "通过独立审计与认证，覆盖安全性、可用性、处理完整性、保密性与隐私五大方面。"
+      },
+      "gdpr": {
+        "title": "符合 GDPR",
+        "description": "全面遵守欧盟《通用数据保护条例》，提供数据驻留选项与隐私控制功能。"
+      }
+    },
+    "securityFeatures": {
+      "heading": "安全功能",
+      "items": {
+        "encryption": {
+          "title": "端到端加密",
+          "description": "所有传输中的数据均采用 TLS 1.3 加密。静态数据采用 AES-256 加密。"
+        },
+        "retention": {
+          "title": "零数据留存",
+          "description": "分析完成后，我们不会存储您的媒体文件。除非您另行指定，否则结果保留 30 天。"
+        },
+        "apiKeys": {
+          "title": "API 密钥管理",
+          "description": "安全的 API 密钥生成，支持密钥轮换功能与精细化权限控制。"
+        },
+        "access": {
+          "title": "访问控制",
+          "description": "为团队账号提供基于角色的访问控制（RBAC）与多因素身份验证（MFA）。"
+        },
+        "auditLogs": {
+          "title": "审计日志",
+          "description": "针对所有 API 调用与账号活动的全面审计日志，留存期为 1 年。"
+        },
+        "ddos": {
+          "title": "DDoS 防护",
+          "description": "企业级 DDoS 防护与速率限制，确保服务的可用性。"
+        },
+        "pentest": {
+          "title": "定期渗透测试",
+          "description": "由独立第三方进行季度安全审计与渗透测试。"
+        },
+        "incident": {
+          "title": "事件响应",
+          "description": "7×24 小时安全监控，配备完善的事件响应流程文档。"
+        },
+        "backup": {
+          "title": "数据备份与恢复",
+          "description": "自动备份，支持时间点恢复与灾难恢复流程。"
+        }
+      }
+    },
+    "regional": {
+      "heading": "区域合规",
+      "items": {
+        "europe": {
+          "title": "欧洲（GDPR）",
+          "bullets": [
+            "欧盟数据驻留",
+            "被遗忘权",
+            "数据可携权",
+            "数据处理协议"
+          ]
+        },
+        "unitedStates": {
+          "title": "美国",
+          "bullets": [
+            "美国数据中心",
+            "符合 CCPA",
+            "SOC 2 Type II",
+            "FedRAMP 认证进行中"
+          ]
+        },
+        "asiaPacific": {
+          "title": "亚太地区",
+          "bullets": [
+            "亚太数据中心",
+            "符合 PDPA",
+            "本地数据存储",
+            "区域支持"
+          ]
+        }
+      }
+    },
+    "dataPrivacy": {
+      "heading": "您的数据，由您掌控",
+      "items": {
+        "noTraining": {
+          "title": "不使用客户数据进行训练",
+          "description": "未经您的明确许可，我们绝不会使用您的数据来训练模型。您的媒体文件与检测结果始终保持私密。"
+        },
+        "retention": {
+          "title": "可配置的数据留存",
+          "description": "自由设定数据的留存时长。可选范围从分析后立即删除，到最长 1 年的自定义留存期。"
+        },
+        "export": {
+          "title": "数据导出与删除",
+          "description": "随时以标准格式导出您的数据。可申请彻底删除账号，并保证在 30 天内完成数据擦除。"
+        }
+      }
+    },
+    "enterprise": {
+      "heading": "企业级安全",
+      "body": "需要定制的安全要求、本地部署或专属基础设施？",
+      "cta": "联系企业销售团队"
+    },
+    "docs": {
+      "heading": "安全文档",
+      "body": "想要详细了解我们的安全实践？",
+      "cta": "索取安全白皮书"
+    }
   }
 }
