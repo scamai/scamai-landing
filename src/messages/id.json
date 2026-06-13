@@ -3236,5 +3236,1321 @@
       "description": "Mulai lindungi platform Anda dengan 200 gambar gratis per bulan.",
       "button": "Mulai Uji Coba Gratis"
     }
+  },
+  "solutionsContent": {
+    "fintech": {
+      "name": "Fintech & Perbankan",
+      "eyebrow": "FINTECH",
+      "headline": "Deteksi deepfake untuk fintech dan perbankan",
+      "subheadline": "Lindungi alur onboarding dan transaksi Anda dari serangan identitas sintetis. Scam AI terintegrasi ke dalam pipeline KYC dalam waktu kurang dari 10 menit, menandai selfie deepfake, dokumen yang dihasilkan AI, dan penipuan kloning suara sebelum mencapai agen Anda.",
+      "stat": {
+        "label": "peningkatan upaya penipuan KYC deepfake pada tahun 2025 (Deloitte)"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Deteksi Deepfake KYC",
+          "description": "Deteksi wajah sintetis dan selfie deepfake selama onboarding pelanggan dengan akurasi 95.3%. Menandai face swap, gambar yang dihasilkan GAN, dan keluaran model difusi dalam waktu kurang dari 4 detik."
+        },
+        "1": {
+          "title": "Pencegahan Penipuan Identitas Sintetis",
+          "description": "Identifikasi identitas hasil rekayasa AI yang menggabungkan data asli dan palsu yang digunakan untuk membuka rekening, mengajukan pinjaman, atau melewati pemeriksaan kredit."
+        },
+        "2": {
+          "title": "Verifikasi Keaslian Dokumen",
+          "description": "Verifikasi dokumen identitas, rekening koran, dan formulir keuangan terhadap pemalsuan yang dihasilkan AI menggunakan model deteksi AIForge-Doc kami."
+        },
+        "3": {
+          "title": "Deteksi Penipuan Kloning Suara",
+          "description": "Lindungi layanan pelanggan berbasis telepon dan perbankan suara dari serangan vishing dengan mendeteksi suara kloning dengan akurasi 98.5% secara real time."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Pembukaan Rekening & KYC",
+          "description": "Saring setiap selfie dan dokumen identitas yang dikirimkan selama onboarding digital untuk mendeteksi manipulasi sintetis.",
+          "bullets": {
+            "0": "Deteksi selfie deepfake",
+            "1": "Penyaringan pemalsuan dokumen identitas",
+            "2": "Pencegahan pelanggaran pemeriksaan liveness"
+          }
+        },
+        "1": {
+          "title": "Pengajuan Pinjaman & Kredit",
+          "description": "Verifikasi bahwa dokumen penghasilan dan laporan keuangan tidak dihasilkan AI atau dimanipulasi.",
+          "bullets": {
+            "0": "Deteksi dokumen yang disunting AI",
+            "1": "Penyaringan catatan keuangan sintetis",
+            "2": "Pencocokan pola penipuan"
+          }
+        },
+        "2": {
+          "title": "Perbankan Telepon & Pusat Panggilan",
+          "description": "Lindungi sistem otentikasi suara dari serangan kloning suara yang menargetkan akses rekening.",
+          "bullets": {
+            "0": "Deteksi vishing real-time",
+            "1": "Otentikasi suara penelepon",
+            "2": "Peringatan peniruan suara"
+          }
+        },
+        "3": {
+          "title": "Kepatuhan Regulasi",
+          "description": "Penuhi persyaratan regulasi FFIEC, AML, dan KYC dengan alur kerja deteksi AI yang terdokumentasi.",
+          "bullets": {
+            "0": "Bersertifikat SOC 2 Type II",
+            "1": "Pemrosesan yang sesuai GDPR",
+            "2": "Pencatatan dan pelaporan audit"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana deteksi deepfake terintegrasi dengan pipeline KYC yang sudah ada?",
+          "answer": "Scam AI menyediakan REST API yang terintegrasi dalam waktu kurang dari 10 menit. Kirimkan URL gambar atau payload base64 dan terima respons JSON dengan boolean is_deepfake, skor keyakinan, dan jenis manipulasi. Ini berdampingan dengan pemeriksaan liveness dan alat verifikasi identitas Anda yang sudah ada."
+        },
+        "1": {
+          "question": "Jenis penipuan identitas apa yang dapat dideteksi Scam AI dalam fintech?",
+          "answer": "Scam AI mendeteksi face swap dalam verifikasi selfie, foto identitas yang dihasilkan GAN, rekening koran dan dokumen yang disunting AI, serta penelepon dengan suara kloning yang berupaya menyamar sebagai pemegang rekening."
+        },
+        "2": {
+          "question": "Apakah Scam AI mematuhi SOC 2 dan GDPR untuk penggunaan layanan keuangan?",
+          "answer": "Ya. Scam AI bersertifikat SOC 2 Type II dan mematuhi GDPR. Gambar tidak disimpan setelah pemrosesan, dan pencatatan audit penuh tersedia untuk pelaporan kepatuhan."
+        },
+        "3": {
+          "question": "Seberapa cepat deteksi deepfake untuk alur KYC real-time?",
+          "answer": "Eva-v1-Fast memproses setiap gambar dalam waktu kurang dari 2 detik, cocok untuk alur onboarding real-time tanpa menambah hambatan yang terasa. Eva-v1-Pro memproses dalam waktu kurang dari 4 detik untuk akurasi maksimal."
+        },
+        "4": {
+          "question": "Dapatkah Scam AI menskalakan untuk beban kerja layanan keuangan bervolume tinggi?",
+          "answer": "Ya. Scam AI menawarkan paket enterprise dengan uptime yang didukung SLA sebesar 99.9%, throughput khusus, dan harga berbasis volume. Hubungi sales@scam.ai untuk onboarding enterprise."
+        }
+      },
+      "ctaHeadline": "Mulai lindungi pipeline KYC Anda hari ini",
+      "ctaSubheadline": "200 gambar gratis per bulan. Tanpa kartu kredit.",
+      "metaDescription": "Deteksi deepfake untuk KYC fintech dengan akurasi 95.3%. Deteksi identitas sintetis, dokumen palsu, dan kloning suara dalam waktu kurang dari 4 detik. Bersertifikat SOC 2."
+    },
+    "dating": {
+      "name": "Aplikasi Kencan",
+      "eyebrow": "KENCAN",
+      "headline": "Deteksi deepfake dan profil palsu untuk aplikasi kencan",
+      "subheadline": "Penipu asmara menggunakan foto profil yang dihasilkan AI dan suara kloning untuk menipu pengguna dalam skala besar. Scam AI memberikan platform kencan API untuk memverifikasi gambar profil dan audio secara otomatis terhadap manipulasi sintetis sebelum pencocokan dilakukan.",
+      "stat": {
+        "label": "profil penipuan asmara daring yang melibatkan foto yang dihasilkan AI atau dimanipulasi"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Verifikasi Foto Profil",
+          "description": "Deteksi gambar profil yang dihasilkan AI atau dimanipulasi pada saat diunggah, menangkap face swap, wajah yang dihasilkan GAN, dan keluaran model difusi sebelum mencapai pengguna lain."
+        },
+        "1": {
+          "title": "Pencegahan Catfishing Suara",
+          "description": "Identifikasi suara kloning dalam pesan audio dan video, melindungi pengguna dari penipu yang menggunakan AI untuk menyamar sebagai individu yang menarik."
+        },
+        "2": {
+          "title": "Deteksi Wajah Sintetis",
+          "description": "Tandai profil yang dibuat dengan wajah yang sepenuhnya dihasilkan AI yang tidak pernah ada, menghentikan bot farm dan operasi catfishing massal."
+        },
+        "3": {
+          "title": "Pemantauan Berkelanjutan",
+          "description": "Verifikasi ulang konten profil secara berkala saat pengguna memperbarui foto atau mengirim media baru, menjaga kepercayaan sepanjang siklus hidup hubungan."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Pembuatan & Verifikasi Profil",
+          "description": "Pindai setiap foto profil saat diunggah untuk mendeteksi manipulasi sintetis sebelum akun aktif.",
+          "bullets": {
+            "0": "Deteksi wajah yang dihasilkan AI",
+            "1": "Identifikasi face swap",
+            "2": "Penandaan gambar GAN"
+          }
+        },
+        "1": {
+          "title": "Verifikasi Media Dalam Aplikasi",
+          "description": "Verifikasi foto dan video yang dibagikan dalam obrolan untuk mendeteksi upaya catfishing di tengah percakapan.",
+          "bullets": {
+            "0": "Pemindaian media real-time",
+            "1": "Deteksi video deepfake",
+            "2": "Otentikasi pesan suara"
+          }
+        },
+        "2": {
+          "title": "Otomatisasi Trust & Safety",
+          "description": "Tandai profil mencurigakan secara otomatis untuk ditinjau manusia, mengurangi biaya moderasi.",
+          "bullets": {
+            "0": "Penilaian keyakinan",
+            "1": "Eskalasi otomatis",
+            "2": "API pemindaian profil massal"
+          }
+        },
+        "3": {
+          "title": "Pencegahan Penipuan Asmara",
+          "description": "Identifikasi pola penipu sebelum investasi emosional makin dalam dan kerugian finansial terjadi.",
+          "bullets": {
+            "0": "Penyaringan identitas sintetis",
+            "1": "Deteksi penipuan berbasis pola",
+            "2": "Analisis kemiripan lintas profil"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Dapatkah Scam AI mendeteksi foto profil yang dihasilkan AI saat diunggah?",
+          "answer": "Ya. Scam AI terintegrasi ke dalam pipeline unggah Anda melalui REST API. Setiap foto dianalisis dalam waktu kurang dari 2 detik, mengembalikan skor keyakinan dan klasifikasi deepfake. Foto yang ditandai di atas ambang batas pilihan Anda dapat ditahan untuk ditinjau atau ditolak secara otomatis."
+        },
+        "1": {
+          "question": "Bagaimana Scam AI mendeteksi profil palsu yang dibuat dengan wajah yang dihasilkan AI?",
+          "answer": "Model Eva-v1 dari Scam AI mendeteksi artefak halus yang ditinggalkan oleh generator GAN dan model difusi seperti Stable Diffusion, DALL-E, dan Midjourney. Wajah yang sepenuhnya sintetis dan tidak pernah ada diidentifikasi melalui analisis domain frekuensi dan semantik."
+        },
+        "2": {
+          "question": "Dapatkah Scam AI memverifikasi pesan suara terhadap kloning suara?",
+          "answer": "Ya. Audio Detection API mengidentifikasi ucapan yang dihasilkan AI atau kloning dari platform termasuk ElevenLabs, PlayHT, dan Resemble AI. Ini berfungsi dengan berkas MP3, WAV, dan OGG dengan akurasi 98.5%."
+        },
+        "3": {
+          "question": "Berapa harga deteksi deepfake untuk aplikasi kencan?",
+          "answer": "Scam AI dihargai $0.05 per gambar yang dianalisis, dengan tingkat gratis 200 gambar per bulan. Diskon volume tersedia untuk platform yang memproses jutaan unggahan. Hubungi sales@scam.ai untuk harga platform kencan."
+        },
+        "4": {
+          "question": "Seberapa cepat platform kencan dapat mengintegrasikan Scam AI?",
+          "answer": "Integrasi memakan waktu kurang dari 10 menit dengan REST API. SDK tersedia untuk Python dan JavaScript. Dokumentasi lengkap ada di scam.ai/en/resources/documentation."
+        }
+      },
+      "ctaHeadline": "Bangun platform kencan yang lebih aman",
+      "ctaSubheadline": "200 analisis gambar gratis per bulan. Tanpa kartu kredit.",
+      "metaDescription": "Deteksi profil palsu yang dihasilkan AI dan catfishing suara pada aplikasi kencan. Scam AI menandai wajah sintetis saat diunggah dengan akurasi 95.3%. 200 gratis/bulan."
+    },
+    "call-centers": {
+      "name": "Pusat Panggilan",
+      "eyebrow": "PUSAT PANGGILAN",
+      "headline": "Deteksi kloning suara untuk pusat panggilan",
+      "subheadline": "Serangan voice phishing yang menggunakan suara kloning AI menargetkan pusat panggilan untuk mencuri kredensial rekening, mengotorisasi transaksi penipuan, dan menyamar sebagai eksekutif. Deteksi deepfake audio real-time dari Scam AI mengidentifikasi suara sintetis dalam waktu kurang dari 3 detik — sebelum penipuan berhasil.",
+      "stat": {
+        "label": "hilang secara global akibat voice phishing (vishing) pada tahun 2024 — Laporan FBI IC3"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Analisis Stream Real-Time",
+          "description": "Analisis audio panggilan langsung secara real time, memproses setiap segmen dalam waktu kurang dari 3 detik untuk menandai kloning suara sebelum agen tertipu."
+        },
+        "1": {
+          "title": "Otentikasi Suara Penelepon",
+          "description": "Verifikasi bahwa suara penelepon asli, bukan dihasilkan AI, sebagai bagian dari alur otentikasi suara dan IVR Anda yang sudah ada."
+        },
+        "2": {
+          "title": "Deteksi Peniruan Eksekutif",
+          "description": "Deteksi suara kloning AI yang berupaya menyamar sebagai eksekutif, VIP, atau pelanggan yang dikenal untuk mengotorisasi transfer dana atau perubahan rekening."
+        },
+        "3": {
+          "title": "Integrasi Peringatan Penipuan",
+          "description": "Peringatan berbasis webhook terpicu secara real time ketika suara sintetis terdeteksi, memicu alur kerja eskalasi di CRM atau sistem manajemen panggilan Anda."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Verifikasi Panggilan Masuk",
+          "description": "Saring suara setiap panggilan masuk terhadap pola audio sintetis sebelum dirutekan ke agen.",
+          "bullets": {
+            "0": "Deteksi vishing real-time",
+            "1": "Pencegahan pelanggaran otentikasi suara",
+            "2": "Peringatan penipuan otomatis"
+          }
+        },
+        "1": {
+          "title": "Otorisasi Perubahan Rekening",
+          "description": "Verifikasi identitas suara sebelum memproses tindakan berisiko tinggi seperti transfer dana, reset kata sandi, atau penutupan rekening.",
+          "bullets": {
+            "0": "Penyaringan panggilan berisiko tinggi",
+            "1": "Verifikasi suara multifaktor",
+            "2": "Jejak audit untuk kepatuhan"
+          }
+        },
+        "2": {
+          "title": "Perlindungan Eksekutif & VIP",
+          "description": "Lindungi profil suara eksekutif puncak dan pelanggan yang dikenal dari serangan kloning yang menargetkan akses istimewa.",
+          "bullets": {
+            "0": "Pencocokan profil suara",
+            "1": "Deteksi peniruan kloning",
+            "2": "Eskalasi penipuan prioritas"
+          }
+        },
+        "3": {
+          "title": "Pemantauan Kualitas & Kepatuhan",
+          "description": "Pindai panggilan terekam secara retrospektif untuk mengidentifikasi upaya penipuan yang berhasil dan melatih model deteksi.",
+          "bullets": {
+            "0": "Analisis audio batch",
+            "1": "Pencatatan penipuan selaras FFIEC",
+            "2": "Pelatihan agen dari sampel penipuan"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Dapatkah Scam AI mendeteksi kloning suara dalam panggilan telepon real-time?",
+          "answer": "Ya. Scam AI menyediakan endpoint streaming yang menganalisis segmen audio dalam waktu kurang dari 3 detik. Ini terintegrasi dengan platform pusat panggilan melalui webhook REST API, memicu peringatan penipuan ketika pola suara sintetis terdeteksi di tengah panggilan."
+        },
+        "1": {
+          "question": "Platform sintesis suara apa yang dideteksi Scam AI?",
+          "answer": "Scam AI mendeteksi keluaran dari ElevenLabs, PlayHT, Resemble AI, Azure TTS, Google TTS, Amazon Polly, dan platform sintesis suara utama lainnya, termasuk model open-source yang sedang berkembang."
+        },
+        "2": {
+          "question": "Seberapa akurat deteksi deepfake audio Scam AI?",
+          "answer": "Scam AI mencapai akurasi 98.5% untuk deteksi kloning suara di berbagai bahasa dan aksen. Ini mendeteksi artefak spektral dan temporal dalam ucapan sintetis yang tidak terdeteksi oleh agen manusia."
+        },
+        "3": {
+          "question": "Bagaimana Scam AI terintegrasi dengan infrastruktur pusat panggilan yang sudah ada?",
+          "answer": "Scam AI menyediakan REST API yang menerima payload audio atau potongan audio streaming dan mengembalikan hasil deteksi. Ini berfungsi berdampingan dengan platform IVR, CRM, dan manajemen panggilan yang sudah ada dengan waktu integrasi kurang dari 10 menit."
+        },
+        "4": {
+          "question": "Apakah Scam AI patuh untuk digunakan di pusat panggilan yang diregulasi?",
+          "answer": "Ya. Scam AI bersertifikat SOC 2 Type II dan mematuhi GDPR. Audio tidak disimpan setelah pemrosesan, dan pencatatan audit penuh tersedia untuk pelaporan regulasi."
+        }
+      },
+      "ctaHeadline": "Lindungi pusat panggilan Anda dari penipuan suara",
+      "ctaSubheadline": "Deteksi kloning suara real-time. Hubungi sales untuk harga enterprise.",
+      "metaDescription": "Deteksi kloning suara untuk pusat panggilan dengan akurasi 98.5%. Deteksi serangan vishing secara real time, kurang dari 3 detik. Bersertifikat SOC 2, penyiapan API 10 menit."
+    },
+    "kyc": {
+      "name": "KYC & Verifikasi Identitas",
+      "eyebrow": "KYC",
+      "headline": "Hentikan penipuan deepfake dalam verifikasi identitas KYC",
+      "subheadline": "Serangan deepfake melewati pemeriksaan liveness dan alur onboarding KYC dalam skala besar. Model Eva-v1 dari Scam AI mendeteksi wajah sintetis, dokumen yang disunting AI, dan spoof serangan presentasi dalam waktu kurang dari 4 detik — melindungi alur kerja kepatuhan Anda tanpa menambah hambatan.",
+      "stat": {
+        "label": "akurasi deteksi pada upaya pelanggaran KYC deepfake dengan Eva-v1-Pro"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Deteksi Selfie Deepfake",
+          "description": "Identifikasi wajah sintetis yang dikirimkan dalam alur verifikasi identitas berbasis selfie, menangkap face swap, gambar yang dihasilkan GAN, dan keluaran model difusi dengan akurasi 95.3%."
+        },
+        "1": {
+          "title": "Deteksi Pemalsuan Dokumen Identitas",
+          "description": "Deteksi dokumen identitas yang dihasilkan AI dan disunting AI termasuk paspor, SIM, dan dokumen keuangan menggunakan model AIForge-Doc kami."
+        },
+        "2": {
+          "title": "Pencegahan Pelanggaran Pemeriksaan Liveness",
+          "description": "Tangkap injeksi video deepfake dan serangan topeng 3D yang melewati sistem deteksi liveness tradisional."
+        },
+        "3": {
+          "title": "Pelaporan Siap Kepatuhan",
+          "description": "Setiap deteksi mencakup skor keyakinan, jenis manipulasi, dan stempel waktu untuk dokumentasi kepatuhan yang siap audit."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Onboarding Digital",
+          "description": "Saring selfie dan dokumen identitas secara real time selama alur onboarding.",
+          "bullets": {
+            "0": "Deteksi selfie deepfake",
+            "1": "Penyaringan pemalsuan dokumen identitas",
+            "2": "Waktu respons di bawah 4 detik"
+          }
+        },
+        "1": {
+          "title": "Verifikasi Ulang & Pemeriksaan Berkala",
+          "description": "Verifikasi ulang identitas pelanggan saat tinjauan rekening, batas transaksi, atau pemicu aktivitas mencurigakan.",
+          "bullets": {
+            "0": "Verifikasi ulang identitas batch",
+            "1": "Penyaringan ulang deepfake terpicu",
+            "2": "Pemantauan kepatuhan berkelanjutan"
+          }
+        },
+        "2": {
+          "title": "Otorisasi Transaksi Berisiko Tinggi",
+          "description": "Tambahkan verifikasi deepfake sebagai faktor otentikasi step-up untuk transfer besar atau perubahan rekening.",
+          "bullets": {
+            "0": "Pemicu verifikasi berbasis risiko",
+            "1": "Lapisan otentikasi step-up",
+            "2": "Pencatatan peristiwa penipuan"
+          }
+        },
+        "3": {
+          "title": "Kepatuhan AML & Regulasi",
+          "description": "Dokumentasikan semua hasil penyaringan deepfake untuk memenuhi persyaratan regulasi AML, KYC, dan FFIEC.",
+          "bullets": {
+            "0": "Bersertifikat SOC 2 Type II",
+            "1": "API jejak audit penuh",
+            "2": "Penanganan data yang sesuai GDPR"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana Scam AI terintegrasi ke dalam pipeline onboarding KYC?",
+          "answer": "Scam AI menyediakan REST API — kirimkan URL gambar selfie atau dokumen identitas dan terima hasil deteksi dalam waktu kurang dari 4 detik. Ini berfungsi berdampingan dengan pemeriksaan liveness yang sudah ada dari penyedia seperti iProov, Jumio, atau Onfido tanpa menggantikannya."
+        },
+        "1": {
+          "question": "Serangan deepfake apa yang dapat ditangkap Scam AI yang tidak terdeteksi oleh pemeriksaan liveness tradisional?",
+          "answer": "Pemeriksaan liveness tradisional dioptimalkan untuk serangan cetak 2D dan replay dasar. Scam AI juga menangkap injeksi video deepfake (injeksi digital langsung ke dalam API), gambar wajah sintetis yang dihasilkan GAN, dan dokumen identitas yang disunting AI — vektor serangan yang tidak dicakup oleh liveness saja."
+        },
+        "2": {
+          "question": "Apakah Scam AI patuh untuk alur kerja KYC yang diregulasi?",
+          "answer": "Ya. Scam AI bersertifikat SOC 2 Type II dan mematuhi GDPR. Gambar tidak disimpan setelah pemrosesan. Log audit penuh dari semua peristiwa deteksi dengan stempel waktu dan skor keyakinan tersedia melalui API untuk dokumentasi regulasi."
+        },
+        "3": {
+          "question": "Seberapa cepat deteksi deepfake untuk alur KYC langsung?",
+          "answer": "Eva-v1-Fast memproses dalam waktu kurang dari 2 detik, tanpa menambah hambatan yang terasa pada onboarding digital. Eva-v1-Pro memberikan akurasi maksimal dalam waktu kurang dari 4 detik untuk skenario verifikasi berisiko lebih tinggi."
+        },
+        "4": {
+          "question": "Dapatkah Scam AI mendeteksi dokumen identitas yang disunting AI?",
+          "answer": "Ya. Kemampuan deteksi dokumen Scam AI (berdasarkan riset AIForge-Doc yang dipublikasikan, arXiv:2602.20569) mengidentifikasi pemalsuan yang dihasilkan AI dalam formulir keuangan, paspor, dan laporan, termasuk suntingan yang dibuat dengan GPT-Image-2 dan alat generatif lainnya."
+        }
+      },
+      "ctaHeadline": "Perkuat pipeline KYC Anda terhadap deepfake",
+      "ctaSubheadline": "200 analisis gratis per bulan. Tanpa kartu kredit.",
+      "metaDescription": "Deteksi selfie deepfake dan dokumen identitas yang disunting AI dalam onboarding KYC. Model Eva-v1 dari Scam AI mencapai akurasi 95.3% dalam waktu kurang dari 4 detik. Bersertifikat SOC 2 Type II."
+    },
+    "media": {
+      "name": "Media & Penerbitan",
+      "eyebrow": "MEDIA",
+      "headline": "Deteksi konten yang dihasilkan AI untuk media dan ruang redaksi",
+      "subheadline": "Gambar yang dihasilkan AI, pernyataan audio sintetis, dan video deepfake memasuki pipeline editorial dengan kecepatan yang belum pernah terjadi sebelumnya. Scam AI memberikan ruang redaksi dan organisasi media API untuk memverifikasi keaslian konten visual dan audio sebelum mencapai audiens.",
+      "stat": {
+        "label": "peningkatan media yang dihasilkan AI yang beredar daring sejak 2022 (Scam AI Research)"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Verifikasi Keaslian Gambar",
+          "description": "Deteksi gambar yang dihasilkan AI dari Stable Diffusion, DALL-E, Midjourney, dan model generatif lainnya sebelum publikasi. Identifikasi face swap dan fotografi yang dimanipulasi secara digital."
+        },
+        "1": {
+          "title": "Analisis Video Deepfake",
+          "description": "Analisis konten video bingkai demi bingkai untuk mendeteksi manipulasi sintetis, menangkap wawancara deepfake, rekaman berita yang direkayasa, dan pernyataan yang dihasilkan AI yang dikaitkan dengan tokoh publik."
+        },
+        "2": {
+          "title": "Deteksi Audio Sintetis",
+          "description": "Verifikasi rekaman audio kutipan, wawancara, dan pernyataan terhadap ucapan yang dihasilkan AI atau kloning suara, melindungi integritas editorial."
+        },
+        "3": {
+          "title": "Pemrosesan Konten Batch",
+          "description": "Proses volume besar konten buatan pengguna yang dikirimkan, foto wire, atau media tersindikasi melalui API untuk verifikasi berskala ruang redaksi."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Verifikasi Prapublikasi",
+          "description": "Saring gambar, video, dan audio sebelum memasuki alur kerja editorial.",
+          "bullets": {
+            "0": "Deteksi gambar yang dihasilkan AI",
+            "1": "Analisis video deepfake",
+            "2": "Verifikasi audio sintetis"
+          }
+        },
+        "1": {
+          "title": "Moderasi Konten Buatan Pengguna",
+          "description": "Tandai secara otomatis media yang dihasilkan AI atau dimanipulasi yang dikirimkan oleh publik.",
+          "bullets": {
+            "0": "Penyaringan UGC otomatis",
+            "1": "Antrean tinjauan berbasis keyakinan",
+            "2": "Pemrosesan API massal"
+          }
+        },
+        "2": {
+          "title": "Dukungan Pemeriksaan Fakta",
+          "description": "Tambahkan deteksi media sintetis ke alur kerja pemeriksaan fakta untuk menilai keaslian konten viral.",
+          "bullets": {
+            "0": "API analisis sesuai permintaan",
+            "1": "Skor keyakinan forensik",
+            "2": "Identifikasi jenis manipulasi"
+          }
+        },
+        "3": {
+          "title": "Verifikasi Wire & Sindikasi",
+          "description": "Verifikasi gambar dan video tersindikasi yang masuk dari layanan wire terhadap manipulasi hilir.",
+          "bullets": {
+            "0": "Pemindaian konten wire batch",
+            "1": "Lapisan otentikasi sumber",
+            "2": "Jejak audit publikasi"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Dapatkah Scam AI mendeteksi gambar yang dihasilkan AI dari Midjourney dan DALL-E?",
+          "answer": "Ya. Model Eva-v1 dari Scam AI dilatih untuk mendeteksi keluaran dari Stable Diffusion, DALL-E, Midjourney, Flux, dan model gambar generatif utama lainnya, serta citra yang dihasilkan GAN."
+        },
+        "1": {
+          "question": "Bagaimana Scam AI mendeteksi video deepfake tokoh publik?",
+          "answer": "Scam AI menganalisis video bingkai demi bingkai untuk mendeteksi inkonsistensi temporal, pola wajah sintetis, dan artefak generasi. Ini mengidentifikasi face swap dan pernyataan yang dihasilkan AI yang dikaitkan dengan individu nyata."
+        },
+        "2": {
+          "question": "Bagaimana ruang redaksi dapat mengintegrasikan Scam AI ke dalam alur kerja editorial?",
+          "answer": "Scam AI menyediakan REST API yang dapat diintegrasikan oleh ruang redaksi ke dalam CMS, DAM, atau alat pemeriksaan fakta mereka. Kirimkan URL media, terima hasil deteksi dalam waktu kurang dari 4 detik. Dokumentasi lengkap ada di scam.ai/en/resources/documentation."
+        },
+        "3": {
+          "question": "Dapatkah Scam AI memproses volume besar UGC dalam skala ruang redaksi?",
+          "answer": "Ya. Scam AI menawarkan paket enterprise dengan throughput khusus dan endpoint API batch untuk memproses volume besar gambar dan video yang dikirimkan. Hubungi sales@scam.ai untuk harga berskala ruang redaksi."
+        },
+        "4": {
+          "question": "Apakah ada riset yang mendukung kemampuan deteksi Scam AI?",
+          "answer": "Ya. Model deteksi Scam AI didasarkan pada riset yang ditinjau sejawat yang dipublikasikan di IEEE workshops dan di arXiv, termasuk \"Do deepfake detectors work in reality?\" (2025) dan \"GPT-Image-2 in the Wild\" (arXiv:2604.25370)."
+        }
+      },
+      "ctaHeadline": "Lindungi pipeline editorial Anda dari media sintetis",
+      "ctaSubheadline": "200 analisis gratis per bulan. Tanpa kartu kredit.",
+      "metaDescription": "API deteksi deepfake untuk ruang redaksi. Verifikasi gambar, video, dan audio terhadap generasi AI sebelum publikasi. Akurasi 95.3%, 200 gratis/bulan."
+    },
+    "insurance": {
+      "name": "Asuransi",
+      "eyebrow": "ASURANSI",
+      "headline": "Deteksi penipuan yang dihasilkan AI dalam klaim asuransi",
+      "subheadline": "Para penipu menggunakan penyunting gambar AI dan generator video untuk merekayasa adegan kecelakaan, foto kerusakan, dan bukti cedera. API deteksi Scam AI menyaring media klaim terhadap manipulasi sintetis, melindungi perusahaan asuransi dari pembayaran klaim penipuan.",
+      "stat": {
+        "label": "peningkatan penipuan foto yang disunting AI dalam klaim asuransi pada tahun 2025"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Otentikasi Foto Klaim",
+          "description": "Deteksi foto yang disunting AI, dihasilkan AI, atau dimanipulasi yang dikirimkan sebagai bukti dalam klaim properti, kendaraan, dan kerugian."
+        },
+        "1": {
+          "title": "Deteksi Video Sintetis",
+          "description": "Identifikasi rekaman video deepfake atau yang dihasilkan AI yang dikirimkan untuk mendukung klaim penipuan, termasuk adegan kecelakaan yang direkayasa."
+        },
+        "2": {
+          "title": "Deteksi Pemalsuan Dokumen",
+          "description": "Saring dokumen pendukung (estimasi perbaikan, laporan medis) terhadap pemalsuan yang dihasilkan AI menggunakan kemampuan deteksi AIForge-Doc."
+        },
+        "3": {
+          "title": "Pencocokan Pola Penipuan",
+          "description": "Cocokkan silang media yang dikirimkan terhadap pola penipuan yang dikenal dan tanda tangan media sintetis dari Scam AI Scam Database."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "First Notice of Loss (FNOL)",
+          "description": "Saring setiap foto dan video yang dikirimkan saat pengajuan klaim awal untuk mendeteksi manipulasi sintetis.",
+          "bullets": {
+            "0": "Deteksi foto kerusakan yang disunting AI",
+            "1": "Identifikasi adegan yang direkayasa",
+            "2": "Skor keyakinan penipuan instan"
+          }
+        },
+        "1": {
+          "title": "Adjudikasi Klaim",
+          "description": "Tambahkan penyaringan deepfake sebagai langkah dalam alur kerja adjudikasi untuk klaim yang ditandai atau bernilai tinggi.",
+          "bullets": {
+            "0": "Integrasi alur kerja adjuster",
+            "1": "Penyaringan media massal",
+            "2": "Laporan manipulasi terperinci"
+          }
+        },
+        "2": {
+          "title": "Dukungan Investigasi SIU",
+          "description": "Berikan Unit Investigasi Khusus analisis media sintetis tingkat forensik untuk kasus penipuan.",
+          "bullets": {
+            "0": "Penilaian keyakinan forensik",
+            "1": "Identifikasi jenis manipulasi",
+            "2": "Pelaporan tingkat bukti"
+          }
+        },
+        "3": {
+          "title": "Subrogasi & Pemulihan",
+          "description": "Deteksi penipuan dalam klaim pihak ketiga dan bukti litigasi untuk melindungi hasil pemulihan.",
+          "bullets": {
+            "0": "Verifikasi media pihak ketiga",
+            "1": "Laporan analisis tingkat hukum",
+            "2": "Penyaringan dokumen batch"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Dapatkah Scam AI mendeteksi foto yang disunting AI yang dikirimkan dalam klaim asuransi?",
+          "answer": "Ya. Scam AI mendeteksi artefak penyuntingan AI yang halus dalam foto yang dikirimkan sebagai bukti klaim, termasuk gambar yang disunting dengan alat generatif untuk menambah atau menghapus kerusakan, mengubah kondisi, atau merekayasa cedera."
+        },
+        "1": {
+          "question": "Bagaimana Scam AI terintegrasi dengan sistem manajemen klaim?",
+          "answer": "Scam AI menyediakan REST API — kirimkan URL media atau payload berkas dan terima hasil deteksi dalam waktu kurang dari 4 detik. Ini terintegrasi dengan Guidewire, Duck Creek, dan platform CMS lainnya melalui webhook atau panggilan API langsung."
+        },
+        "2": {
+          "question": "Berapa ROI dari penambahan deteksi deepfake ke pemrosesan klaim?",
+          "answer": "Satu klaim penipuan yang ditangkap oleh Scam AI dapat mewakili puluhan ribu dolar dalam pembayaran yang dihindari. Dengan $0.05 per gambar yang dianalisis, biaya per 1,000 klaim yang disaring adalah $50 — sebagian kecil dari rata-rata kerugian penipuan."
+        },
+        "3": {
+          "question": "Apakah Scam AI patuh untuk penggunaan di industri asuransi?",
+          "answer": "Ya. Scam AI bersertifikat SOC 2 Type II dan mematuhi GDPR. Semua hasil analisis dicatat dengan stempel waktu dan skor keyakinan untuk keperluan audit dan litigasi."
+        },
+        "4": {
+          "question": "Dapatkah Scam AI menyaring volume besar klaim dengan kecepatan tinggi?",
+          "answer": "Ya. Paket enterprise Scam AI menyediakan endpoint API batch dan throughput khusus untuk memproses ribuan gambar klaim setiap hari. Hubungi sales@scam.ai untuk harga berskala asuransi."
+        }
+      },
+      "ctaHeadline": "Hentikan penipuan klaim yang dihasilkan AI",
+      "ctaSubheadline": "200 analisis gratis per bulan. Tanpa kartu kredit.",
+      "metaDescription": "Deteksi foto yang disunting AI dan dokumen palsu dalam klaim asuransi. Scam AI menyaring bukti klaim terhadap manipulasi sintetis. $0.05/gambar, bersertifikat SOC 2."
+    },
+    "hr": {
+      "name": "SDM & Perekrutan",
+      "eyebrow": "SDM",
+      "headline": "Deteksi deepfake dalam wawancara jarak jauh dan perekrutan video",
+      "subheadline": "Pelamar kerja menggunakan alat deepfake real-time, pengubah suara AI, dan avatar sintetis untuk menyamar sebagai orang lain atau menyembunyikan identitas mereka selama wawancara jarak jauh. Scam AI memberikan tim SDM dan platform perekrutan kemampuan untuk memverifikasi keaslian video dan audio kandidat.",
+      "stat": {
+        "label": "pelamar kerja jarak jauh kini menggunakan alat video berbantuan AI selama wawancara"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Deteksi Deepfake Wawancara Video",
+          "description": "Deteksi deepfake real-time dan avatar sintetis yang digunakan dalam wawancara video, menandai alat face swap dan overlay kamera virtual."
+        },
+        "1": {
+          "title": "Deteksi Sintesis Suara",
+          "description": "Identifikasi suara yang dihasilkan AI atau kloning yang digunakan untuk menyamar sebagai individu lain atau menyamarkan suara asli kandidat selama penyaringan telepon dan video."
+        },
+        "2": {
+          "title": "Verifikasi Identitas Kandidat",
+          "description": "Verifikasi bahwa orang dalam video wawancara cocok dengan dokumen identitas yang dikirimkan selama proses lamaran."
+        },
+        "3": {
+          "title": "Penyaringan Video Asinkron",
+          "description": "Analisis batch video wawancara terekam terhadap manipulasi sintetis sebelum meneruskan kandidat ke tahap perekrutan berikutnya."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Pemantauan Wawancara Video Langsung",
+          "description": "Saring umpan panggilan video langsung untuk mendeteksi alat deepfake real-time yang digunakan kandidat.",
+          "bullets": {
+            "0": "Analisis bingkai real-time",
+            "1": "Deteksi wajah sintetis",
+            "2": "Integrasi peringatan langsung"
+          }
+        },
+        "1": {
+          "title": "Tinjauan Wawancara Asinkron",
+          "description": "Analisis kiriman video prarekam terhadap manipulasi deepfake sebelum ditinjau.",
+          "bullets": {
+            "0": "Analisis video batch",
+            "1": "Laporan berskor keyakinan",
+            "2": "Penandaan kandidat otomatis"
+          }
+        },
+        "2": {
+          "title": "Verifikasi Penyaringan Telepon",
+          "description": "Deteksi kloning suara selama penyaringan telepon dan wawancara berbasis suara.",
+          "bullets": {
+            "0": "Analisis audio real-time",
+            "1": "Penilaian keaslian suara",
+            "2": "Deteksi peniruan"
+          }
+        },
+        "3": {
+          "title": "Pemeriksaan Silang Latar Belakang & Identitas",
+          "description": "Bandingkan video wawancara dengan foto yang dikirimkan untuk konsistensi identitas.",
+          "bullets": {
+            "0": "Pencocokan identitas lintas media",
+            "1": "Verifikasi dokumen ke selfie",
+            "2": "Alur kerja eskalasi penipuan"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Dapatkah Scam AI mendeteksi alat deepfake yang digunakan dalam wawancara video real-time?",
+          "answer": "Ya. Scam AI menganalisis bingkai video terhadap pola manipulasi sintetis yang dihasilkan oleh alat deepfake real-time. Ini dapat memproses sampel umpan video langsung atau segmen terekam yang dikirimkan melalui API."
+        },
+        "1": {
+          "question": "Alat deepfake apa yang digunakan kandidat dalam wawancara jarak jauh?",
+          "answer": "Alat umum termasuk HeyGen, DeepFaceLive, dan perangkat lunak kamera virtual yang menumpangkan wajah sintetis. Scam AI mendeteksi artefak generasi yang dihasilkan alat-alat ini terlepas dari perangkat lunak spesifik yang digunakan."
+        },
+        "2": {
+          "question": "Dapatkah Scam AI memverifikasi bahwa suara kandidat cocok dengan identitas yang dikirimkan?",
+          "answer": "Deteksi audio Scam AI mengidentifikasi apakah suara dihasilkan AI atau kloning. Untuk verifikasi silang identitas, ini menandai pola audio mencurigakan yang mengindikasikan bahwa kandidat bukan orang yang diklaim."
+        },
+        "3": {
+          "question": "Bagaimana platform perekrutan mengintegrasikan Scam AI?",
+          "answer": "Scam AI menyediakan REST API yang kompatibel dengan platform wawancara video, ATS, atau HRMS mana pun. Kirimkan URL berkas video atau audio dan terima hasil deteksi dalam waktu kurang dari 4 detik. Dokumentasi API lengkap ada di scam.ai/en/resources/documentation."
+        },
+        "4": {
+          "question": "Berapa biaya penambahan deteksi deepfake ke alur kerja perekrutan?",
+          "answer": "Dengan $0.05 per gambar dan $0.05 per berkas audio yang dianalisis, menyaring wawancara video 30 menit (disampel satu bingkai per 30 detik) berbiaya sekitar $3. Tingkat gratis 200 analisis per bulan tersedia untuk memulai."
+        }
+      },
+      "ctaHeadline": "Verifikasi siapa yang sebenarnya Anda rekrut",
+      "ctaSubheadline": "200 analisis gratis per bulan. Tanpa kartu kredit.",
+      "metaDescription": "Deteksi deepfake, alat suara AI, dan avatar sintetis dalam wawancara kerja jarak jauh. Scam AI memverifikasi keaslian video dan audio untuk tim SDM dan platform perekrutan."
+    },
+    "government": {
+      "name": "Pemerintah & Sektor Publik",
+      "eyebrow": "PEMERINTAH",
+      "headline": "Deteksi media sintetis untuk pemerintah dan sektor publik",
+      "subheadline": "Aktor negara dan kampanye disinformasi menggunakan gambar yang dihasilkan AI, video deepfake pejabat, dan audio sintetis untuk merusak kepercayaan publik dan memengaruhi kebijakan. Scam AI menyediakan badan pemerintah dan organisasi sektor publik deteksi media sintetis tingkat enterprise.",
+      "stat": {
+        "label": "kampanye pengaruh aktor negara terdokumentasi yang menggunakan media yang dihasilkan AI pada tahun 2025"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Deteksi Video Deepfake",
+          "description": "Deteksi video yang dihasilkan AI dari pejabat pemerintah, tokoh publik, dan kandidat politik yang digunakan dalam kampanye disinformasi."
+        },
+        "1": {
+          "title": "Deteksi Gambar Propaganda",
+          "description": "Identifikasi citra yang dihasilkan AI yang digunakan dalam operasi pengaruh, termasuk adegan protes yang direkayasa, peristiwa yang dipentaskan, dan fotografi berita yang dimanipulasi."
+        },
+        "2": {
+          "title": "Otentikasi Komunikasi Resmi",
+          "description": "Verifikasi bahwa gambar, video, dan audio yang dikaitkan dengan sumber pemerintah adalah asli dan tidak dimanipulasi."
+        },
+        "3": {
+          "title": "Verifikasi Media Massal",
+          "description": "Proses volume besar konten media sosial, citra berita, dan media yang dikirimkan melalui API untuk penyaringan media sintetis berskala badan."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Integritas Pemilu",
+          "description": "Saring konten viral yang melibatkan kandidat dan pejabat pemilu terhadap manipulasi yang dihasilkan AI.",
+          "bullets": {
+            "0": "Deteksi politisi deepfake",
+            "1": "Citra politik yang dihasilkan AI",
+            "2": "Verifikasi respons cepat"
+          }
+        },
+        "1": {
+          "title": "Respons Disinformasi",
+          "description": "Identifikasi dan tandai media sintetis yang digunakan dalam kampanye pengaruh terkoordinasi sebelum menyebar.",
+          "bullets": {
+            "0": "Penyaringan konten massal",
+            "1": "Analisis atribusi sumber",
+            "2": "API deteksi real-time"
+          }
+        },
+        "2": {
+          "title": "Layanan Berhadapan dengan Warga",
+          "description": "Lindungi verifikasi identitas di portal e-government dan tunjangan publik dari pelanggaran deepfake.",
+          "bullets": {
+            "0": "Deteksi deepfake ID digital",
+            "1": "Pencegahan penipuan tunjangan",
+            "2": "Kepatuhan SOC 2 Type II"
+          }
+        },
+        "3": {
+          "title": "Penegakan Hukum & Forensik Digital",
+          "description": "Berikan analisis media sintetis tingkat forensik untuk investigasi kriminal yang melibatkan deepfake.",
+          "bullets": {
+            "0": "Skor keyakinan forensik",
+            "1": "Pelaporan tingkat bukti",
+            "2": "Dokumentasi rantai analisis"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Dapatkah Scam AI mendeteksi video deepfake tokoh politik dan pejabat?",
+          "answer": "Ya. Model Eva-v1 dari Scam AI mendeteksi face swap, wajah sintetis, dan manipulasi video deepfake dengan akurasi 95.3%, termasuk video yang dihasilkan AI dari tokoh publik terlepas dari alat generasi mana yang digunakan."
+        },
+        "1": {
+          "question": "Bagaimana Scam AI menangani volume media berskala pemerintah?",
+          "answer": "Scam AI menawarkan paket API enterprise dengan endpoint pemrosesan batch, throughput khusus, dan uptime yang didukung SLA sebesar 99.9%. Hubungi sales@scam.ai untuk pengadaan pemerintah dan tinjauan keamanan."
+        },
+        "2": {
+          "question": "Sertifikasi kepatuhan apa yang dimiliki Scam AI?",
+          "answer": "Scam AI bersertifikat SOC 2 Type II dan mematuhi GDPR. Tinjauan pengadaan pemerintah dapat meminta laporan SOC 2 dan dokumentasi pemrosesan data dari security@scam.ai."
+        },
+        "3": {
+          "question": "Apakah Scam AI digunakan oleh organisasi sektor publik?",
+          "answer": "Platform Scam AI digunakan oleh pelanggan enterprise di berbagai industri yang diregulasi. Untuk referensi sektor publik spesifik, hubungi sales@scam.ai."
+        },
+        "4": {
+          "question": "Apakah Scam AI menerbitkan riset tentang deteksi deepfake aktor negara?",
+          "answer": "Ya. Tim riset Scam AI menerbitkan karya yang ditinjau sejawat tentang deteksi deepfake di dunia nyata, termasuk \"GPT-Image-2 in the Wild\" (arXiv:2604.25370) dan \"Do deepfake detectors work in reality?\" (IEEE Workshop 2025)."
+        }
+      },
+      "ctaHeadline": "Lindungi komunikasi publik dari media sintetis",
+      "ctaSubheadline": "Hubungi kami untuk harga pemerintah dan sektor publik.",
+      "metaDescription": "Deteksi media sintetis untuk badan pemerintah. Deteksi video deepfake dan citra yang dihasilkan AI dalam skala besar. SLA enterprise, bersertifikat SOC 2."
+    }
+  },
+  "compareContent": {
+    "reality-defender": {
+      "tagline": "Scam AI vs Reality Defender: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Akurasi deteksi",
+          "competitor": "Tidak diungkapkan ke publik"
+        },
+        "1": {
+          "feature": "Kecepatan pemrosesan",
+          "competitor": "SLA enterprise, bervariasi"
+        },
+        "2": {
+          "feature": "Tingkat gratis",
+          "competitor": "Tidak ada tingkat gratis"
+        },
+        "3": {
+          "feature": "Model harga",
+          "competitor": "Kontrak enterprise tahunan"
+        },
+        "4": {
+          "feature": "Waktu penyiapan API",
+          "competitor": "Onboarding enterprise khusus"
+        },
+        "5": {
+          "feature": "Deteksi gambar & video",
+          "scamai": "Ya",
+          "competitor": "Ya"
+        },
+        "6": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Terbatas"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Ya",
+          "competitor": "Ya"
+        },
+        "8": {
+          "feature": "Mematuhi GDPR",
+          "scamai": "Ya",
+          "competitor": "Ya"
+        },
+        "9": {
+          "feature": "Publikasi riset terbuka",
+          "competitor": "Tidak tersedia untuk publik"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Harga per gambar yang transparan",
+          "description": "Scam AI mengenakan biaya $0.05 per gambar tanpa komitmen minimum. Reality Defender mensyaratkan kontrak enterprise tahunan dengan harga yang tidak diungkapkan, sehingga menyulitkan perkiraan biaya."
+        },
+        "1": {
+          "title": "Tingkat gratis — mulai segera",
+          "description": "200 analisis gambar gratis per bulan tanpa kartu kredit. Evaluasi Scam AI pada data nyata Anda sebelum berkomitmen pada paket berbayar."
+        },
+        "2": {
+          "title": "API swalayan dalam waktu kurang dari 10 menit",
+          "description": "API Scam AI didokumentasikan secara publik dan siap diintegrasikan tanpa panggilan penjualan atau onboarding khusus. SDK tersedia untuk Python dan JavaScript."
+        },
+        "3": {
+          "title": "Visi dan audio dalam satu API",
+          "description": "Scam AI mencakup deteksi gambar, video, dan kloning suara dalam satu API. Reality Defender berfokus terutama pada media visual."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana Scam AI dibandingkan dengan Reality Defender untuk deteksi deepfake?",
+          "answer": "Kedua platform mendeteksi deepfake dalam gambar dan video. Scam AI membedakan diri dengan harga per gambar yang transparan ($0.05/gambar), tingkat gratis 200 gambar/bulan, integrasi API swalayan dalam waktu kurang dari 10 menit, dan deteksi visi dan audio yang terpadu. Reality Defender menargetkan enterprise besar dengan kontrak tahunan dan harga yang tidak diungkapkan."
+        },
+        "1": {
+          "question": "Apakah Scam AI lebih murah daripada Reality Defender?",
+          "answer": "Scam AI jauh lebih mudah diakses untuk tim yang bukan enterprise besar. Reality Defender mensyaratkan kontrak tahunan; Scam AI mulai gratis (200 gambar/bulan) dan menskalakan dengan $0.05/gambar tanpa komitmen minimum."
+        },
+        "2": {
+          "question": "Apakah Scam AI mendeteksi kloning suara seperti Reality Defender?",
+          "answer": "Scam AI menyediakan deteksi deepfake audio khusus dengan akurasi 98.5%, mengidentifikasi kloning suara dari ElevenLabs, PlayHT, Azure TTS, dan platform lainnya. Deteksi audio Reality Defender terbatas dibandingkan dengan kemampuan visualnya."
+        },
+        "3": {
+          "question": "Dapatkah saya beralih dari Reality Defender ke Scam AI?",
+          "answer": "Ya. REST API Scam AI mengikuti konvensi standar industri. Migrasi melibatkan pembaruan endpoint dan header otentikasi — biasanya kurang dari satu hari kerja teknik."
+        }
+      }
+    },
+    "sensity": {
+      "tagline": "Scam AI vs Sensity AI: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Akurasi deteksi",
+          "competitor": "Tidak diungkapkan ke publik"
+        },
+        "1": {
+          "feature": "Tingkat gratis",
+          "competitor": "Tidak ada tingkat gratis"
+        },
+        "2": {
+          "feature": "Model harga",
+          "competitor": "Kontrak enterprise"
+        },
+        "3": {
+          "feature": "Akses API swalayan",
+          "competitor": "Memerlukan kontak penjualan"
+        },
+        "4": {
+          "feature": "Deteksi gambar & video",
+          "scamai": "Ya",
+          "competitor": "Ya"
+        },
+        "5": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Tidak"
+        },
+        "6": {
+          "feature": "Deteksi pemalsuan dokumen",
+          "scamai": "Ya (AIForge-Doc)",
+          "competitor": "Tidak"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Ya",
+          "competitor": "Tidak dikonfirmasi secara publik"
+        },
+        "8": {
+          "feature": "Mematuhi GDPR",
+          "scamai": "Ya",
+          "competitor": "Ya (berbasis di UE)"
+        },
+        "9": {
+          "feature": "Riset terbuka",
+          "competitor": "Riset publik terbatas"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Cakupan media sintetis yang lebih luas",
+          "description": "Scam AI mencakup gambar, video, deepfake audio, dan dokumen yang disunting AI dalam satu API. Sensity berfokus pada intelijen deepfake dan liveness biometrik, bukan deteksi audio atau dokumen."
+        },
+        "1": {
+          "title": "Harga transparan dan swalayan",
+          "description": "Scam AI mulai gratis dan menskalakan dengan $0.05/gambar tanpa memerlukan kontrak enterprise. Sensity memerlukan kontak penjualan langsung dan harga khusus."
+        },
+        "2": {
+          "title": "Deteksi kloning suara disertakan",
+          "description": "Scam AI menambahkan deteksi deepfake audio dengan akurasi 98.5%. Sensity tidak menawarkan deteksi audio atau kloning suara."
+        },
+        "3": {
+          "title": "Deteksi pemalsuan dokumen",
+          "description": "Scam AI mendeteksi dokumen keuangan dan dokumen identitas yang disunting AI (riset AIForge-Doc, arXiv:2602.20569). Sensity tidak mencakup pemalsuan dokumen."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana Scam AI dibandingkan dengan Sensity AI?",
+          "answer": "Sensity AI berfokus pada intelijen deepfake dan verifikasi biometrik. Scam AI mencakup rentang media sintetis yang lebih luas: deepfake gambar dan video, kloning suara, dan dokumen yang disunting AI — semuanya dalam satu API dengan harga transparan."
+        },
+        "1": {
+          "question": "Apakah Scam AI mendeteksi kloning suara seperti Sensity?",
+          "answer": "Scam AI menyediakan deteksi kloning suara khusus dengan akurasi 98.5%. Sensity tidak menawarkan deteksi deepfake audio."
+        },
+        "2": {
+          "question": "Apakah Scam AI alternatif yang baik untuk Sensity dalam KYC?",
+          "answer": "Ya. Deteksi AI Scam AI mencakup selfie deepfake, dokumen identitas yang disunting AI, dan penipuan biometrik dengan akurasi 95.3% dengan kepatuhan SOC 2 Type II dan pemrosesan di bawah 4 detik untuk alur onboarding langsung."
+        },
+        "3": {
+          "question": "Dapatkah saya mencoba Scam AI sebelum berkomitmen pada suatu paket?",
+          "answer": "Ya. Scam AI menawarkan 200 analisis gambar gratis per bulan tanpa kartu kredit. Daftar di app.scam.ai."
+        }
+      }
+    },
+    "hive": {
+      "tagline": "Scam AI vs Hive Moderation: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Akurasi deteksi deepfake",
+          "competitor": "Deteksi AI umum, lebih rendah pada deepfake"
+        },
+        "1": {
+          "feature": "Tingkat gratis",
+          "competitor": "Uji coba gratis terbatas"
+        },
+        "2": {
+          "feature": "Model harga",
+          "competitor": "Berbasis volume, memerlukan kontak"
+        },
+        "3": {
+          "feature": "Kecepatan pemrosesan",
+          "competitor": "Bervariasi menurut beban kerja"
+        },
+        "4": {
+          "feature": "Deteksi deepfake gambar & video",
+          "scamai": "Ya, terspesialisasi",
+          "competitor": "Ya, umum"
+        },
+        "5": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Tidak"
+        },
+        "6": {
+          "feature": "KYC & verifikasi identitas",
+          "scamai": "Dirancang khusus",
+          "competitor": "Fokus moderasi umum"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Ya",
+          "competitor": "Ya"
+        },
+        "8": {
+          "feature": "Mematuhi GDPR",
+          "scamai": "Ya",
+          "competitor": "Ya"
+        },
+        "9": {
+          "feature": "Deteksi pemalsuan dokumen",
+          "scamai": "Ya",
+          "competitor": "Tidak"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Dirancang khusus untuk deepfake",
+          "description": "Scam AI dibangun secara eksklusif untuk deteksi media sintetis — bukan moderasi konten umum. Akurasi lebih tinggi pada vektor serangan khusus deepfake seperti face swap, keluaran model difusi, dan pemalsuan dokumen AI."
+        },
+        "1": {
+          "title": "Deteksi kloning suara",
+          "description": "Scam AI menambahkan deteksi deepfake audio dengan akurasi 98.5%. Hive Moderation tidak menawarkan deteksi kloning suara atau audio sintetis."
+        },
+        "2": {
+          "title": "Spesialisasi KYC dan penipuan identitas",
+          "description": "Scam AI dirancang untuk verifikasi identitas, onboarding KYC, dan pencegahan penipuan keuangan — bukan moderasi konten media sosial."
+        },
+        "3": {
+          "title": "Harga swalayan yang transparan",
+          "description": "$0.05/gambar dengan tingkat gratis 200/bulan. Tidak memerlukan kontrak enterprise untuk mulai berintegrasi."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana Scam AI dibandingkan dengan Hive Moderation untuk deteksi deepfake?",
+          "answer": "Hive adalah platform moderasi konten umum; deteksi deepfake adalah salah satu dari banyak kemampuannya. Scam AI dirancang khusus untuk deepfake dan mencapai akurasi lebih tinggi (95.3%) pada media sintetis, dengan tambahan deteksi kloning suara dan pemalsuan dokumen yang tidak ditawarkan oleh Hive."
+        },
+        "1": {
+          "question": "Apakah Scam AI berfungsi untuk moderasi konten sekaligus pencegahan penipuan?",
+          "answer": "Scam AI berfokus pada deteksi media sintetis untuk pencegahan penipuan, KYC, dan verifikasi identitas. Untuk moderasi konten yang lebih luas (spam, NSFW, ujaran kebencian), Hive mungkin lebih sesuai."
+        },
+        "2": {
+          "question": "Apakah Scam AI alternatif yang baik untuk Hive dalam KYC dan fintech?",
+          "answer": "Ya. Scam AI dirancang khusus untuk kasus penggunaan KYC dan penipuan keuangan dengan pemrosesan di bawah 4 detik, sertifikasi SOC 2 Type II, dan model deteksi deepfake terspesialisasi yang dilatih pada data penipuan keuangan dan identitas."
+        },
+        "3": {
+          "question": "Dapatkah saya menggunakan Scam AI bersama Hive Moderation?",
+          "answer": "Ya. Scam AI dan Hive melayani kasus penggunaan yang berbeda dan dapat digunakan secara paralel — Hive untuk moderasi konten umum, Scam AI untuk deteksi penipuan deepfake dan media sintetis."
+        }
+      }
+    },
+    "microsoft-azure": {
+      "tagline": "Scam AI vs Microsoft Azure AI Content Safety: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Akurasi deteksi deepfake",
+          "competitor": "Lebih rendah, pengklasifikasi umum"
+        },
+        "1": {
+          "feature": "Tingkat gratis",
+          "competitor": "Tingkat gratis tersedia"
+        },
+        "2": {
+          "feature": "Model harga",
+          "competitor": "Harga konsumsi Azure"
+        },
+        "3": {
+          "feature": "Kompleksitas penyiapan",
+          "competitor": "Memerlukan akun Azure + penyiapan"
+        },
+        "4": {
+          "feature": "Deteksi khusus deepfake",
+          "competitor": "Keamanan konten umum"
+        },
+        "5": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Tidak"
+        },
+        "6": {
+          "feature": "KYC / verifikasi identitas",
+          "scamai": "Ya, dirancang khusus",
+          "competitor": "Tidak dirancang khusus"
+        },
+        "7": {
+          "feature": "Deteksi pemalsuan dokumen",
+          "scamai": "Ya",
+          "competitor": "Tidak"
+        },
+        "8": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Ya",
+          "competitor": "Kerangka kepatuhan Azure"
+        },
+        "9": {
+          "feature": "Riset deepfake terbuka",
+          "competitor": "Microsoft Research (luas)"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Akurasi khusus deepfake",
+          "description": "Model Eva-v1 dari Scam AI dilatih secara eksklusif pada vektor serangan media sintetis. Azure AI Content Safety adalah pengklasifikasi umum yang tidak dioptimalkan untuk penipuan deepfake, face swap, atau dokumen yang disunting AI."
+        },
+        "1": {
+          "title": "Tanpa ketergantungan Azure",
+          "description": "Scam AI berfungsi sebagai API mandiri tanpa memerlukan ekosistem Microsoft. Ideal untuk tim yang belum berada di Azure atau yang membutuhkan solusi deepfake terbaik di kelasnya berdampingan dengan penyedia cloud mereka."
+        },
+        "2": {
+          "title": "Deteksi kloning suara disertakan",
+          "description": "Scam AI menambahkan deteksi deepfake audio dengan akurasi 98.5%. Azure AI Content Safety tidak menawarkan deteksi kloning suara atau audio sintetis."
+        },
+        "3": {
+          "title": "Dirancang khusus untuk penipuan identitas dan KYC",
+          "description": "Scam AI dirancang untuk KYC, verifikasi identitas, dan pencegahan penipuan keuangan — bukan moderasi konten umum. Model yang dirancang khusus mengungguli pengklasifikasi umum pada serangan spesifik domain."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana Scam AI dibandingkan dengan Azure AI Content Safety untuk deteksi deepfake?",
+          "answer": "Azure AI Content Safety mendeteksi konten berbahaya secara luas di seluruh gambar dan teks. Scam AI dirancang khusus untuk penipuan deepfake dan media sintetis, mencapai akurasi 95.3% pada serangan khusus deepfake — face swap, keluaran model difusi, pemalsuan dokumen, dan kloning suara — yang tidak dicakup oleh Azure."
+        },
+        "1": {
+          "question": "Apakah Scam AI lebih akurat daripada Azure untuk deepfake?",
+          "answer": "Model Eva-v1 dari Scam AI dilatih secara khusus pada pola serangan media sintetis, mencapai 95.3% pada tolok ukur deepfake. Azure AI Content Safety adalah pengklasifikasi keamanan konten umum yang tidak dioptimalkan untuk skenario penipuan deepfake."
+        },
+        "2": {
+          "question": "Dapatkah Scam AI berfungsi bersama Microsoft Azure?",
+          "answer": "Ya. Scam AI adalah REST API mandiri yang berfungsi dengan tumpukan cloud apa pun. Banyak tim menggunakan Scam AI untuk deteksi khusus deepfake berdampingan dengan layanan Azure untuk tugas keamanan konten lainnya."
+        },
+        "3": {
+          "question": "Apakah Scam AI mendeteksi kloning suara tidak seperti Azure?",
+          "answer": "Ya. Deteksi audio Scam AI mengidentifikasi suara kloning AI dengan akurasi 98.5%. Azure AI Content Safety tidak menawarkan deteksi kloning suara."
+        }
+      }
+    },
+    "aws-rekognition": {
+      "tagline": "Scam AI vs AWS Rekognition: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Akurasi deteksi deepfake",
+          "competitor": "Analisis wajah umum, bukan khusus deepfake"
+        },
+        "1": {
+          "feature": "Model deepfake khusus",
+          "competitor": "Tidak ada model deepfake khusus"
+        },
+        "2": {
+          "feature": "Tingkat gratis"
+        },
+        "3": {
+          "feature": "Harga",
+          "competitor": "Harga konsumsi AWS"
+        },
+        "4": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Tidak"
+        },
+        "5": {
+          "feature": "Deteksi deepfake KYC",
+          "scamai": "Dirancang khusus",
+          "competitor": "Tidak dirancang khusus"
+        },
+        "6": {
+          "feature": "Deteksi pemalsuan dokumen",
+          "scamai": "Ya (AIForge-Doc)",
+          "competitor": "Tidak"
+        },
+        "7": {
+          "feature": "Penyiapan tanpa akun AWS",
+          "scamai": "Ya",
+          "competitor": "Memerlukan akun AWS"
+        },
+        "8": {
+          "feature": "SOC 2 / kepatuhan",
+          "competitor": "Kerangka kepatuhan AWS"
+        },
+        "9": {
+          "feature": "Riset deepfake terbuka",
+          "competitor": "AWS Research (luas)"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Model deteksi deepfake khusus",
+          "description": "AWS Rekognition menyediakan deteksi wajah, pengenalan objek, dan analisis gambar umum — tidak memiliki model deteksi deepfake khusus. Eva-v1 dari Scam AI dilatih secara khusus untuk mengidentifikasi face swap sintetis, gambar GAN, dan keluaran model difusi."
+        },
+        "1": {
+          "title": "Tanpa lock-in AWS",
+          "description": "Scam AI adalah REST API mandiri yang berfungsi terlepas dari penyedia cloud mana pun. Tim di GCP, Azure, atau infrastruktur swakelola dapat menggunakan Scam AI tanpa ketergantungan AWS."
+        },
+        "2": {
+          "title": "Deteksi kloning suara",
+          "description": "API audio Scam AI mendeteksi kloning suara dari ElevenLabs, PlayHT, dan platform lainnya dengan akurasi 98.5%. AWS Rekognition tidak memiliki kemampuan deteksi kloning suara."
+        },
+        "3": {
+          "title": "Spesialisasi penipuan identitas",
+          "description": "Scam AI dirancang khusus untuk KYC, pencegahan penipuan keuangan, dan verifikasi identitas — kasus penggunaan di mana akurasi deepfake paling penting."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Apakah AWS Rekognition mendeteksi deepfake?",
+          "answer": "AWS Rekognition menyediakan deteksi dan analisis wajah tetapi tidak memiliki model deteksi deepfake khusus. Ini dapat mendeteksi wajah tetapi tidak dilatih untuk mengidentifikasi face swap sintetis, gambar yang dihasilkan GAN, atau keluaran model difusi secara khusus."
+        },
+        "1": {
+          "question": "Bagaimana Scam AI dibandingkan dengan AWS Rekognition untuk KYC?",
+          "answer": "Scam AI dirancang khusus untuk deteksi deepfake KYC dengan akurasi 95.3% pada selfie sintetis dan dokumen identitas. AWS Rekognition dapat memverifikasi liveness wajah tetapi tidak mendeteksi wajah yang dihasilkan AI atau manipulasi deepfake."
+        },
+        "2": {
+          "question": "Dapatkah Scam AI berfungsi bersama layanan AWS?",
+          "answer": "Ya. Scam AI adalah REST API mandiri dan terintegrasi dengan tumpukan cloud apa pun, termasuk AWS Lambda, pemicu S3, dan API Gateway. Ini dapat berdampingan dengan Rekognition untuk analisis wajah sambil menyediakan deteksi khusus deepfake."
+        },
+        "3": {
+          "question": "Apakah Scam AI lebih murah daripada AWS Rekognition untuk deteksi deepfake?",
+          "answer": "AWS Rekognition tidak menawarkan deteksi deepfake, sehingga perbandingan biaya langsung memerlukan rekayasa khusus di atas Rekognition. Scam AI menyediakan solusi yang dirancang khusus seharga $0.05/gambar tanpa perlu pengembangan khusus."
+        }
+      }
+    },
+    "truepic": {
+      "tagline": "Scam AI vs Truepic: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Pendekatan deteksi",
+          "scamai": "Deteksi deepfake AI/ML"
+        },
+        "1": {
+          "feature": "Berfungsi pada gambar tanpa metadata",
+          "scamai": "Ya"
+        },
+        "2": {
+          "feature": "Akurasi deteksi deepfake",
+          "competitor": "N/A — provenans, bukan deteksi"
+        },
+        "3": {
+          "feature": "Tingkat gratis",
+          "competitor": "Tidak ada tingkat gratis swalayan"
+        },
+        "4": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Tidak"
+        },
+        "5": {
+          "feature": "Integrasi API",
+          "competitor": "Memerlukan integrasi perangkat keras kamera"
+        },
+        "6": {
+          "feature": "Berfungsi pada gambar historis",
+          "scamai": "Ya"
+        },
+        "7": {
+          "feature": "Deteksi penipuan retroaktif",
+          "scamai": "Ya",
+          "competitor": "Tidak"
+        },
+        "8": {
+          "feature": "Deteksi pemalsuan dokumen",
+          "scamai": "Ya",
+          "competitor": "Tidak"
+        },
+        "9": {
+          "feature": "Mematuhi SOC 2",
+          "scamai": "Ya",
+          "competitor": "Tidak dikonfirmasi secara publik"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Tanpa memerlukan perangkat keras kamera",
+          "description": "Pendekatan C2PA Truepic mensyaratkan gambar diambil oleh kamera yang mendukung C2PA. Scam AI menganalisis gambar apa pun terlepas dari perangkat pengambilan atau metadata provenans — termasuk deteksi penipuan retroaktif pada gambar yang sudah ada."
+        },
+        "1": {
+          "title": "Berfungsi pada gambar masa kini",
+          "description": "Provenans C2PA hanya mencakup gambar masa depan yang diambil oleh kamera yang mengadopsinya. Scam AI mendeteksi deepfake dalam gambar atau berkas audio yang sudah ada menggunakan analisis AI."
+        },
+        "2": {
+          "title": "Deteksi kloning suara dan audio",
+          "description": "Scam AI menambahkan deteksi deepfake audio dengan akurasi 98.5%. Truepic berfokus secara eksklusif pada provenans gambar visual."
+        },
+        "3": {
+          "title": "KYC dan pencegahan penipuan bawaan",
+          "description": "Scam AI dirancang khusus untuk verifikasi identitas, penipuan keuangan, dan onboarding KYC — bukan provenans konten untuk penerbit."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Apa perbedaan antara Scam AI dan Truepic?",
+          "answer": "Scam AI menggunakan AI/ML untuk mendeteksi manipulasi sintetis dalam gambar atau audio apa pun. Truepic menggunakan kredensial konten kriptografis C2PA untuk memverifikasi bahwa sebuah gambar diambil oleh kamera tertentu pada waktu tertentu. Keduanya merupakan pendekatan yang saling melengkapi: Scam AI untuk mendeteksi manipulasi, Truepic untuk menetapkan provenans."
+        },
+        "1": {
+          "question": "Apakah Scam AI lebih baik daripada Truepic untuk deteksi deepfake?",
+          "answer": "Scam AI dan Truepic menangani aspek yang berbeda dari masalah media sintetis. Scam AI mendeteksi deepfake dalam gambar atau berkas audio yang sudah ada. Truepic memverifikasi bahwa gambar masa depan dari kamera yang mendukung C2PA tidak dimanipulasi. Untuk deteksi penipuan retroaktif dan deteksi kloning suara, Scam AI adalah pilihan yang tepat."
+        },
+        "2": {
+          "question": "Apakah Scam AI berfungsi pada gambar yang tidak memiliki metadata C2PA?",
+          "answer": "Ya. Deteksi AI Scam AI berfungsi pada gambar atau berkas audio apa pun terlepas dari metadata. Ini menganalisis pola tingkat piksel dan domain frekuensi untuk mendeteksi manipulasi sintetis tanpa memerlukan kredensial konten."
+        },
+        "3": {
+          "question": "Dapatkah saya menggunakan Scam AI bersama Truepic?",
+          "answer": "Ya. Keduanya melayani tujuan yang saling melengkapi. Truepic menetapkan provenans untuk gambar baru dari kamera C2PA. Scam AI secara retroaktif mendeteksi deepfake dan manipulasi sintetis dalam gambar yang sudah ada, termasuk yang tanpa metadata provenans."
+        }
+      }
+    },
+    "deepware": {
+      "tagline": "Scam AI vs Deepware: Perbandingan Deteksi Deepfake",
+      "comparisonRows": {
+        "0": {
+          "feature": "Kasus penggunaan",
+          "scamai": "API enterprise untuk produk",
+          "competitor": "Alat pemindai konsumen"
+        },
+        "1": {
+          "feature": "Akses API",
+          "scamai": "Ya, REST API tingkat produksi",
+          "competitor": "Tidak ada API produksi"
+        },
+        "2": {
+          "feature": "Akurasi deteksi",
+          "competitor": "Tidak diungkapkan"
+        },
+        "3": {
+          "feature": "Kecepatan pemrosesan",
+          "competitor": "Bervariasi, tanpa SLA"
+        },
+        "4": {
+          "feature": "Tingkat gratis",
+          "competitor": "Pemindai konsumen gratis"
+        },
+        "5": {
+          "feature": "Deteksi audio / kloning suara",
+          "competitor": "Tidak"
+        },
+        "6": {
+          "feature": "KYC & integrasi enterprise",
+          "scamai": "Ya, dirancang khusus",
+          "competitor": "Tidak"
+        },
+        "7": {
+          "feature": "Jaminan SLA & uptime",
+          "competitor": "Tidak ada SLA"
+        },
+        "8": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Ya",
+          "competitor": "Tidak"
+        },
+        "9": {
+          "feature": "Mematuhi GDPR",
+          "scamai": "Ya",
+          "competitor": "Tidak dikonfirmasi"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "API enterprise tingkat produksi",
+          "description": "Scam AI menyediakan REST API dengan SLA uptime 99.9%, sertifikasi SOC 2 Type II, dan pemrosesan di bawah 4 detik untuk integrasi ke dalam produk enterprise. Deepware adalah alat konsumen tanpa API produksi."
+        },
+        "1": {
+          "title": "Deteksi kloning suara",
+          "description": "Scam AI menambahkan deteksi deepfake audio dengan akurasi 98.5%. Deepware adalah pemindai khusus video."
+        },
+        "2": {
+          "title": "Kepatuhan dan keamanan",
+          "description": "Scam AI bersertifikat SOC 2 Type II dan mematuhi GDPR dengan pencatatan audit. Deepware adalah alat konsumen gratis tanpa kepatuhan enterprise."
+        },
+        "3": {
+          "title": "Harga enterprise yang dapat diskalakan",
+          "description": "Scam AI menskalakan dari tingkat gratis 200 gambar hingga paket enterprise dengan throughput khusus. Deepware tidak dirancang untuk beban kerja enterprise bervolume tinggi."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Bagaimana Scam AI dibandingkan dengan Deepware?",
+          "answer": "Deepware adalah alat konsumen gratis bagi individu untuk memindai video satu per satu. Scam AI adalah platform API enterprise bagi organisasi yang mengintegrasikan deteksi deepfake ke dalam alur KYC, sistem pencegahan penipuan, dan produk dalam skala besar — dengan kepatuhan SOC 2, uptime 99.9%, dan akses API produksi."
+        },
+        "1": {
+          "question": "Apakah Deepware cukup baik untuk deteksi deepfake enterprise?",
+          "answer": "Deepware dirancang untuk penggunaan konsumen individu dan tidak menawarkan API produksi, SLA, sertifikasi kepatuhan, atau throughput volume yang dibutuhkan untuk beban kerja enterprise."
+        },
+        "2": {
+          "question": "Dapatkah saya mengganti Deepware dengan Scam AI untuk aplikasi saya?",
+          "answer": "Ya. Jika Anda membangun produk atau alur kerja yang membutuhkan deteksi deepfake secara terprogram, Scam AI menyediakan REST API, dokumentasi, dan postur kepatuhan yang tidak ditawarkan Deepware."
+        },
+        "3": {
+          "question": "Apakah Scam AI memiliki opsi gratis seperti Deepware?",
+          "answer": "Ya. Scam AI menyertakan 200 analisis gambar gratis per bulan melalui API — tanpa kartu kredit. Ini berbeda dari pemindai konsumen Deepware; tingkat gratis Scam AI memberikan akses API penuh untuk integrasi dan pengujian."
+        }
+      }
+    }
   }
 }

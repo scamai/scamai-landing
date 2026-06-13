@@ -3343,5 +3343,1321 @@
       "description": "Comece a proteger sua plataforma com 200 imagens gratuitas por mês.",
       "button": "Iniciar teste gratuito"
     }
+  },
+  "solutionsContent": {
+    "fintech": {
+      "name": "Fintech e Bancos",
+      "eyebrow": "FINTECH",
+      "headline": "Detecção de deepfakes para fintechs e bancos",
+      "subheadline": "Proteja seus fluxos de onboarding e de transações contra ataques de identidade sintética. A Scam AI se integra aos pipelines de KYC em menos de 10 minutos, sinalizando selfies com deepfake, documentos gerados por IA e fraude com clonagem de voz antes que cheguem aos seus agentes.",
+      "stat": {
+        "label": "de aumento nas tentativas de fraude de KYC com deepfakes em 2025 (Deloitte)"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Detecção de deepfakes em KYC",
+          "description": "Detecte rostos sintéticos e selfies com deepfake durante o onboarding de clientes com 95.3% de precisão. Sinaliza trocas de rosto, imagens geradas por GAN e saídas de modelos de difusão em menos de 4 segundos."
+        },
+        "1": {
+          "title": "Prevenção de fraude de identidade sintética",
+          "description": "Identifique identidades fabricadas por IA que combinam dados reais e falsos usadas para abrir contas, solicitar empréstimos ou burlar verificações de crédito."
+        },
+        "2": {
+          "title": "Verificação de autenticidade de documentos",
+          "description": "Verifique documentos de identidade, extratos bancários e formulários financeiros em busca de adulteração gerada por IA com o nosso modelo de detecção AIForge-Doc."
+        },
+        "3": {
+          "title": "Detecção de fraude com clonagem de voz",
+          "description": "Proteja o atendimento ao cliente por telefone e o banco por voz contra ataques de vishing detectando vozes clonadas com 98.5% de precisão em tempo real."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Abertura de contas e KYC",
+          "description": "Analise cada selfie e documento de identidade enviado durante o onboarding digital em busca de manipulação sintética.",
+          "bullets": {
+            "0": "Detecção de selfies com deepfake",
+            "1": "Triagem de falsificação de documentos de identidade",
+            "2": "Prevenção da burla de verificações de vivacidade"
+          }
+        },
+        "1": {
+          "title": "Solicitações de empréstimos e crédito",
+          "description": "Verifique se os documentos de renda e os demonstrativos financeiros não foram gerados por IA nem adulterados.",
+          "bullets": {
+            "0": "Detecção de documentos editados por IA",
+            "1": "Triagem de registros financeiros sintéticos",
+            "2": "Correspondência de padrões de fraude"
+          }
+        },
+        "2": {
+          "title": "Banco por telefone e call centers",
+          "description": "Proteja os sistemas de autenticação por voz contra ataques de clonagem de voz voltados ao acesso a contas.",
+          "bullets": {
+            "0": "Detecção de vishing em tempo real",
+            "1": "Autenticação da voz de quem liga",
+            "2": "Alertas de imitação de voz"
+          }
+        },
+        "3": {
+          "title": "Conformidade regulatória",
+          "description": "Atenda aos requisitos regulatórios de FFIEC, AML e KYC com fluxos de detecção de IA documentados.",
+          "bullets": {
+            "0": "Certificação SOC 2 Type II",
+            "1": "Processamento em conformidade com o GDPR",
+            "2": "Registro de auditoria e relatórios"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a detecção de deepfakes se integra aos pipelines de KYC existentes?",
+          "answer": "A Scam AI oferece uma API REST que se integra em menos de 10 minutos. Envie a URL de uma imagem ou um payload em base64 e receba uma resposta JSON com um booleano is_deepfake, uma pontuação de confiança e o tipo de manipulação. Ela funciona ao lado das suas verificações de vivacidade e ferramentas de verificação de identidade existentes."
+        },
+        "1": {
+          "question": "Que tipos de fraude de identidade a Scam AI pode detectar em fintechs?",
+          "answer": "A Scam AI detecta trocas de rosto na verificação por selfie, fotos de identidade geradas por GAN, extratos bancários e documentos editados por IA, e pessoas com voz clonada que tentam se passar pelos titulares das contas."
+        },
+        "2": {
+          "question": "A Scam AI está em conformidade com SOC 2 e GDPR para uso em serviços financeiros?",
+          "answer": "Sim. A Scam AI tem a certificação SOC 2 Type II e está em conformidade com o GDPR. As imagens não são armazenadas após o processamento, e há registro de auditoria completo disponível para os relatórios de conformidade."
+        },
+        "3": {
+          "question": "Qual é a velocidade da detecção de deepfakes para fluxos de KYC em tempo real?",
+          "answer": "O Eva-v1-Fast processa cada imagem em menos de 2 segundos, adequado para fluxos de onboarding em tempo real sem adicionar atrito perceptível. O Eva-v1-Pro processa em menos de 4 segundos para máxima precisão."
+        },
+        "4": {
+          "question": "A Scam AI consegue escalar para cargas de trabalho de serviços financeiros de alto volume?",
+          "answer": "Sim. A Scam AI oferece planos empresariais com tempo de atividade respaldado por SLA de 99.9%, throughput dedicado e preços por volume. Entre em contato com sales@scam.ai para o onboarding empresarial."
+        }
+      },
+      "ctaHeadline": "Comece hoje a proteger o seu pipeline de KYC",
+      "ctaSubheadline": "200 imagens grátis por mês. Sem cartão de crédito.",
+      "metaDescription": "Detecção de deepfakes para KYC em fintechs com 95.3% de precisão. Detecte identidades sintéticas, documentos falsificados e vozes clonadas em menos de 4 segundos. Com certificação SOC 2."
+    },
+    "dating": {
+      "name": "Apps de relacionamento",
+      "eyebrow": "RELACIONAMENTO",
+      "headline": "Detecção de deepfakes e perfis falsos para apps de relacionamento",
+      "subheadline": "Golpistas românticos usam fotos de perfil geradas por IA e vozes clonadas para enganar usuários em larga escala. A Scam AI oferece às plataformas de relacionamento a API para verificar automaticamente as imagens de perfil e o áudio em busca de manipulação sintética antes que os matches aconteçam.",
+      "stat": {
+        "label": "dos perfis de golpes românticos on-line envolvem fotos geradas ou manipuladas por IA"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Verificação de fotos de perfil",
+          "description": "Detecte imagens de perfil geradas ou manipuladas por IA no momento do upload, identificando trocas de rosto, rostos gerados por GAN e saídas de modelos de difusão antes que cheguem a outros usuários."
+        },
+        "1": {
+          "title": "Prevenção de catfishing por voz",
+          "description": "Identifique vozes clonadas em mensagens de áudio e vídeo, protegendo os usuários contra golpistas que usam IA para se passar por pessoas atraentes."
+        },
+        "2": {
+          "title": "Detecção de rostos sintéticos",
+          "description": "Sinalize perfis criados com rostos totalmente gerados por IA que nunca existiram, interrompendo fazendas de bots e operações de catfishing em massa."
+        },
+        "3": {
+          "title": "Monitoramento contínuo",
+          "description": "Reverifique o conteúdo dos perfis periodicamente à medida que os usuários atualizam fotos ou enviam novas mídias, mantendo a confiança ao longo de todo o ciclo de vida do relacionamento."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Criação e verificação de perfis",
+          "description": "Examine cada foto de perfil no momento do upload em busca de manipulação sintética antes que a conta seja ativada.",
+          "bullets": {
+            "0": "Detecção de rostos gerados por IA",
+            "1": "Identificação de trocas de rosto",
+            "2": "Sinalização de imagens GAN"
+          }
+        },
+        "1": {
+          "title": "Verificação de mídia no app",
+          "description": "Verifique as fotos e vídeos compartilhados nos chats para detectar tentativas de catfishing no meio da conversa.",
+          "bullets": {
+            "0": "Análise de mídia em tempo real",
+            "1": "Detecção de vídeos deepfake",
+            "2": "Autenticação de mensagens de voz"
+          }
+        },
+        "2": {
+          "title": "Automação de confiança e segurança",
+          "description": "Sinalize automaticamente os perfis suspeitos para revisão humana, reduzindo os custos de moderação.",
+          "bullets": {
+            "0": "Pontuação de confiança",
+            "1": "Escalonamento automatizado",
+            "2": "API de análise de perfis em massa"
+          }
+        },
+        "3": {
+          "title": "Prevenção de golpes românticos",
+          "description": "Identifique os padrões dos golpistas antes que o envolvimento emocional se aprofunde e ocorra prejuízo financeiro.",
+          "bullets": {
+            "0": "Triagem de identidades sintéticas",
+            "1": "Detecção de fraude baseada em padrões",
+            "2": "Análise de similaridade entre perfis"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "A Scam AI consegue detectar fotos de perfil geradas por IA no momento do upload?",
+          "answer": "Sim. A Scam AI se integra ao seu pipeline de upload por meio de uma API REST. Cada foto é analisada em menos de 2 segundos, retornando uma pontuação de confiança e uma classificação de deepfake. As fotos sinalizadas acima do limite que você escolher podem ser retidas para revisão ou rejeitadas automaticamente."
+        },
+        "1": {
+          "question": "Como a Scam AI detecta perfis falsos criados com rostos gerados por IA?",
+          "answer": "O modelo Eva-v1 da Scam AI detecta os artefatos sutis deixados pelos geradores GAN e por modelos de difusão como Stable Diffusion, DALL-E e Midjourney. Rostos totalmente sintéticos que nunca existiram são identificados por meio de análise semântica e no domínio da frequência."
+        },
+        "2": {
+          "question": "A Scam AI consegue verificar mensagens de voz em busca de clonagem?",
+          "answer": "Sim. A API de detecção de áudio identifica fala gerada por IA ou clonada de plataformas como ElevenLabs, PlayHT e Resemble AI. Funciona com arquivos MP3, WAV e OGG com 98.5% de precisão."
+        },
+        "3": {
+          "question": "Qual é o preço da detecção de deepfakes para apps de relacionamento?",
+          "answer": "A Scam AI custa $0.05 por imagem analisada, com um nível gratuito de 200 imagens por mês. Há descontos por volume disponíveis para plataformas que processam milhões de uploads. Entre em contato com sales@scam.ai para conhecer os preços para plataformas de relacionamento."
+        },
+        "4": {
+          "question": "Em quanto tempo uma plataforma de relacionamento consegue integrar a Scam AI?",
+          "answer": "A integração leva menos de 10 minutos com a API REST. Há SDKs disponíveis para Python e JavaScript. Toda a documentação está em scam.ai/en/resources/documentation."
+        }
+      },
+      "ctaHeadline": "Crie uma plataforma de relacionamento mais segura",
+      "ctaSubheadline": "200 análises de imagens grátis por mês. Sem cartão de crédito.",
+      "metaDescription": "Detecte perfis falsos gerados por IA e catfishing por voz em apps de relacionamento. A Scam AI sinaliza rostos sintéticos no momento do upload com 95.3% de precisão. 200 grátis por mês."
+    },
+    "call-centers": {
+      "name": "Call Centers",
+      "eyebrow": "CALL CENTERS",
+      "headline": "Detecção de clonagem de voz para call centers",
+      "subheadline": "Ataques de phishing por voz que usam vozes clonadas por IA estão mirando call centers para roubar credenciais de contas, autorizar transações fraudulentas e se passar por executivos. A detecção de deepfakes de áudio em tempo real da Scam AI identifica vozes sintéticas em menos de 3 segundos, antes que a fraude tenha sucesso.",
+      "stat": {
+        "label": "perdidos globalmente com phishing por voz (vishing) em 2024 — Relatório IC3 do FBI"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Análise de stream em tempo real",
+          "description": "Analise o áudio das chamadas ao vivo em tempo real, processando cada segmento em menos de 3 segundos para sinalizar vozes clonadas antes que os agentes sejam enganados."
+        },
+        "1": {
+          "title": "Autenticação da voz de quem liga",
+          "description": "Verifique se a voz de quem liga é genuína, e não gerada por IA, como parte dos seus fluxos de autenticação por voz e IVR existentes."
+        },
+        "2": {
+          "title": "Detecção de imitação de executivos",
+          "description": "Detecte vozes clonadas por IA que tentam se passar por executivos, VIPs ou clientes conhecidos para autorizar transferências bancárias ou alterações em contas."
+        },
+        "3": {
+          "title": "Integração de alertas de fraude",
+          "description": "Alertas baseados em webhooks são disparados em tempo real quando uma voz sintética é detectada, acionando fluxos de escalonamento no seu CRM ou sistema de gerenciamento de chamadas."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Verificação de chamadas recebidas",
+          "description": "Examine a voz de cada chamada recebida em relação a padrões de áudio sintético antes de encaminhá-la aos agentes.",
+          "bullets": {
+            "0": "Detecção de vishing em tempo real",
+            "1": "Prevenção da burla da autenticação por voz",
+            "2": "Alertas de fraude automatizados"
+          }
+        },
+        "1": {
+          "title": "Autorização de alterações em contas",
+          "description": "Verifique a identidade por voz antes de processar ações de alto risco como transferências bancárias, redefinições de senha ou encerramentos de contas.",
+          "bullets": {
+            "0": "Triagem de chamadas de alto risco",
+            "1": "Verificação de voz multifator",
+            "2": "Trilha de auditoria para conformidade"
+          }
+        },
+        "2": {
+          "title": "Proteção de executivos e VIPs",
+          "description": "Proteja os perfis de voz da alta liderança e de clientes conhecidos contra ataques de clonagem voltados ao acesso privilegiado.",
+          "bullets": {
+            "0": "Correspondência de perfis de voz",
+            "1": "Detecção de imitação por clonagem",
+            "2": "Escalonamento prioritário de fraude"
+          }
+        },
+        "3": {
+          "title": "Monitoramento de qualidade e conformidade",
+          "description": "Examine retrospectivamente as chamadas gravadas para identificar tentativas de fraude bem-sucedidas e treinar os modelos de detecção.",
+          "bullets": {
+            "0": "Análise de áudio em lote",
+            "1": "Registro de fraude alinhado ao FFIEC",
+            "2": "Treinamento de agentes a partir de amostras de fraude"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "A Scam AI consegue detectar vozes clonadas em chamadas telefônicas em tempo real?",
+          "answer": "Sim. A Scam AI oferece um endpoint de streaming que analisa segmentos de áudio em menos de 3 segundos. Ele se integra às plataformas de call center por meio de webhook de API REST e dispara um alerta de fraude quando padrões de voz sintética são detectados no meio da chamada."
+        },
+        "1": {
+          "question": "Quais plataformas de síntese de voz a Scam AI detecta?",
+          "answer": "A Scam AI detecta saídas de ElevenLabs, PlayHT, Resemble AI, Azure TTS, Google TTS, Amazon Polly e outras grandes plataformas de síntese de voz, incluindo modelos de código aberto emergentes."
+        },
+        "2": {
+          "question": "Qual é a precisão da detecção de deepfakes de áudio da Scam AI?",
+          "answer": "A Scam AI alcança 98.5% de precisão na detecção de clonagem de voz em vários idiomas e sotaques. Ela detecta artefatos espectrais e temporais na fala sintética que são imperceptíveis para os agentes humanos."
+        },
+        "3": {
+          "question": "Como a Scam AI se integra à infraestrutura de call center existente?",
+          "answer": "A Scam AI oferece uma API REST que recebe payloads de áudio ou trechos de áudio em streaming e retorna um resultado de detecção. Ela funciona ao lado das plataformas de IVR, CRM e gerenciamento de chamadas existentes, com tempo de integração inferior a 10 minutos."
+        },
+        "4": {
+          "question": "A Scam AI está em conformidade para uso em call centers regulados?",
+          "answer": "Sim. A Scam AI tem a certificação SOC 2 Type II e está em conformidade com o GDPR. O áudio não é armazenado após o processamento, e há registro de auditoria completo disponível para os relatórios regulatórios."
+        }
+      },
+      "ctaHeadline": "Proteja o seu call center contra fraude de voz",
+      "ctaSubheadline": "Detecção de clonagem de voz em tempo real. Entre em contato com vendas para preços empresariais.",
+      "metaDescription": "Detecção de clonagem de voz para call centers com 98.5% de precisão. Detecte ataques de vishing em tempo real, em menos de 3 segundos. Com certificação SOC 2 e configuração da API em 10 minutos."
+    },
+    "kyc": {
+      "name": "KYC e Verificação de Identidade",
+      "eyebrow": "KYC",
+      "headline": "Detenha a fraude com deepfakes na verificação de identidade KYC",
+      "subheadline": "Ataques com deepfakes estão burlando verificações de vivacidade e fluxos de onboarding KYC em larga escala. O modelo Eva-v1 da Scam AI detecta rostos sintéticos, documentos editados por IA e spoofs de ataques de apresentação em menos de 4 segundos, protegendo o seu fluxo de conformidade sem adicionar atrito.",
+      "stat": {
+        "label": "de precisão de detecção em tentativas de burla de KYC com deepfakes usando o Eva-v1-Pro"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Detecção de selfies com deepfake",
+          "description": "Identifique rostos sintéticos enviados nos fluxos de verificação de identidade baseados em selfie, capturando trocas de rosto, imagens geradas por GAN e saídas de modelos de difusão com 95.3% de precisão."
+        },
+        "1": {
+          "title": "Detecção de falsificação de documentos de identidade",
+          "description": "Detecte documentos de identidade gerados e editados por IA, incluindo passaportes, carteiras de motorista e documentos financeiros, com o nosso modelo AIForge-Doc."
+        },
+        "2": {
+          "title": "Prevenção da burla de verificações de vivacidade",
+          "description": "Capture injeções de vídeo deepfake e ataques com máscaras 3D que burlam os sistemas tradicionais de detecção de vivacidade."
+        },
+        "3": {
+          "title": "Relatórios prontos para conformidade",
+          "description": "Cada detecção inclui uma pontuação de confiança, o tipo de manipulação e um carimbo de data/hora para uma documentação de conformidade pronta para auditoria."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Onboarding digital",
+          "description": "Examine selfies e documentos de identidade em tempo real durante o fluxo de onboarding.",
+          "bullets": {
+            "0": "Detecção de selfies com deepfake",
+            "1": "Triagem de falsificação de documentos de identidade",
+            "2": "Tempo de resposta inferior a 4 segundos"
+          }
+        },
+        "1": {
+          "title": "Reverificação e checagens periódicas",
+          "description": "Reverifique a identidade do cliente na revisão da conta, em limites de transação ou diante de gatilhos de atividade suspeita.",
+          "bullets": {
+            "0": "Reverificação de identidade em lote",
+            "1": "Nova triagem de deepfakes acionada por eventos",
+            "2": "Monitoramento de conformidade contínuo"
+          }
+        },
+        "2": {
+          "title": "Autorização de transações de alto risco",
+          "description": "Adicione a verificação de deepfakes como fator de autenticação reforçada para transferências grandes ou alterações em contas.",
+          "bullets": {
+            "0": "Gatilhos de verificação baseados em risco",
+            "1": "Camada de autenticação reforçada",
+            "2": "Registro de eventos de fraude"
+          }
+        },
+        "3": {
+          "title": "Conformidade com AML e regulatória",
+          "description": "Documente todos os resultados da triagem de deepfakes para atender aos requisitos regulatórios de AML, KYC e FFIEC.",
+          "bullets": {
+            "0": "Certificação SOC 2 Type II",
+            "1": "API de trilha de auditoria completa",
+            "2": "Tratamento de dados em conformidade com o GDPR"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a Scam AI se integra aos pipelines de onboarding KYC?",
+          "answer": "A Scam AI oferece uma API REST: envie a URL da imagem de uma selfie ou de um documento de identidade e receba um resultado de detecção em menos de 4 segundos. Ela funciona ao lado das verificações de vivacidade existentes de provedores como iProov, Jumio ou Onfido, sem substituí-las."
+        },
+        "1": {
+          "question": "Quais ataques com deepfakes a Scam AI consegue capturar que as verificações de vivacidade tradicionais não detectam?",
+          "answer": "As verificações de vivacidade tradicionais são otimizadas para ataques de impressão 2D e replay básico. A Scam AI captura ainda injeções de vídeo deepfake (injeções digitais diretamente na API), imagens de rostos sintéticos geradas por GAN e documentos de identidade editados por IA, vetores de ataque que a vivacidade sozinha não cobre."
+        },
+        "2": {
+          "question": "A Scam AI está em conformidade para fluxos de KYC regulados?",
+          "answer": "Sim. A Scam AI tem a certificação SOC 2 Type II e está em conformidade com o GDPR. As imagens não são armazenadas após o processamento. Há um registro de auditoria completo de todos os eventos de detecção, com carimbos de data/hora e pontuações de confiança, disponível via API para a documentação regulatória."
+        },
+        "3": {
+          "question": "Qual é a velocidade da detecção de deepfakes para fluxos de KYC ao vivo?",
+          "answer": "O Eva-v1-Fast processa em menos de 2 segundos, sem adicionar nenhum atrito perceptível ao onboarding digital. O Eva-v1-Pro oferece máxima precisão em menos de 4 segundos para os cenários de verificação de maior risco."
+        },
+        "4": {
+          "question": "A Scam AI consegue detectar documentos de identidade editados por IA?",
+          "answer": "Sim. A capacidade de detecção de documentos da Scam AI (baseada na pesquisa publicada AIForge-Doc, arXiv:2602.20569) identifica adulteração gerada por IA em formulários financeiros, passaportes e extratos, incluindo edições feitas com o GPT-Image-2 e outras ferramentas generativas."
+        }
+      },
+      "ctaHeadline": "Fortaleça o seu pipeline de KYC contra deepfakes",
+      "ctaSubheadline": "200 análises grátis por mês. Sem cartão de crédito.",
+      "metaDescription": "Detecte selfies com deepfake e documentos de identidade editados por IA no onboarding KYC. O modelo Eva-v1 da Scam AI alcança 95.3% de precisão em menos de 4 segundos. Com certificação SOC 2 Type II."
+    },
+    "media": {
+      "name": "Mídia e Publicações",
+      "eyebrow": "MÍDIA",
+      "headline": "Detecção de conteúdo gerado por IA para mídia e redações",
+      "subheadline": "Imagens geradas por IA, declarações em áudio sintético e vídeos deepfake estão entrando nos fluxos editoriais a uma velocidade sem precedentes. A Scam AI oferece às redações e às organizações de mídia a API para verificar a autenticidade de conteúdo visual e de áudio antes que ele chegue ao público.",
+      "stat": {
+        "label": "de aumento no conteúdo gerado por IA que circula on-line desde 2022 (Scam AI Research)"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Verificação de autenticidade de imagens",
+          "description": "Detecte imagens geradas por IA do Stable Diffusion, DALL-E, Midjourney e outros modelos generativos antes da publicação. Identifique trocas de rosto e fotografias manipuladas digitalmente."
+        },
+        "1": {
+          "title": "Análise de vídeos deepfake",
+          "description": "Analise o conteúdo de vídeo quadro a quadro em busca de manipulação sintética, capturando entrevistas deepfake, imagens de notícias fabricadas e declarações geradas por IA atribuídas a figuras públicas."
+        },
+        "2": {
+          "title": "Detecção de áudio sintético",
+          "description": "Verifique gravações de áudio de citações, entrevistas e declarações em busca de fala gerada por IA ou com voz clonada, protegendo a integridade editorial."
+        },
+        "3": {
+          "title": "Processamento de conteúdo em lote",
+          "description": "Processe grandes volumes de conteúdo gerado por usuários, fotos de agência ou mídia sindicada por meio da API para uma verificação em escala de redação."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Verificação anterior à publicação",
+          "description": "Examine imagens, vídeos e áudio antes que entrem no fluxo de trabalho editorial.",
+          "bullets": {
+            "0": "Detecção de imagens geradas por IA",
+            "1": "Análise de vídeos deepfake",
+            "2": "Verificação de áudio sintético"
+          }
+        },
+        "1": {
+          "title": "Moderação de conteúdo gerado por usuários",
+          "description": "Sinalize automaticamente o conteúdo gerado ou manipulado por IA enviado pelo público.",
+          "bullets": {
+            "0": "Triagem automatizada de UGC",
+            "1": "Fila de revisão baseada em confiança",
+            "2": "Processamento em massa via API"
+          }
+        },
+        "2": {
+          "title": "Apoio à checagem de fatos",
+          "description": "Adicione a detecção de conteúdo sintético aos fluxos de checagem de fatos para avaliar a autenticidade de conteúdo viral.",
+          "bullets": {
+            "0": "API de análise sob demanda",
+            "1": "Pontuações de confiança forenses",
+            "2": "Identificação do tipo de manipulação"
+          }
+        },
+        "3": {
+          "title": "Verificação de agência e sindicação",
+          "description": "Verifique as imagens e os vídeos sindicados recebidos dos serviços de agência em busca de manipulação posterior.",
+          "bullets": {
+            "0": "Análise em lote de conteúdo de agência",
+            "1": "Camada de autenticação de origem",
+            "2": "Trilha de auditoria de publicação"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "A Scam AI consegue detectar imagens geradas por IA do Midjourney e do DALL-E?",
+          "answer": "Sim. O modelo Eva-v1 da Scam AI é treinado para detectar saídas do Stable Diffusion, DALL-E, Midjourney, Flux e outros grandes modelos de imagens generativas, bem como imagens geradas por GAN."
+        },
+        "1": {
+          "question": "Como a Scam AI detecta vídeos deepfake de figuras públicas?",
+          "answer": "A Scam AI analisa o vídeo quadro a quadro em busca de inconsistências temporais, padrões de rostos sintéticos e artefatos de geração. Ela identifica trocas de rosto e declarações geradas por IA atribuídas a pessoas reais."
+        },
+        "2": {
+          "question": "Como as redações podem integrar a Scam AI aos fluxos de trabalho editoriais?",
+          "answer": "A Scam AI oferece uma API REST que as redações podem integrar ao seu CMS, DAM ou ferramentas de checagem de fatos. Envie as URLs das mídias e receba os resultados de detecção em menos de 4 segundos. Toda a documentação está em scam.ai/en/resources/documentation."
+        },
+        "3": {
+          "question": "A Scam AI consegue processar grandes volumes de UGC em escala de redação?",
+          "answer": "Sim. A Scam AI oferece planos empresariais com throughput dedicado e endpoints de API em lote para processar grandes volumes de imagens e vídeos enviados. Entre em contato com sales@scam.ai para conhecer os preços em escala de redação."
+        },
+        "4": {
+          "question": "Existe pesquisa que respalde as capacidades de detecção da Scam AI?",
+          "answer": "Sim. Os modelos de detecção da Scam AI são baseados em pesquisa revisada por pares publicada em workshops do IEEE e no arXiv, incluindo \"Do deepfake detectors work in reality?\" (2025) e \"GPT-Image-2 in the Wild\" (arXiv:2604.25370)."
+        }
+      },
+      "ctaHeadline": "Proteja o seu fluxo editorial contra conteúdo sintético",
+      "ctaSubheadline": "200 análises grátis por mês. Sem cartão de crédito.",
+      "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio em busca de geração por IA antes da publicação. 95.3% de precisão, 200 grátis por mês."
+    },
+    "insurance": {
+      "name": "Seguros",
+      "eyebrow": "SEGUROS",
+      "headline": "Detecte fraudes geradas por IA em sinistros de seguros",
+      "subheadline": "Fraudadores usam editores de imagens e geradores de vídeo com IA para fabricar cenas de acidentes, fotos de danos e provas de lesões. A API de detecção da Scam AI examina as mídias dos sinistros em busca de manipulação sintética, protegendo as seguradoras contra pagamentos fraudulentos.",
+      "stat": {
+        "label": "de aumento na fraude com fotos editadas por IA em sinistros de seguros em 2025"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Autenticação de fotos de sinistros",
+          "description": "Detecte fotos editadas, geradas ou manipuladas por IA enviadas como prova em sinistros de patrimônio, automóveis e acidentes."
+        },
+        "1": {
+          "title": "Detecção de vídeo sintético",
+          "description": "Identifique imagens de vídeo deepfake ou geradas por IA enviadas para respaldar sinistros fraudulentos, incluindo cenas de acidentes encenadas."
+        },
+        "2": {
+          "title": "Detecção de falsificação de documentos",
+          "description": "Examine os documentos de apoio (orçamentos de reparo, laudos médicos) em busca de adulteração gerada por IA com a capacidade de detecção AIForge-Doc."
+        },
+        "3": {
+          "title": "Correspondência de padrões de fraude",
+          "description": "Compare as mídias enviadas com padrões de fraude conhecidos e assinaturas de conteúdo sintético do banco de dados de golpes da Scam AI."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Primeiro aviso de sinistro (FNOL)",
+          "description": "Examine cada foto e vídeo enviado na abertura inicial do sinistro em busca de manipulação sintética.",
+          "bullets": {
+            "0": "Detecção de fotos de danos editadas por IA",
+            "1": "Identificação de cenas encenadas",
+            "2": "Pontuação de confiança de fraude instantânea"
+          }
+        },
+        "1": {
+          "title": "Análise de sinistros",
+          "description": "Adicione a triagem de deepfakes como uma etapa no fluxo de análise para sinistros sinalizados ou de alto valor.",
+          "bullets": {
+            "0": "Integração ao fluxo de trabalho do analista",
+            "1": "Triagem de mídia em massa",
+            "2": "Relatórios detalhados de manipulação"
+          }
+        },
+        "2": {
+          "title": "Apoio às investigações da SIU",
+          "description": "Forneça às Unidades de Investigações Especiais uma análise de conteúdo sintético de grau forense para os casos de fraude.",
+          "bullets": {
+            "0": "Pontuação de confiança forense",
+            "1": "Identificação do tipo de manipulação",
+            "2": "Relatórios com valor probatório"
+          }
+        },
+        "3": {
+          "title": "Sub-rogação e recuperação",
+          "description": "Detecte fraudes em sinistros de terceiros e em provas de litígios para proteger os resultados da recuperação.",
+          "bullets": {
+            "0": "Verificação de mídia de terceiros",
+            "1": "Relatórios de análise com valor jurídico",
+            "2": "Triagem de documentos em lote"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "A Scam AI consegue detectar fotos editadas por IA enviadas em sinistros de seguros?",
+          "answer": "Sim. A Scam AI detecta artefatos sutis de edição por IA nas fotos enviadas como prova de sinistro, incluindo imagens editadas com ferramentas generativas para adicionar ou remover danos, alterar condições ou fabricar lesões."
+        },
+        "1": {
+          "question": "Como a Scam AI se integra aos sistemas de gestão de sinistros?",
+          "answer": "A Scam AI oferece uma API REST: envie a URL de uma mídia ou um payload de arquivo e receba um resultado de detecção em menos de 4 segundos. Ela se integra ao Guidewire, ao Duck Creek e a outras plataformas de gestão de sinistros por meio de webhook ou chamada direta à API."
+        },
+        "2": {
+          "question": "Qual é o ROI de adicionar a detecção de deepfakes ao processamento de sinistros?",
+          "answer": "Um único sinistro fraudulento detectado pela Scam AI pode representar dezenas de milhares de dólares em pagamentos evitados. A $0.05 por imagem analisada, o custo por 1,000 sinistros examinados é de $50, uma fração das perdas médias por fraude."
+        },
+        "3": {
+          "question": "A Scam AI está em conformidade para uso no setor de seguros?",
+          "answer": "Sim. A Scam AI tem a certificação SOC 2 Type II e está em conformidade com o GDPR. Todos os resultados das análises são registrados com carimbos de data/hora e pontuações de confiança para fins de auditoria e litígio."
+        },
+        "4": {
+          "question": "A Scam AI consegue examinar grandes volumes de sinistros em alta velocidade?",
+          "answer": "Sim. O plano empresarial da Scam AI oferece endpoints de API em lote e throughput dedicado para processar milhares de imagens de sinistros por dia. Entre em contato com sales@scam.ai para conhecer os preços em escala de seguros."
+        }
+      },
+      "ctaHeadline": "Detenha a fraude de sinistros gerada por IA",
+      "ctaSubheadline": "200 análises grátis por mês. Sem cartão de crédito.",
+      "metaDescription": "Detecte fotos editadas por IA e documentos falsificados em sinistros de seguros. A Scam AI examina as provas dos sinistros em busca de manipulação sintética. $0.05 por imagem, com certificação SOC 2."
+    },
+    "hr": {
+      "name": "RH e Contratação",
+      "eyebrow": "RH",
+      "headline": "Detecte deepfakes em entrevistas remotas e contratação por vídeo",
+      "subheadline": "Candidatos a vagas usam ferramentas de deepfake em tempo real, modificadores de voz com IA e avatares sintéticos para se passar por outras pessoas ou ocultar a própria identidade durante entrevistas remotas. A Scam AI dá às equipes de RH e às plataformas de contratação a capacidade de verificar a autenticidade do vídeo e do áudio dos candidatos.",
+      "stat": {
+        "label": "dos candidatos a vagas remotas agora usa ferramentas de vídeo assistidas por IA durante as entrevistas"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Detecção de deepfakes em entrevistas por vídeo",
+          "description": "Detecte deepfakes em tempo real e avatares sintéticos usados em entrevistas por vídeo, sinalizando ferramentas de troca de rosto e sobreposições de câmera virtual."
+        },
+        "1": {
+          "title": "Detecção de síntese de voz",
+          "description": "Identifique vozes geradas por IA ou clonadas usadas para se passar por outras pessoas ou disfarçar a voz real do candidato durante a triagem por telefone e por vídeo."
+        },
+        "2": {
+          "title": "Verificação de identidade do candidato",
+          "description": "Verifique se a pessoa no vídeo da entrevista corresponde aos documentos de identidade enviados durante o processo de candidatura."
+        },
+        "3": {
+          "title": "Triagem de vídeo assíncrona",
+          "description": "Analise em lote os vídeos de entrevistas gravados em busca de manipulação sintética antes de avançar os candidatos para a próxima etapa da contratação."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Monitoramento de entrevistas por vídeo ao vivo",
+          "description": "Examine os feeds de videochamadas ao vivo em busca de ferramentas de deepfake em tempo real usadas pelos candidatos.",
+          "bullets": {
+            "0": "Análise de quadros em tempo real",
+            "1": "Detecção de rostos sintéticos",
+            "2": "Integração de alertas ao vivo"
+          }
+        },
+        "1": {
+          "title": "Revisão de entrevistas assíncronas",
+          "description": "Analise os envios de vídeo pré-gravados em busca de manipulação com deepfakes antes da revisão.",
+          "bullets": {
+            "0": "Análise de vídeo em lote",
+            "1": "Relatórios com pontuação de confiança",
+            "2": "Sinalização automatizada de candidatos"
+          }
+        },
+        "2": {
+          "title": "Verificação de triagem por telefone",
+          "description": "Detecte a clonagem de voz durante a triagem por telefone e as entrevistas centradas em voz.",
+          "bullets": {
+            "0": "Análise de áudio em tempo real",
+            "1": "Pontuação de autenticidade da voz",
+            "2": "Detecção de imitação"
+          }
+        },
+        "3": {
+          "title": "Verificação cruzada de antecedentes e identidade",
+          "description": "Compare o vídeo da entrevista com as fotos enviadas para checar a consistência da identidade.",
+          "bullets": {
+            "0": "Correspondência de identidade entre mídias",
+            "1": "Verificação de documento para selfie",
+            "2": "Fluxo de escalonamento de fraude"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "A Scam AI consegue detectar ferramentas de deepfake usadas em entrevistas por vídeo em tempo real?",
+          "answer": "Sim. A Scam AI analisa os quadros de vídeo em busca de padrões de manipulação sintética produzidos por ferramentas de deepfake em tempo real. Ela pode processar amostras do feed de vídeo ao vivo ou segmentos gravados enviados via API."
+        },
+        "1": {
+          "question": "Quais ferramentas de deepfake os candidatos estão usando em entrevistas remotas?",
+          "answer": "As ferramentas comuns incluem HeyGen, DeepFaceLive e software de câmera virtual que sobrepõe rostos sintéticos. A Scam AI detecta os artefatos de geração que essas ferramentas produzem, independentemente do software específico usado."
+        },
+        "2": {
+          "question": "A Scam AI consegue verificar se a voz de um candidato corresponde à identidade que ele enviou?",
+          "answer": "A detecção de áudio da Scam AI identifica se uma voz é gerada por IA ou clonada. Para a verificação cruzada de identidade, ela sinaliza padrões de áudio suspeitos que sugerem que o candidato não é quem afirma ser."
+        },
+        "3": {
+          "question": "Como as plataformas de contratação integram a Scam AI?",
+          "answer": "A Scam AI oferece uma API REST compatível com qualquer plataforma de entrevistas por vídeo, ATS ou HRMS. Envie as URLs dos arquivos de vídeo ou áudio e receba os resultados de detecção em menos de 4 segundos. Toda a documentação da API está em scam.ai/en/resources/documentation."
+        },
+        "4": {
+          "question": "Qual é o custo de adicionar a detecção de deepfakes aos fluxos de contratação?",
+          "answer": "A $0.05 por imagem e $0.05 por arquivo de áudio analisado, examinar uma entrevista por vídeo de 30 minutos (amostrada a um quadro a cada 30 segundos) custa aproximadamente $3. Há um nível gratuito de 200 análises por mês disponível para começar."
+        }
+      },
+      "ctaHeadline": "Verifique quem você realmente está contratando",
+      "ctaSubheadline": "200 análises grátis por mês. Sem cartão de crédito.",
+      "metaDescription": "Detecte deepfakes, ferramentas de voz com IA e avatares sintéticos em entrevistas de emprego remotas. A Scam AI verifica a autenticidade do vídeo e do áudio para equipes de RH e plataformas de contratação."
+    },
+    "government": {
+      "name": "Governo e Setor Público",
+      "eyebrow": "GOVERNO",
+      "headline": "Detecção de conteúdo sintético para o governo e o setor público",
+      "subheadline": "Atores estatais e campanhas de desinformação usam imagens geradas por IA, vídeos deepfake de autoridades e áudio sintético para minar a confiança pública e influenciar políticas. A Scam AI fornece aos órgãos governamentais e às organizações do setor público uma detecção de conteúdo sintético de nível empresarial.",
+      "stat": {
+        "label": "campanhas de influência de atores estatais documentadas que usaram conteúdo gerado por IA em 2025"
+      },
+      "capabilities": {
+        "0": {
+          "title": "Detecção de vídeos deepfake",
+          "description": "Detecte vídeos gerados por IA de autoridades governamentais, figuras públicas e candidatos políticos usados em campanhas de desinformação."
+        },
+        "1": {
+          "title": "Detecção de imagens de propaganda",
+          "description": "Identifique imagens geradas por IA usadas em operações de influência, incluindo cenas de protesto fabricadas, eventos encenados e fotografias de notícias manipuladas."
+        },
+        "2": {
+          "title": "Autenticação de comunicações oficiais",
+          "description": "Verifique se as imagens, vídeos e áudios atribuídos a fontes governamentais são autênticos e não manipulados."
+        },
+        "3": {
+          "title": "Verificação de mídia em massa",
+          "description": "Processe grandes volumes de conteúdo de redes sociais, imagens de notícias e mídias enviadas por meio da API para uma triagem de conteúdo sintético em escala de órgão."
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "Integridade eleitoral",
+          "description": "Examine o conteúdo viral envolvendo candidatos e autoridades eleitorais em busca de manipulação gerada por IA.",
+          "bullets": {
+            "0": "Detecção de políticos deepfake",
+            "1": "Imagens políticas geradas por IA",
+            "2": "Verificação de resposta rápida"
+          }
+        },
+        "1": {
+          "title": "Resposta à desinformação",
+          "description": "Identifique e sinalize o conteúdo sintético usado em campanhas de influência coordenadas antes que ele se espalhe.",
+          "bullets": {
+            "0": "Triagem de conteúdo em massa",
+            "1": "Análise de atribuição de origem",
+            "2": "API de detecção em tempo real"
+          }
+        },
+        "2": {
+          "title": "Serviços voltados ao cidadão",
+          "description": "Proteja a verificação de identidade nos portais de governo eletrônico e de benefícios públicos contra a burla com deepfakes.",
+          "bullets": {
+            "0": "Detecção de deepfakes na identidade digital",
+            "1": "Prevenção de fraude em benefícios",
+            "2": "Conformidade com SOC 2 Type II"
+          }
+        },
+        "3": {
+          "title": "Segurança pública e perícia digital",
+          "description": "Forneça uma análise de conteúdo sintético de grau forense para investigações criminais que envolvam deepfakes.",
+          "bullets": {
+            "0": "Pontuações de confiança forenses",
+            "1": "Relatórios com valor probatório",
+            "2": "Documentação da cadeia de análise"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "A Scam AI consegue detectar vídeos deepfake de figuras políticas e autoridades?",
+          "answer": "Sim. O modelo Eva-v1 da Scam AI detecta trocas de rosto, rostos sintéticos e manipulação de vídeo deepfake com 95.3% de precisão, incluindo vídeos gerados por IA de figuras públicas, independentemente da ferramenta de geração usada."
+        },
+        "1": {
+          "question": "Como a Scam AI lida com volumes de mídia em escala governamental?",
+          "answer": "A Scam AI oferece planos de API empresariais com endpoints de processamento em lote, throughput dedicado e tempo de atividade respaldado por SLA de 99.9%. Entre em contato com sales@scam.ai para a contratação pública e a revisão de segurança."
+        },
+        "2": {
+          "question": "Quais certificações de conformidade a Scam AI possui?",
+          "answer": "A Scam AI tem a certificação SOC 2 Type II e está em conformidade com o GDPR. As análises de contratação pública podem solicitar o relatório SOC 2 e a documentação de tratamento de dados a security@scam.ai."
+        },
+        "3": {
+          "question": "A Scam AI é usada por organizações do setor público?",
+          "answer": "A plataforma da Scam AI está implantada para clientes empresariais em setores regulados. Para referências específicas do setor público, entre em contato com sales@scam.ai."
+        },
+        "4": {
+          "question": "A Scam AI publica pesquisas sobre a detecção de deepfakes de atores estatais?",
+          "answer": "Sim. A equipe de pesquisa da Scam AI publica trabalhos revisados por pares sobre a detecção de deepfakes no mundo real, incluindo \"GPT-Image-2 in the Wild\" (arXiv:2604.25370) e \"Do deepfake detectors work in reality?\" (IEEE Workshop 2025)."
+        }
+      },
+      "ctaHeadline": "Proteja as comunicações públicas contra conteúdo sintético",
+      "ctaSubheadline": "Entre em contato conosco para conhecer os preços para o governo e o setor público.",
+      "metaDescription": "Detecção de conteúdo sintético para órgãos governamentais. Detecte vídeos deepfake e imagens geradas por IA em larga escala. SLA empresarial, com certificação SOC 2."
+    }
+  },
+  "compareContent": {
+    "reality-defender": {
+      "tagline": "Scam AI versus Reality Defender: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Precisão de detecção",
+          "competitor": "Não divulgada publicamente"
+        },
+        "1": {
+          "feature": "Velocidade de processamento",
+          "competitor": "SLA empresarial, variável"
+        },
+        "2": {
+          "feature": "Nível gratuito",
+          "competitor": "Sem nível gratuito"
+        },
+        "3": {
+          "feature": "Modelo de preços",
+          "competitor": "Contratos empresariais anuais"
+        },
+        "4": {
+          "feature": "Tempo de configuração da API",
+          "competitor": "Onboarding empresarial personalizado"
+        },
+        "5": {
+          "feature": "Detecção de imagem e vídeo",
+          "scamai": "Sim",
+          "competitor": "Sim"
+        },
+        "6": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Limitada"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Sim",
+          "competitor": "Sim"
+        },
+        "8": {
+          "feature": "Em conformidade com o GDPR",
+          "scamai": "Sim",
+          "competitor": "Sim"
+        },
+        "9": {
+          "feature": "Publicações de pesquisa aberta",
+          "competitor": "Não disponíveis publicamente"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Preços transparentes por imagem",
+          "description": "A Scam AI cobra $0.05 por imagem sem compromisso mínimo. A Reality Defender exige contratos empresariais anuais com preços não divulgados, o que dificulta a previsão de custos."
+        },
+        "1": {
+          "title": "Nível gratuito: comece imediatamente",
+          "description": "200 análises de imagens grátis por mês sem cartão de crédito. Avalie a Scam AI com os seus dados reais antes de assumir um plano pago."
+        },
+        "2": {
+          "title": "API de autoatendimento em menos de 10 minutos",
+          "description": "A API da Scam AI é documentada publicamente e está pronta para integração sem chamadas de vendas ou onboarding personalizado. SDK disponível para Python e JavaScript."
+        },
+        "3": {
+          "title": "Visão e áudio em uma única API",
+          "description": "A Scam AI cobre a detecção de imagem, vídeo e clonagem de voz em uma única API. A Reality Defender foca principalmente em mídia visual."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a Scam AI se compara à Reality Defender para a detecção de deepfakes?",
+          "answer": "Ambas as plataformas detectam deepfakes em imagens e vídeo. A Scam AI se diferencia pelos preços transparentes por imagem ($0.05 por imagem), um nível gratuito de 200 imagens por mês, integração de API de autoatendimento em menos de 10 minutos e detecção combinada de visão e áudio. A Reality Defender mira grandes empresas com contratos anuais e preços não divulgados."
+        },
+        "1": {
+          "question": "A Scam AI é mais barata que a Reality Defender?",
+          "answer": "A Scam AI é significativamente mais acessível para equipes que não são grandes empresas. A Reality Defender exige contratos anuais; a Scam AI começa grátis (200 imagens por mês) e escala a $0.05 por imagem sem compromisso mínimo."
+        },
+        "2": {
+          "question": "A Scam AI detecta vozes clonadas como a Reality Defender?",
+          "answer": "A Scam AI oferece detecção dedicada de deepfakes de áudio com 98.5% de precisão, identificando vozes clonadas do ElevenLabs, PlayHT, Azure TTS e outras plataformas. A detecção de áudio da Reality Defender é limitada em comparação com as suas capacidades visuais."
+        },
+        "3": {
+          "question": "Posso migrar da Reality Defender para a Scam AI?",
+          "answer": "Sim. A API REST da Scam AI segue convenções padrão do setor. A migração envolve atualizar os endpoints e os cabeçalhos de autenticação, normalmente menos de um dia de trabalho de engenharia."
+        }
+      }
+    },
+    "sensity": {
+      "tagline": "Scam AI versus Sensity AI: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Precisão de detecção",
+          "competitor": "Não divulgada publicamente"
+        },
+        "1": {
+          "feature": "Nível gratuito",
+          "competitor": "Sem nível gratuito"
+        },
+        "2": {
+          "feature": "Modelo de preços",
+          "competitor": "Contratos empresariais"
+        },
+        "3": {
+          "feature": "Acesso à API de autoatendimento",
+          "competitor": "Exige contato de vendas"
+        },
+        "4": {
+          "feature": "Detecção de imagem e vídeo",
+          "scamai": "Sim",
+          "competitor": "Sim"
+        },
+        "5": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Não"
+        },
+        "6": {
+          "feature": "Detecção de falsificação de documentos",
+          "scamai": "Sim (AIForge-Doc)",
+          "competitor": "Não"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Sim",
+          "competitor": "Não confirmado publicamente"
+        },
+        "8": {
+          "feature": "Em conformidade com o GDPR",
+          "scamai": "Sim",
+          "competitor": "Sim (sediada na UE)"
+        },
+        "9": {
+          "feature": "Pesquisa aberta",
+          "competitor": "Pesquisa pública limitada"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Cobertura mais ampla de conteúdo sintético",
+          "description": "A Scam AI cobre imagens, vídeo, deepfakes de áudio e documentos editados por IA em uma única API. A Sensity foca em inteligência de deepfakes e vivacidade biométrica, não em detecção de áudio ou de documentos."
+        },
+        "1": {
+          "title": "Preços transparentes e de autoatendimento",
+          "description": "A Scam AI começa grátis e escala a $0.05 por imagem sem necessidade de contrato empresarial. A Sensity exige contato direto de vendas e preços personalizados."
+        },
+        "2": {
+          "title": "Detecção de clonagem de voz incluída",
+          "description": "A Scam AI adiciona detecção de deepfakes de áudio com 98.5% de precisão. A Sensity não oferece detecção de áudio nem de clonagem de voz."
+        },
+        "3": {
+          "title": "Detecção de falsificação de documentos",
+          "description": "A Scam AI detecta documentos financeiros e de identidade editados por IA (pesquisa AIForge-Doc, arXiv:2602.20569). A Sensity não cobre a falsificação de documentos."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a Scam AI se compara à Sensity AI?",
+          "answer": "A Sensity AI foca em inteligência de deepfakes e verificação biométrica. A Scam AI cobre uma gama mais ampla de conteúdo sintético: deepfakes de imagem e vídeo, vozes clonadas e documentos editados por IA, tudo em uma única API com preços transparentes."
+        },
+        "1": {
+          "question": "A Scam AI detecta vozes clonadas como a Sensity?",
+          "answer": "A Scam AI oferece detecção dedicada de clonagem de voz com 98.5% de precisão. A Sensity não oferece detecção de deepfakes de áudio."
+        },
+        "2": {
+          "question": "A Scam AI é uma boa alternativa à Sensity para KYC?",
+          "answer": "Sim. A detecção de IA da Scam AI cobre selfies com deepfake, documentos de identidade editados por IA e fraude biométrica com 95.3% de precisão, com conformidade SOC 2 Type II e processamento em menos de 4 segundos para os fluxos de onboarding ao vivo."
+        },
+        "3": {
+          "question": "Posso testar a Scam AI antes de assumir um plano?",
+          "answer": "Sim. A Scam AI oferece 200 análises de imagens grátis por mês sem cartão de crédito. Cadastre-se em app.scam.ai."
+        }
+      }
+    },
+    "hive": {
+      "tagline": "Scam AI versus Hive Moderation: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Precisão de detecção de deepfakes",
+          "competitor": "Detecção de IA geral, menor em deepfakes"
+        },
+        "1": {
+          "feature": "Nível gratuito",
+          "competitor": "Teste gratuito limitado"
+        },
+        "2": {
+          "feature": "Modelo de preços",
+          "competitor": "Baseado em volume, exige contato"
+        },
+        "3": {
+          "feature": "Velocidade de processamento",
+          "competitor": "Varia conforme a carga de trabalho"
+        },
+        "4": {
+          "feature": "Detecção de deepfakes em imagem e vídeo",
+          "scamai": "Sim, especializada",
+          "competitor": "Sim, geral"
+        },
+        "5": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Não"
+        },
+        "6": {
+          "feature": "KYC e verificação de identidade",
+          "scamai": "Desenvolvida para esse fim",
+          "competitor": "Foco em moderação geral"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Sim",
+          "competitor": "Sim"
+        },
+        "8": {
+          "feature": "Em conformidade com o GDPR",
+          "scamai": "Sim",
+          "competitor": "Sim"
+        },
+        "9": {
+          "feature": "Detecção de falsificação de documentos",
+          "scamai": "Sim",
+          "competitor": "Não"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Desenvolvida para deepfakes",
+          "description": "A Scam AI é criada exclusivamente para a detecção de conteúdo sintético, não para a moderação geral de conteúdo. Maior precisão em vetores de ataque específicos de deepfakes, como trocas de rosto, saídas de modelos de difusão e falsificação de documentos com IA."
+        },
+        "1": {
+          "title": "Detecção de clonagem de voz",
+          "description": "A Scam AI adiciona detecção de deepfakes de áudio com 98.5% de precisão. A Hive Moderation não oferece detecção de clonagem de voz nem de áudio sintético."
+        },
+        "2": {
+          "title": "Especialização em KYC e fraude de identidade",
+          "description": "A Scam AI é projetada para a verificação de identidade, o onboarding KYC e a prevenção de fraude financeira, não para a moderação de conteúdo em redes sociais."
+        },
+        "3": {
+          "title": "Preços transparentes de autoatendimento",
+          "description": "$0.05 por imagem com um nível gratuito de 200 por mês. Sem necessidade de contrato empresarial para começar a integrar."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a Scam AI se compara à Hive Moderation para a detecção de deepfakes?",
+          "answer": "A Hive é uma plataforma geral de moderação de conteúdo; a detecção de deepfakes é uma de suas muitas capacidades. A Scam AI é desenvolvida especificamente para deepfakes e alcança maior precisão (95.3%) em conteúdo sintético, com detecção adicional de clonagem de voz e falsificação de documentos que a Hive não oferece."
+        },
+        "1": {
+          "question": "A Scam AI funciona tanto para moderação de conteúdo quanto para prevenção de fraude?",
+          "answer": "A Scam AI foca na detecção de conteúdo sintético para a prevenção de fraude, o KYC e a verificação de identidade. Para uma moderação de conteúdo mais ampla (spam, NSFW, discurso de ódio), a Hive pode ser mais adequada."
+        },
+        "2": {
+          "question": "A Scam AI é uma boa alternativa à Hive para KYC e fintech?",
+          "answer": "Sim. A Scam AI é desenvolvida especificamente para casos de uso de KYC e fraude financeira, com processamento em menos de 4 segundos, certificação SOC 2 Type II e modelos de detecção de deepfakes especializados treinados com dados de fraude financeira e de identidade."
+        },
+        "3": {
+          "question": "Posso usar a Scam AI junto com a Hive Moderation?",
+          "answer": "Sim. A Scam AI e a Hive atendem a casos de uso diferentes e podem ser usadas em paralelo: a Hive para a moderação geral de conteúdo e a Scam AI para a detecção de fraude com deepfakes e conteúdo sintético."
+        }
+      }
+    },
+    "microsoft-azure": {
+      "tagline": "Scam AI versus Microsoft Azure AI Content Safety: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Precisão de detecção de deepfakes",
+          "competitor": "Menor, classificador geral"
+        },
+        "1": {
+          "feature": "Nível gratuito",
+          "competitor": "Nível gratuito disponível"
+        },
+        "2": {
+          "feature": "Modelo de preços",
+          "competitor": "Preços por consumo do Azure"
+        },
+        "3": {
+          "feature": "Complexidade de configuração",
+          "competitor": "Exige conta do Azure e configuração"
+        },
+        "4": {
+          "feature": "Detecção específica de deepfakes",
+          "competitor": "Segurança de conteúdo geral"
+        },
+        "5": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Não"
+        },
+        "6": {
+          "feature": "KYC / verificação de identidade",
+          "scamai": "Sim, desenvolvida para esse fim",
+          "competitor": "Não desenvolvida para esse fim"
+        },
+        "7": {
+          "feature": "Detecção de falsificação de documentos",
+          "scamai": "Sim",
+          "competitor": "Não"
+        },
+        "8": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Sim",
+          "competitor": "Framework de conformidade do Azure"
+        },
+        "9": {
+          "feature": "Pesquisa aberta sobre deepfakes",
+          "competitor": "Microsoft Research (ampla)"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Precisão específica para deepfakes",
+          "description": "O modelo Eva-v1 da Scam AI é treinado exclusivamente com vetores de ataque de conteúdo sintético. O Azure AI Content Safety é um classificador geral não otimizado para fraude com deepfakes, trocas de rosto ou documentos editados por IA."
+        },
+        "1": {
+          "title": "Sem dependência do Azure",
+          "description": "A Scam AI funciona como uma API independente, sem exigir o ecossistema da Microsoft. Ideal para equipes que ainda não usam o Azure ou que precisam de uma solução de deepfakes de primeira linha ao lado do seu provedor de nuvem."
+        },
+        "2": {
+          "title": "Detecção de clonagem de voz incluída",
+          "description": "A Scam AI adiciona detecção de deepfakes de áudio com 98.5% de precisão. O Azure AI Content Safety não oferece detecção de clonagem de voz nem de áudio sintético."
+        },
+        "3": {
+          "title": "Desenvolvida para fraude de identidade e KYC",
+          "description": "A Scam AI é projetada para KYC, verificação de identidade e prevenção de fraude financeira, não para a moderação geral de conteúdo. Modelos desenvolvidos para esse fim superam os classificadores gerais nos ataques específicos de cada domínio."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a Scam AI se compara ao Azure AI Content Safety para a detecção de deepfakes?",
+          "answer": "O Azure AI Content Safety detecta conteúdo nocivo de forma ampla em imagens e texto. A Scam AI é desenvolvida especificamente para fraude com deepfakes e conteúdo sintético, alcançando 95.3% de precisão em ataques específicos de deepfakes (trocas de rosto, saídas de modelos de difusão, falsificação de documentos e vozes clonadas) que o Azure não cobre."
+        },
+        "1": {
+          "question": "A Scam AI é mais precisa que o Azure para deepfakes?",
+          "answer": "O modelo Eva-v1 da Scam AI é treinado especificamente com padrões de ataque de conteúdo sintético, alcançando 95.3% nos benchmarks de deepfakes. O Azure AI Content Safety é um classificador geral de segurança de conteúdo não otimizado para os cenários de fraude com deepfakes."
+        },
+        "2": {
+          "question": "A Scam AI consegue funcionar junto com o Microsoft Azure?",
+          "answer": "Sim. A Scam AI é uma API REST independente que funciona com qualquer stack de nuvem. Muitas equipes usam a Scam AI para a detecção específica de deepfakes ao lado dos serviços do Azure para outras tarefas de segurança de conteúdo."
+        },
+        "3": {
+          "question": "A Scam AI detecta vozes clonadas, diferentemente do Azure?",
+          "answer": "Sim. A detecção de áudio da Scam AI identifica vozes clonadas por IA com 98.5% de precisão. O Azure AI Content Safety não oferece detecção de clonagem de voz."
+        }
+      }
+    },
+    "aws-rekognition": {
+      "tagline": "Scam AI versus AWS Rekognition: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Precisão de detecção de deepfakes",
+          "competitor": "Análise facial geral, não específica de deepfakes"
+        },
+        "1": {
+          "feature": "Modelo de deepfakes dedicado",
+          "competitor": "Sem modelo de deepfakes dedicado"
+        },
+        "2": {
+          "feature": "Nível gratuito"
+        },
+        "3": {
+          "feature": "Preços",
+          "competitor": "Preços por consumo da AWS"
+        },
+        "4": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Não"
+        },
+        "5": {
+          "feature": "Detecção de deepfakes em KYC",
+          "scamai": "Desenvolvida para esse fim",
+          "competitor": "Não desenvolvida para esse fim"
+        },
+        "6": {
+          "feature": "Detecção de falsificação de documentos",
+          "scamai": "Sim (AIForge-Doc)",
+          "competitor": "Não"
+        },
+        "7": {
+          "feature": "Configuração sem conta da AWS",
+          "scamai": "Sim",
+          "competitor": "Exige conta da AWS"
+        },
+        "8": {
+          "feature": "SOC 2 / conformidade",
+          "competitor": "Framework de conformidade da AWS"
+        },
+        "9": {
+          "feature": "Pesquisa aberta sobre deepfakes",
+          "competitor": "AWS Research (ampla)"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Modelo de detecção de deepfakes dedicado",
+          "description": "O AWS Rekognition oferece detecção de rostos, reconhecimento de objetos e análise de imagens geral, mas não possui um modelo de detecção de deepfakes dedicado. O modelo Eva-v1 da Scam AI é treinado especificamente para identificar trocas de rosto sintéticas, imagens GAN e saídas de modelos de difusão."
+        },
+        "1": {
+          "title": "Sem dependência da AWS",
+          "description": "A Scam AI é uma API REST independente que funciona de forma autônoma em relação a qualquer provedor de nuvem. Equipes em GCP, Azure ou infraestrutura auto-hospedada podem usar a Scam AI sem depender da AWS."
+        },
+        "2": {
+          "title": "Detecção de clonagem de voz",
+          "description": "A API de áudio da Scam AI detecta vozes clonadas do ElevenLabs, PlayHT e outras plataformas com 98.5% de precisão. O AWS Rekognition não tem capacidade de detecção de clonagem de voz."
+        },
+        "3": {
+          "title": "Especialização em fraude de identidade",
+          "description": "A Scam AI é desenvolvida especificamente para KYC, prevenção de fraude financeira e verificação de identidade, os casos de uso em que a precisão em deepfakes mais importa."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "O AWS Rekognition detecta deepfakes?",
+          "answer": "O AWS Rekognition oferece detecção e análise de rostos, mas não possui um modelo de detecção de deepfakes dedicado. Ele pode detectar rostos, mas não é treinado para identificar especificamente trocas de rosto sintéticas, imagens geradas por GAN ou saídas de modelos de difusão."
+        },
+        "1": {
+          "question": "Como a Scam AI se compara ao AWS Rekognition para KYC?",
+          "answer": "A Scam AI é desenvolvida especificamente para a detecção de deepfakes em KYC com 95.3% de precisão em selfies sintéticas e documentos de identidade. O AWS Rekognition pode verificar a vivacidade de um rosto, mas não detecta rostos gerados por IA nem manipulação com deepfakes."
+        },
+        "2": {
+          "question": "A Scam AI consegue funcionar junto com os serviços da AWS?",
+          "answer": "Sim. A Scam AI é uma API REST independente e se integra a qualquer stack de nuvem, incluindo AWS Lambda, gatilhos do S3 e API Gateway. Ela pode funcionar ao lado do Rekognition para a análise facial enquanto oferece detecção específica de deepfakes."
+        },
+        "3": {
+          "question": "A Scam AI é mais barata que o AWS Rekognition para a detecção de deepfakes?",
+          "answer": "O AWS Rekognition não oferece detecção de deepfakes, então uma comparação direta de custos exige engenharia personalizada sobre o Rekognition. A Scam AI oferece uma solução desenvolvida para esse fim a $0.05 por imagem, sem necessidade de desenvolvimento personalizado."
+        }
+      }
+    },
+    "truepic": {
+      "tagline": "Scam AI versus Truepic: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Abordagem de detecção",
+          "scamai": "Detecção de deepfakes com IA/ML"
+        },
+        "1": {
+          "feature": "Funciona em imagens sem metadados",
+          "scamai": "Sim"
+        },
+        "2": {
+          "feature": "Precisão de detecção de deepfakes",
+          "competitor": "N/D — proveniência, não detecção"
+        },
+        "3": {
+          "feature": "Nível gratuito",
+          "competitor": "Sem nível gratuito de autoatendimento"
+        },
+        "4": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Não"
+        },
+        "5": {
+          "feature": "Integração de API",
+          "competitor": "Exige integração de hardware de câmera"
+        },
+        "6": {
+          "feature": "Funciona em imagens históricas",
+          "scamai": "Sim"
+        },
+        "7": {
+          "feature": "Detecção retroativa de fraude",
+          "scamai": "Sim",
+          "competitor": "Não"
+        },
+        "8": {
+          "feature": "Detecção de falsificação de documentos",
+          "scamai": "Sim",
+          "competitor": "Não"
+        },
+        "9": {
+          "feature": "Em conformidade com SOC 2",
+          "scamai": "Sim",
+          "competitor": "Não confirmado publicamente"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "Não exige hardware de câmera",
+          "description": "A abordagem C2PA da Truepic exige que as imagens sejam capturadas por câmeras compatíveis com C2PA. A Scam AI analisa qualquer imagem, independentemente do dispositivo de captura ou dos metadados de proveniência, incluindo a detecção retroativa de fraude em imagens existentes."
+        },
+        "1": {
+          "title": "Funciona nas imagens de hoje",
+          "description": "A proveniência C2PA cobre apenas as imagens futuras capturadas por câmeras que a adotem. A Scam AI detecta deepfakes em qualquer imagem ou arquivo de áudio existente por meio de análise com IA."
+        },
+        "2": {
+          "title": "Detecção de clonagem de voz e áudio",
+          "description": "A Scam AI adiciona detecção de deepfakes de áudio com 98.5% de precisão. A Truepic foca exclusivamente na proveniência de imagens visuais."
+        },
+        "3": {
+          "title": "KYC e prevenção de fraude integrados",
+          "description": "A Scam AI é desenvolvida especificamente para a verificação de identidade, a fraude financeira e o onboarding KYC, não para a proveniência de conteúdo para editoras."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Qual é a diferença entre a Scam AI e a Truepic?",
+          "answer": "A Scam AI usa IA/ML para detectar manipulação sintética em qualquer imagem ou áudio. A Truepic usa credenciais de conteúdo criptográficas C2PA para verificar se uma imagem foi capturada por uma câmera específica em um momento específico. São abordagens complementares: a Scam AI para detectar a manipulação e a Truepic para estabelecer a proveniência."
+        },
+        "1": {
+          "question": "A Scam AI é melhor que a Truepic para a detecção de deepfakes?",
+          "answer": "A Scam AI e a Truepic abordam aspectos diferentes do problema do conteúdo sintético. A Scam AI detecta deepfakes em qualquer imagem ou arquivo de áudio existente. A Truepic verifica se as imagens futuras de câmeras compatíveis com C2PA não foram manipuladas. Para a detecção retroativa de fraude e a detecção de clonagem de voz, a Scam AI é a escolha certa."
+        },
+        "2": {
+          "question": "A Scam AI funciona em imagens que não têm metadados C2PA?",
+          "answer": "Sim. A detecção de IA da Scam AI funciona em qualquer imagem ou arquivo de áudio, independentemente dos metadados. Ela analisa padrões no nível dos pixels e no domínio da frequência para detectar a manipulação sintética sem exigir credenciais de conteúdo."
+        },
+        "3": {
+          "question": "Posso usar a Scam AI junto com a Truepic?",
+          "answer": "Sim. Elas cumprem propósitos complementares. A Truepic estabelece a proveniência das imagens novas de câmeras C2PA. A Scam AI detecta de forma retroativa os deepfakes e a manipulação sintética em qualquer imagem existente, incluindo as que não têm metadados de proveniência."
+        }
+      }
+    },
+    "deepware": {
+      "tagline": "Scam AI versus Deepware: comparação de detecção de deepfakes",
+      "comparisonRows": {
+        "0": {
+          "feature": "Caso de uso",
+          "scamai": "API empresarial para produtos",
+          "competitor": "Ferramenta de escaneamento para consumidores"
+        },
+        "1": {
+          "feature": "Acesso à API",
+          "scamai": "Sim, API REST de nível de produção",
+          "competitor": "Sem API de produção"
+        },
+        "2": {
+          "feature": "Precisão de detecção",
+          "competitor": "Não divulgada"
+        },
+        "3": {
+          "feature": "Velocidade de processamento",
+          "competitor": "Variável, sem SLA"
+        },
+        "4": {
+          "feature": "Nível gratuito",
+          "competitor": "Scanner gratuito para consumidores"
+        },
+        "5": {
+          "feature": "Detecção de áudio / clonagem de voz",
+          "competitor": "Não"
+        },
+        "6": {
+          "feature": "KYC e integração empresarial",
+          "scamai": "Sim, desenvolvida para esse fim",
+          "competitor": "Não"
+        },
+        "7": {
+          "feature": "SLA e garantia de tempo de atividade",
+          "competitor": "Sem SLA"
+        },
+        "8": {
+          "feature": "SOC 2 Type II",
+          "scamai": "Sim",
+          "competitor": "Não"
+        },
+        "9": {
+          "feature": "Em conformidade com o GDPR",
+          "scamai": "Sim",
+          "competitor": "Não confirmado"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "API empresarial de nível de produção",
+          "description": "A Scam AI oferece uma API REST com SLA de tempo de atividade de 99.9%, certificação SOC 2 Type II e processamento em menos de 4 segundos para a integração em produtos empresariais. A Deepware é uma ferramenta para consumidores sem API de produção."
+        },
+        "1": {
+          "title": "Detecção de clonagem de voz",
+          "description": "A Scam AI adiciona detecção de deepfakes de áudio com 98.5% de precisão. A Deepware é um scanner apenas de vídeo."
+        },
+        "2": {
+          "title": "Conformidade e segurança",
+          "description": "A Scam AI tem a certificação SOC 2 Type II e está em conformidade com o GDPR, com registro de auditoria. A Deepware é uma ferramenta gratuita para consumidores sem conformidade empresarial."
+        },
+        "3": {
+          "title": "Preços empresariais escaláveis",
+          "description": "A Scam AI escala de um nível gratuito de 200 imagens até planos empresariais com throughput dedicado. A Deepware não foi projetada para cargas de trabalho empresariais de alto volume."
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como a Scam AI se compara à Deepware?",
+          "answer": "A Deepware é uma ferramenta gratuita para que consumidores escaneiem vídeos individuais. A Scam AI é uma plataforma de API empresarial para organizações que integram a detecção de deepfakes a fluxos de KYC, sistemas de prevenção de fraude e produtos em larga escala, com conformidade SOC 2, tempo de atividade de 99.9% e acesso a uma API de produção."
+        },
+        "1": {
+          "question": "A Deepware é boa o suficiente para a detecção de deepfakes empresarial?",
+          "answer": "A Deepware foi projetada para o uso individual de consumidores e não oferece uma API de produção, um SLA, certificações de conformidade nem o throughput por volume necessário para as cargas de trabalho empresariais."
+        },
+        "2": {
+          "question": "Posso substituir a Deepware pela Scam AI na minha aplicação?",
+          "answer": "Sim. Se você está criando um produto ou fluxo de trabalho que precisa de detecção de deepfakes programática, a Scam AI oferece a API REST, a documentação e a postura de conformidade que a Deepware não oferece."
+        },
+        "3": {
+          "question": "A Scam AI tem uma opção gratuita como a Deepware?",
+          "answer": "Sim. A Scam AI inclui 200 análises de imagens grátis por mês via API, sem cartão de crédito. Isso é diferente do scanner para consumidores da Deepware; o nível gratuito da Scam AI oferece acesso completo à API para a integração e os testes."
+        }
+      }
+    }
   }
 }

@@ -3236,5 +3236,1321 @@
       "description": "每月 200 張免費影像，開始保護您的平台。",
       "button": "開始免費試用"
     }
+  },
+  "solutionsContent": {
+    "fintech": {
+      "name": "金融科技與銀行",
+      "eyebrow": "FINTECH",
+      "headline": "為金融科技與銀行業打造的深偽偵測",
+      "subheadline": "保護您的開戶與交易流程，抵禦合成身分攻擊。Scam AI 可在 10 分鐘內整合至 KYC 流程，在深偽自拍、AI 生成證件以及語音複製詐騙觸及您的客服專員之前將其標記出來。",
+      "stat": {
+        "label": "2025 年深偽 KYC 詐騙嘗試的增幅（Deloitte）"
+      },
+      "capabilities": {
+        "0": {
+          "title": "KYC 深偽偵測",
+          "description": "在客戶開戶階段以 95.3% 的準確率偵測合成人臉與深偽自拍，可在 4 秒內標記換臉、GAN 生成影像以及擴散模型輸出。"
+        },
+        "1": {
+          "title": "合成身分詐騙防護",
+          "description": "辨識結合真實與虛假資料、用於開立帳戶、申請貸款或繞過信用審核的 AI 偽造身分。"
+        },
+        "2": {
+          "title": "證件真實性驗證",
+          "description": "運用我們的 AIForge-Doc 偵測模型，驗證身分證件、銀行對帳單及金融表單是否遭 AI 生成的竄改。"
+        },
+        "3": {
+          "title": "語音複製詐騙偵測",
+          "description": "透過即時偵測複製語音（準確率達 98.5%），保護電話客服與語音銀行免受語音釣魚（vishing）攻擊。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "開戶與 KYC",
+          "description": "對數位開戶過程中提交的每一張自拍與身分證件進行合成竄改篩檢。",
+          "bullets": {
+            "0": "深偽自拍偵測",
+            "1": "身分證件偽造篩檢",
+            "2": "活體偵測繞過防護"
+          }
+        },
+        "1": {
+          "title": "貸款與信用申請",
+          "description": "驗證收入證明與財務報表並非 AI 生成或遭竄改。",
+          "bullets": {
+            "0": "AI 編輯證件偵測",
+            "1": "合成財務紀錄篩檢",
+            "2": "詐騙模式比對"
+          }
+        },
+        "2": {
+          "title": "電話銀行與客服中心",
+          "description": "保護語音身分驗證系統，抵禦針對帳戶存取的語音複製攻擊。",
+          "bullets": {
+            "0": "即時語音釣魚偵測",
+            "1": "來電者語音身分驗證",
+            "2": "語音冒充警示"
+          }
+        },
+        "3": {
+          "title": "法遵合規",
+          "description": "透過完整紀錄的 AI 偵測流程，滿足 FFIEC、AML 與 KYC 法規要求。",
+          "bullets": {
+            "0": "通過 SOC 2 Type II 認證",
+            "1": "符合 GDPR 的資料處理",
+            "2": "稽核日誌與報告"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "深偽偵測如何整合至既有的 KYC 流程？",
+          "answer": "Scam AI 提供 REST API，可在 10 分鐘內完成整合。提交影像 URL 或 base64 資料，即可取得包含 is_deepfake 布林值、信心分數及竄改類型的 JSON 回應。它與您既有的活體偵測及證件驗證工具並行運作。"
+        },
+        "1": {
+          "question": "Scam AI 能在金融科技領域偵測哪些類型的身分詐騙？",
+          "answer": "Scam AI 可偵測自拍驗證中的換臉、GAN 生成的身分照片、經 AI 編輯的銀行對帳單與證件，以及試圖冒充帳戶持有人的語音複製來電者。"
+        },
+        "2": {
+          "question": "Scam AI 是否符合金融服務領域的 SOC 2 與 GDPR 合規要求？",
+          "answer": "是的。Scam AI 已通過 SOC 2 Type II 認證並符合 GDPR 要求。影像在處理完成後不會被儲存，並提供完整的稽核日誌以供合規報告使用。"
+        },
+        "3": {
+          "question": "針對即時 KYC 流程，深偽偵測的速度有多快？",
+          "answer": "Eva-v1-Fast 可在 2 秒內處理每張影像，適用於即時開戶流程而不會造成可感知的阻力。Eva-v1-Pro 可在 4 秒內完成處理，以達到最高準確率。"
+        },
+        "4": {
+          "question": "Scam AI 能否支撐高流量的金融服務工作負載？",
+          "answer": "可以。Scam AI 提供企業方案，具備 99.9% 的 SLA 保證可用性、專屬處理量及大量採購定價。如需企業導入，請聯絡 sales@scam.ai。"
+        }
+      },
+      "ctaHeadline": "立即開始保護您的 KYC 流程",
+      "ctaSubheadline": "每月 200 張免費影像額度，無需信用卡。",
+      "metaDescription": "為金融科技 KYC 打造的深偽偵測，準確率達 95.3%。可在 4 秒內偵測合成身分、偽造證件與語音複製。已通過 SOC 2 認證。"
+    },
+    "dating": {
+      "name": "交友應用程式",
+      "eyebrow": "DATING",
+      "headline": "為交友應用程式打造的深偽與假帳號偵測",
+      "subheadline": "感情詐騙者利用 AI 生成的大頭貼與複製語音，大規模欺騙使用者。Scam AI 為交友平台提供 API，可在配對成立之前自動驗證個人檔案影像與音訊是否遭合成竄改。",
+      "stat": {
+        "label": "的網路感情詐騙帳號涉及 AI 生成或經竄改的照片"
+      },
+      "capabilities": {
+        "0": {
+          "title": "個人檔案大頭貼驗證",
+          "description": "在上傳時即偵測 AI 生成或經竄改的個人檔案影像，在換臉、GAN 生成人臉及擴散模型輸出觸及其他使用者之前將其攔截。"
+        },
+        "1": {
+          "title": "語音感情詐騙（catfishing）防護",
+          "description": "辨識音訊與視訊訊息中的複製語音，保護使用者免受利用 AI 冒充迷人對象的詐騙者侵害。"
+        },
+        "2": {
+          "title": "合成人臉偵測",
+          "description": "標記使用完全由 AI 生成、從未真實存在的人臉所建立的個人檔案，遏止機器人農場與大規模感情詐騙行動。"
+        },
+        "3": {
+          "title": "持續監控",
+          "description": "在使用者更新照片或傳送新媒體時定期重新驗證個人檔案內容，於關係全週期維繫信任。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "個人檔案建立與驗證",
+          "description": "在帳號上線前，對上傳的每一張個人檔案大頭貼進行合成竄改篩檢。",
+          "bullets": {
+            "0": "AI 生成人臉偵測",
+            "1": "換臉辨識",
+            "2": "GAN 影像標記"
+          }
+        },
+        "1": {
+          "title": "應用程式內媒體驗證",
+          "description": "驗證聊天中分享的照片與影片，於對話過程中即時辨識感情詐騙企圖。",
+          "bullets": {
+            "0": "即時媒體掃描",
+            "1": "深偽影片偵測",
+            "2": "語音訊息驗證"
+          }
+        },
+        "2": {
+          "title": "信任與安全自動化",
+          "description": "自動標記可疑個人檔案以供人工審查，降低審查成本。",
+          "bullets": {
+            "0": "信心分數評估",
+            "1": "自動升級處理",
+            "2": "批次個人檔案掃描 API"
+          }
+        },
+        "3": {
+          "title": "感情詐騙防護",
+          "description": "在情感投入加深、造成財務損害之前辨識詐騙者的行為模式。",
+          "bullets": {
+            "0": "合成身分篩檢",
+            "1": "以模式為基礎的詐騙偵測",
+            "2": "跨個人檔案相似度分析"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 能否在上傳時偵測 AI 生成的個人檔案大頭貼？",
+          "answer": "可以。Scam AI 透過 REST API 整合至您的上傳流程。每張照片在 2 秒內完成分析，回傳信心分數與深偽分類。被標記為超過您所設門檻的照片，可保留待審或自動拒絕。"
+        },
+        "1": {
+          "question": "Scam AI 如何偵測以 AI 生成人臉建立的假帳號？",
+          "answer": "Scam AI 的 Eva-v1 模型可偵測 GAN 生成器以及 Stable Diffusion、DALL-E、Midjourney 等擴散模型所留下的細微痕跡。完全合成、從未真實存在的人臉，將透過頻域與語意分析被辨識出來。"
+        },
+        "2": {
+          "question": "Scam AI 能否驗證語音訊息是否為語音複製？",
+          "answer": "可以。音訊偵測 API 可辨識來自 ElevenLabs、PlayHT、Resemble AI 等平台的 AI 生成或複製語音。它支援 MP3、WAV 與 OGG 檔案，準確率達 98.5%。"
+        },
+        "3": {
+          "question": "交友應用程式深偽偵測的價格為何？",
+          "answer": "Scam AI 的定價為每張分析影像 $0.05，並提供每月 200 張影像的免費額度。對於處理數百萬次上傳的平台，可享有大量折扣。如需交友平台定價，請聯絡 sales@scam.ai。"
+        },
+        "4": {
+          "question": "交友平台整合 Scam AI 需要多久？",
+          "answer": "使用 REST API 整合僅需 10 分鐘以內。我們為 Python 與 JavaScript 提供 SDK。完整文件請見 scam.ai/en/resources/documentation。"
+        }
+      },
+      "ctaHeadline": "打造更安全的交友平台",
+      "ctaSubheadline": "每月 200 次免費影像分析，無需信用卡。",
+      "metaDescription": "偵測交友應用程式上的 AI 生成假帳號與語音感情詐騙。Scam AI 在上傳時即以 95.3% 的準確率標記合成人臉。每月 200 次免費。"
+    },
+    "call-centers": {
+      "name": "客服中心",
+      "eyebrow": "CALL CENTERS",
+      "headline": "為客服中心打造的語音複製偵測",
+      "subheadline": "利用 AI 複製語音的語音釣魚攻擊正鎖定客服中心，企圖竊取帳戶憑證、授權詐騙交易並冒充高階主管。Scam AI 的即時音訊深偽偵測可在 3 秒內辨識合成語音——搶在詐騙得逞之前。",
+      "stat": {
+        "label": "2024 年全球因語音釣魚（vishing）造成的損失——FBI IC3 報告"
+      },
+      "capabilities": {
+        "0": {
+          "title": "即時串流分析",
+          "description": "即時分析通話音訊，在 3 秒內處理每個片段，趕在客服專員被欺騙之前標記語音複製。"
+        },
+        "1": {
+          "title": "來電者語音身分驗證",
+          "description": "作為您既有語音身分驗證與 IVR 流程的一環，驗證來電者的語音是真人發聲而非 AI 生成。"
+        },
+        "2": {
+          "title": "高階主管冒充偵測",
+          "description": "偵測試圖冒充高階主管、VIP 或已知客戶以授權電匯或帳戶變更的 AI 複製語音。"
+        },
+        "3": {
+          "title": "詐騙警示整合",
+          "description": "一旦偵測到合成語音，以 Webhook 為基礎的警示即時觸發，於您的 CRM 或通話管理系統中啟動升級處理流程。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "來電驗證",
+          "description": "在轉接客服專員之前，將每通來電的語音與合成音訊模式進行比對篩檢。",
+          "bullets": {
+            "0": "即時語音釣魚偵測",
+            "1": "語音身分驗證繞過防護",
+            "2": "自動詐騙警示"
+          }
+        },
+        "1": {
+          "title": "帳戶變更授權",
+          "description": "在處理電匯、密碼重設或帳戶關閉等高風險操作之前驗證語音身分。",
+          "bullets": {
+            "0": "高風險通話篩檢",
+            "1": "多因素語音驗證",
+            "2": "合規稽核軌跡"
+          }
+        },
+        "2": {
+          "title": "高階主管與 VIP 保護",
+          "description": "保護高階主管與已知客戶的語音檔案，抵禦針對特權存取的複製攻擊。",
+          "bullets": {
+            "0": "語音檔案比對",
+            "1": "複製冒充偵測",
+            "2": "詐騙優先升級處理"
+          }
+        },
+        "3": {
+          "title": "品質與合規監控",
+          "description": "回溯掃描通話錄音，辨識得逞的詐騙嘗試並訓練偵測模型。",
+          "bullets": {
+            "0": "批次音訊分析",
+            "1": "符合 FFIEC 的詐騙紀錄",
+            "2": "以詐騙樣本進行客服專員訓練"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 能否在即時電話通話中偵測語音複製？",
+          "answer": "可以。Scam AI 提供串流端點，可在 3 秒內分析音訊片段。它透過 REST API Webhook 與客服中心平台整合，在通話過程中一旦偵測到合成語音模式即觸發詐騙警示。"
+        },
+        "1": {
+          "question": "Scam AI 能偵測哪些語音合成平台？",
+          "answer": "Scam AI 可偵測來自 ElevenLabs、PlayHT、Resemble AI、Azure TTS、Google TTS、Amazon Polly 及其他主流語音合成平台的輸出，也包括新興的開源模型。"
+        },
+        "2": {
+          "question": "Scam AI 的音訊深偽偵測準確率如何？",
+          "answer": "Scam AI 在多種語言與口音下達到 98.5% 的語音複製偵測準確率。它能偵測出合成語音中人類客服專員無法察覺的頻譜與時序痕跡。"
+        },
+        "3": {
+          "question": "Scam AI 如何與既有的客服中心基礎架構整合？",
+          "answer": "Scam AI 提供 REST API，接收音訊資料或串流音訊區塊並回傳偵測結果。它可與既有的 IVR、CRM 及通話管理平台並行運作，整合時間在 10 分鐘以內。"
+        },
+        "4": {
+          "question": "Scam AI 是否符合受監管客服中心的使用合規要求？",
+          "answer": "是的。Scam AI 已通過 SOC 2 Type II 認證並符合 GDPR 要求。音訊在處理完成後不會被儲存，並提供完整的稽核日誌以供法規報告使用。"
+        }
+      },
+      "ctaHeadline": "保護您的客服中心免受語音詐騙",
+      "ctaSubheadline": "即時語音複製偵測。如需企業定價請聯絡業務團隊。",
+      "metaDescription": "為客服中心打造的語音複製偵測，準確率達 98.5%。即時偵測語音釣魚攻擊，3 秒內出結果。已通過 SOC 2 認證，10 分鐘完成 API 設定。"
+    },
+    "kyc": {
+      "name": "KYC 與身分驗證",
+      "eyebrow": "KYC",
+      "headline": "在 KYC 身分驗證中阻擋深偽詐騙",
+      "subheadline": "深偽攻擊正大規模繞過活體偵測與 KYC 開戶流程。Scam AI 的 Eva-v1 模型可在 4 秒內偵測合成人臉、經 AI 編輯的證件及呈現式攻擊偽造——在不增加阻力的前提下保護您的合規流程。",
+      "stat": {
+        "label": "Eva-v1-Pro 對深偽 KYC 繞過嘗試的偵測準確率"
+      },
+      "capabilities": {
+        "0": {
+          "title": "深偽自拍偵測",
+          "description": "辨識在以自拍為基礎的身分驗證流程中提交的合成人臉，以 95.3% 的準確率捕捉換臉、GAN 生成影像及擴散模型輸出。"
+        },
+        "1": {
+          "title": "證件偽造偵測",
+          "description": "運用我們的 AIForge-Doc 模型，偵測包括護照、駕照及金融證件在內的 AI 生成與 AI 編輯身分證件。"
+        },
+        "2": {
+          "title": "活體偵測繞過防護",
+          "description": "捕捉繞過傳統活體偵測系統的深偽影片注入與 3D 面具攻擊。"
+        },
+        "3": {
+          "title": "合規就緒的報告",
+          "description": "每次偵測皆包含信心分數、竄改類型及時間戳記，可產生可供稽核的合規文件。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "數位開戶",
+          "description": "在開戶流程中即時篩檢自拍與身分證件。",
+          "bullets": {
+            "0": "深偽自拍偵測",
+            "1": "身分證件偽造篩檢",
+            "2": "4 秒以內回應時間"
+          }
+        },
+        "1": {
+          "title": "重新驗證與定期檢查",
+          "description": "在帳戶複審、觸及交易限額或觸發可疑活動時重新驗證客戶身分。",
+          "bullets": {
+            "0": "批次身分重新驗證",
+            "1": "觸發式深偽重新篩檢",
+            "2": "持續合規監控"
+          }
+        },
+        "2": {
+          "title": "高風險交易授權",
+          "description": "為大額轉帳或帳戶變更增加深偽驗證，作為強化驗證因素。",
+          "bullets": {
+            "0": "以風險為基礎的驗證觸發",
+            "1": "強化驗證層",
+            "2": "詐騙事件紀錄"
+          }
+        },
+        "3": {
+          "title": "AML 與法規合規",
+          "description": "記錄所有深偽篩檢結果，以滿足 AML、KYC 及 FFIEC 法規要求。",
+          "bullets": {
+            "0": "通過 SOC 2 Type II 認證",
+            "1": "完整稽核軌跡 API",
+            "2": "符合 GDPR 的資料處理"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 如何整合至 KYC 開戶流程？",
+          "answer": "Scam AI 提供 REST API——提交自拍或身分證件影像 URL，即可在 4 秒內取得偵測結果。它與 iProov、Jumio 或 Onfido 等供應商的既有活體偵測並行運作，無需取代它們。"
+        },
+        "1": {
+          "question": "傳統活體偵測會漏掉哪些深偽攻擊，而 Scam AI 能夠捕捉？",
+          "answer": "傳統活體偵測針對 2D 列印攻擊與基本重播進行了最佳化。Scam AI 還能額外捕捉深偽影片注入（直接注入 API 的數位注入）、GAN 生成的合成人臉影像，以及經 AI 編輯的身分證件——這些都是單靠活體偵測無法涵蓋的攻擊管道。"
+        },
+        "2": {
+          "question": "Scam AI 是否符合受監管 KYC 流程的合規要求？",
+          "answer": "是的。Scam AI 已通過 SOC 2 Type II 認證並符合 GDPR 要求。影像在處理完成後不會被儲存。所有偵測事件的完整稽核日誌（含時間戳記與信心分數）皆可透過 API 取得，以供法規文件使用。"
+        },
+        "3": {
+          "question": "針對即時 KYC 流程，深偽偵測的速度有多快？",
+          "answer": "Eva-v1-Fast 在 2 秒內完成處理，不會為數位開戶帶來可感知的阻力。Eva-v1-Pro 在 4 秒內提供最高準確率，適用於風險更高的驗證情境。"
+        },
+        "4": {
+          "question": "Scam AI 能否偵測經 AI 編輯的身分證件？",
+          "answer": "可以。Scam AI 的證件偵測能力（以已發表的 AIForge-Doc 研究為基礎，arXiv:2602.20569）可辨識金融表單、護照與對帳單中的 AI 生成竄改，包括以 GPT-Image-2 及其他生成式工具所做的編輯。"
+        }
+      },
+      "ctaHeadline": "強化您的 KYC 流程以抵禦深偽",
+      "ctaSubheadline": "每月 200 次免費分析，無需信用卡。",
+      "metaDescription": "在 KYC 開戶中偵測深偽自拍與經 AI 編輯的身分證件。Scam AI 的 Eva-v1 模型在 4 秒內達到 95.3% 的準確率。已通過 SOC 2 Type II 認證。"
+    },
+    "media": {
+      "name": "媒體與出版",
+      "eyebrow": "MEDIA",
+      "headline": "為媒體與新聞編輯室打造的 AI 生成內容偵測",
+      "subheadline": "AI 生成影像、合成音訊聲明及深偽影片正以前所未有的速度湧入編輯流程。Scam AI 為新聞編輯室與媒體機構提供 API，可在內容觸及閱聽眾之前驗證視覺與音訊內容的真實性。",
+      "stat": {
+        "label": "自 2022 年以來於網路流傳的 AI 生成媒體增幅（Scam AI Research）"
+      },
+      "capabilities": {
+        "0": {
+          "title": "影像真實性驗證",
+          "description": "在發布前偵測來自 Stable Diffusion、DALL-E、Midjourney 及其他生成模型的 AI 生成影像。辨識換臉與經數位竄改的攝影作品。"
+        },
+        "1": {
+          "title": "深偽影片分析",
+          "description": "逐格分析影片內容中的合成竄改，捕捉深偽採訪、偽造新聞畫面以及歸於公眾人物的 AI 生成聲明。"
+        },
+        "2": {
+          "title": "合成音訊偵測",
+          "description": "驗證引言、採訪及聲明的錄音是否為 AI 生成或語音複製，守護編輯公信力。"
+        },
+        "3": {
+          "title": "批次內容處理",
+          "description": "透過 API 處理大量使用者提交內容、通訊社照片或聯合供稿媒體，達成新聞編輯室規模的驗證。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "發布前驗證",
+          "description": "在影像、影片與音訊進入編輯流程之前進行篩檢。",
+          "bullets": {
+            "0": "AI 生成影像偵測",
+            "1": "深偽影片分析",
+            "2": "合成音訊驗證"
+          }
+        },
+        "1": {
+          "title": "使用者生成內容審查",
+          "description": "自動標記公眾提交的 AI 生成或經竄改的媒體。",
+          "bullets": {
+            "0": "自動化 UGC 篩檢",
+            "1": "以信心分數為基礎的審查佇列",
+            "2": "批次 API 處理"
+          }
+        },
+        "2": {
+          "title": "事實查核支援",
+          "description": "將合成媒體偵測納入事實查核流程，評估熱門內容的真實性。",
+          "bullets": {
+            "0": "隨需分析 API",
+            "1": "鑑識級信心分數",
+            "2": "竄改類型辨識"
+          }
+        },
+        "3": {
+          "title": "通訊社與聯合供稿驗證",
+          "description": "驗證來自通訊社的聯合供稿影像與影片，辨識下游竄改。",
+          "bullets": {
+            "0": "批次通訊社內容掃描",
+            "1": "來源認證層",
+            "2": "發布稽核軌跡"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 能否偵測來自 Midjourney 與 DALL-E 的 AI 生成影像？",
+          "answer": "可以。Scam AI 的 Eva-v1 模型經過訓練，可偵測來自 Stable Diffusion、DALL-E、Midjourney、Flux 及其他主流生成式影像模型的輸出，以及 GAN 生成的影像。"
+        },
+        "1": {
+          "question": "Scam AI 如何偵測公眾人物的深偽影片？",
+          "answer": "Scam AI 逐格分析影片中的時序不一致、合成人臉模式及生成痕跡。它能辨識換臉以及歸於真實個人的 AI 生成聲明。"
+        },
+        "2": {
+          "question": "新聞編輯室如何將 Scam AI 整合至編輯流程？",
+          "answer": "Scam AI 提供 REST API，新聞編輯室可將其整合至 CMS、DAM 或事實查核工具中。提交媒體 URL，即可在 4 秒內取得偵測結果。完整文件請見 scam.ai/en/resources/documentation。"
+        },
+        "3": {
+          "question": "Scam AI 能否以新聞編輯室規模處理大量 UGC？",
+          "answer": "可以。Scam AI 提供企業方案，具備專屬處理量與批次 API 端點，可處理大量提交的影像與影片。如需新聞編輯室規模的定價，請聯絡 sales@scam.ai。"
+        },
+        "4": {
+          "question": "Scam AI 的偵測能力是否有研究支持？",
+          "answer": "有。Scam AI 的偵測模型以在 IEEE 研討會及 arXiv 上發表的同儕審查研究為基礎，包括《Do deepfake detectors work in reality?》（2025）與《GPT-Image-2 in the Wild》（arXiv:2604.25370）。"
+        }
+      },
+      "ctaHeadline": "保護您的編輯流程免受合成媒體侵擾",
+      "ctaSubheadline": "每月 200 次免費分析，無需信用卡。",
+      "metaDescription": "為新聞編輯室打造的深偽偵測 API。在發布前驗證影像、影片與音訊是否為 AI 生成。準確率 95.3%，每月 200 次免費。"
+    },
+    "insurance": {
+      "name": "保險",
+      "eyebrow": "INSURANCE",
+      "headline": "偵測保險理賠中的 AI 生成詐騙",
+      "subheadline": "詐騙者正利用 AI 影像編輯器與影片生成器偽造事故現場、損害照片及傷情證據。Scam AI 的偵測 API 可對理賠媒體進行合成竄改篩檢，保護保險業者免受詐騙性理賠給付。",
+      "stat": {
+        "label": "2025 年保險理賠中 AI 編輯照片詐騙的增幅"
+      },
+      "capabilities": {
+        "0": {
+          "title": "理賠照片真實性驗證",
+          "description": "偵測在財產險、車險及意外險理賠中作為證據提交的 AI 編輯、AI 生成或經竄改的照片。"
+        },
+        "1": {
+          "title": "合成影片偵測",
+          "description": "辨識為支持詐騙性理賠而提交的深偽或 AI 生成影片畫面，包括安排好的事故現場。"
+        },
+        "2": {
+          "title": "文件偽造偵測",
+          "description": "運用 AIForge-Doc 偵測能力，篩檢佐證文件（維修估價單、醫療報告）是否遭 AI 生成的竄改。"
+        },
+        "3": {
+          "title": "詐騙模式比對",
+          "description": "將提交的媒體與 Scam AI 詐騙資料庫中已知的詐騙模式及合成媒體特徵進行交叉比對。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "首次損失通知（FNOL）",
+          "description": "對初次報案時提交的每張照片與影片進行合成竄改篩檢。",
+          "bullets": {
+            "0": "AI 編輯損害照片偵測",
+            "1": "安排現場辨識",
+            "2": "即時詐騙信心分數"
+          }
+        },
+        "1": {
+          "title": "理賠核定",
+          "description": "在核定流程中為被標記或高金額理賠增加深偽篩檢環節。",
+          "bullets": {
+            "0": "理賠人員工作流程整合",
+            "1": "批次媒體篩檢",
+            "2": "詳細竄改報告"
+          }
+        },
+        "2": {
+          "title": "SIU 調查支援",
+          "description": "為特別調查小組（SIU）提供鑑識級的合成媒體分析，用於詐騙案件。",
+          "bullets": {
+            "0": "鑑識級信心分數",
+            "1": "竄改類型辨識",
+            "2": "證據級報告"
+          }
+        },
+        "3": {
+          "title": "代位求償與追償",
+          "description": "偵測第三方理賠及訴訟證據中的詐騙，保障追償結果。",
+          "bullets": {
+            "0": "第三方媒體驗證",
+            "1": "法律級分析報告",
+            "2": "批次文件篩檢"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 能否偵測保險理賠中提交的 AI 編輯照片？",
+          "answer": "可以。Scam AI 能偵測作為理賠證據提交的照片中細微的 AI 編輯痕跡，包括使用生成式工具來增減損害、改變狀況或偽造傷情的影像。"
+        },
+        "1": {
+          "question": "Scam AI 如何與理賠管理系統整合？",
+          "answer": "Scam AI 提供 REST API——提交媒體 URL 或檔案資料，即可在 4 秒內取得偵測結果。它透過 Webhook 或直接 API 呼叫與 Guidewire、Duck Creek 及其他 CMS 平台整合。"
+        },
+        "2": {
+          "question": "在理賠處理中加入深偽偵測的投資報酬如何？",
+          "answer": "Scam AI 攔截的一件詐騙性理賠，可能意味著避免數萬美元的給付損失。以每張分析影像 $0.05 計算，篩檢每 1,000 件理賠的成本為 $50——僅為平均詐騙損失的一小部分。"
+        },
+        "3": {
+          "question": "Scam AI 是否符合保險業的使用合規要求？",
+          "answer": "是的。Scam AI 已通過 SOC 2 Type II 認證並符合 GDPR 要求。所有分析結果皆附時間戳記與信心分數紀錄，可用於稽核與訴訟用途。"
+        },
+        "4": {
+          "question": "Scam AI 能否高速篩檢大量理賠？",
+          "answer": "可以。Scam AI 的企業方案提供批次 API 端點與專屬處理量，每日可處理數千張理賠影像。如需保險規模的定價，請聯絡 sales@scam.ai。"
+        }
+      },
+      "ctaHeadline": "阻止 AI 生成的理賠詐騙",
+      "ctaSubheadline": "每月 200 次免費分析，無需信用卡。",
+      "metaDescription": "偵測保險理賠中的 AI 編輯照片與偽造文件。Scam AI 對理賠證據進行合成竄改篩檢。每張 $0.05，已通過 SOC 2 認證。"
+    },
+    "hr": {
+      "name": "人力資源與招募",
+      "eyebrow": "HR",
+      "headline": "偵測遠距面試與視訊招募中的深偽",
+      "subheadline": "求職者正利用即時深偽工具、AI 變聲器及合成虛擬人像，在遠距面試中冒充他人或隱藏真實身分。Scam AI 讓 HR 團隊與招募平台能夠驗證應徵者視訊與音訊的真實性。",
+      "stat": {
+        "label": "的遠距求職者如今在面試中使用 AI 輔助視訊工具"
+      },
+      "capabilities": {
+        "0": {
+          "title": "視訊面試深偽偵測",
+          "description": "偵測視訊面試中使用的即時深偽與合成虛擬人像，標記換臉工具與虛擬攝影機疊加。"
+        },
+        "1": {
+          "title": "語音合成偵測",
+          "description": "辨識在電話與視訊篩選中用於冒充他人或掩飾應徵者真實嗓音的 AI 生成或複製語音。"
+        },
+        "2": {
+          "title": "應徵者身分驗證",
+          "description": "驗證面試影片中的人物與申請過程中提交的身分證件是否一致。"
+        },
+        "3": {
+          "title": "非同步視訊篩檢",
+          "description": "在應徵者進入下一招募階段之前，批次分析錄製的面試影片是否遭合成竄改。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "即時視訊面試監控",
+          "description": "對即時視訊通話畫面進行篩檢，辨識應徵者使用的即時深偽工具。",
+          "bullets": {
+            "0": "即時影格分析",
+            "1": "合成人臉偵測",
+            "2": "即時警示整合"
+          }
+        },
+        "1": {
+          "title": "非同步面試審查",
+          "description": "在審查前分析預先錄製的視訊提交內容是否遭深偽竄改。",
+          "bullets": {
+            "0": "批次影片分析",
+            "1": "附信心分數的報告",
+            "2": "自動應徵者標記"
+          }
+        },
+        "2": {
+          "title": "電話篩選驗證",
+          "description": "在電話篩選及語音優先面試中偵測語音複製。",
+          "bullets": {
+            "0": "即時音訊分析",
+            "1": "語音真實性評分",
+            "2": "冒充偵測"
+          }
+        },
+        "3": {
+          "title": "背景與身分交叉核對",
+          "description": "將面試影片與提交的照片進行比對，核對身分一致性。",
+          "bullets": {
+            "0": "跨媒體身分比對",
+            "1": "證件與自拍驗證",
+            "2": "詐騙升級處理流程"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 能否偵測即時視訊面試中使用的深偽工具？",
+          "answer": "可以。Scam AI 分析視訊影格中由即時深偽工具產生的合成竄改模式。它可處理透過 API 提交的即時視訊畫面樣本或錄製片段。"
+        },
+        "1": {
+          "question": "應徵者在遠距面試中使用哪些深偽工具？",
+          "answer": "常見工具包括 HeyGen、DeepFaceLive 以及疊加合成人臉的虛擬攝影機軟體。無論使用何種特定軟體，Scam AI 都能偵測出這些工具產生的生成痕跡。"
+        },
+        "2": {
+          "question": "Scam AI 能否驗證應徵者的嗓音與其提交的身分是否相符？",
+          "answer": "Scam AI 的音訊偵測可辨識某段語音是否為 AI 生成或複製。對於身分交叉驗證，它會標記暗示應徵者並非其所聲稱之人的可疑音訊模式。"
+        },
+        "3": {
+          "question": "招募平台如何整合 Scam AI？",
+          "answer": "Scam AI 提供與任何視訊面試平台、ATS 或 HRMS 相容的 REST API。提交視訊或音訊檔案 URL，即可在 4 秒內取得偵測結果。完整 API 文件請見 scam.ai/en/resources/documentation。"
+        },
+        "4": {
+          "question": "在招募流程中加入深偽偵測的成本是多少？",
+          "answer": "以每張影像 $0.05、每個音訊檔案 $0.05 計算，篩檢一場 30 分鐘的視訊面試（以每 30 秒一格取樣）成本約為 $3。開始時可使用每月 200 次免費分析的免費額度。"
+        }
+      },
+      "ctaHeadline": "驗證您實際錄用的是誰",
+      "ctaSubheadline": "每月 200 次免費分析，無需信用卡。",
+      "metaDescription": "偵測遠距求職面試中的深偽、AI 語音工具與合成虛擬人像。Scam AI 為 HR 團隊與招募平台驗證視訊與音訊的真實性。"
+    },
+    "government": {
+      "name": "政府與公部門",
+      "eyebrow": "GOVERNMENT",
+      "headline": "為政府與公部門打造的合成媒體偵測",
+      "subheadline": "國家級行為者與不實資訊行動正利用 AI 生成影像、官員深偽影片及合成音訊來破壞公眾信任、影響政策。Scam AI 為政府機關與公部門組織提供企業級的合成媒體偵測。",
+      "stat": {
+        "label": "2025 年有案可稽、使用 AI 生成媒體的國家級行為者影響行動數量"
+      },
+      "capabilities": {
+        "0": {
+          "title": "深偽影片偵測",
+          "description": "偵測在不實資訊行動中使用的、關於政府官員、公眾人物及政治候選人的 AI 生成影片。"
+        },
+        "1": {
+          "title": "宣傳影像偵測",
+          "description": "辨識影響行動中使用的 AI 生成影像，包括偽造的抗議場景、安排的事件及經竄改的新聞攝影。"
+        },
+        "2": {
+          "title": "官方通訊認證",
+          "description": "驗證歸於政府來源的影像、影片與音訊是否真實且未經竄改。"
+        },
+        "3": {
+          "title": "大規模媒體驗證",
+          "description": "透過 API 處理大量社群媒體內容、新聞影像及提交的媒體，達成機關規模的合成媒體篩檢。"
+        }
+      },
+      "useCases": {
+        "0": {
+          "title": "選舉誠信",
+          "description": "篩檢涉及候選人與選務官員的熱門內容是否遭 AI 生成竄改。",
+          "bullets": {
+            "0": "深偽政治人物偵測",
+            "1": "AI 生成政治影像",
+            "2": "快速回應驗證"
+          }
+        },
+        "1": {
+          "title": "不實資訊應對",
+          "description": "在合成媒體擴散之前，辨識並標記協同影響行動中使用的內容。",
+          "bullets": {
+            "0": "大規模內容篩檢",
+            "1": "來源歸因分析",
+            "2": "即時偵測 API"
+          }
+        },
+        "2": {
+          "title": "面向公民的服務",
+          "description": "保護電子化政府與公共福利入口網站中的身分驗證，防止深偽繞過。",
+          "bullets": {
+            "0": "數位身分深偽偵測",
+            "1": "福利詐騙防護",
+            "2": "SOC 2 Type II 合規"
+          }
+        },
+        "3": {
+          "title": "執法與數位鑑識",
+          "description": "為涉及深偽的刑事調查提供鑑識級的合成媒體分析。",
+          "bullets": {
+            "0": "鑑識級信心分數",
+            "1": "證據級報告",
+            "2": "分析鏈文件"
+          }
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 能否偵測政治人物與官員的深偽影片？",
+          "answer": "可以。Scam AI 的 Eva-v1 模型以 95.3% 的準確率偵測換臉、合成人臉及深偽影片竄改，無論使用何種生成工具，皆包括公眾人物的 AI 生成影片。"
+        },
+        "1": {
+          "question": "Scam AI 如何因應政府規模的媒體處理量？",
+          "answer": "Scam AI 提供企業 API 方案，具備批次處理端點、專屬處理量及 99.9% 的 SLA 保證可用性。如需政府採購與安全審查，請聯絡 sales@scam.ai。"
+        },
+        "2": {
+          "question": "Scam AI 持有哪些合規認證？",
+          "answer": "Scam AI 已通過 SOC 2 Type II 認證並符合 GDPR 要求。政府採購審查可向 security@scam.ai 索取 SOC 2 報告及資料處理文件。"
+        },
+        "3": {
+          "question": "公部門組織是否在使用 Scam AI？",
+          "answer": "Scam AI 平台已部署於跨受監管產業的企業客戶。如需特定的公部門參考案例，請聯絡 sales@scam.ai。"
+        },
+        "4": {
+          "question": "Scam AI 是否發表關於偵測國家級行為者深偽的研究？",
+          "answer": "是的。Scam AI 的研究團隊發表了關於真實環境中深偽偵測的同儕審查成果，包括《GPT-Image-2 in the Wild》（arXiv:2604.25370）與《Do deepfake detectors work in reality?》（IEEE Workshop 2025）。"
+        }
+      },
+      "ctaHeadline": "保護公共通訊免受合成媒體侵擾",
+      "ctaSubheadline": "如需政府與公部門定價，請聯絡我們。",
+      "metaDescription": "為政府機關打造的合成媒體偵測。大規模偵測深偽影片與 AI 生成影像。企業級 SLA，已通過 SOC 2 認證。"
+    }
+  },
+  "compareContent": {
+    "reality-defender": {
+      "tagline": "Scam AI 對比 Reality Defender：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "偵測準確率",
+          "competitor": "未公開揭露"
+        },
+        "1": {
+          "feature": "處理速度",
+          "competitor": "企業 SLA，視情況而定"
+        },
+        "2": {
+          "feature": "免費額度",
+          "competitor": "無免費額度"
+        },
+        "3": {
+          "feature": "定價模式",
+          "competitor": "年度企業合約"
+        },
+        "4": {
+          "feature": "API 設定時間",
+          "competitor": "客製企業導入"
+        },
+        "5": {
+          "feature": "影像與影片偵測",
+          "scamai": "支援",
+          "competitor": "支援"
+        },
+        "6": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "有限"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "支援",
+          "competitor": "支援"
+        },
+        "8": {
+          "feature": "符合 GDPR",
+          "scamai": "支援",
+          "competitor": "支援"
+        },
+        "9": {
+          "feature": "公開研究論文",
+          "competitor": "未公開"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "透明的按影像計費",
+          "description": "Scam AI 按每張影像 $0.05 收費，無最低承諾量。Reality Defender 需要簽訂定價不公開的年度企業合約，使成本預測變得困難。"
+        },
+        "1": {
+          "title": "免費額度——立即上手",
+          "description": "每月 200 次免費影像分析，無需信用卡。在投入付費方案之前，先以您的真實資料評估 Scam AI。"
+        },
+        "2": {
+          "title": "10 分鐘內完成自助 API 整合",
+          "description": "Scam AI 的 API 已公開提供文件，無需業務洽談或客製導入即可整合。提供 Python 與 JavaScript 的 SDK。"
+        },
+        "3": {
+          "title": "視覺與音訊整合於單一 API",
+          "description": "Scam AI 在單一 API 中涵蓋影像、影片及語音複製偵測。Reality Defender 主要專注於視覺媒體。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "在深偽偵測方面，Scam AI 與 Reality Defender 相比如何？",
+          "answer": "兩個平台都能偵測影像與影片中的深偽。Scam AI 的差異化優勢在於透明的按影像計費（$0.05／張）、每月 200 張影像的免費額度、10 分鐘內完成的自助 API 整合，以及視覺與音訊合一的偵測。Reality Defender 鎖定大型企業，採用年度合約與不公開的定價。"
+        },
+        "1": {
+          "question": "Scam AI 比 Reality Defender 更便宜嗎？",
+          "answer": "對於並非大型企業的團隊而言，Scam AI 的可及性明顯更高。Reality Defender 需要簽訂年度合約；Scam AI 起步免費（每月 200 張影像），並以每張 $0.05 的價格擴展，無最低承諾量。"
+        },
+        "2": {
+          "question": "Scam AI 是否像 Reality Defender 一樣偵測語音複製？",
+          "answer": "Scam AI 提供專門的音訊深偽偵測，準確率達 98.5%，可辨識來自 ElevenLabs、PlayHT、Azure TTS 及其他平台的語音複製。相較於其視覺能力，Reality Defender 的音訊偵測較為有限。"
+        },
+        "3": {
+          "question": "我能從 Reality Defender 切換到 Scam AI 嗎？",
+          "answer": "可以。Scam AI 的 REST API 遵循業界標準慣例。移轉只需更新端點與認證標頭——通常不到一天的工程工作量。"
+        }
+      }
+    },
+    "sensity": {
+      "tagline": "Scam AI 對比 Sensity AI：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "偵測準確率",
+          "competitor": "未公開揭露"
+        },
+        "1": {
+          "feature": "免費額度",
+          "competitor": "無免費額度"
+        },
+        "2": {
+          "feature": "定價模式",
+          "competitor": "企業合約"
+        },
+        "3": {
+          "feature": "自助 API 存取",
+          "competitor": "需聯絡業務"
+        },
+        "4": {
+          "feature": "影像與影片偵測",
+          "scamai": "支援",
+          "competitor": "支援"
+        },
+        "5": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "不支援"
+        },
+        "6": {
+          "feature": "證件偽造偵測",
+          "scamai": "支援（AIForge-Doc）",
+          "competitor": "不支援"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "支援",
+          "competitor": "未公開確認"
+        },
+        "8": {
+          "feature": "符合 GDPR",
+          "scamai": "支援",
+          "competitor": "支援（總部位於歐盟）"
+        },
+        "9": {
+          "feature": "公開研究",
+          "competitor": "公開研究有限"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "更廣泛的合成媒體涵蓋",
+          "description": "Scam AI 在一個 API 中涵蓋影像、影片、音訊深偽及經 AI 編輯的證件。Sensity 專注於深偽情報與生物特徵活體偵測，不涉及音訊或證件偵測。"
+        },
+        "1": {
+          "title": "透明的自助定價",
+          "description": "Scam AI 起步免費，並以每張 $0.05 的價格擴展，無需企業合約。Sensity 需要直接聯絡業務並採用客製定價。"
+        },
+        "2": {
+          "title": "內建語音複製偵測",
+          "description": "Scam AI 增加了音訊深偽偵測，準確率達 98.5%。Sensity 不提供音訊或語音複製偵測。"
+        },
+        "3": {
+          "title": "證件偽造偵測",
+          "description": "Scam AI 可偵測經 AI 編輯的金融文件與身分證件（AIForge-Doc 研究，arXiv:2602.20569）。Sensity 不涵蓋證件偽造偵測。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 與 Sensity AI 相比如何？",
+          "answer": "Sensity AI 專注於深偽情報與生物特徵驗證。Scam AI 涵蓋更廣泛的合成媒體：影像與影片深偽、語音複製及經 AI 編輯的證件——全部整合於一個 API，且定價透明。"
+        },
+        "1": {
+          "question": "Scam AI 是否像 Sensity 一樣偵測語音複製？",
+          "answer": "Scam AI 提供專門的語音複製偵測，準確率達 98.5%。Sensity 不提供音訊深偽偵測。"
+        },
+        "2": {
+          "question": "對於 KYC，Scam AI 是 Sensity 的理想替代方案嗎？",
+          "answer": "是的。Scam AI 的 AI 偵測以 95.3% 的準確率涵蓋深偽自拍、經 AI 編輯的身分證件及生物特徵詐騙，符合 SOC 2 Type II 合規，並為即時開戶流程提供 4 秒以內的處理速度。"
+        },
+        "3": {
+          "question": "在投入某個方案之前，我能試用 Scam AI 嗎？",
+          "answer": "可以。Scam AI 提供每月 200 次免費影像分析，無需信用卡。請於 app.scam.ai 註冊。"
+        }
+      }
+    },
+    "hive": {
+      "tagline": "Scam AI 對比 Hive Moderation：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "深偽偵測準確率",
+          "competitor": "通用 AI 偵測，對深偽準確率較低"
+        },
+        "1": {
+          "feature": "免費額度",
+          "competitor": "有限免費試用"
+        },
+        "2": {
+          "feature": "定價模式",
+          "competitor": "以用量為基礎，需聯絡洽詢"
+        },
+        "3": {
+          "feature": "處理速度",
+          "competitor": "因工作負載而異"
+        },
+        "4": {
+          "feature": "影像與影片深偽偵測",
+          "scamai": "支援，專門最佳化",
+          "competitor": "支援，通用"
+        },
+        "5": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "不支援"
+        },
+        "6": {
+          "feature": "KYC 與身分驗證",
+          "scamai": "專門打造",
+          "competitor": "著重通用審查"
+        },
+        "7": {
+          "feature": "SOC 2 Type II",
+          "scamai": "支援",
+          "competitor": "支援"
+        },
+        "8": {
+          "feature": "符合 GDPR",
+          "scamai": "支援",
+          "competitor": "支援"
+        },
+        "9": {
+          "feature": "證件偽造偵測",
+          "scamai": "支援",
+          "competitor": "不支援"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "專為深偽打造",
+          "description": "Scam AI 專為合成媒體偵測而建構——而非通用內容審查。在換臉、擴散模型輸出及 AI 證件偽造等深偽專屬攻擊管道上準確率更高。"
+        },
+        "1": {
+          "title": "語音複製偵測",
+          "description": "Scam AI 增加了音訊深偽偵測，準確率達 98.5%。Hive Moderation 不提供語音複製或合成音訊偵測。"
+        },
+        "2": {
+          "title": "KYC 與身分詐騙專長",
+          "description": "Scam AI 專為身分驗證、KYC 開戶及金融詐騙防護而設計——而非社群媒體內容審查。"
+        },
+        "3": {
+          "title": "透明的自助定價",
+          "description": "每張 $0.05，並提供每月 200 張的免費額度。無需企業合約即可開始整合。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "在深偽偵測方面，Scam AI 與 Hive Moderation 相比如何？",
+          "answer": "Hive 是一個通用內容審查平台，深偽偵測只是其眾多功能之一。Scam AI 專為深偽打造，在合成媒體上達到更高的準確率（95.3%），並提供 Hive 所不具備的語音複製與證件偽造偵測。"
+        },
+        "1": {
+          "question": "Scam AI 在內容審查與詐騙防護方面是否同樣適用？",
+          "answer": "Scam AI 專注於面向詐騙防護、KYC 及身分驗證的合成媒體偵測。對於更廣泛的內容審查（垃圾訊息、NSFW、仇恨言論），Hive 可能更為合適。"
+        },
+        "2": {
+          "question": "對於 KYC 與金融科技，Scam AI 是 Hive 的理想替代方案嗎？",
+          "answer": "是的。Scam AI 專為 KYC 與金融詐騙情境打造，具備 4 秒以內的處理速度、SOC 2 Type II 認證，以及在金融與身分詐騙資料上訓練的專門深偽偵測模型。"
+        },
+        "3": {
+          "question": "我能將 Scam AI 與 Hive Moderation 並用嗎？",
+          "answer": "可以。Scam AI 與 Hive 服務於不同的使用情境，可並行使用——Hive 負責通用內容審查，Scam AI 負責深偽與合成媒體詐騙偵測。"
+        }
+      }
+    },
+    "microsoft-azure": {
+      "tagline": "Scam AI 對比 Microsoft Azure AI Content Safety：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "深偽偵測準確率",
+          "competitor": "較低，通用分類器"
+        },
+        "1": {
+          "feature": "免費額度",
+          "competitor": "提供免費額度"
+        },
+        "2": {
+          "feature": "定價模式",
+          "competitor": "Azure 用量計費"
+        },
+        "3": {
+          "feature": "設定複雜度",
+          "competitor": "需要 Azure 帳戶並完成設定"
+        },
+        "4": {
+          "feature": "深偽專項偵測",
+          "competitor": "通用內容安全"
+        },
+        "5": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "不支援"
+        },
+        "6": {
+          "feature": "KYC／身分驗證",
+          "scamai": "支援，專門打造",
+          "competitor": "非專門打造"
+        },
+        "7": {
+          "feature": "證件偽造偵測",
+          "scamai": "支援",
+          "competitor": "不支援"
+        },
+        "8": {
+          "feature": "SOC 2 Type II",
+          "scamai": "支援",
+          "competitor": "Azure 合規框架"
+        },
+        "9": {
+          "feature": "公開深偽研究",
+          "competitor": "Microsoft Research（廣泛）"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "深偽專項準確率",
+          "description": "Scam AI 的 Eva-v1 模型專門在合成媒體攻擊管道上訓練。Azure AI Content Safety 是一個通用分類器，未針對深偽詐騙、換臉或經 AI 編輯的證件進行最佳化。"
+        },
+        "1": {
+          "title": "無需依賴 Azure",
+          "description": "Scam AI 作為獨立 API 運行，無需 Microsoft 生態系依賴。非常適合尚未使用 Azure 的團隊，或需要在其雲端供應商之外另配一套同類最佳深偽方案的團隊。"
+        },
+        "2": {
+          "title": "內建語音複製偵測",
+          "description": "Scam AI 增加了音訊深偽偵測，準確率達 98.5%。Azure AI Content Safety 不提供語音複製或合成音訊偵測。"
+        },
+        "3": {
+          "title": "專為身分詐騙與 KYC 打造",
+          "description": "Scam AI 專為 KYC、身分驗證及金融詐騙防護而設計——而非通用內容審查。在領域專屬攻擊上，專門打造的模型勝過通用分類器。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "在深偽偵測方面，Scam AI 與 Azure AI Content Safety 相比如何？",
+          "answer": "Azure AI Content Safety 廣泛偵測影像與文字中的有害內容。Scam AI 專為深偽與合成媒體詐騙打造，在深偽專項攻擊上達到 95.3% 的準確率——涵蓋換臉、擴散模型輸出、證件偽造及語音複製——這些都是 Azure 所不涵蓋的。"
+        },
+        "1": {
+          "question": "在深偽方面，Scam AI 比 Azure 更準確嗎？",
+          "answer": "Scam AI 的 Eva-v1 模型專門在合成媒體攻擊模式上訓練，於深偽基準達到 95.3%。Azure AI Content Safety 是一個通用內容安全分類器，未針對深偽詐騙情境進行最佳化。"
+        },
+        "2": {
+          "question": "Scam AI 能否與 Microsoft Azure 並用？",
+          "answer": "可以。Scam AI 是一個獨立的 REST API，可與任何雲端技術堆疊協同。許多團隊將 Scam AI 用於深偽專項偵測，同時使用 Azure 服務處理其他內容安全任務。"
+        },
+        "3": {
+          "question": "與 Azure 不同，Scam AI 能偵測語音複製嗎？",
+          "answer": "可以。Scam AI 的音訊偵測以 98.5% 的準確率辨識 AI 複製語音。Azure AI Content Safety 不提供語音複製偵測。"
+        }
+      }
+    },
+    "aws-rekognition": {
+      "tagline": "Scam AI 對比 AWS Rekognition：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "深偽偵測準確率",
+          "competitor": "通用人臉分析，非深偽專項"
+        },
+        "1": {
+          "feature": "專用深偽模型",
+          "competitor": "無專用深偽模型"
+        },
+        "2": {
+          "feature": "免費額度"
+        },
+        "3": {
+          "feature": "定價",
+          "competitor": "AWS 用量計費"
+        },
+        "4": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "不支援"
+        },
+        "5": {
+          "feature": "KYC 深偽偵測",
+          "scamai": "專門打造",
+          "competitor": "非專門打造"
+        },
+        "6": {
+          "feature": "證件偽造偵測",
+          "scamai": "支援（AIForge-Doc）",
+          "competitor": "不支援"
+        },
+        "7": {
+          "feature": "無需 AWS 帳戶即可設定",
+          "scamai": "支援",
+          "competitor": "需要 AWS 帳戶"
+        },
+        "8": {
+          "feature": "SOC 2／合規",
+          "competitor": "AWS 合規框架"
+        },
+        "9": {
+          "feature": "公開深偽研究",
+          "competitor": "AWS Research（廣泛）"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "專用深偽偵測模型",
+          "description": "AWS Rekognition 提供人臉偵測、物件辨識及通用影像分析——它沒有專用的深偽偵測模型。Scam AI 的 Eva-v1 專門經過訓練，可辨識合成換臉、GAN 影像及擴散模型輸出。"
+        },
+        "1": {
+          "title": "無 AWS 鎖定",
+          "description": "Scam AI 是一個獨立的 REST API，不依賴任何雲端供應商即可運行。使用 GCP、Azure 或自架基礎架構的團隊，都可在無 AWS 依賴的情況下使用 Scam AI。"
+        },
+        "2": {
+          "title": "語音複製偵測",
+          "description": "Scam AI 的音訊 API 以 98.5% 的準確率偵測來自 ElevenLabs、PlayHT 及其他平台的語音複製。AWS Rekognition 不具備語音複製偵測能力。"
+        },
+        "3": {
+          "title": "身分詐騙專長",
+          "description": "Scam AI 專為 KYC、金融詐騙防護及身分驗證而打造——這些正是深偽準確率最為關鍵的使用情境。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "AWS Rekognition 能偵測深偽嗎？",
+          "answer": "AWS Rekognition 提供人臉偵測與分析，但沒有專用的深偽偵測模型。它能偵測人臉，但未經訓練專門辨識合成換臉、GAN 生成影像或擴散模型輸出。"
+        },
+        "1": {
+          "question": "在 KYC 方面，Scam AI 與 AWS Rekognition 相比如何？",
+          "answer": "Scam AI 專為 KYC 深偽偵測打造，於合成自拍與身分證件上達到 95.3% 的準確率。AWS Rekognition 可驗證人臉活體，但無法偵測 AI 生成人臉或深偽竄改。"
+        },
+        "2": {
+          "question": "Scam AI 能否與 AWS 服務並用？",
+          "answer": "可以。Scam AI 是一個獨立的 REST API，可與任何雲端技術堆疊整合，包括 AWS Lambda、S3 觸發器及 API Gateway。它可與 Rekognition 並行用於人臉分析，同時提供深偽專項偵測。"
+        },
+        "3": {
+          "question": "在深偽偵測方面，Scam AI 比 AWS Rekognition 更便宜嗎？",
+          "answer": "AWS Rekognition 不提供深偽偵測，因此直接的成本比較需要在 Rekognition 之上進行客製工程。Scam AI 以每張 $0.05 提供專門打造的方案，無需任何客製開發。"
+        }
+      }
+    },
+    "truepic": {
+      "tagline": "Scam AI 對比 Truepic：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "偵測方式",
+          "scamai": "AI/ML 深偽偵測"
+        },
+        "1": {
+          "feature": "可處理無中繼資料的影像",
+          "scamai": "支援"
+        },
+        "2": {
+          "feature": "深偽偵測準確率",
+          "competitor": "不適用——溯源而非偵測"
+        },
+        "3": {
+          "feature": "免費額度",
+          "competitor": "無自助免費額度"
+        },
+        "4": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "不支援"
+        },
+        "5": {
+          "feature": "API 整合",
+          "competitor": "需要相機硬體整合"
+        },
+        "6": {
+          "feature": "可處理歷史影像",
+          "scamai": "支援"
+        },
+        "7": {
+          "feature": "回溯式詐騙偵測",
+          "scamai": "支援",
+          "competitor": "不支援"
+        },
+        "8": {
+          "feature": "證件偽造偵測",
+          "scamai": "支援",
+          "competitor": "不支援"
+        },
+        "9": {
+          "feature": "符合 SOC 2",
+          "scamai": "支援",
+          "competitor": "未公開確認"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "無需相機硬體",
+          "description": "Truepic 的 C2PA 方式要求影像由支援 C2PA 的相機拍攝。Scam AI 可分析任何影像，無論拍攝裝置或溯源中繼資料為何——包括對既有影像進行回溯式詐騙偵測。"
+        },
+        "1": {
+          "title": "適用於當下的影像",
+          "description": "C2PA 溯源僅涵蓋由採用該標準的相機所拍攝的未來影像。Scam AI 運用 AI 分析，可偵測任何既有影像或音訊檔案中的深偽。"
+        },
+        "2": {
+          "title": "語音複製與音訊偵測",
+          "description": "Scam AI 增加了音訊深偽偵測，準確率達 98.5%。Truepic 專注於視覺影像溯源。"
+        },
+        "3": {
+          "title": "內建 KYC 與詐騙防護",
+          "description": "Scam AI 專為身分驗證、金融詐騙及 KYC 開戶而打造——而非面向出版機構的內容溯源。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 與 Truepic 有什麼差異？",
+          "answer": "Scam AI 使用 AI/ML 偵測任何影像或音訊中的合成竄改。Truepic 使用 C2PA 加密內容憑證來驗證某張影像是否由特定相機於特定時間拍攝。兩者是互補的方式：Scam AI 用於偵測竄改，Truepic 用於確立溯源。"
+        },
+        "1": {
+          "question": "在深偽偵測方面，Scam AI 比 Truepic 更好嗎？",
+          "answer": "Scam AI 與 Truepic 應對合成媒體問題的不同面向。Scam AI 可偵測任何既有影像或音訊檔案中的深偽。Truepic 驗證來自支援 C2PA 相機的未來影像未經竄改。對於回溯式詐騙偵測與語音複製偵測，Scam AI 是正確的選擇。"
+        },
+        "2": {
+          "question": "Scam AI 能否處理沒有 C2PA 中繼資料的影像？",
+          "answer": "可以。無論中繼資料為何，Scam AI 的 AI 偵測都能處理任何影像或音訊檔案。它分析像素級與頻域模式以偵測合成竄改，無需內容憑證。"
+        },
+        "3": {
+          "question": "我能將 Scam AI 與 Truepic 並用嗎？",
+          "answer": "可以。兩者用途互補。Truepic 為來自 C2PA 相機的新影像確立溯源。Scam AI 回溯式地偵測任何既有影像中的深偽與合成竄改，包括那些沒有溯源中繼資料的影像。"
+        }
+      }
+    },
+    "deepware": {
+      "tagline": "Scam AI 對比 Deepware：深偽偵測比較",
+      "comparisonRows": {
+        "0": {
+          "feature": "使用情境",
+          "scamai": "面向產品的企業 API",
+          "competitor": "面向消費者的掃描工具"
+        },
+        "1": {
+          "feature": "API 存取",
+          "scamai": "支援，生產級 REST API",
+          "competitor": "無生產級 API"
+        },
+        "2": {
+          "feature": "偵測準確率",
+          "competitor": "未揭露"
+        },
+        "3": {
+          "feature": "處理速度",
+          "competitor": "不固定，無 SLA"
+        },
+        "4": {
+          "feature": "免費額度",
+          "competitor": "免費消費者掃描工具"
+        },
+        "5": {
+          "feature": "音訊／語音複製偵測",
+          "competitor": "不支援"
+        },
+        "6": {
+          "feature": "KYC 與企業整合",
+          "scamai": "支援，專門打造",
+          "competitor": "不支援"
+        },
+        "7": {
+          "feature": "SLA 與可用性保證",
+          "competitor": "無 SLA"
+        },
+        "8": {
+          "feature": "SOC 2 Type II",
+          "scamai": "支援",
+          "competitor": "不支援"
+        },
+        "9": {
+          "feature": "符合 GDPR",
+          "scamai": "支援",
+          "competitor": "未確認"
+        }
+      },
+      "advantages": {
+        "0": {
+          "title": "生產級企業 API",
+          "description": "Scam AI 提供具備 99.9% 可用性 SLA、SOC 2 Type II 認證及 4 秒以內處理速度的 REST API，可整合至企業產品中。Deepware 是一款消費者工具，無生產級 API。"
+        },
+        "1": {
+          "title": "語音複製偵測",
+          "description": "Scam AI 增加了音訊深偽偵測，準確率達 98.5%。Deepware 是一款僅支援影片的掃描工具。"
+        },
+        "2": {
+          "title": "合規與安全",
+          "description": "Scam AI 已通過 SOC 2 Type II 認證、符合 GDPR 並具備稽核日誌。Deepware 是一款免費的消費者工具，不具備企業級合規。"
+        },
+        "3": {
+          "title": "可擴展的企業定價",
+          "description": "Scam AI 可從每月 200 張影像的免費額度擴展至具備專屬處理量的企業方案。Deepware 並非為高流量企業工作負載而設計。"
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Scam AI 與 Deepware 相比如何？",
+          "answer": "Deepware 是一款免費的消費者工具，供個人掃描單一影片。Scam AI 是面向組織的企業 API 平台，可將深偽偵測大規模整合至 KYC 流程、詐騙防護系統及產品中——具備 SOC 2 合規、99.9% 可用性及生產級 API 存取。"
+        },
+        "1": {
+          "question": "Deepware 是否足以勝任企業級深偽偵測？",
+          "answer": "Deepware 專為個人消費者使用而設計，不提供生產級 API、SLA、合規認證，也不具備企業工作負載所需的處理量。"
+        },
+        "2": {
+          "question": "我能以 Scam AI 取代 Deepware 來支撐我的應用程式嗎？",
+          "answer": "可以。如果您正在建構需要以程式化方式進行深偽偵測的產品或工作流程，Scam AI 提供了 Deepware 所不具備的 REST API、文件及合規態勢。"
+        },
+        "3": {
+          "question": "Scam AI 是否像 Deepware 一樣提供免費選項？",
+          "answer": "是的。Scam AI 透過 API 提供每月 200 次免費影像分析——無需信用卡。這與 Deepware 的消費者掃描工具不同；Scam AI 的免費額度為整合與測試提供完整的 API 存取。"
+        }
+      }
+    }
   }
 }
