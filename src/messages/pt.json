@@ -17,7 +17,7 @@
         "headline": "Combata as ameaças de IA",
         "headlineLine2": "com",
         "headlineHighlight": "defesa de IA",
-        "body": "Segundo a Deloitte, prevê-se que a fraude com deepfakes gerados por IA custe às empresas mais de $40 billion até 2027. Nossos modelos <em>Eva-v1</em> se adaptam tão rápido quanto as próprias ameaças, alcançando <em>98,2% de precisão de detecção</em> em menos de 4 segundos, barrando fraudes e protegendo a sua receita em tempo real.",
+        "body": "Segundo a Deloitte, prevê-se que a fraude com deepfakes gerados por IA custe às empresas mais de US$ 40 bilhões até 2027. Nossos modelos <em>Eva-v1</em> se adaptam tão rápido quanto as próprias ameaças, alcançando <em>98.2% de precisão de detecção</em> em menos de 4 segundos, barrando fraudes e protegendo a sua receita em tempo real.",
         "cta": "Comece a detectar agora"
       },
       "whyChooseUs": {
@@ -678,7 +678,7 @@
     "about": "Sobre",
     "research": "Pesquisa",
     "contact": "Contato",
-    "copyright": " 2024 Reality Inc. Todos os direitos reservados. Scam AI é um produto da Reality Inc.",
+    "copyright": "© 2024 Reality Inc. Todos os direitos reservados. Scam AI é um produto da Reality Inc.",
     "privacy": "Política de Privacidade",
     "terms": "Termos de Serviço"
   },
@@ -2740,7 +2740,7 @@
       "voiceCloning": {
         "eyebrow": "DETECÇÃO DE CLONAGEM DE VOZ",
         "title": "Identifique vozes geradas por IA",
-        "body1": "Identifique clones de voz gerados por IA com <em>precisão de 98.5%</em> em diversos idiomas, sotaques e padrões de fala. Segundo o relatório IC3 2024 do FBI, as perdas com phishing de voz ultrapassaram $12.5 billion em todo o mundo, tornando a detecção de áudio em tempo real essencial para instituições financeiras e call centers.",
+        "body1": "Identifique clones de voz gerados por IA com <em>precisão de 98.5%</em> em diversos idiomas, sotaques e padrões de fala. Segundo o relatório IC3 2024 do FBI, as perdas com phishing de voz ultrapassaram US$ 12,5 bilhões em todo o mundo, tornando a detecção de áudio em tempo real essencial para instituições financeiras e call centers.",
         "body2": "O processamento em <em>menos de 3 segundos</em> por clipe de áudio possibilita a verificação de chamadas ao vivo, a análise de streaming em tempo real e a triagem automatizada de fraudes em escala."
       },
       "tts": {
@@ -3059,7 +3059,7 @@
         },
         "private": {
           "title": "Privado por design",
-          "body": "Os quadros de vídeo são analisados na memória e descartados — nada é gravado, armazenado ou transmitido. Sem upload para a nuvem, não há um novo isco de chamadas sensíveis, e o caminho pela revisão jurídica, de TI e de GDPR fica muito mais simples."
+          "body": "Os quadros de vídeo são analisados na memória e descartados — nada é gravado, armazenado ou transmitido. Sem upload para a nuvem, não há um novo alvo atrativo de chamadas sensíveis, e o caminho pela revisão jurídica, de TI e de GDPR fica muito mais simples."
         }
       }
     },

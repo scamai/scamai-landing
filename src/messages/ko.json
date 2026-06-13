@@ -14,10 +14,10 @@
       "aiSecurity": {
         "ariaLabel": "AI 기반 보안 - 딥페이크 보호",
         "eyebrow": "AI 기반 보안",
-        "headline": "AI 위협에 맞서다",
-        "headlineLine2": "—",
-        "headlineHighlight": "AI 방어로",
-        "body": "Deloitte에 따르면, AI 생성 딥페이크 사기는 2027년까지 기업에 $40 billion 이상의 손실을 초래할 것으로 전망됩니다. 당사의 <em>Eva-v1</em> 모델은 위협 그 자체만큼 빠르게 진화하여, 4초 이내에 <em>98.2%의 탐지 정확도</em>를 달성하고, 사기를 차단하며 실시간으로 수익을 보호합니다.",
+        "headline": "AI 위협에",
+        "headlineLine2": "AI 방어로",
+        "headlineHighlight": "맞서다",
+        "body": "Deloitte에 따르면, AI 생성 딥페이크 사기는 2027년까지 기업에 400억 달러 이상의 손실을 초래할 것으로 전망됩니다. 당사의 <em>Eva-v1</em> 모델은 위협 그 자체만큼 빠르게 진화하여, 4초 이내에 <em>98.2%의 탐지 정확도</em>를 달성하고, 사기를 차단하며 실시간으로 수익을 보호합니다.",
         "cta": "지금 탐지 시작하기"
       },
       "whyChooseUs": {
@@ -609,9 +609,9 @@
       }
     },
     "haloSpotlight": {
-      "ariaLabel": "Halo —— 온디바이스 딥페이크 탐지, Qualcomm과 협력",
+      "ariaLabel": "Halo — 온디바이스 딥페이크 탐지, Qualcomm과 협력",
       "headline": "Halo는 딥페이크를 기기에서 잡아냅니다.",
-      "body": "딥페이크가 얼마나 쉬운지 방금 확인하셨습니다. 사용자의 기기에서 실시간으로, Halo는 모든 통화에서 <em>합성 얼굴과 페이스스왑</em>을 잡아냅니다 —— 송금 사기나 잘못된 채용으로 이어지기 전에.",
+      "body": "딥페이크가 얼마나 쉬운지 방금 확인하셨습니다. 사용자의 기기에서 실시간으로, Halo는 모든 통화에서 <em>합성 얼굴과 페이스스왑</em>을 잡아냅니다 — 송금 사기나 잘못된 채용으로 이어지기 전에.",
       "pillars": {
         "realtime": {
           "label": "실시간",
@@ -623,7 +623,7 @@
         },
         "private": {
           "label": "프라이버시",
-          "desc": "온디바이스 —— 녹화 없음, 전송 없음"
+          "desc": "온디바이스 — 녹화 없음, 전송 없음"
         }
       },
       "exploreHalo": "Halo 살펴보기",
@@ -678,7 +678,7 @@
     "about": "소개",
     "research": "연구",
     "contact": "문의하기",
-    "copyright": " 2024 Reality Inc. 모든 권리 보유. Scam AI는 Reality Inc.의 제품입니다.",
+    "copyright": "© 2024 Reality Inc. 모든 권리 보유. Scam AI는 Reality Inc.의 제품입니다.",
     "privacy": "개인정보 처리방침",
     "terms": "서비스 약관"
   },
@@ -2544,14 +2544,14 @@
     "summary": {
       "title": "요금 요약",
       "pricePerCheck": "검사당 요금",
-      "perImage": "/image",
+      "perImage": "/장",
       "withinFreeTier": "✓ 무료 등급 내 (Eva-v1-Fast로 첫 200장)",
       "baseDetection": "기본 탐지",
       "plusAdaptiveDefense": "+ 적응형 방어",
       "plusActiveLiveness": "+ 액티브 라이브니스",
       "plusExpressLane": "+ 익스프레스 레인",
       "totalMonthlyEstimate": "월간 예상 총액",
-      "perMonth": "/month",
+      "perMonth": "/월",
       "imagesCount": "이미지 {count}장",
       "free": "무료",
       "freeImages": "무료 이미지",
@@ -2740,7 +2740,7 @@
       "voiceCloning": {
         "eyebrow": "음성 클론 탐지",
         "title": "AI 생성 음성 식별",
-        "body1": "다양한 언어, 억양, 말투에 걸쳐 AI 생성 음성 클론을 <em>98.5% 정확도</em>로 식별합니다. FBI의 IC3 2024년 보고서에 따르면 보이스피싱 피해는 전 세계적으로 $12.5 billion을 넘어섰으며, 이에 따라 실시간 오디오 탐지는 금융 기관과 콜센터에 필수적입니다.",
+        "body1": "다양한 언어, 억양, 말투에 걸쳐 AI 생성 음성 클론을 <em>98.5% 정확도</em>로 식별합니다. FBI의 IC3 2024년 보고서에 따르면 보이스피싱 피해는 전 세계적으로 125억 달러를 넘어섰으며, 이에 따라 실시간 오디오 탐지는 금융 기관과 콜센터에 필수적입니다.",
         "body2": "오디오 클립당 <em>3초 이내</em>의 처리를 통해 실시간 통화 검증, 실시간 스트리밍 분석, 대규모 사기 스크리닝 자동화를 실현합니다."
       },
       "tts": {
@@ -2982,7 +2982,7 @@
     "subheading": "Scam AI는 귀사 산업의 특정 사기 패턴, 규정 준수 요건, 워크플로 요구에 맞게 적응합니다.",
     "learnMore": "자세히 보기",
     "noIndustry": "찾으시는 산업이 없나요?",
-    "tryFree": "무료로 사용해보기 — 200 images/month",
+    "tryFree": "무료로 사용해보기 — 매월 이미지 200장",
     "contactSales": "영업팀 문의"
   },
   "comparePage": {
@@ -2990,7 +2990,7 @@
     "heading": "Scam AI vs <highlight>경쟁사</highlight>",
     "subheading": "Scam AI가 다른 딥페이크 탐지 플랫폼과 어떻게 비교되는지 확인하세요. 경쟁사가 더 뛰어난 부분까지 포함한 투명한 비교를 제공합니다.",
     "versus": "Scam AI vs {name}",
-    "tryFree": "Scam AI 무료로 사용해보기 — 200 images/month"
+    "tryFree": "Scam AI 무료로 사용해보기 — 매월 이미지 200장"
   },
   "haloPage": {
     "hero": {

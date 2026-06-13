@@ -17,7 +17,7 @@
         "headline": "Lawan ancaman AI",
         "headlineLine2": "dengan",
         "headlineHighlight": "pertahanan AI",
-        "body": "Menurut Deloitte, penipuan deepfake yang dihasilkan AI diproyeksikan merugikan bisnis lebih dari $40 billion pada 2027. Model <em>Eva-v1</em> kami beradaptasi secepat ancaman itu sendiri — mencapai <em>akurasi deteksi 98,2%</em> dalam waktu kurang dari 4 detik, menghentikan penipuan dan melindungi pendapatan Anda secara real time.",
+        "body": "Menurut Deloitte, penipuan deepfake yang dihasilkan AI diproyeksikan merugikan bisnis lebih dari US$ 40 miliar pada 2027. Model <em>Eva-v1</em> kami beradaptasi secepat ancaman itu sendiri — mencapai <em>akurasi deteksi 98,2%</em> dalam waktu kurang dari 4 detik, menghentikan penipuan dan melindungi pendapatan Anda secara real time.",
         "cta": "Mulai mendeteksi sekarang"
       },
       "whyChooseUs": {
@@ -27,14 +27,14 @@
         "headlineHighlight": "kami"
       },
       "allInOne": {
-        "eyebrow": "PLATFORM SERBA GUNA",
+        "eyebrow": "PLATFORM SERBA ADA",
         "headline": "Satu platform untuk semua kebutuhan verifikasi media",
         "body": "Berhenti repot mengelola banyak alat deteksi. Scam AI menyatukan deteksi deepfake untuk gambar, video, dan audio ke dalam satu API. Deteksi pertukaran wajah, gambar yang dihasilkan GAN, keluaran model difusi (Stable Diffusion, DALL-E, Midjourney), dan kloning suara — semuanya dengan satu integrasi dalam waktu kurang dari 10 menit."
       },
       "lightningFast": {
         "eyebrow": "SECEPAT KILAT",
         "headline": "Deteksi real-time dalam skala besar",
-        "body": "Eva-v1-Fast memproses gambar dalam waktu kurang dari 2 detik; Eva-v1-Pro memberikan akurasi tingkat forensik dalam waktu kurang dari 4 detik. Mendukung JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV, dan FLAC. Dibangun untuk kasus penggunaan throughput tinggi seperti verifikasi KYC, moderasi konten, dan autentikasi suara call center."
+        "body": "Eva-v1-Fast memproses gambar dalam waktu kurang dari 2 detik; Eva-v1-Pro memberikan akurasi tingkat forensik dalam waktu kurang dari 4 detik. Mendukung JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV, dan FLAC. Dibangun untuk kasus penggunaan throughput tinggi seperti verifikasi KYC, moderasi konten, dan autentikasi suara pusat panggilan."
       },
       "pricing": {
         "eyebrow": "$ HARGA TRANSPARAN",
@@ -343,7 +343,7 @@
         },
         "voiceClone": {
           "title": "Kloning Suara",
-          "description": "Tangkap suara kloningan dan ucapan sintetis yang menargetkan call center dan sistem autentikasi suara."
+          "description": "Tangkap suara kloningan dan ucapan sintetis yang menargetkan pusat panggilan dan sistem autentikasi suara."
         },
         "remoteNotary": {
           "title": "Notaris Jarak Jauh",
@@ -370,7 +370,7 @@
     "developer": {
       "eyebrow": "PALING MUDAH DIINTEGRASIKAN",
       "heading": "Integrasikan dengan cara Anda",
-      "subhead": "Gunakan Scam AI tanpa kode atau dengan satu panggilan API. Tayang dalam hitungan menit.",
+      "subhead": "Gunakan Scam AI tanpa kode atau dengan satu panggilan API. Langsung aktif dalam hitungan menit.",
       "keyPointsLabel": "POIN UTAMA",
       "videoFallback": "Browser Anda tidak mendukung tag video.",
       "tabs": {
@@ -424,7 +424,7 @@
     },
     "footer": {
       "logoAlt": "Scam AI - Logo Platform Kepercayaan AI",
-      "tagline": "Platform Kepercayaan AI serba guna",
+      "tagline": "Platform Kepercayaan AI serba ada",
       "social": {
         "twitter": "Ikuti kami di X (Twitter)",
         "linkedin": "Ikuti kami di LinkedIn",
@@ -2507,7 +2507,7 @@
     },
     "features": {
       "eyebrow": "KEMAMPUAN CANGGIH",
-      "heading": "Analisis Visual yang <accent>Andal</accent>",
+      "heading": "Analisis Visual yang <accent>Kuat</accent>",
       "face": {
         "eyebrow": "DETEKSI WAJAH",
         "heading": "Deteksi Manipulasi Wajah",
@@ -2609,7 +2609,7 @@
       "subhead": "<em>200 gambar gratis per bulan</em>. Tanpa kartu kredit.",
       "button": "Mulai Gratis",
       "audioPrompt": "Butuh juga deteksi deepfake audio?",
-      "audioLink": "Jelajahi Deteksi Klona Suara →",
+      "audioLink": "Jelajahi Deteksi Kloning Suara →",
       "pricing": "Lihat <link>paket harga</link> mulai dari $0.05/gambar.",
       "researchPrefix": "Dibangun di atas riset yang dipublikasikan:",
       "researchPaper1": "Apakah detektor deepfake bekerja dalam kenyataan?",
@@ -2623,17 +2623,17 @@
   "audioDetectionPage": {
     "hero": {
       "eyebrow": "DETEKSI AUDIO",
-      "title": "Deteksi klona suara dan audio sintetis",
-      "description": "Deteksi <em>klona suara</em>, <em>ucapan hasil AI</em>, dan <em>audio sintetis</em> dengan <em>akurasi 98.5%</em> dalam waktu kurang dari 3 detik. Mengidentifikasi keluaran dari ElevenLabs, PlayHT, Resemble AI, Azure TTS, dan platform sintesis suara lainnya. Mendukung format MP3, WAV, M4A, FLAC, dan OGG.",
+      "title": "Deteksi kloning suara dan audio sintetis",
+      "description": "Deteksi <em>kloning suara</em>, <em>ucapan hasil AI</em>, dan <em>audio sintetis</em> dengan <em>akurasi 98.5%</em> dalam waktu kurang dari 3 detik. Mengidentifikasi keluaran dari ElevenLabs, PlayHT, Resemble AI, Azure TTS, dan platform sintesis suara lainnya. Mendukung format MP3, WAV, M4A, FLAC, dan OGG.",
       "cta": "Hubungi Tim Penjualan"
     },
     "features": {
       "eyebrow": "KEMAMPUAN CANGGIH",
       "title": "Analisis Audio <accent>Canggih</accent>",
       "voiceCloning": {
-        "eyebrow": "DETEKSI KLONA SUARA",
+        "eyebrow": "DETEKSI KLONING SUARA",
         "title": "Identifikasi Suara Hasil AI",
-        "body1": "Identifikasi klona suara hasil AI dengan <em>akurasi 98.5%</em> di berbagai bahasa, aksen, dan pola bicara. Menurut laporan IC3 2024 dari FBI, kerugian akibat penipuan suara melampaui $12.5 billion secara global, sehingga deteksi audio real-time menjadi penting bagi lembaga keuangan dan pusat panggilan.",
+        "body1": "Identifikasi kloning suara hasil AI dengan <em>akurasi 98.5%</em> di berbagai bahasa, aksen, dan pola bicara. Menurut laporan IC3 2024 dari FBI, kerugian akibat penipuan suara melampaui US$ 12,5 miliar secara global, sehingga deteksi audio real-time menjadi penting bagi lembaga keuangan dan pusat panggilan.",
         "body2": "Pemrosesan dalam <em>kurang dari 3 detik</em> per klip audio memungkinkan verifikasi panggilan langsung, analisis streaming real-time, dan penyaringan penipuan otomatis dalam skala besar."
       },
       "tts": {
@@ -2698,15 +2698,15 @@
     "faq": {
       "ariaLabel": "Pertanyaan yang Sering Diajukan",
       "eyebrow": "FAQ",
-      "title": "Pertanyaan tentang Deteksi Klona Suara",
+      "title": "Pertanyaan tentang Deteksi Kloning Suara",
       "items": {
         "accuracy": {
-          "question": "Seberapa akurat deteksi klona suara dan deepfake audio Scam AI?",
-          "answer": "Scam AI mencapai akurasi 98.5% untuk deteksi klona suara, mengidentifikasi suara sintetis dari platform seperti ElevenLabs, PlayHT, Resemble AI, dan Azure TTS. Waktu pemrosesan kurang dari 3 detik per file audio."
+          "question": "Seberapa akurat deteksi kloning suara dan deepfake audio Scam AI?",
+          "answer": "Scam AI mencapai akurasi 98.5% untuk deteksi kloning suara, mengidentifikasi suara sintetis dari platform seperti ElevenLabs, PlayHT, Resemble AI, dan Azure TTS. Waktu pemrosesan kurang dari 3 detik per file audio."
         },
         "types": {
           "question": "Jenis deepfake audio apa saja yang dapat dideteksi Scam AI?",
-          "answer": "Scam AI mendeteksi klona suara (ElevenLabs, Resemble AI, PlayHT, Azure TTS), audio hasil text-to-speech, deepfake audio, rekaman audio yang disambung atau dimanipulasi, dan aliran suara sintetis real-time."
+          "answer": "Scam AI mendeteksi kloning suara (ElevenLabs, Resemble AI, PlayHT, Azure TTS), audio hasil text-to-speech, deepfake audio, rekaman audio yang disambung atau dimanipulasi, dan aliran suara sintetis real-time."
         },
         "formats": {
           "question": "Format audio apa yang didukung Scam AI?",
@@ -2717,12 +2717,12 @@
           "answer": "Ya. Deteksi audio Scam AI digunakan oleh pusat panggilan, bank, dan layanan keuangan untuk mengidentifikasi serangan voice phishing secara real-time. Ia mendeteksi suara yang diklona yang berupaya meniru eksekutif, pelanggan, atau figur berwenang."
         },
         "whatIs": {
-          "question": "Apa itu deteksi klona suara?",
-          "answer": "Deteksi klona suara mengidentifikasi audio yang dihasilkan atau diklona secara artifisial menggunakan perangkat sintesis ucapan AI seperti ElevenLabs, PlayHT, atau Azure TTS. Model audio Eva-v1 dari Scam AI menganalisis artefak spektral dan temporal — pola yang tak terlihat oleh telinga manusia — yang membedakan suara sintetis dari rekaman asli, dengan akurasi 98.5%."
+          "question": "Apa itu deteksi kloning suara?",
+          "answer": "Deteksi kloning suara mengidentifikasi audio yang dihasilkan atau diklona secara artifisial menggunakan perangkat sintesis ucapan AI seperti ElevenLabs, PlayHT, atau Azure TTS. Model audio Eva-v1 dari Scam AI menganalisis artefak spektral dan temporal — pola yang tak terlihat oleh telinga manusia — yang membedakan suara sintetis dari rekaman asli, dengan akurasi 98.5%."
         },
         "realtime": {
           "question": "Bisakah API deteksi deepfake audio memproses aliran real-time?",
-          "answer": "Ya. Scam AI menyediakan endpoint streaming real-time untuk pemantauan panggilan langsung, memproses setiap segmen audio dalam kurang dari 3 detik. Hal ini memungkinkan pusat panggilan dan lembaga keuangan menyaring media sintetis dan klona suara selama panggilan berlangsung, mencegah penipuan secara real-time."
+          "answer": "Ya. Scam AI menyediakan endpoint streaming real-time untuk pemantauan panggilan langsung, memproses setiap segmen audio dalam kurang dari 3 detik. Hal ini memungkinkan pusat panggilan dan lembaga keuangan menyaring media sintetis dan kloning suara selama panggilan berlangsung, mencegah penipuan secara real-time."
         }
       }
     },
@@ -2784,7 +2784,7 @@
         },
         "audio-detection": {
           "title": "Rilis Deteksi Audio",
-          "description": "Meluncurkan deteksi deepfake audio dengan akurasi 92% untuk klona suara. Dukungan untuk format MP3, WAV, dan AAC dengan analisis aliran audio real-time."
+          "description": "Meluncurkan deteksi deepfake audio dengan akurasi 92% untuk kloning suara. Dukungan untuk format MP3, WAV, dan AAC dengan analisis aliran audio real-time."
         },
         "compliance": {
           "title": "Kepatuhan GDPR dan SOC 2 Type I",
@@ -2818,9 +2818,9 @@
         "link": "Jelajahi deteksi deepfake AI →"
       },
       "audioDetection": {
-        "title": "Deteksi Klona Suara & Audio Sintetis",
-        "description": "Deteksi klona suara, ucapan hasil AI, dan audio sintetis dengan akurasi 98.5% dalam kurang dari 3 detik. Mengidentifikasi keluaran dari ElevenLabs, PlayHT, Azure TTS, dan platform sintesis suara lainnya. Mendukung analisis aliran real-time untuk pencegahan penipuan di pusat panggilan.",
-        "link": "Jelajahi deteksi klona suara →"
+        "title": "Deteksi Kloning Suara & Audio Sintetis",
+        "description": "Deteksi kloning suara, ucapan hasil AI, dan audio sintetis dengan akurasi 98.5% dalam kurang dari 3 detik. Mengidentifikasi keluaran dari ElevenLabs, PlayHT, Azure TTS, dan platform sintesis suara lainnya. Mendukung analisis aliran real-time untuk pencegahan penipuan di pusat panggilan.",
+        "link": "Jelajahi deteksi kloning suara →"
       }
     },
     "comparison": {
@@ -2848,9 +2848,9 @@
       },
       "financial": {
         "title": "Layanan Keuangan",
-        "description": "Deteksi penipuan identitas deepfake saat KYC dan pengajuan pinjaman dengan akurasi 98.2%. Lindungi pusat panggilan dari serangan identitas sintetis dan voice phishing dengan deteksi klona suara real-time.",
+        "description": "Deteksi penipuan identitas deepfake saat KYC dan pengajuan pinjaman dengan akurasi 98.2%. Lindungi pusat panggilan dari serangan identitas sintetis dan voice phishing dengan deteksi kloning suara real-time.",
         "linkKyc": "Deteksi deepfake AI untuk KYC →",
-        "linkVoice": "Deteksi klona suara →"
+        "linkVoice": "Deteksi kloning suara →"
       },
       "media": {
         "title": "Media & Penerbitan",
@@ -4853,6 +4853,113 @@
       "heading": "Dokumentasi keamanan",
       "body": "Ingin meninjau praktik keamanan kami secara terperinci?",
       "cta": "Minta Whitepaper Keamanan"
+    }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": {
+        "title": "Deteksi deepfake untuk fintech dan perbankan",
+        "metaDescription": "Deteksi deepfake untuk KYC fintech dengan akurasi 98,2%. Deteksi identitas sintetis, dokumen palsu, dan kloning suara dalam kurang dari 4 detik. Bersertifikat SOC 2.",
+        "headline": "Deteksi deepfake untuk fintech dan perbankan"
+      },
+      "dating": {
+        "title": "Deteksi deepfake dan profil palsu untuk aplikasi kencan",
+        "metaDescription": "Deteksi profil palsu hasil AI dan catfishing suara di aplikasi kencan. Scam AI menandai wajah sintetis saat unggah dengan akurasi 98,2%. 200 gratis/bulan.",
+        "headline": "Deteksi deepfake dan profil palsu untuk aplikasi kencan"
+      },
+      "call-centers": {
+        "title": "Deteksi kloning suara untuk call center",
+        "metaDescription": "Deteksi kloning suara untuk call center dengan akurasi 98,5%. Deteksi serangan vishing secara real time, dalam kurang dari 3 detik. Bersertifikat SOC 2, setup API 10 menit.",
+        "headline": "Deteksi kloning suara untuk call center"
+      },
+      "kyc": {
+        "title": "Hentikan penipuan deepfake dalam verifikasi identitas KYC",
+        "metaDescription": "Deteksi selfie deepfake dan dokumen identitas hasil suntingan AI dalam onboarding KYC. Model Eva-v1 Scam AI mencapai akurasi 98,2% dalam kurang dari 4 detik. Bersertifikat SOC 2 Type II.",
+        "headline": "Hentikan penipuan deepfake dalam verifikasi identitas KYC"
+      },
+      "media": {
+        "title": "Deteksi konten hasil AI untuk media dan ruang redaksi",
+        "metaDescription": "API deteksi deepfake untuk ruang redaksi. Verifikasi gambar, video, dan audio dari pembuatan AI sebelum publikasi. Akurasi 98,2%, 200 gratis/bulan.",
+        "headline": "Deteksi konten hasil AI untuk media dan ruang redaksi"
+      },
+      "insurance": {
+        "title": "Deteksi penipuan hasil AI dalam klaim asuransi",
+        "metaDescription": "Deteksi foto suntingan AI dan dokumen palsu dalam klaim asuransi. Scam AI menyaring bukti klaim untuk manipulasi sintetis. $0,05/gambar, bersertifikat SOC 2.",
+        "headline": "Deteksi penipuan hasil AI dalam klaim asuransi"
+      },
+      "hr": {
+        "title": "Deteksi deepfake dalam wawancara jarak jauh dan perekrutan video",
+        "metaDescription": "Deteksi deepfake, alat suara AI, dan avatar sintetis dalam wawancara kerja jarak jauh. Scam AI memverifikasi keaslian video dan audio untuk tim HR dan platform perekrutan.",
+        "headline": "Deteksi deepfake dalam wawancara jarak jauh dan perekrutan video"
+      },
+      "government": {
+        "title": "Deteksi media sintetis untuk pemerintah dan sektor publik",
+        "metaDescription": "Deteksi media sintetis untuk lembaga pemerintah. Deteksi video deepfake dan citra hasil AI dalam skala besar. SLA enterprise, bersertifikat SOC 2.",
+        "headline": "Deteksi media sintetis untuk pemerintah dan sektor publik"
+      }
+    },
+    "compare": {
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender: Perbandingan Deteksi Deepfake",
+        "metaDescription": "Scam AI vs Reality Defender: $0,05/gambar vs kontrak tahunan, 200 gambar gratis vs tidak ada, setup API 10 menit vs onboarding khusus. Perbandingan lengkap.",
+        "tagline": "Scam AI vs Reality Defender: Perbandingan Deteksi Deepfake"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI: Perbandingan Deteksi Deepfake",
+        "metaDescription": "Scam AI vs Sensity AI: gambar, video, audio, dan dokumen dalam satu API. $0,05/gambar vs kontrak enterprise, 200 gratis/bulan. Perbandingan lengkap.",
+        "tagline": "Scam AI vs Sensity AI: Perbandingan Deteksi Deepfake"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation: Perbandingan Deteksi Deepfake",
+        "metaDescription": "Scam AI vs Hive Moderation: deteksi deepfake 98,2% vs moderasi umum. Deteksi kloning suara + pemalsuan dokumen yang tidak dimiliki Hive. $0,05/gambar.",
+        "tagline": "Scam AI vs Hive Moderation: Perbandingan Deteksi Deepfake"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure AI Content Safety: deteksi deepfake 98,2% yang dirancang khusus vs pengklasifikasi keamanan umum. Deteksi kloning suara + pemalsuan dokumen termasuk.",
+        "tagline": "Scam AI vs Microsoft Azure AI Content Safety: Perbandingan Deteksi Deepfake"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition: Perbandingan Deteksi Deepfake",
+        "metaDescription": "Scam AI vs AWS Rekognition: model deteksi deepfake khusus vs analisis wajah umum, plus deteksi kloning suara dan pemalsuan dokumen yang tidak tersedia di Rekognition.",
+        "tagline": "Scam AI vs AWS Rekognition: Perbandingan Deteksi Deepfake"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic: Perbandingan Deteksi Deepfake",
+        "metaDescription": "Scam AI vs Truepic: deteksi deepfake AI pada gambar apa pun vs provenans C2PA yang memerlukan perangkat keras kamera. Bekerja secara retroaktif, tanpa metadata.",
+        "tagline": "Scam AI vs Truepic: Perbandingan Deteksi Deepfake"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware: Perbandingan Deteksi Deepfake",
+        "metaDescription": "Scam AI vs Deepware: API produksi dengan SLA 99,9% dan SOC 2 vs pemindai konsumen gratis. Integrasi KYC enterprise + deteksi kloning suara.",
+        "tagline": "Scam AI vs Deepware: Perbandingan Deteksi Deepfake"
+      }
+    },
+    "learn": {
+      "what-is-a-deepfake": {
+        "title": "Apa itu deepfake? Cara kerjanya dan cara mendeteksinya",
+        "description": "Panduan lengkap tentang deepfake — apa itu, bagaimana AI menciptakannya, mengapa menjadi ancaman keamanan yang terus tumbuh, dan bagaimana teknologi deteksi bekerja."
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "Cara mendeteksi gambar hasil AI (alat gratis + API)",
+        "description": "Cara mendeteksi gambar hasil AI dengan alat gratis dan API. Tips inspeksi visual, deteksi model GAN dan difusi, plus identifikasi face swap."
+      },
+      "voice-cloning-attacks": {
+        "title": "Serangan kloning suara: cara kerjanya dan cara menghentikannya",
+        "description": "Penjelasan serangan kloning suara: bagaimana AI mengkloning suara dalam hitungan detik, studi kasus vishing nyata, dan bagaimana deteksi berakurasi 98,5% menghentikannya."
+      },
+      "deepfake-detection-accuracy": {
+        "title": "Akurasi deteksi deepfake: apa makna sebenarnya dari tolok ukur",
+        "description": "Penjelasan akurasi deteksi deepfake: cara kerja tolok ukur, mengapa akurasi menurun di dunia nyata, dan cara memilih ambang yang tepat untuk kasus penggunaan Anda."
+      },
+      "deepfake-detection-api-guide": {
+        "title": "Cara mengintegrasikan deteksi deepfake ke aplikasi Anda (panduan API)",
+        "description": "Integrasikan deteksi deepfake ke aplikasi Anda melalui API. Pemilihan endpoint, contoh permintaan, penilaian kepercayaan, dan panduan penskalaan produksi."
+      },
+      "deepfake-statistics-2026": {
+        "title": "Statistik deepfake 2026: angka-angka yang perlu Anda ketahui",
+        "description": "Koleksi definitif statistik deepfake untuk 2026 — mencakup kerugian penipuan, tolok ukur akurasi deteksi, dampak industri, dan respons regulasi."
+      }
     }
   }
 }

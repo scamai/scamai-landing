@@ -17,7 +17,7 @@
         "headline": "KI-Bedrohungen bekämpfen",
         "headlineLine2": "mit",
         "headlineHighlight": "KI-Abwehr",
-        "body": "Laut Deloitte werden durch KI-generierten Deepfake-Betrug bis 2027 Schäden von über 40 Milliarden US-Dollar für Unternehmen erwartet. Unsere <em>Eva-v1</em>-Modelle passen sich so schnell an wie die Bedrohungen selbst — mit <em>98,2 % Erkennungsgenauigkeit</em> in unter 4 Sekunden, um Betrug zu stoppen und Ihren Umsatz in Echtzeit zu schützen.",
+        "body": "Laut Deloitte werden durch KI-generierten Deepfake-Betrug bis 2027 Schäden von über 40 Mrd. US-Dollar für Unternehmen erwartet. Unsere <em>Eva-v1</em>-Modelle passen sich so schnell an wie die Bedrohungen selbst — mit <em>98,2 % Erkennungsgenauigkeit</em> in unter 4 Sekunden, um Betrug zu stoppen und Ihren Umsatz in Echtzeit zu schützen.",
         "cta": "Jetzt mit der Erkennung starten"
       },
       "whyChooseUs": {
@@ -40,15 +40,15 @@
         "eyebrow": "$ TRANSPARENTE PREISE",
         "headline": "Zahlen Sie nur für das, was Sie nutzen.",
         "freeImages": "200 kostenlose Bilder / Monat",
-        "body": "Starten Sie mit 200 kostenlosen Bildern pro Monat mit unserem Eva-v1-Fast-Modell. Danach Pay-as-you-go zu $0.05 pro Bild. Optionale Add-ons (Adaptive Defense, Active Liveness, Express Lane) zu je $0.008 pro Bild. Keine Verträge, keine Einrichtungsgebühren."
+        "body": "Starten Sie mit 200 kostenlosen Bildern pro Monat mit unserem Eva-v1-Fast-Modell. Danach Pay-as-you-go zu 0,05 $ pro Bild. Optionale Add-ons (Adaptive Defense, Active Liveness, Express Lane) zu je 0,008 $ pro Bild. Keine Verträge, keine Einrichtungsgebühren."
       },
       "compliance": {
         "ariaLabel": "Preise & Compliance",
-        "gdprBadgeAlt": "GDPR-konform – Badge",
+        "gdprBadgeAlt": "DSGVO-konform – Badge",
         "soc2BadgeAlt": "SOC 2 Type II geprüft – Badge",
         "eyebrow": "☑ GLOBALE COMPLIANCE",
         "headline": "Überall compliant bleiben.",
-        "body": "Erfüllen Sie Datenschutzanforderungen in der EU, den USA und APAC mit einer einzigen Integration. <strong>GDPR-konform</strong> und <strong>SOC 2 Type II geprüft</strong>. Standardmäßig speichern wir Ihre Medien nach der Verarbeitung nicht; Enterprise-Kunden können eine individuelle Aufbewahrung für Audit und Compliance konfigurieren.",
+        "body": "Erfüllen Sie Datenschutzanforderungen in der EU, den USA und APAC mit einer einzigen Integration. <strong>DSGVO-konform</strong> und <strong>SOC 2 Type II geprüft</strong>. Standardmäßig speichern wir Ihre Medien nach der Verarbeitung nicht; Enterprise-Kunden können eine individuelle Aufbewahrung für Audit und Compliance konfigurieren.",
         "trustCenter": "Unser Trust Center ansehen →"
       },
       "resources": {
@@ -188,7 +188,7 @@
       "sectionAriaLabel": "Preise",
       "eyebrow": "NUTZUNGSBASIERTE PREISE",
       "heading": "Zahlen Sie nur für <highlight>das, was Sie nutzen</highlight>",
-      "subheading": "<strong>200 kostenlose Bilder/Monat</strong> mit Eva-v1-Fast, danach $0.05/Bild. Keine versteckten Kosten, keine Verträge.",
+      "subheading": "<strong>200 kostenlose Bilder/Monat</strong> mit Eva-v1-Fast, danach 0,05 $/Bild. Keine versteckten Kosten, keine Verträge.",
       "volume": {
         "label": "Monatsvolumen",
         "images": "{volume} Bilder",
@@ -285,7 +285,7 @@
         },
         "pricingAfterFree": {
           "question": "Wie funktioniert die Abrechnung nach dem Gratis-Tarif?",
-          "answer": "Nach Ihren 200 kostenlosen Bildern pro Monat zahlen Sie $0.05 pro analysiertem Bild. Sie können auch optionale Funktionen hinzufügen, z. B. Adaptive Defense (+$0.008/Bild), Active Liveness (+$0.008/Bild) oder Express Lane (+$0.008/Bild). Vollständige Preise unter https://scam.ai/pricing"
+          "answer": "Nach Ihren 200 kostenlosen Bildern pro Monat zahlen Sie 0,05 $ pro analysiertem Bild. Sie können auch optionale Funktionen hinzufügen, z. B. Adaptive Defense (+0,008 $/Bild), Active Liveness (+0,008 $/Bild) oder Express Lane (+0,008 $/Bild). Vollständige Preise unter https://scam.ai/pricing"
         },
         "mediaTypes": {
           "question": "Welche Medientypen kann ich analysieren?",
@@ -309,7 +309,7 @@
         },
         "dataRetention": {
           "question": "Wie lautet Ihre Datenaufbewahrungsrichtlinie?",
-          "answer": "Wir sind GDPR-konform und SOC 2 Type II geprüft. Standardmäßig speichern wir Ihre Medien nach der Verarbeitung nicht. Enterprise-Kunden können individuelle Aufbewahrungsrichtlinien konfigurieren, um ihre spezifischen Compliance- und Audit-Anforderungen zu erfüllen."
+          "answer": "Wir sind DSGVO-konform und SOC 2 Type II geprüft. Standardmäßig speichern wir Ihre Medien nach der Verarbeitung nicht. Enterprise-Kunden können individuelle Aufbewahrungsrichtlinien konfigurieren, um ihre spezifischen Compliance- und Audit-Anforderungen zu erfüllen."
         },
         "getStarted": {
           "question": "Wie lege ich los?",
@@ -405,7 +405,7 @@
       }
     },
     "trustedBy": {
-      "heading": "Vertraut von Kunden & unterstützt von Menschen von",
+      "heading": "Genutzt von Kunden & unterstützt von Persönlichkeiten aus",
       "logos": {
         "productHunt": "Product Hunt — Produkt des Tages",
         "qualcomm": "Qualcomm",
@@ -596,7 +596,7 @@
         },
         "securityCompliance": {
           "label": "Sicherheit & Compliance",
-          "description": "SOC 2 Type II und GDPR-Konformität"
+          "description": "SOC 2 Type II und DSGVO-Konformität"
         },
         "logIn": {
           "label": "Anmelden",
@@ -2389,7 +2389,7 @@
     "solutions": {
       "fintech": {
         "title": "Deepfake-Erkennung für Fintech und Banken",
-        "metaDescription": "Deepfake-Erkennung für Fintech-KYC mit 98,2% Genauigkeit. Erkennt synthetische Identitäten und gefälschte Dokumente in unter 4 Sekunden. SOC 2 zertifiziert.",
+        "metaDescription": "Deepfake-Erkennung für Fintech-KYC mit 98,2% Genauigkeit. Erkennt synthetische Identitäten und gefälschte Dokumente in unter 4 Sekunden. SOC 2 geprüft.",
         "headline": "Deepfake-Erkennung für Fintech und Banken"
       },
       "dating": {
@@ -2399,7 +2399,7 @@
       },
       "call-centers": {
         "title": "Stimmenklonierung-Erkennung für Call Center",
-        "metaDescription": "Stimmenklonierung-Erkennung für Call Center mit 98,5% Genauigkeit. Erkennt Vishing-Angriffe in Echtzeit. SOC 2 zertifiziert.",
+        "metaDescription": "Stimmenklonierung-Erkennung für Call Center mit 98,5% Genauigkeit. Erkennt Vishing-Angriffe in Echtzeit. SOC 2 geprüft.",
         "headline": "Stimmenklonierung-Erkennung für Call Center"
       },
       "kyc": {
@@ -2414,7 +2414,7 @@
       },
       "insurance": {
         "title": "KI-generierten Betrug bei Versicherungsansprüchen erkennen",
-        "metaDescription": "Erkennt KI-bearbeitete Fotos und gefälschte Dokumente bei Versicherungsansprüchen. $0,05/Bild, SOC 2 zertifiziert.",
+        "metaDescription": "Erkennt KI-bearbeitete Fotos und gefälschte Dokumente bei Versicherungsansprüchen. 0,05 $/Bild, SOC 2 geprüft.",
         "headline": "KI-generierten Betrug bei Versicherungsansprüchen erkennen"
       },
       "hr": {
@@ -2431,12 +2431,12 @@
     "compare": {
       "reality-defender": {
         "title": "Scam AI vs Reality Defender: Deepfake-Erkennung Vergleich",
-        "metaDescription": "Scam AI vs Reality Defender: $0,05/Bild vs Jahresverträge, 200 kostenlose Bilder vs keine. Vollständiger Vergleich.",
+        "metaDescription": "Scam AI vs Reality Defender: 0,05 $/Bild vs Jahresverträge, 200 kostenlose Bilder vs keine. Vollständiger Vergleich.",
         "tagline": "Scam AI vs Reality Defender: Deepfake-Erkennung Vergleich"
       },
       "sensity": {
         "title": "Scam AI vs Sensity AI: Deepfake-Erkennung Vergleich",
-        "metaDescription": "Scam AI vs Sensity AI: Bilder, Videos, Audio und Dokumente in einer API. $0,05/Bild, 200 kostenlos/Monat.",
+        "metaDescription": "Scam AI vs Sensity AI: Bilder, Videos, Audio und Dokumente in einer API. 0,05 $/Bild, 200 kostenlos/Monat.",
         "tagline": "Scam AI vs Sensity AI: Deepfake-Erkennung Vergleich"
       },
       "hive": {
@@ -2496,7 +2496,7 @@
     "hero": {
       "eyebrow": "NUTZUNGSBASIERTE PREISE",
       "title": "Zahlen Sie nur für <highlight>das, was Sie nutzen</highlight>",
-      "description": "Transparente, planbare Preise für die Erkennung von GenAI und Deepfakes. <strong>200 kostenlose Bilder pro Monat mit unserem Eva-v1-Fast-Modell</strong>, danach $0.05/Bild + optionale Add-ons. Keine versteckten Gebühren, keine langfristigen Verträge."
+      "description": "Transparente, planbare Preise für die Erkennung von GenAI und Deepfakes. <strong>200 kostenlose Bilder pro Monat mit unserem Eva-v1-Fast-Modell</strong>, danach 0,05 $/Bild + optionale Add-ons. Keine versteckten Gebühren, keine langfristigen Verträge."
     },
     "volume": {
       "label": "Monatliches Volumen",
@@ -2510,15 +2510,15 @@
       "subtitle": "Erweitern Sie Ihre Erkennungsmöglichkeiten mit optionalen Funktionen",
       "items": {
         "adaptive-defense": {
-          "name": "Adaptive Abwehr",
+          "name": "Adaptive Defense",
           "description": "Echtzeit-Erkennung von GenAI, Deepfakes und Injection-Angriffen mit fortschrittlichen KI-Modellen"
         },
         "active-liveness": {
-          "name": "Aktive Lebenderkennung",
+          "name": "Active Liveness",
           "description": "Live-Gesichtserkennung zur Verifizierung echter menschlicher Präsenz und zur Abwehr von GenAI-generierten Deepfakes"
         },
         "express-lane": {
-          "name": "Express-Spur",
+          "name": "Express Lane",
           "description": "Verarbeitung mit niedriger Latenz und garantierter Antwortzeit von 3s"
         }
       }
@@ -2547,9 +2547,9 @@
       "perImage": "/Bild",
       "withinFreeTier": "✓ Innerhalb des kostenlosen Kontingents (erste 200 Bilder mit Eva-v1-Fast)",
       "baseDetection": "Basis-Erkennung",
-      "plusAdaptiveDefense": "+ Adaptive Abwehr",
-      "plusActiveLiveness": "+ Aktive Lebenderkennung",
-      "plusExpressLane": "+ Express-Spur",
+      "plusAdaptiveDefense": "+ Adaptive Defense",
+      "plusActiveLiveness": "+ Active Liveness",
+      "plusExpressLane": "+ Express Lane",
       "totalMonthlyEstimate": "Geschätzte monatliche Gesamtkosten",
       "perMonth": "/Monat",
       "imagesCount": "{count} Bilder",
@@ -2570,9 +2570,9 @@
       "recommended": "Empfohlen",
       "perImage": "pro Bild",
       "selfServe": {
-        "name": "Self-Service",
+        "name": "Self-Serve",
         "freeBadge": "200 kostenlose Bilder/Monat (Eva-v1-Fast)",
-        "description": "Für Unternehmen, die mit flexiblen Preisen skalieren möchten. Die ersten 200 Bilder sind mit dem Eva-v1-Fast-Modell kostenlos, danach $0.05/Bild + optionale Add-ons.",
+        "description": "Für Unternehmen, die mit flexiblen Preisen skalieren möchten. Die ersten 200 Bilder sind mit dem Eva-v1-Fast-Modell kostenlos, danach 0,05 $/Bild + optionale Add-ons.",
         "cta": "Jetzt starten",
         "features": {
           "genaiDetection": "GenAI-Erkennung",
@@ -2591,7 +2591,7 @@
         "description": "Für große Organisationen, die forensik-taugliche Genauigkeit, weniger Fehlalarme und dedizierten Support benötigen. Inklusive Eva-v1-Pro-Modell und fortschrittlichen Thinking-Funktionen.",
         "cta": "Vertrieb kontaktieren",
         "features": {
-          "everythingSelfServe": "Alles aus Self-Service",
+          "everythingSelfServe": "Alles aus Self-Serve",
           "evaProModel": "Eva-v1-Pro-Modell",
           "thinking": "Thinking (fortgeschrittenes Reasoning)",
           "volumeDiscounts": "Mengenrabatte",
@@ -2609,7 +2609,7 @@
     "hero": {
       "eyebrow": "KI-ERKENNUNG",
       "heading": "Erkennen Sie Deepfakes in Bildern und Videos",
-      "body": "Die Eva-v1-Modelle von Scam AI erkennen <em>synthetische Medien</em>, <em>manipulierte Gesichter</em> und <em>Deepfake-Videos</em> mit einer <em>Genauigkeit von 98.2%</em> in unter 4 Sekunden. Unterstützt Face Swaps, GAN-generierte Bilder und Ausgaben von Diffusionsmodellen wie Stable Diffusion, DALL-E, Midjourney und Flux.",
+      "body": "Die Eva-v1-Modelle von Scam AI erkennen <em>synthetische Medien</em>, <em>manipulierte Gesichter</em> und <em>Deepfake-Videos</em> mit einer <em>Genauigkeit von 98,2 %</em> in unter 4 Sekunden. Unterstützt Face Swaps, GAN-generierte Bilder und Ausgaben von Diffusionsmodellen wie Stable Diffusion, DALL-E, Midjourney und Flux.",
       "cta": "KI-Erkennung testen"
     },
     "features": {
@@ -2618,7 +2618,7 @@
       "face": {
         "eyebrow": "GESICHTSERKENNUNG",
         "heading": "Erkennung von Gesichtsmanipulationen",
-        "body1": "Erkennen Sie Face Swaps, veränderte Mimik und manipulierte Gesichtsmerkmale mit einer <em>Genauigkeit von 98.2%</em> durch fortschrittliche Analyse mit neuronalen Netzen. Erkennt Ausgaben führender Generierungstools, darunter Stable Diffusion, DALL-E, Midjourney und Flux.",
+        "body1": "Erkennen Sie Face Swaps, veränderte Mimik und manipulierte Gesichtsmerkmale mit einer <em>Genauigkeit von 98,2 %</em> durch fortschrittliche Analyse mit neuronalen Netzen. Erkennt Ausgaben führender Generierungstools, darunter Stable Diffusion, DALL-E, Midjourney und Flux.",
         "body2": "Eva-v1-Fast verarbeitet in <em>unter 2 Sekunden</em> für die Moderation in Echtzeit. Eva-v1-Pro liefert forensisch verwertbare Ergebnisse in <em>unter 4 Sekunden</em> für KYC und Rechtsbeweise."
       },
       "video": {
@@ -2640,7 +2640,7 @@
     },
     "useCases": {
       "eyebrow": "ANWENDUNGEN IN DER PRAXIS",
-      "heading": "Branchenübergreifend <accent>vertraut</accent>",
+      "heading": "Branchenübergreifend <accent>im Einsatz</accent>",
       "items": {
         "social": {
           "title": "Social-Media-Plattformen",
@@ -2687,7 +2687,7 @@
       "items": {
         "accuracy": {
           "question": "Wie genau ist die Bild- und Video-Deepfake-Erkennung von Scam AI?",
-          "answer": "Scam AI erreicht mit dem Eva-v1-Modell eine Genauigkeit von 98.2% bei der Bild- und Video-Deepfake-Erkennung. Eva-v1-Fast verarbeitet in unter 2 Sekunden für Anwendungsfälle mit hohem Durchsatz, während Eva-v1-Pro in unter 4 Sekunden für maximale Genauigkeit bei weniger Fehlalarmen verarbeitet."
+          "answer": "Scam AI erreicht mit dem Eva-v1-Modell eine Genauigkeit von 98,2 % bei der Bild- und Video-Deepfake-Erkennung. Eva-v1-Fast verarbeitet in unter 2 Sekunden für Anwendungsfälle mit hohem Durchsatz, während Eva-v1-Pro in unter 4 Sekunden für maximale Genauigkeit bei weniger Fehlalarmen verarbeitet."
         },
         "types": {
           "question": "Welche Arten von Deepfakes kann Scam AI in Bildern und Videos erkennen?",
@@ -2703,7 +2703,7 @@
         },
         "free": {
           "question": "Gibt es einen kostenlosen Deepfake-Detektor, den ich ausprobieren kann?",
-          "answer": "Ja. Scam AI umfasst 200 kostenlose Bildanalysen pro Monat — ohne Kreditkarte. Registrieren Sie sich auf app.scam.ai, um sofort Zugang zum Deepfake-Detektor mit dem Eva-v1-Fast-Modell zu erhalten. Wechseln Sie zur nutzungsbasierten Abrechnung ($0.05/Bild) oder zu Enterprise, wenn Ihr Volumen wächst."
+          "answer": "Ja. Scam AI umfasst 200 kostenlose Bildanalysen pro Monat — ohne Kreditkarte. Registrieren Sie sich auf app.scam.ai, um sofort Zugang zum Deepfake-Detektor mit dem Eva-v1-Fast-Modell zu erhalten. Wechseln Sie zur nutzungsbasierten Abrechnung (0,05 $/Bild) oder zu Enterprise, wenn Ihr Volumen wächst."
         },
         "api": {
           "question": "Kann ich die Deepfake-Erkennung per API in meine App integrieren?",
@@ -2717,7 +2717,7 @@
       "button": "Kostenlos starten",
       "audioPrompt": "Benötigen Sie auch eine Audio-Deepfake-Erkennung?",
       "audioLink": "Stimmklon-Erkennung entdecken →",
-      "pricing": "Sehen Sie sich unsere <link>Preispläne</link> ab $0.05/Bild an.",
+      "pricing": "Sehen Sie sich unsere <link>Preispläne</link> ab 0,05 $/Bild an.",
       "researchPrefix": "Basierend auf veröffentlichter Forschung:",
       "researchPaper1": "Funktionieren Deepfake-Detektoren in der Realität?",
       "researchPaper2": "Benchmark für Open-Source-Detektoren"
@@ -2731,7 +2731,7 @@
     "hero": {
       "eyebrow": "AUDIO-ERKENNUNG",
       "title": "Erkennen Sie Stimmklone und synthetisches Audio",
-      "description": "Erkennen Sie <em>Stimmklone</em>, <em>KI-generierte Sprache</em> und <em>synthetisches Audio</em> mit einer <em>Genauigkeit von 98.5%</em> in unter 3 Sekunden. Identifiziert Ausgaben von ElevenLabs, PlayHT, Resemble AI, Azure TTS und anderen Plattformen zur Sprachsynthese. Unterstützt die Formate MP3, WAV, M4A, FLAC und OGG.",
+      "description": "Erkennen Sie <em>Stimmklone</em>, <em>KI-generierte Sprache</em> und <em>synthetisches Audio</em> mit einer <em>Genauigkeit von 98,5 %</em> in unter 3 Sekunden. Identifiziert Ausgaben von ElevenLabs, PlayHT, Resemble AI, Azure TTS und anderen Plattformen zur Sprachsynthese. Unterstützt die Formate MP3, WAV, M4A, FLAC und OGG.",
       "cta": "Vertrieb kontaktieren"
     },
     "features": {
@@ -2740,7 +2740,7 @@
       "voiceCloning": {
         "eyebrow": "ERKENNUNG VON STIMMKLONEN",
         "title": "KI-generierte Stimmen identifizieren",
-        "body1": "Identifizieren Sie KI-generierte Stimmklone mit einer <em>Genauigkeit von 98.5%</em> über mehrere Sprachen, Akzente und Sprechmuster hinweg. Laut dem IC3-Bericht 2024 des FBI überstiegen die Verluste durch Voice-Phishing weltweit $12.5 billion, was die Audio-Erkennung in Echtzeit für Finanzinstitute und Callcenter unverzichtbar macht.",
+        "body1": "Identifizieren Sie KI-generierte Stimmklone mit einer <em>Genauigkeit von 98,5 %</em> über mehrere Sprachen, Akzente und Sprechmuster hinweg. Laut dem IC3-Bericht 2024 des FBI überstiegen die Verluste durch Voice-Phishing weltweit 12,5 Mrd. US-Dollar, was die Audio-Erkennung in Echtzeit für Finanzinstitute und Callcenter unverzichtbar macht.",
         "body2": "Die Verarbeitung in <em>unter 3 Sekunden</em> pro Audioclip ermöglicht die Verifizierung von Live-Anrufen, die Echtzeit-Analyse von Streams und das automatisierte Betrugsscreening im großen Maßstab."
       },
       "tts": {
@@ -2762,7 +2762,7 @@
     },
     "useCases": {
       "eyebrow": "ANWENDUNGEN IN DER PRAXIS",
-      "title": "Branchenübergreifend <accent>vertraut</accent>",
+      "title": "Branchenübergreifend <accent>im Einsatz</accent>",
       "cards": {
         "callCenters": {
           "title": "Callcenter und Kundenservice",
@@ -2809,7 +2809,7 @@
       "items": {
         "accuracy": {
           "question": "Wie genau ist die Stimmklon- und Audio-Deepfake-Erkennung von Scam AI?",
-          "answer": "Scam AI erreicht eine Genauigkeit von 98.5% bei der Stimmklon-Erkennung und identifiziert synthetische Stimmen von Plattformen wie ElevenLabs, PlayHT, Resemble AI und Azure TTS. Die Verarbeitungszeit beträgt weniger als 3 Sekunden pro Audiodatei."
+          "answer": "Scam AI erreicht eine Genauigkeit von 98,5 % bei der Stimmklon-Erkennung und identifiziert synthetische Stimmen von Plattformen wie ElevenLabs, PlayHT, Resemble AI und Azure TTS. Die Verarbeitungszeit beträgt weniger als 3 Sekunden pro Audiodatei."
         },
         "types": {
           "question": "Welche Arten von Audio-Deepfakes kann Scam AI erkennen?",
@@ -2825,7 +2825,7 @@
         },
         "whatIs": {
           "question": "Was ist Stimmklon-Erkennung?",
-          "answer": "Die Stimmklon-Erkennung identifiziert Audio, das mithilfe von KI-Sprachsynthese-Tools wie ElevenLabs, PlayHT oder Azure TTS künstlich generiert oder geklont wurde. Das Eva-v1-Audiomodell von Scam AI analysiert spektrale und zeitliche Artefakte — Muster, die für das menschliche Ohr unsichtbar sind — die synthetische Stimmen von echten Aufnahmen unterscheiden, und erreicht dabei eine Genauigkeit von 98.5%."
+          "answer": "Die Stimmklon-Erkennung identifiziert Audio, das mithilfe von KI-Sprachsynthese-Tools wie ElevenLabs, PlayHT oder Azure TTS künstlich generiert oder geklont wurde. Das Eva-v1-Audiomodell von Scam AI analysiert spektrale und zeitliche Artefakte — Muster, die für das menschliche Ohr unsichtbar sind — die synthetische Stimmen von echten Aufnahmen unterscheiden, und erreicht dabei eine Genauigkeit von 98,5 %."
         },
         "realtime": {
           "question": "Kann die Audio-Deepfake-Erkennungs-API Echtzeit-Streams verarbeiten?",
@@ -2838,7 +2838,7 @@
       "subtitle": "Kontaktieren Sie unser Team, um <em>Audio-Erkennungslösungen für Unternehmen</em> zu besprechen, die auf Ihre Bedürfnisse zugeschnitten sind.",
       "button": "Vertrieb kontaktieren",
       "crossLink": "Benötigen Sie auch eine Bild- und Video-Deepfake-Erkennung? <link>KI-Bilderkennung entdecken →</link>",
-      "pricingLink": "Sehen Sie sich unsere <link>Preispläne</link> ab $0.05/Datei an.",
+      "pricingLink": "Sehen Sie sich unsere <link>Preispläne</link> ab 0,05 $/Datei an.",
       "research": "Basierend auf veröffentlichter Forschung: <link1>Funktionieren Deepfake-Detektoren in der Realität?</link1> · <link2>Benchmark für Open-Source-Detektoren</link2>"
     },
     "relatedLinks": {
@@ -2879,11 +2879,11 @@
         },
         "enhanced-accuracy": {
           "title": "Verbesserte Erkennungsgenauigkeit",
-          "description": "Verbesserung der Deepfake-Erkennungsgenauigkeit auf 98.2% bei einer auf unter 4 Sekunden reduzierten Verarbeitungszeit. Unterstützung der 4K-Videoanalyse hinzugefügt sowie verbesserte Algorithmen zur Audio-Deepfake-Erkennung."
+          "description": "Verbesserung der Deepfake-Erkennungsgenauigkeit auf 98,2 % bei einer auf unter 4 Sekunden reduzierten Verarbeitungszeit. Unterstützung der 4K-Videoanalyse hinzugefügt sowie verbesserte Algorithmen zur Audio-Deepfake-Erkennung."
         },
         "seed-funding": {
-          "title": "Seed-Finanzierungsrunde — $2.6M",
-          "description": "Abschluss einer Eigenkapitalfinanzierung von insgesamt $2.6M unter der Führung von Llama Venture, mit Beteiligung von SCVxSBI, Welight Capital, SkyDeck Fund und Beta Fund. Die Finanzierung wird die Produktentwicklung und die globale Expansion beschleunigen."
+          "title": "Seed-Finanzierungsrunde — 2,6 Mio. $",
+          "description": "Abschluss einer Eigenkapitalfinanzierung von insgesamt 2,6 Mio. $ unter der Führung von Llama Venture, mit Beteiligung von SCVxSBI, Welight Capital, SkyDeck Fund und Beta Fund. Die Finanzierung wird die Produktentwicklung und die globale Expansion beschleunigen."
         },
         "genai-detection": {
           "title": "Veröffentlichung der GenAI-Erkennung",
@@ -2894,8 +2894,8 @@
           "description": "Einführung der Audio-Deepfake-Erkennung mit einer Genauigkeit von 92% beim Stimmklonen. Unterstützung der Formate MP3, WAV und AAC mit Echtzeit-Analyse von Audio-Streams."
         },
         "compliance": {
-          "title": "GDPR- und SOC 2 Type I-Compliance",
-          "description": "Erreichen der GDPR-Compliance und der SOC 2 Type I-Zertifizierung als Beleg für unser Engagement für Datenschutz und Sicherheit. Sicherheitsstandards auf Unternehmensniveau sind nun etabliert."
+          "title": "DSGVO- und SOC 2 Type I-Compliance",
+          "description": "Erreichen der DSGVO-Compliance und der SOC 2 Type I-Zertifizierung als Beleg für unser Engagement für Datenschutz und Sicherheit. Sicherheitsstandards auf Unternehmensniveau sind nun etabliert."
         },
         "pre-seed-funding": {
           "title": "Pre-Seed-Finanzierung von Berkeley SkyDeck",
@@ -2921,12 +2921,12 @@
     "cards": {
       "aiDetection": {
         "title": "KI-Bild- und Video-Deepfake-Erkennung",
-        "description": "Erkennen Sie KI-generierte Bilder und Deepfake-Videos mit einer Genauigkeit von 98.2%* dank des Eva-v1-Modells. Identifizieren Sie Face Swaps, GAN-generierte Bilder und Ausgaben von Diffusionsmodellen aus Stable Diffusion, DALL-E und Midjourney. Integration per REST-API in unter 10 Minuten.",
+        "description": "Erkennen Sie KI-generierte Bilder und Deepfake-Videos mit einer Genauigkeit von 98,2 %* dank des Eva-v1-Modells. Identifizieren Sie Face Swaps, GAN-generierte Bilder und Ausgaben von Diffusionsmodellen aus Stable Diffusion, DALL-E und Midjourney. Integration per REST-API in unter 10 Minuten.",
         "link": "KI-Deepfake-Erkennung entdecken →"
       },
       "audioDetection": {
         "title": "Stimmklon- und synthetische Audio-Erkennung",
-        "description": "Erkennen Sie Stimmklone, KI-generierte Sprache und synthetisches Audio mit einer Genauigkeit von 98.5% in unter 3 Sekunden. Identifiziert Ausgaben von ElevenLabs, PlayHT, Azure TTS und anderen Plattformen zur Sprachsynthese. Unterstützt die Echtzeit-Stream-Analyse zur Betrugsprävention in Callcentern.",
+        "description": "Erkennen Sie Stimmklone, KI-generierte Sprache und synthetisches Audio mit einer Genauigkeit von 98,5 % in unter 3 Sekunden. Identifiziert Ausgaben von ElevenLabs, PlayHT, Azure TTS und anderen Plattformen zur Sprachsynthese. Unterstützt die Echtzeit-Stream-Analyse zur Betrugsprävention in Callcentern.",
         "link": "Stimmklon-Erkennung entdecken →"
       }
     },
@@ -2955,7 +2955,7 @@
       },
       "financial": {
         "title": "Finanzdienstleistungen",
-        "description": "Erkennen Sie Deepfake-Identitätsbetrug bei KYC und Kreditanträgen mit einer Genauigkeit von 98.2%. Schützen Sie Callcenter vor Angriffen mit synthetischen Identitäten und vor Voice-Phishing durch Stimmklon-Erkennung in Echtzeit.",
+        "description": "Erkennen Sie Deepfake-Identitätsbetrug bei KYC und Kreditanträgen mit einer Genauigkeit von 98,2 %. Schützen Sie Callcenter vor Angriffen mit synthetischen Identitäten und vor Voice-Phishing durch Stimmklon-Erkennung in Echtzeit.",
         "linkKyc": "KI-Deepfake-Erkennung für KYC →",
         "linkVoice": "Stimmklon-Erkennung →"
       },
@@ -3021,8 +3021,8 @@
         "eyebrow": "FÜR FINANZEN UND TREASURY",
         "headline": "Die Stimme, die die Überweisung freigibt,<br/>ist vielleicht nicht Ihr CFO.",
         "fearTitle": "Überweisungsbetrug durch synthetische Führungskräfte",
-        "fearBody": "2024 nahm ein Mitarbeiter der Finanzabteilung beim Ingenieurbüro Arup an einem Videoanruf mit Personen teil, die wie sein CFO und seine Kollegen aussahen und klangen — jedes Gesicht im Anruf war ein Deepfake. Er autorisierte <em>15 Überweisungen mit einem Gesamtwert von ~$25M</em>. Der Anruf wirkte völlig normal. Das ist der neue Angriff: synthetische Führungskräfte in Echtzeit bei routinemäßigen Freigabeanrufen.",
-        "stat": "~$25M",
+        "fearBody": "2024 nahm ein Mitarbeiter der Finanzabteilung beim Ingenieurbüro Arup an einem Videoanruf mit Personen teil, die wie sein CFO und seine Kollegen aussahen und klangen — jedes Gesicht im Anruf war ein Deepfake. Er autorisierte <em>15 Überweisungen mit einem Gesamtwert von ~25 Mio. $</em>. Der Anruf wirkte völlig normal. Das ist der neue Angriff: synthetische Führungskräfte in Echtzeit bei routinemäßigen Freigabeanrufen.",
+        "stat": "~25 Mio. $",
         "statLabel": "verloren bei einem einzigen Deepfake-Videoanruf (Arup, 2024)",
         "bullets": {
           "0": "Markiert synthetische Gesichter und Face Swaps live, bevor die Überweisung freigegeben wird.",
@@ -3034,7 +3034,7 @@
         "tab": "HR und Recruiting",
         "eyebrow": "FÜR HR UND TALENTE",
         "headline": "Der Kandidat vor der Kamera<br/>ist vielleicht keine reale Person.",
-        "fearTitle": "Synthetische und gesichtsvertauschte Kandidaten",
+        "fearTitle": "Synthetische Kandidaten und Face Swaps",
         "fearBody": "Das FBI hat vor einem starken Anstieg von Deepfake-Bewerbern gewarnt — Personen, die Echtzeit-Face-Swaps und Stimmverzerrer nutzen, um Remote-Interviews zu bestehen, oft um Zugang zu sensiblen Systemen zu erlangen oder zu verschleiern, dass eine andere Person die Arbeit erledigt. Gartner prognostiziert, dass <em>bis 2028 jedes vierte Kandidatenprofil gefälscht sein wird</em>. Ihr Interviewprozess ist jetzt ein Identitäts-Checkpoint.",
         "stat": "1 von 4",
         "statLabel": "Kandidatenprofile werden bis 2028 voraussichtlich gefälscht sein (Gartner)",
@@ -3059,7 +3059,7 @@
         },
         "private": {
           "title": "Privat durch Konzeption",
-          "body": "Videobilder werden im Speicher analysiert und verworfen — nichts wird aufgezeichnet, gespeichert oder übertragen. Kein Cloud-Upload bedeutet keinen neuen Honeypot sensibler Anrufe und einen weitaus einfacheren Weg durch die rechtliche, IT- und GDPR-Prüfung."
+          "body": "Videobilder werden im Speicher analysiert und verworfen — nichts wird aufgezeichnet, gespeichert oder übertragen. Kein Cloud-Upload bedeutet keinen neuen Honeypot sensibler Anrufe und einen weitaus einfacheren Weg durch die rechtliche, IT- und DSGVO-Prüfung."
         }
       }
     },
@@ -3162,7 +3162,7 @@
     "announcement": "Machen Sie sich nie wieder Sorgen über Betrug — Frühentschlossene erhalten ihre ersten 3 Monate gratis",
     "hero": {
       "eyebrow": "Für Familien und Senioren",
-      "title": "Machen Sie Sich Nie Wieder Sorgen über <highlight>Betrug.</highlight>",
+      "title": "Machen Sie sich nie wieder Sorgen über <highlight>Betrug.</highlight>",
       "description": "scam.ai blockiert betrügerische Anrufe, SMS und E-Mails, bevor sie Sie überhaupt erreichen — und untermauert dies mit einer Geld-zurück-Garantie, falls doch etwas durchkommt.",
       "trustBadges": {
         "privacy": "Höchster Datenschutz",
@@ -3228,7 +3228,7 @@
     },
     "problem": {
       "eyebrow": "Die Realität",
-      "title": "Betrüger Haben Es auf Sie Abgesehen.<br></br> Jeden Einzelnen Tag.",
+      "title": "Betrüger haben es auf Sie abgesehen.<br></br> Jeden einzelnen Tag.",
       "description": "Sie rufen an und geben sich als Ihre Bank aus. Sie schreiben SMS und geben sich als Ihr Enkelkind aus. Sie senden E-Mails und geben sich als das Finanzamt aus. Und sie werden jeden Monat besser darin.",
       "stats": {
         "stolen": {
@@ -3267,7 +3267,7 @@
     },
     "finalCta": {
       "eyebrow": "Auf die Warteliste",
-      "title": "Machen Sie Sich Nie Wieder Sorgen über Betrug.",
+      "title": "Machen Sie sich nie wieder Sorgen über Betrug.",
       "description": "Ein einziges Abonnement deckt alles ab — Blockierung, Versicherung, Aufklärung und Support. Treten Sie jetzt bei und sichern Sie sich Ihre ersten 3 Monate gratis.",
       "badge": "Erste 3 Monate gratis*",
       "footnote": "* Die kostenlose Testphase gilt für die ersten 3 Monate eines kostenpflichtigen Abonnements nach dem Start."
@@ -3323,11 +3323,11 @@
         },
         "regions": {
           "question": "In welchen Regionen sind Sie tätig?",
-          "answer": "Scam AI ist weltweit tätig, mit Rechenzentren in den USA, der EU und APAC. Wir sind GDPR-konform und können Ihnen helfen, regionale Anforderungen an die Datenresidenz zu erfüllen."
+          "answer": "Scam AI ist weltweit tätig, mit Rechenzentren in den USA, der EU und APAC. Wir sind DSGVO-konform und können Ihnen helfen, regionale Anforderungen an die Datenresidenz zu erfüllen."
         },
         "sla": {
           "question": "Wie sieht Ihr SLA für Unternehmenskunden aus?",
-          "answer": "Unternehmenskunden erhalten ein Verfügbarkeits-SLA von 99.9%, priorisierten Support mit garantierten Reaktionszeiten und dediziertes Account-Management. Kontaktieren Sie den Vertrieb für weitere Details."
+          "answer": "Unternehmenskunden erhalten ein Verfügbarkeits-SLA von 99,9 %, priorisierten Support mit garantierten Reaktionszeiten und dediziertes Account-Management. Kontaktieren Sie den Vertrieb für weitere Details."
         },
         "tryBeforeBuy": {
           "question": "Kann ich es testen, bevor ich mich für einen kostenpflichtigen Plan entscheide?",
@@ -3403,7 +3403,7 @@
           "title": "Regulatorische Compliance",
           "description": "Erfüllen Sie die regulatorischen Anforderungen von FFIEC, AML und KYC mit dokumentierten KI-Erkennungsabläufen.",
           "bullets": {
-            "0": "SOC 2 Type II zertifiziert",
+            "0": "SOC 2 Type II geprüft",
             "1": "DSGVO-konforme Verarbeitung",
             "2": "Audit-Protokollierung und Reporting"
           }
@@ -3420,7 +3420,7 @@
         },
         "2": {
           "question": "Ist Scam AI für den Einsatz im Finanzdienstleistungsbereich SOC-2- und DSGVO-konform?",
-          "answer": "Ja. Scam AI ist SOC 2 Type II zertifiziert und DSGVO-konform. Bilder werden nach der Verarbeitung nicht gespeichert, und eine vollständige Audit-Protokollierung steht für das Compliance-Reporting zur Verfügung."
+          "answer": "Ja. Scam AI ist SOC 2 Type II geprüft und DSGVO-konform. Bilder werden nach der Verarbeitung nicht gespeichert, und eine vollständige Audit-Protokollierung steht für das Compliance-Reporting zur Verfügung."
         },
         "3": {
           "question": "Wie schnell ist die Deepfake-Erkennung für Echtzeit-KYC-Abläufe?",
@@ -3433,7 +3433,7 @@
       },
       "ctaHeadline": "Beginnen Sie noch heute mit dem Schutz Ihrer KYC-Pipeline",
       "ctaSubheadline": "200 kostenlose Bilder pro Monat. Keine Kreditkarte erforderlich.",
-      "metaDescription": "Deepfake-Erkennung für Fintech-KYC mit 98,2 % Genauigkeit. Erkennen Sie synthetische Identitäten, gefälschte Dokumente und Sprachklone in unter 4 Sekunden. SOC 2 zertifiziert."
+      "metaDescription": "Deepfake-Erkennung für Fintech-KYC mit 98,2 % Genauigkeit. Erkennen Sie synthetische Identitäten, gefälschte Dokumente und Sprachklone in unter 4 Sekunden. SOC 2 geprüft."
     },
     "dating": {
       "name": "Dating-Apps",
@@ -3608,12 +3608,12 @@
         },
         "4": {
           "question": "Ist Scam AI für den Einsatz in regulierten Callcentern konform?",
-          "answer": "Ja. Scam AI ist SOC 2 Type II zertifiziert und DSGVO-konform. Audio wird nach der Verarbeitung nicht gespeichert, und eine vollständige Audit-Protokollierung steht für das regulatorische Reporting zur Verfügung."
+          "answer": "Ja. Scam AI ist SOC 2 Type II geprüft und DSGVO-konform. Audio wird nach der Verarbeitung nicht gespeichert, und eine vollständige Audit-Protokollierung steht für das regulatorische Reporting zur Verfügung."
         }
       },
       "ctaHeadline": "Schützen Sie Ihr Callcenter vor Sprachbetrug",
       "ctaSubheadline": "Sprachklon-Erkennung in Echtzeit. Kontaktieren Sie den Vertrieb für Enterprise-Preise.",
-      "metaDescription": "Sprachklon-Erkennung für Callcenter mit 98,5 % Genauigkeit. Erkennen Sie Vishing-Angriffe in Echtzeit, in unter 3 Sekunden. SOC 2 zertifiziert, API-Einrichtung in 10 Minuten."
+      "metaDescription": "Sprachklon-Erkennung für Callcenter mit 98,5 % Genauigkeit. Erkennen Sie Vishing-Angriffe in Echtzeit, in unter 3 Sekunden. SOC 2 geprüft, API-Einrichtung in 10 Minuten."
     },
     "kyc": {
       "name": "KYC und Identitätsprüfung",
@@ -3673,7 +3673,7 @@
           "title": "AML- und regulatorische Compliance",
           "description": "Dokumentieren Sie alle Ergebnisse der Deepfake-Prüfung, um die regulatorischen Anforderungen von AML, KYC und FFIEC zu erfüllen.",
           "bullets": {
-            "0": "SOC 2 Type II zertifiziert",
+            "0": "SOC 2 Type II geprüft",
             "1": "Vollständige Audit-Trail-API",
             "2": "DSGVO-konforme Datenverarbeitung"
           }
@@ -3690,7 +3690,7 @@
         },
         "2": {
           "question": "Ist Scam AI für regulierte KYC-Workflows konform?",
-          "answer": "Ja. Scam AI ist SOC 2 Type II zertifiziert und DSGVO-konform. Bilder werden nach der Verarbeitung nicht gespeichert. Ein vollständiges Audit-Protokoll aller Erkennungsereignisse mit Zeitstempeln und Konfidenzwerten steht über die API für die regulatorische Dokumentation zur Verfügung."
+          "answer": "Ja. Scam AI ist SOC 2 Type II geprüft und DSGVO-konform. Bilder werden nach der Verarbeitung nicht gespeichert. Ein vollständiges Audit-Protokoll aller Erkennungsereignisse mit Zeitstempeln und Konfidenzwerten steht über die API für die regulatorische Dokumentation zur Verfügung."
         },
         "3": {
           "question": "Wie schnell ist die Deepfake-Erkennung für Live-KYC-Abläufe?",
@@ -3703,7 +3703,7 @@
       },
       "ctaHeadline": "Stärken Sie Ihre KYC-Pipeline gegen Deepfakes",
       "ctaSubheadline": "200 kostenlose Analysen pro Monat. Keine Kreditkarte erforderlich.",
-      "metaDescription": "Erkennen Sie Deepfake-Selfies und KI-bearbeitete Ausweisdokumente beim KYC-Onboarding. Das Eva-v1-Modell von Scam AI erreicht 98,2 % Genauigkeit in unter 4 Sekunden. SOC 2 Type II zertifiziert."
+      "metaDescription": "Erkennen Sie Deepfake-Selfies und KI-bearbeitete Ausweisdokumente beim KYC-Onboarding. Das Eva-v1-Modell von Scam AI erreicht 98,2 % Genauigkeit in unter 4 Sekunden. SOC 2 Type II geprüft."
     },
     "media": {
       "name": "Medien und Verlagswesen",
@@ -3874,7 +3874,7 @@
         },
         "3": {
           "question": "Ist Scam AI für den Einsatz in der Versicherungsbranche konform?",
-          "answer": "Ja. Scam AI ist SOC 2 Type II zertifiziert und DSGVO-konform. Alle Analyseergebnisse werden mit Zeitstempeln und Konfidenzwerten zu Audit- und Prozesszwecken protokolliert."
+          "answer": "Ja. Scam AI ist SOC 2 Type II geprüft und DSGVO-konform. Alle Analyseergebnisse werden mit Zeitstempeln und Konfidenzwerten zu Audit- und Prozesszwecken protokolliert."
         },
         "4": {
           "question": "Kann Scam AI große Mengen an Ansprüchen mit hoher Geschwindigkeit prüfen?",
@@ -3883,7 +3883,7 @@
       },
       "ctaHeadline": "Stoppen Sie KI-generierten Schadensbetrug",
       "ctaSubheadline": "200 kostenlose Analysen pro Monat. Keine Kreditkarte erforderlich.",
-      "metaDescription": "Erkennen Sie KI-bearbeitete Fotos und gefälschte Dokumente in Versicherungsansprüchen. Scam AI prüft Schadensnachweise auf synthetische Manipulation. 0,05 $/Bild, SOC 2 zertifiziert."
+      "metaDescription": "Erkennen Sie KI-bearbeitete Fotos und gefälschte Dokumente in Versicherungsansprüchen. Scam AI prüft Schadensnachweise auf synthetische Manipulation. 0,05 $/Bild, SOC 2 geprüft."
     },
     "hr": {
       "name": "HR und Recruiting",
@@ -4050,7 +4050,7 @@
         },
         "2": {
           "question": "Welche Compliance-Zertifizierungen besitzt Scam AI?",
-          "answer": "Scam AI ist SOC 2 Type II zertifiziert und DSGVO-konform. Bei Beschaffungsprüfungen im öffentlichen Sektor können der SOC-2-Bericht und die Dokumentation zur Datenverarbeitung unter security@scam.ai angefordert werden."
+          "answer": "Scam AI ist SOC 2 Type II geprüft und DSGVO-konform. Bei Beschaffungsprüfungen im öffentlichen Sektor können der SOC-2-Bericht und die Dokumentation zur Datenverarbeitung unter security@scam.ai angefordert werden."
         },
         "3": {
           "question": "Wird Scam AI von Organisationen des öffentlichen Sektors genutzt?",
@@ -4063,7 +4063,7 @@
       },
       "ctaHeadline": "Schützen Sie die öffentliche Kommunikation vor synthetischen Medien",
       "ctaSubheadline": "Kontaktieren Sie uns für Preise für Behörden und den öffentlichen Sektor.",
-      "metaDescription": "Erkennung synthetischer Medien für Behörden. Erkennen Sie Deepfake-Videos und KI-generierte Bilder in großem Umfang. Enterprise-SLA, SOC 2 zertifiziert."
+      "metaDescription": "Erkennung synthetischer Medien für Behörden. Erkennen Sie Deepfake-Videos und KI-generierte Bilder in großem Umfang. Enterprise-SLA, SOC 2 geprüft."
     }
   },
   "compareContent": {
@@ -4633,7 +4633,7 @@
         },
         "2": {
           "title": "Compliance und Sicherheit",
-          "description": "Scam AI ist SOC 2 Type II zertifiziert und DSGVO-konform mit Audit-Protokollierung. Deepware ist ein kostenloses Verbraucher-Tool ohne Enterprise-Compliance."
+          "description": "Scam AI ist SOC 2 Type II geprüft und DSGVO-konform mit Audit-Protokollierung. Deepware ist ein kostenloses Verbraucher-Tool ohne Enterprise-Compliance."
         },
         "3": {
           "title": "Skalierbare Enterprise-Preise",

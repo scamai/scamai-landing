@@ -17,7 +17,7 @@
         "headline": "Contrez les menaces de l’IA",
         "headlineLine2": "avec",
         "headlineHighlight": "une défense IA",
-        "body": "Selon Deloitte, la fraude par deepfake générée par IA devrait coûter aux entreprises plus de $40 billion d’ici 2027. Nos modèles <em>Eva-v1</em> évoluent aussi vite que les menaces elles-mêmes — atteignant une <em>précision de détection de 98,2 %</em> en moins de 4 secondes, stoppant la fraude et protégeant vos revenus en temps réel.",
+        "body": "Selon Deloitte, la fraude par deepfake générée par IA devrait coûter aux entreprises plus de 40 milliards de dollars d’ici 2027. Nos modèles <em>Eva-v1</em> évoluent aussi vite que les menaces elles-mêmes — atteignant une <em>précision de détection de 98,2 %</em> en moins de 4 secondes, stoppant la fraude et protégeant vos revenus en temps réel.",
         "cta": "Commencer la détection"
       },
       "whyChooseUs": {
@@ -34,7 +34,7 @@
       "lightningFast": {
         "eyebrow": "ULTRA-RAPIDE",
         "headline": "Détection en temps réel à grande échelle",
-        "body": "Eva-v1-Fast traite les images en moins de 2 secondes ; Eva-v1-Pro offre une précision de niveau médico-légal en moins de 4 secondes. Prend en charge JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV et FLAC. Conçu pour les cas d’usage à fort volume comme la vérification KYC, la modération de contenu et l’authentification vocale des centres d’appels."
+        "body": "Eva-v1-Fast traite les images en moins de 2 secondes ; Eva-v1-Pro offre une précision de niveau forensique en moins de 4 secondes. Prend en charge JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV et FLAC. Conçu pour les cas d’usage à fort volume comme la vérification KYC, la modération de contenu et l’authentification vocale des centres d’appels."
       },
       "pricing": {
         "eyebrow": "$ TARIFICATION TRANSPARENTE",
@@ -44,11 +44,11 @@
       },
       "compliance": {
         "ariaLabel": "Tarification et conformité",
-        "gdprBadgeAlt": "Badge de conformité GDPR",
+        "gdprBadgeAlt": "Badge de conformité RGPD",
         "soc2BadgeAlt": "Badge attesté SOC 2 Type II",
         "eyebrow": "☑ CONFORMITÉ MONDIALE",
         "headline": "Restez en conformité, partout.",
-        "body": "Répondez aux exigences de protection des données dans l’UE, aux États-Unis et en APAC avec une seule intégration. <strong>Conforme au GDPR</strong> et <strong>attesté SOC 2 Type II</strong>. Par défaut, nous ne conservons pas vos médias après traitement ; les clients entreprise peuvent configurer une rétention personnalisée à des fins d’audit et de conformité.",
+        "body": "Répondez aux exigences de protection des données dans l’UE, aux États-Unis et en APAC avec une seule intégration. <strong>Conforme au RGPD</strong> et <strong>attesté SOC 2 Type II</strong>. Par défaut, nous ne conservons pas vos médias après traitement ; les clients entreprise peuvent configurer une rétention personnalisée à des fins d’audit et de conformité.",
         "trustCenter": "Consultez notre Trust Center →"
       },
       "resources": {
@@ -255,7 +255,7 @@
         "enterprise": {
           "name": "Enterprise",
           "price": "Sur mesure",
-          "description": "Précision de niveau médico-légal avec Eva-v1-Pro, moins de faux positifs, fonction Thinking avancée et support dédié pour les opérations à fort volume.",
+          "description": "Précision de niveau forensique avec Eva-v1-Pro, moins de faux positifs, fonction Thinking avancée et support dédié pour les opérations à fort volume.",
           "cta": "Contacter le service commercial",
           "features": {
             "everythingSelfServe": "Tout ce qui est inclus dans Self-Serve",
@@ -309,7 +309,7 @@
         },
         "dataRetention": {
           "question": "Quelle est votre politique de conservation des données ?",
-          "answer": "Nous sommes conformes au GDPR et attestés SOC 2 Type II. Par défaut, nous ne conservons pas vos médias après traitement. Les clients Enterprise peuvent configurer des politiques de rétention personnalisées pour répondre à leurs exigences spécifiques de conformité et d’audit."
+          "answer": "Nous sommes conformes au RGPD et attestés SOC 2 Type II. Par défaut, nous ne conservons pas vos médias après traitement. Les clients Enterprise peuvent configurer des politiques de rétention personnalisées pour répondre à leurs exigences spécifiques de conformité et d’audit."
         },
         "getStarted": {
           "question": "Comment commencer ?",
@@ -355,7 +355,7 @@
         },
         "documentForgery": {
           "title": "Falsification de documents",
-          "description": "Analyse médico-légale des documents générés par IA et manipulés, des relevés bancaires aux fiches de paie."
+          "description": "Analyse forensique des documents générés par IA et manipulés, des relevés bancaires aux fiches de paie."
         },
         "aiAgentScamPrevention": {
           "title": "Prévention des arnaques par agents IA",
@@ -596,7 +596,7 @@
         },
         "securityCompliance": {
           "label": "Sécurité et conformité",
-          "description": "Conformité SOC 2 Type II et GDPR"
+          "description": "Conformité SOC 2 Type II et RGPD"
         },
         "logIn": {
           "label": "Se connecter",
@@ -2502,7 +2502,7 @@
     "hero": {
       "eyebrow": "DÉTECTION IA",
       "heading": "Détectez les deepfakes dans les images et les vidéos",
-      "body": "Les modèles Eva-v1 de Scam AI détectent les <em>médias synthétiques</em>, les <em>visages manipulés</em> et les <em>vidéos deepfake</em> avec une <em>précision de 98.2%</em> en moins de 4 secondes. Prise en charge des échanges de visages, des images générées par GAN et des sorties de modèles de diffusion, notamment Stable Diffusion, DALL-E, Midjourney et Flux.",
+      "body": "Les modèles Eva-v1 de Scam AI détectent les <em>médias synthétiques</em>, les <em>visages manipulés</em> et les <em>vidéos deepfake</em> avec une <em>précision de 98,2 %</em> en moins de 4 secondes. Prise en charge des échanges de visages, des images générées par GAN et des sorties de modèles de diffusion, notamment Stable Diffusion, DALL-E, Midjourney et Flux.",
       "cta": "Essayer la détection IA"
     },
     "features": {
@@ -2511,7 +2511,7 @@
       "face": {
         "eyebrow": "DÉTECTION DE VISAGES",
         "heading": "Détection de manipulation de visages",
-        "body1": "Identifiez les échanges de visages, les changements d’expression et les manipulations d’attributs faciaux avec une <em>précision de 98.2%</em> grâce à une analyse avancée par réseaux de neurones. Détecte les sorties des principaux outils de génération, notamment Stable Diffusion, DALL-E, Midjourney et Flux.",
+        "body1": "Identifiez les échanges de visages, les changements d’expression et les manipulations d’attributs faciaux avec une <em>précision de 98,2 %</em> grâce à une analyse avancée par réseaux de neurones. Détecte les sorties des principaux outils de génération, notamment Stable Diffusion, DALL-E, Midjourney et Flux.",
         "body2": "Eva-v1-Fast traite en <em>moins de 2 secondes</em> pour une modération en temps réel. Eva-v1-Pro fournit des résultats de qualité forensique en <em>moins de 4 secondes</em> pour le KYC et les preuves juridiques."
       },
       "video": {
@@ -2580,7 +2580,7 @@
       "items": {
         "accuracy": {
           "question": "Quelle est la précision de la détection de deepfakes dans les images et vidéos par Scam AI ?",
-          "answer": "Scam AI atteint une précision de 98.2% pour la détection de deepfakes dans les images et vidéos grâce au modèle Eva-v1. Eva-v1-Fast traite en moins de 2 secondes pour les cas d’usage à fort débit, tandis qu’Eva-v1-Pro traite en moins de 4 secondes pour une précision maximale avec moins de faux positifs."
+          "answer": "Scam AI atteint une précision de 98,2 % pour la détection de deepfakes dans les images et vidéos grâce au modèle Eva-v1. Eva-v1-Fast traite en moins de 2 secondes pour les cas d’usage à fort débit, tandis qu’Eva-v1-Pro traite en moins de 4 secondes pour une précision maximale avec moins de faux positifs."
         },
         "types": {
           "question": "Quels types de deepfakes Scam AI peut-il détecter dans les images et les vidéos ?",
@@ -2624,7 +2624,7 @@
     "hero": {
       "eyebrow": "DÉTECTION AUDIO",
       "title": "Détectez le clonage vocal et l’audio synthétique",
-      "description": "Détectez les <em>clones de voix</em>, la <em>parole générée par IA</em> et l’<em>audio synthétique</em> avec une <em>précision de 98.5%</em> en moins de 3 secondes. Identifie les sorties d’ElevenLabs, PlayHT, Resemble AI, Azure TTS et d’autres plateformes de synthèse vocale. Prise en charge des formats MP3, WAV, M4A, FLAC et OGG.",
+      "description": "Détectez les <em>clones de voix</em>, la <em>parole générée par IA</em> et l’<em>audio synthétique</em> avec une <em>précision de 98,5 %</em> en moins de 3 secondes. Identifie les sorties d’ElevenLabs, PlayHT, Resemble AI, Azure TTS et d’autres plateformes de synthèse vocale. Prise en charge des formats MP3, WAV, M4A, FLAC et OGG.",
       "cta": "Contacter le service commercial"
     },
     "features": {
@@ -2633,7 +2633,7 @@
       "voiceCloning": {
         "eyebrow": "DÉTECTION DE CLONAGE VOCAL",
         "title": "Identifiez les voix générées par IA",
-        "body1": "Identifiez les clones de voix générés par IA avec une <em>précision de 98.5%</em> sur de multiples langues, accents et schémas de parole. Selon le rapport IC3 2024 du FBI, les pertes liées au phishing vocal ont dépassé $12.5 billion à l’échelle mondiale, rendant la détection audio en temps réel essentielle pour les institutions financières et les centres d’appels.",
+        "body1": "Identifiez les clones de voix générés par IA avec une <em>précision de 98,5 %</em> sur de multiples langues, accents et schémas de parole. Selon le rapport IC3 2024 du FBI, les pertes liées au phishing vocal ont dépassé 12,5 milliards de dollars à l’échelle mondiale, rendant la détection audio en temps réel essentielle pour les institutions financières et les centres d’appels.",
         "body2": "Un traitement en <em>moins de 3 secondes</em> par extrait audio permet la vérification d’appels en direct, l’analyse de flux en temps réel et le filtrage automatisé des fraudes à grande échelle."
       },
       "tts": {
@@ -2702,7 +2702,7 @@
       "items": {
         "accuracy": {
           "question": "Quelle est la précision de la détection de clones de voix et de deepfakes audio par Scam AI ?",
-          "answer": "Scam AI atteint une précision de 98.5% pour la détection de clones de voix, identifiant les voix synthétiques de plateformes telles qu’ElevenLabs, PlayHT, Resemble AI et Azure TTS. Le temps de traitement est inférieur à 3 secondes par fichier audio."
+          "answer": "Scam AI atteint une précision de 98,5 % pour la détection de clones de voix, identifiant les voix synthétiques de plateformes telles qu’ElevenLabs, PlayHT, Resemble AI et Azure TTS. Le temps de traitement est inférieur à 3 secondes par fichier audio."
         },
         "types": {
           "question": "Quels types de deepfakes audio Scam AI peut-il détecter ?",
@@ -2718,7 +2718,7 @@
         },
         "whatIs": {
           "question": "Qu’est-ce que la détection de clonage vocal ?",
-          "answer": "La détection de clonage vocal identifie l’audio qui a été généré ou cloné artificiellement à l’aide d’outils de synthèse vocale par IA tels qu’ElevenLabs, PlayHT ou Azure TTS. Le modèle audio Eva-v1 de Scam AI analyse les artefacts spectraux et temporels — des schémas invisibles à l’oreille humaine — qui distinguent les voix synthétiques des enregistrements authentiques, avec une précision de 98.5%."
+          "answer": "La détection de clonage vocal identifie l’audio qui a été généré ou cloné artificiellement à l’aide d’outils de synthèse vocale par IA tels qu’ElevenLabs, PlayHT ou Azure TTS. Le modèle audio Eva-v1 de Scam AI analyse les artefacts spectraux et temporels — des schémas invisibles à l’oreille humaine — qui distinguent les voix synthétiques des enregistrements authentiques, avec une précision de 98,5 %."
         },
         "realtime": {
           "question": "L’API de détection de deepfakes audio peut-elle traiter des flux en temps réel ?",
@@ -2772,7 +2772,7 @@
         },
         "enhanced-accuracy": {
           "title": "Précision de détection améliorée",
-          "description": "Amélioration de la précision de détection des deepfakes à 98.2% avec un temps de traitement réduit à moins de 4 secondes. Ajout de la prise en charge de l’analyse vidéo 4K et d’algorithmes améliorés de détection de deepfakes audio."
+          "description": "Amélioration de la précision de détection des deepfakes à 98,2 % avec un temps de traitement réduit à moins de 4 secondes. Ajout de la prise en charge de l’analyse vidéo 4K et d’algorithmes améliorés de détection de deepfakes audio."
         },
         "seed-funding": {
           "title": "Tour de financement d’amorçage — $2.6M",
@@ -2787,8 +2787,8 @@
           "description": "Lancement de la détection de deepfakes audio avec une précision de 92% pour le clonage vocal. Prise en charge des formats MP3, WAV et AAC avec analyse de flux audio en temps réel."
         },
         "compliance": {
-          "title": "Conformité GDPR et SOC 2 Type I",
-          "description": "Obtention de la conformité GDPR et de la certification SOC 2 Type I, démontrant notre engagement en faveur de la confidentialité et de la sécurité des données. Des normes de sécurité de niveau entreprise sont désormais en place."
+          "title": "Conformité RGPD et SOC 2 Type I",
+          "description": "Obtention de la conformité RGPD et de la certification SOC 2 Type I, démontrant notre engagement en faveur de la confidentialité et de la sécurité des données. Des normes de sécurité de niveau entreprise sont désormais en place."
         },
         "pre-seed-funding": {
           "title": "Financement de pré-amorçage de Berkeley SkyDeck",
@@ -2814,12 +2814,12 @@
     "cards": {
       "aiDetection": {
         "title": "Détection de deepfakes dans les images et vidéos par IA",
-        "description": "Détectez les images générées par IA et les vidéos deepfake avec une précision de 98.2%* grâce au modèle Eva-v1. Identifiez les échanges de visages, les images générées par GAN et les sorties de modèles de diffusion de Stable Diffusion, DALL-E et Midjourney. S’intègre via API REST en moins de 10 minutes.",
+        "description": "Détectez les images générées par IA et les vidéos deepfake avec une précision de 98,2 %* grâce au modèle Eva-v1. Identifiez les échanges de visages, les images générées par GAN et les sorties de modèles de diffusion de Stable Diffusion, DALL-E et Midjourney. S’intègre via API REST en moins de 10 minutes.",
         "link": "Découvrir la détection de deepfakes par IA →"
       },
       "audioDetection": {
         "title": "Détection de clonage vocal et d’audio synthétique",
-        "description": "Détectez les clones de voix, la parole générée par IA et l’audio synthétique avec une précision de 98.5% en moins de 3 secondes. Identifie les sorties d’ElevenLabs, PlayHT, Azure TTS et d’autres plateformes de synthèse vocale. Prend en charge l’analyse de flux en temps réel pour la prévention de la fraude dans les centres d’appels.",
+        "description": "Détectez les clones de voix, la parole générée par IA et l’audio synthétique avec une précision de 98,5 % en moins de 3 secondes. Identifie les sorties d’ElevenLabs, PlayHT, Azure TTS et d’autres plateformes de synthèse vocale. Prend en charge l’analyse de flux en temps réel pour la prévention de la fraude dans les centres d’appels.",
         "link": "Découvrir la détection de clonage vocal →"
       }
     },
@@ -2848,7 +2848,7 @@
       },
       "financial": {
         "title": "Services financiers",
-        "description": "Détectez la fraude à l’identité par deepfake lors du KYC et des demandes de prêt avec une précision de 98.2%. Protégez les centres d’appels contre les attaques d’identité synthétique et le phishing vocal grâce à la détection de clonage vocal en temps réel.",
+        "description": "Détectez la fraude à l’identité par deepfake lors du KYC et des demandes de prêt avec une précision de 98,2 %. Protégez les centres d’appels contre les attaques d’identité synthétique et le phishing vocal grâce à la détection de clonage vocal en temps réel.",
         "linkKyc": "Détection de deepfakes par IA pour le KYC →",
         "linkVoice": "Détection de clonage vocal →"
       },
@@ -2952,7 +2952,7 @@
         },
         "private": {
           "title": "Confidentiel par conception",
-          "body": "Les images vidéo sont analysées en mémoire puis supprimées — rien n’est enregistré, stocké ni transmis. L’absence d’envoi vers le cloud signifie aucun nouveau pot de miel d’appels sensibles, et un parcours bien plus simple à travers les revues juridiques, informatiques et GDPR."
+          "body": "Les images vidéo sont analysées en mémoire puis supprimées — rien n’est enregistré, stocké ni transmis. L’absence d’envoi vers le cloud signifie aucun nouveau pot de miel d’appels sensibles, et un parcours bien plus simple à travers les revues juridiques, informatiques et RGPD."
         }
       }
     },
@@ -3216,7 +3216,7 @@
         },
         "regions": {
           "question": "Dans quelles régions opérez-vous ?",
-          "answer": "Scam AI opère à l’échelle mondiale avec des centres de données aux États-Unis, dans l’UE et en APAC. Nous sommes conformes au GDPR et pouvons vous aider à répondre aux exigences régionales de résidence des données."
+          "answer": "Scam AI opère à l’échelle mondiale avec des centres de données aux États-Unis, dans l’UE et en APAC. Nous sommes conformes au RGPD et pouvons vous aider à répondre aux exigences régionales de résidence des données."
         },
         "sla": {
           "question": "Quel est votre SLA pour les clients entreprise ?",
@@ -4853,6 +4853,113 @@
       "heading": "Documentation de sécurité",
       "body": "Vous souhaitez examiner nos pratiques de sécurité en détail ?",
       "cta": "Demander le livre blanc de sécurité"
+    }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": {
+        "title": "Détection de deepfakes pour la fintech et la banque",
+        "metaDescription": "Détection de deepfakes pour le KYC fintech avec 98,2 % de précision. Détectez identités synthétiques, documents falsifiés et clones de voix en moins de 4 secondes. Certifié SOC 2.",
+        "headline": "Détection de deepfakes pour la fintech et la banque"
+      },
+      "dating": {
+        "title": "Détection de deepfakes et de faux profils pour les applications de rencontre",
+        "metaDescription": "Détectez les faux profils générés par IA et le catfishing vocal sur les applications de rencontre. Scam AI signale les visages synthétiques dès l’envoi avec 98,2 % de précision. 200 gratuites/mois.",
+        "headline": "Détection de deepfakes et de faux profils pour les applications de rencontre"
+      },
+      "call-centers": {
+        "title": "Détection de clonage vocal pour les centres d’appels",
+        "metaDescription": "Détection de clonage vocal pour les centres d’appels avec 98,5 % de précision. Détectez les attaques de vishing en temps réel, en moins de 3 secondes. Certifié SOC 2, intégration API en 10 minutes.",
+        "headline": "Détection de clonage vocal pour les centres d’appels"
+      },
+      "kyc": {
+        "title": "Stoppez la fraude par deepfake dans la vérification d’identité KYC",
+        "metaDescription": "Détectez les selfies deepfake et les documents d’identité modifiés par IA lors de l’onboarding KYC. Le modèle Eva-v1 de Scam AI atteint 98,2 % de précision en moins de 4 secondes. Certifié SOC 2 Type II.",
+        "headline": "Stoppez la fraude par deepfake dans la vérification d’identité KYC"
+      },
+      "media": {
+        "title": "Détection de contenus générés par IA pour les médias et les rédactions",
+        "metaDescription": "API de détection de deepfakes pour les rédactions. Vérifiez images, vidéos et audio à la recherche de génération par IA avant publication. 98,2 % de précision, 200 gratuites/mois.",
+        "headline": "Détection de contenus générés par IA pour les médias et les rédactions"
+      },
+      "insurance": {
+        "title": "Détectez la fraude générée par IA dans les sinistres d’assurance",
+        "metaDescription": "Détectez les photos modifiées par IA et les documents falsifiés dans les sinistres d’assurance. Scam AI analyse les preuves de sinistre à la recherche de manipulations synthétiques. 0,05 $/image, certifié SOC 2.",
+        "headline": "Détectez la fraude générée par IA dans les sinistres d’assurance"
+      },
+      "hr": {
+        "title": "Détectez les deepfakes dans les entretiens à distance et le recrutement vidéo",
+        "metaDescription": "Détectez les deepfakes, les outils de voix par IA et les avatars synthétiques lors des entretiens d’embauche à distance. Scam AI vérifie l’authenticité vidéo et audio pour les équipes RH et les plateformes de recrutement.",
+        "headline": "Détectez les deepfakes dans les entretiens à distance et le recrutement vidéo"
+      },
+      "government": {
+        "title": "Détection de médias synthétiques pour le secteur public et les administrations",
+        "metaDescription": "Détection de médias synthétiques pour les administrations publiques. Détectez les vidéos deepfake et les images générées par IA à grande échelle. SLA entreprise, certifié SOC 2.",
+        "headline": "Détection de médias synthétiques pour le secteur public et les administrations"
+      }
+    },
+    "compare": {
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender : comparatif de détection de deepfakes",
+        "metaDescription": "Scam AI vs Reality Defender : 0,05 $/image vs contrats annuels, 200 images gratuites vs aucune, intégration API en 10 min vs onboarding sur mesure. Comparatif complet.",
+        "tagline": "Scam AI vs Reality Defender : comparatif de détection de deepfakes"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI : comparatif de détection de deepfakes",
+        "metaDescription": "Scam AI vs Sensity AI : images, vidéos, audio et documents dans une seule API. 0,05 $/image vs contrats entreprise, 200 gratuites/mois. Comparatif complet.",
+        "tagline": "Scam AI vs Sensity AI : comparatif de détection de deepfakes"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation : comparatif de détection de deepfakes",
+        "metaDescription": "Scam AI vs Hive Moderation : 98,2 % de détection de deepfakes vs modération générale. Détection de clonage vocal et de falsification de documents absente chez Hive. 0,05 $/image.",
+        "tagline": "Scam AI vs Hive Moderation : comparatif de détection de deepfakes"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure AI Content Safety : détection de deepfakes spécialisée à 98,2 % vs classificateur de sécurité généraliste. Détection de clonage vocal et de falsification de documents incluse.",
+        "tagline": "Scam AI vs Microsoft Azure AI Content Safety : comparatif de détection de deepfakes"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition : comparatif de détection de deepfakes",
+        "metaDescription": "Scam AI vs AWS Rekognition : modèle dédié de détection de deepfakes vs analyse faciale généraliste, plus détection de clonage vocal et de falsification de documents absente de Rekognition.",
+        "tagline": "Scam AI vs AWS Rekognition : comparatif de détection de deepfakes"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic : comparatif de détection de deepfakes",
+        "metaDescription": "Scam AI vs Truepic : détection de deepfakes par IA sur n’importe quelle image vs provenance C2PA nécessitant un matériel caméra. Fonctionne rétroactivement, sans métadonnées requises.",
+        "tagline": "Scam AI vs Truepic : comparatif de détection de deepfakes"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware : comparatif de détection de deepfakes",
+        "metaDescription": "Scam AI vs Deepware : API de production avec SLA de 99,9 % et SOC 2 vs scanner grand public gratuit. Intégration KYC entreprise et détection de clonage vocal.",
+        "tagline": "Scam AI vs Deepware : comparatif de détection de deepfakes"
+      }
+    },
+    "learn": {
+      "what-is-a-deepfake": {
+        "title": "Qu’est-ce qu’un deepfake ? Fonctionnement et méthodes de détection",
+        "description": "Un guide complet sur les deepfakes — ce qu’ils sont, comment l’IA les crée, pourquoi ils représentent une menace de sécurité croissante et comment fonctionne la technologie de détection."
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "Comment détecter les images générées par IA (outils gratuits + API)",
+        "description": "Comment détecter les images générées par IA avec des outils gratuits et des API. Conseils d’inspection visuelle, détection des modèles GAN et de diffusion, et identification des échanges de visages."
+      },
+      "voice-cloning-attacks": {
+        "title": "Attaques par clonage vocal : fonctionnement et moyens de les stopper",
+        "description": "Les attaques par clonage vocal expliquées : comment l’IA clone des voix en quelques secondes, des cas réels de vishing, et comment une détection précise à 98,5 % les stoppe."
+      },
+      "deepfake-detection-accuracy": {
+        "title": "Précision de la détection de deepfakes : ce que les benchmarks signifient vraiment",
+        "description": "La précision de la détection de deepfakes expliquée : comment fonctionnent les benchmarks, pourquoi la précision chute en conditions réelles, et comment choisir le bon seuil pour votre cas d’usage."
+      },
+      "deepfake-detection-api-guide": {
+        "title": "Comment intégrer la détection de deepfakes dans votre application (guide API)",
+        "description": "Intégrez la détection de deepfakes dans votre application via API. Choix des endpoints, exemples de requêtes, scores de confiance et guide de mise à l’échelle en production."
+      },
+      "deepfake-statistics-2026": {
+        "title": "Statistiques sur les deepfakes en 2026 : les chiffres à connaître",
+        "description": "La collection de référence des statistiques sur les deepfakes pour 2026 — pertes liées à la fraude, benchmarks de précision de détection, impact sectoriel et réponses réglementaires."
+      }
     }
   }
 }

@@ -14,10 +14,10 @@
       "aiSecurity": {
         "ariaLabel": "AI 驱动的安全 - Deepfake 防护",
         "eyebrow": "AI 驱动的安全",
-        "headline": "用 AI 防御",
-        "headlineLine2": "对抗",
-        "headlineHighlight": "AI 威胁",
-        "body": "据 Deloitte 预测，到 2027 年，AI 生成的 deepfake 欺诈将给企业造成超过 $40 billion 的损失。我们的 <em>Eva-v1</em> 模型与威胁同步进化——在 4 秒内实现 <em>98.2% 的检测准确率</em>，实时遏制欺诈、守护你的营收。",
+        "headline": "抵御 AI 威胁",
+        "headlineLine2": "靠",
+        "headlineHighlight": "AI 防御",
+        "body": "据 Deloitte 预测，到 2027 年，AI 生成的 deepfake 欺诈将给企业造成超过 400 亿美元的损失。我们的 <em>Eva-v1</em> 模型与威胁同步进化——在 4 秒内实现 <em>98.2% 的检测准确率</em>，实时遏制欺诈、守护你的营收。",
         "cta": "立即开始检测"
       },
       "whyChooseUs": {
@@ -40,7 +40,7 @@
         "eyebrow": "$ 透明定价",
         "headline": "用多少，付多少。",
         "freeImages": "每月 200 张免费图像",
-        "body": "使用 Eva-v1-Fast 模型，每月可免费检测 200 张图像。超出后按量付费，每张 $0.05。可选附加功能（自适应防御、活体检测、快速通道）每张各 $0.008。无需签约，无安装费。"
+        "body": "使用 Eva-v1-Fast 模型，每月可免费检测 200 张图像。超出后按量付费，每张 $0.05。可选附加功能（自适应防御、活体检测、极速通道）每张各 $0.008。无需签约，无安装费。"
       },
       "compliance": {
         "ariaLabel": "定价与合规",
@@ -130,7 +130,7 @@
             },
             "dating": {
               "label": "交友应用",
-              "description": "虚假资料与语音杀猪盘防范"
+              "description": "虚假资料与语音假冒身份防范"
             },
             "insurance": {
               "label": "保险",
@@ -211,7 +211,7 @@
           "desc": "验证真实人体存在，防范 deepfake 欺骗"
         },
         "express": {
-          "label": "快速通道",
+          "label": "极速通道",
           "desc": "低延迟处理，保证 3 秒内响应"
         }
       },
@@ -285,7 +285,7 @@
         },
         "pricingAfterFree": {
           "question": "免费额度用完后如何计费？",
-          "answer": "每月 200 张免费图像用完后，每分析一张图像收费 $0.05。你还可以添加可选功能，如自适应防御（+$0.008/张）、活体检测（+$0.008/张）或快速通道（+$0.008/张）。完整定价请访问 https://scam.ai/pricing"
+          "answer": "每月 200 张免费图像用完后，每分析一张图像收费 $0.05。你还可以添加可选功能，如自适应防御（+$0.008/张）、活体检测（+$0.008/张）或极速通道（+$0.008/张）。完整定价请访问 https://scam.ai/pricing"
         },
         "mediaTypes": {
           "question": "我可以分析哪些类型的媒体？",
@@ -2633,7 +2633,7 @@
       "voiceCloning": {
         "eyebrow": "语音克隆检测",
         "title": "识别 AI 生成的语音",
-        "body1": "以 <em>98.5% 的准确率</em> 跨多种语言、口音和说话模式识别 AI 生成的语音克隆。据 FBI 的 IC3 2024 年报告，全球语音网络钓鱼损失超过 $12.5 billion，这使得实时音频检测对金融机构和呼叫中心至关重要。",
+        "body1": "以 <em>98.5% 的准确率</em> 跨多种语言、口音和说话模式识别 AI 生成的语音克隆。据 FBI 的 IC3 2024 年报告，全球语音网络钓鱼损失超过 125 亿美元，这使得实时音频检测对金融机构和呼叫中心至关重要。",
         "body2": "每段音频的处理时间 <em>不到 3 秒</em>，可实现实时通话核验、实时流式分析和大规模自动化欺诈筛查。"
       },
       "tts": {
@@ -3173,12 +3173,12 @@
       "app": "<label>⁵ 应用功能。</label> scam.ai 作为一款端侧筛查工具运行，不保证检测出所有欺诈活动。性能可能因设备和操作系统而异。"
     },
     "waitlistForm": {
-      "successTitle": "你已加入名单！",
-      "successBody": "scam.ai 一上线我们就通知你。",
+      "successTitle": "您已加入名单！",
+      "successBody": "scam.ai 一上线我们就通知您。",
       "emailLabel": "电子邮箱",
       "emailPlaceholder": "yourname@email.com",
       "error": "出错了，请重试。",
-      "saving": "正在为你预留名额…",
+      "saving": "正在为您预留名额…",
       "joinButton": "加入候补名单",
       "earlyBird": "早鸟可享 3 个月免费"
     }
@@ -3332,7 +3332,7 @@
       "name": "交友应用",
       "eyebrow": "DATING",
       "headline": "面向交友应用的深度伪造与虚假资料检测",
-      "subheadline": "杀猪盘骗子利用 AI 生成的头像和克隆语音大规模欺骗用户。Scam AI 为交友平台提供 API，可在配对达成之前自动核验资料图像和音频是否存在合成篡改。",
+      "subheadline": "情感诈骗分子利用 AI 生成的头像和克隆语音大规模欺骗用户。Scam AI 为交友平台提供 API，可在配对达成之前自动核验资料图像和音频是否存在合成篡改。",
       "stat": {
         "label": "的网络情感诈骗资料涉及 AI 生成或经过篡改的照片"
       },
@@ -3342,7 +3342,7 @@
           "description": "在上传时即检测 AI 生成或经过篡改的资料图像，在换脸、GAN 生成人脸及扩散模型输出触达其他用户之前将其拦截。"
         },
         "1": {
-          "title": "语音猫腻（catfishing）防护",
+          "title": "语音假冒身份（catfishing）防护",
           "description": "识别音频和视频消息中的克隆语音，保护用户免受利用 AI 冒充迷人对象的骗子侵害。"
         },
         "2": {
@@ -3366,7 +3366,7 @@
         },
         "1": {
           "title": "应用内媒体核验",
-          "description": "核验聊天中分享的照片和视频，在对话过程中即时识别钓鱼企图。",
+          "description": "核验聊天中分享的照片和视频，在对话过程中即时识别假冒身份企图。",
           "bullets": {
             "0": "实时媒体扫描",
             "1": "深度伪造视频检测",
@@ -3416,7 +3416,7 @@
       },
       "ctaHeadline": "打造更安全的交友平台",
       "ctaSubheadline": "每月 200 次免费图像分析，无需信用卡。",
-      "metaDescription": "检测交友应用上的 AI 生成虚假资料与语音钓鱼。Scam AI 在上传时即以 98.2% 的准确率标记合成人脸。每月 200 次免费。"
+      "metaDescription": "检测交友应用上的 AI 生成虚假资料与语音假冒身份。Scam AI 在上传时即以 98.2% 的准确率标记合成人脸。每月 200 次免费。"
     },
     "call-centers": {
       "name": "呼叫中心",
@@ -3621,7 +3621,7 @@
         },
         "3": {
           "title": "批量内容处理",
-          "description": "通过 API 处理大量用户提交内容、通讯社图片或辛迪加媒体，实现新闻编辑室规模的核验。"
+          "description": "通过 API 处理大量用户提交内容、通讯社图片或联合供稿的媒体内容，实现新闻编辑室规模的核验。"
         }
       },
       "useCases": {
@@ -3653,8 +3653,8 @@
           }
         },
         "3": {
-          "title": "通讯社与辛迪加内容核验",
-          "description": "核验来自通讯社的辛迪加图像和视频，识别下游篡改。",
+          "title": "通讯社与联合供稿内容核验",
+          "description": "核验来自通讯社的联合供稿图像和视频，识别下游篡改。",
           "bullets": {
             "0": "批量通讯社内容扫描",
             "1": "来源认证层",
@@ -3716,7 +3716,7 @@
       },
       "useCases": {
         "0": {
-          "title": "首次损失通知（FNOL）",
+          "title": "首次报案（FNOL）",
           "description": "对初次报案时提交的每张照片和视频进行合成篡改筛查。",
           "bullets": {
             "0": "AI 编辑损失照片检测",
@@ -3864,7 +3864,7 @@
           "answer": "按每张图像 $0.05、每个音频文件 $0.05 计算，筛查一场 30 分钟的视频面试（以每 30 秒一帧采样）成本约为 $3。开始时可使用每月 200 次免费分析的免费额度。"
         }
       },
-      "ctaHeadline": "核实你实际录用的是谁",
+      "ctaHeadline": "核实您实际录用的究竟是谁",
       "ctaSubheadline": "每月 200 次免费分析，无需信用卡。",
       "metaDescription": "检测远程求职面试中的深度伪造、AI 语音工具与合成虚拟形象。Scam AI 为 HR 团队和招聘平台核验视频与音频的真实性。"
     },
@@ -3990,7 +3990,7 @@
         },
         "6": {
           "feature": "音频/语音克隆检测",
-          "competitor": "有限"
+          "competitor": "有限支持"
         },
         "7": {
           "feature": "SOC 2 Type II",
@@ -4085,7 +4085,7 @@
         "8": {
           "feature": "符合 GDPR",
           "scamai": "支持",
-          "competitor": "支持（总部位于欧盟）"
+          "competitor": "支持（位于欧盟）"
         },
         "9": {
           "feature": "公开研究",
@@ -4530,7 +4530,7 @@
         },
         "3": {
           "title": "可扩展的企业定价",
-          "description": "Scam AI 可从每月 200 张图像的免费额度扩展到具备专属吞吐量的企业方案。Deepware 并非为高并发企业工作负载而设计。"
+          "description": "Scam AI 可从每月 200 张图像的免费额度扩展到具备专属吞吐量的企业方案。Deepware 并非为高吞吐量企业工作负载而设计。"
         }
       },
       "faqs": {
@@ -4720,7 +4720,7 @@
       },
       "rateLimiting": {
         "title": "速率限制",
-        "description": "遵守速率限制以避免 429 错误。对于高并发应用，请实现请求队列。"
+        "description": "遵守速率限制以避免 429 错误。对于大批量应用，请实现请求队列。"
       },
       "fileOptimization": {
         "title": "文件优化",
@@ -4853,6 +4853,113 @@
       "heading": "安全文档",
       "body": "想要详细了解我们的安全实践？",
       "cta": "索取安全白皮书"
+    }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": {
+        "title": "面向金融科技与银行的深度伪造检测",
+        "metaDescription": "面向金融科技 KYC 的深度伪造检测，准确率达 98.2%。4 秒内识别合成身份、伪造证件与语音克隆。已通过 SOC 2 认证。",
+        "headline": "面向金融科技与银行的深度伪造检测"
+      },
+      "dating": {
+        "title": "面向交友应用的深度伪造与虚假资料检测",
+        "metaDescription": "检测交友应用上 AI 生成的虚假资料与语音假冒身份。Scam AI 在上传时即标记合成人脸，准确率达 98.2%。每月 200 张免费。",
+        "headline": "面向交友应用的深度伪造与虚假资料检测"
+      },
+      "call-centers": {
+        "title": "面向呼叫中心的语音克隆检测",
+        "metaDescription": "面向呼叫中心的语音克隆检测，准确率达 98.5%。实时识别语音钓鱼（vishing）攻击，3 秒内出结果。已通过 SOC 2 认证，10 分钟完成 API 配置。",
+        "headline": "面向呼叫中心的语音克隆检测"
+      },
+      "kyc": {
+        "title": "遏制 KYC 身份验证中的深度伪造欺诈",
+        "metaDescription": "在 KYC 开户流程中检测深度伪造自拍与 AI 篡改的证件。Scam AI 的 Eva-v1 模型 4 秒内即可实现 98.2% 的准确率。已通过 SOC 2 Type II 认证。",
+        "headline": "遏制 KYC 身份验证中的深度伪造欺诈"
+      },
+      "media": {
+        "title": "面向媒体与新闻编辑室的 AI 生成内容检测",
+        "metaDescription": "面向新闻编辑室的深度伪造检测 API。在发布前核验图像、视频和音频是否由 AI 生成。准确率达 98.2%，每月 200 张免费。",
+        "headline": "面向媒体与新闻编辑室的 AI 生成内容检测"
+      },
+      "insurance": {
+        "title": "识别保险理赔中的 AI 生成欺诈",
+        "metaDescription": "识别保险理赔中 AI 篡改的照片与伪造的证件。Scam AI 对理赔证据进行合成篡改筛查。每张图像 $0.05，已通过 SOC 2 认证。",
+        "headline": "识别保险理赔中的 AI 生成欺诈"
+      },
+      "hr": {
+        "title": "识别远程面试与视频招聘中的深度伪造",
+        "metaDescription": "识别远程求职面试中的深度伪造、AI 语音工具与合成虚拟形象。Scam AI 为人力资源团队与招聘平台核验视频和音频的真实性。",
+        "headline": "识别远程面试与视频招聘中的深度伪造"
+      },
+      "government": {
+        "title": "面向政府与公共部门的合成媒体检测",
+        "metaDescription": "面向政府机构的合成媒体检测。大规模识别深度伪造视频与 AI 生成图像。提供企业级 SLA，已通过 SOC 2 认证。",
+        "headline": "面向政府与公共部门的合成媒体检测"
+      }
+    },
+    "compare": {
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender：深度伪造检测对比",
+        "metaDescription": "Scam AI vs Reality Defender：每张图像 $0.05 对比年度合约，200 张免费图像对比零免费，10 分钟 API 配置对比定制化接入。完整对比。",
+        "tagline": "Scam AI vs Reality Defender：深度伪造检测对比"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI：深度伪造检测对比",
+        "metaDescription": "Scam AI vs Sensity AI：图像、视频、音频与文档统一于一个 API。每张图像 $0.05 对比企业合约，每月 200 张免费。完整对比。",
+        "tagline": "Scam AI vs Sensity AI：深度伪造检测对比"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation：深度伪造检测对比",
+        "metaDescription": "Scam AI vs Hive Moderation：98.2% 深度伪造检测对比通用内容审核。提供 Hive 所缺失的语音克隆与证件伪造检测。每张图像 $0.05。",
+        "tagline": "Scam AI vs Hive Moderation：深度伪造检测对比"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure AI Content Safety：专为深度伪造打造的 98.2% 检测对比通用安全分类器。内置语音克隆与证件伪造检测。",
+        "tagline": "Scam AI vs Microsoft Azure AI Content Safety：深度伪造检测对比"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition：深度伪造检测对比",
+        "metaDescription": "Scam AI vs AWS Rekognition：专用深度伪造检测模型对比通用人脸分析，并提供 Rekognition 所没有的语音克隆与证件伪造检测。",
+        "tagline": "Scam AI vs AWS Rekognition：深度伪造检测对比"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic：深度伪造检测对比",
+        "metaDescription": "Scam AI vs Truepic：对任意图像进行 AI 深度伪造检测，对比需要相机硬件的 C2PA 溯源。可追溯既往内容，无需元数据。",
+        "tagline": "Scam AI vs Truepic：深度伪造检测对比"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware：深度伪造检测对比",
+        "metaDescription": "Scam AI vs Deepware：具备 99.9% SLA 与 SOC 2 的生产级 API 对比免费消费级扫描工具。提供企业级 KYC 集成与语音克隆检测。",
+        "tagline": "Scam AI vs Deepware：深度伪造检测对比"
+      }
+    },
+    "learn": {
+      "what-is-a-deepfake": {
+        "title": "什么是深度伪造？工作原理与检测方法详解",
+        "description": "深度伪造完整指南——它是什么、AI 如何生成、为何成为日益严峻的安全威胁，以及检测技术的工作原理。"
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "如何检测 AI 生成图像（免费工具 + API）",
+        "description": "如何借助免费工具和 API 检测 AI 生成图像。涵盖肉眼识别技巧、GAN 与扩散模型检测，以及换脸识别。"
+      },
+      "voice-cloning-attacks": {
+        "title": "语音克隆攻击：工作原理与防范方法",
+        "description": "语音克隆攻击详解：AI 如何在几秒内克隆人声、真实的语音钓鱼案例，以及准确率达 98.5% 的检测如何予以阻止。"
+      },
+      "deepfake-detection-accuracy": {
+        "title": "深度伪造检测准确率：基准测试究竟意味着什么",
+        "description": "深度伪造检测准确率详解：基准测试如何运作、为何准确率在真实场景中会下降，以及如何为您的应用场景选择合适的阈值。"
+      },
+      "deepfake-detection-api-guide": {
+        "title": "如何将深度伪造检测集成到您的应用（API 指南）",
+        "description": "通过 API 将深度伪造检测集成到您的应用。涵盖端点选择、请求示例、置信度评分与生产环境扩展指南。"
+      },
+      "deepfake-statistics-2026": {
+        "title": "2026 年深度伪造统计数据：你需要了解的关键数字",
+        "description": "2026 年深度伪造统计数据权威合集——涵盖欺诈损失、检测准确率基准、行业影响与监管应对。"
+      }
     }
   }
 }

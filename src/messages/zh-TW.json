@@ -4,20 +4,20 @@
       "hero": {
         "ariaLabel": "首屏區域 - AI 信任平台",
         "badgeShort": "推出 Halo · 攜手 Qualcomm",
-        "badge": "推出 Halo · 攜手 Qualcomm 實現裝置端 deepfake 偵測",
+        "badge": "推出 Halo · 攜手 Qualcomm 實現裝置端深度偽造偵測",
         "headline": "驗證真實，守護所重。",
-        "subhead": "Deepfake 與語音複製無所不在——出現在你的視訊通話、私訊與螢幕上。scam.ai 能<em>即時</em>識破它們，讓你隨時確認螢幕另一端究竟是誰。",
+        "subhead": "深度偽造與語音複製無所不在——出現在你的視訊通話、私訊與螢幕上。scam.ai 能<em>即時</em>識破它們，讓你隨時確認螢幕另一端究竟是誰。",
         "visitHalo": "了解 Halo",
         "tryFaceswap": "看看偽造一張臉有多容易",
         "bookDemo": "需要客製化偵測？<strong>預約展示</strong>"
       },
       "aiSecurity": {
-        "ariaLabel": "AI 驅動的安全 - Deepfake 防護",
+        "ariaLabel": "AI 驅動的安全 - 深度偽造防護",
         "eyebrow": "AI 驅動的安全",
         "headline": "以 AI 防禦",
         "headlineLine2": "對抗",
         "headlineHighlight": "AI 威脅",
-        "body": "根據 Deloitte 預測，到 2027 年，AI 生成的 deepfake 詐騙將造成企業超過 $40 billion 的損失。我們的 <em>Eva-v1</em> 模型與威脅同步進化——在 4 秒內達成 <em>98.2% 的偵測準確率</em>，即時遏止詐騙、守護你的營收。",
+        "body": "根據 Deloitte 預測，到 2027 年，AI 生成的深度偽造詐騙將造成企業超過 400 億美元的損失。我們的 <em>Eva-v1</em> 模型與威脅同步進化——在 4 秒內達成 <em>98.2% 的偵測準確率</em>，即時遏止詐騙、守護你的營收。",
         "cta": "立即開始偵測"
       },
       "whyChooseUs": {
@@ -29,18 +29,18 @@
       "allInOne": {
         "eyebrow": "一體化平台",
         "headline": "一個平台，滿足所有媒體驗證需求",
-        "body": "無需在多款偵測工具之間切換。Scam AI 將圖片、影片與音訊的 deepfake 偵測整合至單一 API。偵測換臉、GAN 生成圖片、擴散模型輸出（Stable Diffusion、DALL-E、Midjourney）以及語音複製——只需一次整合，10 分鐘內即可完成。"
+        "body": "無需在多款偵測工具之間切換。Scam AI 將影像、影片與音訊的深度偽造偵測整合至單一 API。偵測換臉、GAN 生成影像、擴散模型輸出（Stable Diffusion、DALL-E、Midjourney）以及語音複製——只需一次整合，10 分鐘內即可完成。"
       },
       "lightningFast": {
         "eyebrow": "極速回應",
         "headline": "大規模即時偵測",
-        "body": "Eva-v1-Fast 可在 2 秒內完成圖片處理；Eva-v1-Pro 可在 4 秒內提供鑑識級準確率。支援 JPG、PNG、GIF、WebP、MP4、MOV、AVI、MP3、WAV 與 FLAC。專為 KYC 驗證、內容審核與客服中心語音認證等高吞吐情境打造。"
+        "body": "Eva-v1-Fast 可在 2 秒內完成影像處理；Eva-v1-Pro 可在 4 秒內提供鑑識級準確率。支援 JPG、PNG、GIF、WebP、MP4、MOV、AVI、MP3、WAV 與 FLAC。專為 KYC 驗證、內容審核與客服中心語音認證等高吞吐情境打造。"
       },
       "pricing": {
         "eyebrow": "$ 透明定價",
         "headline": "用多少，付多少。",
-        "freeImages": "每月 200 張免費圖片",
-        "body": "使用 Eva-v1-Fast 模型，每月可免費偵測 200 張圖片。超出後按用量計費，每張 $0.05。可選附加功能（自適應防禦、活體偵測、快速通道）每張各 $0.008。無需簽約，無安裝費。"
+        "freeImages": "每月 200 張免費影像",
+        "body": "使用 Eva-v1-Fast 模型，每月可免費偵測 200 張影像。超出後按用量計費，每張 $0.05。可選附加功能（自適應防禦、活體偵測、快速通道）每張各 $0.008。無需簽約，無安裝費。"
       },
       "compliance": {
         "ariaLabel": "定價與合規",
@@ -53,7 +53,7 @@
       },
       "resources": {
         "eyebrow": "資源",
-        "headline": "了解 deepfake 偵測",
+        "headline": "了解深度偽造偵測",
         "readTime": "閱讀約 {minutes} 分鐘",
         "allGuides": "全部指南 →",
         "industrySolutions": "產業解決方案 →",
@@ -90,11 +90,11 @@
           "children": {
             "halo": {
               "label": "Halo · 全新",
-              "description": "攜手 Qualcomm，為即時通話提供裝置端 deepfake 偵測"
+              "description": "攜手 Qualcomm，為即時通話提供裝置端深度偽造偵測"
             },
             "aiDetection": {
               "label": "AI 偵測",
-              "description": "Deepfake 與合成媒體偵測"
+              "description": "深度偽造與合成媒體偵測"
             },
             "audio": {
               "label": "音訊",
@@ -114,11 +114,11 @@
           "children": {
             "fintech": {
               "label": "金融科技與銀行",
-              "description": "KYC deepfake 防護與身分詐騙預防"
+              "description": "KYC 深度偽造防護與身分詐騙預防"
             },
             "kyc": {
               "label": "KYC 驗證",
-              "description": "遏止開戶流程中的 deepfake 詐騙"
+              "description": "遏止開戶流程中的深度偽造詐騙"
             },
             "callCenters": {
               "label": "客服中心",
@@ -138,7 +138,7 @@
             },
             "hr": {
               "label": "人力資源與招募",
-              "description": "遠端面試 deepfake 與語音詐騙偵測"
+              "description": "遠端面試深度偽造與語音詐騙偵測"
             },
             "government": {
               "label": "政府",
@@ -162,7 +162,7 @@
             },
             "newsletter": {
               "label": "電子報",
-              "description": "每週分享 deepfake 技術與 AI 安全洞察"
+              "description": "每週分享深度偽造技術與 AI 安全洞察"
             },
             "security": {
               "label": "安全與合規",
@@ -188,11 +188,11 @@
       "sectionAriaLabel": "定價",
       "eyebrow": "依用量計費",
       "heading": "用多少，<highlight>付多少</highlight>",
-      "subheading": "使用 Eva-v1-Fast，<strong>每月 200 張免費圖片</strong>，之後每張 $0.05。無隱藏費用，無需簽約。",
+      "subheading": "使用 Eva-v1-Fast，<strong>每月 200 張免費影像</strong>，之後每張 $0.05。無隱藏費用，無需簽約。",
       "volume": {
         "label": "每月用量",
-        "images": "{volume} 張圖片",
-        "ariaLabel": "每月圖片用量"
+        "images": "{volume} 張影像",
+        "ariaLabel": "每月影像用量"
       },
       "enterpriseNudge": {
         "title": "需要更多？",
@@ -204,11 +204,11 @@
         "subtitle": "強化偵測能力的可選功能",
         "adaptive": {
           "label": "自適應防禦",
-          "desc": "即時偵測 GenAI、deepfake 與注入攻擊"
+          "desc": "即時偵測 GenAI、深度偽造與注入攻擊"
         },
         "liveness": {
           "label": "活體偵測",
-          "desc": "驗證真實人體存在，防範 deepfake 偽冒"
+          "desc": "驗證真實人體存在，防範深度偽造偽冒"
         },
         "express": {
           "label": "快速通道",
@@ -217,7 +217,7 @@
       },
       "summary": {
         "title": "費用總覽",
-        "perImageLabel": "每張圖片",
+        "perImageLabel": "每張影像",
         "perImageUnit": "/張",
         "freeTierNote": "在免費額度內（每月 200 張）",
         "base": "基本費用",
@@ -230,7 +230,7 @@
       "includes": {
         "title": "包含內容",
         "items": {
-          "genaiDeepfake": "GenAI 與 deepfake 偵測",
+          "genaiDeepfake": "GenAI 與深度偽造偵測",
           "evaFastModel": "Eva-v1-Fast 模型",
           "restApi": "REST API 存取",
           "dashboardAnalytics": "儀表板分析"
@@ -240,13 +240,13 @@
         "recommended": "推薦",
         "selfServe": {
           "name": "自助方案",
-          "priceUnit": "每張圖片",
-          "freeNote": "每月 200 張免費圖片",
+          "priceUnit": "每張影像",
+          "freeNote": "每月 200 張免費影像",
           "description": "彈性的按用量計費，適合各種規模的團隊。免費起步，隨需擴展。",
           "cta": "立即開始",
           "features": {
             "genaiDetection": "GenAI 偵測",
-            "deepfakeAnalysis": "Deepfake 分析",
+            "deepfakeAnalysis": "深度偽造分析",
             "evaFastModel": "Eva-v1-Fast 模型",
             "apiAccess": "API 存取",
             "optionalAddons": "全部可選附加功能"
@@ -273,11 +273,11 @@
       "sectionAriaLabel": "常見問題",
       "eyebrow": "支援",
       "heading": "常見問題",
-      "subheading": "關於我們 GenAI 與 deepfake 偵測平台你需要了解的一切",
+      "subheading": "關於我們 GenAI 與深度偽造偵測平台你需要了解的一切",
       "items": {
         "freeTier": {
           "question": "免費額度包含哪些內容？",
-          "answer": "免費額度每月可使用 Eva-v1-Fast 模型分析 200 張圖片，涵蓋 GenAI 偵測、deepfake 分析、API 存取與儀表板分析。註冊即可開始，無需信用卡。免費註冊請前往 https://app.scam.ai"
+          "answer": "免費額度每月可使用 Eva-v1-Fast 模型分析 200 張影像，涵蓋 GenAI 偵測、深度偽造分析、API 存取與儀表板分析。註冊即可開始，無需信用卡。免費註冊請前往 https://app.scam.ai"
         },
         "fastVsPro": {
           "question": "Eva-v1-Fast 與 Eva-v1-Pro 有何差異？",
@@ -285,15 +285,15 @@
         },
         "pricingAfterFree": {
           "question": "免費額度用完後如何計費？",
-          "answer": "每月 200 張免費圖片用完後，每分析一張圖片收費 $0.05。你也可以加購可選功能，如自適應防禦（+$0.008/張）、活體偵測（+$0.008/張）或快速通道（+$0.008/張）。完整定價請前往 https://scam.ai/pricing"
+          "answer": "每月 200 張免費影像用完後，每分析一張影像收費 $0.05。你也可以加購可選功能，如自適應防禦（+$0.008/張）、活體偵測（+$0.008/張）或快速通道（+$0.008/張）。完整定價請前往 https://scam.ai/pricing"
         },
         "mediaTypes": {
           "question": "我可以分析哪些類型的媒體？",
-          "answer": "我們的平台支援分析圖片、音訊檔案與影片內容，詳見 https://scam.ai/products/ai-detection。我們可在所有支援的格式中偵測 GenAI 生成內容、deepfake、合成媒體、換臉、語音複製以及各類媒體竄改。"
+          "answer": "我們的平台支援分析影像、音訊檔案與影片內容，詳見 https://scam.ai/products/ai-detection。我們可在所有支援的格式中偵測 GenAI 生成內容、深度偽造、合成媒體、換臉、語音複製以及各類媒體竄改。"
         },
         "volumeDiscounts": {
           "question": "你們提供大量折扣嗎？",
-          "answer": "提供！對於每月處理超過 2,000 張圖片的組織，我們提供客製企業定價，包含大量折扣、專屬支援，以及 Eva-v1-Pro、Thinking 等進階模型的使用權限。請透過 https://cal.com/scamai/15min 聯絡我們的業務團隊，討論你的具體需求。"
+          "answer": "提供！對於每月處理超過 2,000 張影像的組織，我們提供客製企業定價，包含大量折扣、專屬支援，以及 Eva-v1-Pro、Thinking 等進階模型的使用權限。請透過 https://cal.com/scamai/15min 聯絡我們的業務團隊，討論你的具體需求。"
         },
         "thinking": {
           "question": "Thinking 功能是什麼？",
@@ -301,7 +301,7 @@
         },
         "accuracy": {
           "question": "你們的偵測有多準確？",
-          "answer": "我們的 Eva 模型持續針對最新的 GenAI 與 deepfake 技術進行訓練。Eva-v1-Fast 為絕大多數情境提供出色的準確率，而 Eva-v1-Pro 為企業應用帶來更高精度與顯著更低的誤判率。每次分析都會附帶偵測信心分數。基準測試請前往 https://scam.ai/products/ai-detection"
+          "answer": "我們的 Eva 模型持續針對最新的 GenAI 與深度偽造技術進行訓練。Eva-v1-Fast 為絕大多數情境提供出色的準確率，而 Eva-v1-Pro 為企業應用帶來更高精度與顯著更低的誤判率。每次分析都會附帶偵測信心分數。基準測試請前往 https://scam.ai/products/ai-detection"
         },
         "integration": {
           "question": "我能把它整合到現有的應用程式中嗎？",
@@ -313,7 +313,7 @@
         },
         "getStarted": {
           "question": "我該如何開始？",
-          "answer": "只需在 https://app.scam.ai 註冊一個免費帳戶，即可立即使用 Eva-v1-Fast 模型獲得每月 200 次免費圖片分析，無需信用卡。升級付費方案請前往 https://scam.ai/pricing，或聯絡業務了解企業方案。"
+          "answer": "只需在 https://app.scam.ai 註冊一個免費帳戶，即可立即使用 Eva-v1-Fast 模型獲得每月 200 次免費影像分析，無需信用卡。升級付費方案請前往 https://scam.ai/pricing，或聯絡業務了解企業方案。"
         }
       },
       "contact": {
@@ -324,18 +324,18 @@
     "solutions": {
       "eyebrow": "解決方案",
       "heading": "為 <highlight>AI 時代</highlight><br></br>打造的信任基礎設施",
-      "subheading": "跨人物、文件與 AI 代理，偵測 deepfake、合成媒體、語音複製與文件詐騙。",
+      "subheading": "跨人物、文件與 AI 代理，偵測深度偽造、合成媒體、語音複製與文件詐騙。",
       "learnMore": "了解更多",
       "talkToSales": "聯絡業務",
       "cards": {
         "halo": {
           "title": "Halo — 裝置端偵測",
-          "description": "在你的 Zoom、Teams 與 Meet 通話中即時偵測 deepfake。運行於 Qualcomm Snapdragon X NPU——資料絕不離開你的裝置。",
+          "description": "在你的 Zoom、Teams 與 Meet 通話中即時偵測深度偽造。運行於 Qualcomm Snapdragon X NPU——資料絕不離開你的裝置。",
           "badge": "全新 · 攜手 Qualcomm"
         },
         "deepfake": {
-          "title": "Deepfake",
-          "description": "在圖片與影片中即時偵測換臉、對嘴攻擊與 AI 生成人臉。"
+          "title": "深度偽造",
+          "description": "在影像與影片中即時偵測換臉、對嘴攻擊與 AI 生成人臉。"
         },
         "genai": {
           "title": "GenAI",
@@ -347,7 +347,7 @@
         },
         "remoteNotary": {
           "title": "遠端公證",
-          "description": "在遠端公證過程中驗證簽署人身分。在文件封印前攔截 deepfake。"
+          "description": "在遠端公證過程中驗證簽署人身分。在文件封印前攔截深度偽造。"
         },
         "ageEstimation": {
           "title": "年齡估算與 IDV",
@@ -363,7 +363,7 @@
         },
         "remoteInterview": {
           "title": "遠端面試誠信",
-          "description": "在即時視訊面試中驗證應徵者身分並即時偵測 deepfake。"
+          "description": "在即時視訊面試中驗證應徵者身分並即時偵測深度偽造。"
         }
       }
     },
@@ -379,10 +379,10 @@
       },
       "nocode": {
         "heading": "無程式碼",
-        "body": "透過我們直覺的儀表板，即時監控與分析 deepfake 偵測結果。上傳媒體檔案、查看偵測信心分數、追蹤合成內容趨勢——全程無需撰寫任何一行程式碼。",
+        "body": "透過我們直覺的儀表板，即時監控與分析深度偽造偵測結果。上傳媒體檔案、查看偵測信心分數、追蹤合成內容趨勢——全程無需撰寫任何一行程式碼。",
         "dashboardCaption": "Scam AI 儀表板",
         "points": {
-          "dashboard": "視覺化 deepfake 偵測儀表板",
+          "dashboard": "視覺化深度偽造偵測儀表板",
           "upload": "拖放式媒體上傳",
           "scoring": "即時信心分數評估",
           "export": "匯出偵測報告與分析 ",
@@ -391,15 +391,15 @@
       },
       "api": {
         "heading": "API 整合",
-        "body1": "僅需一次 API 呼叫，即可將 deepfake 偵測整合至你的應用程式中。我們的 REST API 可分析圖片、音訊與影片中的 AI 生成內容，並即時回傳信心分數。",
-        "body2": "使用 Eva-v1 模型偵測合成媒體、語音複製與 deepfake。即時取得結論，並附帶詳盡的竄改分析。",
+        "body1": "僅需一次 API 呼叫，即可將深度偽造偵測整合至你的應用程式中。我們的 REST API 可分析影像、音訊與影片中的 AI 生成內容，並即時回傳信心分數。",
+        "body2": "使用 Eva-v1 模型偵測合成媒體、語音複製與深度偽造。即時取得結論，並附帶詳盡的竄改分析。",
         "viewDocs": "查看文件",
         "codeTab": "API 請求",
         "tryIt": "試試看",
         "points": {
-          "detect": "偵測 deepfake、合成媒體與語音複製",
+          "detect": "偵測深度偽造、合成媒體與語音複製",
           "scoring": "即時信心分數評估與分析",
-          "support": "支援圖片、音訊與影片",
+          "support": "支援影像、音訊與影片",
           "webhooks": "用於非同步處理的 Webhooks"
         }
       }
@@ -432,7 +432,7 @@
       },
       "newsletter": {
         "heading": "搶先洞悉 AI 威脅",
-        "subtext": "每週將 deepfake、合成媒體與 AI 安全的洞察直接送達你的收件匣。",
+        "subtext": "每週將深度偽造、合成媒體與 AI 安全的洞察直接送達你的收件匣。",
         "placeholder": "you@company.com",
         "emailLabel": "電子郵件地址",
         "subscribe": "訂閱",
@@ -478,9 +478,9 @@
       }
     },
     "playground": {
-      "eyebrow": "Deepfake 已來到身邊",
+      "eyebrow": "深度偽造已來到身邊",
       "heading": "看看偽造一張臉有多容易。",
-      "subhead": "開啟攝影機，即時觀看你自己的 deepfake。這就是攻擊——而防禦就運行在裝置端。",
+      "subhead": "開啟攝影機，即時觀看你自己的深度偽造。這就是攻擊——而防禦就運行在裝置端。",
       "demoMeta": "30 秒即時展示 · 無需安裝",
       "intro": {
         "tagline": "先選一張照片，然後進入即時展示。",
@@ -527,7 +527,7 @@
         "budgetEyebrow": "已達展示上限",
         "budgetHeading": "你已用完今天的免費展示時間。",
         "budgetBody": "偽造一張臉只需 30 秒——現在來認識一下防禦方案。",
-        "shareDeepfake": "分享你的 deepfake",
+        "shareDeepfake": "分享你的深度偽造",
         "meetHalo": "認識 Halo——防禦方案",
         "runAgain": "再來一次"
       },
@@ -537,7 +537,7 @@
         "saveImage": "儲存圖片",
         "saved": "已儲存",
         "postToX": "發佈到 X",
-        "imageAlt": "你的 deepfake 卡片"
+        "imageAlt": "你的深度偽造卡片"
       }
     },
     "search": {
@@ -557,11 +557,11 @@
       "items": {
         "halo": {
           "label": "Halo",
-          "description": "攜手 Qualcomm，為即時通話提供裝置端 deepfake 偵測"
+          "description": "攜手 Qualcomm，為即時通話提供裝置端深度偽造偵測"
         },
         "aiDetection": {
           "label": "AI 偵測",
-          "description": "Deepfake 與 AI 生成內容偵測"
+          "description": "深度偽造與 AI 生成內容偵測"
         },
         "audioDetection": {
           "label": "音訊偵測",
@@ -584,7 +584,7 @@
         },
         "newsletter": {
           "label": "電子報",
-          "description": "每週 deepfake 與 AI 安全資訊"
+          "description": "每週深度偽造與 AI 安全資訊"
         },
         "contact": {
           "label": "聯絡我們",
@@ -623,7 +623,7 @@
         },
         "private": {
           "label": "隱私",
-          "desc": "裝置端 —— 不錄製、不上傳"
+          "desc": "裝置端 —— 不錄製、不傳送"
         }
       },
       "exploreHalo": "了解 Halo",
@@ -632,7 +632,7 @@
         "liveCall": "即時通話",
         "deepfakeDetected": "偵測到深度偽造",
         "caught": "已攔截",
-        "onDevice": "100% 在你的裝置上執行 · 不錄製、不上傳"
+        "onDevice": "100% 在你的裝置上執行 · 不錄製、不傳送"
       }
     }
   },
@@ -2633,7 +2633,7 @@
       "voiceCloning": {
         "eyebrow": "語音複製偵測",
         "title": "辨識 AI 生成的語音",
-        "body1": "以 <em>98.5% 的準確率</em> 跨多種語言、口音與說話模式辨識 AI 生成的語音複製。根據 FBI 的 IC3 2024 年報告，全球語音網路釣魚損失超過 $12.5 billion，這使得即時音訊偵測對金融機構與客服中心至關重要。",
+        "body1": "以 <em>98.5% 的準確率</em> 跨多種語言、口音與說話模式辨識 AI 生成的語音複製。根據 FBI 的 IC3 2024 年報告，全球語音網路釣魚損失超過 125 億美元，這使得即時音訊偵測對金融機構與客服中心至關重要。",
         "body2": "每段音訊的處理時間 <em>不到 3 秒</em>，可實現即時通話核驗、即時串流分析與大規模自動化詐欺篩查。"
       },
       "tts": {
@@ -2900,7 +2900,7 @@
       "frame": "第 {n} 格",
       "deepfakeDetected": "偵測到深度偽造",
       "scanningVideo": "Halo 正在掃描影片",
-      "onDevice": "100% 在您的裝置上運作 · 不錄製，不上傳任何內容"
+      "onDevice": "100% 在您的裝置上運作 · 不錄製，不傳送任何內容"
     },
     "problem": {
       "eyebrow": "全新的攻擊面",
@@ -3173,12 +3173,12 @@
       "app": "<label>⁵ 應用程式功能。</label> scam.ai 作為一款裝置端篩查工具運作，不保證偵測出所有詐欺活動。效能可能因裝置與作業系統而異。"
     },
     "waitlistForm": {
-      "successTitle": "你已加入名單！",
-      "successBody": "scam.ai 一上線我們就通知你。",
-      "emailLabel": "電子郵箱",
+      "successTitle": "您已加入名單！",
+      "successBody": "scam.ai 一準備就緒，我們就會通知您。",
+      "emailLabel": "電子郵件地址",
       "emailPlaceholder": "yourname@email.com",
       "error": "出錯了，請重試。",
-      "saving": "正在為你保留名額…",
+      "saving": "正在為您保留名額…",
       "joinButton": "加入候補名單",
       "earlyBird": "早鳥可享 3 個月免費"
     }
@@ -4657,7 +4657,7 @@
     },
     "cta": {
       "heading": "準備好開始了嗎？",
-      "subheading": "每月可免費偵測 200 張圖片，立即開始辨識深度偽造。",
+      "subheading": "每月可免費偵測 200 張影像，立即開始辨識深度偽造。",
       "button": "免費開始使用"
     }
   },
@@ -4853,6 +4853,113 @@
       "heading": "安全文件",
       "body": "想要詳細瞭解我們的安全實務？",
       "cta": "索取安全白皮書"
+    }
+  },
+  "seoMeta": {
+    "solutions": {
+      "fintech": {
+        "title": "為金融科技與銀行打造的深度偽造偵測",
+        "metaDescription": "為金融科技 KYC 打造的深度偽造偵測，準確率達 98.2%。4 秒內偵測合成身分、偽造證件與語音複製。已通過 SOC 2 認證。",
+        "headline": "為金融科技與銀行打造的深度偽造偵測"
+      },
+      "dating": {
+        "title": "為交友應用程式打造的深度偽造與假帳號偵測",
+        "metaDescription": "偵測交友應用程式上 AI 生成的假帳號與語音感情詐騙。Scam AI 於上傳時以 98.2% 準確率標記合成人臉。每月 200 張免費額度。",
+        "headline": "為交友應用程式打造的深度偽造與假帳號偵測"
+      },
+      "call-centers": {
+        "title": "為客服中心打造的語音複製偵測",
+        "metaDescription": "為客服中心打造的語音複製偵測，準確率達 98.5%。即時偵測語音釣魚攻擊，3 秒內完成。已通過 SOC 2 認證，10 分鐘完成 API 整合。",
+        "headline": "為客服中心打造的語音複製偵測"
+      },
+      "kyc": {
+        "title": "遏止 KYC 身分驗證中的深度偽造詐騙",
+        "metaDescription": "偵測 KYC 開戶流程中的深度偽造自拍與 AI 竄改的身分證件。Scam AI 的 Eva-v1 模型 4 秒內達成 98.2% 準確率。已通過 SOC 2 Type II 認證。",
+        "headline": "遏止 KYC 身分驗證中的深度偽造詐騙"
+      },
+      "media": {
+        "title": "為媒體與新聞編輯室打造的 AI 生成內容偵測",
+        "metaDescription": "為新聞編輯室打造的深度偽造偵測 API。發布前核驗影像、影片與音訊是否為 AI 生成。準確率達 98.2%，每月 200 張免費額度。",
+        "headline": "為媒體與新聞編輯室打造的 AI 生成內容偵測"
+      },
+      "insurance": {
+        "title": "偵測保險理賠中的 AI 生成詐欺",
+        "metaDescription": "偵測保險理賠中經 AI 編輯的照片與偽造證件。Scam AI 為理賠證據篩查合成竄改。每張影像 $0.05，已通過 SOC 2 認證。",
+        "headline": "偵測保險理賠中的 AI 生成詐欺"
+      },
+      "hr": {
+        "title": "偵測遠端面試與視訊招募中的深度偽造",
+        "metaDescription": "偵測遠端求職面試中的深度偽造、AI 變聲工具與合成虛擬人像。Scam AI 為人力資源團隊與招募平台核驗影片與音訊真實性。",
+        "headline": "偵測遠端面試與視訊招募中的深度偽造"
+      },
+      "government": {
+        "title": "為政府與公部門打造的合成媒體偵測",
+        "metaDescription": "為政府機關打造的合成媒體偵測。大規模偵測深度偽造影片與 AI 生成影像。企業級 SLA，已通過 SOC 2 認證。",
+        "headline": "為政府與公部門打造的合成媒體偵測"
+      }
+    },
+    "compare": {
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender：深度偽造偵測比較",
+        "metaDescription": "Scam AI vs Reality Defender：每張影像 $0.05 對比年約方案、200 張免費影像對比零免費、10 分鐘 API 整合對比客製化導入。完整比較。",
+        "tagline": "Scam AI vs Reality Defender：深度偽造偵測比較"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI：深度偽造偵測比較",
+        "metaDescription": "Scam AI vs Sensity AI：單一 API 涵蓋影像、影片、音訊與文件。每張影像 $0.05 對比企業合約，每月 200 張免費。完整比較。",
+        "tagline": "Scam AI vs Sensity AI：深度偽造偵測比較"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation：深度偽造偵測比較",
+        "metaDescription": "Scam AI vs Hive Moderation：98.2% 深度偽造偵測對比一般內容審核。具備 Hive 所缺的語音複製與文件偽造偵測。每張影像 $0.05。",
+        "tagline": "Scam AI vs Hive Moderation：深度偽造偵測比較"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure AI Content Safety：專為偵測打造的 98.2% 深度偽造偵測對比一般安全分類器。內含語音複製與文件偽造偵測。",
+        "tagline": "Scam AI vs Microsoft Azure AI Content Safety：深度偽造偵測比較"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition：深度偽造偵測比較",
+        "metaDescription": "Scam AI vs AWS Rekognition：專屬深度偽造偵測模型對比一般人臉分析，並具備 Rekognition 所缺的語音複製與文件偽造偵測。",
+        "tagline": "Scam AI vs AWS Rekognition：深度偽造偵測比較"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic：深度偽造偵測比較",
+        "metaDescription": "Scam AI vs Truepic：任何影像皆可進行的 AI 深度偽造偵測，對比需相機硬體的 C2PA 溯源。可回溯運作，無需中繼資料。",
+        "tagline": "Scam AI vs Truepic：深度偽造偵測比較"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware：深度偽造偵測比較",
+        "metaDescription": "Scam AI vs Deepware：具備 99.9% SLA 與 SOC 2 的正式環境 API，對比免費消費級掃描工具。企業級 KYC 整合 + 語音複製偵測。",
+        "tagline": "Scam AI vs Deepware：深度偽造偵測比較"
+      }
+    },
+    "learn": {
+      "what-is-a-deepfake": {
+        "title": "什麼是深度偽造？運作原理與偵測方法",
+        "description": "深度偽造完整指南——什麼是深度偽造、AI 如何製作它們、為何成為日益嚴峻的安全威脅，以及偵測技術如何運作。"
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "如何偵測 AI 生成影像（免費工具 + API）",
+        "description": "運用免費工具與 API 偵測 AI 生成影像。涵蓋肉眼判讀技巧、GAN 與擴散模型偵測，以及換臉辨識。"
+      },
+      "voice-cloning-attacks": {
+        "title": "語音複製攻擊：運作原理與防範之道",
+        "description": "解析語音複製攻擊：AI 如何在數秒內複製聲音、真實語音釣魚案例研究，以及 98.5% 準確率的偵測如何加以阻止。"
+      },
+      "deepfake-detection-accuracy": {
+        "title": "深度偽造偵測準確率：基準測試的真正意涵",
+        "description": "解析深度偽造偵測準確率：基準測試如何運作、為何準確率在真實環境中會下降，以及如何為您的應用情境選擇合適的門檻值。"
+      },
+      "deepfake-detection-api-guide": {
+        "title": "如何將深度偽造偵測整合至您的應用程式（API 指南）",
+        "description": "透過 API 將深度偽造偵測整合至您的應用程式。涵蓋端點選擇、請求範例、信賴度評分與正式環境擴展指南。"
+      },
+      "deepfake-statistics-2026": {
+        "title": "2026 年深度偽造統計數據：你不可不知的數字",
+        "description": "2026 年深度偽造統計數據的權威彙整——涵蓋詐欺損失、偵測準確率基準、產業衝擊與監管回應。"
+      }
     }
   }
 }
