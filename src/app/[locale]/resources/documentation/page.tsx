@@ -1,17 +1,23 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+
 export default function DocumentationPage() {
+  const t = useTranslations("documentationPage");
+
   return (
     <main className="min-h-screen bg-[#0b0b0b] text-white">
       {/* Hero Section */}
       <section className="relative py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#66b3ff]">
-            DOCUMENTATION
+            {t("hero.eyebrow")}
           </p>
           <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            Developer Documentation
+            {t("hero.title")}
           </h1>
           <p className="mb-8 text-lg text-gray-300">
-            Everything you need to integrate Scam AI's deepfake detection API into your application in minutes.
+            {t("hero.subtitle")}
           </p>
           <a
             href="https://app.scam.ai"
@@ -20,7 +26,7 @@ export default function DocumentationPage() {
             className="rainbow-button inline-block"
           >
             <span className="rainbow-button-inner">
-              Get API Key
+              {t("hero.cta")}
             </span>
           </a>
         </div>
@@ -30,16 +36,16 @@ export default function DocumentationPage() {
       <section className="py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-3xl font-bold sm:text-4xl">
-            Quick Start
+            {t("quickStart.title")}
           </h2>
           <div className="grid gap-8 md:grid-cols-3 mb-12">
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#66b3ff]/10 text-[#66b3ff] font-bold text-xl">
                 1
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Sign Up</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t("quickStart.steps.signUp.title")}</h3>
               <p className="text-gray-300">
-                Create a free account at app.scam.ai and get your API key instantly.
+                {t("quickStart.steps.signUp.description")}
               </p>
             </div>
 
@@ -47,9 +53,9 @@ export default function DocumentationPage() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#66b3ff]/10 text-[#66b3ff] font-bold text-xl">
                 2
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Make API Call</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t("quickStart.steps.makeCall.title")}</h3>
               <p className="text-gray-300">
-                Use our simple REST API to analyze images, audio, or video files.
+                {t("quickStart.steps.makeCall.description")}
               </p>
             </div>
 
@@ -57,16 +63,16 @@ export default function DocumentationPage() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#66b3ff]/10 text-[#66b3ff] font-bold text-xl">
                 3
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Get Results</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t("quickStart.steps.getResults.title")}</h3>
               <p className="text-gray-300">
-                Receive instant analysis with confidence scores and detailed reports.
+                {t("quickStart.steps.getResults.description")}
               </p>
             </div>
           </div>
 
           {/* Code Example */}
           <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-8">
-            <h3 className="mb-4 text-xl font-bold text-white">Basic Example</h3>
+            <h3 className="mb-4 text-xl font-bold text-white">{t("quickStart.example.title")}</h3>
             <div className="bg-black/60 text-green-400 p-6 rounded-lg font-mono text-sm border border-gray-700 overflow-x-auto">
               <div className="mb-4">
                 <span className="text-gray-500"># Detect deepfakes in an image</span>
@@ -92,7 +98,7 @@ export default function DocumentationPage() {
       <section className="py-24 px-4 sm:px-6 bg-gray-900/20">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-3xl font-bold sm:text-4xl">
-            API Endpoints
+            {t("endpoints.title")}
           </h2>
           <div className="space-y-6">
             {/* Image Detection */}
@@ -103,14 +109,14 @@ export default function DocumentationPage() {
                 </span>
                 <code className="text-[#66b3ff]">/v1/detect/image</code>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Image Detection</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t("endpoints.image.title")}</h3>
               <p className="mb-4 text-gray-300">
-                Analyze images for deepfakes, face swaps, and synthetic generation.
+                {t("endpoints.image.description")}
               </p>
               <div className="text-sm text-gray-400">
-                <p><strong className="text-white">Rate Limit:</strong> 100 requests/minute</p>
-                <p><strong className="text-white">Max File Size:</strong> 10MB</p>
-                <p><strong className="text-white">Supported Formats:</strong> JPG, PNG, GIF, WebP</p>
+                <p><strong className="text-white">{t("endpoints.labels.rateLimit")}</strong> 100 requests/minute</p>
+                <p><strong className="text-white">{t("endpoints.labels.maxFileSize")}</strong> 10MB</p>
+                <p><strong className="text-white">{t("endpoints.labels.supportedFormats")}</strong> JPG, PNG, GIF, WebP</p>
               </div>
             </div>
 
@@ -122,14 +128,14 @@ export default function DocumentationPage() {
                 </span>
                 <code className="text-[#66b3ff]">/v1/detect/audio</code>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Audio Detection</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t("endpoints.audio.title")}</h3>
               <p className="mb-4 text-gray-300">
-                Detect AI-generated voices, voice cloning, and synthetic speech.
+                {t("endpoints.audio.description")}
               </p>
               <div className="text-sm text-gray-400">
-                <p><strong className="text-white">Rate Limit:</strong> 100 requests/minute</p>
-                <p><strong className="text-white">Max File Size:</strong> 50MB</p>
-                <p><strong className="text-white">Supported Formats:</strong> MP3, WAV, M4A, FLAC</p>
+                <p><strong className="text-white">{t("endpoints.labels.rateLimit")}</strong> 100 requests/minute</p>
+                <p><strong className="text-white">{t("endpoints.labels.maxFileSize")}</strong> 50MB</p>
+                <p><strong className="text-white">{t("endpoints.labels.supportedFormats")}</strong> MP3, WAV, M4A, FLAC</p>
               </div>
             </div>
 
@@ -141,14 +147,14 @@ export default function DocumentationPage() {
                 </span>
                 <code className="text-[#66b3ff]">/v1/detect/video</code>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Video Detection</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t("endpoints.video.title")}</h3>
               <p className="mb-4 text-gray-300">
-                Analyze video content for deepfakes and manipulated frames.
+                {t("endpoints.video.description")}
               </p>
               <div className="text-sm text-gray-400">
-                <p><strong className="text-white">Rate Limit:</strong> 50 requests/minute</p>
-                <p><strong className="text-white">Max File Size:</strong> 100MB</p>
-                <p><strong className="text-white">Supported Formats:</strong> MP4, MOV, AVI, WebM</p>
+                <p><strong className="text-white">{t("endpoints.labels.rateLimit")}</strong> 50 requests/minute</p>
+                <p><strong className="text-white">{t("endpoints.labels.maxFileSize")}</strong> 100MB</p>
+                <p><strong className="text-white">{t("endpoints.labels.supportedFormats")}</strong> MP4, MOV, AVI, WebM</p>
               </div>
             </div>
           </div>
@@ -159,31 +165,31 @@ export default function DocumentationPage() {
       <section className="py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-3xl font-bold sm:text-4xl">
-            SDKs & Libraries
+            {t("sdks.title")}
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6 text-center">
               <h3 className="mb-2 text-lg font-bold text-white">Python</h3>
               <p className="mb-4 text-sm text-gray-400">pip install scamai</p>
-              <code className="text-xs text-gray-500">Coming Soon</code>
+              <code className="text-xs text-gray-500">{t("sdks.comingSoon")}</code>
             </div>
 
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6 text-center">
               <h3 className="mb-2 text-lg font-bold text-white">Node.js</h3>
               <p className="mb-4 text-sm text-gray-400">npm install scamai</p>
-              <code className="text-xs text-gray-500">Coming Soon</code>
+              <code className="text-xs text-gray-500">{t("sdks.comingSoon")}</code>
             </div>
 
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6 text-center">
               <h3 className="mb-2 text-lg font-bold text-white">Go</h3>
               <p className="mb-4 text-sm text-gray-400">go get scamai</p>
-              <code className="text-xs text-gray-500">Coming Soon</code>
+              <code className="text-xs text-gray-500">{t("sdks.comingSoon")}</code>
             </div>
 
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6 text-center">
               <h3 className="mb-2 text-lg font-bold text-white">Ruby</h3>
               <p className="mb-4 text-sm text-gray-400">gem install scamai</p>
-              <code className="text-xs text-gray-500">Coming Soon</code>
+              <code className="text-xs text-gray-500">{t("sdks.comingSoon")}</code>
             </div>
           </div>
         </div>
@@ -193,34 +199,34 @@ export default function DocumentationPage() {
       <section className="py-24 px-4 sm:px-6 bg-gray-900/20">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-3xl font-bold sm:text-4xl">
-            Best Practices
+            {t("bestPractices.title")}
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
             <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-6">
-              <h3 className="mb-4 text-xl font-bold text-white">Error Handling</h3>
+              <h3 className="mb-4 text-xl font-bold text-white">{t("bestPractices.errorHandling.title")}</h3>
               <p className="text-gray-300">
-                Always handle API errors gracefully. Implement retry logic with exponential backoff for temporary failures.
+                {t("bestPractices.errorHandling.description")}
               </p>
             </div>
 
             <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-6">
-              <h3 className="mb-4 text-xl font-bold text-white">Rate Limiting</h3>
+              <h3 className="mb-4 text-xl font-bold text-white">{t("bestPractices.rateLimiting.title")}</h3>
               <p className="text-gray-300">
-                Respect rate limits to avoid 429 errors. Implement request queuing for high-volume applications.
+                {t("bestPractices.rateLimiting.description")}
               </p>
             </div>
 
             <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-6">
-              <h3 className="mb-4 text-xl font-bold text-white">File Optimization</h3>
+              <h3 className="mb-4 text-xl font-bold text-white">{t("bestPractices.fileOptimization.title")}</h3>
               <p className="text-gray-300">
-                Compress large files before uploading to reduce processing time and costs. Optimize video resolution when possible.
+                {t("bestPractices.fileOptimization.description")}
               </p>
             </div>
 
             <div className="rounded-lg border border-gray-800 bg-[#0b0b0b] p-6">
-              <h3 className="mb-4 text-xl font-bold text-white">Caching Results</h3>
+              <h3 className="mb-4 text-xl font-bold text-white">{t("bestPractices.cachingResults.title")}</h3>
               <p className="text-gray-300">
-                Cache detection results for frequently checked content to reduce API calls and improve response times.
+                {t("bestPractices.cachingResults.description")}
               </p>
             </div>
           </div>
@@ -231,10 +237,10 @@ export default function DocumentationPage() {
       <section className="py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-3xl font-bold sm:text-4xl">
-            Need help getting started?
+            {t("cta.title")}
           </h2>
           <p className="mb-8 text-lg text-gray-300">
-            Our team is here to help you integrate successfully.
+            {t("cta.subtitle")}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
@@ -242,7 +248,7 @@ export default function DocumentationPage() {
               className="rainbow-button inline-block"
             >
               <span className="rainbow-button-inner">
-                Contact Support
+                {t("cta.contactSupport")}
               </span>
             </a>
             <a
@@ -251,7 +257,7 @@ export default function DocumentationPage() {
               rel="noopener noreferrer"
               className="inline-block rounded-lg border border-gray-700 bg-gray-800 px-8 py-3 font-semibold text-white hover:bg-gray-700 transition-colors"
             >
-              Get API Key
+              {t("cta.getApiKey")}
             </a>
           </div>
         </div>

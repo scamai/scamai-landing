@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { DatasetAccessButton } from "@/components/research/DatasetAccessButton";
 import {
@@ -37,13 +38,15 @@ function AnimatedSection({
 }
 
 const stats = [
-  { label: "Research Papers", value: `${researchPapers.length}` },
-  { label: "Research Areas", value: `${researchCategoryOrder.length}` },
-  { label: "Open Datasets", value: `${researchDatasets.length}` },
-  { label: "Coming Soon", value: `${researchPapers.filter((p) => p.coming).length}` },
+  { key: "papers", value: `${researchPapers.length}` },
+  { key: "areas", value: `${researchCategoryOrder.length}` },
+  { key: "datasets", value: `${researchDatasets.length}` },
+  { key: "comingSoon", value: `${researchPapers.filter((p) => p.coming).length}` },
 ];
 
 export default function ResearchPage() {
+  const t = useTranslations("researchPage");
+
   return (
     <div className="min-h-screen bg-black text-white">
       <main>
@@ -52,15 +55,15 @@ export default function ResearchPage() {
           <AnimatedSection>
             <div className="max-w-3xl">
               <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#245FFF] mb-3 sm:text-[10px] lg:mb-4">
-                RESEARCH
+                {t("hero.eyebrow")}
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-4 lg:mb-6">
-                Advancing the science of <span className="text-[#245FFF]">AI trust</span>
+                {t.rich("hero.title", {
+                  accent: (chunks) => <span className="text-[#245FFF]">{chunks}</span>,
+                })}
               </h1>
               <p className="text-sm sm:text-base text-gray-500 leading-relaxed max-w-xl">
-                Our research focuses on deepfake detection, synthetic media forensics, and adversarial
-                robustness. We publish our findings to advance the field and keep our customers ahead of
-                emerging threats.
+                {t("hero.description")}
               </p>
             </div>
           </AnimatedSection>
@@ -68,9 +71,9 @@ export default function ResearchPage() {
           <AnimatedSection delay={0.15}>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10 lg:mt-14">
               {stats.map((stat) => (
-                <div key={stat.label} className="rounded-xl border border-gray-800/60 bg-white/[0.02] p-4 sm:p-5">
+                <div key={stat.key} className="rounded-xl border border-gray-800/60 bg-white/[0.02] p-4 sm:p-5">
                   <p className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</p>
-                  <p className="text-xs text-gray-500">{stat.label}</p>
+                  <p className="text-xs text-gray-500">{t(`stats.${stat.key}`)}</p>
                 </div>
               ))}
             </div>
@@ -84,10 +87,10 @@ export default function ResearchPage() {
           <AnimatedSection>
             <div className="mb-8 lg:mb-12">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
-                Publications & Reports
+                {t("papers.heading")}
               </h2>
               <p className="text-sm text-gray-500">
-                Research from the Scam AI team across deepfake detection, document forgery, age estimation, and more.
+                {t("papers.description")}
               </p>
             </div>
           </AnimatedSection>
@@ -121,7 +124,7 @@ export default function ResearchPage() {
                                 className="text-sm leading-snug text-gray-500 italic hover:text-gray-300 transition-colors"
                               >
                                 <span className="inline-block rounded bg-white/5 border border-gray-800/60 px-1.5 py-0.5 text-[10px] font-medium text-gray-500 not-italic mr-2">
-                                  Coming
+                                  {t("papers.comingBadge")}
                                 </span>
                                 {paper.title}
                               </Link>
@@ -143,7 +146,7 @@ export default function ResearchPage() {
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-1 mt-1.5 text-[10px] font-medium text-gray-500 hover:text-[#245FFF] transition-colors"
                                   >
-                                    View on {paper.arxivId ? "arXiv" : "Scholar"}
+                                    {t("papers.viewOn", { source: paper.arxivId ? "arXiv" : "Scholar" })}
                                     <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                     </svg>
@@ -168,10 +171,9 @@ export default function ResearchPage() {
         <section className="mx-auto max-w-6xl px-4 sm:px-8 py-14 sm:py-20">
           <AnimatedSection>
             <div className="mb-8 lg:mb-12">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">Datasets</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">{t("datasets.heading")}</h2>
               <p className="text-sm text-gray-500 max-w-xl">
-                Curated datasets to help researchers benchmark detection models. Each dataset has its own page
-                with the citation, paper link, and an email-gated download.
+                {t("datasets.description")}
               </p>
             </div>
           </AnimatedSection>
@@ -199,7 +201,7 @@ export default function ResearchPage() {
                     </div>
                   </div>
 
-                  <DatasetAccessButton dataset={dataset} variant="card" />
+                  <DatasetAccessButton dataset={dataset} variant="card" label={t("datasets.getAccess")} />
                 </div>
               </AnimatedSection>
             ))}
@@ -212,9 +214,9 @@ export default function ResearchPage() {
         <section className="mx-auto max-w-6xl px-4 sm:px-8 py-14 sm:py-20">
           <AnimatedSection>
             <div className="text-center">
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">Interested in collaborating?</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">{t("cta.heading")}</h2>
               <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
-                We partner with academic institutions and industry labs on deepfake detection research.
+                {t("cta.description")}
               </p>
               <a
                 href="https://cal.com/scamai/15min"
@@ -222,7 +224,7 @@ export default function ResearchPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#245FFF] px-7 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1d4acc]"
               >
-                Get in touch
+                {t("cta.button")}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />
                   <path d="M12 5l7 7-7 7" />

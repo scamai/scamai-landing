@@ -3344,6 +3344,123 @@
       "button": "Get Started Free"
     }
   },
+  "securityCompliancePage": {
+    "hero": {
+      "eyebrow": "SECURITY & COMPLIANCE",
+      "heading": "Enterprise-grade security and compliance",
+      "body": "Built with security-first architecture and compliant with global data protection standards."
+    },
+    "certifications": {
+      "heading": "Certifications & Standards",
+      "soc2": {
+        "description": "Independently audited and certified for security, availability, processing integrity, confidentiality, and privacy."
+      },
+      "gdpr": {
+        "title": "GDPR Compliant",
+        "description": "Full compliance with EU General Data Protection Regulation, including data residency options and privacy controls."
+      }
+    },
+    "securityFeatures": {
+      "heading": "Security Features",
+      "items": {
+        "encryption": {
+          "title": "End-to-End Encryption",
+          "description": "All data in transit is encrypted using TLS 1.3. Data at rest is encrypted using AES-256."
+        },
+        "retention": {
+          "title": "Zero Data Retention",
+          "description": "We don’t store your media files after analysis. Results are retained for 30 days unless you specify otherwise."
+        },
+        "apiKeys": {
+          "title": "API Key Management",
+          "description": "Secure API key generation with rotation capabilities and granular permissions control."
+        },
+        "access": {
+          "title": "Access Controls",
+          "description": "Role-based access control (RBAC) and multi-factor authentication (MFA) for team accounts."
+        },
+        "auditLogs": {
+          "title": "Audit Logs",
+          "description": "Comprehensive audit logs for all API calls and account activities with 1-year retention."
+        },
+        "ddos": {
+          "title": "DDoS Protection",
+          "description": "Enterprise-grade DDoS protection and rate limiting to ensure service availability."
+        },
+        "pentest": {
+          "title": "Regular Penetration Testing",
+          "description": "Quarterly security audits and penetration testing by independent third parties."
+        },
+        "incident": {
+          "title": "Incident Response",
+          "description": "24/7 security monitoring with documented incident response procedures."
+        },
+        "backup": {
+          "title": "Data Backup & Recovery",
+          "description": "Automated backups with point-in-time recovery and disaster recovery procedures."
+        }
+      }
+    },
+    "regional": {
+      "heading": "Regional Compliance",
+      "items": {
+        "europe": {
+          "title": "Europe (GDPR)",
+          "bullets": [
+            "EU data residency",
+            "Right to erasure",
+            "Data portability",
+            "Processing agreements"
+          ]
+        },
+        "unitedStates": {
+          "title": "United States",
+          "bullets": [
+            "US data centers",
+            "CCPA compliant",
+            "SOC 2 Type II",
+            "FedRAMP in progress"
+          ]
+        },
+        "asiaPacific": {
+          "title": "Asia Pacific",
+          "bullets": [
+            "APAC data centers",
+            "PDPA compliant",
+            "Local data storage",
+            "Regional support"
+          ]
+        }
+      }
+    },
+    "dataPrivacy": {
+      "heading": "Your Data, Your Control",
+      "items": {
+        "noTraining": {
+          "title": "No Training on Customer Data",
+          "description": "We never use your data to train our models without explicit permission. Your media files and detection results remain private."
+        },
+        "retention": {
+          "title": "Configurable Data Retention",
+          "description": "Choose how long we retain your data. Options range from immediate deletion after analysis to custom retention periods up to 1 year."
+        },
+        "export": {
+          "title": "Data Export & Deletion",
+          "description": "Export your data anytime in standard formats. Request complete account deletion with guaranteed data erasure within 30 days."
+        }
+      }
+    },
+    "enterprise": {
+      "heading": "Enterprise Security",
+      "body": "Need custom security requirements, on-premise deployment, or dedicated infrastructure?",
+      "cta": "Contact Enterprise Sales"
+    },
+    "docs": {
+      "heading": "Security documentation",
+      "body": "Want to review our security practices in detail?",
+      "cta": "Request Security Whitepaper"
+    }
+  },
   "solutionsContent": {
     "fintech": {
       "name": "Fintech & Banking",
@@ -4658,6 +4775,191 @@
           "answer": "Yes. Scam AI includes 200 free image analyses per month via the API — no credit card required. This is distinct from Deepware’s consumer scanner; Scam AI’s free tier gives full API access for integration and testing."
         }
       }
+    }
+  },
+  "researchPage": {
+    "hero": {
+      "eyebrow": "Research",
+      "title": "Advancing the science of <accent>AI trust</accent>",
+      "description": "Our research focuses on deepfake detection, synthetic media forensics, and adversarial robustness. We publish our findings to advance the field and keep our customers ahead of emerging threats."
+    },
+    "stats": {
+      "papers": "Research Papers",
+      "areas": "Research Areas",
+      "datasets": "Open Datasets",
+      "comingSoon": "Coming Soon"
+    },
+    "papers": {
+      "heading": "Publications & Reports",
+      "description": "Research from the Scam AI team across deepfake detection, document forgery, age estimation, and more.",
+      "comingBadge": "Coming",
+      "viewOn": "View on {source}"
+    },
+    "datasets": {
+      "heading": "Datasets",
+      "description": "Curated datasets to help researchers benchmark detection models. Each dataset has its own page with the citation, paper link, and an email-gated download.",
+      "getAccess": "Get Access"
+    },
+    "cta": {
+      "heading": "Interested in collaborating?",
+      "description": "We partner with academic institutions and industry labs on deepfake detection research.",
+      "button": "Get in touch"
+    }
+  },
+  "resourcesPage": {
+    "eyebrow": "RESOURCES",
+    "hero": {
+      "heading": "Everything you need to succeed",
+      "subheading": "Documentation, guides, and resources to help you integrate and get the most out of Scam AI."
+    },
+    "cards": {
+      "documentation": {
+        "title": "Documentation",
+        "description": "Complete API documentation, code examples, and integration guides to get you started in minutes.",
+        "cta": "View documentation"
+      },
+      "security": {
+        "title": "Security & Compliance",
+        "description": "Learn about our enterprise-grade security practices, certifications, and compliance with global standards.",
+        "cta": "View security info"
+      }
+    },
+    "popular": {
+      "heading": "Popular Resources",
+      "links": {
+        "quickStart": {
+          "title": "Quick Start Guide",
+          "description": "Get up and running with Scam AI in under 10 minutes.",
+          "cta": "Read guide"
+        },
+        "apiReference": {
+          "title": "API Reference",
+          "description": "Complete API endpoint documentation and examples.",
+          "cta": "View API docs"
+        },
+        "bestPractices": {
+          "title": "Best Practices",
+          "description": "Optimize your integration with proven strategies.",
+          "cta": "Learn more"
+        },
+        "soc2": {
+          "title": "SOC 2 Type II",
+          "description": "Our security certification and compliance details.",
+          "cta": "View details"
+        },
+        "gdpr": {
+          "title": "GDPR Compliance",
+          "description": "How Scam AI helps you meet GDPR requirements.",
+          "cta": "Learn more"
+        },
+        "support": {
+          "title": "Support",
+          "description": "Get help from our technical support team.",
+          "cta": "Contact support"
+        }
+      }
+    },
+    "help": {
+      "heading": "Need Help?",
+      "cards": {
+        "support": {
+          "title": "Contact Support",
+          "description": "Our team is here to help with any questions.",
+          "cta": "Get in touch"
+        },
+        "docs": {
+          "title": "Read the Docs",
+          "description": "Comprehensive guides and API references.",
+          "cta": "View documentation"
+        },
+        "security": {
+          "title": "Security Info",
+          "description": "Learn about our security and compliance.",
+          "cta": "View security"
+        }
+      }
+    },
+    "cta": {
+      "heading": "Ready to get started?",
+      "subheading": "Start detecting deepfakes with 200 free images per month.",
+      "button": "Get Started Free"
+    }
+  },
+  "documentationPage": {
+    "hero": {
+      "eyebrow": "DOCUMENTATION",
+      "title": "Developer Documentation",
+      "subtitle": "Everything you need to integrate Scam AI's deepfake detection API into your application in minutes.",
+      "cta": "Get API Key"
+    },
+    "quickStart": {
+      "title": "Quick Start",
+      "steps": {
+        "signUp": {
+          "title": "Sign Up",
+          "description": "Create a free account at app.scam.ai and get your API key instantly."
+        },
+        "makeCall": {
+          "title": "Make API Call",
+          "description": "Use our simple REST API to analyze images, audio, or video files."
+        },
+        "getResults": {
+          "title": "Get Results",
+          "description": "Receive instant analysis with confidence scores and detailed reports."
+        }
+      },
+      "example": {
+        "title": "Basic Example"
+      }
+    },
+    "endpoints": {
+      "title": "API Endpoints",
+      "labels": {
+        "rateLimit": "Rate Limit:",
+        "maxFileSize": "Max File Size:",
+        "supportedFormats": "Supported Formats:"
+      },
+      "image": {
+        "title": "Image Detection",
+        "description": "Analyze images for deepfakes, face swaps, and synthetic generation."
+      },
+      "audio": {
+        "title": "Audio Detection",
+        "description": "Detect AI-generated voices, voice cloning, and synthetic speech."
+      },
+      "video": {
+        "title": "Video Detection",
+        "description": "Analyze video content for deepfakes and manipulated frames."
+      }
+    },
+    "sdks": {
+      "title": "SDKs & Libraries",
+      "comingSoon": "Coming Soon"
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "errorHandling": {
+        "title": "Error Handling",
+        "description": "Always handle API errors gracefully. Implement retry logic with exponential backoff for temporary failures."
+      },
+      "rateLimiting": {
+        "title": "Rate Limiting",
+        "description": "Respect rate limits to avoid 429 errors. Implement request queuing for high-volume applications."
+      },
+      "fileOptimization": {
+        "title": "File Optimization",
+        "description": "Compress large files before uploading to reduce processing time and costs. Optimize video resolution when possible."
+      },
+      "cachingResults": {
+        "title": "Caching Results",
+        "description": "Cache detection results for frequently checked content to reduce API calls and improve response times."
+      }
+    },
+    "cta": {
+      "title": "Need help getting started?",
+      "subtitle": "Our team is here to help you integrate successfully.",
+      "contactSupport": "Contact Support",
+      "getApiKey": "Get API Key"
     }
   }
 }
