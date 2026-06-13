@@ -1,4 +1,613 @@
 {
+  "landing": {
+    "home": {
+      "hero": {
+        "ariaLabel": "首屏区域 - AI 信任平台",
+        "badgeShort": "推出 Halo · 携手 Qualcomm",
+        "badge": "推出 Halo · 携手 Qualcomm 实现设备端 deepfake 检测",
+        "headline": "验证真实，守护要紧。",
+        "subhead": "Deepfake 和声音克隆无处不在——出现在你的视频通话、私信和屏幕上。scam.ai 能<em>实时</em>识破它们，让你随时确认屏幕另一端究竟是谁。",
+        "visitHalo": "了解 Halo",
+        "tryFaceswap": "看看伪造一张脸有多容易",
+        "bookDemo": "需要定制化检测？<strong>预约演示</strong>"
+      },
+      "aiSecurity": {
+        "ariaLabel": "AI 驱动的安全 - Deepfake 防护",
+        "eyebrow": "AI 驱动的安全",
+        "headline": "用 AI 防御",
+        "headlineLine2": "对抗",
+        "headlineHighlight": "AI 威胁",
+        "body": "据 Deloitte 预测，到 2027 年，AI 生成的 deepfake 欺诈将给企业造成超过 $40 billion 的损失。我们的 <em>Eva-v1</em> 模型与威胁同步进化——在 4 秒内实现 <em>95.3% 的检测准确率</em>，实时遏制欺诈、守护你的营收。",
+        "cta": "立即开始检测"
+      },
+      "whyChooseUs": {
+        "ariaLabel": "平台特性 - 团队为何选择我们",
+        "eyebrow": "平台",
+        "headline": "团队为何选择",
+        "headlineHighlight": "我们"
+      },
+      "allInOne": {
+        "eyebrow": "一体化平台",
+        "headline": "一个平台，满足所有媒体验证需求",
+        "body": "无需在多款检测工具间切换。Scam AI 将图像、视频和音频的 deepfake 检测统一到单一 API。检测换脸、GAN 生成图像、扩散模型输出（Stable Diffusion、DALL-E、Midjourney）以及声音克隆——只需一次集成，10 分钟内即可完成。"
+      },
+      "lightningFast": {
+        "eyebrow": "极速响应",
+        "headline": "大规模实时检测",
+        "body": "Eva-v1-Fast 在 2 秒内完成图像处理；Eva-v1-Pro 在 4 秒内提供取证级准确率。支持 JPG、PNG、GIF、WebP、MP4、MOV、AVI、MP3、WAV 和 FLAC。专为 KYC 验证、内容审核和呼叫中心语音认证等高吞吐场景打造。"
+      },
+      "pricing": {
+        "eyebrow": "$ 透明定价",
+        "headline": "用多少，付多少。",
+        "freeImages": "每月 200 张免费图像",
+        "body": "使用 Eva-v1-Fast 模型，每月可免费检测 200 张图像。超出后按量付费，每张 $0.05。可选附加功能（自适应防御、活体检测、快速通道）每张各 $0.008。无需签约，无安装费。"
+      },
+      "compliance": {
+        "ariaLabel": "定价与合规",
+        "gdprBadgeAlt": "GDPR 合规徽章",
+        "soc2BadgeAlt": "SOC 2 Type II 认证徽章",
+        "eyebrow": "☑ 全球合规",
+        "headline": "处处合规，畅行无阻。",
+        "body": "一次集成，即可满足欧盟、美国和亚太地区的数据保护要求。<strong>符合 GDPR</strong>，并通过 <strong>SOC 2 Type II 认证</strong>。默认情况下，我们在处理完成后不保留你的媒体文件；企业客户可自定义保留策略以满足审计与合规需求。",
+        "trustCenter": "查看我们的信任中心 →"
+      },
+      "resources": {
+        "eyebrow": "资源",
+        "headline": "了解 deepfake 检测",
+        "readTime": "阅读约 {minutes} 分钟",
+        "allGuides": "全部指南 →",
+        "industrySolutions": "行业解决方案 →",
+        "compareTools": "工具对比 →"
+      },
+      "stickyCta": {
+        "sublabel": "实时验证真伪",
+        "primary": "了解 Halo",
+        "secondary": "看看如何运作"
+      }
+    },
+    "nav": {
+      "skipToContent": "跳到主要内容",
+      "logoAlt": "Scam AI",
+      "search": "搜索",
+      "searchPlaceholder": "搜索…",
+      "logIn": "登录",
+      "bookDemo": "预约演示",
+      "openMenu": "打开菜单",
+      "closeMenu": "关闭菜单",
+      "talkWithTeam": {
+        "title": "与团队联系",
+        "scheduleCall": "预约通话",
+        "scheduleCallMobile": "预约一次通话"
+      },
+      "allIndustries": {
+        "title": "所有行业",
+        "viewAll": "查看全部",
+        "viewAllMobile": "查看所有解决方案"
+      },
+      "items": {
+        "product": {
+          "label": "产品",
+          "children": {
+            "halo": {
+              "label": "Halo · 全新",
+              "description": "携手 Qualcomm，为实时通话提供设备端 deepfake 检测"
+            },
+            "aiDetection": {
+              "label": "AI 检测",
+              "description": "Deepfake 与合成媒体检测"
+            },
+            "audio": {
+              "label": "音频",
+              "description": "声音克隆与合成音频检测"
+            },
+            "documentation": {
+              "label": "文档",
+              "description": "API 指南与集成示例"
+            }
+          }
+        },
+        "pricing": {
+          "label": "定价"
+        },
+        "solutions": {
+          "label": "解决方案",
+          "children": {
+            "fintech": {
+              "label": "金融科技与银行",
+              "description": "KYC deepfake 防护与身份欺诈预防"
+            },
+            "kyc": {
+              "label": "KYC 验证",
+              "description": "遏制开户流程中的 deepfake 欺诈"
+            },
+            "callCenters": {
+              "label": "呼叫中心",
+              "description": "声音克隆检测与语音钓鱼防范"
+            },
+            "media": {
+              "label": "媒体与出版",
+              "description": "面向新闻编辑室的 AI 生成内容检测"
+            },
+            "dating": {
+              "label": "交友应用",
+              "description": "虚假资料与语音杀猪盘防范"
+            },
+            "insurance": {
+              "label": "保险",
+              "description": "AI 理赔欺诈与合成证据检测"
+            },
+            "hr": {
+              "label": "人力资源与招聘",
+              "description": "远程面试 deepfake 与语音欺诈检测"
+            },
+            "government": {
+              "label": "政府",
+              "description": "面向公共部门的合成媒体检测"
+            }
+          }
+        },
+        "learn": {
+          "label": "学习"
+        },
+        "company": {
+          "label": "公司",
+          "children": {
+            "about": {
+              "label": "关于我们",
+              "description": "了解我们的使命与团队"
+            },
+            "research": {
+              "label": "研究",
+              "description": "论文、基准测试与技术深度解析"
+            },
+            "newsletter": {
+              "label": "资讯订阅",
+              "description": "每周分享 deepfake 技术与 AI 安全洞察"
+            },
+            "security": {
+              "label": "安全与合规",
+              "description": "安全认证、合规标准与数据保护政策"
+            }
+          }
+        }
+      }
+    },
+    "stickyCta": {
+      "regionLabel": "Scam AI"
+    },
+    "banner": {
+      "regionLabel": "Computex 2026 公告",
+      "messagePrefix": "在以下展会与我们相见",
+      "eventName": "Computex 2026",
+      "dateLabel": "· 6 月 2–5 日",
+      "cta": "预约会面",
+      "dismissLabel": "关闭 Computex 2026 公告"
+    },
+    "pricing": {
+      "sectionAriaLabel": "定价",
+      "eyebrow": "按用量计费",
+      "heading": "用多少，<highlight>付多少</highlight>",
+      "subheading": "使用 Eva-v1-Fast，<strong>每月 200 张免费图像</strong>，之后每张 $0.05。无隐藏费用，无需签约。",
+      "volume": {
+        "label": "每月用量",
+        "images": "{volume} 张图像",
+        "ariaLabel": "每月图像用量"
+      },
+      "enterpriseNudge": {
+        "title": "需要更多？",
+        "description": "企业方案包含批量折扣与专属支持。",
+        "cta": "联系销售"
+      },
+      "addons": {
+        "title": "附加功能",
+        "subtitle": "增强检测能力的可选功能",
+        "adaptive": {
+          "label": "自适应防御",
+          "desc": "实时检测 GenAI、deepfake 与注入攻击"
+        },
+        "liveness": {
+          "label": "活体检测",
+          "desc": "验证真实人体存在，防范 deepfake 欺骗"
+        },
+        "express": {
+          "label": "快速通道",
+          "desc": "低延迟处理，保证 3 秒内响应"
+        }
+      },
+      "summary": {
+        "title": "费用概览",
+        "perImageLabel": "每张图像",
+        "perImageUnit": "/张",
+        "freeTierNote": "在免费额度内（每月 200 张）",
+        "base": "基础费用",
+        "monthlyEstimateLabel": "每月预估",
+        "perMonthUnit": "/月",
+        "freePaidNote": "{free} 张免费 + {paid} 张付费",
+        "cta": "立即开始",
+        "ctaNote": "无安装费 · 可随时取消"
+      },
+      "includes": {
+        "title": "包含内容",
+        "items": {
+          "genaiDeepfake": "GenAI 与 deepfake 检测",
+          "evaFastModel": "Eva-v1-Fast 模型",
+          "restApi": "REST API 访问",
+          "dashboardAnalytics": "仪表盘分析"
+        }
+      },
+      "plans": {
+        "recommended": "推荐",
+        "selfServe": {
+          "name": "自助方案",
+          "priceUnit": "每张图像",
+          "freeNote": "每月 200 张免费图像",
+          "description": "灵活的按量付费，适合各种规模的团队。免费起步，随需扩展。",
+          "cta": "立即开始",
+          "features": {
+            "genaiDetection": "GenAI 检测",
+            "deepfakeAnalysis": "Deepfake 分析",
+            "evaFastModel": "Eva-v1-Fast 模型",
+            "apiAccess": "API 访问",
+            "optionalAddons": "全部可选附加功能"
+          }
+        },
+        "enterprise": {
+          "name": "企业方案",
+          "price": "定制",
+          "description": "Eva-v1-Pro 带来取证级准确率、更低误报、进阶 Thinking 推理，以及面向大规模业务的专属支持。",
+          "cta": "联系销售",
+          "features": {
+            "everythingSelfServe": "包含自助方案全部功能",
+            "evaProModel": "Eva-v1-Pro 模型",
+            "thinking": "Thinking（进阶推理）",
+            "volumeDiscounts": "批量折扣",
+            "prioritySupport": "优先支持与 SLA",
+            "dedicatedManager": "专属客户经理",
+            "customIntegration": "定制集成"
+          }
+        }
+      }
+    },
+    "faq": {
+      "sectionAriaLabel": "常见问题",
+      "eyebrow": "支持",
+      "heading": "常见问题",
+      "subheading": "关于我们 GenAI 与 deepfake 检测平台你需要了解的一切",
+      "items": {
+        "freeTier": {
+          "question": "免费额度包含哪些内容？",
+          "answer": "免费额度每月可用 Eva-v1-Fast 模型分析 200 张图像，涵盖 GenAI 检测、deepfake 分析、API 访问与仪表盘分析。注册即可开始，无需信用卡。免费注册请访问 https://app.scam.ai"
+        },
+        "fastVsPro": {
+          "question": "Eva-v1-Fast 与 Eva-v1-Pro 有何区别？",
+          "answer": "Eva-v1-Fast 是我们针对速度与效率优化的标准模型，适用于绝大多数场景。Eva-v1-Pro 是我们的进阶模型，误报率显著更低、检测能力更强，仅向企业客户开放。Pro 为 KYC 验证、欺诈防范等高风险应用提供更深入的分析。模型对比请访问 https://scam.ai/products/ai-detection"
+        },
+        "pricingAfterFree": {
+          "question": "免费额度用完后如何计费？",
+          "answer": "每月 200 张免费图像用完后，每分析一张图像收费 $0.05。你还可以添加可选功能，如自适应防御（+$0.008/张）、活体检测（+$0.008/张）或快速通道（+$0.008/张）。完整定价请访问 https://scam.ai/pricing"
+        },
+        "mediaTypes": {
+          "question": "我可以分析哪些类型的媒体？",
+          "answer": "我们的平台支持分析图像、音频文件和视频内容，详见 https://scam.ai/products/ai-detection。我们可在所有支持的格式中检测 GenAI 生成内容、deepfake、合成媒体、换脸、声音克隆以及各类媒体篡改。"
+        },
+        "volumeDiscounts": {
+          "question": "你们提供批量折扣吗？",
+          "answer": "提供！对于每月处理超过 2,000 张图像的组织，我们提供定制企业定价，包含批量折扣、专属支持，以及 Eva-v1-Pro、Thinking 等进阶模型的使用权限。请通过 https://cal.com/scamai/15min 联系我们的销售团队，沟通你的具体需求。"
+        },
+        "thinking": {
+          "question": "Thinking 功能是什么？",
+          "answer": "Thinking 是仅企业方案提供的进阶推理能力。它带来更深入的分析与情境感知检测，帮助识别复杂的篡改手法。了解更多请访问 https://www.scam.ai/en/products"
+        },
+        "accuracy": {
+          "question": "你们的检测有多准确？",
+          "answer": "我们的 Eva 模型持续针对最新的 GenAI 与 deepfake 技术进行训练。Eva-v1-Fast 为绝大多数场景提供出色的准确率，而 Eva-v1-Pro 为企业应用带来更高精度与显著更低的误报率。每次分析都会附带检测置信度评分。基准测试请访问 https://scam.ai/products/ai-detection"
+        },
+        "integration": {
+          "question": "我能把它集成到现有应用中吗？",
+          "answer": "当然可以！我们提供 RESTful API，便于轻松集成。我们的 API 支持同步与异步处理、用于通知的 webhooks，并配有完善的文档。企业客户还可获得专属集成支持。API 文档请见 https://docu.scam.ai"
+        },
+        "dataRetention": {
+          "question": "你们的数据保留政策是什么？",
+          "answer": "我们符合 GDPR，并通过 SOC 2 Type II 认证。默认情况下，我们在处理完成后不保留你的媒体文件。企业客户可自定义保留策略，以满足其特定的合规与审计要求。"
+        },
+        "getStarted": {
+          "question": "我该如何开始？",
+          "answer": "只需在 https://app.scam.ai 注册一个免费账户，即可立即用 Eva-v1-Fast 模型获得每月 200 次免费图像分析，无需信用卡。升级付费方案请访问 https://scam.ai/pricing，或联系销售了解企业方案。"
+        }
+      },
+      "contact": {
+        "prompt": "还有疑问？我们随时为你提供帮助。",
+        "cta": "预约通话"
+      }
+    },
+    "solutions": {
+      "eyebrow": "解决方案",
+      "heading": "为 <highlight>AI 时代</highlight><br></br>打造的信任基础设施",
+      "subheading": "跨人物、文档和 AI 智能体，检测 deepfake、合成媒体、声音克隆与文档欺诈。",
+      "learnMore": "了解更多",
+      "talkToSales": "联系销售",
+      "cards": {
+        "halo": {
+          "title": "Halo — 设备端检测",
+          "description": "在你的 Zoom、Teams 和 Meet 通话中实时检测 deepfake。运行于 Qualcomm Snapdragon X NPU——数据绝不离开你的设备。",
+          "badge": "全新 · 携手 Qualcomm"
+        },
+        "deepfake": {
+          "title": "Deepfake",
+          "description": "在图像和视频中实时检测换脸、口型同步攻击与 AI 生成人脸。"
+        },
+        "genai": {
+          "title": "GenAI",
+          "description": "在合成内容进入你的流程前，识别来自扩散模型、GAN 和 LLM 的内容。"
+        },
+        "voiceClone": {
+          "title": "声音克隆",
+          "description": "识破针对呼叫中心和语音认证系统的克隆声音与合成语音。"
+        },
+        "remoteNotary": {
+          "title": "远程公证",
+          "description": "在远程公证过程中验证签署人身份。在文件封印前拦截 deepfake。"
+        },
+        "ageEstimation": {
+          "title": "年龄估算与 IDV",
+          "description": "AI 驱动的年龄估算与身份验证，识破合成证件与篡改自拍。"
+        },
+        "documentForgery": {
+          "title": "文档伪造",
+          "description": "对 AI 生成与篡改的文档进行取证分析，涵盖银行对账单到工资单。"
+        },
+        "aiAgentScamPrevention": {
+          "title": "AI 智能体诈骗防护",
+          "description": "拦截针对 AI 驱动工作流的社会工程、提示注入与身份伪冒。"
+        },
+        "remoteInterview": {
+          "title": "远程面试诚信",
+          "description": "在实时视频面试中验证候选人身份并实时检测 deepfake。"
+        }
+      }
+    },
+    "developer": {
+      "eyebrow": "最易于集成",
+      "heading": "按你的方式集成",
+      "subhead": "无需代码，或仅需一次 API 调用即可使用 Scam AI。几分钟内即可上线。",
+      "keyPointsLabel": "要点",
+      "videoFallback": "你的浏览器不支持 video 标签。",
+      "tabs": {
+        "nocode": "无代码",
+        "api": "API"
+      },
+      "nocode": {
+        "heading": "无代码",
+        "body": "通过我们直观的仪表盘，实时监控和分析 deepfake 检测结果。上传媒体文件、查看检测置信度评分、追踪合成内容趋势——全程无需编写一行代码。",
+        "dashboardCaption": "Scam AI 仪表盘",
+        "points": {
+          "dashboard": "可视化 deepfake 检测仪表盘",
+          "upload": "拖放式媒体上传",
+          "scoring": "实时置信度评分",
+          "export": "导出检测报告与分析 ",
+          "exportBadge": "（企业版）"
+        }
+      },
+      "api": {
+        "heading": "API 集成",
+        "body1": "仅需一次 API 调用，即可将 deepfake 检测集成到你的应用中。我们的 REST API 可分析图像、音频和视频中的 AI 生成内容，并实时返回置信度评分。",
+        "body2": "使用 Eva-v1 模型检测合成媒体、声音克隆与 deepfake。即时获得结论，并附带详尽的篡改分析。",
+        "viewDocs": "查看文档",
+        "codeTab": "API 请求",
+        "tryIt": "试一试",
+        "points": {
+          "detect": "检测 deepfake、合成媒体与声音克隆",
+          "scoring": "实时置信度评分与分析",
+          "support": "支持图像、音频和视频",
+          "webhooks": "用于异步处理的 Webhooks"
+        }
+      }
+    },
+    "trustedBy": {
+      "heading": "深受客户信赖，幕后团队来自",
+      "logos": {
+        "productHunt": "Product Hunt — 每日产品",
+        "qualcomm": "Qualcomm",
+        "lgUplus": "LG U+",
+        "hp": "HP",
+        "sbiHoldings": "SBI Holdings",
+        "ucBerkeley": "UC Berkeley",
+        "trulioo": "Trulioo",
+        "betaFellowship": "Beta Fellowship",
+        "honestly": "Honestly",
+        "finalRound": "Final Round AI",
+        "ditto": "Ditto",
+        "quotr": "Quotr",
+        "llamaVenture": "Llama Venture"
+      }
+    },
+    "footer": {
+      "logoAlt": "Scam AI - AI 信任平台标志",
+      "tagline": "一体化 AI 信任平台",
+      "social": {
+        "twitter": "在 X（Twitter）上关注我们",
+        "linkedin": "在 LinkedIn 上关注我们",
+        "github": "查看我们的 GitHub"
+      },
+      "newsletter": {
+        "heading": "抢先洞悉 AI 威胁",
+        "subtext": "每周将 deepfake、合成媒体与 AI 安全的洞察直接送达你的收件箱。",
+        "placeholder": "you@company.com",
+        "emailLabel": "电子邮箱",
+        "subscribe": "订阅",
+        "subscribing": "订阅中…",
+        "subscribed": "订阅成功！",
+        "successDetail": "感谢订阅——请查收收件箱中的确认邮件。",
+        "errorGeneric": "出错了，请重试。",
+        "errorNetwork": "网络错误，请重试。"
+      },
+      "nav": {
+        "product": {
+          "aria": "产品导航",
+          "heading": "产品",
+          "aiDetection": "AI 检测",
+          "audioDetection": "音频检测",
+          "pricing": "定价",
+          "solutions": "解决方案",
+          "compare": "对比"
+        },
+        "resources": {
+          "aria": "资源导航",
+          "heading": "资源",
+          "documentation": "文档",
+          "security": "安全与合规",
+          "newsletter": "资讯订阅",
+          "learn": "学习"
+        },
+        "company": {
+          "aria": "公司导航",
+          "heading": "公司",
+          "about": "关于",
+          "research": "研究",
+          "contact": "联系我们",
+          "forBusiness": "面向企业 — checkreality.ai",
+          "privacy": "隐私",
+          "terms": "条款",
+          "cookies": "Cookie"
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Reality Inc. 保留所有权利。",
+        "tagline": "为 AI 时代的信任而生"
+      }
+    },
+    "playground": {
+      "eyebrow": "Deepfake 已来到身边",
+      "heading": "看看伪造一张脸有多容易。",
+      "subhead": "打开摄像头，实时观看你自己的 deepfake。这就是攻击——而防御就运行在设备端。",
+      "demoMeta": "30 秒实时演示 · 无需安装",
+      "intro": {
+        "tagline": "先选一张照片，然后进入实时演示。",
+        "start": "开始实时演示"
+      },
+      "consent": {
+        "title": "摄像头权限",
+        "allow": "允许并开始",
+        "tryAgain": "重试",
+        "cancel": "取消",
+        "privacy": "实时处理约 30 秒，绝不存储。"
+      },
+      "picker": {
+        "pickFace": "选择一张脸",
+        "switchLive": "点击可实时切换脸",
+        "becomeFace": "变成这张脸",
+        "remove": "移除",
+        "removeFace": "移除这张脸",
+        "presetFaces": "预设脸部",
+        "presetMeta": "· StyleGAN2 AI 生成",
+        "userUploads": "用户上传",
+        "upload": "上传",
+        "uploadYourFace": "上传你自己的脸"
+      },
+      "uploadDialog": {
+        "title": "上传一张脸",
+        "consent": "我已获得当事人同意，可在本演示中使用其照片。",
+        "addToPool": "加入公共换脸池",
+        "poolFull": "池已满",
+        "private": "你的脸将保持私密——仅你本人可使用。",
+        "cancel": "取消",
+        "choosePhoto": "选择照片"
+      },
+      "stage": {
+        "left": "剩余",
+        "liveLabel": "实时换脸",
+        "switchingFace": "正在切换脸…",
+        "share": "分享",
+        "you": "你"
+      },
+      "ended": {
+        "eyebrow": "这只花了 30 秒。",
+        "heading": "任何人都能伪造一张脸。在设备端识破它。",
+        "budgetEyebrow": "已达演示上限",
+        "budgetHeading": "你已用完今天的免费演示时长。",
+        "budgetBody": "伪造一张脸只需 30 秒——现在来认识一下防御方案。",
+        "shareDeepfake": "分享你的 deepfake",
+        "meetHalo": "认识 Halo——防御方案",
+        "runAgain": "再来一次"
+      },
+      "card": {
+        "title": "保存或分享你的卡片",
+        "share": "分享",
+        "saveImage": "保存图像",
+        "saved": "已保存",
+        "postToX": "发布到 X",
+        "imageAlt": "你的 deepfake 卡片"
+      }
+    },
+    "search": {
+      "dialogLabel": "站内搜索",
+      "inputAriaLabel": "搜索产品、页面和功能",
+      "placeholder": "搜索产品、页面和功能…",
+      "resultsAriaLabel": "搜索结果",
+      "noResults": "未找到与“{query}”相关的结果",
+      "hintNavigate": "切换",
+      "hintSelect": "选择",
+      "categories": {
+        "products": "产品",
+        "pages": "页面",
+        "resources": "资源",
+        "actions": "操作"
+      },
+      "items": {
+        "halo": {
+          "label": "Halo",
+          "description": "携手 Qualcomm，为实时通话提供设备端 deepfake 检测"
+        },
+        "aiDetection": {
+          "label": "AI 检测",
+          "description": "Deepfake 与 AI 生成内容检测"
+        },
+        "audioDetection": {
+          "label": "音频检测",
+          "description": "声音克隆与 AI 生成音频检测"
+        },
+        "home": {
+          "label": "首页"
+        },
+        "pricing": {
+          "label": "定价",
+          "description": "方案与定价详情"
+        },
+        "about": {
+          "label": "关于我们",
+          "description": "我们的使命与里程碑"
+        },
+        "research": {
+          "label": "研究",
+          "description": "论文、基准测试与技术报告"
+        },
+        "newsletter": {
+          "label": "资讯订阅",
+          "description": "每周 deepfake 与 AI 安全资讯"
+        },
+        "contact": {
+          "label": "联系我们",
+          "description": "与我们的团队取得联系"
+        },
+        "documentation": {
+          "label": "文档",
+          "description": "API 指南与集成示例"
+        },
+        "securityCompliance": {
+          "label": "安全与合规",
+          "description": "SOC 2 Type II 与 GDPR 合规"
+        },
+        "logIn": {
+          "label": "登录",
+          "description": "访问你的仪表盘"
+        },
+        "bookDemo": {
+          "label": "预约演示",
+          "description": "预约一次 15 分钟通话"
+        }
+      }
+    }
+  },
   "nav": {
     "products": "产品",
     "industries": "行业",

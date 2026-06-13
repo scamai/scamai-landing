@@ -1,4 +1,613 @@
 {
+  "landing": {
+    "home": {
+      "hero": {
+        "ariaLabel": "Section héros - Plateforme de confiance IA",
+        "badgeShort": "Découvrez Halo · Qualcomm",
+        "badge": "Découvrez Halo · Détection des deepfakes sur l’appareil avec Qualcomm",
+        "headline": "Vérifiez ce qui est réel. Protégez ce qui compte.",
+        "subhead": "Les deepfakes et les clones vocaux sont partout — sur vos appels vidéo, vos messages privés, votre écran. scam.ai les repère <em>en temps réel</em>, pour que vous sachiez toujours qui se trouve vraiment en face.",
+        "visitHalo": "Découvrir Halo",
+        "tryFaceswap": "Voyez à quel point il est facile de truquer un visage",
+        "bookDemo": "Besoin d’une détection sur mesure ? <strong>Réservez une démo</strong>"
+      },
+      "aiSecurity": {
+        "ariaLabel": "Sécurité propulsée par l’IA - Protection contre les deepfakes",
+        "eyebrow": "SÉCURITÉ PROPULSÉE PAR L’IA",
+        "headline": "Contrez les menaces de l’IA",
+        "headlineLine2": "avec",
+        "headlineHighlight": "une défense IA",
+        "body": "Selon Deloitte, la fraude par deepfake générée par IA devrait coûter aux entreprises plus de $40 billion d’ici 2027. Nos modèles <em>Eva-v1</em> évoluent aussi vite que les menaces elles-mêmes — atteignant une <em>précision de détection de 95,3 %</em> en moins de 4 secondes, stoppant la fraude et protégeant vos revenus en temps réel.",
+        "cta": "Commencer la détection"
+      },
+      "whyChooseUs": {
+        "ariaLabel": "Fonctionnalités de la plateforme - Pourquoi les équipes nous choisissent",
+        "eyebrow": "LA PLATEFORME",
+        "headline": "Pourquoi les équipes",
+        "headlineHighlight": "nous choisissent"
+      },
+      "allInOne": {
+        "eyebrow": "PLATEFORME TOUT-EN-UN",
+        "headline": "Une seule plateforme pour tous vos besoins de vérification des médias",
+        "body": "Cessez de jongler entre plusieurs outils de détection. Scam AI unifie la détection des deepfakes pour les images, la vidéo et l’audio au sein d’une seule API. Détectez les échanges de visage, les images générées par GAN, les sorties de modèles de diffusion (Stable Diffusion, DALL-E, Midjourney) et les clones vocaux — le tout avec une seule intégration en moins de 10 minutes."
+      },
+      "lightningFast": {
+        "eyebrow": "ULTRA-RAPIDE",
+        "headline": "Détection en temps réel à grande échelle",
+        "body": "Eva-v1-Fast traite les images en moins de 2 secondes ; Eva-v1-Pro offre une précision de niveau médico-légal en moins de 4 secondes. Prend en charge JPG, PNG, GIF, WebP, MP4, MOV, AVI, MP3, WAV et FLAC. Conçu pour les cas d’usage à fort volume comme la vérification KYC, la modération de contenu et l’authentification vocale des centres d’appels."
+      },
+      "pricing": {
+        "eyebrow": "$ TARIFICATION TRANSPARENTE",
+        "headline": "Ne payez que ce que vous utilisez.",
+        "freeImages": "200 images gratuites / mois",
+        "body": "Démarrez avec 200 images gratuites par mois grâce à notre modèle Eva-v1-Fast. Paiement à l’usage à $0.05 par image ensuite. Options supplémentaires (Adaptive Defense, Active Liveness, Express Lane) à $0.008 par image chacune. Sans contrat, sans frais d’installation."
+      },
+      "compliance": {
+        "ariaLabel": "Tarification et conformité",
+        "gdprBadgeAlt": "Badge de conformité GDPR",
+        "soc2BadgeAlt": "Badge attesté SOC 2 Type II",
+        "eyebrow": "☑ CONFORMITÉ MONDIALE",
+        "headline": "Restez en conformité, partout.",
+        "body": "Répondez aux exigences de protection des données dans l’UE, aux États-Unis et en APAC avec une seule intégration. <strong>Conforme au GDPR</strong> et <strong>attesté SOC 2 Type II</strong>. Par défaut, nous ne conservons pas vos médias après traitement ; les clients entreprise peuvent configurer une rétention personnalisée à des fins d’audit et de conformité.",
+        "trustCenter": "Consultez notre Trust Center →"
+      },
+      "resources": {
+        "eyebrow": "RESSOURCES",
+        "headline": "Tout savoir sur la détection des deepfakes",
+        "readTime": "{minutes} min de lecture",
+        "allGuides": "Tous les guides →",
+        "industrySolutions": "Solutions par secteur →",
+        "compareTools": "Comparer les outils →"
+      },
+      "stickyCta": {
+        "sublabel": "Vérifiez ce qui est réel, en temps réel",
+        "primary": "Découvrir Halo",
+        "secondary": "Voir comment ça marche"
+      }
+    },
+    "nav": {
+      "skipToContent": "Aller au contenu principal",
+      "logoAlt": "Scam AI",
+      "search": "Rechercher",
+      "searchPlaceholder": "Rechercher...",
+      "logIn": "Se connecter",
+      "bookDemo": "Réserver une démo",
+      "openMenu": "Ouvrir le menu",
+      "closeMenu": "Fermer le menu",
+      "talkWithTeam": {
+        "title": "Parler à l’équipe",
+        "scheduleCall": "Planifier un appel",
+        "scheduleCallMobile": "Planifier un appel"
+      },
+      "allIndustries": {
+        "title": "Tous les secteurs",
+        "viewAll": "Voir tout",
+        "viewAllMobile": "Voir toutes les solutions"
+      },
+      "items": {
+        "product": {
+          "label": "Produit",
+          "children": {
+            "halo": {
+              "label": "Halo · Nouveau",
+              "description": "Détection des deepfakes sur l’appareil pour les appels en direct — avec Qualcomm"
+            },
+            "aiDetection": {
+              "label": "Détection IA",
+              "description": "Détection des deepfakes et des médias synthétiques"
+            },
+            "audio": {
+              "label": "Audio",
+              "description": "Détection du clonage vocal et de l’audio synthétique"
+            },
+            "documentation": {
+              "label": "Documentation",
+              "description": "Guides API et exemples d’intégration"
+            }
+          }
+        },
+        "pricing": {
+          "label": "Tarifs"
+        },
+        "solutions": {
+          "label": "Solutions",
+          "children": {
+            "fintech": {
+              "label": "Fintech et banque",
+              "description": "Protection KYC contre les deepfakes et prévention de la fraude à l’identité"
+            },
+            "kyc": {
+              "label": "Vérification KYC",
+              "description": "Stoppez la fraude par deepfake dans les parcours d’intégration"
+            },
+            "callCenters": {
+              "label": "Centres d’appels",
+              "description": "Détection des clones vocaux et prévention du vishing"
+            },
+            "media": {
+              "label": "Médias et édition",
+              "description": "Détection des contenus générés par IA pour les rédactions"
+            },
+            "dating": {
+              "label": "Applications de rencontre",
+              "description": "Prévention des faux profils et du catfishing vocal"
+            },
+            "insurance": {
+              "label": "Assurance",
+              "description": "Détection de la fraude à l’assurance par IA et des preuves synthétiques"
+            },
+            "hr": {
+              "label": "RH et recrutement",
+              "description": "Détection des deepfakes et de la fraude vocale lors des entretiens à distance"
+            },
+            "government": {
+              "label": "Secteur public",
+              "description": "Détection des médias synthétiques pour le secteur public"
+            }
+          }
+        },
+        "learn": {
+          "label": "Apprendre"
+        },
+        "company": {
+          "label": "Entreprise",
+          "children": {
+            "about": {
+              "label": "À propos",
+              "description": "Découvrez notre mission et notre équipe"
+            },
+            "research": {
+              "label": "Recherche",
+              "description": "Publications, benchmarks et analyses techniques approfondies"
+            },
+            "newsletter": {
+              "label": "Newsletter",
+              "description": "Analyses hebdomadaires sur la technologie des deepfakes et la sécurité de l’IA"
+            },
+            "security": {
+              "label": "Sécurité et conformité",
+              "description": "Certifications de sécurité, normes de conformité et politiques de protection des données"
+            }
+          }
+        }
+      }
+    },
+    "stickyCta": {
+      "regionLabel": "Scam AI"
+    },
+    "banner": {
+      "regionLabel": "Annonce Computex 2026",
+      "messagePrefix": "Retrouvez-nous au",
+      "eventName": "Computex 2026",
+      "dateLabel": "· 2–5 juin",
+      "cta": "Réserver un rendez-vous",
+      "dismissLabel": "Ignorer l’annonce Computex 2026"
+    },
+    "pricing": {
+      "sectionAriaLabel": "Tarifs",
+      "eyebrow": "TARIFICATION À L’USAGE",
+      "heading": "Ne payez que <highlight>ce que vous utilisez</highlight>",
+      "subheading": "<strong>200 images gratuites/mois</strong> avec Eva-v1-Fast, puis $0.05/image. Aucuns frais cachés, aucun contrat.",
+      "volume": {
+        "label": "Volume mensuel",
+        "images": "{volume} images",
+        "ariaLabel": "Volume mensuel d’images"
+      },
+      "enterpriseNudge": {
+        "title": "Besoin de plus ?",
+        "description": "Les forfaits entreprise incluent des remises sur volume et un support dédié.",
+        "cta": "Contacter le service commercial"
+      },
+      "addons": {
+        "title": "Options",
+        "subtitle": "Fonctionnalités facultatives pour améliorer la détection",
+        "adaptive": {
+          "label": "Adaptive Defense",
+          "desc": "Détection en temps réel des attaques GenAI, deepfakes et par injection"
+        },
+        "liveness": {
+          "label": "Active Liveness",
+          "desc": "Vérifiez la présence d’un véritable humain et empêchez l’usurpation par deepfake"
+        },
+        "express": {
+          "label": "Express Lane",
+          "desc": "Traitement à faible latence avec garantie de réponse en 3 s"
+        }
+      },
+      "summary": {
+        "title": "Récapitulatif",
+        "perImageLabel": "Par image",
+        "perImageUnit": "/image",
+        "freeTierNote": "Dans le cadre du palier gratuit (200 images/mois)",
+        "base": "Base",
+        "monthlyEstimateLabel": "Estimation mensuelle",
+        "perMonthUnit": "/mois",
+        "freePaidNote": "{free} gratuites + {paid} payantes",
+        "cta": "Commencer",
+        "ctaNote": "Aucuns frais d’installation · Annulation à tout moment"
+      },
+      "includes": {
+        "title": "Inclus",
+        "items": {
+          "genaiDeepfake": "Détection GenAI et deepfake",
+          "evaFastModel": "Modèle Eva-v1-Fast",
+          "restApi": "Accès à l’API REST",
+          "dashboardAnalytics": "Analytique du tableau de bord"
+        }
+      },
+      "plans": {
+        "recommended": "Recommandé",
+        "selfServe": {
+          "name": "Self-Serve",
+          "priceUnit": "par image",
+          "freeNote": "200 images gratuites/mois",
+          "description": "Paiement à l’usage flexible pour les équipes de toutes tailles. Commencez gratuitement, montez en charge quand vous êtes prêt.",
+          "cta": "Commencer",
+          "features": {
+            "genaiDetection": "Détection GenAI",
+            "deepfakeAnalysis": "Analyse des deepfakes",
+            "evaFastModel": "Modèle Eva-v1-Fast",
+            "apiAccess": "Accès à l’API",
+            "optionalAddons": "Toutes les options facultatives"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "price": "Sur mesure",
+          "description": "Précision de niveau médico-légal avec Eva-v1-Pro, moins de faux positifs, fonction Thinking avancée et support dédié pour les opérations à fort volume.",
+          "cta": "Contacter le service commercial",
+          "features": {
+            "everythingSelfServe": "Tout ce qui est inclus dans Self-Serve",
+            "evaProModel": "Modèle Eva-v1-Pro",
+            "thinking": "Thinking (raisonnement avancé)",
+            "volumeDiscounts": "Remises sur volume",
+            "prioritySupport": "Support prioritaire et SLA",
+            "dedicatedManager": "Gestionnaire de compte dédié",
+            "customIntegration": "Intégration personnalisée"
+          }
+        }
+      }
+    },
+    "faq": {
+      "sectionAriaLabel": "Foire aux questions",
+      "eyebrow": "ASSISTANCE",
+      "heading": "Foire aux questions",
+      "subheading": "Tout ce que vous devez savoir sur notre plateforme de détection GenAI et deepfake",
+      "items": {
+        "freeTier": {
+          "question": "Que comprend le palier gratuit ?",
+          "answer": "Le palier gratuit comprend 200 images par mois analysées avec notre modèle Eva-v1-Fast. Cela inclut la détection GenAI, l’analyse des deepfakes, l’accès à l’API et l’analytique du tableau de bord. Aucune carte bancaire requise pour commencer. Inscrivez-vous gratuitement sur https://app.scam.ai"
+        },
+        "fastVsPro": {
+          "question": "Quelle est la différence entre Eva-v1-Fast et Eva-v1-Pro ?",
+          "answer": "Eva-v1-Fast est notre modèle standard optimisé pour la vitesse et l’efficacité, idéal pour la plupart des cas d’usage. Eva-v1-Pro est notre modèle avancé avec nettement moins de faux positifs et des capacités de détection renforcées, disponible exclusivement pour les clients Enterprise. Pro offre une analyse plus approfondie pour les applications à enjeux élevés comme la vérification KYC et la prévention de la fraude. Comparez les modèles sur https://scam.ai/products/ai-detection"
+        },
+        "pricingAfterFree": {
+          "question": "Comment fonctionne la tarification après le palier gratuit ?",
+          "answer": "Après vos 200 images gratuites par mois, vous payez $0.05 par image analysée. Vous pouvez aussi ajouter des fonctionnalités facultatives comme Adaptive Defense (+$0.008/image), Active Liveness (+$0.008/image) ou Express Lane (+$0.008/image). Consultez la tarification complète sur https://scam.ai/pricing"
+        },
+        "mediaTypes": {
+          "question": "Quels types de médias puis-je analyser ?",
+          "answer": "Notre plateforme prend en charge l’analyse des images, des fichiers audio et des contenus vidéo sur https://scam.ai/products/ai-detection. Nous détectons les contenus générés par GenAI, les deepfakes, les médias synthétiques, les échanges de visage, les clones vocaux et diverses formes de manipulation des médias dans tous les formats pris en charge."
+        },
+        "volumeDiscounts": {
+          "question": "Proposez-vous des remises sur volume ?",
+          "answer": "Oui ! Pour les organisations traitant plus de 2,000 images par mois, nous proposons une tarification Enterprise sur mesure avec des remises sur volume, un support dédié et l’accès à des modèles avancés comme Eva-v1-Pro et Thinking. Contactez notre équipe commerciale sur https://cal.com/scamai/15min pour discuter de vos besoins spécifiques."
+        },
+        "thinking": {
+          "question": "Qu’est-ce que la fonction Thinking ?",
+          "answer": "Thinking est notre capacité de raisonnement avancé disponible exclusivement dans le palier Enterprise. Elle offre une analyse plus approfondie et une détection contextuelle, aidant à identifier les techniques de manipulation sophistiquées. Pour en savoir plus, rendez-vous sur https://www.scam.ai/en/products"
+        },
+        "accuracy": {
+          "question": "Quelle est la précision de votre détection ?",
+          "answer": "Nos modèles Eva sont continuellement entraînés sur les dernières techniques GenAI et deepfake. Eva-v1-Fast offre une précision élevée pour la plupart des cas d’usage, tandis qu’Eva-v1-Pro fournit une précision supérieure avec nettement moins de faux positifs pour les applications d’entreprise. Des scores de confiance de détection sont fournis avec chaque analyse. Consultez les benchmarks sur https://scam.ai/products/ai-detection"
+        },
+        "integration": {
+          "question": "Puis-je l’intégrer à mon application existante ?",
+          "answer": "Absolument ! Nous fournissons une API RESTful pour une intégration facile. Notre API prend en charge le traitement synchrone et asynchrone, les webhooks pour les notifications et une documentation complète. Les clients Enterprise bénéficient d’un support d’intégration dédié. Consultez la documentation de l’API sur https://docu.scam.ai"
+        },
+        "dataRetention": {
+          "question": "Quelle est votre politique de conservation des données ?",
+          "answer": "Nous sommes conformes au GDPR et attestés SOC 2 Type II. Par défaut, nous ne conservons pas vos médias après traitement. Les clients Enterprise peuvent configurer des politiques de rétention personnalisées pour répondre à leurs exigences spécifiques de conformité et d’audit."
+        },
+        "getStarted": {
+          "question": "Comment commencer ?",
+          "answer": "Inscrivez-vous simplement pour un compte gratuit sur https://app.scam.ai afin d’accéder immédiatement à 200 analyses d’images gratuites par mois avec notre modèle Eva-v1-Fast. Aucune carte bancaire requise. Passez à un forfait payant sur https://scam.ai/pricing ou contactez le service commercial pour les options Enterprise."
+        }
+      },
+      "contact": {
+        "prompt": "Vous avez encore des questions ? Nous sommes là pour vous aider.",
+        "cta": "Planifier un appel"
+      }
+    },
+    "solutions": {
+      "eyebrow": "SOLUTIONS",
+      "heading": "L’infrastructure de confiance <br></br>pour l’<highlight>ère de l’IA</highlight>",
+      "subheading": "Détectez les deepfakes, les médias synthétiques, les clones vocaux et la fraude documentaire — sur les personnes, les documents et les agents IA.",
+      "learnMore": "En savoir plus",
+      "talkToSales": "Contacter le service commercial",
+      "cards": {
+        "halo": {
+          "title": "Halo — Détection sur l’appareil",
+          "description": "Détection des deepfakes en temps réel sur vos appels Zoom, Teams et Meet. Fonctionne sur le Qualcomm Snapdragon X NPU — rien ne quitte votre appareil.",
+          "badge": "Nouveau · avec Qualcomm"
+        },
+        "deepfake": {
+          "title": "Deepfake",
+          "description": "Détectez les échanges de visage, les attaques de synchronisation labiale et les visages générés par IA sur les images et les vidéos, en temps réel."
+        },
+        "genai": {
+          "title": "GenAI",
+          "description": "Identifiez les contenus synthétiques issus des modèles de diffusion, des GAN et des LLM avant qu’ils n’entrent dans votre pipeline."
+        },
+        "voiceClone": {
+          "title": "Clone vocal",
+          "description": "Repérez les voix clonées et la parole synthétique ciblant les centres d’appels et les systèmes d’authentification vocale."
+        },
+        "remoteNotary": {
+          "title": "Notaire à distance",
+          "description": "Vérifiez l’identité du signataire lors des actes notariés à distance. Stoppez les deepfakes avant que les documents ne soient scellés."
+        },
+        "ageEstimation": {
+          "title": "Estimation de l’âge et IDV",
+          "description": "Estimation de l’âge et vérification d’identité propulsées par IA, qui repèrent les pièces d’identité synthétiques et les selfies manipulés."
+        },
+        "documentForgery": {
+          "title": "Falsification de documents",
+          "description": "Analyse médico-légale des documents générés par IA et manipulés, des relevés bancaires aux fiches de paie."
+        },
+        "aiAgentScamPrevention": {
+          "title": "Prévention des arnaques par agents IA",
+          "description": "Bloquez l’ingénierie sociale, l’injection de prompts et l’usurpation d’identité ciblant les flux de travail propulsés par IA."
+        },
+        "remoteInterview": {
+          "title": "Intégrité des entretiens à distance",
+          "description": "Vérifiez l’identité des candidats et détectez les deepfakes lors des entretiens vidéo en direct, en temps réel."
+        }
+      }
+    },
+    "developer": {
+      "eyebrow": "LA PLUS SIMPLE À INTÉGRER",
+      "heading": "Intégrez à votre façon",
+      "subhead": "Utilisez Scam AI sans code ou avec un seul appel API. Passez en production en quelques minutes.",
+      "keyPointsLabel": "POINTS CLÉS",
+      "videoFallback": "Votre navigateur ne prend pas en charge la balise vidéo.",
+      "tabs": {
+        "nocode": "Sans code",
+        "api": "API"
+      },
+      "nocode": {
+        "heading": "Sans code",
+        "body": "Surveillez et analysez les résultats de détection des deepfakes en temps réel grâce à notre tableau de bord intuitif. Importez des fichiers multimédias, consultez les scores de confiance de détection et suivez les tendances des contenus synthétiques — le tout sans écrire la moindre ligne de code.",
+        "dashboardCaption": "Tableau de bord Scam AI",
+        "points": {
+          "dashboard": "Tableau de bord visuel de détection des deepfakes",
+          "upload": "Import de médias par glisser-déposer",
+          "scoring": "Scoring de confiance en temps réel",
+          "export": "Exportation des rapports de détection et de l’analytique ",
+          "exportBadge": "(Enterprise)"
+        }
+      },
+      "api": {
+        "heading": "Intégration API",
+        "body1": "Intégrez la détection des deepfakes à votre application avec un seul appel API. Notre API REST analyse les images, l’audio et la vidéo pour détecter les contenus générés par IA et renvoie des scores de confiance en temps réel.",
+        "body2": "Détectez les médias synthétiques, les clones vocaux et les deepfakes avec le modèle Eva-v1. Obtenez des verdicts instantanés avec une analyse détaillée des manipulations.",
+        "viewDocs": "Voir la documentation",
+        "codeTab": "Requête API",
+        "tryIt": "Essayer",
+        "points": {
+          "detect": "Détectez les deepfakes, les médias synthétiques et les clones vocaux",
+          "scoring": "Scoring de confiance et analyse en temps réel",
+          "support": "Prise en charge des images, de l’audio et de la vidéo",
+          "webhooks": "Webhooks pour le traitement asynchrone"
+        }
+      }
+    },
+    "trustedBy": {
+      "heading": "Adopté par nos clients et soutenu par des personnes issues de",
+      "logos": {
+        "productHunt": "Product Hunt — Produit du jour",
+        "qualcomm": "Qualcomm",
+        "lgUplus": "LG U+",
+        "hp": "HP",
+        "sbiHoldings": "SBI Holdings",
+        "ucBerkeley": "UC Berkeley",
+        "trulioo": "Trulioo",
+        "betaFellowship": "Beta Fellowship",
+        "honestly": "Honestly",
+        "finalRound": "Final Round AI",
+        "ditto": "Ditto",
+        "quotr": "Quotr",
+        "llamaVenture": "Llama Venture"
+      }
+    },
+    "footer": {
+      "logoAlt": "Scam AI - Logo de la plateforme de confiance IA",
+      "tagline": "La plateforme de confiance IA tout-en-un",
+      "social": {
+        "twitter": "Suivez-nous sur X (Twitter)",
+        "linkedin": "Suivez-nous sur LinkedIn",
+        "github": "Voir notre GitHub"
+      },
+      "newsletter": {
+        "heading": "Gardez une longueur d’avance sur les menaces de l’IA",
+        "subtext": "Analyses hebdomadaires sur les deepfakes, les médias synthétiques et la sécurité de l’IA — directement dans votre boîte de réception.",
+        "placeholder": "vous@entreprise.com",
+        "emailLabel": "Adresse e-mail",
+        "subscribe": "S’abonner",
+        "subscribing": "Abonnement…",
+        "subscribed": "Abonné !",
+        "successDetail": "Merci — vérifiez votre boîte de réception pour la confirmation.",
+        "errorGeneric": "Une erreur s’est produite. Veuillez réessayer.",
+        "errorNetwork": "Erreur réseau. Veuillez réessayer."
+      },
+      "nav": {
+        "product": {
+          "aria": "Navigation Produit",
+          "heading": "Produit",
+          "aiDetection": "Détection IA",
+          "audioDetection": "Détection audio",
+          "pricing": "Tarifs",
+          "solutions": "Solutions",
+          "compare": "Comparer"
+        },
+        "resources": {
+          "aria": "Navigation Ressources",
+          "heading": "Ressources",
+          "documentation": "Documentation",
+          "security": "Sécurité et conformité",
+          "newsletter": "Newsletter",
+          "learn": "Apprendre"
+        },
+        "company": {
+          "aria": "Navigation Entreprise",
+          "heading": "Entreprise",
+          "about": "À propos",
+          "research": "Recherche",
+          "contact": "Contact",
+          "forBusiness": "Pour les entreprises — checkreality.ai",
+          "privacy": "Confidentialité",
+          "terms": "Conditions",
+          "cookies": "Cookies"
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Reality Inc. Tous droits réservés.",
+        "tagline": "Conçu pour la confiance à l’ère de l’IA"
+      }
+    },
+    "playground": {
+      "eyebrow": "Le deepfake est là",
+      "heading": "Voyez à quel point il est facile de truquer un visage.",
+      "subhead": "Allumez votre caméra et observez un deepfake de vous-même en temps réel. Voici l’attaque — la défense s’exécute sur l’appareil.",
+      "demoMeta": "Démo en direct de 30 secondes · sans installation",
+      "intro": {
+        "tagline": "Choisissez une photo, puis passez en direct.",
+        "start": "Lancer la démo en direct"
+      },
+      "consent": {
+        "title": "Accès à la caméra",
+        "allow": "Autoriser et démarrer",
+        "tryAgain": "Réessayer",
+        "cancel": "Annuler",
+        "privacy": "Traité en direct pendant ~30 s, jamais stocké."
+      },
+      "picker": {
+        "pickFace": "Choisir un visage",
+        "switchLive": "Appuyez pour changer de visage en direct",
+        "becomeFace": "Devenir ce visage",
+        "remove": "Supprimer",
+        "removeFace": "Supprimer ce visage",
+        "presetFaces": "Visages prédéfinis",
+        "presetMeta": "· Généré par IA StyleGAN2",
+        "userUploads": "Imports des utilisateurs",
+        "upload": "Importer",
+        "uploadYourFace": "Importez votre propre visage"
+      },
+      "uploadDialog": {
+        "title": "Importer un visage",
+        "consent": "J’ai le consentement du sujet pour utiliser sa photo dans cette démo.",
+        "addToPool": "Ajouter au pool public d’échange",
+        "poolFull": "Pool plein",
+        "private": "Votre visage reste privé — vous seul pouvez l’utiliser.",
+        "cancel": "Annuler",
+        "choosePhoto": "Choisir une photo"
+      },
+      "stage": {
+        "left": "restantes",
+        "liveLabel": "Échange de visage en direct",
+        "switchingFace": "Changement de visage…",
+        "share": "Partager",
+        "you": "Vous"
+      },
+      "ended": {
+        "eyebrow": "Cela a pris 30 secondes.",
+        "heading": "N’importe qui peut truquer un visage. Repérez-le sur l’appareil.",
+        "budgetEyebrow": "Limite de démo atteinte",
+        "budgetHeading": "Vous avez épuisé votre temps de démo gratuit pour aujourd’hui.",
+        "budgetBody": "Trente secondes ont suffi pour truquer un visage — découvrez maintenant la défense.",
+        "shareDeepfake": "Partagez votre deepfake",
+        "meetHalo": "Découvrez Halo — la défense",
+        "runAgain": "Relancer"
+      },
+      "card": {
+        "title": "Enregistrez ou partagez votre carte",
+        "share": "Partager",
+        "saveImage": "Enregistrer l’image",
+        "saved": "Enregistré",
+        "postToX": "Publier sur X",
+        "imageAlt": "Votre carte deepfake"
+      }
+    },
+    "search": {
+      "dialogLabel": "Recherche sur le site",
+      "inputAriaLabel": "Rechercher des produits, des pages et des fonctionnalités",
+      "placeholder": "Rechercher des produits, des pages et des fonctionnalités...",
+      "resultsAriaLabel": "Résultats de recherche",
+      "noResults": "Aucun résultat trouvé pour « {query} »",
+      "hintNavigate": "pour naviguer",
+      "hintSelect": "pour sélectionner",
+      "categories": {
+        "products": "Produits",
+        "pages": "Pages",
+        "resources": "Ressources",
+        "actions": "Actions"
+      },
+      "items": {
+        "halo": {
+          "label": "Halo",
+          "description": "Détection des deepfakes sur l’appareil pour les appels en direct — avec Qualcomm"
+        },
+        "aiDetection": {
+          "label": "Détection IA",
+          "description": "Détection des deepfakes et des contenus générés par IA"
+        },
+        "audioDetection": {
+          "label": "Détection audio",
+          "description": "Détection du clonage vocal et de l’audio généré par IA"
+        },
+        "home": {
+          "label": "Accueil"
+        },
+        "pricing": {
+          "label": "Tarifs",
+          "description": "Forfaits et détails de la tarification"
+        },
+        "about": {
+          "label": "À propos",
+          "description": "Notre mission et nos étapes clés"
+        },
+        "research": {
+          "label": "Recherche",
+          "description": "Publications, benchmarks et rapports techniques"
+        },
+        "newsletter": {
+          "label": "Newsletter",
+          "description": "Actualités hebdomadaires sur les deepfakes et la sécurité de l’IA"
+        },
+        "contact": {
+          "label": "Contact",
+          "description": "Entrez en contact avec notre équipe"
+        },
+        "documentation": {
+          "label": "Documentation",
+          "description": "Guides API et exemples d’intégration"
+        },
+        "securityCompliance": {
+          "label": "Sécurité et conformité",
+          "description": "Conformité SOC 2 Type II et GDPR"
+        },
+        "logIn": {
+          "label": "Se connecter",
+          "description": "Accédez à votre tableau de bord"
+        },
+        "bookDemo": {
+          "label": "Réserver une démo",
+          "description": "Planifier un appel de 15 minutes"
+        }
+      }
+    }
+  },
   "nav": {
     "products": "Produits",
     "industries": "Industries",

@@ -1,4 +1,613 @@
 {
+  "landing": {
+    "home": {
+      "hero": {
+        "ariaLabel": "ヒーローセクション - AI信頼プラットフォーム",
+        "badgeShort": "Halo 登場 · Qualcomm",
+        "badge": "Halo 登場 · Qualcomm と実現するオンデバイスのディープフェイク検出",
+        "headline": "本物を見極める。大切なものを守る。",
+        "subhead": "ディープフェイクや音声クローンは、ビデオ通話、DM、画面のあらゆる場所に潜んでいます。scam.ai はそれらを<em>リアルタイム</em>で検出し、相手が本当に誰なのかを常に把握できるようにします。",
+        "visitHalo": "Halo を見る",
+        "tryFaceswap": "顔を偽装するのがいかに簡単か体験する",
+        "bookDemo": "カスタム検出が必要ですか？<strong>デモを予約する</strong>"
+      },
+      "aiSecurity": {
+        "ariaLabel": "AI 搭載セキュリティ - ディープフェイク対策",
+        "eyebrow": "AI 搭載セキュリティ",
+        "headline": "AI の脅威に立ち向かう",
+        "headlineLine2": "—",
+        "headlineHighlight": "AI 防御",
+        "body": "Deloitte によると、AI 生成のディープフェイク詐欺は 2027 年までに企業に $40 billion 以上の損失をもたらすと予測されています。当社の <em>Eva-v1</em> モデルは脅威そのものと同じ速さで進化し、4 秒未満で <em>95.3% の検出精度</em>を達成。詐欺を阻止し、収益をリアルタイムで守ります。",
+        "cta": "今すぐ検出を始める"
+      },
+      "whyChooseUs": {
+        "ariaLabel": "プラットフォームの特長 - チームが選ぶ理由",
+        "eyebrow": "プラットフォーム",
+        "headline": "チームが選ぶ",
+        "headlineHighlight": "理由"
+      },
+      "allInOne": {
+        "eyebrow": "オールインワン プラットフォーム",
+        "headline": "あらゆるメディア検証ニーズに対応する単一のプラットフォーム",
+        "body": "複数の検出ツールを使い分ける必要はもうありません。Scam AI は画像、動画、音声のディープフェイク検出を単一の API に統合します。フェイススワップ、GAN 生成画像、拡散モデルの出力（Stable Diffusion、DALL-E、Midjourney）、音声クローンを、たった 1 つの統合で 10 分以内に検出できます。"
+      },
+      "lightningFast": {
+        "eyebrow": "圧倒的な速さ",
+        "headline": "大規模環境でもリアルタイム検出",
+        "body": "Eva-v1-Fast は画像を 2 秒未満で処理し、Eva-v1-Pro はフォレンジック級の精度を 4 秒未満で提供します。JPG、PNG、GIF、WebP、MP4、MOV、AVI、MP3、WAV、FLAC に対応。KYC 認証、コンテンツモデレーション、コールセンターの音声認証など、高スループットのユースケース向けに構築されています。"
+      },
+      "pricing": {
+        "eyebrow": "$ 透明性のある料金",
+        "headline": "使った分だけお支払い。",
+        "freeImages": "毎月 200 枚の画像が無料",
+        "body": "Eva-v1-Fast モデルで毎月 200 枚の画像を無料でご利用いただけます。以降は 1 枚 $0.05 の従量課金。オプションのアドオン（Adaptive Defense、Active Liveness、Express Lane）は各 1 枚 $0.008。契約も初期費用もありません。"
+      },
+      "compliance": {
+        "ariaLabel": "料金とコンプライアンス",
+        "gdprBadgeAlt": "GDPR 準拠バッジ",
+        "soc2BadgeAlt": "SOC 2 Type II 認証バッジ",
+        "eyebrow": "☑ グローバルコンプライアンス",
+        "headline": "どこでも、コンプライアンスを維持。",
+        "body": "1 つの統合で EU、米国、APAC のデータ保護要件を満たします。<strong>GDPR に準拠</strong>し、<strong>SOC 2 Type II 認証</strong>を取得済み。デフォルトでは処理後にメディアを保持しません。エンタープライズのお客様は、監査やコンプライアンスのためにカスタム保持期間を設定できます。",
+        "trustCenter": "トラストセンターを見る →"
+      },
+      "resources": {
+        "eyebrow": "リソース",
+        "headline": "ディープフェイク検出について学ぶ",
+        "readTime": "{minutes} 分で読める",
+        "allGuides": "すべてのガイド →",
+        "industrySolutions": "業界別ソリューション →",
+        "compareTools": "ツールを比較 →"
+      },
+      "stickyCta": {
+        "sublabel": "本物を、リアルタイムで見極める",
+        "primary": "Halo を見る",
+        "secondary": "仕組みを見る"
+      }
+    },
+    "nav": {
+      "skipToContent": "メインコンテンツへスキップ",
+      "logoAlt": "Scam AI",
+      "search": "検索",
+      "searchPlaceholder": "検索...",
+      "logIn": "ログイン",
+      "bookDemo": "デモを予約",
+      "openMenu": "メニューを開く",
+      "closeMenu": "メニューを閉じる",
+      "talkWithTeam": {
+        "title": "チームに相談する",
+        "scheduleCall": "通話を予約",
+        "scheduleCallMobile": "通話を予約する"
+      },
+      "allIndustries": {
+        "title": "すべての業界",
+        "viewAll": "すべて見る",
+        "viewAllMobile": "すべてのソリューションを見る"
+      },
+      "items": {
+        "product": {
+          "label": "製品",
+          "children": {
+            "halo": {
+              "label": "Halo · New",
+              "description": "ライブ通話向けのオンデバイス ディープフェイク検出 — Qualcomm と実現"
+            },
+            "aiDetection": {
+              "label": "AI 検出",
+              "description": "ディープフェイクと合成メディアの検出"
+            },
+            "audio": {
+              "label": "音声",
+              "description": "音声クローンと合成音声の検出"
+            },
+            "documentation": {
+              "label": "ドキュメント",
+              "description": "API ガイドと統合の実装例"
+            }
+          }
+        },
+        "pricing": {
+          "label": "料金"
+        },
+        "solutions": {
+          "label": "ソリューション",
+          "children": {
+            "fintech": {
+              "label": "フィンテック・銀行",
+              "description": "KYC のディープフェイク対策と本人確認詐欺の防止"
+            },
+            "kyc": {
+              "label": "KYC 認証",
+              "description": "オンボーディングフローでのディープフェイク詐欺を阻止"
+            },
+            "callCenters": {
+              "label": "コールセンター",
+              "description": "音声クローンの検出とビッシング（音声フィッシング）対策"
+            },
+            "media": {
+              "label": "メディア・出版",
+              "description": "報道機関向けの AI 生成コンテンツ検出"
+            },
+            "dating": {
+              "label": "マッチングアプリ",
+              "description": "偽プロフィールと音声を使った釣り（キャットフィッシング）の防止"
+            },
+            "insurance": {
+              "label": "保険",
+              "description": "AI による保険金詐欺と合成証拠の検出"
+            },
+            "hr": {
+              "label": "人事・採用",
+              "description": "リモート面接のディープフェイクと音声詐欺の検出"
+            },
+            "government": {
+              "label": "行政",
+              "description": "公共部門向けの合成メディア検出"
+            }
+          }
+        },
+        "learn": {
+          "label": "学ぶ"
+        },
+        "company": {
+          "label": "会社情報",
+          "children": {
+            "about": {
+              "label": "私たちについて",
+              "description": "ミッションとチームについて知る"
+            },
+            "research": {
+              "label": "リサーチ",
+              "description": "論文、ベンチマーク、技術的な深掘り"
+            },
+            "newsletter": {
+              "label": "ニュースレター",
+              "description": "ディープフェイク技術と AI セキュリティに関する週次インサイト"
+            },
+            "security": {
+              "label": "セキュリティ・コンプライアンス",
+              "description": "セキュリティ認証、コンプライアンス基準、データ保護ポリシー"
+            }
+          }
+        }
+      }
+    },
+    "stickyCta": {
+      "regionLabel": "Scam AI"
+    },
+    "banner": {
+      "regionLabel": "Computex 2026 のお知らせ",
+      "messagePrefix": "会場でお会いしましょう",
+      "eventName": "Computex 2026",
+      "dateLabel": "· 6月2〜5日",
+      "cta": "ミーティングを予約",
+      "dismissLabel": "Computex 2026 のお知らせを閉じる"
+    },
+    "pricing": {
+      "sectionAriaLabel": "料金",
+      "eyebrow": "従量課金制",
+      "heading": "<highlight>使った分だけ</highlight>お支払い",
+      "subheading": "Eva-v1-Fast で<strong>毎月 200 枚の画像が無料</strong>、以降は 1 枚 $0.05。隠れた料金も契約もありません。",
+      "volume": {
+        "label": "月間ボリューム",
+        "images": "{volume} 枚の画像",
+        "ariaLabel": "月間画像ボリューム"
+      },
+      "enterpriseNudge": {
+        "title": "もっと必要ですか？",
+        "description": "エンタープライズプランには、ボリューム割引と専任サポートが含まれます。",
+        "cta": "営業に問い合わせ"
+      },
+      "addons": {
+        "title": "アドオン",
+        "subtitle": "検出を強化するオプション機能",
+        "adaptive": {
+          "label": "Adaptive Defense",
+          "desc": "GenAI、ディープフェイク、インジェクション攻撃をリアルタイムで検出"
+        },
+        "liveness": {
+          "label": "Active Liveness",
+          "desc": "実在する人間の存在を確認し、ディープフェイクのなりすましを防止"
+        },
+        "express": {
+          "label": "Express Lane",
+          "desc": "3 秒の応答保証付き低レイテンシ処理"
+        }
+      },
+      "summary": {
+        "title": "概要",
+        "perImageLabel": "画像あたり",
+        "perImageUnit": "/枚",
+        "freeTierNote": "無料枠内（月 200 枚）",
+        "base": "基本料金",
+        "monthlyEstimateLabel": "月額見積もり",
+        "perMonthUnit": "/月",
+        "freePaidNote": "{free} 枚無料 + {paid} 枚有料",
+        "cta": "始める",
+        "ctaNote": "初期費用なし · いつでも解約可能"
+      },
+      "includes": {
+        "title": "含まれるもの",
+        "items": {
+          "genaiDeepfake": "GenAI とディープフェイクの検出",
+          "evaFastModel": "Eva-v1-Fast モデル",
+          "restApi": "REST API アクセス",
+          "dashboardAnalytics": "ダッシュボード分析"
+        }
+      },
+      "plans": {
+        "recommended": "おすすめ",
+        "selfServe": {
+          "name": "セルフサービス",
+          "priceUnit": "画像あたり",
+          "freeNote": "毎月 200 枚の画像が無料",
+          "description": "あらゆる規模のチームに対応する柔軟な従量課金。無料で始めて、必要なときにスケール。",
+          "cta": "始める",
+          "features": {
+            "genaiDetection": "GenAI 検出",
+            "deepfakeAnalysis": "ディープフェイク分析",
+            "evaFastModel": "Eva-v1-Fast モデル",
+            "apiAccess": "API アクセス",
+            "optionalAddons": "すべてのオプションアドオン"
+          }
+        },
+        "enterprise": {
+          "name": "エンタープライズ",
+          "price": "カスタム",
+          "description": "Eva-v1-Pro によるフォレンジック級の精度、低い誤検知率、高度な Thinking、大量処理向けの専任サポートを提供します。",
+          "cta": "営業に相談",
+          "features": {
+            "everythingSelfServe": "セルフサービスのすべての機能",
+            "evaProModel": "Eva-v1-Pro モデル",
+            "thinking": "Thinking（高度な推論）",
+            "volumeDiscounts": "ボリューム割引",
+            "prioritySupport": "優先サポートと SLA",
+            "dedicatedManager": "専任アカウントマネージャー",
+            "customIntegration": "カスタム統合"
+          }
+        }
+      }
+    },
+    "faq": {
+      "sectionAriaLabel": "よくある質問",
+      "eyebrow": "サポート",
+      "heading": "よくある質問",
+      "subheading": "当社の GenAI およびディープフェイク検出プラットフォームについて知っておくべきことすべて",
+      "items": {
+        "freeTier": {
+          "question": "無料枠には何が含まれますか？",
+          "answer": "無料枠には、Eva-v1-Fast モデルで分析する月 200 枚の画像が含まれます。これには GenAI 検出、ディープフェイク分析、API アクセス、ダッシュボード分析が含まれます。利用開始にクレジットカードは不要です。https://app.scam.ai で無料登録してください。"
+        },
+        "fastVsPro": {
+          "question": "Eva-v1-Fast と Eva-v1-Pro の違いは何ですか？",
+          "answer": "Eva-v1-Fast は速度と効率に最適化された標準モデルで、ほとんどのユースケースに最適です。Eva-v1-Pro は誤検知が大幅に少なく、検出能力が強化された高度なモデルで、エンタープライズのお客様限定でご利用いただけます。Pro は KYC 認証や詐欺防止など、リスクの高い用途向けにより深い分析を提供します。モデルの比較は https://scam.ai/products/ai-detection をご覧ください。"
+        },
+        "pricingAfterFree": {
+          "question": "無料枠を超えた後の料金はどうなりますか？",
+          "answer": "月 200 枚の無料画像を超えると、分析する画像 1 枚あたり $0.05 をお支払いいただきます。Adaptive Defense（+$0.008/枚）、Active Liveness（+$0.008/枚）、Express Lane（+$0.008/枚）などのオプション機能を追加することもできます。料金の詳細は https://scam.ai/pricing をご覧ください。"
+        },
+        "mediaTypes": {
+          "question": "どのような種類のメディアを分析できますか？",
+          "answer": "当社のプラットフォームは https://scam.ai/products/ai-detection で画像、音声ファイル、動画コンテンツの分析に対応しています。GenAI 生成コンテンツ、ディープフェイク、合成メディア、フェイススワップ、音声クローン、さまざまな形態のメディア改ざんを、対応するすべての形式で検出します。"
+        },
+        "volumeDiscounts": {
+          "question": "ボリューム割引はありますか？",
+          "answer": "はい！月に 2,000 枚を超える画像を処理する組織には、ボリューム割引、専任サポート、Eva-v1-Pro や Thinking などの高度なモデルへのアクセスを含むカスタムのエンタープライズ料金を提供します。具体的なニーズについては、https://cal.com/scamai/15min から営業チームにお問い合わせください。"
+        },
+        "thinking": {
+          "question": "Thinking 機能とは何ですか？",
+          "answer": "Thinking は、エンタープライズ枠限定でご利用いただける高度な推論機能です。より深い分析と文脈を考慮した検出を提供し、高度な改ざん手法の特定を支援します。詳しくは https://www.scam.ai/en/products をご覧ください。"
+        },
+        "accuracy": {
+          "question": "検出の精度はどれくらいですか？",
+          "answer": "当社の Eva モデルは、最新の GenAI およびディープフェイク技術で継続的にトレーニングされています。Eva-v1-Fast はほとんどのユースケースで高い精度を提供し、Eva-v1-Pro はエンタープライズ用途向けに誤検知を大幅に抑えたより高い精度を実現します。分析ごとに検出の信頼度スコアが提供されます。ベンチマークは https://scam.ai/products/ai-detection をご覧ください。"
+        },
+        "integration": {
+          "question": "既存のアプリケーションに統合できますか？",
+          "answer": "もちろんです！簡単に統合できる RESTful API を提供しています。当社の API は同期・非同期の処理、通知用の webhooks、包括的なドキュメントに対応しています。エンタープライズのお客様は専任の統合サポートを受けられます。API ドキュメントは https://docu.scam.ai をご覧ください。"
+        },
+        "dataRetention": {
+          "question": "データ保持ポリシーはどうなっていますか？",
+          "answer": "当社は GDPR に準拠し、SOC 2 Type II 認証を取得しています。デフォルトでは処理後にメディアを保持しません。エンタープライズのお客様は、固有のコンプライアンスおよび監査要件を満たすカスタム保持ポリシーを設定できます。"
+        },
+        "getStarted": {
+          "question": "どうすれば始められますか？",
+          "answer": "https://app.scam.ai で無料アカウントに登録するだけで、Eva-v1-Fast モデルによる月 200 枚の無料画像分析にすぐにアクセスできます。クレジットカードは不要です。有料プランへのアップグレードは https://scam.ai/pricing から、エンタープライズのオプションについては営業にお問い合わせください。"
+        }
+      },
+      "contact": {
+        "prompt": "まだ質問がありますか？私たちがお手伝いします。",
+        "cta": "通話を予約する"
+      }
+    },
+    "solutions": {
+      "eyebrow": "ソリューション",
+      "heading": "<highlight>AI 時代</highlight>のための<br></br>信頼インフラ",
+      "subheading": "ディープフェイク、合成メディア、音声クローン、文書詐欺を検出 — 人、文書、AI エージェントを横断して。",
+      "learnMore": "詳しく見る",
+      "talkToSales": "営業に相談",
+      "cards": {
+        "halo": {
+          "title": "Halo — オンデバイス検出",
+          "description": "Zoom、Teams、Meet の通話でディープフェイクをリアルタイム検出。Qualcomm Snapdragon X NPU 上で動作し、デバイスから何も外部に送信しません。",
+          "badge": "New · Qualcomm と実現"
+        },
+        "deepfake": {
+          "title": "ディープフェイク",
+          "description": "画像や動画にわたるフェイススワップ、リップシンク攻撃、AI 生成の顔をリアルタイムで検出。"
+        },
+        "genai": {
+          "title": "GenAI",
+          "description": "拡散モデル、GAN、LLM からの合成コンテンツを、パイプラインに入る前に特定。"
+        },
+        "voiceClone": {
+          "title": "音声クローン",
+          "description": "コールセンターや音声認証システムを狙うクローン音声や合成音声を検出。"
+        },
+        "remoteNotary": {
+          "title": "リモート公証",
+          "description": "リモート公証時に署名者の本人確認を実施。文書が確定する前にディープフェイクを阻止。"
+        },
+        "ageEstimation": {
+          "title": "年齢推定・IDV",
+          "description": "AI 搭載の年齢推定と ID 認証で、合成 ID や改ざんされた自撮り写真を見抜きます。"
+        },
+        "documentForgery": {
+          "title": "文書偽造",
+          "description": "銀行取引明細書から給与明細まで、AI 生成・改ざん文書をフォレンジック分析。"
+        },
+        "aiAgentScamPrevention": {
+          "title": "AI エージェント詐欺対策",
+          "description": "AI 搭載のワークフローを狙うソーシャルエンジニアリング、プロンプトインジェクション、本人なりすましをブロック。"
+        },
+        "remoteInterview": {
+          "title": "リモート面接の信頼性",
+          "description": "ライブ動画面接中に候補者の本人確認を行い、ディープフェイクをリアルタイムで検出。"
+        }
+      }
+    },
+    "developer": {
+      "eyebrow": "最も簡単に統合できる",
+      "heading": "あなたのやり方で統合",
+      "subhead": "Scam AI はノーコードでも、単一の API コールでも利用可能。数分で本番運用を開始できます。",
+      "keyPointsLabel": "重要ポイント",
+      "videoFallback": "お使いのブラウザは video タグに対応していません。",
+      "tabs": {
+        "nocode": "ノーコード",
+        "api": "API"
+      },
+      "nocode": {
+        "heading": "ノーコード",
+        "body": "直感的なダッシュボードを通じて、ディープフェイク検出の結果をリアルタイムでモニタリング・分析できます。メディアファイルをアップロードし、検出の信頼度スコアを表示し、合成コンテンツの傾向を追跡 — すべてコードを 1 行も書かずに行えます。",
+        "dashboardCaption": "Scam AI ダッシュボード",
+        "points": {
+          "dashboard": "視覚的なディープフェイク検出ダッシュボード",
+          "upload": "ドラッグ＆ドロップでメディアをアップロード",
+          "scoring": "リアルタイムの信頼度スコアリング",
+          "export": "検出レポートと分析のエクスポート ",
+          "exportBadge": "（エンタープライズ）"
+        }
+      },
+      "api": {
+        "heading": "API 統合",
+        "body1": "単一の API コールで、ディープフェイク検出をアプリケーションに統合できます。当社の REST API は、画像、音声、動画を AI 生成コンテンツについて分析し、信頼度スコアをリアルタイムで返します。",
+        "body2": "Eva-v1 モデルで合成メディア、音声クローン、ディープフェイクを検出。詳細な改ざん分析とともに、即座に判定を取得できます。",
+        "viewDocs": "ドキュメントを見る",
+        "codeTab": "API リクエスト",
+        "tryIt": "試してみる",
+        "points": {
+          "detect": "ディープフェイク、合成メディア、音声クローンを検出",
+          "scoring": "リアルタイムの信頼度スコアリングと分析",
+          "support": "画像、音声、動画に対応",
+          "webhooks": "非同期処理のための webhooks"
+        }
+      }
+    },
+    "trustedBy": {
+      "heading": "お客様にご信頼いただき、各社出身のメンバーが支えています",
+      "logos": {
+        "productHunt": "Product Hunt — 本日のプロダクト",
+        "qualcomm": "Qualcomm",
+        "lgUplus": "LG U+",
+        "hp": "HP",
+        "sbiHoldings": "SBI Holdings",
+        "ucBerkeley": "UC Berkeley",
+        "trulioo": "Trulioo",
+        "betaFellowship": "Beta Fellowship",
+        "honestly": "Honestly",
+        "finalRound": "Final Round AI",
+        "ditto": "Ditto",
+        "quotr": "Quotr",
+        "llamaVenture": "Llama Venture"
+      }
+    },
+    "footer": {
+      "logoAlt": "Scam AI - AI 信頼プラットフォームのロゴ",
+      "tagline": "オールインワンの AI 信頼プラットフォーム",
+      "social": {
+        "twitter": "X（Twitter）でフォロー",
+        "linkedin": "LinkedIn でフォロー",
+        "github": "GitHub を見る"
+      },
+      "newsletter": {
+        "heading": "AI の脅威に一歩先んじる",
+        "subtext": "ディープフェイク、合成メディア、AI セキュリティに関する週次インサイトを、受信トレイへ直接お届けします。",
+        "placeholder": "you@company.com",
+        "emailLabel": "メールアドレス",
+        "subscribe": "購読する",
+        "subscribing": "購読中…",
+        "subscribed": "購読しました！",
+        "successDetail": "ありがとうございます — 確認メールを受信トレイでご確認ください。",
+        "errorGeneric": "問題が発生しました。もう一度お試しください。",
+        "errorNetwork": "ネットワークエラーです。もう一度お試しください。"
+      },
+      "nav": {
+        "product": {
+          "aria": "製品ナビゲーション",
+          "heading": "製品",
+          "aiDetection": "AI 検出",
+          "audioDetection": "音声検出",
+          "pricing": "料金",
+          "solutions": "ソリューション",
+          "compare": "比較"
+        },
+        "resources": {
+          "aria": "リソースナビゲーション",
+          "heading": "リソース",
+          "documentation": "ドキュメント",
+          "security": "セキュリティ・コンプライアンス",
+          "newsletter": "ニュースレター",
+          "learn": "学ぶ"
+        },
+        "company": {
+          "aria": "会社情報ナビゲーション",
+          "heading": "会社情報",
+          "about": "私たちについて",
+          "research": "リサーチ",
+          "contact": "お問い合わせ",
+          "forBusiness": "ビジネス向け — checkreality.ai",
+          "privacy": "プライバシー",
+          "terms": "利用規約",
+          "cookies": "クッキー"
+        }
+      },
+      "legal": {
+        "copyright": "© {year} Reality Inc. All rights reserved.",
+        "tagline": "AI 時代の信頼のために構築"
+      }
+    },
+    "playground": {
+      "eyebrow": "ディープフェイクはもう現実",
+      "heading": "顔を偽装するのがいかに簡単か、見てみましょう。",
+      "subhead": "カメラをオンにして、自分自身のリアルタイムなディープフェイクを見てみましょう。これが攻撃です — 防御はデバイス上で動作します。",
+      "demoMeta": "30 秒のライブデモ · インストール不要",
+      "intro": {
+        "tagline": "写真を選んで、ライブを開始。",
+        "start": "ライブデモを開始"
+      },
+      "consent": {
+        "title": "カメラへのアクセス",
+        "allow": "許可して開始",
+        "tryAgain": "もう一度試す",
+        "cancel": "キャンセル",
+        "privacy": "約 30 秒間ライブで処理され、保存されることはありません。"
+      },
+      "picker": {
+        "pickFace": "顔を選ぶ",
+        "switchLive": "タップしてライブで顔を切り替え",
+        "becomeFace": "この顔になる",
+        "remove": "削除",
+        "removeFace": "この顔を削除",
+        "presetFaces": "プリセットの顔",
+        "presetMeta": "· StyleGAN2 による AI 生成",
+        "userUploads": "ユーザーのアップロード",
+        "upload": "アップロード",
+        "uploadYourFace": "自分の顔をアップロード"
+      },
+      "uploadDialog": {
+        "title": "顔をアップロード",
+        "consent": "このデモで本人の写真を使用することについて、本人の同意を得ています。",
+        "addToPool": "公開スワッププールに追加",
+        "poolFull": "プールが満杯です",
+        "private": "あなたの顔は非公開のまま — あなただけが使用できます。",
+        "cancel": "キャンセル",
+        "choosePhoto": "写真を選択"
+      },
+      "stage": {
+        "left": "残り",
+        "liveLabel": "ライブ顔交換",
+        "switchingFace": "顔を切り替え中…",
+        "share": "共有",
+        "you": "あなた"
+      },
+      "ended": {
+        "eyebrow": "わずか 30 秒でした。",
+        "heading": "誰でも顔を偽装できる。デバイス上で見抜こう。",
+        "budgetEyebrow": "デモの上限に達しました",
+        "budgetHeading": "本日の無料デモ時間を使い切りました。",
+        "budgetBody": "顔を偽装するのにかかったのはわずか 30 秒 — では、防御をご覧ください。",
+        "shareDeepfake": "あなたのディープフェイクを共有",
+        "meetHalo": "Halo に出会う — その防御",
+        "runAgain": "もう一度実行"
+      },
+      "card": {
+        "title": "カードを保存または共有",
+        "share": "共有",
+        "saveImage": "画像を保存",
+        "saved": "保存しました",
+        "postToX": "X に投稿",
+        "imageAlt": "あなたのディープフェイクカード"
+      }
+    },
+    "search": {
+      "dialogLabel": "サイト内検索",
+      "inputAriaLabel": "製品、ページ、機能を検索",
+      "placeholder": "製品、ページ、機能を検索...",
+      "resultsAriaLabel": "検索結果",
+      "noResults": "「{query}」に一致する結果が見つかりませんでした",
+      "hintNavigate": "で移動",
+      "hintSelect": "で選択",
+      "categories": {
+        "products": "製品",
+        "pages": "ページ",
+        "resources": "リソース",
+        "actions": "アクション"
+      },
+      "items": {
+        "halo": {
+          "label": "Halo",
+          "description": "ライブ通話向けのオンデバイス ディープフェイク検出 — Qualcomm と実現"
+        },
+        "aiDetection": {
+          "label": "AI 検出",
+          "description": "ディープフェイクと AI 生成コンテンツの検出"
+        },
+        "audioDetection": {
+          "label": "音声検出",
+          "description": "音声クローンと AI 生成音声の検出"
+        },
+        "home": {
+          "label": "ホーム"
+        },
+        "pricing": {
+          "label": "料金",
+          "description": "プランと料金の詳細"
+        },
+        "about": {
+          "label": "私たちについて",
+          "description": "私たちのミッションとマイルストーン"
+        },
+        "research": {
+          "label": "リサーチ",
+          "description": "論文、ベンチマーク、技術レポート"
+        },
+        "newsletter": {
+          "label": "ニュースレター",
+          "description": "ディープフェイクと AI セキュリティの週次ニュース"
+        },
+        "contact": {
+          "label": "お問い合わせ",
+          "description": "私たちのチームに連絡する"
+        },
+        "documentation": {
+          "label": "ドキュメント",
+          "description": "API ガイドと統合の実装例"
+        },
+        "securityCompliance": {
+          "label": "セキュリティ・コンプライアンス",
+          "description": "SOC 2 Type II と GDPR への準拠"
+        },
+        "logIn": {
+          "label": "ログイン",
+          "description": "ダッシュボードにアクセス"
+        },
+        "bookDemo": {
+          "label": "デモを予約",
+          "description": "15 分の通話を予約"
+        }
+      }
+    }
+  },
   "nav": {
     "products": "製品",
     "industries": "業界",
