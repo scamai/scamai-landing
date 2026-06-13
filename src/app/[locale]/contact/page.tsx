@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { generatePageMetadata, pageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
 
@@ -10,20 +11,30 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
+// Stable ids — visible text resolved via t() at render time
+const faqIds = [
+  'getStarted',
+  'customSolutions',
+  'regions',
+  'sla',
+  'tryBeforeBuy',
+] as const;
+
 export default function ContactPage() {
+  const t = useTranslations('contactPage');
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <section className="relative py-24 px-4 sm:px-6" style={{ paddingTop: '140px' }}>
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#245FFF]">
-            CONTACT US
+            {t('hero.eyebrow')}
           </p>
           <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            Get in touch
+            {t('hero.title')}
           </h1>
           <p className="mb-8 text-lg text-gray-300">
-            Have questions about Scam AI? Want to discuss enterprise solutions? We're here to help.
+            {t('hero.description')}
           </p>
         </div>
       </section>
@@ -41,9 +52,9 @@ export default function ContactPage() {
                   </svg>
                 </div>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Sales</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t('options.sales.title')}</h3>
               <p className="mb-4 text-gray-300">
-                Interested in enterprise plans or volume pricing?
+                {t('options.sales.description')}
               </p>
               <a
                 href="mailto:sales@scam.ai"
@@ -62,9 +73,9 @@ export default function ContactPage() {
                   </svg>
                 </div>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">Technical Support</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t('options.support.title')}</h3>
               <p className="mb-4 text-gray-300">
-                Need help integrating or troubleshooting?
+                {t('options.support.description')}
               </p>
               <a
                 href="mailto:support@scam.ai"
@@ -83,9 +94,9 @@ export default function ContactPage() {
                   </svg>
                 </div>
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">General Inquiries</h3>
+              <h3 className="mb-3 text-xl font-bold text-white">{t('options.general.title')}</h3>
               <p className="mb-4 text-gray-300">
-                Any other questions or feedback?
+                {t('options.general.description')}
               </p>
               <a
                 href="mailto:hello@scam.ai"
@@ -102,43 +113,17 @@ export default function ContactPage() {
       <section className="py-24 px-4 sm:px-6 bg-gray-900/20">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-12 text-center text-3xl font-bold sm:text-4xl">
-            Frequently Asked Questions
+            {t('faq.title')}
           </h2>
           <div className="space-y-6">
-            <div className="rounded-lg border border-gray-800 bg-black p-6">
-              <h3 className="mb-3 text-xl font-bold text-white">How quickly can I get started?</h3>
-              <p className="text-gray-300">
-                You can start using Scam AI in minutes. Sign up for a free account at app.scam.ai, get your API key, and make your first API call. We provide SDKs and documentation to help you integrate quickly.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-gray-800 bg-black p-6">
-              <h3 className="mb-3 text-xl font-bold text-white">Do you offer custom solutions for enterprises?</h3>
-              <p className="text-gray-300">
-                Yes! We offer custom integrations, on-premise deployments, dedicated support, and volume discounts for enterprise customers. Contact our sales team to discuss your specific needs.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-gray-800 bg-black p-6">
-              <h3 className="mb-3 text-xl font-bold text-white">What regions do you operate in?</h3>
-              <p className="text-gray-300">
-                Scam AI operates globally with data centers in the US, EU, and APAC. We're GDPR compliant and can help you meet regional data residency requirements.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-gray-800 bg-black p-6">
-              <h3 className="mb-3 text-xl font-bold text-white">What's your SLA for enterprise customers?</h3>
-              <p className="text-gray-300">
-                Enterprise customers receive 99.9% uptime SLA, priority support with guaranteed response times, and dedicated account management. Contact sales for details.
-              </p>
-            </div>
-
-            <div className="rounded-lg border border-gray-800 bg-black p-6">
-              <h3 className="mb-3 text-xl font-bold text-white">Can I try before committing to a paid plan?</h3>
-              <p className="text-gray-300">
-                Absolutely! We offer 200 free images per month with no credit card required. You can test our API, explore the dashboard, and evaluate accuracy before upgrading.
-              </p>
-            </div>
+            {faqIds.map((id) => (
+              <div key={id} className="rounded-lg border border-gray-800 bg-black p-6">
+                <h3 className="mb-3 text-xl font-bold text-white">{t(`faq.items.${id}.question`)}</h3>
+                <p className="text-gray-300">
+                  {t(`faq.items.${id}.answer`)}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -147,7 +132,7 @@ export default function ContactPage() {
       <section className="py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-center text-3xl font-bold sm:text-4xl">
-            Our Office
+            {t('office.title')}
           </h2>
           <div className="mx-auto max-w-2xl rounded-lg border border-gray-800 bg-gray-900/40 p-8 text-center">
             <h3 className="mb-4 text-2xl font-bold text-white">Reality Inc.</h3>
@@ -162,10 +147,10 @@ export default function ContactPage() {
       <section className="py-24 px-4 sm:px-6 bg-gray-900/20">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-3xl font-bold sm:text-4xl">
-            Ready to get started?
+            {t('cta.title')}
           </h2>
           <p className="mb-8 text-lg text-gray-300">
-            Start protecting your platform with 200 free images per month.
+            {t('cta.description')}
           </p>
           <a
             href="https://app.scam.ai"
@@ -174,7 +159,7 @@ export default function ContactPage() {
             className="rainbow-button inline-block"
           >
             <span className="rainbow-button-inner">
-              Start Free Trial
+              {t('cta.button')}
             </span>
           </a>
         </div>

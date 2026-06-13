@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { FREE_CHECKS, VOLUME_DISCOUNT_THRESHOLD } from './constants';
 
 interface PricingCardsProps {
@@ -9,6 +10,17 @@ interface PricingCardsProps {
 }
 
 export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, formatPrice }: PricingCardsProps) {
+  const t = useTranslations("pricingPage");
+  const selfServeFeatures = ['genaiDetection', 'deepfakeAnalysis', 'evaFastModel', 'apiAccess', 'allAddOns'];
+  const enterpriseFeatures = [
+    'everythingSelfServe',
+    'evaProModel',
+    'thinking',
+    'volumeDiscounts',
+    'prioritySupport',
+    'accountManager',
+    'customIntegration',
+  ];
   return (
     <div className="grid gap-6 sm:grid-cols-2">
       {/* Self-Serve Plan */}
@@ -20,12 +32,12 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
         {volume < VOLUME_DISCOUNT_THRESHOLD && (
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
             <span className="rounded-full border-2 border-[#0043FA] bg-[#0043FA] px-4 py-1 text-xs font-semibold text-white">
-              Recommended
+              {t("cards.recommended")}
             </span>
           </div>
         )}
 
-        <h3 className="mb-6 text-2xl font-bold text-white">Self-Serve</h3>
+        <h3 className="mb-6 text-2xl font-bold text-white">{t("cards.selfServe.name")}</h3>
 
         <div className="mb-6">
           <div className="flex items-baseline gap-2">
@@ -33,15 +45,14 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
               {currencySymbol}
               {volume <= FREE_CHECKS ? (decimals === 0 ? '0' : '0') : formatPrice(pricePerCheck, decimals === 0 ? 0 : 3)}
             </span>
-            <span className="text-lg text-gray-400">per image</span>
+            <span className="text-lg text-gray-400">{t("cards.perImage")}</span>
           </div>
         </div>
 
-        <p className="mb-2 text-sm font-semibold text-[#0043FA]">200 free images/month (Eva-v1-Fast)</p>
+        <p className="mb-2 text-sm font-semibold text-[#0043FA]">{t("cards.selfServe.freeBadge")}</p>
 
         <p className="mb-8 text-sm text-gray-300 leading-relaxed">
-          For businesses ready to scale with flexible pricing. First 200 images free with Eva-v1-Fast model, then $0.05/image + optional
-          add-ons.
+          {t("cards.selfServe.description")}
         </p>
 
         <a
@@ -50,11 +61,11 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
           rel="noopener noreferrer"
           className="mb-8 block w-full rounded-full bg-[#0043FA] py-3.5 text-center font-semibold text-white hover:bg-[#0036C8] transition-colors"
         >
-          Start now →
+          {t("cards.selfServe.cta")} →
         </a>
 
         <ul className="space-y-3 text-sm text-gray-300">
-          {['GenAI Detection', 'Deepfake Analysis', 'Eva-v1-Fast Model', 'API Access', 'All optional add-ons'].map((feature, index) => (
+          {selfServeFeatures.map((feature, index) => (
             <li key={index} className="flex items-start">
               <svg
                 className={`mr-2 h-5 w-5 flex-shrink-0 ${index === 4 ? 'text-gray-600' : 'text-[#0043FA]'}`}
@@ -67,7 +78,7 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
                   clipRule="evenodd"
                 />
               </svg>
-              <span className={index === 4 ? 'text-gray-500' : ''}>{feature}</span>
+              <span className={index === 4 ? 'text-gray-500' : ''}>{t(`cards.selfServe.features.${feature}`)}</span>
             </li>
           ))}
         </ul>
@@ -82,29 +93,29 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
         {volume >= VOLUME_DISCOUNT_THRESHOLD && (
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
             <span className="rounded-full border-2 border-[#0043FA] bg-[#0043FA] px-4 py-1 text-xs font-semibold text-white">
-              Recommended
+              {t("cards.recommended")}
             </span>
           </div>
         )}
-        <h3 className="mb-6 text-2xl font-bold text-white">Enterprise</h3>
+        <h3 className="mb-6 text-2xl font-bold text-white">{t("cards.enterprise.name")}</h3>
 
         <div className="mb-6">
-          <span className="text-5xl font-bold text-white">Custom</span>
+          <span className="text-5xl font-bold text-white">{t("cards.enterprise.priceCustom")}</span>
         </div>
 
         {volume >= VOLUME_DISCOUNT_THRESHOLD ? (
           <div className="mb-8">
             <div className="mb-4 rounded-xl bg-gradient-to-r from-[#0043FA]/20 to-purple-500/20 border border-[#0043FA]/50 px-4 py-3">
-              <p className="text-sm font-semibold text-white mb-1">Perfect for your volume</p>
-              <p className="text-xs text-gray-300">Get volume discounts + enterprise features for 5,000+ images/month</p>
+              <p className="text-sm font-semibold text-white mb-1">{t("cards.enterprise.perfectTitle")}</p>
+              <p className="text-xs text-gray-300">{t("cards.enterprise.perfectDescription")}</p>
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Unlock custom pricing, Eva-v1-Pro forensic-grade model with lower false positives, advanced Thinking capabilities, and dedicated support for high-volume operations
+              {t("cards.enterprise.highVolumeDescription")}
             </p>
           </div>
         ) : (
           <p className="mb-8 text-sm text-gray-300 leading-relaxed">
-            For large organizations requiring forensic-grade accuracy, lower false positives, and dedicated support. Includes Eva-v1-Pro model and advanced Thinking capabilities.
+            {t("cards.enterprise.description")}
           </p>
         )}
 
@@ -114,19 +125,11 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
           rel="noopener noreferrer"
           className="mb-8 block w-full rounded-full border-2 border-[#0043FA] bg-gray-800/50 py-3.5 text-center font-semibold text-white hover:bg-[#0043FA] transition-colors"
         >
-          Talk to sales →
+          {t("cards.enterprise.cta")} →
         </a>
 
         <ul className="space-y-3 text-sm text-gray-300">
-          {[
-            'Everything in Self-Serve',
-            'Eva-v1-Pro Model',
-            'Thinking (Advanced Reasoning)',
-            'Volume Discounts',
-            'Priority Support & SLA',
-            'Dedicated Account Manager',
-            'Custom Integration & Training',
-          ].map((feature, index) => (
+          {enterpriseFeatures.map((feature, index) => (
             <li key={index} className="flex items-start">
               <svg className="mr-2 h-5 w-5 flex-shrink-0 text-[#0043FA]" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -135,7 +138,7 @@ export function PricingCards({ volume, pricePerCheck, currencySymbol, decimals, 
                   clipRule="evenodd"
                 />
               </svg>
-              <span>{feature}</span>
+              <span>{t(`cards.enterprise.features.${feature}`)}</span>
             </li>
           ))}
         </ul>

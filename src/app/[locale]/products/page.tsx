@@ -1,6 +1,7 @@
 import { generatePageMetadata, pageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
 import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale as Locale;
@@ -12,19 +13,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function ProductsPage() {
+  const t = useTranslations("productsPage");
+
   return (
     <main className="min-h-screen bg-[#0b0b0b] text-white">
       {/* Hero Section */}
       <section className="relative py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
           <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#66b3ff]">
-            PRODUCTS
+            {t("hero.eyebrow")}
           </p>
           <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            All-in-one deepfake detection platform
+            {t("hero.title")}
           </h1>
           <p className="mb-8 text-lg text-gray-300">
-            Comprehensive AI-powered detection for images, audio, and video. One platform, complete protection.
+            {t("hero.description")}
           </p>
         </div>
       </section>
@@ -44,12 +47,12 @@ export default function ProductsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-white">AI Image & Video Deepfake Detection</h3>
+              <h3 className="mb-3 text-2xl font-bold text-white">{t("cards.aiDetection.title")}</h3>
               <p className="mb-4 text-gray-300">
-                Detect AI-generated images and deepfake videos with 95.3%* accuracy using the Eva-v1 model. Identify face swaps, GAN-generated images, and diffusion model outputs from Stable Diffusion, DALL-E, and Midjourney. Integrates via REST API in under 10 minutes.
+                {t("cards.aiDetection.description")}
               </p>
               <div className="text-[#66b3ff] group-hover:underline">
-                Explore AI deepfake detection →
+                {t("cards.aiDetection.link")}
               </div>
             </Link>
 
@@ -63,12 +66,12 @@ export default function ProductsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-white">Voice Clone & Synthetic Audio Detection</h3>
+              <h3 className="mb-3 text-2xl font-bold text-white">{t("cards.audioDetection.title")}</h3>
               <p className="mb-4 text-gray-300">
-                Detect voice clones, AI-generated speech, and synthetic audio with 98.5% accuracy in under 3 seconds. Identifies outputs from ElevenLabs, PlayHT, Azure TTS, and other voice synthesis platforms. Supports real-time stream analysis for call center fraud prevention.
+                {t("cards.audioDetection.description")}
               </p>
               <div className="text-[#66b3ff] group-hover:underline">
-                Explore voice clone detection →
+                {t("cards.audioDetection.link")}
               </div>
             </Link>
 
@@ -80,45 +83,45 @@ export default function ProductsPage() {
       <section className="py-24 px-4 sm:px-6 bg-gray-900/20">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-center text-3xl font-bold sm:text-4xl">
-            Feature Comparison
+            {t("comparison.heading")}
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b border-gray-800">
-                  <th className="py-4 px-6 text-left text-white font-bold">Feature</th>
-                  <th className="py-4 px-6 text-center text-white font-bold">Vision</th>
-                  <th className="py-4 px-6 text-center text-white font-bold">Audio</th>
+                  <th className="py-4 px-6 text-left text-white font-bold">{t("comparison.columns.feature")}</th>
+                  <th className="py-4 px-6 text-center text-white font-bold">{t("comparison.columns.vision")}</th>
+                  <th className="py-4 px-6 text-center text-white font-bold">{t("comparison.columns.audio")}</th>
                 </tr>
               </thead>
               <tbody className="text-gray-300">
                 <tr className="border-b border-gray-800/50">
-                  <td className="py-4 px-6">Detection Accuracy</td>
+                  <td className="py-4 px-6">{t("comparison.rows.accuracy")}</td>
                   <td className="py-4 px-6 text-center">95.3%*</td>
                   <td className="py-4 px-6 text-center">98.5%</td>
                 </tr>
                 <tr className="border-b border-gray-800/50">
-                  <td className="py-4 px-6">Processing Speed</td>
+                  <td className="py-4 px-6">{t("comparison.rows.speed")}</td>
                   <td className="py-4 px-6 text-center">&lt;4s</td>
                   <td className="py-4 px-6 text-center">3s</td>
                 </tr>
                 <tr className="border-b border-gray-800/50">
-                  <td className="py-4 px-6">Supported Formats</td>
+                  <td className="py-4 px-6">{t("comparison.rows.formats")}</td>
                   <td className="py-4 px-6 text-center">JPG, PNG, GIF, MP4</td>
                   <td className="py-4 px-6 text-center">MP3, WAV, M4A</td>
                 </tr>
                 <tr className="border-b border-gray-800/50">
-                  <td className="py-4 px-6">Real-Time Analysis</td>
+                  <td className="py-4 px-6">{t("comparison.rows.realTime")}</td>
                   <td className="py-4 px-6 text-center text-[#66b3ff]">✓</td>
                   <td className="py-4 px-6 text-center text-[#66b3ff]">✓</td>
                 </tr>
                 <tr className="border-b border-gray-800/50">
-                  <td className="py-4 px-6">Batch Processing</td>
+                  <td className="py-4 px-6">{t("comparison.rows.batch")}</td>
                   <td className="py-4 px-6 text-center text-[#66b3ff]">✓</td>
                   <td className="py-4 px-6 text-center text-[#66b3ff]">✓</td>
                 </tr>
                 <tr className="border-b border-gray-800/50">
-                  <td className="py-4 px-6">API Integration</td>
+                  <td className="py-4 px-6">{t("comparison.rows.api")}</td>
                   <td className="py-4 px-6 text-center text-[#66b3ff]">✓</td>
                   <td className="py-4 px-6 text-center text-[#66b3ff]">✓</td>
                 </tr>
@@ -132,31 +135,31 @@ export default function ProductsPage() {
       <section className="py-24 px-4 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-12 text-center text-3xl font-bold sm:text-4xl">
-            Built for Every Industry
+            {t("useCases.heading")}
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">Social Media</h3>
-              <p className="text-sm text-gray-300 mb-3">Automatically flag deepfake content and synthetic media before it spreads. Protect users from manipulated videos and AI-generated disinformation at scale.</p>
-              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">AI deepfake detection →</Link>
+              <h3 className="mb-2 text-lg font-bold text-white">{t("useCases.socialMedia.title")}</h3>
+              <p className="text-sm text-gray-300 mb-3">{t("useCases.socialMedia.description")}</p>
+              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">{t("useCases.socialMedia.link")}</Link>
             </div>
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">Financial Services</h3>
-              <p className="text-sm text-gray-300 mb-3">Detect deepfake identity fraud during KYC and loan applications at 95.3% accuracy. Protect call centers against synthetic identity attacks and voice-phishing with real-time voice clone detection.</p>
+              <h3 className="mb-2 text-lg font-bold text-white">{t("useCases.financial.title")}</h3>
+              <p className="text-sm text-gray-300 mb-3">{t("useCases.financial.description")}</p>
               <div className="flex flex-col gap-1">
-                <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">AI deepfake detection for KYC →</Link>
-                <Link href="/products/audio-detection" className="text-xs text-[#66b3ff] hover:underline">Voice clone detection →</Link>
+                <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">{t("useCases.financial.linkKyc")}</Link>
+                <Link href="/products/audio-detection" className="text-xs text-[#66b3ff] hover:underline">{t("useCases.financial.linkVoice")}</Link>
               </div>
             </div>
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">Media & Publishing</h3>
-              <p className="text-sm text-gray-300 mb-3">Verify image and video authenticity before publication. Detect AI-generated images and manipulated footage to maintain editorial integrity and prevent misinformation.</p>
-              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">Detect AI generated images →</Link>
+              <h3 className="mb-2 text-lg font-bold text-white">{t("useCases.media.title")}</h3>
+              <p className="text-sm text-gray-300 mb-3">{t("useCases.media.description")}</p>
+              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">{t("useCases.media.link")}</Link>
             </div>
             <div className="rounded-lg border border-gray-800 bg-gray-900/40 p-6">
-              <h3 className="mb-2 text-lg font-bold text-white">E-commerce & Dating</h3>
-              <p className="text-sm text-gray-300 mb-3">Verify profile photos and product images are authentic. Stop synthetic identity scams and fake listings with automated deepfake detection via API.</p>
-              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">Deepfake detection API →</Link>
+              <h3 className="mb-2 text-lg font-bold text-white">{t("useCases.ecommerce.title")}</h3>
+              <p className="text-sm text-gray-300 mb-3">{t("useCases.ecommerce.description")}</p>
+              <Link href="/products/ai-detection" className="text-xs text-[#66b3ff] hover:underline">{t("useCases.ecommerce.link")}</Link>
             </div>
           </div>
         </div>
@@ -166,10 +169,10 @@ export default function ProductsPage() {
       <section className="py-24 px-4 sm:px-6 bg-gray-900/20">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-3xl font-bold sm:text-4xl">
-            Start detecting deepfakes today
+            {t("cta.heading")}
           </h2>
           <p className="mb-8 text-lg text-gray-300">
-            200 free images per month. No credit card required.
+            {t("cta.description")}
           </p>
           <a
             href="https://app.scam.ai"
@@ -178,7 +181,7 @@ export default function ProductsPage() {
             className="rainbow-button inline-block"
           >
             <span className="rainbow-button-inner">
-              Get Started Free
+              {t("cta.button")}
             </span>
           </a>
         </div>

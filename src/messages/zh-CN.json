@@ -2383,5 +2383,847 @@
         "nextTitle": "Learn about identity theft scams"
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "eyebrow": "按用量计费",
+      "title": "只为<highlight>实际使用量</highlight>付费",
+      "description": "面向 GenAI 与深度伪造 (deepfake) 检测的透明、可预测定价。<strong>使用 Eva-v1-Fast 模型每月免费检测 200 张图片</strong>，超出后每张图片 $0.05 + 可选增值功能。无隐藏费用，无长期合约。"
+    },
+    "volume": {
+      "label": "每月用量",
+      "imagesCount": "{count} 张图片",
+      "discountTitle": "需要超过 {max} 张图片？",
+      "discountDescription": "解锁企业级功能、批量折扣，以及面向高用量需求的专属支持。",
+      "talkToSales": "联系销售"
+    },
+    "addOns": {
+      "title": "增值功能",
+      "subtitle": "通过可选功能增强您的检测能力",
+      "items": {
+        "adaptive-defense": {
+          "name": "自适应防御",
+          "description": "采用先进 AI 模型，实时检测 GenAI、深度伪造 (deepfake) 及注入攻击"
+        },
+        "active-liveness": {
+          "name": "活体检测",
+          "description": "通过活体人脸检测验证真实人类在场，防范 GenAI 生成的深度伪造 (deepfake)"
+        },
+        "express-lane": {
+          "name": "极速通道",
+          "description": "低延迟处理，保证 3s 内响应"
+        }
+      }
+    },
+    "forensic": {
+      "title": "取证增值功能",
+      "subtitle": "企业级调查工具",
+      "badge": "企业版",
+      "report": {
+        "title": "取证 PDF 报告",
+        "description": "全面的溯源报告，包含详细分析、证据链与法律文档",
+        "perImage": "每张图片",
+        "includesLabel": "包含：",
+        "includes": {
+          "timeline": "详细的篡改时间线及所用技术",
+          "custody": "证据链文档",
+          "evidence": "可直接用于法律的证据包",
+          "witness": "可提供专家证人支持"
+        }
+      },
+      "talkToSales": "联系销售了解取证功能"
+    },
+    "summary": {
+      "title": "价格汇总",
+      "pricePerCheck": "每次检测价格",
+      "perImage": "/image",
+      "withinFreeTier": "✓ 在免费额度内（使用 Eva-v1-Fast 检测前 200 张图片）",
+      "baseDetection": "基础检测",
+      "plusAdaptiveDefense": "+ 自适应防御",
+      "plusActiveLiveness": "+ 活体检测",
+      "plusExpressLane": "+ 极速通道",
+      "totalMonthlyEstimate": "每月预估总额",
+      "perMonth": "/month",
+      "imagesCount": "{count} 张图片",
+      "free": "免费",
+      "freeImages": "免费图片",
+      "paidImagesLine": "{count} 张付费图片 × {price}",
+      "getStarted": "开始使用",
+      "ctaFootnote": "无设置费用 • 随时取消 • 按量付费",
+      "baseIncludesLabel": "基础检测包含：",
+      "baseIncludes": {
+        "genaiDeepfake": "GenAI 与深度伪造 (deepfake) 检测",
+        "evaFast": "Eva-v1-Fast 模型",
+        "restfulApi": "RESTful API 访问权限",
+        "dashboard": "仪表盘数据分析"
+      }
+    },
+    "cards": {
+      "recommended": "推荐",
+      "perImage": "每张图片",
+      "selfServe": {
+        "name": "自助服务",
+        "freeBadge": "每月免费 200 张图片（Eva-v1-Fast）",
+        "description": "适合准备以灵活定价扩展规模的企业。使用 Eva-v1-Fast 模型前 200 张图片免费，超出后每张图片 $0.05 + 可选增值功能。",
+        "cta": "立即开始",
+        "features": {
+          "genaiDetection": "GenAI 检测",
+          "deepfakeAnalysis": "深度伪造 (deepfake) 分析",
+          "evaFastModel": "Eva-v1-Fast 模型",
+          "apiAccess": "API 访问权限",
+          "allAddOns": "全部可选增值功能"
+        }
+      },
+      "enterprise": {
+        "name": "企业版",
+        "priceCustom": "定制",
+        "perfectTitle": "完美契合您的用量",
+        "perfectDescription": "针对每月 5,000+ 张图片，获享批量折扣 + 企业级功能",
+        "highVolumeDescription": "解锁定制定价、误报率更低的取证级 Eva-v1-Pro 模型、高级 Thinking 能力，以及面向高用量运营的专属支持",
+        "description": "适合需要取证级准确度、更低误报率与专属支持的大型组织。包含 Eva-v1-Pro 模型与高级 Thinking 能力。",
+        "cta": "联系销售",
+        "features": {
+          "everythingSelfServe": "包含自助服务的全部功能",
+          "evaProModel": "Eva-v1-Pro 模型",
+          "thinking": "Thinking（高级推理）",
+          "volumeDiscounts": "批量折扣",
+          "prioritySupport": "优先支持与 SLA",
+          "accountManager": "专属客户经理",
+          "customIntegration": "定制集成与培训"
+        }
+      }
+    },
+    "banner": {
+      "text": "透明定价，无隐藏费用。<strong>随业务增长从容扩展。</strong>"
+    }
+  },
+  "aiDetectionPage": {
+    "hero": {
+      "eyebrow": "AI 检测",
+      "heading": "检测图像和视频中的深度伪造",
+      "body": "Scam AI 的 Eva-v1 模型能以 <em>95.3% 的准确率</em> 在 4 秒内检测 <em>合成媒体</em>、<em>被篡改的人脸</em> 和 <em>深度伪造视频</em>。支持换脸、GAN 生成图像，以及包括 Stable Diffusion、DALL-E、Midjourney 和 Flux 在内的扩散模型输出。",
+      "cta": "试用 AI 检测"
+    },
+    "features": {
+      "eyebrow": "进阶能力",
+      "heading": "强大的视觉<accent>分析</accent>",
+      "face": {
+        "eyebrow": "人脸检测",
+        "heading": "人脸篡改检测",
+        "body1": "运用先进的神经网络分析，以 <em>95.3% 的准确率</em> 识别换脸、表情更改和面部属性篡改。可检测来自 Stable Diffusion、DALL-E、Midjourney 和 Flux 等主流生成工具的输出。",
+        "body2": "Eva-v1-Fast 处理时间 <em>不到 2 秒</em>，适用于实时审核。Eva-v1-Pro 在 <em>4 秒内</em> 提供取证级结果，适用于 KYC 和法律证据。"
+      },
+      "video": {
+        "eyebrow": "视频分析",
+        "heading": "视频帧分析",
+        "body1": "分析视频内容的每一帧，检测随时间出现的不一致、时序伪影和合成生成模式。",
+        "body2": "可无缝处理 <em>JPG、PNG、GIF、WebP、MP4、MOV、AVI</em> 等所有主流图像和视频格式。"
+      },
+      "reports": {
+        "eyebrow": "全面洞察",
+        "heading": "详尽的分析报告",
+        "body": "获取包含置信度评分、篡改区域热力图和视觉证据标记的全面报告，便于调查。我们的 RESTful API 可无缝集成到您现有的工作流程和平台中。"
+      },
+      "integration": {
+        "eyebrow": "轻松集成",
+        "heading": "简便的 API 集成",
+        "body": "只需几行代码，即可将深度伪造检测集成到您的平台。我们对开发者友好的 API 配备完善的文档、SDK 以及 7x24 小时支持，助您快速上线运行。"
+      }
+    },
+    "useCases": {
+      "eyebrow": "实际应用",
+      "heading": "深受各<accent>行业</accent>信赖",
+      "items": {
+        "social": {
+          "title": "社交媒体平台",
+          "description": "保护您的用户免受被篡改内容和深度伪造活动的侵害。在可疑媒体传播之前自动予以标记。",
+          "bullets": {
+            "0": "内容审核自动化",
+            "1": "用户生成内容验证",
+            "2": "防范虚假信息"
+          }
+        },
+        "financial": {
+          "title": "金融服务",
+          "description": "在客户引导和验证过程中，借助先进的深度伪造检测防范身份欺诈和 KYC 绕过企图。",
+          "bullets": {
+            "0": "增强 KYC 验证",
+            "1": "防范身份欺诈",
+            "2": "证件真实性核验"
+          }
+        },
+        "media": {
+          "title": "媒体与出版",
+          "description": "在发布前核验视觉内容的真实性，以维护公信力，避免传播虚假信息。",
+          "bullets": {
+            "0": "事实核查工作流程",
+            "1": "来源验证",
+            "2": "编辑诚信保护"
+          }
+        },
+        "ecommerce": {
+          "title": "电商与交友",
+          "description": "通过确保头像照片和商品图像真实未经篡改，在您的平台上建立信任。",
+          "bullets": {
+            "0": "资料验证",
+            "1": "商品图像真实性",
+            "2": "防范诈骗"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "常见问题",
+      "eyebrow": "常见问题",
+      "heading": "AI 图像检测问答",
+      "items": {
+        "accuracy": {
+          "question": "Scam AI 的图像和视频深度伪造检测准确度如何？",
+          "answer": "Scam AI 采用 Eva-v1 模型，图像和视频深度伪造检测的准确率达到 95.3%。Eva-v1-Fast 处理时间不到 2 秒，适用于高吞吐量场景；Eva-v1-Pro 处理时间不到 4 秒，以更低的误报率实现最高准确度。"
+        },
+        "types": {
+          "question": "Scam AI 能在图像和视频中检测哪些类型的深度伪造？",
+          "answer": "Scam AI 可检测换脸、GAN 生成图像、扩散模型输出（Stable Diffusion、DALL-E、Midjourney、Flux）、通过逐帧和时序分析识别的视频深度伪造、合成人脸以及 4K 视频篡改。"
+        },
+        "formats": {
+          "question": "Scam AI 支持哪些图像和视频格式？",
+          "answer": "Scam AI 支持 JPG、PNG、GIF 和 WebP 图像格式，以及 MP4、MOV 和 AVI 视频格式。支持 4K 视频分析，并进行逐帧深度伪造检测。"
+        },
+        "speed": {
+          "question": "Scam AI 的深度伪造检测速度有多快？",
+          "answer": "Eva-v1-Fast 处理图像的时间不到 2 秒，适用于实时内容审核和大批量 KYC 筛查。Eva-v1-Pro 处理时间不到 4 秒，适用于取证级分析和高风险身份验证。"
+        },
+        "free": {
+          "question": "有可供试用的免费深度伪造检测器吗？",
+          "answer": "有。Scam AI 每月提供 200 次免费图像分析——无需信用卡。在 app.scam.ai 注册，即可使用 Eva-v1-Fast 模型即时体验深度伪造检测器。当您的用量增长时，可升级到按量付费（$0.05/image）或企业版。"
+        },
+        "api": {
+          "question": "我可以通过 API 将深度伪造检测集成到我的应用中吗？",
+          "answer": "可以。Scam AI 提供 REST API，10 分钟内即可完成集成。使用图像 URL 发起 POST 请求，即可收到包含 is_deepfake 布尔值、置信度评分和所用模型的 JSON 响应。我们提供 Python 和 JavaScript 的 SDK。"
+        }
+      }
+    },
+    "cta": {
+      "heading": "立即开始检测深度伪造",
+      "subhead": "<em>每月 200 张免费图像</em>。无需信用卡。",
+      "button": "免费开始使用",
+      "audioPrompt": "还需要音频深度伪造检测？",
+      "audioLink": "了解语音克隆检测 →",
+      "pricing": "查看<link>定价方案</link>，低至 $0.05/image。",
+      "researchPrefix": "基于已发表的研究构建：",
+      "researchPaper1": "深度伪造检测器在现实中有效吗？",
+      "researchPaper2": "开源检测器基准测试"
+    },
+    "links": {
+      "heading": "行业解决方案与学习",
+      "compare": "Scam AI vs Reality Defender"
+    }
+  },
+  "audioDetectionPage": {
+    "hero": {
+      "eyebrow": "音频检测",
+      "title": "检测语音克隆和合成音频",
+      "description": "以 <em>98.5% 的准确率</em> 在 3 秒内检测 <em>语音克隆</em>、<em>AI 生成的语音</em> 和 <em>合成音频</em>。可识别来自 ElevenLabs、PlayHT、Resemble AI、Azure TTS 等语音合成平台的输出。支持 MP3、WAV、M4A、FLAC 和 OGG 格式。",
+      "cta": "联系销售"
+    },
+    "features": {
+      "eyebrow": "进阶能力",
+      "title": "进阶音频<accent>分析</accent>",
+      "voiceCloning": {
+        "eyebrow": "语音克隆检测",
+        "title": "识别 AI 生成的语音",
+        "body1": "以 <em>98.5% 的准确率</em> 跨多种语言、口音和说话模式识别 AI 生成的语音克隆。据 FBI 的 IC3 2024 年报告，全球语音网络钓鱼损失超过 $12.5 billion，这使得实时音频检测对金融机构和呼叫中心至关重要。",
+        "body2": "每段音频的处理时间 <em>不到 3 秒</em>，可实现实时通话核验、实时流式分析和大规模自动化欺诈筛查。"
+      },
+      "tts": {
+        "eyebrow": "TTS 检测",
+        "title": "合成语音分析",
+        "body1": "检测来自主流 AI 模型的文本转语音输出，包括 <em>ElevenLabs、PlayHT、Azure TTS</em> 以及新兴的语音合成平台。",
+        "body2": "可无缝处理 <em>MP3、WAV、M4A、FLAC、OGG</em> 等所有主流音频格式，实现最大兼容性。"
+      },
+      "manipulation": {
+        "eyebrow": "篡改检测",
+        "title": "音频篡改检测",
+        "body": "识别拼接的音频片段、音高修改、速度变更及其他复杂的音频篡改。我们的先进算法甚至能检测出人耳可能忽略的细微编辑。"
+      },
+      "integration": {
+        "eyebrow": "轻松集成",
+        "title": "简便的 API 集成",
+        "body": "轻松集成 REST API，配备完善的文档，适用于实时或批量音频核验工作流程。借助我们的 SDK 和 7x24 小时开发者支持，几分钟即可上手。"
+      }
+    },
+    "useCases": {
+      "eyebrow": "实际应用",
+      "title": "深受各<accent>行业</accent>信赖",
+      "cards": {
+        "callCenters": {
+          "title": "呼叫中心与客户服务",
+          "description": "在客户服务交互中通过实时核验，防范语音冒充和欺诈企图。",
+          "bullets": {
+            "0": "来电者身份核验",
+            "1": "增强声纹生物识别安全",
+            "2": "防范与检测欺诈"
+          }
+        },
+        "banking": {
+          "title": "银行与金融服务",
+          "description": "防范语音网络钓鱼（vishing）诈骗，以及通过绕过语音认证未经授权访问账户的企图。",
+          "bullets": {
+            "0": "语音银行安全核验",
+            "1": "电话认证保护",
+            "2": "vishing 攻击检测"
+          }
+        },
+        "media": {
+          "title": "媒体与广播",
+          "description": "核验音频录音的真实性，防止被篡改的采访、声明或广播内容传播。",
+          "bullets": {
+            "0": "音频来源验证",
+            "1": "采访真实性核实",
+            "2": "内容完整性保护"
+          }
+        },
+        "legal": {
+          "title": "法律与执法",
+          "description": "在法律程序和刑事调查中鉴定音频证据，检测被篡改的录音。",
+          "bullets": {
+            "0": "证据鉴定服务",
+            "1": "司法音频分析",
+            "2": "证据保管链核验"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "常见问题",
+      "eyebrow": "常见问题",
+      "title": "语音克隆检测问答",
+      "items": {
+        "accuracy": {
+          "question": "Scam AI 的语音克隆和音频深度伪造检测准确度如何？",
+          "answer": "Scam AI 的语音克隆检测准确率达到 98.5%，可识别来自 ElevenLabs、PlayHT、Resemble AI 和 Azure TTS 等平台的合成语音。每个音频文件的处理时间不到 3 秒。"
+        },
+        "types": {
+          "question": "Scam AI 能检测哪些类型的音频深度伪造？",
+          "answer": "Scam AI 可检测语音克隆（ElevenLabs、Resemble AI、PlayHT、Azure TTS）、文本转语音生成的音频、音频深度伪造、拼接或被篡改的录音，以及实时合成语音流。"
+        },
+        "formats": {
+          "question": "Scam AI 支持哪些音频格式？",
+          "answer": "Scam AI 支持 MP3、WAV、M4A、FLAC 和 OGG 音频格式。同时还提供实时音频流分析，适用于实时通话监控和语音认证。"
+        },
+        "vishing": {
+          "question": "Scam AI 能检测语音网络钓鱼（vishing）攻击吗？",
+          "answer": "可以。Scam AI 音频检测被呼叫中心、银行和金融服务机构用于实时识别语音网络钓鱼攻击。它能检测出试图冒充高管、客户或权威人士的克隆语音。"
+        },
+        "whatIs": {
+          "question": "什么是语音克隆检测？",
+          "answer": "语音克隆检测可识别使用 ElevenLabs、PlayHT 或 Azure TTS 等 AI 语音合成工具人工生成或克隆的音频。Scam AI 的 Eva-v1 音频模型分析频谱和时序伪影——这些是人耳无法察觉的模式——从而将合成语音与真实录音区分开来，准确率达到 98.5%。"
+        },
+        "realtime": {
+          "question": "音频深度伪造检测 API 能处理实时流吗？",
+          "answer": "可以。Scam AI 提供用于实时通话监控的实时流式端点，每个音频片段的处理时间不到 3 秒。这使呼叫中心和金融机构能够在通话进行中筛查合成媒体和语音克隆，从而实时防范欺诈。"
+        }
+      }
+    },
+    "cta": {
+      "title": "准备好保护您的平台免受语音欺诈了吗？",
+      "subtitle": "联系我们的团队，探讨为您量身定制的<em>企业级音频检测解决方案</em>。",
+      "button": "联系销售",
+      "crossLink": "还需要图像和视频深度伪造检测？<link>了解 AI 图像检测 →</link>",
+      "pricingLink": "查看<link>定价方案</link>，低至 $0.05/file。",
+      "research": "基于已发表的研究构建：<link1>深度伪造检测器在现实中有效吗？</link1> · <link2>开源检测器基准测试</link2>"
+    },
+    "relatedLinks": {
+      "heading": "行业解决方案与学习",
+      "compare": "Scam AI vs Sensity AI"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "在 AI 时代<br></br>构建信任。"
+    },
+    "mission": {
+      "heading": "我们的使命",
+      "paragraph1": "随着 AI 生成内容日益精密，真假之间的界限正变得模糊。深度伪造和合成媒体正威胁着各行业的信任、安全与真相。",
+      "paragraph2": "Scam AI 的成立正是为了解决这一关键挑战。我们提供全球最准确、最快速、最易用的深度伪造检测平台。",
+      "paragraph3": "我们的技术为全球社交媒体、金融服务、媒体机构和企业的用户提供保护。"
+    },
+    "milestone": {
+      "heading": "里程碑",
+      "tags": {
+        "platform": "平台",
+        "product": "产品",
+        "ai": "AI",
+        "performance": "性能",
+        "funding": "融资",
+        "milestone": "里程碑",
+        "newFeature": "新功能",
+        "audio": "音频",
+        "security": "安全",
+        "compliance": "合规",
+        "award": "奖项",
+        "launch": "发布"
+      },
+      "entries": {
+        "no-code-platform": {
+          "title": "无代码平台与自助式上线",
+          "description": "推出具备拖放式界面的无代码检测平台。自助式引导让用户无需技术配置或 API 集成，几分钟内即可开始检测深度伪造。"
+        },
+        "enhanced-accuracy": {
+          "title": "提升检测准确度",
+          "description": "将深度伪造检测准确率提升至 95.3%，处理时间缩短至 4 秒以内。新增 4K 视频分析支持，并增强了音频深度伪造检测算法。"
+        },
+        "seed-funding": {
+          "title": "种子轮融资——$2.6M",
+          "description": "完成总计 $2.6M 的股权融资，由 Llama Venture 领投，SCVxSBI、Welight Capital、SkyDeck Fund 和 Beta Fund 参投。本轮融资将加速产品开发和全球扩张。"
+        },
+        "genai-detection": {
+          "title": "GenAI 检测发布",
+          "description": "推出涵盖文本、图像和视频的全面 GenAI 内容检测。先进的 AI 模型可识别由 ChatGPT、Midjourney、DALL-E 及其他生成式 AI 平台生成的内容。"
+        },
+        "audio-detection": {
+          "title": "音频检测发布",
+          "description": "推出音频深度伪造检测，语音克隆检测准确率达 92%。支持 MP3、WAV 和 AAC 格式，并提供实时音频流分析。"
+        },
+        "compliance": {
+          "title": "GDPR 与 SOC 2 Type I 合规",
+          "description": "通过 GDPR 合规并获得 SOC 2 Type I 认证，彰显我们对数据隐私与安全的承诺。企业级安全标准现已就位。"
+        },
+        "pre-seed-funding": {
+          "title": "来自 Berkeley SkyDeck 的种子前融资",
+          "description": "入选 Berkeley SkyDeck——UC Berkeley 顶尖的深科技加速器项目，录取率不到 1%。获得投资以加速我们应对合成媒体威胁的使命。"
+        },
+        "product-hunt": {
+          "title": "Product Hunt——每日最佳产品",
+          "description": "Scam AI 荣获 Product Hunt 每日最佳产品！感谢我们出色的社区给予的支持与反馈。"
+        },
+        "model-v01": {
+          "title": "深度伪造检测模型 v0.1 发布",
+          "description": "向公众发布我们的首个深度伪造检测模型。初始版本聚焦于图像和视频分析，具备用于合成媒体检测的基础 AI 能力。"
+        }
+      }
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "eyebrow": "产品",
+      "title": "一体化深度伪造检测平台",
+      "description": "面向图像、音频和视频的全面 AI 驱动检测。一个平台，全方位保护。"
+    },
+    "cards": {
+      "aiDetection": {
+        "title": "AI 图像与视频深度伪造检测",
+        "description": "使用 Eva-v1 模型，以 95.3%* 的准确率检测 AI 生成图像和深度伪造视频。识别换脸、GAN 生成图像，以及来自 Stable Diffusion、DALL-E 和 Midjourney 的扩散模型输出。通过 REST API 在 10 分钟内完成集成。",
+        "link": "了解 AI 深度伪造检测 →"
+      },
+      "audioDetection": {
+        "title": "语音克隆与合成音频检测",
+        "description": "以 98.5% 的准确率在 3 秒内检测语音克隆、AI 生成语音和合成音频。可识别来自 ElevenLabs、PlayHT、Azure TTS 等语音合成平台的输出。支持实时流分析，助力呼叫中心防范欺诈。",
+        "link": "了解语音克隆检测 →"
+      }
+    },
+    "comparison": {
+      "heading": "功能对比",
+      "columns": {
+        "feature": "功能",
+        "vision": "视觉",
+        "audio": "音频"
+      },
+      "rows": {
+        "accuracy": "检测准确率",
+        "speed": "处理速度",
+        "formats": "支持的格式",
+        "realTime": "实时分析",
+        "batch": "批量处理",
+        "api": "API 集成"
+      }
+    },
+    "useCases": {
+      "heading": "为各行各业打造",
+      "socialMedia": {
+        "title": "社交媒体",
+        "description": "在深度伪造内容和合成媒体传播之前自动予以标记。大规模保护用户免受被篡改视频和 AI 生成虚假信息的侵害。",
+        "link": "AI 深度伪造检测 →"
+      },
+      "financial": {
+        "title": "金融服务",
+        "description": "在 KYC 和贷款申请过程中以 95.3% 的准确率检测深度伪造身份欺诈。借助实时语音克隆检测，保护呼叫中心免受合成身份攻击和语音网络钓鱼的侵害。",
+        "linkKyc": "面向 KYC 的 AI 深度伪造检测 →",
+        "linkVoice": "语音克隆检测 →"
+      },
+      "media": {
+        "title": "媒体与出版",
+        "description": "在发布前核验图像和视频的真实性。检测 AI 生成图像和被篡改的画面，以维护编辑诚信，防范虚假信息。",
+        "link": "检测 AI 生成图像 →"
+      },
+      "ecommerce": {
+        "title": "电商与交友",
+        "description": "核验头像照片和商品图像的真实性。通过 API 进行自动化深度伪造检测，遏制合成身份诈骗和虚假商品信息。",
+        "link": "深度伪造检测 API →"
+      }
+    },
+    "cta": {
+      "heading": "立即开始检测深度伪造",
+      "description": "每月 200 张免费图像。无需信用卡。",
+      "button": "免费开始使用"
+    }
+  },
+  "solutionsPage": {
+    "eyebrow": "解决方案",
+    "heading": "面向<highlight>各行各业</highlight>的深度伪造检测",
+    "subheading": "Scam AI 能够适应您所在行业特有的欺诈模式、合规要求和工作流程需求。",
+    "learnMore": "了解更多",
+    "noIndustry": "没有看到您的行业？",
+    "tryFree": "免费试用——每月 200 张图像",
+    "contactSales": "联系销售"
+  },
+  "comparePage": {
+    "eyebrow": "对比",
+    "heading": "Scam AI vs <highlight>竞争对手</highlight>",
+    "subheading": "看看 Scam AI 与其他深度伪造检测平台相比表现如何。透明对比——包括竞争对手更具优势之处。",
+    "versus": "Scam AI vs {name}",
+    "tryFree": "免费试用 Scam AI——每月 200 张图像"
+  },
+  "haloPage": {
+    "hero": {
+      "ariaLabel": "Halo——端侧深度伪造检测",
+      "badge": "现已开放抢先体验",
+      "headline": "Halo 在端侧捕获深度伪造。",
+      "subhead": "在您的设备上实时运行。Halo 在每次通话中实时标记合成人脸和换脸——抢在它们让您损失一笔电汇或招错人之前。",
+      "joinWaitlist": "加入候补名单",
+      "seeHowItWorks": "了解工作原理"
+    },
+    "scanner": {
+      "liveCall": "实时通话",
+      "analyzing": "分析中…",
+      "frame": "第 {n} 帧",
+      "deepfakeDetected": "检测到深度伪造",
+      "scanningVideo": "Halo 正在扫描视频",
+      "onDevice": "100% 在您的设备上运行 · 不录制，不上传任何内容"
+    },
+    "problem": {
+      "eyebrow": "全新的攻击面",
+      "heading": "您的通话刚刚变成<br/>了<highlight>遭受攻击</highlight>的场所。",
+      "body": "实时换脸已足以在实时视频通话中冒充同事。邮件过滤器和登录检查根本看不到它们——欺诈就发生在对话本身之中。"
+    },
+    "icp": {
+      "ariaLabel": "各团队的价值",
+      "finance": {
+        "tab": "财务",
+        "eyebrow": "面向财务与资金管理",
+        "headline": "批准电汇的那个声音<br/>可能并非您的 CFO。",
+        "fearTitle": "合成高管电汇欺诈",
+        "fearBody": "2024 年，工程公司 Arup 的一名财务员工加入了一场视频通话，画面中的人看起来、听起来都像他们的 CFO 和同事——而通话中的每一张脸都是深度伪造。他们授权了 <em>15 笔总计约 $25M</em> 的转账。整场通话看起来完全正常。这就是全新的攻击方式：在例行审批通话中出现的实时合成高管。",
+        "stat": "约 $25M",
+        "statLabel": "在一场深度伪造视频通话中损失（Arup，2024 年）",
+        "bullets": {
+          "0": "在转账获批之前，实时标记合成人脸和换脸。",
+          "1": "在每一通 Zoom、Teams、Meet、WebEx 和 Slack 通话中保护资金管理、应付账款和高管助理。",
+          "2": "在端侧留下审计记录，供欺诈和合规审查使用。"
+        }
+      },
+      "hr": {
+        "tab": "人力资源与招聘",
+        "eyebrow": "面向人力资源与人才",
+        "headline": "镜头前的候选人<br/>可能不是真实存在的人。",
+        "fearTitle": "合成与换脸候选人",
+        "fearBody": "FBI 已就深度伪造求职者激增发出警告——有人利用实时换脸和变声器通过远程面试，往往是为了获取敏感系统的访问权限，或掩盖由他人实际完成工作的事实。Gartner 预测，<em>到 2028 年将有四分之一的候选人资料是伪造的</em>。您的面试环节如今已成为一道身份验证关卡。",
+        "stat": "四分之一",
+        "statLabel": "预计到 2028 年伪造的候选人资料比例（Gartner）",
+        "bullets": {
+          "0": "在远程面试期间实时检测换脸和 AI 生成的人脸替换。",
+          "1": "捕获用于在面试中伪装替身的换脸。",
+          "2": "无需将视频发送给第三方，即可为招聘人员提供置信度判读。"
+        }
+      }
+    },
+    "differentiators": {
+      "eyebrow": "为何选择端侧",
+      "heading": "云端检测跟不上<highlight>实时通话</highlight>的节奏。",
+      "items": {
+        "realtime": {
+          "title": "实时，无需往返",
+          "body": "检测与通话在同一时刻发生。没有上传、排队和下载的循环——因此在通话仍在进行、钱还没流失之前，结论就已经送达，而非事后。"
+        },
+        "attackSurface": {
+          "title": "更小的攻击面",
+          "body": "云端检测器引入了 API、上传和第三方存储——每一项都是攻击目标。Halo 将一切都保留在设备上：检测期间无网络调用，无帧数据传输，无外部服务器保存您的通话数据。环节更少，可乘之机也更少。"
+        },
+        "private": {
+          "title": "隐私至上设计",
+          "body": "视频帧在内存中分析后即被丢弃——不录制、不存储、不传输任何内容。无云端上传意味着不会产生新的敏感通话蜜罐，并使法务、IT 和 GDPR 审查的流程大为简化。"
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "工作原理",
+      "heading": "驻留在通话中的保护",
+      "steps": {
+        "install": {
+          "title": "一次安装",
+          "body": "将 Halo 下载到您的 Windows 电脑。它驻留在系统托盘中，紧邻您的会议应用——无需插件，无需浏览器扩展。"
+        },
+        "scan": {
+          "title": "本地实时扫描",
+          "body": "在您交谈的同时，Halo 会在您的设备上逐帧分析视频画面中的每一张脸——大约每秒 4 次。"
+        },
+        "flag": {
+          "title": "实时标记",
+          "body": "如果某张脸看起来是合成的，Halo 会在通话期间弹出警报——及时让您停下并核实。"
+        }
+      }
+    },
+    "compare": {
+      "eyebrow": "Halo 对比",
+      "heading": "为实时通话而生，而非为登录而设",
+      "colCapability": "能力",
+      "colCloud": "云端检测 API",
+      "colPlatform": "平台原生",
+      "partial": "部分支持",
+      "footnote": "— = 部分支持／视配置而定。本对比反映的是典型能力，并非针对任何单一指名厂商。",
+      "rows": {
+        "realTime": "在实时通话中实时运行",
+        "onDevice": "媒体数据保留在设备上",
+        "apps": "兼容 Zoom、Teams、Meet、WebEx 及 10 多款应用",
+        "noGpuCost": "无按分钟计费的云端 GPU 成本",
+        "syntheticMedia": "检测合成媒体（不仅是活体检测）",
+        "wholeCall": "保护整通通话，而非仅保护登录"
+      }
+    },
+    "faq": {
+      "eyebrow": "常见问题",
+      "heading": "常见问题",
+      "items": {
+        "whatIsHalo": {
+          "q": "什么是 Halo？",
+          "a": "Halo 是一款端侧深度伪造检测应用，能够实时监控您的视频通话，并在合成人脸和换脸骗过您之前予以标记。它完全在您的 Windows 电脑上运行——任何视频帧都不会离开您的机器。"
+        },
+        "dataUploaded": {
+          "q": "我的通话数据会被上传到任何地方吗？",
+          "a": "不会。所有检测都在您的设备本地运行。Halo 在内存中分析实时帧后即将其丢弃——它不录制、不存储、不传输会议视频。只有检测结论和会话元数据会被保留，并存储在您本地的机器上。"
+        },
+        "whichApps": {
+          "q": "Halo 兼容哪些应用？",
+          "a": "Halo 兼容 10 多款会议应用，包括 Zoom、Microsoft Teams、Google Meet、WebEx、Skype、Slack huddles、GoTo Meeting 等——既支持原生桌面应用，也支持基于浏览器的会议。"
+        },
+        "performance": {
+          "q": "它会拖慢我的通话或耗尽我的电量吗？",
+          "a": "检测在您的设备本地运行，与通话并行进行。没有网络往返，因此不增加延迟，开销也极小。"
+        },
+        "accuracy": {
+          "q": "它的准确度如何，误报情况怎样？",
+          "a": "Halo 采用两个互补 AI 模型的集成，二者必须达成一致才会给出结论。相较于单模型检测器，这极大地降低了误报。每位参与者都会得到一个结论——安全、可疑或深度伪造——而非一个原始分数。"
+        },
+        "vsBuiltIn": {
+          "q": "这与我的会议应用内置的安全功能有何不同？",
+          "a": "平台原生功能侧重于访问和会议控制，而非检测参与者的人脸或声音是否为合成。Halo 专为实时合成媒体检测打造，并兼容您使用的每一个平台。"
+        },
+        "devices": {
+          "q": "Halo 支持哪些设备？",
+          "a": "Halo 可在 Windows 10/11 上运行，同时支持 ARM64 和 x86/x64 硬件。最低需 4 GB 内存，约 1 GB 磁盘空间。"
+        }
+      }
+    },
+    "finalCta": {
+      "heading": "Halo 在您的通话中捕获深度伪造。<br/>在您的设备上，实时运行。",
+      "body": "Halo 正处于抢先体验阶段。加入候补名单，一旦它为您的设备准备就绪，我们将第一时间通知您。",
+      "discount": "立即加入，首年享 50% 折扣。",
+      "platformNote": "支持 Windows · 任何内容都不会离开您的设备"
+    },
+    "waitlist": {
+      "emailPlaceholder": "you@company.com",
+      "emailLabel": "工作邮箱",
+      "joinButton": "加入候补名单",
+      "joining": "加入中…",
+      "successTitle": "您已加入名单！",
+      "successBody": "作为早期成员，您将享首年 50% 折扣。一旦 Halo 准备就绪，我们将与您联系。",
+      "alreadyTitle": "您已在名单中！",
+      "alreadyBody": "您的首年 50% 折扣已锁定——一旦 Halo 准备就绪，我们将与您联系。",
+      "errorRateLimit": "请求过于频繁——请一分钟后重试。",
+      "errorValidation": "请输入有效的电子邮箱地址。",
+      "errorNetwork": "网络错误——请检查您的连接后重试。",
+      "errorUnknown": "出了点问题——请重试。"
+    },
+    "stickyCta": {
+      "sublabel": "在您的通话中捕获深度伪造",
+      "primary": "加入候补名单",
+      "secondary": "订阅"
+    }
+  },
+  "scamInsurancePage": {
+    "announcement": "从此不再担心诈骗——抢先体验者前 3 个月免费",
+    "hero": {
+      "eyebrow": "面向家庭与长者",
+      "title": "从此不再<highlight>担心诈骗。</highlight>",
+      "description": "scam.ai 在诈骗电话、短信和邮件抵达您之前就将其拦截——并以退款保证作为后盾，万一有漏网之鱼也无后顾之忧。",
+      "trustBadges": {
+        "privacy": "顶级隐私",
+        "insurance": "保险承保",
+        "protected": "全程守护"
+      },
+      "assurance": "无需信用卡。没有垃圾信息。随时退订。"
+    },
+    "stats": {
+      "lost": "去年美国因诈骗造成的损失",
+      "targeted": "每年遭诈骗瞄准的 60 岁以上美国人",
+      "coverage": "若诈骗从我们这里漏过，可获的赔付额度"
+    },
+    "howItWorks": {
+      "eyebrow": "工作原理",
+      "title": "四层防护",
+      "description": "在您安享生活的同时，scam.ai 在后台运作——消除您的暴露风险、监视威胁，并在万一出岔时为您兜底。",
+      "steps": {
+        "removeInfo": {
+          "title": "清除您的个人信息——在网上和暗网上",
+          "desc": "诈骗者从数据经纪网站购买您的姓名、电话号码和地址——并在暗网上交易。我们从所有这些来源清除您的信息，让诈骗者在任何骗局开始之前就更难找到并瞄准您。",
+          "tag": "主动防御"
+        },
+        "monitorBreaches": {
+          "title": "监控波及您的数据泄露事件",
+          "desc": "当公司遭到黑客攻击时，您的数据可能外泄。我们持续扫描涉及您信息的泄露事件，并立即向您发送通俗易懂的提醒——让您始终清楚哪些信息已暴露，以及下一步该怎么做。",
+          "tag": "随时知情"
+        },
+        "watchComms": {
+          "title": "守护您的电话、短信和邮件",
+          "desc": "我们监控您的来电、短信和邮件，识别正在进行的诈骗企图——标记可疑活动，在骗子接触您之前将其拦下。",
+          "tag": "主动护盾"
+        },
+        "coverLoss": {
+          "title": "在不幸发生时为您兜底",
+          "desc": "即便拥有最好的防护，也没有任何系统是完美的。这正是每位 scam.ai 会员都享有我们诈骗防护保证的原因。如果您在使用我们服务期间因诈骗遭受经济损失，您可能有资格获得赔偿——由持牌保险合作伙伴承保。",
+          "tag": "全方位安全网"
+        }
+      },
+      "trustBar": {
+        "private": "您的对话始终保密",
+        "privacyAware": "我们高度重视隐私",
+        "control": "您始终掌握主动权"
+      }
+    },
+    "insurance": {
+      "eyebrow": "我们最大胆的承诺",
+      "title": "以技术守护。<highlight>由保险兜底。</highlight>",
+      "description": "大多数应用只是试着帮忙。我们走得更远。如果诈骗者在您是会员期间突破了我们的防护，您可能有资格获得经济损失的赔偿——由真正的保险合作伙伴承保，绝不推诿。",
+      "pride": "这正是我们为自己打造的产品感到自豪的程度。",
+      "coverage": {
+        "romance": "感情与冒充诈骗",
+        "irs": "假冒 IRS 与 Medicare 的来电",
+        "giftCard": "礼品卡与电汇欺诈",
+        "phishing": "网络钓鱼与身份盗窃"
+      },
+      "coveredLabel": "已承保",
+      "assurances": {
+        "licensed": "由持牌保险承保",
+        "noFight": "无需为索回您的钱而争执"
+      },
+      "footnote": "¹ 我们正与一家持牌保险公司合作，为会员的诈骗损失提供承保。承保范围受投保时所提供保险合同条款与条件的约束。"
+    },
+    "problem": {
+      "eyebrow": "现实",
+      "title": "诈骗者正盯着您。<br></br>日复一日，从不间断。",
+      "description": "他们打来电话，假装是您的银行。他们发来短信，假装是您的孙辈。他们发来邮件，假装是 IRS。而且他们每个月都在变得更加高明。",
+      "stats": {
+        "stolen": {
+          "label": "去年从 60 岁以上美国人手中窃取的金额",
+          "sub": "超过其他任何年龄段"
+        },
+        "seniors": {
+          "label": "长者因欺诈遭受经济损失",
+          "sub": "大多数人因羞愧而从不报案"
+        },
+        "aiCalls": {
+          "label": "AI 生成诈骗电话的增长",
+          "sub": "如今的声音听起来与家人一模一样"
+        }
+      },
+      "callout": "最糟糕的是？<strong>他们早已掌握了您的电话号码、地址和姓名。</strong>这些信息就躺在任何人花几美元就能买到的数据库里。这正是 scam.ai 不只拦截诈骗者的原因——我们在每条战线上与他们对抗。"
+    },
+    "protection": {
+      "eyebrow": "全面防护",
+      "title": "不只是一款应用",
+      "description": "scam.ai 为您筑起一道全方位护盾——让诈骗者找不到您、联系不上您，也骗不了您。",
+      "features": {
+        "newsletter": {
+          "title": "每周诈骗资讯",
+          "desc": "我们每周为您发送一份通俗易懂的最新诈骗动态摘要。当您知道该提防什么，诈骗者便对您无能为力。"
+        },
+        "support": {
+          "title": "实时支持网络",
+          "desc": "感觉不对劲？打给我们。当您拿不准某通电话、短信或邮件是不是诈骗时，我们的支持团队随时待命。在弄清真相的路上，您从不孤单。"
+        },
+        "infoRemoval": {
+          "title": "个人信息清除",
+          "desc": "诈骗者从在线数据经纪商处购买您的姓名、地址和电话号码。我们从数百个此类数据库中清除这些信息——让您从一开始就更难被瞄准。"
+        }
+      }
+    },
+    "finalCta": {
+      "eyebrow": "加入候补名单",
+      "title": "从此不再担心诈骗。",
+      "description": "一项订阅涵盖一切——拦截、保险、教育和支持。立即加入，锁定前 3 个月免费。",
+      "badge": "前 3 个月免费*",
+      "footnote": "* 免费试用适用于产品发布后付费订阅的前 3 个月。"
+    },
+    "disclaimers": {
+      "insurance": "<label>¹ 保险承保。</label> scam.ai 并非持牌保险服务提供商。诈骗防护保证项下的损失赔偿，是通过与持牌保险承保方的合作来实现的。承保范围受适用保险合同所列条款、条件、除外责任和限额的约束，该合同将在投保时提供给会员。",
+      "statistics": "<label>² 统计数据。</label> 所引用的数字基于来自 FTC、FBI IC3 和 AARP Fraud Watch Network 的公开数据。实际结果可能有所不同。",
+      "waitlist": "<label>³ 候补名单。</label> 加入候补名单不构成参与任何保险计划，也不保证获得 scam.ai 应用的使用权。提交您的电子邮箱即表示您同意接收来自 scam.ai 的产品更新。您可随时退订。",
+      "offer": "<label>⁴ 早期采用者优惠。</label> “前 3 个月免费”优惠仅适用于候补名单成员，且仅适用于产品正式发布后付费订阅的前 3 个月。scam.ai 保留在发布前随时修改此优惠的权利。",
+      "app": "<label>⁵ 应用功能。</label> scam.ai 作为一款端侧筛查工具运行，不保证检测出所有欺诈活动。性能可能因设备和操作系统而异。"
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "联系我们",
+      "title": "取得联系",
+      "description": "对 Scam AI 有疑问？想探讨企业级解决方案？我们随时为您提供帮助。"
+    },
+    "options": {
+      "sales": {
+        "title": "销售",
+        "description": "对企业方案或批量定价感兴趣？"
+      },
+      "support": {
+        "title": "技术支持",
+        "description": "在集成或排查问题时需要帮助？"
+      },
+      "general": {
+        "title": "一般咨询",
+        "description": "有任何其他问题或反馈？"
+      }
+    },
+    "faq": {
+      "title": "常见问题",
+      "items": {
+        "getStarted": {
+          "question": "我多快能开始使用？",
+          "answer": "您几分钟内即可开始使用 Scam AI。在 app.scam.ai 注册一个免费账户，获取您的 API 密钥，然后发起您的首次 API 调用。我们提供 SDK 和文档，助您快速集成。"
+        },
+        "customSolutions": {
+          "question": "你们为企业提供定制解决方案吗？",
+          "answer": "是的！我们为企业客户提供定制集成、本地化部署、专属支持和批量折扣。请联系我们的销售团队，探讨您的具体需求。"
+        },
+        "regions": {
+          "question": "你们在哪些地区运营？",
+          "answer": "Scam AI 在全球运营，在美国、欧盟和亚太地区设有数据中心。我们符合 GDPR 合规要求，并能助您满足区域数据驻留要求。"
+        },
+        "sla": {
+          "question": "你们为企业客户提供怎样的 SLA？",
+          "answer": "企业客户可享 99.9% 的正常运行时间 SLA、具有保证响应时间的优先支持，以及专属客户经理。详情请联系销售。"
+        },
+        "tryBeforeBuy": {
+          "question": "在承诺付费方案之前我能先试用吗？",
+          "answer": "当然！我们提供每月 200 张免费图像，无需信用卡。您可以测试我们的 API、探索仪表板，并在升级前评估准确度。"
+        }
+      }
+    },
+    "office": {
+      "title": "我们的办公室"
+    },
+    "cta": {
+      "title": "准备好开始了吗？",
+      "description": "每月 200 张免费图像，开始保护您的平台。",
+      "button": "开始免费试用"
+    }
   }
 }

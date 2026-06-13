@@ -2490,5 +2490,847 @@
         "description": "2026년 딥페이크 통계 결정판: 사기 손실, 탐지 정확도 벤치마크, 산업 영향, 규제 대응."
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "eyebrow": "사용량 기반 요금제",
+      "title": "<highlight>사용한 만큼만</highlight> 지불하세요",
+      "description": "GenAI 및 딥페이크 탐지를 위한 투명하고 예측 가능한 요금제. <strong>Eva-v1-Fast 모델로 매월 200장의 이미지를 무료로 제공</strong>하며, 이후에는 이미지당 $0.05 + 선택형 부가 기능이 적용됩니다. 숨겨진 비용도, 장기 계약도 없습니다."
+    },
+    "volume": {
+      "label": "월간 사용량",
+      "imagesCount": "이미지 {count}장",
+      "discountTitle": "{max}장 이상의 이미지가 필요하신가요?",
+      "discountDescription": "대규모 사용을 위한 엔터프라이즈급 기능, 볼륨 할인, 전담 지원을 누려보세요.",
+      "talkToSales": "영업팀에 문의하기"
+    },
+    "addOns": {
+      "title": "부가 기능",
+      "subtitle": "선택형 기능으로 탐지 역량을 강화하세요",
+      "items": {
+        "adaptive-defense": {
+          "name": "적응형 방어",
+          "description": "고도화된 AI 모델로 GenAI, 딥페이크, 인젝션 공격을 실시간으로 탐지"
+        },
+        "active-liveness": {
+          "name": "액티브 라이브니스",
+          "description": "라이브 얼굴 탐지로 실제 사람의 존재를 검증하고 GenAI로 생성된 딥페이크를 차단"
+        },
+        "express-lane": {
+          "name": "익스프레스 레인",
+          "description": "3초 응답 시간을 보장하는 저지연 처리"
+        }
+      }
+    },
+    "forensic": {
+      "title": "포렌식 부가 기능",
+      "subtitle": "엔터프라이즈급 조사 도구",
+      "badge": "엔터프라이즈",
+      "report": {
+        "title": "포렌식 PDF 보고서",
+        "description": "상세 분석, 증거 보관 연속성, 법적 문서를 포함한 종합 출처 추적 보고서",
+        "perImage": "이미지당",
+        "includesLabel": "포함 내용:",
+        "includes": {
+          "timeline": "상세한 조작 타임라인 및 사용된 기법",
+          "custody": "증거 보관 연속성 문서",
+          "evidence": "법적 대응이 가능한 증거 패키지",
+          "witness": "전문가 증인 지원 제공"
+        }
+      },
+      "talkToSales": "포렌식 기능에 대해 영업팀에 문의하기"
+    },
+    "summary": {
+      "title": "요금 요약",
+      "pricePerCheck": "검사당 요금",
+      "perImage": "/image",
+      "withinFreeTier": "✓ 무료 등급 내 (Eva-v1-Fast로 첫 200장)",
+      "baseDetection": "기본 탐지",
+      "plusAdaptiveDefense": "+ 적응형 방어",
+      "plusActiveLiveness": "+ 액티브 라이브니스",
+      "plusExpressLane": "+ 익스프레스 레인",
+      "totalMonthlyEstimate": "월간 예상 총액",
+      "perMonth": "/month",
+      "imagesCount": "이미지 {count}장",
+      "free": "무료",
+      "freeImages": "무료 이미지",
+      "paidImagesLine": "유료 이미지 {count}장 × {price}",
+      "getStarted": "시작하기",
+      "ctaFootnote": "설정 비용 없음 • 언제든지 해지 가능 • 사용한 만큼 지불",
+      "baseIncludesLabel": "기본 탐지 포함 내용:",
+      "baseIncludes": {
+        "genaiDeepfake": "GenAI 및 딥페이크 탐지",
+        "evaFast": "Eva-v1-Fast 모델",
+        "restfulApi": "RESTful API 액세스",
+        "dashboard": "대시보드 분석"
+      }
+    },
+    "cards": {
+      "recommended": "추천",
+      "perImage": "이미지당",
+      "selfServe": {
+        "name": "셀프 서비스",
+        "freeBadge": "매월 무료 이미지 200장 (Eva-v1-Fast)",
+        "description": "유연한 요금제로 확장할 준비가 된 기업을 위한 플랜. Eva-v1-Fast 모델로 첫 200장의 이미지가 무료이며, 이후에는 이미지당 $0.05 + 선택형 부가 기능이 적용됩니다.",
+        "cta": "지금 시작하기",
+        "features": {
+          "genaiDetection": "GenAI 탐지",
+          "deepfakeAnalysis": "딥페이크 분석",
+          "evaFastModel": "Eva-v1-Fast 모델",
+          "apiAccess": "API 액세스",
+          "allAddOns": "모든 선택형 부가 기능"
+        }
+      },
+      "enterprise": {
+        "name": "엔터프라이즈",
+        "priceCustom": "맞춤형",
+        "perfectTitle": "귀사의 사용량에 최적화",
+        "perfectDescription": "매월 5,000장 이상의 이미지에 대해 볼륨 할인 + 엔터프라이즈 기능을 누려보세요",
+        "highVolumeDescription": "맞춤형 요금제, 더 낮은 오탐률을 갖춘 포렌식급 Eva-v1-Pro 모델, 고급 Thinking 역량, 대규모 운영을 위한 전담 지원을 누려보세요",
+        "description": "포렌식급 정확도, 더 낮은 오탐률, 전담 지원이 필요한 대규모 조직을 위한 플랜. Eva-v1-Pro 모델과 고급 Thinking 역량을 포함합니다.",
+        "cta": "영업팀에 문의하기",
+        "features": {
+          "everythingSelfServe": "셀프 서비스의 모든 기능",
+          "evaProModel": "Eva-v1-Pro 모델",
+          "thinking": "Thinking (고급 추론)",
+          "volumeDiscounts": "볼륨 할인",
+          "prioritySupport": "우선 지원 및 SLA",
+          "accountManager": "전담 어카운트 매니저",
+          "customIntegration": "맞춤형 통합 및 교육"
+        }
+      }
+    },
+    "banner": {
+      "text": "숨겨진 비용 없는 투명한 요금제. <strong>비즈니스 성장에 맞춰 안심하고 확장하세요.</strong>"
+    }
+  },
+  "aiDetectionPage": {
+    "hero": {
+      "eyebrow": "AI 탐지",
+      "heading": "이미지와 영상 속 딥페이크를 탐지합니다",
+      "body": "Scam AI의 Eva-v1 모델은 <em>합성 미디어</em>, <em>조작된 얼굴</em>, <em>딥페이크 영상</em>을 <em>95.3% 정확도</em>로 4초 이내에 탐지합니다. 페이스스왑, GAN 생성 이미지, 그리고 Stable Diffusion, DALL-E, Midjourney, Flux를 포함한 디퓨전 모델 출력물을 지원합니다.",
+      "cta": "AI 탐지 사용해보기"
+    },
+    "features": {
+      "eyebrow": "고급 기능",
+      "heading": "강력한 비주얼 <accent>분석</accent>",
+      "face": {
+        "eyebrow": "얼굴 탐지",
+        "heading": "얼굴 조작 탐지",
+        "body1": "고급 신경망 분석을 통해 페이스스왑, 표정 변화, 얼굴 속성 조작을 <em>95.3% 정확도</em>로 식별합니다. Stable Diffusion, DALL-E, Midjourney, Flux 등 주요 생성 도구의 출력물을 탐지합니다.",
+        "body2": "Eva-v1-Fast는 <em>2초 이내</em>로 처리하여 실시간 모더레이션을 지원합니다. Eva-v1-Pro는 <em>4초 이내</em>로 포렌식 수준의 결과를 제공하여 KYC와 법적 증거에 대응합니다."
+      },
+      "video": {
+        "eyebrow": "영상 분석",
+        "heading": "영상 프레임 분석",
+        "body1": "영상 콘텐츠의 모든 프레임을 분석하여 시간에 걸친 불일치, 시간적 아티팩트, 합성 생성 패턴을 탐지합니다.",
+        "body2": "<em>JPG, PNG, GIF, WebP, MP4, MOV, AVI</em>를 비롯한 모든 주요 이미지 및 영상 포맷과 매끄럽게 연동됩니다."
+      },
+      "reports": {
+        "eyebrow": "종합적인 인사이트",
+        "heading": "상세 분석 리포트",
+        "body": "신뢰도 점수, 조작 영역 히트맵, 조사를 위한 시각적 증거 마커를 포함한 종합 리포트를 받아보세요. 당사의 RESTful API를 통해 기존 워크플로와 플랫폼에 매끄럽게 통합할 수 있습니다."
+      },
+      "integration": {
+        "eyebrow": "손쉬운 통합",
+        "heading": "간편한 API 통합",
+        "body": "단 몇 줄의 코드만으로 딥페이크 탐지를 플랫폼에 통합할 수 있습니다. 개발자 친화적인 API에는 충실한 문서, SDK, 연중무휴 24시간 지원이 포함되어 빠르게 도입하고 운영할 수 있습니다."
+      }
+    },
+    "useCases": {
+      "eyebrow": "실제 활용 사례",
+      "heading": "<accent>모든 산업</accent>에서 신뢰받습니다",
+      "items": {
+        "social": {
+          "title": "소셜 미디어 플랫폼",
+          "description": "조작된 콘텐츠와 딥페이크 캠페인으로부터 사용자를 보호하세요. 확산되기 전에 의심스러운 미디어를 자동으로 플래그 처리합니다.",
+          "bullets": {
+            "0": "콘텐츠 모더레이션 자동화",
+            "1": "사용자 생성 콘텐츠 검증",
+            "2": "허위 정보 확산 방지"
+          }
+        },
+        "financial": {
+          "title": "금융 서비스",
+          "description": "고급 딥페이크 탐지로 온보딩과 본인 확인 과정에서 신원 도용과 KYC 우회 시도를 방지합니다.",
+          "bullets": {
+            "0": "KYC 검증 강화",
+            "1": "신원 도용 방지",
+            "2": "서류 진위 확인"
+          }
+        },
+        "media": {
+          "title": "미디어 및 출판",
+          "description": "게시 전에 비주얼 콘텐츠의 진위를 검증하여 신뢰성을 유지하고 허위 정보 확산을 방지합니다.",
+          "bullets": {
+            "0": "팩트체크 워크플로",
+            "1": "출처 검증",
+            "2": "편집 무결성 보호"
+          }
+        },
+        "ecommerce": {
+          "title": "이커머스 및 데이팅",
+          "description": "프로필 사진과 상품 이미지가 진짜이며 조작되지 않았음을 보장하여 플랫폼에 대한 신뢰를 구축하세요.",
+          "bullets": {
+            "0": "프로필 검증",
+            "1": "상품 이미지 진위 확인",
+            "2": "사기 방지"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "자주 묻는 질문",
+      "eyebrow": "FAQ",
+      "heading": "AI 이미지 탐지 관련 질문",
+      "items": {
+        "accuracy": {
+          "question": "Scam AI의 이미지 및 영상 딥페이크 탐지는 얼마나 정확한가요?",
+          "answer": "Scam AI는 Eva-v1 모델을 사용하여 이미지 및 영상 딥페이크 탐지에서 95.3% 정확도를 달성합니다. Eva-v1-Fast는 대용량 처리에 적합하도록 2초 이내에 처리하며, Eva-v1-Pro는 오탐을 낮춘 최고 정확도를 위해 4초 이내에 처리합니다."
+        },
+        "types": {
+          "question": "Scam AI는 이미지와 영상에서 어떤 종류의 딥페이크를 탐지할 수 있나요?",
+          "answer": "Scam AI는 페이스스왑, GAN 생성 이미지, 디퓨전 모델 출력물(Stable Diffusion, DALL-E, Midjourney, Flux), 프레임별 및 시간적 분석을 통한 영상 딥페이크, 합성된 얼굴, 4K 영상 조작을 탐지합니다."
+        },
+        "formats": {
+          "question": "Scam AI는 어떤 이미지 및 영상 포맷을 지원하나요?",
+          "answer": "Scam AI는 JPG, PNG, GIF, WebP 이미지 포맷과 MP4, MOV, AVI 영상 포맷을 지원합니다. 프레임별 딥페이크 탐지를 통한 4K 영상 분석도 지원합니다."
+        },
+        "speed": {
+          "question": "Scam AI의 딥페이크 탐지 속도는 얼마나 빠른가요?",
+          "answer": "Eva-v1-Fast는 이미지를 2초 이내에 처리하여 실시간 콘텐츠 모더레이션과 대량 KYC 스크리닝에 적합합니다. Eva-v1-Pro는 4초 이내에 처리하여 포렌식 수준의 분석과 중요도가 높은 본인 확인에 대응합니다."
+        },
+        "free": {
+          "question": "사용해볼 수 있는 무료 딥페이크 탐지 도구가 있나요?",
+          "answer": "네. Scam AI는 매월 200회의 무료 이미지 분석을 제공하며 신용카드가 필요하지 않습니다. app.scam.ai에서 가입하면 Eva-v1-Fast 모델 기반 딥페이크 탐지 도구를 즉시 사용할 수 있습니다. 사용량이 늘어나면 종량제($0.05/image) 또는 Enterprise로 업그레이드하세요."
+        },
+        "api": {
+          "question": "API를 통해 딥페이크 탐지를 내 앱에 통합할 수 있나요?",
+          "answer": "네. Scam AI는 10분 이내에 통합되는 REST API를 제공합니다. 이미지 URL로 POST 요청을 보내면 is_deepfake 불리언 값, 신뢰도 점수, 사용된 모델을 포함한 JSON 응답을 받습니다. Python 및 JavaScript용 SDK도 제공됩니다."
+        }
+      }
+    },
+    "cta": {
+      "heading": "오늘부터 딥페이크 탐지를 시작하세요",
+      "subhead": "<em>매월 200장의 무료 이미지</em>. 신용카드가 필요하지 않습니다.",
+      "button": "무료로 시작하기",
+      "audioPrompt": "오디오 딥페이크 탐지도 필요하신가요?",
+      "audioLink": "음성 클론 탐지 살펴보기 →",
+      "pricing": "<link>요금제</link>는 $0.05/image부터 시작합니다.",
+      "researchPrefix": "공개된 연구를 기반으로 구축:",
+      "researchPaper1": "딥페이크 탐지기는 실제 환경에서 작동하는가?",
+      "researchPaper2": "오픈소스 탐지기 벤치마크"
+    },
+    "links": {
+      "heading": "산업별 솔루션 및 학습 자료",
+      "compare": "Scam AI vs Reality Defender"
+    }
+  },
+  "audioDetectionPage": {
+    "hero": {
+      "eyebrow": "오디오 탐지",
+      "title": "음성 복제와 합성 오디오를 탐지합니다",
+      "description": "<em>음성 클론</em>, <em>AI 생성 음성</em>, <em>합성 오디오</em>를 <em>98.5% 정확도</em>로 3초 이내에 탐지합니다. ElevenLabs, PlayHT, Resemble AI, Azure TTS 등 음성 합성 플랫폼의 출력물을 식별합니다. MP3, WAV, M4A, FLAC, OGG 포맷을 지원합니다.",
+      "cta": "영업팀 문의"
+    },
+    "features": {
+      "eyebrow": "고급 기능",
+      "title": "고급 오디오 <accent>분석</accent>",
+      "voiceCloning": {
+        "eyebrow": "음성 클론 탐지",
+        "title": "AI 생성 음성 식별",
+        "body1": "다양한 언어, 억양, 말투에 걸쳐 AI 생성 음성 클론을 <em>98.5% 정확도</em>로 식별합니다. FBI의 IC3 2024년 보고서에 따르면 보이스피싱 피해는 전 세계적으로 $12.5 billion을 넘어섰으며, 이에 따라 실시간 오디오 탐지는 금융 기관과 콜센터에 필수적입니다.",
+        "body2": "오디오 클립당 <em>3초 이내</em>의 처리를 통해 실시간 통화 검증, 실시간 스트리밍 분석, 대규모 사기 스크리닝 자동화를 실현합니다."
+      },
+      "tts": {
+        "eyebrow": "TTS 탐지",
+        "title": "합성 음성 분석",
+        "body1": "<em>ElevenLabs, PlayHT, Azure TTS</em>를 비롯한 주요 AI 모델과 신생 음성 합성 플랫폼의 텍스트 음성 변환 출력물을 탐지합니다.",
+        "body2": "<em>MP3, WAV, M4A, FLAC, OGG</em>를 비롯한 모든 주요 오디오 포맷과 매끄럽게 연동되어 최대한의 호환성을 제공합니다."
+      },
+      "manipulation": {
+        "eyebrow": "조작 탐지",
+        "title": "오디오 조작 탐지",
+        "body": "이어 붙인 오디오 구간, 음높이 변경, 속도 변조 등 정교한 오디오 조작을 식별합니다. 당사의 고급 알고리즘은 사람의 귀가 놓칠 수 있는 미세한 편집까지 탐지합니다."
+      },
+      "integration": {
+        "eyebrow": "손쉬운 통합",
+        "title": "간편한 API 통합",
+        "body": "충실한 문서를 갖춘 간편한 REST API 통합으로 실시간 또는 배치 오디오 검증 워크플로를 구현합니다. SDK와 연중무휴 24시간 개발자 지원으로 몇 분 만에 시작할 수 있습니다."
+      }
+    },
+    "useCases": {
+      "eyebrow": "실제 활용 사례",
+      "title": "<accent>모든 산업</accent>에서 신뢰받습니다",
+      "cards": {
+        "callCenters": {
+          "title": "콜센터 및 고객 서비스",
+          "description": "실시간 검증으로 고객 서비스 상호작용에서의 음성 사칭과 사기 시도를 막아냅니다.",
+          "bullets": {
+            "0": "발신자 인증 검증",
+            "1": "음성 생체 인증 보안 강화",
+            "2": "사기 방지 및 탐지"
+          }
+        },
+        "banking": {
+          "title": "은행 및 금융 서비스",
+          "description": "음성 인증 우회 시도를 통한 보이스피싱(비싱) 사기와 무단 계정 접근을 방지합니다.",
+          "bullets": {
+            "0": "음성 뱅킹 보안 검증",
+            "1": "전화 인증 보호",
+            "2": "비싱 공격 탐지"
+          }
+        },
+        "media": {
+          "title": "미디어 및 방송",
+          "description": "오디오 녹음의 진위를 검증하고 조작된 인터뷰, 발언, 방송의 확산을 방지합니다.",
+          "bullets": {
+            "0": "오디오 출처 검증",
+            "1": "인터뷰 진위 확인",
+            "2": "콘텐츠 무결성 보호"
+          }
+        },
+        "legal": {
+          "title": "법률 및 사법 기관",
+          "description": "오디오 증거를 인증하고 법적 절차와 형사 수사에서 조작된 녹음을 탐지합니다.",
+          "bullets": {
+            "0": "증거 인증 서비스",
+            "1": "포렌식 오디오 분석",
+            "2": "증거 관리 연속성 검증"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "자주 묻는 질문",
+      "eyebrow": "FAQ",
+      "title": "음성 클론 탐지 관련 질문",
+      "items": {
+        "accuracy": {
+          "question": "Scam AI의 음성 클론 및 오디오 딥페이크 탐지는 얼마나 정확한가요?",
+          "answer": "Scam AI는 음성 클론 탐지에서 98.5% 정확도를 달성하며, ElevenLabs, PlayHT, Resemble AI, Azure TTS 같은 플랫폼이 만든 합성 음성을 식별합니다. 처리 시간은 오디오 파일당 3초 이내입니다."
+        },
+        "types": {
+          "question": "Scam AI는 어떤 종류의 오디오 딥페이크를 탐지할 수 있나요?",
+          "answer": "Scam AI는 음성 클론(ElevenLabs, Resemble AI, PlayHT, Azure TTS), 텍스트 음성 변환으로 생성된 오디오, 오디오 딥페이크, 이어 붙이거나 조작된 오디오 녹음, 실시간 합성 음성 스트림을 탐지합니다."
+        },
+        "formats": {
+          "question": "Scam AI는 어떤 오디오 포맷을 지원하나요?",
+          "answer": "Scam AI는 MP3, WAV, M4A, FLAC, OGG 오디오 포맷을 지원합니다. 실시간 통화 모니터링과 음성 인증을 위한 실시간 오디오 스트림 분석도 제공됩니다."
+        },
+        "vishing": {
+          "question": "Scam AI는 보이스피싱(비싱) 공격을 탐지할 수 있나요?",
+          "answer": "네. Scam AI 오디오 탐지는 콜센터, 은행, 금융 서비스에서 보이스피싱 공격을 실시간으로 식별하는 데 사용됩니다. 경영진, 고객, 권위자를 사칭하려는 복제 음성을 탐지합니다."
+        },
+        "whatIs": {
+          "question": "음성 클론 탐지란 무엇인가요?",
+          "answer": "음성 클론 탐지는 ElevenLabs, PlayHT, Azure TTS 같은 AI 음성 합성 도구를 사용해 인위적으로 생성하거나 복제한 오디오를 식별합니다. Scam AI의 Eva-v1 오디오 모델은 사람의 귀로는 감지할 수 없는 스펙트럼적·시간적 아티팩트(패턴)를 분석하여 합성 음성과 실제 녹음을 구분하며 98.5% 정확도를 달성합니다."
+        },
+        "realtime": {
+          "question": "오디오 딥페이크 탐지 API는 실시간 스트림을 처리할 수 있나요?",
+          "answer": "네. Scam AI는 실시간 통화 모니터링을 위한 실시간 스트리밍 엔드포인트를 제공하며, 각 오디오 구간을 3초 이내에 처리합니다. 이를 통해 콜센터와 금융 기관은 통화 중에 합성 미디어와 음성 클론을 스크리닝하여 실시간으로 사기를 방지할 수 있습니다."
+        }
+      }
+    },
+    "cta": {
+      "title": "음성 사기로부터 플랫폼을 보호할 준비가 되셨나요?",
+      "subtitle": "귀사의 요구에 맞춘 <em>엔터프라이즈 오디오 탐지 솔루션</em>에 대해 당사 팀에 문의하세요.",
+      "button": "영업팀 문의",
+      "crossLink": "이미지와 영상 딥페이크 탐지도 필요하신가요? <link>AI 이미지 탐지 살펴보기 →</link>",
+      "pricingLink": "<link>요금제</link>는 $0.05/file부터 시작합니다.",
+      "research": "공개된 연구를 기반으로 구축: <link1>딥페이크 탐지기는 실제 환경에서 작동하는가?</link1> · <link2>오픈소스 탐지기 벤치마크</link2>"
+    },
+    "relatedLinks": {
+      "heading": "산업별 솔루션 및 학습 자료",
+      "compare": "Scam AI vs Sensity AI"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "AI 시대의<br></br>신뢰를 구축합니다."
+    },
+    "mission": {
+      "heading": "우리의 미션",
+      "paragraph1": "AI 생성 콘텐츠가 점점 정교해지면서 진짜와 가짜의 경계가 흐려지고 있습니다. 딥페이크와 합성 미디어는 모든 산업에 걸쳐 신뢰, 보안, 진실을 위협합니다.",
+      "paragraph2": "Scam AI는 이 중대한 과제를 해결하기 위해 설립되었습니다. 당사는 세계에서 가장 정확하고 빠르며 접근성이 뛰어난 딥페이크 탐지 플랫폼을 제공합니다.",
+      "paragraph3": "당사의 기술은 전 세계 소셜 미디어, 금융 서비스, 미디어 조직, 기업의 사용자를 보호합니다."
+    },
+    "milestone": {
+      "heading": "마일스톤",
+      "tags": {
+        "platform": "플랫폼",
+        "product": "제품",
+        "ai": "AI",
+        "performance": "성능",
+        "funding": "투자",
+        "milestone": "마일스톤",
+        "newFeature": "신규 기능",
+        "audio": "오디오",
+        "security": "보안",
+        "compliance": "규정 준수",
+        "award": "수상",
+        "launch": "출시"
+      },
+      "entries": {
+        "no-code-platform": {
+          "title": "노코드 플랫폼 및 셀프서브 출시",
+          "description": "드래그 앤 드롭 인터페이스를 갖춘 노코드 탐지 플랫폼을 선보였습니다. 셀프서브 온보딩을 통해 기술적인 설정이나 API 통합 없이 몇 분 만에 딥페이크 탐지를 시작할 수 있습니다."
+        },
+        "enhanced-accuracy": {
+          "title": "탐지 정확도 향상",
+          "description": "딥페이크 탐지 정확도를 95.3%로 높이고 처리 시간을 4초 이내로 단축했습니다. 4K 영상 분석 지원을 추가하고 오디오 딥페이크 탐지 알고리즘을 강화했습니다."
+        },
+        "seed-funding": {
+          "title": "시드 라운드 투자 유치 - $2.6M",
+          "description": "Llama Venture가 주도하고 SCVxSBI, Welight Capital, SkyDeck Fund, Beta Fund가 참여하여 총 $2.6M 규모의 지분 투자를 마무리했습니다. 이번 투자는 제품 개발과 글로벌 확장을 가속할 것입니다."
+        },
+        "genai-detection": {
+          "title": "GenAI 탐지 출시",
+          "description": "텍스트, 이미지, 영상에 걸친 종합적인 GenAI 콘텐츠 탐지를 출시했습니다. 고급 AI 모델이 ChatGPT, Midjourney, DALL-E 등 생성형 AI 플랫폼이 만든 콘텐츠를 식별합니다."
+        },
+        "audio-detection": {
+          "title": "오디오 탐지 출시",
+          "description": "음성 복제에 대해 92% 정확도로 오디오 딥페이크 탐지를 출시했습니다. MP3, WAV, AAC 포맷을 지원하며 실시간 오디오 스트림 분석을 제공합니다."
+        },
+        "compliance": {
+          "title": "GDPR 및 SOC 2 Type I 규정 준수",
+          "description": "GDPR 규정 준수와 SOC 2 Type I 인증을 달성하여 데이터 프라이버시와 보안에 대한 노력을 입증했습니다. 엔터프라이즈급 보안 표준을 갖췄습니다."
+        },
+        "pre-seed-funding": {
+          "title": "Berkeley SkyDeck로부터 프리시드 투자 유치",
+          "description": "합격률 1% 미만인 UC Berkeley 최고의 딥테크 액셀러레이터 프로그램 Berkeley SkyDeck에 선정되었습니다. 합성 미디어 위협에 맞선다는 당사의 미션을 가속하기 위한 투자를 받았습니다."
+        },
+        "product-hunt": {
+          "title": "Product Hunt - Product of the Day",
+          "description": "Scam AI가 Product Hunt에서 Product of the Day로 선정되었습니다! 응원과 피드백을 보내주신 멋진 커뮤니티 여러분께 감사드립니다."
+        },
+        "model-v01": {
+          "title": "딥페이크 탐지 모델 v0.1 출시",
+          "description": "첫 번째 딥페이크 탐지 모델을 일반에 공개했습니다. 초기 버전은 합성 미디어 탐지를 위한 기초 AI 기능을 갖추고 이미지 및 영상 분석에 중점을 둡니다."
+        }
+      }
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "eyebrow": "제품",
+      "title": "올인원 딥페이크 탐지 플랫폼",
+      "description": "이미지, 오디오, 영상을 위한 종합 AI 기반 탐지. 하나의 플랫폼으로 완벽한 보호를."
+    },
+    "cards": {
+      "aiDetection": {
+        "title": "AI 이미지 및 영상 딥페이크 탐지",
+        "description": "Eva-v1 모델을 사용하여 AI 생성 이미지와 딥페이크 영상을 95.3%* 정확도로 탐지합니다. 페이스스왑, GAN 생성 이미지, 그리고 Stable Diffusion, DALL-E, Midjourney의 디퓨전 모델 출력물을 식별합니다. REST API를 통해 10분 이내에 통합됩니다.",
+        "link": "AI 딥페이크 탐지 살펴보기 →"
+      },
+      "audioDetection": {
+        "title": "음성 클론 및 합성 오디오 탐지",
+        "description": "음성 클론, AI 생성 음성, 합성 오디오를 98.5% 정확도로 3초 이내에 탐지합니다. ElevenLabs, PlayHT, Azure TTS 등 음성 합성 플랫폼의 출력물을 식별합니다. 콜센터 사기 방지를 위한 실시간 스트림 분석을 지원합니다.",
+        "link": "음성 클론 탐지 살펴보기 →"
+      }
+    },
+    "comparison": {
+      "heading": "기능 비교",
+      "columns": {
+        "feature": "기능",
+        "vision": "비전",
+        "audio": "오디오"
+      },
+      "rows": {
+        "accuracy": "탐지 정확도",
+        "speed": "처리 속도",
+        "formats": "지원 포맷",
+        "realTime": "실시간 분석",
+        "batch": "배치 처리",
+        "api": "API 통합"
+      }
+    },
+    "useCases": {
+      "heading": "모든 산업을 위해 설계",
+      "socialMedia": {
+        "title": "소셜 미디어",
+        "description": "딥페이크 콘텐츠와 합성 미디어가 확산되기 전에 자동으로 플래그 처리합니다. 조작된 영상과 AI 생성 허위 정보로부터 사용자를 대규모로 보호합니다.",
+        "link": "AI 딥페이크 탐지 →"
+      },
+      "financial": {
+        "title": "금융 서비스",
+        "description": "KYC와 대출 신청 과정에서 딥페이크 신원 도용을 95.3% 정확도로 탐지합니다. 실시간 음성 클론 탐지로 합성 신원 공격과 보이스피싱으로부터 콜센터를 보호합니다.",
+        "linkKyc": "KYC를 위한 AI 딥페이크 탐지 →",
+        "linkVoice": "음성 클론 탐지 →"
+      },
+      "media": {
+        "title": "미디어 및 출판",
+        "description": "게시 전에 이미지와 영상의 진위를 검증합니다. AI 생성 이미지와 조작된 영상을 탐지하여 편집 무결성을 유지하고 허위 정보를 방지합니다.",
+        "link": "AI 생성 이미지 탐지 →"
+      },
+      "ecommerce": {
+        "title": "이커머스 및 데이팅",
+        "description": "프로필 사진과 상품 이미지가 진짜인지 검증합니다. API를 통한 자동 딥페이크 탐지로 합성 신원 사기와 가짜 게시물을 차단합니다.",
+        "link": "딥페이크 탐지 API →"
+      }
+    },
+    "cta": {
+      "heading": "오늘부터 딥페이크 탐지를 시작하세요",
+      "description": "매월 200장의 무료 이미지. 신용카드가 필요하지 않습니다.",
+      "button": "무료로 시작하기"
+    }
+  },
+  "solutionsPage": {
+    "eyebrow": "솔루션",
+    "heading": "<highlight>모든 산업</highlight>을 위한 딥페이크 탐지",
+    "subheading": "Scam AI는 귀사 산업의 특정 사기 패턴, 규정 준수 요건, 워크플로 요구에 맞게 적응합니다.",
+    "learnMore": "자세히 보기",
+    "noIndustry": "찾으시는 산업이 없나요?",
+    "tryFree": "무료로 사용해보기 — 200 images/month",
+    "contactSales": "영업팀 문의"
+  },
+  "comparePage": {
+    "eyebrow": "비교",
+    "heading": "Scam AI vs <highlight>경쟁사</highlight>",
+    "subheading": "Scam AI가 다른 딥페이크 탐지 플랫폼과 어떻게 비교되는지 확인하세요. 경쟁사가 더 뛰어난 부분까지 포함한 투명한 비교를 제공합니다.",
+    "versus": "Scam AI vs {name}",
+    "tryFree": "Scam AI 무료로 사용해보기 — 200 images/month"
+  },
+  "haloPage": {
+    "hero": {
+      "ariaLabel": "Halo — 온디바이스 딥페이크 탐지",
+      "badge": "현재 얼리 액세스 중",
+      "headline": "Halo는 디바이스에서 딥페이크를 잡아냅니다.",
+      "subhead": "귀하의 디바이스에서, 실시간으로. Halo는 모든 통화에서 합성된 얼굴과 페이스스왑을 실시간으로 플래그 처리합니다 — 송금이나 잘못된 채용으로 손해를 입기 전에.",
+      "joinWaitlist": "대기자 명단 신청",
+      "seeHowItWorks": "작동 방식 보기"
+    },
+    "scanner": {
+      "liveCall": "실시간 통화",
+      "analyzing": "분석 중…",
+      "frame": "프레임 {n}",
+      "deepfakeDetected": "딥페이크 탐지됨",
+      "scanningVideo": "Halo가 영상을 스캔하는 중",
+      "onDevice": "100% 귀하의 디바이스에서 작동 · 녹화 없음, 아무것도 전송되지 않음"
+    },
+    "problem": {
+      "eyebrow": "새로운 공격 표면",
+      "heading": "이제 통화가<br/><highlight>공격받는</highlight> 곳이 되었습니다.",
+      "body": "실시간 페이스스왑은 실시간 영상 통화에서 동료로 통할 만큼 정교합니다. 이메일 필터와 로그인 검사는 이를 결코 보지 못합니다 — 사기는 대화 그 자체 안에서 일어나기 때문입니다."
+    },
+    "icp": {
+      "ariaLabel": "팀별 가치",
+      "finance": {
+        "tab": "재무",
+        "eyebrow": "재무 및 자금 부서를 위해",
+        "headline": "송금을 승인하는 그 목소리는<br/>귀사의 CFO가 아닐 수도 있습니다.",
+        "fearTitle": "합성 경영진을 이용한 송금 사기",
+        "fearBody": "2024년, 엔지니어링 기업 Arup의 한 재무 직원이 CFO와 동료처럼 보이고 들리는 상대와 영상 통화에 참여했습니다 — 통화에 등장한 모든 얼굴이 딥페이크였습니다. 이 직원은 <em>총 약 $25M 규모의 15건의 송금</em>을 승인했습니다. 통화는 완전히 정상으로 보였습니다. 이것이 새로운 공격입니다: 일상적인 승인 통화에 등장하는 실시간 합성 경영진.",
+        "stat": "약 $25M",
+        "statLabel": "단 한 번의 딥페이크 영상 통화로 잃은 금액(Arup, 2024)",
+        "bullets": {
+          "0": "송금이 승인되기 전에 합성된 얼굴과 페이스스왑을 실시간으로 플래그 처리합니다.",
+          "1": "모든 Zoom, Teams, Meet, WebEx, Slack 통화에서 자금 부서, 매입채무 담당자, 임원 비서를 보호합니다.",
+          "2": "사기 및 규정 준수 검토를 위해 온디바이스 감사 추적 기록을 남깁니다."
+        }
+      },
+      "hr": {
+        "tab": "인사 및 채용",
+        "eyebrow": "인사 및 인재 부서를 위해",
+        "headline": "카메라에 보이는 지원자가<br/>실존하는 사람이 아닐 수도 있습니다.",
+        "fearTitle": "합성 및 페이스스왑된 지원자",
+        "fearBody": "FBI는 딥페이크 구직자가 급증하고 있다고 경고했습니다 — 실시간 페이스스왑과 음성 변조기를 사용해 원격 면접을 통과하고, 흔히 민감한 시스템에 대한 접근 권한을 얻거나 다른 사람이 업무를 수행하는 것을 숨기려는 사례입니다. Gartner는 <em>2028년까지 지원자 프로필 4명 중 1명이 가짜일 것</em>이라고 전망합니다. 이제 귀사의 면접 과정은 신원 확인 검문소입니다.",
+        "stat": "4명 중 1명",
+        "statLabel": "2028년까지 가짜로 전망되는 지원자 프로필(Gartner)",
+        "bullets": {
+          "0": "원격 면접 중 페이스스왑과 AI 생성 얼굴 교체를 실시간으로 탐지합니다.",
+          "1": "면접 중 대역을 위장하는 데 사용되는 페이스스왑을 잡아냅니다.",
+          "2": "영상을 제3자에게 전송하지 않고도 채용 담당자에게 신뢰도 판정을 제공합니다."
+        }
+      }
+    },
+    "differentiators": {
+      "eyebrow": "왜 온디바이스인가",
+      "heading": "클라우드 탐지는 <highlight>실시간 통화</highlight>를 따라잡을 수 없습니다.",
+      "items": {
+        "realtime": {
+          "title": "왕복 통신 없는 실시간",
+          "body": "탐지는 통화와 같은 순간에 이루어집니다. 업로드, 대기열, 다운로드 주기가 없기 때문에 판정은 돈이 사라진 후가 아니라 통화가 진행되는 동안 내려집니다."
+        },
+        "attackSurface": {
+          "title": "더 작은 공격 표면",
+          "body": "클라우드 탐지기는 API, 업로드, 제3자 스토리지를 추가합니다 — 그 각각이 공격 대상입니다. Halo는 모든 것을 디바이스에 유지합니다: 탐지 중 네트워크 통신 없음, 전송 중인 프레임 없음, 통화 데이터를 보관하는 외부 서버 없음. 구성 요소가 적을수록 침입 경로도 줄어듭니다."
+        },
+        "private": {
+          "title": "설계부터 프라이빗",
+          "body": "영상 프레임은 메모리에서 분석된 후 폐기됩니다 — 아무것도 녹화, 저장, 전송되지 않습니다. 클라우드 업로드가 없다는 것은 민감한 통화의 새로운 허니팟이 생기지 않으며, 법무, IT, GDPR 검토를 훨씬 더 간단히 통과할 수 있다는 의미입니다."
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "작동 방식",
+      "heading": "통화 안에 머무는 보호",
+      "steps": {
+        "install": {
+          "title": "한 번만 설치",
+          "body": "Halo를 Windows PC에 다운로드하세요. 회의 앱 옆 시스템 트레이에 상주합니다 — 플러그인이나 브라우저 확장 프로그램이 필요 없습니다."
+        },
+        "scan": {
+          "title": "로컬에서, 실시간으로 스캔",
+          "body": "대화하는 동안 Halo는 영상 프레임 속 모든 얼굴을 디바이스에서 프레임별로 분석합니다 — 대략 초당 4회."
+        },
+        "flag": {
+          "title": "실시간으로 플래그 처리",
+          "body": "얼굴이 합성된 것처럼 보이면 Halo는 통화 중에 경고를 표시합니다 — 멈추고 확인할 수 있는 시점에."
+        }
+      }
+    },
+    "compare": {
+      "eyebrow": "Halo 비교",
+      "heading": "로그인이 아니라 실시간 통화를 위해 설계",
+      "colCapability": "기능",
+      "colCloud": "클라우드 탐지 API",
+      "colPlatform": "플랫폼 내장",
+      "partial": "부분 지원",
+      "footnote": "— = 부분 지원 / 구성에 따라 다름. 비교는 일반적인 기능을 반영한 것이며 특정 벤더를 지칭하지 않습니다.",
+      "rows": {
+        "realTime": "실시간 통화에서 실시간으로 작동",
+        "onDevice": "미디어가 디바이스에 머무름",
+        "apps": "Zoom, Teams, Meet, WebEx 및 10개 이상의 앱에서 작동",
+        "noGpuCost": "분당 클라우드 GPU 비용 없음",
+        "syntheticMedia": "합성 미디어 탐지(라이브니스뿐만 아니라)",
+        "wholeCall": "로그인뿐만 아니라 통화 전체를 보호"
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "heading": "자주 묻는 질문",
+      "items": {
+        "whatIsHalo": {
+          "q": "Halo란 무엇인가요?",
+          "a": "Halo는 영상 통화를 실시간으로 모니터링하여 합성된 얼굴과 페이스스왑이 당신을 속이기 전에 플래그 처리하는 온디바이스 딥페이크 탐지 애플리케이션입니다. 전적으로 Windows PC에서 작동하며 — 영상 프레임이 컴퓨터를 벗어나는 일은 결코 없습니다."
+        },
+        "dataUploaded": {
+          "q": "제 통화 데이터가 어딘가로 업로드되나요?",
+          "a": "아니요. 모든 탐지는 귀하의 디바이스에서 로컬로 실행됩니다. Halo는 실시간 프레임을 메모리에서 분석한 후 폐기합니다 — 회의 영상을 녹화, 저장, 전송하지 않습니다. 보관되는 것은 탐지 판정과 세션 메타데이터뿐이며, 컴퓨터에 로컬로 저장됩니다."
+        },
+        "whichApps": {
+          "q": "Halo는 어떤 앱에서 작동하나요?",
+          "a": "Halo는 Zoom, Microsoft Teams, Google Meet, WebEx, Skype, Slack 허들, GoTo Meeting 등 10개 이상의 회의 애플리케이션에서 작동합니다 — 네이티브 데스크톱 앱과 브라우저 기반 회의 모두를 지원합니다."
+        },
+        "performance": {
+          "q": "통화가 느려지거나 배터리가 소모되지 않나요?",
+          "a": "탐지는 귀하의 디바이스에서 통화와 병행하여 로컬로 실행됩니다. 네트워크 왕복 통신이 없으므로 지연이 추가되지 않으며 오버헤드도 최소화됩니다."
+        },
+        "accuracy": {
+          "q": "얼마나 정확하며, 오탐은 어떤가요?",
+          "a": "Halo는 판정을 내리기 전에 반드시 일치해야 하는 두 개의 상호 보완적인 AI 모델 앙상블을 사용합니다. 이를 통해 단일 모델 탐지기에 비해 오탐이 크게 줄어듭니다. 각 참가자는 판정을 받습니다 — Safe, Suspicious, Deepfake 중 하나이며, 원시 점수가 아닙니다."
+        },
+        "vsBuiltIn": {
+          "q": "회의 앱에 내장된 보안과는 어떻게 다른가요?",
+          "a": "플랫폼 내장 기능은 접근 및 회의 제어에 중점을 두며, 참가자의 얼굴이나 목소리가 합성된 것인지 탐지하지는 않습니다. Halo는 실시간 합성 미디어 탐지를 위해 특별히 설계되었으며 귀하가 사용하는 모든 플랫폼에서 작동합니다."
+        },
+        "devices": {
+          "q": "Halo는 어떤 디바이스를 지원하나요?",
+          "a": "Halo는 ARM64와 x86/x64 하드웨어 모두에서 Windows 10/11으로 작동합니다. 최소 사양은 RAM 4 GB, 디스크 여유 공간 약 1 GB입니다."
+        }
+      }
+    },
+    "finalCta": {
+      "heading": "Halo는 귀하의 통화에서 딥페이크를 잡아냅니다.<br/> 귀하의 디바이스에서, 실시간으로.",
+      "body": "Halo는 얼리 액세스 중입니다. 대기자 명단에 신청하시면 귀하의 디바이스에서 준비되는 즉시 알려드리겠습니다.",
+      "discount": "지금 신청하면 첫해 50% 할인을 받으세요.",
+      "platformNote": "Windows에서 이용 가능 · 아무것도 디바이스를 벗어나지 않습니다"
+    },
+    "waitlist": {
+      "emailPlaceholder": "you@company.com",
+      "emailLabel": "회사 이메일",
+      "joinButton": "대기자 명단 신청",
+      "joining": "신청 중…",
+      "successTitle": "명단에 등록되었습니다!",
+      "successBody": "얼리 멤버로서 첫해 50% 할인을 받으실 수 있습니다. Halo가 준비되는 즉시 연락드리겠습니다.",
+      "alreadyTitle": "이미 명단에 등록되어 있습니다!",
+      "alreadyBody": "첫해 50% 할인이 확정되어 있습니다 — Halo가 준비되는 즉시 연락드리겠습니다.",
+      "errorRateLimit": "요청이 너무 많습니다 — 1분 후에 다시 시도해주세요.",
+      "errorValidation": "유효한 이메일 주소를 입력해주세요.",
+      "errorNetwork": "네트워크 오류 — 연결을 확인하고 다시 시도해주세요.",
+      "errorUnknown": "문제가 발생했습니다 — 다시 시도해주세요."
+    },
+    "stickyCta": {
+      "sublabel": "통화에서 딥페이크를 잡아내세요",
+      "primary": "대기자 명단 신청",
+      "secondary": "구독하기"
+    }
+  },
+  "scamInsurancePage": {
+    "announcement": "더 이상 사기 걱정은 그만 — 얼리버드는 첫 3개월 무료",
+    "hero": {
+      "eyebrow": "가족과 시니어를 위해",
+      "title": "더 이상 <highlight>사기 걱정은 그만.</highlight>",
+      "description": "scam.ai는 사기 전화, 문자, 이메일이 당신에게 도달하기 전에 차단합니다 — 그리고 혹시 빠져나간 것이 있다면 환불 보장으로 든든히 뒷받침합니다.",
+      "trustBadges": {
+        "privacy": "최고 수준의 프라이버시",
+        "insurance": "보험으로 보장",
+        "protected": "항상 보호"
+      },
+      "assurance": "신용카드 불필요. 스팸 없음. 언제든 구독 해지 가능."
+    },
+    "stats": {
+      "lost": "작년 미국에서 사기로 잃은 금액",
+      "targeted": "매년 표적이 되는 60세 이상 미국인",
+      "coverage": "사기가 당사를 빠져나갈 경우의 보상"
+    },
+    "howItWorks": {
+      "eyebrow": "작동 방식",
+      "title": "네 겹의 보호",
+      "description": "당신이 일상을 사는 동안 scam.ai는 백그라운드에서 일합니다 — 당신의 노출을 제거하고, 위협을 감시하며, 무슨 일이 생기면 당신을 뒷받침합니다.",
+      "steps": {
+        "removeInfo": {
+          "title": "당신의 개인정보 삭제 — 온라인과 다크웹에서",
+          "desc": "사기꾼들은 데이터 브로커 웹사이트에서 당신의 이름, 전화번호, 주소를 사들이고 — 다크웹에서 거래합니다. 당사는 그 모든 곳에서 당신의 정보를 지워, 어떤 사기가 시작되기도 전에 당신을 찾고 표적으로 삼기를 훨씬 어렵게 만듭니다.",
+          "tag": "선제적 방어"
+        },
+        "monitorBreaches": {
+          "title": "당신에게 영향을 미치는 데이터 유출 감시",
+          "desc": "기업이 해킹당하면 당신의 데이터가 유출될 수 있습니다. 당사는 당신의 정보가 포함된 유출을 지속적으로 스캔하고 쉬운 말로 된 알림을 즉시 보내드립니다 — 그래서 무엇이 노출되었고 다음에 무엇을 해야 하는지 항상 알 수 있습니다.",
+          "tag": "정보 파악"
+        },
+        "watchComms": {
+          "title": "당신의 전화, 문자, 이메일을 지켜봄",
+          "desc": "당사는 수신되는 전화, 문자, 이메일에 활성 사기 시도가 있는지 모니터링하여 — 의심스러운 활동을 플래그 처리하고 사기꾼이 당신에게 도달하기 전에 막아냅니다.",
+          "tag": "능동적 방패"
+        },
+        "coverLoss": {
+          "title": "불행한 일이 생겼을 때 당신을 보상",
+          "desc": "최고의 보호로도 완벽한 시스템은 없습니다. 그래서 모든 scam.ai 회원은 당사의 Scam Protection Guarantee로 뒷받침됩니다. 당사와 함께하는 동안 사기로 금전적 손실을 입으셨다면, 라이선스를 보유한 보험 파트너의 보장에 따라 배상 대상이 될 수 있습니다.",
+          "tag": "완벽한 안전망"
+        }
+      },
+      "trustBar": {
+        "private": "당신의 대화는 비공개로 유지됩니다",
+        "privacyAware": "당사는 프라이버시를 깊이 중시합니다",
+        "control": "당신이 항상 통제권을 가집니다"
+      }
+    },
+    "insurance": {
+      "eyebrow": "당사의 가장 대담한 약속",
+      "title": "기술로 보호. <highlight>보험으로 보장.</highlight>",
+      "description": "대부분의 앱은 그저 돕고자 할 뿐입니다. 당사는 한 걸음 더 나아갑니다. 회원이신 동안 사기꾼이 당사의 보호를 뚫고 들어온다면, 금전적 손실에 대한 배상 대상이 될 수 있습니다 — 실제 보험 파트너의 보장으로, 헛수고 없이.",
+      "pride": "당사가 만들어낸 것에 그만큼 자부심을 가지고 있습니다.",
+      "coverage": {
+        "romance": "로맨스 및 사칭 사기",
+        "irs": "가짜 IRS 및 Medicare 전화",
+        "giftCard": "기프트카드 및 송금 사기",
+        "phishing": "피싱 및 신원 도용"
+      },
+      "coveredLabel": "보장 대상",
+      "assurances": {
+        "licensed": "라이선스를 보유한 보험으로 보장",
+        "noFight": "돈을 받기 위해 싸울 필요 없음"
+      },
+      "footnote": "¹ 당사는 회원의 사기 손실을 보장하기 위해 라이선스를 보유한 보험사와 제휴하고 있습니다. 보장은 가입 시 제공되는 보험 계약의 조건에 따릅니다."
+    },
+    "problem": {
+      "eyebrow": "현실",
+      "title": "사기꾼들이 당신을 노리고 있습니다.<br></br> 하루도 빠짐없이.",
+      "description": "그들은 당신의 은행인 척 전화합니다. 당신의 손주인 척 문자를 보냅니다. IRS인 척 이메일을 보냅니다. 그리고 그 수법은 매달 더 정교해지고 있습니다.",
+      "stats": {
+        "stolen": {
+          "label": "작년 60세 이상 미국인에게서 도난당한 금액",
+          "sub": "다른 어떤 연령대보다 많음"
+        },
+        "seniors": {
+          "label": "시니어가 사기로 돈을 잃습니다",
+          "sub": "대부분은 수치심에 결코 신고하지 않습니다"
+        },
+        "aiCalls": {
+          "label": "AI 생성 사기 전화의 증가",
+          "sub": "목소리가 이제 가족과 똑같이 들립니다"
+        }
+      },
+      "callout": "최악인 점은? <strong>그들은 이미 당신의 전화번호, 주소, 이름을 가지고 있습니다.</strong> 그것은 누구나 몇 달러면 살 수 있는 데이터베이스에 들어 있습니다. 그래서 scam.ai는 사기꾼을 차단하는 데 그치지 않고 — 모든 전선에서 그들과 맞서 싸웁니다."
+    },
+    "protection": {
+      "eyebrow": "완벽한 보호",
+      "title": "단순한 앱 그 이상",
+      "description": "scam.ai는 완전한 방패로 당신을 둘러쌉니다 — 사기꾼이 당신을 찾을 수도, 당신에게 도달할 수도, 당신을 속일 수도 없도록.",
+      "features": {
+        "newsletter": {
+          "title": "주간 사기 뉴스레터",
+          "desc": "매주 최근 떠도는 새로운 사기에 대한 쉬운 말로 된 요약을 보내드립니다. 무엇을 조심해야 할지 알면, 사기꾼은 당신에 대한 영향력을 잃습니다."
+        },
+        "support": {
+          "title": "실시간 지원 네트워크",
+          "desc": "뭔가 이상하게 느껴지나요? 전화하세요. 전화, 문자, 이메일이 사기인지 확신이 서지 않을 때 당사의 지원팀이 곁에 있습니다. 판단하는 데 결코 혼자가 아닙니다."
+        },
+        "infoRemoval": {
+          "title": "개인정보 삭제",
+          "desc": "사기꾼들은 온라인 데이터 브로커에서 당신의 이름, 주소, 전화번호를 사들입니다. 당사는 그것을 수백 개의 데이터베이스에서 지워 — 애초에 표적이 되기 훨씬 어렵게 만듭니다."
+        }
+      }
+    },
+    "finalCta": {
+      "eyebrow": "대기자 명단 신청",
+      "title": "더 이상 사기 걱정은 그만.",
+      "description": "하나의 구독으로 모든 것을 보장 — 차단, 보험, 교육, 지원. 지금 신청하고 첫 3개월 무료를 확정하세요.",
+      "badge": "첫 3개월 무료*",
+      "footnote": "* 무료 체험은 출시 후 유료 구독의 첫 3개월에 적용됩니다."
+    },
+    "disclaimers": {
+      "insurance": "<label>¹ 보험 보장.</label> scam.ai는 라이선스를 보유한 보험 제공자가 아닙니다. Scam Protection Guarantee에 따른 손실 배상은 라이선스를 보유한 보험사와의 제휴를 통해 이루어집니다. 보장은 가입 시 회원에게 제공되는 해당 보험 계약에 명시된 조건, 예외 사항, 한도에 따릅니다.",
+      "statistics": "<label>² 통계.</label> 인용된 수치는 FTC, FBI IC3, AARP Fraud Watch Network의 공개 데이터에 기반합니다. 실제 결과는 다를 수 있습니다.",
+      "waitlist": "<label>³ 대기자 명단.</label> 대기자 명단 신청은 어떤 보험 플랜에의 가입을 구성하거나 scam.ai 애플리케이션에 대한 접근을 보장하지 않습니다. 이메일을 제출함으로써 scam.ai로부터 제품 업데이트를 수신하는 데 동의하게 됩니다. 언제든 구독을 해지할 수 있습니다.",
+      "offer": "<label>⁴ 얼리어답터 혜택.</label> “첫 3개월 무료” 혜택은 대기자 명단 회원에 한하여, 그리고 일반 제품 출시 이후 유료 구독의 첫 3개월에 한하여 적용됩니다. scam.ai는 출시 전 언제든지 이 혜택을 변경할 권리를 보유합니다.",
+      "app": "<label>⁵ 앱 기능.</label> scam.ai는 온디바이스 스크리닝 도구로 작동하며 모든 사기 행위의 탐지를 보장하지 않습니다. 성능은 디바이스와 운영체제에 따라 다를 수 있습니다."
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "문의하기",
+      "title": "연락하기",
+      "description": "Scam AI에 대해 궁금한 점이 있으신가요? 엔터프라이즈 솔루션에 대해 상담하고 싶으신가요? 언제든 도와드리겠습니다."
+    },
+    "options": {
+      "sales": {
+        "title": "영업",
+        "description": "엔터프라이즈 플랜이나 대량 가격에 관심이 있으신가요?"
+      },
+      "support": {
+        "title": "기술 지원",
+        "description": "통합이나 문제 해결에 도움이 필요하신가요?"
+      },
+      "general": {
+        "title": "일반 문의",
+        "description": "다른 질문이나 피드백이 있으신가요?"
+      }
+    },
+    "faq": {
+      "title": "자주 묻는 질문",
+      "items": {
+        "getStarted": {
+          "question": "얼마나 빨리 시작할 수 있나요?",
+          "answer": "Scam AI는 몇 분 만에 사용을 시작할 수 있습니다. app.scam.ai에서 무료 계정에 가입하고, API 키를 받아, 첫 API 호출을 해보세요. 빠르게 통합할 수 있도록 SDK와 문서를 제공합니다."
+        },
+        "customSolutions": {
+          "question": "기업을 위한 맞춤형 솔루션을 제공하나요?",
+          "answer": "네! 엔터프라이즈 고객을 위해 맞춤형 통합, 온프레미스 배포, 전담 지원, 대량 할인을 제공합니다. 구체적인 요구 사항에 대해 영업팀에 문의하세요."
+        },
+        "regions": {
+          "question": "어떤 지역에서 운영하나요?",
+          "answer": "Scam AI는 미국, EU, APAC에 데이터센터를 두고 전 세계에서 운영합니다. GDPR을 준수하며 지역별 데이터 레지던시 요건 충족을 도와드릴 수 있습니다."
+        },
+        "sla": {
+          "question": "엔터프라이즈 고객을 위한 SLA는 어떻게 되나요?",
+          "answer": "엔터프라이즈 고객은 99.9% 가동 시간 SLA, 보장된 응답 시간을 갖춘 우선 지원, 전담 계정 관리를 제공받습니다. 자세한 내용은 영업팀에 문의하세요."
+        },
+        "tryBeforeBuy": {
+          "question": "유료 플랜에 가입하기 전에 사용해볼 수 있나요?",
+          "answer": "물론입니다! 신용카드 없이 매월 200장의 무료 이미지를 제공합니다. 업그레이드하기 전에 API를 테스트하고, 대시보드를 살펴보고, 정확도를 평가해볼 수 있습니다."
+        }
+      }
+    },
+    "office": {
+      "title": "당사 사무실"
+    },
+    "cta": {
+      "title": "시작할 준비가 되셨나요?",
+      "description": "매월 200장의 무료 이미지로 플랫폼 보호를 시작하세요.",
+      "button": "무료 체험 시작하기"
+    }
   }
 }

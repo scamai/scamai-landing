@@ -2383,5 +2383,847 @@
         }
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "eyebrow": "HARGA BERBASIS PENGGUNAAN",
+      "title": "Bayar hanya untuk <highlight>yang Anda gunakan</highlight>",
+      "description": "Harga yang transparan dan dapat diprediksi untuk deteksi GenAI dan deepfake. <strong>200 gambar gratis per bulan dengan model Eva-v1-Fast kami</strong>, lalu $0.05/gambar + tambahan opsional. Tanpa biaya tersembunyi, tanpa kontrak jangka panjang."
+    },
+    "volume": {
+      "label": "Volume Bulanan",
+      "imagesCount": "{count} gambar",
+      "discountTitle": "Butuh lebih dari {max} gambar?",
+      "discountDescription": "Buka fitur kelas enterprise, diskon volume, dan dukungan khusus untuk kebutuhan bervolume tinggi.",
+      "talkToSales": "Hubungi Tim Penjualan"
+    },
+    "addOns": {
+      "title": "Fitur Tambahan",
+      "subtitle": "Tingkatkan kemampuan deteksi Anda dengan fitur opsional",
+      "items": {
+        "adaptive-defense": {
+          "name": "Pertahanan Adaptif",
+          "description": "Deteksi serangan GenAI, deepfake & injeksi secara real-time dengan model AI canggih"
+        },
+        "active-liveness": {
+          "name": "Deteksi Keaslian Aktif",
+          "description": "Deteksi wajah langsung untuk memverifikasi kehadiran manusia nyata dan mencegah deepfake yang dihasilkan GenAI"
+        },
+        "express-lane": {
+          "name": "Jalur Ekspres",
+          "description": "Pemrosesan latensi rendah dengan jaminan waktu respons 3s"
+        }
+      }
+    },
+    "forensic": {
+      "title": "Tambahan Forensik",
+      "subtitle": "Alat investigasi kelas enterprise",
+      "badge": "Enterprise",
+      "report": {
+        "title": "Laporan PDF Forensik",
+        "description": "Laporan provenans komprehensif dengan analisis mendetail, rantai bukti, dan dokumentasi legal",
+        "perImage": "per gambar",
+        "includesLabel": "Termasuk:",
+        "includes": {
+          "timeline": "Linimasa manipulasi terperinci & teknik yang digunakan",
+          "custody": "Dokumentasi rantai bukti",
+          "evidence": "Paket bukti siap untuk keperluan hukum",
+          "witness": "Dukungan saksi ahli tersedia"
+        }
+      },
+      "talkToSales": "Hubungi tim penjualan untuk fitur forensik"
+    },
+    "summary": {
+      "title": "Ringkasan Harga",
+      "pricePerCheck": "Harga Per Pemeriksaan",
+      "perImage": "/gambar",
+      "withinFreeTier": "✓ Dalam tingkat gratis (200 gambar pertama dengan Eva-v1-Fast)",
+      "baseDetection": "Deteksi Dasar",
+      "plusAdaptiveDefense": "+ Pertahanan Adaptif",
+      "plusActiveLiveness": "+ Deteksi Keaslian Aktif",
+      "plusExpressLane": "+ Jalur Ekspres",
+      "totalMonthlyEstimate": "Total Estimasi Bulanan",
+      "perMonth": "/bulan",
+      "imagesCount": "{count} gambar",
+      "free": "GRATIS",
+      "freeImages": "Gambar gratis",
+      "paidImagesLine": "{count} gambar berbayar × {price}",
+      "getStarted": "Mulai Sekarang",
+      "ctaFootnote": "Tanpa biaya pemasangan • Batalkan kapan saja • Bayar sesuai pemakaian",
+      "baseIncludesLabel": "Deteksi Dasar Mencakup:",
+      "baseIncludes": {
+        "genaiDeepfake": "Deteksi GenAI & deepfake",
+        "evaFast": "Model Eva-v1-Fast",
+        "restfulApi": "Akses RESTful API",
+        "dashboard": "Analitik dasbor"
+      }
+    },
+    "cards": {
+      "recommended": "Direkomendasikan",
+      "perImage": "per gambar",
+      "selfServe": {
+        "name": "Layanan Mandiri",
+        "freeBadge": "200 gambar gratis/bulan (Eva-v1-Fast)",
+        "description": "Untuk bisnis yang siap berkembang dengan harga fleksibel. 200 gambar pertama gratis dengan model Eva-v1-Fast, lalu $0.05/gambar + tambahan opsional.",
+        "cta": "Mulai sekarang",
+        "features": {
+          "genaiDetection": "Deteksi GenAI",
+          "deepfakeAnalysis": "Analisis Deepfake",
+          "evaFastModel": "Model Eva-v1-Fast",
+          "apiAccess": "Akses API",
+          "allAddOns": "Semua tambahan opsional"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "priceCustom": "Khusus",
+        "perfectTitle": "Sempurna untuk volume Anda",
+        "perfectDescription": "Dapatkan diskon volume + fitur enterprise untuk 5,000+ gambar/bulan",
+        "highVolumeDescription": "Buka harga khusus, model Eva-v1-Pro kelas forensik dengan lebih sedikit positif palsu, kemampuan Thinking canggih, dan dukungan khusus untuk operasi bervolume tinggi",
+        "description": "Untuk organisasi besar yang membutuhkan akurasi kelas forensik, lebih sedikit positif palsu, dan dukungan khusus. Termasuk model Eva-v1-Pro dan kemampuan Thinking canggih.",
+        "cta": "Hubungi tim penjualan",
+        "features": {
+          "everythingSelfServe": "Semua yang ada di Layanan Mandiri",
+          "evaProModel": "Model Eva-v1-Pro",
+          "thinking": "Thinking (Penalaran Canggih)",
+          "volumeDiscounts": "Diskon Volume",
+          "prioritySupport": "Dukungan Prioritas & SLA",
+          "accountManager": "Manajer Akun Khusus",
+          "customIntegration": "Integrasi & Pelatihan Khusus"
+        }
+      }
+    },
+    "banner": {
+      "text": "Harga transparan tanpa biaya tersembunyi. <strong>Berkembanglah dengan percaya diri seiring pertumbuhan bisnis Anda.</strong>"
+    }
+  },
+  "aiDetectionPage": {
+    "hero": {
+      "eyebrow": "DETEKSI AI",
+      "heading": "Deteksi deepfake pada gambar dan video",
+      "body": "Model Eva-v1 dari Scam AI mendeteksi <em>media sintetis</em>, <em>wajah yang dimanipulasi</em>, dan <em>video deepfake</em> dengan <em>akurasi 95.3%</em> dalam waktu kurang dari 4 detik. Mendukung face swap, gambar hasil GAN, dan keluaran model difusi termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
+      "cta": "Coba Deteksi AI"
+    },
+    "features": {
+      "eyebrow": "KEMAMPUAN CANGGIH",
+      "heading": "Analisis Visual yang <accent>Andal</accent>",
+      "face": {
+        "eyebrow": "DETEKSI WAJAH",
+        "heading": "Deteksi Manipulasi Wajah",
+        "body1": "Identifikasi face swap, perubahan ekspresi, dan manipulasi atribut wajah dengan <em>akurasi 95.3%</em> menggunakan analisis jaringan saraf canggih. Mendeteksi keluaran dari perangkat generasi terkemuka termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
+        "body2": "Eva-v1-Fast memproses dalam <em>kurang dari 2 detik</em> untuk moderasi real-time. Eva-v1-Pro memberikan hasil berkualitas forensik dalam <em>kurang dari 4 detik</em> untuk KYC dan bukti hukum."
+      },
+      "video": {
+        "eyebrow": "ANALISIS VIDEO",
+        "heading": "Analisis Bingkai Video",
+        "body1": "Analisis setiap bingkai konten video untuk mendeteksi inkonsistensi, artefak temporal, dan pola generasi sintetis sepanjang waktu.",
+        "body2": "Bekerja mulus dengan <em>JPG, PNG, GIF, WebP, MP4, MOV, AVI</em> dan semua format gambar serta video utama."
+      },
+      "reports": {
+        "eyebrow": "WAWASAN MENYELURUH",
+        "heading": "Laporan Analisis Mendetail",
+        "body": "Terima laporan menyeluruh dengan skor kepercayaan, heatmap area yang dimanipulasi, dan penanda bukti visual untuk investigasi. RESTful API kami menyediakan integrasi mulus ke dalam alur kerja dan platform Anda yang sudah ada."
+      },
+      "integration": {
+        "eyebrow": "INTEGRASI MUDAH",
+        "heading": "Integrasi API yang Sederhana",
+        "body": "Integrasikan deteksi deepfake ke platform Anda hanya dengan beberapa baris kode. API kami yang ramah pengembang dilengkapi dokumentasi lengkap, SDK, dan dukungan 24/7 agar Anda dapat berjalan dengan cepat."
+      }
+    },
+    "useCases": {
+      "eyebrow": "PENERAPAN DI DUNIA NYATA",
+      "heading": "Dipercaya di berbagai <accent>industri</accent>",
+      "items": {
+        "social": {
+          "title": "Platform Media Sosial",
+          "description": "Lindungi pengguna Anda dari konten yang dimanipulasi dan kampanye deepfake. Tandai media mencurigakan secara otomatis sebelum menyebar.",
+          "bullets": {
+            "0": "Otomatisasi moderasi konten",
+            "1": "Verifikasi konten buatan pengguna",
+            "2": "Pencegahan misinformasi"
+          }
+        },
+        "financial": {
+          "title": "Layanan Keuangan",
+          "description": "Cegah penipuan identitas dan upaya menembus KYC dengan deteksi deepfake canggih saat onboarding dan verifikasi.",
+          "bullets": {
+            "0": "Peningkatan verifikasi KYC",
+            "1": "Pencegahan penipuan identitas",
+            "2": "Pemeriksaan keaslian dokumen"
+          }
+        },
+        "media": {
+          "title": "Media & Penerbitan",
+          "description": "Verifikasi keaslian konten visual sebelum dipublikasikan untuk menjaga kredibilitas dan menghindari penyebaran misinformasi.",
+          "bullets": {
+            "0": "Alur kerja pemeriksaan fakta",
+            "1": "Verifikasi sumber",
+            "2": "Perlindungan integritas editorial"
+          }
+        },
+        "ecommerce": {
+          "title": "E-commerce & Kencan",
+          "description": "Bangun kepercayaan di platform Anda dengan memastikan foto profil dan gambar produk asli serta tidak dimanipulasi.",
+          "bullets": {
+            "0": "Verifikasi profil",
+            "1": "Keaslian gambar produk",
+            "2": "Pencegahan penipuan"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "Pertanyaan yang Sering Diajukan",
+      "eyebrow": "FAQ",
+      "heading": "Pertanyaan tentang Deteksi Gambar AI",
+      "items": {
+        "accuracy": {
+          "question": "Seberapa akurat deteksi deepfake gambar dan video Scam AI?",
+          "answer": "Scam AI mencapai akurasi 95.3% untuk deteksi deepfake gambar dan video menggunakan model Eva-v1. Eva-v1-Fast memproses dalam kurang dari 2 detik untuk kasus penggunaan bervolume tinggi, sementara Eva-v1-Pro memproses dalam kurang dari 4 detik untuk akurasi maksimum dengan lebih sedikit false positive."
+        },
+        "types": {
+          "question": "Jenis deepfake apa saja yang dapat dideteksi Scam AI pada gambar dan video?",
+          "answer": "Scam AI mendeteksi face swap, gambar hasil GAN, keluaran model difusi (Stable Diffusion, DALL-E, Midjourney, Flux), deepfake video dengan analisis bingkai demi bingkai dan temporal, wajah sintetis, dan manipulasi video 4K."
+        },
+        "formats": {
+          "question": "Format gambar dan video apa yang didukung Scam AI?",
+          "answer": "Scam AI mendukung format gambar JPG, PNG, GIF, dan WebP, serta format video MP4, MOV, dan AVI. Analisis video 4K didukung dengan deteksi deepfake bingkai demi bingkai."
+        },
+        "speed": {
+          "question": "Seberapa cepat deteksi deepfake Scam AI?",
+          "answer": "Eva-v1-Fast memproses gambar dalam kurang dari 2 detik, cocok untuk moderasi konten real-time dan penyaringan KYC bervolume tinggi. Eva-v1-Pro memproses dalam kurang dari 4 detik untuk analisis berkualitas forensik dan verifikasi identitas berisiko tinggi."
+        },
+        "free": {
+          "question": "Apakah ada detektor deepfake gratis yang bisa saya coba?",
+          "answer": "Ya. Scam AI mencakup 200 analisis gambar gratis per bulan — tanpa kartu kredit. Daftar di app.scam.ai untuk mendapatkan akses instan ke detektor deepfake dengan model Eva-v1-Fast. Tingkatkan ke pay-as-you-go ($0.05/gambar) atau Enterprise saat volume Anda bertumbuh."
+        },
+        "api": {
+          "question": "Bisakah saya mengintegrasikan deteksi deepfake ke aplikasi saya melalui API?",
+          "answer": "Ya. Scam AI menyediakan REST API yang terintegrasi dalam kurang dari 10 menit. Buat permintaan POST dengan URL gambar Anda, terima respons JSON berisi boolean is_deepfake, skor kepercayaan, dan model yang digunakan. SDK untuk Python dan JavaScript tersedia."
+        }
+      }
+    },
+    "cta": {
+      "heading": "Mulai deteksi deepfake hari ini",
+      "subhead": "<em>200 gambar gratis per bulan</em>. Tanpa kartu kredit.",
+      "button": "Mulai Gratis",
+      "audioPrompt": "Butuh juga deteksi deepfake audio?",
+      "audioLink": "Jelajahi Deteksi Klona Suara →",
+      "pricing": "Lihat <link>paket harga</link> mulai dari $0.05/gambar.",
+      "researchPrefix": "Dibangun di atas riset yang dipublikasikan:",
+      "researchPaper1": "Apakah detektor deepfake bekerja dalam kenyataan?",
+      "researchPaper2": "Tolok ukur detektor open-source"
+    },
+    "links": {
+      "heading": "Solusi Industri & Pembelajaran",
+      "compare": "Scam AI vs Reality Defender"
+    }
+  },
+  "audioDetectionPage": {
+    "hero": {
+      "eyebrow": "DETEKSI AUDIO",
+      "title": "Deteksi klona suara dan audio sintetis",
+      "description": "Deteksi <em>klona suara</em>, <em>ucapan hasil AI</em>, dan <em>audio sintetis</em> dengan <em>akurasi 98.5%</em> dalam waktu kurang dari 3 detik. Mengidentifikasi keluaran dari ElevenLabs, PlayHT, Resemble AI, Azure TTS, dan platform sintesis suara lainnya. Mendukung format MP3, WAV, M4A, FLAC, dan OGG.",
+      "cta": "Hubungi Tim Penjualan"
+    },
+    "features": {
+      "eyebrow": "KEMAMPUAN CANGGIH",
+      "title": "Analisis Audio <accent>Canggih</accent>",
+      "voiceCloning": {
+        "eyebrow": "DETEKSI KLONA SUARA",
+        "title": "Identifikasi Suara Hasil AI",
+        "body1": "Identifikasi klona suara hasil AI dengan <em>akurasi 98.5%</em> di berbagai bahasa, aksen, dan pola bicara. Menurut laporan IC3 2024 dari FBI, kerugian akibat penipuan suara melampaui $12.5 billion secara global, sehingga deteksi audio real-time menjadi penting bagi lembaga keuangan dan pusat panggilan.",
+        "body2": "Pemrosesan dalam <em>kurang dari 3 detik</em> per klip audio memungkinkan verifikasi panggilan langsung, analisis streaming real-time, dan penyaringan penipuan otomatis dalam skala besar."
+      },
+      "tts": {
+        "eyebrow": "DETEKSI TTS",
+        "title": "Analisis Ucapan Sintetis",
+        "body1": "Deteksi keluaran text-to-speech dari model AI utama termasuk <em>ElevenLabs, PlayHT, Azure TTS</em>, dan platform sintesis suara yang baru bermunculan.",
+        "body2": "Bekerja mulus dengan <em>MP3, WAV, M4A, FLAC, OGG</em> dan semua format audio utama untuk kompatibilitas maksimum."
+      },
+      "manipulation": {
+        "eyebrow": "DETEKSI MANIPULASI",
+        "title": "Deteksi Manipulasi Audio",
+        "body": "Identifikasi segmen audio yang disambung, modifikasi nada, perubahan kecepatan, dan manipulasi audio canggih lainnya. Algoritme canggih kami mendeteksi bahkan suntingan halus yang mungkin terlewat oleh telinga manusia."
+      },
+      "integration": {
+        "eyebrow": "INTEGRASI MUDAH",
+        "title": "Integrasi API yang Sederhana",
+        "body": "Integrasi REST API yang mudah dengan dokumentasi lengkap untuk alur kerja verifikasi audio real-time atau batch. Mulai dalam hitungan menit dengan SDK kami dan dukungan pengembang 24/7."
+      }
+    },
+    "useCases": {
+      "eyebrow": "PENERAPAN DI DUNIA NYATA",
+      "title": "Dipercaya di berbagai <accent>industri</accent>",
+      "cards": {
+        "callCenters": {
+          "title": "Pusat Panggilan & Layanan Pelanggan",
+          "description": "Lindungi dari peniruan suara dan upaya penipuan dalam interaksi layanan pelanggan dengan verifikasi real-time.",
+          "bullets": {
+            "0": "Verifikasi autentikasi penelepon",
+            "1": "Peningkatan keamanan biometrik suara",
+            "2": "Pencegahan dan deteksi penipuan"
+          }
+        },
+        "banking": {
+          "title": "Perbankan & Layanan Keuangan",
+          "description": "Cegah penipuan voice phishing (vishing) dan akses akun tidak sah melalui upaya menembus autentikasi suara.",
+          "bullets": {
+            "0": "Verifikasi keamanan voice banking",
+            "1": "Perlindungan autentikasi telepon",
+            "2": "Deteksi serangan vishing"
+          }
+        },
+        "media": {
+          "title": "Media & Penyiaran",
+          "description": "Verifikasi keaslian rekaman audio dan cegah penyebaran wawancara, pernyataan, atau siaran yang dimanipulasi.",
+          "bullets": {
+            "0": "Verifikasi sumber audio",
+            "1": "Validasi keaslian wawancara",
+            "2": "Perlindungan integritas konten"
+          }
+        },
+        "legal": {
+          "title": "Hukum & Penegakan Hukum",
+          "description": "Autentikasi bukti audio dan deteksi rekaman yang dimanipulasi dalam proses hukum dan investigasi kriminal.",
+          "bullets": {
+            "0": "Layanan autentikasi bukti",
+            "1": "Analisis audio forensik",
+            "2": "Verifikasi rantai penjagaan"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "Pertanyaan yang Sering Diajukan",
+      "eyebrow": "FAQ",
+      "title": "Pertanyaan tentang Deteksi Klona Suara",
+      "items": {
+        "accuracy": {
+          "question": "Seberapa akurat deteksi klona suara dan deepfake audio Scam AI?",
+          "answer": "Scam AI mencapai akurasi 98.5% untuk deteksi klona suara, mengidentifikasi suara sintetis dari platform seperti ElevenLabs, PlayHT, Resemble AI, dan Azure TTS. Waktu pemrosesan kurang dari 3 detik per file audio."
+        },
+        "types": {
+          "question": "Jenis deepfake audio apa saja yang dapat dideteksi Scam AI?",
+          "answer": "Scam AI mendeteksi klona suara (ElevenLabs, Resemble AI, PlayHT, Azure TTS), audio hasil text-to-speech, deepfake audio, rekaman audio yang disambung atau dimanipulasi, dan aliran suara sintetis real-time."
+        },
+        "formats": {
+          "question": "Format audio apa yang didukung Scam AI?",
+          "answer": "Scam AI mendukung format audio MP3, WAV, M4A, FLAC, dan OGG. Analisis aliran audio real-time juga tersedia untuk pemantauan panggilan langsung dan autentikasi suara."
+        },
+        "vishing": {
+          "question": "Bisakah Scam AI mendeteksi serangan voice phishing (vishing)?",
+          "answer": "Ya. Deteksi audio Scam AI digunakan oleh pusat panggilan, bank, dan layanan keuangan untuk mengidentifikasi serangan voice phishing secara real-time. Ia mendeteksi suara yang diklona yang berupaya meniru eksekutif, pelanggan, atau figur berwenang."
+        },
+        "whatIs": {
+          "question": "Apa itu deteksi klona suara?",
+          "answer": "Deteksi klona suara mengidentifikasi audio yang dihasilkan atau diklona secara artifisial menggunakan perangkat sintesis ucapan AI seperti ElevenLabs, PlayHT, atau Azure TTS. Model audio Eva-v1 dari Scam AI menganalisis artefak spektral dan temporal — pola yang tak terlihat oleh telinga manusia — yang membedakan suara sintetis dari rekaman asli, dengan akurasi 98.5%."
+        },
+        "realtime": {
+          "question": "Bisakah API deteksi deepfake audio memproses aliran real-time?",
+          "answer": "Ya. Scam AI menyediakan endpoint streaming real-time untuk pemantauan panggilan langsung, memproses setiap segmen audio dalam kurang dari 3 detik. Hal ini memungkinkan pusat panggilan dan lembaga keuangan menyaring media sintetis dan klona suara selama panggilan berlangsung, mencegah penipuan secara real-time."
+        }
+      }
+    },
+    "cta": {
+      "title": "Siap melindungi platform Anda dari penipuan suara?",
+      "subtitle": "Hubungi tim kami untuk membahas <em>solusi deteksi audio enterprise</em> yang disesuaikan dengan kebutuhan Anda.",
+      "button": "Hubungi Tim Penjualan",
+      "crossLink": "Butuh juga deteksi deepfake gambar dan video? <link>Jelajahi Deteksi Gambar AI →</link>",
+      "pricingLink": "Lihat <link>paket harga</link> mulai dari $0.05/file.",
+      "research": "Dibangun di atas riset yang dipublikasikan: <link1>Apakah detektor deepfake bekerja dalam kenyataan?</link1> · <link2>Tolok ukur detektor open-source</link2>"
+    },
+    "relatedLinks": {
+      "heading": "Solusi Industri & Pembelajaran",
+      "compare": "Scam AI vs Sensity AI"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Membangun kepercayaan<br></br>di era AI."
+    },
+    "mission": {
+      "heading": "Misi Kami",
+      "paragraph1": "Seiring konten hasil AI menjadi semakin canggih, batas antara nyata dan palsu kian kabur. Deepfake dan media sintetis mengancam kepercayaan, keamanan, dan kebenaran di berbagai industri.",
+      "paragraph2": "Scam AI didirikan untuk mengatasi tantangan kritis ini. Kami menyediakan platform deteksi deepfake yang paling akurat, paling cepat, dan paling mudah diakses di dunia.",
+      "paragraph3": "Teknologi kami melindungi pengguna di media sosial, layanan keuangan, organisasi media, dan perusahaan di seluruh dunia."
+    },
+    "milestone": {
+      "heading": "Tonggak Pencapaian",
+      "tags": {
+        "platform": "Platform",
+        "product": "Produk",
+        "ai": "AI",
+        "performance": "Performa",
+        "funding": "Pendanaan",
+        "milestone": "Tonggak",
+        "newFeature": "Fitur Baru",
+        "audio": "Audio",
+        "security": "Keamanan",
+        "compliance": "Kepatuhan",
+        "award": "Penghargaan",
+        "launch": "Peluncuran"
+      },
+      "entries": {
+        "no-code-platform": {
+          "title": "Platform Tanpa Kode & Peluncuran Layanan Mandiri",
+          "description": "Memperkenalkan platform deteksi tanpa kode dengan antarmuka drag-and-drop. Onboarding mandiri memungkinkan pengguna mulai mendeteksi deepfake dalam hitungan menit tanpa penyiapan teknis atau integrasi API."
+        },
+        "enhanced-accuracy": {
+          "title": "Peningkatan Akurasi Deteksi",
+          "description": "Meningkatkan akurasi deteksi deepfake menjadi 95.3% dengan waktu pemrosesan berkurang hingga di bawah 4 detik. Menambahkan dukungan untuk analisis video 4K dan algoritme deteksi deepfake audio yang lebih baik."
+        },
+        "seed-funding": {
+          "title": "Putaran Pendanaan Seed - $2.6M",
+          "description": "Menutup pendanaan ekuitas total $2.6M yang dipimpin oleh Llama Venture, dengan partisipasi dari SCVxSBI, Welight Capital, SkyDeck Fund, dan Beta Fund. Pendanaan ini akan mempercepat pengembangan produk dan ekspansi global."
+        },
+        "genai-detection": {
+          "title": "Rilis Deteksi GenAI",
+          "description": "Meluncurkan deteksi konten GenAI menyeluruh untuk teks, gambar, dan video. Model AI canggih mengidentifikasi konten yang dihasilkan oleh ChatGPT, Midjourney, DALL-E, dan platform AI generatif lainnya."
+        },
+        "audio-detection": {
+          "title": "Rilis Deteksi Audio",
+          "description": "Meluncurkan deteksi deepfake audio dengan akurasi 92% untuk klona suara. Dukungan untuk format MP3, WAV, dan AAC dengan analisis aliran audio real-time."
+        },
+        "compliance": {
+          "title": "Kepatuhan GDPR dan SOC 2 Type I",
+          "description": "Meraih kepatuhan GDPR dan sertifikasi SOC 2 Type I, menunjukkan komitmen kami terhadap privasi dan keamanan data. Standar keamanan kelas enterprise kini telah diterapkan."
+        },
+        "pre-seed-funding": {
+          "title": "Pendanaan Pra-Seed dari Berkeley SkyDeck",
+          "description": "Terpilih untuk Berkeley SkyDeck, program akselerator deep-tech terkemuka UC Berkeley dengan tingkat penerimaan kurang dari 1%. Menerima investasi untuk mempercepat misi kami memerangi ancaman media sintetis."
+        },
+        "product-hunt": {
+          "title": "Product Hunt - Product of the Day",
+          "description": "Scam AI diakui sebagai Product of the Day di Product Hunt! Terima kasih kepada komunitas luar biasa kami atas dukungan dan masukannya."
+        },
+        "model-v01": {
+          "title": "Model Deteksi Deepfake v0.1 Diluncurkan",
+          "description": "Merilis model deteksi deepfake pertama kami ke publik. Versi awal berfokus pada analisis gambar dan video dengan kemampuan AI fondasional untuk deteksi media sintetis."
+        }
+      }
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "eyebrow": "PRODUK",
+      "title": "Platform deteksi deepfake serba ada",
+      "description": "Deteksi bertenaga AI menyeluruh untuk gambar, audio, dan video. Satu platform, perlindungan lengkap."
+    },
+    "cards": {
+      "aiDetection": {
+        "title": "Deteksi Deepfake Gambar & Video AI",
+        "description": "Deteksi gambar hasil AI dan video deepfake dengan akurasi 95.3%* menggunakan model Eva-v1. Identifikasi face swap, gambar hasil GAN, dan keluaran model difusi dari Stable Diffusion, DALL-E, dan Midjourney. Terintegrasi melalui REST API dalam kurang dari 10 menit.",
+        "link": "Jelajahi deteksi deepfake AI →"
+      },
+      "audioDetection": {
+        "title": "Deteksi Klona Suara & Audio Sintetis",
+        "description": "Deteksi klona suara, ucapan hasil AI, dan audio sintetis dengan akurasi 98.5% dalam kurang dari 3 detik. Mengidentifikasi keluaran dari ElevenLabs, PlayHT, Azure TTS, dan platform sintesis suara lainnya. Mendukung analisis aliran real-time untuk pencegahan penipuan di pusat panggilan.",
+        "link": "Jelajahi deteksi klona suara →"
+      }
+    },
+    "comparison": {
+      "heading": "Perbandingan Fitur",
+      "columns": {
+        "feature": "Fitur",
+        "vision": "Visual",
+        "audio": "Audio"
+      },
+      "rows": {
+        "accuracy": "Akurasi Deteksi",
+        "speed": "Kecepatan Pemrosesan",
+        "formats": "Format yang Didukung",
+        "realTime": "Analisis Real-Time",
+        "batch": "Pemrosesan Batch",
+        "api": "Integrasi API"
+      }
+    },
+    "useCases": {
+      "heading": "Dibangun untuk Setiap Industri",
+      "socialMedia": {
+        "title": "Media Sosial",
+        "description": "Tandai konten deepfake dan media sintetis secara otomatis sebelum menyebar. Lindungi pengguna dari video yang dimanipulasi dan disinformasi hasil AI dalam skala besar.",
+        "link": "Deteksi deepfake AI →"
+      },
+      "financial": {
+        "title": "Layanan Keuangan",
+        "description": "Deteksi penipuan identitas deepfake saat KYC dan pengajuan pinjaman dengan akurasi 95.3%. Lindungi pusat panggilan dari serangan identitas sintetis dan voice phishing dengan deteksi klona suara real-time.",
+        "linkKyc": "Deteksi deepfake AI untuk KYC →",
+        "linkVoice": "Deteksi klona suara →"
+      },
+      "media": {
+        "title": "Media & Penerbitan",
+        "description": "Verifikasi keaslian gambar dan video sebelum dipublikasikan. Deteksi gambar hasil AI dan rekaman yang dimanipulasi untuk menjaga integritas editorial dan mencegah misinformasi.",
+        "link": "Deteksi gambar hasil AI →"
+      },
+      "ecommerce": {
+        "title": "E-commerce & Kencan",
+        "description": "Verifikasi keaslian foto profil dan gambar produk. Hentikan penipuan identitas sintetis dan listing palsu dengan deteksi deepfake otomatis melalui API.",
+        "link": "API deteksi deepfake →"
+      }
+    },
+    "cta": {
+      "heading": "Mulai deteksi deepfake hari ini",
+      "description": "200 gambar gratis per bulan. Tanpa kartu kredit.",
+      "button": "Mulai Gratis"
+    }
+  },
+  "solutionsPage": {
+    "eyebrow": "SOLUSI",
+    "heading": "Deteksi deepfake untuk <highlight>setiap industri</highlight>",
+    "subheading": "Scam AI beradaptasi dengan pola penipuan, persyaratan kepatuhan, dan kebutuhan alur kerja spesifik di industri Anda.",
+    "learnMore": "Pelajari lebih lanjut",
+    "noIndustry": "Tidak menemukan industri Anda?",
+    "tryFree": "Coba Gratis — 200 gambar/bulan",
+    "contactSales": "Hubungi Tim Penjualan"
+  },
+  "comparePage": {
+    "eyebrow": "PERBANDINGAN",
+    "heading": "Scam AI vs <highlight>pesaing</highlight>",
+    "subheading": "Lihat bagaimana Scam AI bersaing dengan platform deteksi deepfake lainnya. Perbandingan transparan — termasuk di mana pesaing lebih unggul.",
+    "versus": "Scam AI vs {name}",
+    "tryFree": "Coba Scam AI Gratis — 200 gambar/bulan"
+  },
+  "haloPage": {
+    "hero": {
+      "ariaLabel": "Halo — deteksi deepfake di perangkat",
+      "badge": "Kini dalam akses awal",
+      "headline": "Halo menangkap deepfake di perangkat.",
+      "subhead": "Di perangkat Anda, secara real-time. Halo menandai wajah sintetis dan faceswap secara langsung di setiap panggilan — sebelum merugikan Anda lewat transfer dana atau perekrutan yang salah.",
+      "joinWaitlist": "Gabung daftar tunggu",
+      "seeHowItWorks": "Lihat cara kerjanya"
+    },
+    "scanner": {
+      "liveCall": "Panggilan langsung",
+      "analyzing": "Menganalisis…",
+      "frame": "Bingkai {n}",
+      "deepfakeDetected": "Deepfake terdeteksi",
+      "scanningVideo": "Halo memindai video",
+      "onDevice": "Berjalan 100% di perangkat Anda · tanpa perekaman, tidak ada yang dikirim"
+    },
+    "problem": {
+      "eyebrow": "Permukaan serangan baru",
+      "heading": "Panggilan Anda kini menjadi<br/> tempat untuk <highlight>diserang</highlight>.",
+      "body": "Face-swap real-time kini cukup baik untuk menyamar sebagai rekan kerja dalam panggilan video langsung. Filter email dan pemeriksaan login tak pernah melihatnya — penipuan terjadi dalam percakapan itu sendiri."
+    },
+    "icp": {
+      "ariaLabel": "Nilai per tim",
+      "finance": {
+        "tab": "Keuangan",
+        "eyebrow": "UNTUK KEUANGAN & TREASURI",
+        "headline": "Suara yang menyetujui transfer<br/>mungkin bukan CFO Anda.",
+        "fearTitle": "Penipuan transfer eksekutif sintetis",
+        "fearBody": "Pada 2024, seorang karyawan keuangan di firma teknik Arup bergabung dalam panggilan video dengan sosok yang tampak dan terdengar seperti CFO dan rekan-rekannya — setiap wajah dalam panggilan itu adalah deepfake. Mereka menyetujui <em>15 transfer senilai total ~$25M</em>. Panggilan itu tampak sepenuhnya normal. Itulah serangan baru: eksekutif sintetis real-time pada panggilan persetujuan rutin.",
+        "stat": "~$25M",
+        "statLabel": "hilang dalam satu panggilan video deepfake (Arup, 2024)",
+        "bullets": {
+          "0": "Menandai wajah sintetis dan faceswap secara langsung, sebelum transfer disetujui.",
+          "1": "Melindungi treasuri, AP, dan asisten eksekutif di setiap panggilan Zoom, Teams, Meet, WebEx, dan Slack.",
+          "2": "Meninggalkan jejak audit di perangkat untuk peninjauan penipuan dan kepatuhan."
+        }
+      },
+      "hr": {
+        "tab": "SDM & Rekrutmen",
+        "eyebrow": "UNTUK SDM & TALENTA",
+        "headline": "Kandidat di depan kamera<br/>mungkin bukan orang sungguhan.",
+        "fearTitle": "Kandidat sintetis & face-swap",
+        "fearBody": "FBI telah memperingatkan lonjakan pelamar kerja deepfake — orang yang menggunakan face-swap real-time dan pengubah suara untuk lolos wawancara jarak jauh, sering kali demi memperoleh akses ke sistem sensitif atau menutupi orang lain yang melakukan pekerjaan itu. Gartner memproyeksikan bahwa <em>1 dari 4 profil kandidat akan palsu pada 2028</em>. Putaran wawancara Anda kini menjadi titik pemeriksaan identitas.",
+        "stat": "1 dari 4",
+        "statLabel": "profil kandidat diproyeksikan palsu pada 2028 (Gartner)",
+        "bullets": {
+          "0": "Mendeteksi penggantian wajah hasil face-swap dan AI secara langsung selama wawancara jarak jauh.",
+          "1": "Menangkap faceswap yang digunakan untuk menyamarkan pengganti selama wawancara.",
+          "2": "Memberi perekrut pembacaan keyakinan tanpa mengirim video ke pihak ketiga."
+        }
+      }
+    },
+    "differentiators": {
+      "eyebrow": "Mengapa di perangkat",
+      "heading": "Deteksi cloud tak mampu mengimbangi <highlight>panggilan langsung</highlight>.",
+      "items": {
+        "realtime": {
+          "title": "Real-time, tanpa bolak-balik",
+          "body": "Deteksi terjadi di saat yang sama dengan panggilan. Tidak ada siklus unggah, antre, dan unduh — sehingga keputusan tiba saat panggilan masih berlangsung, bukan setelah uang hilang."
+        },
+        "attackSurface": {
+          "title": "Permukaan serangan lebih kecil",
+          "body": "Detektor cloud menambah API, unggahan, dan penyimpanan pihak ketiga — masing-masing menjadi sasaran. Halo menyimpan segalanya di perangkat: tanpa panggilan jaringan selama deteksi, tanpa bingkai yang ditransmisikan, tanpa server eksternal yang menyimpan data panggilan Anda. Lebih sedikit komponen, lebih sedikit celah."
+        },
+        "private": {
+          "title": "Privat sejak rancangan",
+          "body": "Bingkai video dianalisis di memori dan dibuang — tidak ada yang direkam, disimpan, atau ditransmisikan. Tanpa unggahan cloud berarti tidak ada honeypot baru berisi panggilan sensitif, dan jalur yang jauh lebih sederhana melalui peninjauan hukum, TI, dan GDPR."
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Cara kerjanya",
+      "heading": "Perlindungan yang hidup dalam panggilan",
+      "steps": {
+        "install": {
+          "title": "Pasang sekali",
+          "body": "Unduh Halo ke PC Windows Anda. Ia berada di system tray di samping aplikasi konferensi Anda — tanpa plugin, tanpa ekstensi peramban."
+        },
+        "scan": {
+          "title": "Memindai secara lokal, langsung",
+          "body": "Saat Anda berbicara, Halo menganalisis setiap wajah dalam bingkai video secara bingkai demi bingkai di perangkat Anda — kira-kira 4 kali per detik."
+        },
+        "flag": {
+          "title": "Menandai secara real-time",
+          "body": "Jika sebuah wajah tampak sintetis, Halo memunculkan peringatan selama panggilan — tepat waktu untuk berhenti dan memverifikasi."
+        }
+      }
+    },
+    "compare": {
+      "eyebrow": "Bagaimana Halo dibandingkan",
+      "heading": "Dibangun untuk panggilan langsung, bukan login",
+      "colCapability": "Kemampuan",
+      "colCloud": "API deteksi cloud",
+      "colPlatform": "Bawaan platform",
+      "partial": "Sebagian",
+      "footnote": "— = sebagian / bergantung pada konfigurasi. Perbandingan mencerminkan kemampuan umum, bukan vendor tertentu yang disebutkan.",
+      "rows": {
+        "realTime": "Bekerja secara real-time pada panggilan langsung",
+        "onDevice": "Media tetap di perangkat",
+        "apps": "Bekerja di Zoom, Teams, Meet, WebEx & 10+ aplikasi",
+        "noGpuCost": "Tanpa biaya GPU cloud per menit",
+        "syntheticMedia": "Mendeteksi media sintetis (bukan hanya liveness)",
+        "wholeCall": "Melindungi seluruh panggilan, bukan hanya login"
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "heading": "Pertanyaan yang sering diajukan",
+      "items": {
+        "whatIsHalo": {
+          "q": "Apa itu Halo?",
+          "a": "Halo adalah aplikasi deteksi deepfake di perangkat yang memantau panggilan video Anda secara real-time dan menandai wajah sintetis serta faceswap sebelum dapat menipu Anda. Ia berjalan sepenuhnya di PC Windows Anda — tidak ada bingkai video yang meninggalkan mesin Anda."
+        },
+        "dataUploaded": {
+          "q": "Apakah data panggilan saya diunggah ke suatu tempat?",
+          "a": "Tidak. Semua deteksi berjalan secara lokal di perangkat Anda. Halo menganalisis bingkai langsung di memori dan membuangnya — ia tidak merekam, menyimpan, atau mentransmisikan video rapat. Hanya keputusan deteksi dan metadata sesi yang disimpan, disimpan secara lokal di mesin Anda."
+        },
+        "whichApps": {
+          "q": "Aplikasi apa saja yang kompatibel dengan Halo?",
+          "a": "Halo bekerja dengan 10+ aplikasi rapat termasuk Zoom, Microsoft Teams, Google Meet, WebEx, Skype, huddle Slack, GoTo Meeting, dan lainnya — baik aplikasi desktop native maupun rapat berbasis peramban."
+        },
+        "performance": {
+          "q": "Apakah ini akan memperlambat panggilan atau menguras baterai saya?",
+          "a": "Deteksi berjalan secara lokal di perangkat Anda, paralel dengan panggilan Anda. Tidak ada bolak-balik jaringan, sehingga tidak menambah latensi dan overhead-nya minimal."
+        },
+        "accuracy": {
+          "q": "Seberapa akurat, dan bagaimana dengan false positive?",
+          "a": "Halo menggunakan gabungan dua model AI komplementer yang harus sepakat sebelum sebuah keputusan dikeluarkan. Hal ini secara drastis mengurangi false positive dibandingkan detektor model tunggal. Setiap peserta mendapat keputusan — Aman, Mencurigakan, atau Deepfake — bukan skor mentah."
+        },
+        "vsBuiltIn": {
+          "q": "Apa bedanya dengan keamanan bawaan aplikasi konferensi saya?",
+          "a": "Fitur bawaan platform berfokus pada akses dan kontrol rapat, bukan pada mendeteksi apakah wajah atau suara peserta itu sintetis. Halo dirancang khusus untuk deteksi media sintetis real-time dan bekerja di setiap platform yang Anda gunakan."
+        },
+        "devices": {
+          "q": "Perangkat apa saja yang didukung Halo?",
+          "a": "Halo berjalan di Windows 10/11, baik pada perangkat keras ARM64 maupun x86/x64. Minimum 4 GB RAM, ~1 GB ruang disk."
+        }
+      }
+    },
+    "finalCta": {
+      "heading": "Halo menangkap deepfake pada panggilan Anda.<br/> Di perangkat Anda, secara real-time.",
+      "body": "Halo dalam akses awal. Gabung daftar tunggu dan kami akan memberi tahu Anda begitu siap untuk perangkat Anda.",
+      "discount": "Gabung sekarang dan dapatkan diskon 50% untuk tahun pertama Anda.",
+      "platformNote": "Tersedia di Windows · Tidak ada yang meninggalkan perangkat Anda"
+    },
+    "waitlist": {
+      "emailPlaceholder": "anda@perusahaan.com",
+      "emailLabel": "Email kerja",
+      "joinButton": "Gabung daftar tunggu",
+      "joining": "Bergabung…",
+      "successTitle": "Anda sudah masuk daftar!",
+      "successBody": "Sebagai anggota awal, Anda akan mendapat diskon 50% untuk tahun pertama. Kami akan menghubungi Anda begitu Halo siap.",
+      "alreadyTitle": "Anda sudah ada di daftar!",
+      "alreadyBody": "Diskon 50% tahun pertama Anda sudah terkunci — kami akan menghubungi Anda begitu Halo siap.",
+      "errorRateLimit": "Terlalu banyak permintaan — silakan coba lagi dalam satu menit.",
+      "errorValidation": "Silakan masukkan alamat email yang valid.",
+      "errorNetwork": "Kesalahan jaringan — silakan periksa koneksi Anda dan coba lagi.",
+      "errorUnknown": "Terjadi kesalahan — silakan coba lagi."
+    },
+    "stickyCta": {
+      "sublabel": "Tangkap deepfake pada panggilan Anda",
+      "primary": "Gabung daftar tunggu",
+      "secondary": "Berlangganan"
+    }
+  },
+  "scamInsurancePage": {
+    "announcement": "Jangan pernah khawatir soal penipuan lagi — pendaftar awal mendapatkan 3 bulan pertama gratis",
+    "hero": {
+      "eyebrow": "Untuk Keluarga & Lansia",
+      "title": "Jangan Pernah Khawatir Soal <highlight>Penipuan Lagi.</highlight>",
+      "description": "scam.ai memblokir panggilan, pesan, dan email penipuan sebelum mencapai Anda — dan menjaminnya dengan garansi uang kembali jika ada yang lolos.",
+      "trustBadges": {
+        "privacy": "Privasi Utama",
+        "insurance": "Didukung Asuransi",
+        "protected": "Selalu Terlindungi"
+      },
+      "assurance": "Tanpa kartu kredit. Tanpa spam. Berhenti berlangganan kapan saja."
+    },
+    "stats": {
+      "lost": "hilang akibat penipuan di AS tahun lalu",
+      "targeted": "warga Amerika di atas 60 tahun menjadi sasaran setiap tahun",
+      "coverage": "pertanggungan jika penipuan lolos dari kami"
+    },
+    "howItWorks": {
+      "eyebrow": "Cara kerjanya",
+      "title": "Empat Lapis Perlindungan",
+      "description": "Selama Anda menjalani hidup, scam.ai bekerja di latar belakang — menghilangkan paparan Anda, mengawasi ancaman, dan mendukung Anda jika terjadi kesalahan.",
+      "steps": {
+        "removeInfo": {
+          "title": "Hapus Info Pribadi Anda — Online dan di Dark Web",
+          "desc": "Penipu membeli nama, nomor telepon, dan alamat Anda dari situs broker data — dan memperdagangkannya di dark web. Kami membersihkan informasi Anda dari semuanya, membuat Anda jauh lebih sulit ditemukan dan dijadikan sasaran bahkan sebelum penipuan apa pun dimulai.",
+          "tag": "Pertahanan Proaktif"
+        },
+        "monitorBreaches": {
+          "title": "Pantau Kebocoran Data yang Memengaruhi Anda",
+          "desc": "Saat perusahaan diretas, data Anda bisa bocor. Kami terus memindai kebocoran yang mencakup informasi Anda dan mengirimkan peringatan dengan bahasa sederhana segera — agar Anda selalu tahu apa yang telah terpapar dan apa yang harus dilakukan selanjutnya.",
+          "tag": "Tetap Terinformasi"
+        },
+        "watchComms": {
+          "title": "Awasi Panggilan, Pesan, dan Email Anda",
+          "desc": "Kami memantau panggilan, pesan, dan email masuk Anda untuk upaya penipuan aktif — menandai aktivitas mencurigakan dan menghentikan penipu sebelum mereka bisa menjangkau Anda.",
+          "tag": "Perisai Aktif"
+        },
+        "coverLoss": {
+          "title": "Melindungi Anda Saat Hal Buruk Terjadi",
+          "desc": "Bahkan dengan perlindungan terbaik, tidak ada sistem yang sempurna. Karena itu setiap anggota scam.ai didukung oleh Garansi Perlindungan Penipuan kami. Jika Anda mengalami kerugian finansial akibat penipuan selama bersama kami, Anda mungkin berhak atas penggantian — didukung oleh mitra asuransi berlisensi.",
+          "tag": "Jaring Pengaman Penuh"
+        }
+      },
+      "trustBar": {
+        "private": "Percakapan Anda tetap pribadi",
+        "privacyAware": "Kami sangat peduli privasi",
+        "control": "Anda selalu memegang kendali"
+      }
+    },
+    "insurance": {
+      "eyebrow": "Janji Terberani Kami",
+      "title": "Dilindungi oleh Teknologi. <highlight>Didukung oleh Asuransi.</highlight>",
+      "description": "Kebanyakan aplikasi hanya berusaha membantu. Kami melangkah lebih jauh. Jika seorang penipu lolos dari perlindungan kami selama Anda menjadi anggota, Anda mungkin berhak atas penggantian kerugian finansial Anda — didukung oleh mitra asuransi sungguhan, tanpa berbelit-belit.",
+      "pride": "Begitulah betapa bangganya kami atas apa yang telah kami bangun.",
+      "coverage": {
+        "romance": "Penipuan asmara & peniruan identitas",
+        "irs": "Panggilan IRS & Medicare palsu",
+        "giftCard": "Penipuan kartu hadiah & transfer dana",
+        "phishing": "Phishing & pencurian identitas"
+      },
+      "coveredLabel": "Ditanggung",
+      "assurances": {
+        "licensed": "Didukung asuransi berlisensi",
+        "noFight": "Tanpa perjuangan demi uang Anda"
+      },
+      "footnote": "¹ Kami bermitra dengan perusahaan asuransi berlisensi untuk menanggung kerugian penipuan bagi anggota kami. Pertanggungan tunduk pada syarat dan ketentuan kontrak asuransi yang diberikan saat pendaftaran."
+    },
+    "problem": {
+      "eyebrow": "Kenyataannya",
+      "title": "Penipu Mengincar Anda.<br></br> Setiap Hari.",
+      "description": "Mereka menelepon berpura-pura menjadi bank Anda. Mereka mengirim pesan berpura-pura menjadi cucu Anda. Mereka mengirim email berpura-pura menjadi IRS. Dan mereka semakin mahir setiap bulan.",
+      "stats": {
+        "stolen": {
+          "label": "Dicuri dari warga Amerika 60+ tahun lalu",
+          "sub": "Lebih banyak daripada kelompok usia lainnya"
+        },
+        "seniors": {
+          "label": "Lansia kehilangan uang akibat penipuan",
+          "sub": "Sebagian besar tak pernah melaporkannya karena malu"
+        },
+        "aiCalls": {
+          "label": "Kenaikan panggilan penipuan hasil AI",
+          "sub": "Suara kini terdengar persis seperti keluarga"
+        }
+      },
+      "callout": "Bagian terburuknya? <strong>Mereka sudah memiliki nomor telepon, alamat, dan nama Anda.</strong> Semuanya ada di basis data yang bisa dibeli siapa saja seharga beberapa dolar. Itulah sebabnya scam.ai tak hanya memblokir penipu — kami melawan mereka di setiap lini."
+    },
+    "protection": {
+      "eyebrow": "Perlindungan Lengkap",
+      "title": "Lebih Dari Sekadar Aplikasi",
+      "description": "scam.ai menyelimuti Anda dengan perisai penuh — agar penipu tak bisa menemukan, menjangkau, dan menipu Anda.",
+      "features": {
+        "newsletter": {
+          "title": "Buletin Penipuan Mingguan",
+          "desc": "Setiap minggu kami mengirimi Anda ringkasan dengan bahasa sederhana tentang penipuan terbaru yang beredar. Saat Anda tahu apa yang harus diwaspadai, penipu kehilangan kuasa atas Anda."
+        },
+        "support": {
+          "title": "Jaringan Dukungan Langsung",
+          "desc": "Ada yang terasa janggal? Hubungi kami. Tim dukungan kami siap saat Anda tak yakin apakah suatu panggilan, pesan, atau email adalah penipuan. Anda tak pernah sendirian dalam mengatasinya."
+        },
+        "infoRemoval": {
+          "title": "Penghapusan Info Pribadi",
+          "desc": "Penipu membeli nama, alamat, dan nomor telepon Anda dari broker data online. Kami membersihkannya dari ratusan basis data tersebut — agar Anda menjadi jauh lebih sulit dijadikan sasaran sejak awal."
+        }
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Gabung daftar tunggu",
+      "title": "Jangan Pernah Khawatir Soal Penipuan Lagi.",
+      "description": "Satu langganan mencakup semuanya — pemblokiran, asuransi, edukasi, dan dukungan. Gabung sekarang dan kunci 3 bulan pertama gratis.",
+      "badge": "3 bulan pertama gratis*",
+      "footnote": "* Uji coba gratis berlaku untuk 3 bulan pertama langganan berbayar setelah peluncuran."
+    },
+    "disclaimers": {
+      "insurance": "<label>¹ Pertanggungan asuransi.</label> scam.ai bukan penyedia asuransi berlisensi. Penggantian kerugian dalam Garansi Perlindungan Penipuan difasilitasi melalui kemitraan dengan operator asuransi berlisensi. Pertanggungan tunduk pada syarat, ketentuan, pengecualian, dan batas yang ditetapkan dalam kontrak asuransi yang berlaku, yang akan diberikan kepada anggota saat pendaftaran.",
+      "statistics": "<label>² Statistik.</label> Angka yang dikutip didasarkan pada data yang tersedia untuk umum dari FTC, FBI IC3, dan AARP Fraud Watch Network. Hasil sebenarnya dapat bervariasi.",
+      "waitlist": "<label>³ Daftar tunggu.</label> Bergabung dengan daftar tunggu tidak merupakan pendaftaran dalam program asuransi apa pun atau jaminan akses ke aplikasi scam.ai. Dengan mengirimkan email Anda, Anda setuju untuk menerima pembaruan produk dari scam.ai. Anda dapat berhenti berlangganan kapan saja.",
+      "offer": "<label>⁴ Penawaran pengguna awal.</label> Penawaran “3 bulan pertama gratis” berlaku secara eksklusif untuk anggota daftar tunggu dan untuk 3 bulan pertama langganan berbayar setelah peluncuran umum produk. scam.ai berhak mengubah penawaran ini kapan saja sebelum peluncuran.",
+      "app": "<label>⁵ Fungsionalitas aplikasi.</label> scam.ai beroperasi sebagai alat penyaringan di perangkat dan tidak menjamin deteksi seluruh aktivitas penipuan. Performa dapat bervariasi menurut perangkat dan sistem operasi."
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "HUBUNGI KAMI",
+      "title": "Hubungi kami",
+      "description": "Punya pertanyaan tentang Scam AI? Ingin membahas solusi enterprise? Kami siap membantu."
+    },
+    "options": {
+      "sales": {
+        "title": "Penjualan",
+        "description": "Tertarik dengan paket enterprise atau harga volume?"
+      },
+      "support": {
+        "title": "Dukungan Teknis",
+        "description": "Butuh bantuan integrasi atau pemecahan masalah?"
+      },
+      "general": {
+        "title": "Pertanyaan Umum",
+        "description": "Ada pertanyaan atau masukan lain?"
+      }
+    },
+    "faq": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "items": {
+        "getStarted": {
+          "question": "Seberapa cepat saya bisa memulai?",
+          "answer": "Anda bisa mulai menggunakan Scam AI dalam hitungan menit. Daftar akun gratis di app.scam.ai, dapatkan kunci API Anda, dan lakukan panggilan API pertama Anda. Kami menyediakan SDK dan dokumentasi untuk membantu Anda berintegrasi dengan cepat."
+        },
+        "customSolutions": {
+          "question": "Apakah Anda menawarkan solusi khusus untuk perusahaan?",
+          "answer": "Ya! Kami menawarkan integrasi khusus, penerapan on-premise, dukungan khusus, dan diskon volume untuk pelanggan enterprise. Hubungi tim penjualan kami untuk membahas kebutuhan spesifik Anda."
+        },
+        "regions": {
+          "question": "Di wilayah mana Anda beroperasi?",
+          "answer": "Scam AI beroperasi secara global dengan pusat data di AS, UE, dan APAC. Kami patuh GDPR dan dapat membantu Anda memenuhi persyaratan residensi data regional."
+        },
+        "sla": {
+          "question": "Bagaimana SLA Anda untuk pelanggan enterprise?",
+          "answer": "Pelanggan enterprise menerima SLA uptime 99.9%, dukungan prioritas dengan waktu respons terjamin, dan manajemen akun khusus. Hubungi tim penjualan untuk detailnya."
+        },
+        "tryBeforeBuy": {
+          "question": "Bisakah saya mencoba sebelum berkomitmen pada paket berbayar?",
+          "answer": "Tentu saja! Kami menawarkan 200 gambar gratis per bulan tanpa kartu kredit. Anda bisa menguji API kami, menjelajahi dasbor, dan mengevaluasi akurasi sebelum meningkatkan paket."
+        }
+      }
+    },
+    "office": {
+      "title": "Kantor Kami"
+    },
+    "cta": {
+      "title": "Siap untuk memulai?",
+      "description": "Mulai lindungi platform Anda dengan 200 gambar gratis per bulan.",
+      "button": "Mulai Uji Coba Gratis"
+    }
   }
 }

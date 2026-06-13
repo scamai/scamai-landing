@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Shield, CheckCircle, Lock } from "lucide-react";
 import WaitlistForm from "./WaitlistForm";
 
@@ -34,98 +35,51 @@ function AnimatedSection({
   );
 }
 
-const stats = [
-  ["$65B", "lost to scams in the US last year"],
-  ["1 in 3", "Americans over 60 targeted annually"],
-  ["100%", "coverage if a scam slips past us"],
+// Stable ids / non-text data — visible copy resolved via t() at render time.
+const statIds = [
+  { id: "lost", stat: "$65B" },
+  { id: "targeted", stat: "1 in 3" },
+  { id: "coverage", stat: "100%" },
 ] as const;
 
-const trustBadges = [
-  { icon: "🔒", label: "Top Privacy" },
-  { icon: "🛡️", label: "Insurance-Backed" },
-  { icon: "✅", label: "Always Protected" },
-];
+const trustBadgeIds = [
+  { id: "privacy", icon: "🔒" },
+  { id: "insurance", icon: "🛡️" },
+  { id: "protected", icon: "✅" },
+] as const;
 
-const steps = [
-  {
-    step: "01",
-    icon: "🫥",
-    title: "Remove Your Personal Info — Online and on the Dark Web",
-    desc: "Scammers buy your name, phone number, and address from data broker websites — and trade it on the dark web. We scrub your information from all of them, making you much harder to find and target before any scam even starts.",
-    tag: "Proactive Defense",
-  },
-  {
-    step: "02",
-    icon: "🔍",
-    title: "Monitor Data Breaches That Affect You",
-    desc: "When companies get hacked, your data can leak. We continuously scan for breaches that include your information and send you a plain-English alert right away — so you always know what's been exposed and what to do next.",
-    tag: "Stay Informed",
-  },
-  {
-    step: "03",
-    icon: "📡",
-    title: "Watch Over Your Calls, Texts, and Emails",
-    desc: "We monitor your incoming calls, texts, and emails for active scam attempts — flagging suspicious activity and stopping fraudsters before they can reach you.",
-    tag: "Active Shield",
-  },
-  {
-    step: "04",
-    icon: "🛡️",
-    title: "Cover You When the Unfortunate Happens",
-    desc: "Even with the best protection, no system is perfect. That's why every scam.ai member is backed by our Scam Protection Guarantee. If you suffer a financial loss from a scam while you're with us, you may be eligible for reimbursement — backed by a licensed insurance partner.",
-    tag: "Full Safety Net",
-  },
-];
+const stepIds = [
+  { id: "removeInfo", step: "01", icon: "🫥" },
+  { id: "monitorBreaches", step: "02", icon: "🔍" },
+  { id: "watchComms", step: "03", icon: "📡" },
+  { id: "coverLoss", step: "04", icon: "🛡️" },
+] as const;
 
-const coverageItems = [
-  { label: "Romance & impersonation scams", note: "Covered" },
-  { label: "Fake IRS & Medicare calls", note: "Covered" },
-  { label: "Gift card & wire transfer fraud", note: "Covered" },
-  { label: "Phishing & identity theft", note: "Covered" },
-];
+const trustBarIds = ["private", "privacyAware", "control"] as const;
 
-const problemStats = [
-  {
-    stat: "$3.4B",
-    label: "Stolen from Americans 60+ last year",
-    sub: "More than any other age group",
-  },
-  {
-    stat: "1 in 5",
-    label: "Seniors loses money to fraud",
-    sub: "Most never report it out of shame",
-  },
-  {
-    stat: "400%",
-    label: "Rise in AI-generated scam calls",
-    sub: "Voices now sound exactly like family",
-  },
-];
+const coverageIds = ["romance", "irs", "giftCard", "phishing"] as const;
 
-const features = [
-  {
-    icon: "📰",
-    title: "Weekly Scam Newsletter",
-    desc: "Every week we send you a plain-English summary of the newest scams going around. When you know what to look for, scammers lose their power over you.",
-  },
-  {
-    icon: "🤝",
-    title: "Live Support Network",
-    desc: "Something feels off? Call us. Our support team is here when you're not sure if a call, text, or email is a scam. You are never alone in figuring it out.",
-  },
-  {
-    icon: "🫥",
-    title: "Personal Info Removal",
-    desc: "Scammers buy your name, address, and phone number from data brokers online. We scrub it from hundreds of those databases — so you become much harder to target in the first place.",
-  },
-];
+const insuranceAssuranceIds = ["licensed", "noFight"] as const;
+
+const problemStatIds = [
+  { id: "stolen", stat: "$3.4B" },
+  { id: "seniors", stat: "1 in 5" },
+  { id: "aiCalls", stat: "400%" },
+] as const;
+
+const featureIds = [
+  { id: "newsletter", icon: "📰" },
+  { id: "support", icon: "🤝" },
+  { id: "infoRemoval", icon: "🫥" },
+] as const;
 
 export default function ScamInsurancePage() {
+  const t = useTranslations("scamInsurancePage");
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Announcement bar */}
       <div className="bg-[#245FFF] text-white text-center py-2.5 px-4 text-sm font-medium tracking-wide">
-        Never worry about scams again — early birds get their first 3 months free
+        {t("announcement")}
       </div>
 
       {/* Hero */}
@@ -145,27 +99,28 @@ export default function ScamInsurancePage() {
 
         <AnimatedSection className="relative z-10 flex flex-col items-center">
           <p className="mb-5 text-[10px] font-semibold tracking-[0.16em] uppercase text-gray-400">
-            For Families &amp; Seniors
+            {t("hero.eyebrow")}
           </p>
 
           <h1 className="max-w-3xl text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-6">
-            Never Worry About{" "}
-            <span className="text-[#245FFF]">Scams Again.</span>
+            {t.rich("hero.title", {
+              highlight: (chunks) => (
+                <span className="text-[#245FFF]">{chunks}</span>
+              ),
+            })}
           </h1>
 
           <p className="max-w-lg text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
-            scam.ai blocks scam calls, texts, and emails before they ever reach
-            you — and backs it up with a money-back guarantee if anything gets
-            through.
+            {t("hero.description")}
           </p>
 
           <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {trustBadges.map(({ icon, label }) => (
+            {trustBadgeIds.map(({ id, icon }) => (
               <span
-                key={label}
+                key={id}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#93c5fd] border border-[#245FFF]/25 bg-[#245FFF]/10 px-3 py-1.5 rounded-full"
               >
-                {icon} {label}
+                {icon} {t(`hero.trustBadges.${id}`)}
               </span>
             ))}
           </div>
@@ -176,7 +131,7 @@ export default function ScamInsurancePage() {
 
           <div className="mt-5 flex items-center gap-2 text-xs text-gray-400">
             <Lock className="w-3 h-3" />
-            <span>No credit card. No spam. Unsubscribe anytime.</span>
+            <span>{t("hero.assurance")}</span>
           </div>
         </AnimatedSection>
       </section>
@@ -185,12 +140,12 @@ export default function ScamInsurancePage() {
       <AnimatedSection>
         <section className="border-y border-white/10">
           <div className="max-w-4xl mx-auto px-5 sm:px-10 py-10 flex flex-wrap justify-center gap-10 text-center">
-            {stats.map(([stat, label]) => (
-              <div key={stat} className="min-w-[150px]">
+            {statIds.map(({ id, stat }) => (
+              <div key={id} className="min-w-[150px]">
                 <p className="text-3xl font-bold tracking-tight text-[#245FFF]">
                   {stat}
                 </p>
-                <p className="text-sm text-gray-400 mt-1.5">{label}</p>
+                <p className="text-sm text-gray-400 mt-1.5">{t(`stats.${id}`)}</p>
               </div>
             ))}
           </div>
@@ -201,20 +156,18 @@ export default function ScamInsurancePage() {
       <section className="max-w-4xl mx-auto px-5 sm:px-10 py-14 sm:py-24">
         <AnimatedSection className="text-center mb-16">
           <p className="text-[10px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-4">
-            How it works
+            {t("howItWorks.eyebrow")}
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
-            Four Layers of Protection
+            {t("howItWorks.title")}
           </h2>
           <p className="text-gray-300 text-base max-w-md mx-auto leading-relaxed">
-            While you live your life, scam.ai works in the background — removing
-            your exposure, watching for threats, and backing you up if anything
-            goes wrong.
+            {t("howItWorks.description")}
           </p>
         </AnimatedSection>
 
         <div className="flex flex-col gap-4">
-          {steps.map((item, i) => (
+          {stepIds.map((item, i) => (
             <AnimatedSection key={item.step} delay={i * 0.1}>
               <div className="relative flex gap-5 md:gap-8">
                 {i < 3 && (
@@ -228,14 +181,14 @@ export default function ScamInsurancePage() {
                 <div className="bg-white/5 border border-white/10 rounded-xl p-6 flex-1 mb-4 hover:border-[#245FFF]/30 transition-colors">
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <h3 className="text-base font-semibold text-white">
-                      {item.title}
+                      {t(`howItWorks.steps.${item.id}.title`)}
                     </h3>
                     <span className="shrink-0 text-xs font-semibold text-[#245FFF] border border-[#245FFF]/25 bg-[#245FFF]/10 px-2.5 py-1 rounded-full">
-                      {item.tag}
+                      {t(`howItWorks.steps.${item.id}.tag`)}
                     </span>
                   </div>
                   <p className="text-sm text-gray-400 leading-relaxed">
-                    {item.desc}
+                    {t(`howItWorks.steps.${item.id}.desc`)}
                   </p>
                 </div>
               </div>
@@ -246,13 +199,9 @@ export default function ScamInsurancePage() {
         {/* Privacy trust bar */}
         <AnimatedSection delay={0.2}>
           <div className="mt-8 bg-white/5 border border-white/10 rounded-xl px-6 py-4 flex flex-wrap justify-center gap-x-8 gap-y-2">
-            {[
-              "🔒 Your conversations stay private",
-              "🛡️ We are deeply privacy-aware",
-              "👁️ You are always in control",
-            ].map((item) => (
-              <span key={item} className="text-xs text-gray-400">
-                {item}
+            {trustBarIds.map((id, i) => (
+              <span key={id} className="text-xs text-gray-400">
+                {["🔒", "🛡️", "👁️"][i]} {t(`howItWorks.trustBar.${id}`)}
               </span>
             ))}
           </div>
@@ -277,59 +226,54 @@ export default function ScamInsurancePage() {
             </div>
 
             <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#93c5fd] mb-5">
-              Our Boldest Promise
+              {t("insurance.eyebrow")}
             </p>
 
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]">
-              Protected by Technology.{" "}
-              <span className="text-[#93c5fd]">Backed by Insurance.</span>
+              {t.rich("insurance.title", {
+                highlight: (chunks) => (
+                  <span className="text-[#93c5fd]">{chunks}</span>
+                ),
+              })}
             </h2>
 
             <p className="text-lg text-gray-300 leading-relaxed mb-4 max-w-xl mx-auto">
-              Most apps just try to help. We go further. If a scammer gets
-              through our protection while you&apos;re a member, you may be
-              eligible for reimbursement of your financial loss — backed by a
-              real insurance partner, with no runaround.
+              {t("insurance.description")}
             </p>
             <p className="text-base text-gray-400 mb-12 max-w-lg mx-auto">
-              That&apos;s how proud we are of what we&apos;ve built.
+              {t("insurance.pride")}
             </p>
           </AnimatedSection>
 
           {/* Coverage cards */}
           <AnimatedSection delay={0.15}>
             <div className="grid sm:grid-cols-2 gap-3 text-left mb-10">
-              {coverageItems.map((item) => (
+              {coverageIds.map((id) => (
                 <div
-                  key={item.label}
+                  key={id}
                   className="flex items-center justify-between gap-3 bg-[#245FFF]/10 border border-[#245FFF]/25 rounded-xl px-4 py-3.5"
                 >
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-4 h-4 text-[#93c5fd] shrink-0" />
-                    <span className="text-sm text-white">{item.label}</span>
+                    <span className="text-sm text-white">{t(`insurance.coverage.${id}`)}</span>
                   </div>
                   <span className="text-xs font-semibold text-[#93c5fd] shrink-0">
-                    {item.note}
+                    {t("insurance.coveredLabel")}
                   </span>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {[
-                "✅ Backed by licensed insurance",
-                "✅ No fighting for your money",
-              ].map((item) => (
-                <span key={item} className="text-sm text-[#93c5fd] font-medium">
-                  {item}
+              {insuranceAssuranceIds.map((id) => (
+                <span key={id} className="text-sm text-[#93c5fd] font-medium">
+                  ✅ {t(`insurance.assurances.${id}`)}
                 </span>
               ))}
             </div>
 
             <p className="text-xs text-gray-500 leading-relaxed max-w-xl mx-auto">
-              ¹ We are partnering with a licensed insurance company to cover scam
-              losses for our members. Coverage is subject to the terms and
-              conditions of the insurance contract provided upon enrollment.
+              {t("insurance.footnote")}
             </p>
           </AnimatedSection>
         </div>
@@ -339,33 +283,32 @@ export default function ScamInsurancePage() {
       <section className="max-w-5xl mx-auto px-5 sm:px-10 py-14 sm:py-24">
         <AnimatedSection className="text-center mb-14">
           <p className="text-[10px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-4">
-            The Reality
+            {t("problem.eyebrow")}
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-5">
-            Scammers Are Coming for You.
-            <br className="hidden md:block" /> Every Single Day.
+            {t.rich("problem.title", {
+              br: () => <br className="hidden md:block" />,
+            })}
           </h2>
           <p className="text-gray-300 text-base max-w-xl mx-auto leading-relaxed">
-            They call pretending to be your bank. They text pretending to be your
-            grandchild. They send emails pretending to be the IRS. And they are
-            getting better at it every month.
+            {t("problem.description")}
           </p>
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>
           <div className="grid md:grid-cols-3 gap-4 mb-10">
-            {problemStats.map((item) => (
+            {problemStatIds.map((item) => (
               <div
-                key={item.stat}
+                key={item.id}
                 className="bg-white/5 border border-white/10 rounded-xl p-6 text-center"
               >
                 <p className="text-4xl font-bold tracking-tight text-[#245FFF] mb-2">
                   {item.stat}
                 </p>
                 <p className="text-sm font-semibold text-white mb-1">
-                  {item.label}
+                  {t(`problem.stats.${item.id}.label`)}
                 </p>
-                <p className="text-xs text-gray-400">{item.sub}</p>
+                <p className="text-xs text-gray-400">{t(`problem.stats.${item.id}.sub`)}</p>
               </div>
             ))}
           </div>
@@ -374,13 +317,11 @@ export default function ScamInsurancePage() {
         <AnimatedSection delay={0.2}>
           <div className="bg-[#245FFF]/[0.08] border border-[#245FFF]/20 rounded-xl px-6 py-5 text-center">
             <p className="text-base text-gray-300 leading-relaxed">
-              The worst part?{" "}
-              <strong className="text-white">
-                They already have your phone number, your address, and your name.
-              </strong>{" "}
-              It&apos;s sitting in databases that anyone can buy for a few
-              dollars. That&apos;s why scam.ai doesn&apos;t just block scammers —
-              we fight them on every front.
+              {t.rich("problem.callout", {
+                strong: (chunks) => (
+                  <strong className="text-white">{chunks}</strong>
+                ),
+              })}
             </p>
           </div>
         </AnimatedSection>
@@ -391,27 +332,26 @@ export default function ScamInsurancePage() {
         <div className="max-w-5xl mx-auto px-5 sm:px-10 py-14 sm:py-24">
           <AnimatedSection className="text-center mb-14">
             <p className="text-[10px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-4">
-              Complete Protection
+              {t("protection.eyebrow")}
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-              More Than Just an App
+              {t("protection.title")}
             </h2>
             <p className="text-gray-300 text-base max-w-lg mx-auto leading-relaxed">
-              scam.ai surrounds you with a full shield — so scammers can&apos;t
-              find you, can&apos;t reach you, and can&apos;t fool you.
+              {t("protection.description")}
             </p>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-4">
-            {features.map((f, i) => (
-              <AnimatedSection key={f.title} delay={i * 0.1}>
+            {featureIds.map((f, i) => (
+              <AnimatedSection key={f.id} delay={i * 0.1}>
                 <div className="bg-white/5 border border-white/10 rounded-xl p-7 hover:border-[#245FFF]/30 transition-colors h-full">
                   <div className="text-3xl mb-4">{f.icon}</div>
                   <h3 className="text-base font-semibold text-white mb-2">
-                    {f.title}
+                    {t(`protection.features.${f.id}.title`)}
                   </h3>
                   <p className="text-sm text-gray-400 leading-relaxed">
-                    {f.desc}
+                    {t(`protection.features.${f.id}.desc`)}
                   </p>
                 </div>
               </AnimatedSection>
@@ -430,20 +370,19 @@ export default function ScamInsurancePage() {
         </div>
         <AnimatedSection className="relative z-10 max-w-md mx-auto">
           <p className="text-[10px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-4">
-            Join the waitlist
+            {t("finalCta.eyebrow")}
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
-            Never Worry About Scams Again.
+            {t("finalCta.title")}
           </h2>
           <p className="text-gray-300 text-base mb-7 leading-relaxed">
-            One subscription covers everything — blocking, insurance, education,
-            and support. Join now and lock in your first 3 months free.
+            {t("finalCta.description")}
           </p>
 
           <div className="flex items-center justify-center gap-3 mb-7">
             <div className="h-px flex-1 bg-white/10" />
             <span className="text-xs font-semibold text-[#93c5fd] border border-[#245FFF]/25 bg-[#245FFF]/10 px-3 py-1 rounded-full whitespace-nowrap">
-              🎁 First 3 months free*
+              🎁 {t("finalCta.badge")}
             </span>
             <div className="h-px flex-1 bg-white/10" />
           </div>
@@ -452,8 +391,7 @@ export default function ScamInsurancePage() {
             <WaitlistForm />
           </div>
           <p className="mt-3 text-xs text-gray-500">
-            * Free trial applies to first 3 months of paid subscription after
-            launch.
+            {t("finalCta.footnote")}
           </p>
         </AnimatedSection>
       </section>
@@ -461,40 +399,15 @@ export default function ScamInsurancePage() {
       {/* Disclaimers */}
       <section className="border-t border-white/10 py-12 px-5 sm:px-10">
         <div className="max-w-3xl mx-auto space-y-4 text-xs text-gray-500 leading-relaxed">
-          <p>
-            <span className="text-gray-400">¹ Insurance coverage.</span>{" "}
-            scam.ai is not a licensed insurance provider. Loss reimbursement
-            under the Scam Protection Guarantee is facilitated through a
-            partnership with a licensed insurance carrier. Coverage is subject to
-            the terms, conditions, exclusions, and limits set forth in the
-            applicable insurance contract, which will be provided to members upon
-            enrollment.
-          </p>
-          <p>
-            <span className="text-gray-400">² Statistics.</span> Figures cited
-            are based on publicly available data from the FTC, FBI IC3, and AARP
-            Fraud Watch Network. Actual results may vary.
-          </p>
-          <p>
-            <span className="text-gray-400">³ Waitlist.</span> Joining the
-            waitlist does not constitute enrollment in any insurance plan or
-            guarantee access to the scam.ai application. By submitting your
-            email, you agree to receive product updates from scam.ai. You may
-            unsubscribe at any time.
-          </p>
-          <p>
-            <span className="text-gray-400">⁴ Early adopter offer.</span> The
-            &quot;first 3 months free&quot; offer applies exclusively to waitlist
-            members and to the first 3 months of a paid subscription following
-            general product launch. scam.ai reserves the right to modify this
-            offer at any time before launch.
-          </p>
-          <p>
-            <span className="text-gray-400">⁵ App functionality.</span>{" "}
-            scam.ai operates as an on-device screening tool and does not
-            guarantee detection of all fraudulent activity. Performance may vary
-            by device and operating system.
-          </p>
+          {(["insurance", "statistics", "waitlist", "offer", "app"] as const).map((id) => (
+            <p key={id}>
+              {t.rich(`disclaimers.${id}`, {
+                label: (chunks) => (
+                  <span className="text-gray-400">{chunks}</span>
+                ),
+              })}
+            </p>
+          ))}
         </div>
       </section>
     </main>

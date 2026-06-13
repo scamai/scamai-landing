@@ -1,5 +1,6 @@
 import { generatePageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { industries } from '@/lib/solutions/industries';
 import {
@@ -46,20 +47,23 @@ const industryIcons: Record<string, LucideIcon> = {
 };
 
 export default async function SolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
-  await params;
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'solutionsPage' });
   return (
     <main className="min-h-screen bg-black text-white">
       <section className="relative px-4 sm:px-6 pb-20" style={{ paddingTop: '140px' }}>
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-400 mb-4 sm:text-xs">
-              SOLUTIONS
+              {t('eyebrow')}
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6">
-              Deepfake detection for <span className="text-[#245FFF]">every industry</span>
+              {t.rich('heading', {
+                highlight: (chunks) => <span className="text-[#245FFF]">{chunks}</span>,
+              })}
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              Scam AI adapts to the specific fraud patterns, compliance requirements, and workflow needs of your industry.
+              {t('subheading')}
             </p>
           </div>
 
@@ -85,7 +89,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
                   {industry.metaDescription}
                 </p>
                 <span className="text-xs font-semibold text-[#245FFF] flex items-center gap-1">
-                  Learn more
+                  {t('learnMore')}
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -96,7 +100,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
 
           <div className="mt-14 text-center">
             <p className="text-sm text-gray-500 mb-6">
-              Don&apos;t see your industry?
+              {t('noIndustry')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -105,13 +109,13 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
                 rel="noopener noreferrer"
                 className="rainbow-button inline-block"
               >
-                <span className="rainbow-button-inner">Try Free — 200 images/month</span>
+                <span className="rainbow-button-inner">{t('tryFree')}</span>
               </a>
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border border-gray-700 rounded-lg hover:border-[#245FFF]/50 transition-colors duration-200"
               >
-                Contact Sales
+                {t('contactSales')}
               </Link>
             </div>
           </div>

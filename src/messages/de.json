@@ -2490,5 +2490,847 @@
         "description": "Die umfassende Sammlung der Deepfake-Statistiken für 2026: Betrugsverluste, Erkennungs-Benchmarks, Branchenauswirkungen und regulatorische Reaktion."
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "eyebrow": "NUTZUNGSBASIERTE PREISE",
+      "title": "Zahlen Sie nur für <highlight>das, was Sie nutzen</highlight>",
+      "description": "Transparente, planbare Preise für die Erkennung von GenAI und Deepfakes. <strong>200 kostenlose Bilder pro Monat mit unserem Eva-v1-Fast-Modell</strong>, danach $0.05/Bild + optionale Add-ons. Keine versteckten Gebühren, keine langfristigen Verträge."
+    },
+    "volume": {
+      "label": "Monatliches Volumen",
+      "imagesCount": "{count} Bilder",
+      "discountTitle": "Benötigen Sie mehr als {max} Bilder?",
+      "discountDescription": "Schalten Sie Funktionen auf Enterprise-Niveau, Mengenrabatte und dedizierten Support für hohe Volumina frei.",
+      "talkToSales": "Vertrieb kontaktieren"
+    },
+    "addOns": {
+      "title": "Add-on-Funktionen",
+      "subtitle": "Erweitern Sie Ihre Erkennungsmöglichkeiten mit optionalen Funktionen",
+      "items": {
+        "adaptive-defense": {
+          "name": "Adaptive Abwehr",
+          "description": "Echtzeit-Erkennung von GenAI, Deepfakes und Injection-Angriffen mit fortschrittlichen KI-Modellen"
+        },
+        "active-liveness": {
+          "name": "Aktive Lebenderkennung",
+          "description": "Live-Gesichtserkennung zur Verifizierung echter menschlicher Präsenz und zur Abwehr von GenAI-generierten Deepfakes"
+        },
+        "express-lane": {
+          "name": "Express-Spur",
+          "description": "Verarbeitung mit niedriger Latenz und garantierter Antwortzeit von 3s"
+        }
+      }
+    },
+    "forensic": {
+      "title": "Forensik-Add-ons",
+      "subtitle": "Untersuchungswerkzeuge auf Enterprise-Niveau",
+      "badge": "Enterprise",
+      "report": {
+        "title": "Forensische PDF-Berichte",
+        "description": "Umfassender Herkunftsbericht mit detaillierter Analyse, Beweiskette und rechtssicherer Dokumentation",
+        "perImage": "pro Bild",
+        "includesLabel": "Enthält:",
+        "includes": {
+          "timeline": "Detaillierter Manipulationsverlauf & verwendete Techniken",
+          "custody": "Dokumentation der Beweiskette",
+          "evidence": "Gerichtsfestes Beweispaket",
+          "witness": "Unterstützung durch Sachverständige verfügbar"
+        }
+      },
+      "talkToSales": "Vertrieb für Forensik-Funktionen kontaktieren"
+    },
+    "summary": {
+      "title": "Preisübersicht",
+      "pricePerCheck": "Preis pro Prüfung",
+      "perImage": "/Bild",
+      "withinFreeTier": "✓ Innerhalb des kostenlosen Kontingents (erste 200 Bilder mit Eva-v1-Fast)",
+      "baseDetection": "Basis-Erkennung",
+      "plusAdaptiveDefense": "+ Adaptive Abwehr",
+      "plusActiveLiveness": "+ Aktive Lebenderkennung",
+      "plusExpressLane": "+ Express-Spur",
+      "totalMonthlyEstimate": "Geschätzte monatliche Gesamtkosten",
+      "perMonth": "/Monat",
+      "imagesCount": "{count} Bilder",
+      "free": "KOSTENLOS",
+      "freeImages": "Kostenlose Bilder",
+      "paidImagesLine": "{count} kostenpflichtige Bilder × {price}",
+      "getStarted": "Jetzt starten",
+      "ctaFootnote": "Keine Einrichtungsgebühren • Jederzeit kündbar • Nutzungsbasierte Abrechnung",
+      "baseIncludesLabel": "Die Basis-Erkennung umfasst:",
+      "baseIncludes": {
+        "genaiDeepfake": "Erkennung von GenAI & Deepfakes",
+        "evaFast": "Eva-v1-Fast-Modell",
+        "restfulApi": "Zugriff über RESTful API",
+        "dashboard": "Dashboard-Analysen"
+      }
+    },
+    "cards": {
+      "recommended": "Empfohlen",
+      "perImage": "pro Bild",
+      "selfServe": {
+        "name": "Self-Service",
+        "freeBadge": "200 kostenlose Bilder/Monat (Eva-v1-Fast)",
+        "description": "Für Unternehmen, die mit flexiblen Preisen skalieren möchten. Die ersten 200 Bilder sind mit dem Eva-v1-Fast-Modell kostenlos, danach $0.05/Bild + optionale Add-ons.",
+        "cta": "Jetzt starten",
+        "features": {
+          "genaiDetection": "GenAI-Erkennung",
+          "deepfakeAnalysis": "Deepfake-Analyse",
+          "evaFastModel": "Eva-v1-Fast-Modell",
+          "apiAccess": "API-Zugriff",
+          "allAddOns": "Alle optionalen Add-ons"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "priceCustom": "Individuell",
+        "perfectTitle": "Ideal für Ihr Volumen",
+        "perfectDescription": "Erhalten Sie Mengenrabatte + Enterprise-Funktionen für 5,000+ Bilder/Monat",
+        "highVolumeDescription": "Schalten Sie individuelle Preise, das forensik-taugliche Eva-v1-Pro-Modell mit weniger Fehlalarmen, fortschrittliche Thinking-Funktionen und dedizierten Support für hochvolumige Abläufe frei",
+        "description": "Für große Organisationen, die forensik-taugliche Genauigkeit, weniger Fehlalarme und dedizierten Support benötigen. Inklusive Eva-v1-Pro-Modell und fortschrittlichen Thinking-Funktionen.",
+        "cta": "Vertrieb kontaktieren",
+        "features": {
+          "everythingSelfServe": "Alles aus Self-Service",
+          "evaProModel": "Eva-v1-Pro-Modell",
+          "thinking": "Thinking (fortgeschrittenes Reasoning)",
+          "volumeDiscounts": "Mengenrabatte",
+          "prioritySupport": "Priorisierter Support & SLA",
+          "accountManager": "Dedizierter Account Manager",
+          "customIntegration": "Individuelle Integration & Schulung"
+        }
+      }
+    },
+    "banner": {
+      "text": "Transparente Preise ohne versteckte Gebühren. <strong>Skalieren Sie selbstbewusst, während Ihr Unternehmen wächst.</strong>"
+    }
+  },
+  "aiDetectionPage": {
+    "hero": {
+      "eyebrow": "KI-ERKENNUNG",
+      "heading": "Erkennen Sie Deepfakes in Bildern und Videos",
+      "body": "Die Eva-v1-Modelle von Scam AI erkennen <em>synthetische Medien</em>, <em>manipulierte Gesichter</em> und <em>Deepfake-Videos</em> mit einer <em>Genauigkeit von 95.3%</em> in unter 4 Sekunden. Unterstützt Face Swaps, GAN-generierte Bilder und Ausgaben von Diffusionsmodellen wie Stable Diffusion, DALL-E, Midjourney und Flux.",
+      "cta": "KI-Erkennung testen"
+    },
+    "features": {
+      "eyebrow": "ERWEITERTE FUNKTIONEN",
+      "heading": "Leistungsstarke visuelle <accent>Analyse</accent>",
+      "face": {
+        "eyebrow": "GESICHTSERKENNUNG",
+        "heading": "Erkennung von Gesichtsmanipulationen",
+        "body1": "Erkennen Sie Face Swaps, veränderte Mimik und manipulierte Gesichtsmerkmale mit einer <em>Genauigkeit von 95.3%</em> durch fortschrittliche Analyse mit neuronalen Netzen. Erkennt Ausgaben führender Generierungstools, darunter Stable Diffusion, DALL-E, Midjourney und Flux.",
+        "body2": "Eva-v1-Fast verarbeitet in <em>unter 2 Sekunden</em> für die Moderation in Echtzeit. Eva-v1-Pro liefert forensisch verwertbare Ergebnisse in <em>unter 4 Sekunden</em> für KYC und Rechtsbeweise."
+      },
+      "video": {
+        "eyebrow": "VIDEOANALYSE",
+        "heading": "Bildweise Videoanalyse",
+        "body1": "Analysieren Sie jedes Bild eines Videoinhalts, um Inkonsistenzen, zeitliche Artefakte und Muster synthetischer Generierung über die Zeit hinweg zu erkennen.",
+        "body2": "Funktioniert nahtlos mit <em>JPG, PNG, GIF, WebP, MP4, MOV, AVI</em> und allen gängigen Bild- und Videoformaten."
+      },
+      "reports": {
+        "eyebrow": "UMFASSENDE EINBLICKE",
+        "heading": "Detaillierte Analyseberichte",
+        "body": "Erhalten Sie umfassende Berichte mit Konfidenzwerten, Heatmaps manipulierter Regionen und visuellen Beweismarkierungen für Ihre Ermittlungen. Unsere RESTful-API ermöglicht die nahtlose Integration in Ihre bestehenden Workflows und Plattformen."
+      },
+      "integration": {
+        "eyebrow": "EINFACHE INTEGRATION",
+        "heading": "Einfache API-Integration",
+        "body": "Integrieren Sie die Deepfake-Erkennung mit nur wenigen Codezeilen in Ihre Plattform. Unsere entwicklerfreundliche API umfasst eine umfassende Dokumentation, SDKs und Support rund um die Uhr, damit Sie schnell loslegen können."
+      }
+    },
+    "useCases": {
+      "eyebrow": "ANWENDUNGEN IN DER PRAXIS",
+      "heading": "Branchenübergreifend <accent>vertraut</accent>",
+      "items": {
+        "social": {
+          "title": "Social-Media-Plattformen",
+          "description": "Schützen Sie Ihre Nutzer vor manipulierten Inhalten und Deepfake-Kampagnen. Markieren Sie verdächtige Medien automatisch, bevor sie sich verbreiten.",
+          "bullets": {
+            "0": "Automatisierung der Inhaltsmoderation",
+            "1": "Überprüfung nutzergenerierter Inhalte",
+            "2": "Vorbeugung von Fehlinformationen"
+          }
+        },
+        "financial": {
+          "title": "Finanzdienstleistungen",
+          "description": "Verhindern Sie Identitätsbetrug und Versuche, KYC zu umgehen, durch fortschrittliche Deepfake-Erkennung beim Onboarding und bei der Verifizierung.",
+          "bullets": {
+            "0": "Verbesserung der KYC-Verifizierung",
+            "1": "Vorbeugung von Identitätsbetrug",
+            "2": "Prüfung der Dokumentenechtheit"
+          }
+        },
+        "media": {
+          "title": "Medien und Verlagswesen",
+          "description": "Überprüfen Sie die Echtheit visueller Inhalte vor der Veröffentlichung, um Ihre Glaubwürdigkeit zu wahren und die Verbreitung von Fehlinformationen zu vermeiden.",
+          "bullets": {
+            "0": "Workflows zur Faktenprüfung",
+            "1": "Quellenüberprüfung",
+            "2": "Schutz der redaktionellen Integrität"
+          }
+        },
+        "ecommerce": {
+          "title": "E-Commerce und Dating",
+          "description": "Schaffen Sie Vertrauen auf Ihrer Plattform, indem Sie sicherstellen, dass Profilfotos und Produktbilder echt und unmanipuliert sind.",
+          "bullets": {
+            "0": "Profilverifizierung",
+            "1": "Echtheit von Produktbildern",
+            "2": "Betrugsprävention"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "Häufig gestellte Fragen",
+      "eyebrow": "FAQ",
+      "heading": "Fragen zur KI-Bilderkennung",
+      "items": {
+        "accuracy": {
+          "question": "Wie genau ist die Bild- und Video-Deepfake-Erkennung von Scam AI?",
+          "answer": "Scam AI erreicht mit dem Eva-v1-Modell eine Genauigkeit von 95.3% bei der Bild- und Video-Deepfake-Erkennung. Eva-v1-Fast verarbeitet in unter 2 Sekunden für Anwendungsfälle mit hohem Durchsatz, während Eva-v1-Pro in unter 4 Sekunden für maximale Genauigkeit bei weniger Fehlalarmen verarbeitet."
+        },
+        "types": {
+          "question": "Welche Arten von Deepfakes kann Scam AI in Bildern und Videos erkennen?",
+          "answer": "Scam AI erkennt Face Swaps, GAN-generierte Bilder, Ausgaben von Diffusionsmodellen (Stable Diffusion, DALL-E, Midjourney, Flux), Video-Deepfakes mit bildweiser und zeitlicher Analyse, synthetische Gesichter und Manipulationen in 4K-Videos."
+        },
+        "formats": {
+          "question": "Welche Bild- und Videoformate unterstützt Scam AI?",
+          "answer": "Scam AI unterstützt die Bildformate JPG, PNG, GIF und WebP sowie die Videoformate MP4, MOV und AVI. Die 4K-Videoanalyse wird mit bildweiser Deepfake-Erkennung unterstützt."
+        },
+        "speed": {
+          "question": "Wie schnell ist die Deepfake-Erkennung von Scam AI?",
+          "answer": "Eva-v1-Fast verarbeitet Bilder in unter 2 Sekunden und eignet sich für die Inhaltsmoderation in Echtzeit und das KYC-Screening bei hohem Volumen. Eva-v1-Pro verarbeitet in unter 4 Sekunden für forensisch verwertbare Analysen und Identitätsprüfungen mit hohem Risiko."
+        },
+        "free": {
+          "question": "Gibt es einen kostenlosen Deepfake-Detektor, den ich ausprobieren kann?",
+          "answer": "Ja. Scam AI umfasst 200 kostenlose Bildanalysen pro Monat — ohne Kreditkarte. Registrieren Sie sich auf app.scam.ai, um sofort Zugang zum Deepfake-Detektor mit dem Eva-v1-Fast-Modell zu erhalten. Wechseln Sie zur nutzungsbasierten Abrechnung ($0.05/Bild) oder zu Enterprise, wenn Ihr Volumen wächst."
+        },
+        "api": {
+          "question": "Kann ich die Deepfake-Erkennung per API in meine App integrieren?",
+          "answer": "Ja. Scam AI bietet eine REST-API, die sich in unter 10 Minuten integrieren lässt. Senden Sie eine POST-Anfrage mit der URL Ihres Bildes und erhalten Sie eine JSON-Antwort mit einem is_deepfake-Boolean, einem Konfidenzwert und dem verwendeten Modell. SDKs für Python und JavaScript sind verfügbar."
+        }
+      }
+    },
+    "cta": {
+      "heading": "Beginnen Sie noch heute, Deepfakes zu erkennen",
+      "subhead": "<em>200 kostenlose Bilder pro Monat</em>. Ohne Kreditkarte.",
+      "button": "Kostenlos starten",
+      "audioPrompt": "Benötigen Sie auch eine Audio-Deepfake-Erkennung?",
+      "audioLink": "Stimmklon-Erkennung entdecken →",
+      "pricing": "Sehen Sie sich unsere <link>Preispläne</link> ab $0.05/Bild an.",
+      "researchPrefix": "Basierend auf veröffentlichter Forschung:",
+      "researchPaper1": "Funktionieren Deepfake-Detektoren in der Realität?",
+      "researchPaper2": "Benchmark für Open-Source-Detektoren"
+    },
+    "links": {
+      "heading": "Branchenlösungen und Wissen",
+      "compare": "Scam AI vs Reality Defender"
+    }
+  },
+  "audioDetectionPage": {
+    "hero": {
+      "eyebrow": "AUDIO-ERKENNUNG",
+      "title": "Erkennen Sie Stimmklone und synthetisches Audio",
+      "description": "Erkennen Sie <em>Stimmklone</em>, <em>KI-generierte Sprache</em> und <em>synthetisches Audio</em> mit einer <em>Genauigkeit von 98.5%</em> in unter 3 Sekunden. Identifiziert Ausgaben von ElevenLabs, PlayHT, Resemble AI, Azure TTS und anderen Plattformen zur Sprachsynthese. Unterstützt die Formate MP3, WAV, M4A, FLAC und OGG.",
+      "cta": "Vertrieb kontaktieren"
+    },
+    "features": {
+      "eyebrow": "ERWEITERTE FUNKTIONEN",
+      "title": "Fortschrittliche Audio-<accent>Analyse</accent>",
+      "voiceCloning": {
+        "eyebrow": "ERKENNUNG VON STIMMKLONEN",
+        "title": "KI-generierte Stimmen identifizieren",
+        "body1": "Identifizieren Sie KI-generierte Stimmklone mit einer <em>Genauigkeit von 98.5%</em> über mehrere Sprachen, Akzente und Sprechmuster hinweg. Laut dem IC3-Bericht 2024 des FBI überstiegen die Verluste durch Voice-Phishing weltweit $12.5 billion, was die Audio-Erkennung in Echtzeit für Finanzinstitute und Callcenter unverzichtbar macht.",
+        "body2": "Die Verarbeitung in <em>unter 3 Sekunden</em> pro Audioclip ermöglicht die Verifizierung von Live-Anrufen, die Echtzeit-Analyse von Streams und das automatisierte Betrugsscreening im großen Maßstab."
+      },
+      "tts": {
+        "eyebrow": "TTS-ERKENNUNG",
+        "title": "Analyse synthetischer Sprache",
+        "body1": "Erkennen Sie Text-to-Speech-Ausgaben führender KI-Modelle, darunter <em>ElevenLabs, PlayHT, Azure TTS</em>, sowie aufkommende Plattformen zur Sprachsynthese.",
+        "body2": "Funktioniert nahtlos mit <em>MP3, WAV, M4A, FLAC, OGG</em> und allen gängigen Audioformaten für maximale Kompatibilität."
+      },
+      "manipulation": {
+        "eyebrow": "MANIPULATIONSERKENNUNG",
+        "title": "Erkennung von Audio-Manipulationen",
+        "body": "Identifizieren Sie zusammengeschnittene Audiosegmente, Tonhöhenänderungen, Geschwindigkeitsänderungen und andere ausgefeilte Audio-Manipulationen. Unsere fortschrittlichen Algorithmen erkennen selbst subtile Bearbeitungen, die das menschliche Ohr überhören könnte."
+      },
+      "integration": {
+        "eyebrow": "EINFACHE INTEGRATION",
+        "title": "Einfache API-Integration",
+        "body": "Einfache REST-API-Integration mit umfassender Dokumentation für Audio-Verifizierungs-Workflows in Echtzeit oder per Batch. Starten Sie in wenigen Minuten mit unseren SDKs und unserem Entwicklersupport rund um die Uhr."
+      }
+    },
+    "useCases": {
+      "eyebrow": "ANWENDUNGEN IN DER PRAXIS",
+      "title": "Branchenübergreifend <accent>vertraut</accent>",
+      "cards": {
+        "callCenters": {
+          "title": "Callcenter und Kundenservice",
+          "description": "Schützen Sie sich vor Stimmenimitation und Betrugsversuchen bei Kundenservice-Interaktionen mit Verifizierung in Echtzeit.",
+          "bullets": {
+            "0": "Verifizierung der Anruferauthentifizierung",
+            "1": "Verbesserung der biometrischen Stimmsicherheit",
+            "2": "Betrugsprävention und -erkennung"
+          }
+        },
+        "banking": {
+          "title": "Banking und Finanzdienstleistungen",
+          "description": "Verhindern Sie Voice-Phishing-Betrug (Vishing) und unbefugten Kontozugriff durch Versuche, die Sprachauthentifizierung zu umgehen.",
+          "bullets": {
+            "0": "Sicherheitsverifizierung beim Telefon-Banking",
+            "1": "Schutz der Telefonauthentifizierung",
+            "2": "Erkennung von Vishing-Angriffen"
+          }
+        },
+        "media": {
+          "title": "Medien und Rundfunk",
+          "description": "Überprüfen Sie die Echtheit von Audioaufnahmen und verhindern Sie die Verbreitung manipulierter Interviews, Aussagen oder Sendungen.",
+          "bullets": {
+            "0": "Überprüfung von Audioquellen",
+            "1": "Validierung der Echtheit von Interviews",
+            "2": "Schutz der Inhaltsintegrität"
+          }
+        },
+        "legal": {
+          "title": "Justiz und Strafverfolgung",
+          "description": "Authentifizieren Sie Audiobeweise und erkennen Sie manipulierte Aufnahmen in Gerichtsverfahren und strafrechtlichen Ermittlungen.",
+          "bullets": {
+            "0": "Dienste zur Beweisauthentifizierung",
+            "1": "Forensische Audioanalyse",
+            "2": "Überprüfung der Beweiskette"
+          }
+        }
+      }
+    },
+    "faq": {
+      "ariaLabel": "Häufig gestellte Fragen",
+      "eyebrow": "FAQ",
+      "title": "Fragen zur Stimmklon-Erkennung",
+      "items": {
+        "accuracy": {
+          "question": "Wie genau ist die Stimmklon- und Audio-Deepfake-Erkennung von Scam AI?",
+          "answer": "Scam AI erreicht eine Genauigkeit von 98.5% bei der Stimmklon-Erkennung und identifiziert synthetische Stimmen von Plattformen wie ElevenLabs, PlayHT, Resemble AI und Azure TTS. Die Verarbeitungszeit beträgt weniger als 3 Sekunden pro Audiodatei."
+        },
+        "types": {
+          "question": "Welche Arten von Audio-Deepfakes kann Scam AI erkennen?",
+          "answer": "Scam AI erkennt Stimmklone (ElevenLabs, Resemble AI, PlayHT, Azure TTS), per Text-to-Speech generiertes Audio, Audio-Deepfakes, zusammengeschnittene oder manipulierte Audioaufnahmen sowie synthetische Stimm-Streams in Echtzeit."
+        },
+        "formats": {
+          "question": "Welche Audioformate unterstützt Scam AI?",
+          "answer": "Scam AI unterstützt die Audioformate MP3, WAV, M4A, FLAC und OGG. Die Echtzeit-Analyse von Audio-Streams ist ebenfalls verfügbar für die Überwachung von Live-Anrufen und die Sprachauthentifizierung."
+        },
+        "vishing": {
+          "question": "Kann Scam AI Voice-Phishing-Angriffe (Vishing) erkennen?",
+          "answer": "Ja. Die Audio-Erkennung von Scam AI wird von Callcentern, Banken und Finanzdienstleistern eingesetzt, um Voice-Phishing-Angriffe in Echtzeit zu identifizieren. Sie erkennt geklonte Stimmen, die versuchen, sich als Führungskräfte, Kunden oder Autoritätspersonen auszugeben."
+        },
+        "whatIs": {
+          "question": "Was ist Stimmklon-Erkennung?",
+          "answer": "Die Stimmklon-Erkennung identifiziert Audio, das mithilfe von KI-Sprachsynthese-Tools wie ElevenLabs, PlayHT oder Azure TTS künstlich generiert oder geklont wurde. Das Eva-v1-Audiomodell von Scam AI analysiert spektrale und zeitliche Artefakte — Muster, die für das menschliche Ohr unsichtbar sind — die synthetische Stimmen von echten Aufnahmen unterscheiden, und erreicht dabei eine Genauigkeit von 98.5%."
+        },
+        "realtime": {
+          "question": "Kann die Audio-Deepfake-Erkennungs-API Echtzeit-Streams verarbeiten?",
+          "answer": "Ja. Scam AI bietet einen Echtzeit-Streaming-Endpoint für die Überwachung von Live-Anrufen, der jedes Audiosegment in unter 3 Sekunden verarbeitet. So können Callcenter und Finanzinstitute synthetische Medien und Stimmklone während laufender Anrufe screenen und Betrug in Echtzeit verhindern."
+        }
+      }
+    },
+    "cta": {
+      "title": "Bereit, Ihre Plattform vor Stimmbetrug zu schützen?",
+      "subtitle": "Kontaktieren Sie unser Team, um <em>Audio-Erkennungslösungen für Unternehmen</em> zu besprechen, die auf Ihre Bedürfnisse zugeschnitten sind.",
+      "button": "Vertrieb kontaktieren",
+      "crossLink": "Benötigen Sie auch eine Bild- und Video-Deepfake-Erkennung? <link>KI-Bilderkennung entdecken →</link>",
+      "pricingLink": "Sehen Sie sich unsere <link>Preispläne</link> ab $0.05/Datei an.",
+      "research": "Basierend auf veröffentlichter Forschung: <link1>Funktionieren Deepfake-Detektoren in der Realität?</link1> · <link2>Benchmark für Open-Source-Detektoren</link2>"
+    },
+    "relatedLinks": {
+      "heading": "Branchenlösungen und Wissen",
+      "compare": "Scam AI vs Sensity AI"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Vertrauen schaffen<br></br>im KI-Zeitalter."
+    },
+    "mission": {
+      "heading": "Unsere Mission",
+      "paragraph1": "Da KI-generierte Inhalte immer ausgefeilter werden, verschwimmt die Grenze zwischen echt und gefälscht. Deepfakes und synthetische Medien bedrohen Vertrauen, Sicherheit und Wahrheit über alle Branchen hinweg.",
+      "paragraph2": "Scam AI wurde gegründet, um diese entscheidende Herausforderung zu lösen. Wir bieten die genaueste, schnellste und zugänglichste Plattform zur Deepfake-Erkennung der Welt.",
+      "paragraph3": "Unsere Technologie schützt Nutzer in sozialen Medien, in Finanzdienstleistungen, in Medienorganisationen und in Unternehmen weltweit."
+    },
+    "milestone": {
+      "heading": "Meilenstein",
+      "tags": {
+        "platform": "Plattform",
+        "product": "Produkt",
+        "ai": "KI",
+        "performance": "Leistung",
+        "funding": "Finanzierung",
+        "milestone": "Meilenstein",
+        "newFeature": "Neue Funktion",
+        "audio": "Audio",
+        "security": "Sicherheit",
+        "compliance": "Compliance",
+        "award": "Auszeichnung",
+        "launch": "Markteinführung"
+      },
+      "entries": {
+        "no-code-platform": {
+          "title": "No-Code-Plattform und Self-Service-Start",
+          "description": "Einführung einer No-Code-Erkennungsplattform mit Drag-and-Drop-Oberfläche. Das Self-Service-Onboarding ermöglicht es Nutzern, innerhalb von Minuten mit der Deepfake-Erkennung zu beginnen — ohne technische Einrichtung oder API-Integration."
+        },
+        "enhanced-accuracy": {
+          "title": "Verbesserte Erkennungsgenauigkeit",
+          "description": "Verbesserung der Deepfake-Erkennungsgenauigkeit auf 95.3% bei einer auf unter 4 Sekunden reduzierten Verarbeitungszeit. Unterstützung der 4K-Videoanalyse hinzugefügt sowie verbesserte Algorithmen zur Audio-Deepfake-Erkennung."
+        },
+        "seed-funding": {
+          "title": "Seed-Finanzierungsrunde — $2.6M",
+          "description": "Abschluss einer Eigenkapitalfinanzierung von insgesamt $2.6M unter der Führung von Llama Venture, mit Beteiligung von SCVxSBI, Welight Capital, SkyDeck Fund und Beta Fund. Die Finanzierung wird die Produktentwicklung und die globale Expansion beschleunigen."
+        },
+        "genai-detection": {
+          "title": "Veröffentlichung der GenAI-Erkennung",
+          "description": "Einführung einer umfassenden GenAI-Inhaltserkennung über Text, Bilder und Videos hinweg. Fortschrittliche KI-Modelle identifizieren Inhalte, die von ChatGPT, Midjourney, DALL-E und anderen generativen KI-Plattformen erstellt wurden."
+        },
+        "audio-detection": {
+          "title": "Veröffentlichung der Audio-Erkennung",
+          "description": "Einführung der Audio-Deepfake-Erkennung mit einer Genauigkeit von 92% beim Stimmklonen. Unterstützung der Formate MP3, WAV und AAC mit Echtzeit-Analyse von Audio-Streams."
+        },
+        "compliance": {
+          "title": "GDPR- und SOC 2 Type I-Compliance",
+          "description": "Erreichen der GDPR-Compliance und der SOC 2 Type I-Zertifizierung als Beleg für unser Engagement für Datenschutz und Sicherheit. Sicherheitsstandards auf Unternehmensniveau sind nun etabliert."
+        },
+        "pre-seed-funding": {
+          "title": "Pre-Seed-Finanzierung von Berkeley SkyDeck",
+          "description": "Ausgewählt für Berkeley SkyDeck, das führende Deep-Tech-Accelerator-Programm von UC Berkeley mit einer Annahmequote von weniger als 1%. Wir erhielten ein Investment, um unsere Mission im Kampf gegen Bedrohungen durch synthetische Medien zu beschleunigen."
+        },
+        "product-hunt": {
+          "title": "Product Hunt — Produkt des Tages",
+          "description": "Scam AI wurde auf Product Hunt als Produkt des Tages ausgezeichnet! Vielen Dank an unsere großartige Community für die Unterstützung und das Feedback."
+        },
+        "model-v01": {
+          "title": "Deepfake-Erkennungsmodell v0.1 veröffentlicht",
+          "description": "Veröffentlichung unseres ersten Deepfake-Erkennungsmodells für die Öffentlichkeit. Die erste Version konzentriert sich auf die Bild- und Videoanalyse mit grundlegenden KI-Fähigkeiten zur Erkennung synthetischer Medien."
+        }
+      }
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "eyebrow": "PRODUKTE",
+      "title": "All-in-one-Plattform zur Deepfake-Erkennung",
+      "description": "Umfassende KI-gestützte Erkennung für Bilder, Audio und Video. Eine Plattform, vollständiger Schutz."
+    },
+    "cards": {
+      "aiDetection": {
+        "title": "KI-Bild- und Video-Deepfake-Erkennung",
+        "description": "Erkennen Sie KI-generierte Bilder und Deepfake-Videos mit einer Genauigkeit von 95.3%* dank des Eva-v1-Modells. Identifizieren Sie Face Swaps, GAN-generierte Bilder und Ausgaben von Diffusionsmodellen aus Stable Diffusion, DALL-E und Midjourney. Integration per REST-API in unter 10 Minuten.",
+        "link": "KI-Deepfake-Erkennung entdecken →"
+      },
+      "audioDetection": {
+        "title": "Stimmklon- und synthetische Audio-Erkennung",
+        "description": "Erkennen Sie Stimmklone, KI-generierte Sprache und synthetisches Audio mit einer Genauigkeit von 98.5% in unter 3 Sekunden. Identifiziert Ausgaben von ElevenLabs, PlayHT, Azure TTS und anderen Plattformen zur Sprachsynthese. Unterstützt die Echtzeit-Stream-Analyse zur Betrugsprävention in Callcentern.",
+        "link": "Stimmklon-Erkennung entdecken →"
+      }
+    },
+    "comparison": {
+      "heading": "Funktionsvergleich",
+      "columns": {
+        "feature": "Funktion",
+        "vision": "Vision",
+        "audio": "Audio"
+      },
+      "rows": {
+        "accuracy": "Erkennungsgenauigkeit",
+        "speed": "Verarbeitungsgeschwindigkeit",
+        "formats": "Unterstützte Formate",
+        "realTime": "Echtzeit-Analyse",
+        "batch": "Batch-Verarbeitung",
+        "api": "API-Integration"
+      }
+    },
+    "useCases": {
+      "heading": "Für jede Branche entwickelt",
+      "socialMedia": {
+        "title": "Social Media",
+        "description": "Markieren Sie Deepfake-Inhalte und synthetische Medien automatisch, bevor sie sich verbreiten. Schützen Sie Nutzer vor manipulierten Videos und KI-generierter Desinformation im großen Maßstab.",
+        "link": "KI-Deepfake-Erkennung →"
+      },
+      "financial": {
+        "title": "Finanzdienstleistungen",
+        "description": "Erkennen Sie Deepfake-Identitätsbetrug bei KYC und Kreditanträgen mit einer Genauigkeit von 95.3%. Schützen Sie Callcenter vor Angriffen mit synthetischen Identitäten und vor Voice-Phishing durch Stimmklon-Erkennung in Echtzeit.",
+        "linkKyc": "KI-Deepfake-Erkennung für KYC →",
+        "linkVoice": "Stimmklon-Erkennung →"
+      },
+      "media": {
+        "title": "Medien und Verlagswesen",
+        "description": "Überprüfen Sie die Echtheit von Bildern und Videos vor der Veröffentlichung. Erkennen Sie KI-generierte Bilder und manipuliertes Filmmaterial, um die redaktionelle Integrität zu wahren und Fehlinformationen zu verhindern.",
+        "link": "KI-generierte Bilder erkennen →"
+      },
+      "ecommerce": {
+        "title": "E-Commerce und Dating",
+        "description": "Überprüfen Sie, ob Profilfotos und Produktbilder echt sind. Stoppen Sie Betrug mit synthetischen Identitäten und gefälschte Angebote durch automatisierte Deepfake-Erkennung per API.",
+        "link": "Deepfake-Erkennungs-API →"
+      }
+    },
+    "cta": {
+      "heading": "Beginnen Sie noch heute, Deepfakes zu erkennen",
+      "description": "200 kostenlose Bilder pro Monat. Ohne Kreditkarte.",
+      "button": "Kostenlos starten"
+    }
+  },
+  "solutionsPage": {
+    "eyebrow": "LÖSUNGEN",
+    "heading": "Deepfake-Erkennung für <highlight>jede Branche</highlight>",
+    "subheading": "Scam AI passt sich den spezifischen Betrugsmustern, Compliance-Anforderungen und Workflow-Bedürfnissen Ihrer Branche an.",
+    "learnMore": "Mehr erfahren",
+    "noIndustry": "Ihre Branche ist nicht dabei?",
+    "tryFree": "Kostenlos testen — 200 Bilder/Monat",
+    "contactSales": "Vertrieb kontaktieren"
+  },
+  "comparePage": {
+    "eyebrow": "VERGLEICHE",
+    "heading": "Scam AI vs <highlight>Wettbewerber</highlight>",
+    "subheading": "Sehen Sie, wie sich Scam AI im Vergleich zu anderen Plattformen zur Deepfake-Erkennung schlägt. Transparente Vergleiche — auch dort, wo Wettbewerber stärker sind.",
+    "versus": "Scam AI vs {name}",
+    "tryFree": "Scam AI kostenlos testen — 200 Bilder/Monat"
+  },
+  "haloPage": {
+    "hero": {
+      "ariaLabel": "Halo — Deepfake-Erkennung auf dem Gerät",
+      "badge": "Jetzt im Early Access",
+      "headline": "Halo erkennt Deepfakes auf dem Gerät.",
+      "subhead": "Auf Ihrem Gerät, in Echtzeit. Halo markiert synthetische Gesichter und Face Swaps live bei jedem Anruf — bevor sie Sie eine Überweisung oder eine Fehlbesetzung kosten.",
+      "joinWaitlist": "Auf die Warteliste",
+      "seeHowItWorks": "So funktioniert es"
+    },
+    "scanner": {
+      "liveCall": "Live-Anruf",
+      "analyzing": "Analyse läuft…",
+      "frame": "Bild {n}",
+      "deepfakeDetected": "Deepfake erkannt",
+      "scanningVideo": "Halo scannt das Video",
+      "onDevice": "Läuft zu 100% auf Ihrem Gerät · keine Aufzeichnung, nichts wird gesendet"
+    },
+    "problem": {
+      "eyebrow": "Die neue Angriffsfläche",
+      "heading": "Ihre Anrufe sind gerade zu einem Ort geworden,<br/> an dem man <highlight>angegriffen werden</highlight> kann.",
+      "body": "Echtzeit-Face-Swaps sind gut genug, um in einem Live-Videoanruf als Kollege durchzugehen. E-Mail-Filter und Login-Prüfungen sehen sie nie — der Betrug geschieht im Gespräch selbst."
+    },
+    "icp": {
+      "ariaLabel": "Mehrwert nach Team",
+      "finance": {
+        "tab": "Finanzen",
+        "eyebrow": "FÜR FINANZEN UND TREASURY",
+        "headline": "Die Stimme, die die Überweisung freigibt,<br/>ist vielleicht nicht Ihr CFO.",
+        "fearTitle": "Überweisungsbetrug durch synthetische Führungskräfte",
+        "fearBody": "2024 nahm ein Mitarbeiter der Finanzabteilung beim Ingenieurbüro Arup an einem Videoanruf mit Personen teil, die wie sein CFO und seine Kollegen aussahen und klangen — jedes Gesicht im Anruf war ein Deepfake. Er autorisierte <em>15 Überweisungen mit einem Gesamtwert von ~$25M</em>. Der Anruf wirkte völlig normal. Das ist der neue Angriff: synthetische Führungskräfte in Echtzeit bei routinemäßigen Freigabeanrufen.",
+        "stat": "~$25M",
+        "statLabel": "verloren bei einem einzigen Deepfake-Videoanruf (Arup, 2024)",
+        "bullets": {
+          "0": "Markiert synthetische Gesichter und Face Swaps live, bevor die Überweisung freigegeben wird.",
+          "1": "Schützt Treasury, Kreditorenbuchhaltung und Assistenten der Geschäftsleitung bei jedem Zoom-, Teams-, Meet-, WebEx- und Slack-Anruf.",
+          "2": "Hinterlässt einen Audit-Trail auf dem Gerät für die Betrugs- und Compliance-Prüfung."
+        }
+      },
+      "hr": {
+        "tab": "HR und Recruiting",
+        "eyebrow": "FÜR HR UND TALENTE",
+        "headline": "Der Kandidat vor der Kamera<br/>ist vielleicht keine reale Person.",
+        "fearTitle": "Synthetische und gesichtsvertauschte Kandidaten",
+        "fearBody": "Das FBI hat vor einem starken Anstieg von Deepfake-Bewerbern gewarnt — Personen, die Echtzeit-Face-Swaps und Stimmverzerrer nutzen, um Remote-Interviews zu bestehen, oft um Zugang zu sensiblen Systemen zu erlangen oder zu verschleiern, dass eine andere Person die Arbeit erledigt. Gartner prognostiziert, dass <em>bis 2028 jedes vierte Kandidatenprofil gefälscht sein wird</em>. Ihr Interviewprozess ist jetzt ein Identitäts-Checkpoint.",
+        "stat": "1 von 4",
+        "statLabel": "Kandidatenprofile werden bis 2028 voraussichtlich gefälscht sein (Gartner)",
+        "bullets": {
+          "0": "Erkennt Face Swaps und KI-generierte Gesichtsaustausche live während Remote-Interviews.",
+          "1": "Entlarvt Face Swaps, die genutzt werden, um während des Interviews einen Ersatz zu verbergen.",
+          "2": "Gibt Recruitern einen Konfidenzwert, ohne Video an einen Dritten zu senden."
+        }
+      }
+    },
+    "differentiators": {
+      "eyebrow": "Warum auf dem Gerät",
+      "heading": "Cloud-Erkennung kann mit einem <highlight>Live-Anruf</highlight> nicht Schritt halten.",
+      "items": {
+        "realtime": {
+          "title": "In Echtzeit, ohne Umweg",
+          "body": "Die Erkennung erfolgt im selben Moment wie der Anruf. Es gibt keinen Zyklus aus Upload, Warteschlange und Download — so trifft ein Urteil ein, während der Anruf noch läuft, nicht erst, wenn das Geld weg ist."
+        },
+        "attackSurface": {
+          "title": "Kleinere Angriffsfläche",
+          "body": "Cloud-Detektoren fügen APIs, Uploads und Speicher bei Dritten hinzu — jeder davon ein Ziel. Halo behält alles auf dem Gerät: keine Netzwerkaufrufe während der Erkennung, keine Bilder in Übertragung, keine externen Server, die Ihre Anrufdaten speichern. Weniger bewegliche Teile, weniger Einfallstore."
+        },
+        "private": {
+          "title": "Privat durch Konzeption",
+          "body": "Videobilder werden im Speicher analysiert und verworfen — nichts wird aufgezeichnet, gespeichert oder übertragen. Kein Cloud-Upload bedeutet keinen neuen Honeypot sensibler Anrufe und einen weitaus einfacheren Weg durch die rechtliche, IT- und GDPR-Prüfung."
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "So funktioniert es",
+      "heading": "Schutz, der im Anruf lebt",
+      "steps": {
+        "install": {
+          "title": "Einmal installieren",
+          "body": "Laden Sie Halo auf Ihren Windows-PC herunter. Es sitzt im System-Tray neben Ihrer Konferenz-App — keine Plugins, keine Browser-Erweiterungen."
+        },
+        "scan": {
+          "title": "Scannt lokal, live",
+          "body": "Während Sie sprechen, analysiert Halo jedes Gesicht im Videobild Bild für Bild auf Ihrem Gerät — etwa 4-mal pro Sekunde."
+        },
+        "flag": {
+          "title": "Markiert in Echtzeit",
+          "body": "Wenn ein Gesicht synthetisch wirkt, blendet Halo während des Anrufs eine Warnung ein — rechtzeitig, um innezuhalten und zu prüfen."
+        }
+      }
+    },
+    "compare": {
+      "eyebrow": "So schneidet Halo ab",
+      "heading": "Für den Live-Anruf gebaut, nicht für den Login",
+      "colCapability": "Fähigkeit",
+      "colCloud": "Cloud-Erkennungs-APIs",
+      "colPlatform": "Plattformnativ",
+      "partial": "Teilweise",
+      "footnote": "— = teilweise / abhängig von der Konfiguration. Der Vergleich spiegelt typische Fähigkeiten wider, nicht die eines bestimmten genannten Anbieters.",
+      "rows": {
+        "realTime": "Funktioniert in Echtzeit im Live-Anruf",
+        "onDevice": "Medien bleiben auf dem Gerät",
+        "apps": "Funktioniert über Zoom, Teams, Meet, WebEx und mehr als 10 Apps hinweg",
+        "noGpuCost": "Keine Cloud-GPU-Kosten pro Minute",
+        "syntheticMedia": "Erkennt synthetische Medien (nicht nur Lebenderkennung)",
+        "wholeCall": "Schützt den gesamten Anruf, nicht nur den Login"
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "heading": "Häufig gestellte Fragen",
+      "items": {
+        "whatIsHalo": {
+          "q": "Was ist Halo?",
+          "a": "Halo ist eine Anwendung zur Deepfake-Erkennung auf dem Gerät, die Ihre Videoanrufe in Echtzeit überwacht und synthetische Gesichter sowie Face Swaps markiert, bevor sie Sie täuschen können. Sie läuft vollständig auf Ihrem Windows-PC — kein Videobild verlässt jemals Ihren Rechner."
+        },
+        "dataUploaded": {
+          "q": "Werden meine Anrufdaten irgendwohin hochgeladen?",
+          "a": "Nein. Die gesamte Erkennung läuft lokal auf Ihrem Gerät. Halo analysiert Live-Bilder im Speicher und verwirft sie — es zeichnet das Meeting-Video weder auf, noch speichert oder überträgt es dieses. Nur Erkennungsurteile und Sitzungsmetadaten werden aufbewahrt, lokal auf Ihrem Rechner gespeichert."
+        },
+        "whichApps": {
+          "q": "Mit welchen Apps funktioniert Halo?",
+          "a": "Halo funktioniert mit mehr als 10 Meeting-Anwendungen, darunter Zoom, Microsoft Teams, Google Meet, WebEx, Skype, Slack-Huddles, GoTo Meeting und andere — sowohl native Desktop-Apps als auch browserbasierte Meetings."
+        },
+        "performance": {
+          "q": "Verlangsamt es meine Anrufe oder entlädt es meinen Akku?",
+          "a": "Die Erkennung läuft lokal auf Ihrem Gerät, parallel zu Ihrem Anruf. Es gibt keinen Netzwerk-Umweg, daher entsteht keine Latenz und nur minimaler Mehraufwand."
+        },
+        "accuracy": {
+          "q": "Wie genau ist es, und wie steht es um Fehlalarme?",
+          "a": "Halo nutzt ein Ensemble aus zwei komplementären KI-Modellen, die übereinstimmen müssen, bevor ein Urteil gefällt wird. Das reduziert Fehlalarme im Vergleich zu Detektoren mit nur einem Modell drastisch. Jeder Teilnehmer erhält ein Urteil — Sicher, Verdächtig oder Deepfake — und keinen reinen Zahlenwert."
+        },
+        "vsBuiltIn": {
+          "q": "Wie unterscheidet sich das von der integrierten Sicherheit meiner Konferenz-App?",
+          "a": "Plattformnative Funktionen konzentrieren sich auf Zugriff und Meeting-Steuerung, nicht darauf, ob das Gesicht oder die Stimme eines Teilnehmers synthetisch ist. Halo ist speziell für die Echtzeit-Erkennung synthetischer Medien entwickelt und funktioniert über jede Plattform hinweg, die Sie nutzen."
+        },
+        "devices": {
+          "q": "Welche Geräte unterstützt Halo?",
+          "a": "Halo läuft unter Windows 10/11, sowohl auf ARM64- als auch auf x86/x64-Hardware. Mindestens 4 GB RAM, ~1 GB Speicherplatz."
+        }
+      }
+    },
+    "finalCta": {
+      "heading": "Halo erkennt Deepfakes in Ihren Anrufen.<br/> Auf Ihrem Gerät, in Echtzeit.",
+      "body": "Halo ist im Early Access. Tragen Sie sich in die Warteliste ein, und wir benachrichtigen Sie, sobald es für Ihr Gerät bereit ist.",
+      "discount": "Jetzt beitreten und 50% Rabatt auf Ihr erstes Jahr erhalten.",
+      "platformNote": "Verfügbar für Windows · Nichts verlässt Ihr Gerät"
+    },
+    "waitlist": {
+      "emailPlaceholder": "sie@unternehmen.com",
+      "emailLabel": "Geschäftliche E-Mail",
+      "joinButton": "Auf die Warteliste",
+      "joining": "Wird eingetragen…",
+      "successTitle": "Sie stehen auf der Liste!",
+      "successBody": "Als Early-Access-Mitglied erhalten Sie 50% Rabatt auf Ihr erstes Jahr. Wir melden uns, sobald Halo bereit ist.",
+      "alreadyTitle": "Sie stehen bereits auf der Liste!",
+      "alreadyBody": "Ihr Rabatt von 50% auf das erste Jahr ist gesichert — wir melden uns, sobald Halo bereit ist.",
+      "errorRateLimit": "Zu viele Anfragen — bitte versuchen Sie es in einer Minute erneut.",
+      "errorValidation": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "errorNetwork": "Netzwerkfehler — bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "errorUnknown": "Etwas ist schiefgelaufen — bitte versuchen Sie es erneut."
+    },
+    "stickyCta": {
+      "sublabel": "Erkennen Sie Deepfakes in Ihren Anrufen",
+      "primary": "Auf die Warteliste",
+      "secondary": "Abonnieren"
+    }
+  },
+  "scamInsurancePage": {
+    "announcement": "Machen Sie sich nie wieder Sorgen über Betrug — Frühentschlossene erhalten ihre ersten 3 Monate gratis",
+    "hero": {
+      "eyebrow": "Für Familien und Senioren",
+      "title": "Machen Sie Sich Nie Wieder Sorgen über <highlight>Betrug.</highlight>",
+      "description": "scam.ai blockiert betrügerische Anrufe, SMS und E-Mails, bevor sie Sie überhaupt erreichen — und untermauert dies mit einer Geld-zurück-Garantie, falls doch etwas durchkommt.",
+      "trustBadges": {
+        "privacy": "Höchster Datenschutz",
+        "insurance": "Versicherungsgestützt",
+        "protected": "Immer geschützt"
+      },
+      "assurance": "Keine Kreditkarte. Kein Spam. Jederzeit kündbar."
+    },
+    "stats": {
+      "lost": "im vergangenen Jahr in den USA durch Betrug verloren",
+      "targeted": "Amerikaner über 60 werden jährlich ins Visier genommen",
+      "coverage": "Deckung, falls ein Betrug an uns vorbeikommt"
+    },
+    "howItWorks": {
+      "eyebrow": "So funktioniert es",
+      "title": "Vier Schutzebenen",
+      "description": "Während Sie Ihr Leben leben, arbeitet scam.ai im Hintergrund — verringert Ihre Angreifbarkeit, hält nach Bedrohungen Ausschau und steht Ihnen zur Seite, falls etwas schiefgeht.",
+      "steps": {
+        "removeInfo": {
+          "title": "Entfernen Sie Ihre persönlichen Daten — Online und im Darknet",
+          "desc": "Betrüger kaufen Ihren Namen, Ihre Telefonnummer und Ihre Adresse von Datenhändler-Websites — und handeln damit im Darknet. Wir entfernen Ihre Daten von all diesen Quellen, sodass Sie weitaus schwerer zu finden und ins Visier zu nehmen sind, bevor ein Betrug überhaupt beginnt.",
+          "tag": "Proaktive Verteidigung"
+        },
+        "monitorBreaches": {
+          "title": "Überwachen Sie Datenlecks, die Sie betreffen",
+          "desc": "Wenn Unternehmen gehackt werden, können Ihre Daten durchsickern. Wir suchen kontinuierlich nach Lecks, die Ihre Daten enthalten, und senden Ihnen sofort eine verständliche Warnung — damit Sie stets wissen, was offengelegt wurde und was als Nächstes zu tun ist.",
+          "tag": "Bleiben Sie informiert"
+        },
+        "watchComms": {
+          "title": "Behalten Sie Ihre Anrufe, SMS und E-Mails im Blick",
+          "desc": "Wir überwachen Ihre eingehenden Anrufe, SMS und E-Mails auf aktive Betrugsversuche — markieren verdächtige Aktivitäten und stoppen Betrüger, bevor sie Sie erreichen können.",
+          "tag": "Aktiver Schutzschild"
+        },
+        "coverLoss": {
+          "title": "Wir decken Sie ab, wenn das Unglück eintritt",
+          "desc": "Selbst mit dem besten Schutz ist kein System perfekt. Deshalb wird jedes scam.ai-Mitglied durch unsere Betrugsschutz-Garantie abgesichert. Wenn Sie während Ihrer Mitgliedschaft einen finanziellen Verlust durch Betrug erleiden, kommen Sie möglicherweise für eine Erstattung infrage — abgesichert durch einen zugelassenen Versicherungspartner.",
+          "tag": "Komplettes Sicherheitsnetz"
+        }
+      },
+      "trustBar": {
+        "private": "Ihre Gespräche bleiben privat",
+        "privacyAware": "Wir sind zutiefst datenschutzbewusst",
+        "control": "Sie behalten stets die Kontrolle"
+      }
+    },
+    "insurance": {
+      "eyebrow": "Unser kühnstes Versprechen",
+      "title": "Geschützt durch Technologie. <highlight>Abgesichert durch Versicherung.</highlight>",
+      "description": "Die meisten Apps versuchen nur zu helfen. Wir gehen weiter. Wenn ein Betrüger während Ihrer Mitgliedschaft unseren Schutz durchbricht, kommen Sie möglicherweise für eine Erstattung Ihres finanziellen Verlusts infrage — abgesichert durch einen echten Versicherungspartner, ohne Hin und Her.",
+      "pride": "So stolz sind wir auf das, was wir geschaffen haben.",
+      "coverage": {
+        "romance": "Liebes- und Identitätsbetrug",
+        "irs": "Falsche Anrufe von Finanzamt und Krankenkasse",
+        "giftCard": "Betrug mit Geschenkkarten und Überweisungen",
+        "phishing": "Phishing und Identitätsdiebstahl"
+      },
+      "coveredLabel": "Abgedeckt",
+      "assurances": {
+        "licensed": "Abgesichert durch eine zugelassene Versicherung",
+        "noFight": "Kein Kampf um Ihr Geld"
+      },
+      "footnote": "¹ Wir gehen eine Partnerschaft mit einer zugelassenen Versicherungsgesellschaft ein, um Betrugsverluste unserer Mitglieder abzudecken. Die Deckung unterliegt den Bedingungen des bei der Anmeldung bereitgestellten Versicherungsvertrags."
+    },
+    "problem": {
+      "eyebrow": "Die Realität",
+      "title": "Betrüger Haben Es auf Sie Abgesehen.<br></br> Jeden Einzelnen Tag.",
+      "description": "Sie rufen an und geben sich als Ihre Bank aus. Sie schreiben SMS und geben sich als Ihr Enkelkind aus. Sie senden E-Mails und geben sich als das Finanzamt aus. Und sie werden jeden Monat besser darin.",
+      "stats": {
+        "stolen": {
+          "label": "Im vergangenen Jahr Amerikanern ab 60 gestohlen",
+          "sub": "Mehr als jeder anderen Altersgruppe"
+        },
+        "seniors": {
+          "label": "der Senioren verlieren Geld durch Betrug",
+          "sub": "Die meisten melden es aus Scham nie"
+        },
+        "aiCalls": {
+          "label": "Anstieg KI-generierter Betrugsanrufe",
+          "sub": "Stimmen klingen jetzt genau wie die der Familie"
+        }
+      },
+      "callout": "Das Schlimmste? <strong>Sie haben bereits Ihre Telefonnummer, Ihre Adresse und Ihren Namen.</strong> All das liegt in Datenbanken, die jeder für ein paar Dollar kaufen kann. Deshalb blockiert scam.ai Betrüger nicht nur — wir bekämpfen sie an allen Fronten."
+    },
+    "protection": {
+      "eyebrow": "Vollständiger Schutz",
+      "title": "Mehr als nur eine App",
+      "description": "scam.ai umgibt Sie mit einem vollständigen Schutzschild — damit Betrüger Sie weder finden noch erreichen noch täuschen können.",
+      "features": {
+        "newsletter": {
+          "title": "Wöchentlicher Betrugs-Newsletter",
+          "desc": "Jede Woche senden wir Ihnen eine verständliche Zusammenfassung der neuesten kursierenden Betrugsmaschen. Wenn Sie wissen, worauf Sie achten müssen, verlieren Betrüger ihre Macht über Sie."
+        },
+        "support": {
+          "title": "Live-Support-Netzwerk",
+          "desc": "Kommt Ihnen etwas seltsam vor? Rufen Sie uns an. Unser Support-Team ist da, wenn Sie sich nicht sicher sind, ob ein Anruf, eine SMS oder eine E-Mail Betrug ist. Sie sind nie allein damit, es herauszufinden."
+        },
+        "infoRemoval": {
+          "title": "Entfernung persönlicher Daten",
+          "desc": "Betrüger kaufen Ihren Namen, Ihre Adresse und Ihre Telefonnummer von Online-Datenhändlern. Wir entfernen sie aus Hunderten dieser Datenbanken — damit Sie von vornherein weitaus schwerer ins Visier zu nehmen sind."
+        }
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Auf die Warteliste",
+      "title": "Machen Sie Sich Nie Wieder Sorgen über Betrug.",
+      "description": "Ein einziges Abonnement deckt alles ab — Blockierung, Versicherung, Aufklärung und Support. Treten Sie jetzt bei und sichern Sie sich Ihre ersten 3 Monate gratis.",
+      "badge": "Erste 3 Monate gratis*",
+      "footnote": "* Die kostenlose Testphase gilt für die ersten 3 Monate eines kostenpflichtigen Abonnements nach dem Start."
+    },
+    "disclaimers": {
+      "insurance": "<label>¹ Versicherungsdeckung.</label> scam.ai ist kein zugelassener Versicherungsanbieter. Die Erstattung von Verlusten im Rahmen der Betrugsschutz-Garantie wird durch eine Partnerschaft mit einem zugelassenen Versicherer ermöglicht. Die Deckung unterliegt den Bedingungen, Ausschlüssen und Grenzen, die im jeweils geltenden Versicherungsvertrag festgelegt sind und den Mitgliedern bei der Anmeldung bereitgestellt werden.",
+      "statistics": "<label>² Statistiken.</label> Die genannten Zahlen basieren auf öffentlich verfügbaren Daten der FTC, des FBI IC3 und des AARP Fraud Watch Network. Die tatsächlichen Ergebnisse können abweichen.",
+      "waitlist": "<label>³ Warteliste.</label> Der Beitritt zur Warteliste stellt weder eine Anmeldung zu einem Versicherungsplan dar noch garantiert er den Zugang zur scam.ai-Anwendung. Mit der Übermittlung Ihrer E-Mail-Adresse stimmen Sie zu, Produktneuigkeiten von scam.ai zu erhalten. Sie können sich jederzeit abmelden.",
+      "offer": "<label>⁴ Angebot für Frühentschlossene.</label> Das Angebot „erste 3 Monate gratis“ gilt ausschließlich für Mitglieder der Warteliste und für die ersten 3 Monate eines kostenpflichtigen Abonnements nach dem allgemeinen Produktstart. scam.ai behält sich das Recht vor, dieses Angebot jederzeit vor dem Start zu ändern.",
+      "app": "<label>⁵ Funktionsweise der App.</label> scam.ai arbeitet als Screening-Tool auf dem Gerät und garantiert nicht die Erkennung sämtlicher betrügerischer Aktivitäten. Die Leistung kann je nach Gerät und Betriebssystem variieren."
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "eyebrow": "KONTAKT",
+      "title": "Kontakt aufnehmen",
+      "description": "Haben Sie Fragen zu Scam AI? Möchten Sie Lösungen für Unternehmen besprechen? Wir helfen Ihnen gerne weiter."
+    },
+    "options": {
+      "sales": {
+        "title": "Vertrieb",
+        "description": "Interesse an Unternehmensplänen oder Mengenpreisen?"
+      },
+      "support": {
+        "title": "Technischer Support",
+        "description": "Brauchen Sie Hilfe bei der Integration oder Fehlerbehebung?"
+      },
+      "general": {
+        "title": "Allgemeine Anfragen",
+        "description": "Weitere Fragen oder Feedback?"
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "items": {
+        "getStarted": {
+          "question": "Wie schnell kann ich loslegen?",
+          "answer": "Sie können Scam AI innerhalb von Minuten nutzen. Erstellen Sie ein kostenloses Konto auf app.scam.ai, holen Sie sich Ihren API-Schlüssel und führen Sie Ihren ersten API-Aufruf durch. Wir stellen SDKs und Dokumentation bereit, damit Sie schnell integrieren können."
+        },
+        "customSolutions": {
+          "question": "Bieten Sie maßgeschneiderte Lösungen für Unternehmen an?",
+          "answer": "Ja! Wir bieten maßgeschneiderte Integrationen, On-Premise-Bereitstellungen, dedizierten Support und Mengenrabatte für Unternehmenskunden. Kontaktieren Sie unser Vertriebsteam, um Ihre spezifischen Anforderungen zu besprechen."
+        },
+        "regions": {
+          "question": "In welchen Regionen sind Sie tätig?",
+          "answer": "Scam AI ist weltweit tätig, mit Rechenzentren in den USA, der EU und APAC. Wir sind GDPR-konform und können Ihnen helfen, regionale Anforderungen an die Datenresidenz zu erfüllen."
+        },
+        "sla": {
+          "question": "Wie sieht Ihr SLA für Unternehmenskunden aus?",
+          "answer": "Unternehmenskunden erhalten ein Verfügbarkeits-SLA von 99.9%, priorisierten Support mit garantierten Reaktionszeiten und dediziertes Account-Management. Kontaktieren Sie den Vertrieb für weitere Details."
+        },
+        "tryBeforeBuy": {
+          "question": "Kann ich es testen, bevor ich mich für einen kostenpflichtigen Plan entscheide?",
+          "answer": "Selbstverständlich! Wir bieten 200 kostenlose Bilder pro Monat ohne Kreditkarte. Sie können unsere API testen, das Dashboard erkunden und die Genauigkeit bewerten, bevor Sie ein Upgrade durchführen."
+        }
+      }
+    },
+    "office": {
+      "title": "Unser Büro"
+    },
+    "cta": {
+      "title": "Bereit loszulegen?",
+      "description": "Beginnen Sie mit 200 kostenlosen Bildern pro Monat, Ihre Plattform zu schützen.",
+      "button": "Kostenlose Testphase starten"
+    }
   }
 }

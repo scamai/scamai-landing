@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { MAX_VOLUME, VOLUME_DISCOUNT_THRESHOLD } from './constants';
 
 interface VolumeSliderProps {
@@ -6,12 +7,13 @@ interface VolumeSliderProps {
 }
 
 export function VolumeSlider({ volume, onChange }: VolumeSliderProps) {
+  const t = useTranslations("pricingPage");
   const sliderPosition = (volume / MAX_VOLUME) * 100;
   const bubbleLeftPercent = Math.max(5, Math.min(95, sliderPosition));
 
   return (
     <div className="rounded-3xl bg-gray-900/60 border border-gray-700 p-8">
-      <label className="mb-6 block text-xl font-bold text-white">Monthly Volume</label>
+      <label className="mb-6 block text-xl font-bold text-white">{t("volume.label")}</label>
       <div className="relative pt-10 pb-2">
         {/* Current value above slider */}
         <div
@@ -21,7 +23,7 @@ export function VolumeSlider({ volume, onChange }: VolumeSliderProps) {
             transform: 'translateX(-50%)',
           }}
         >
-          {volume.toLocaleString()} images
+          {t("volume.imagesCount", { count: volume.toLocaleString() })}
         </div>
         <input
           type="range"
@@ -53,9 +55,9 @@ export function VolumeSlider({ volume, onChange }: VolumeSliderProps) {
               </svg>
             </div>
             <div className="flex-1">
-              <p className="font-bold text-xl text-white mb-2">Need more than {MAX_VOLUME.toLocaleString()} images?</p>
+              <p className="font-bold text-xl text-white mb-2">{t("volume.discountTitle", { max: MAX_VOLUME.toLocaleString() })}</p>
               <p className="text-sm text-gray-300 mb-4">
-                Unlock enterprise-grade features, volume discounts, and dedicated support for high-volume needs.
+                {t("volume.discountDescription")}
               </p>
               <a
                 href="https://cal.com/scamai/15min"
@@ -63,7 +65,7 @@ export function VolumeSlider({ volume, onChange }: VolumeSliderProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0043FA] text-white font-semibold hover:bg-[#0036C8] transition-colors"
               >
-                Talk to Sales
+                {t("volume.talkToSales")}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

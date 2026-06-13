@@ -1,5 +1,6 @@
 import { generatePageMetadata } from '@/lib/seo';
 import type { Locale } from '@/lib/seo';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { competitors } from '@/lib/compare/competitors';
 
@@ -23,20 +24,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function ComparePage({ params }: { params: Promise<{ locale: string }> }) {
-  await params;
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'comparePage' });
   return (
     <main className="min-h-screen bg-black text-white">
       <section className="relative px-4 sm:px-6 pb-20" style={{ paddingTop: '140px' }}>
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-400 mb-4 sm:text-xs">
-              COMPARISONS
+              {t('eyebrow')}
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6">
-              Scam AI vs <span className="text-[#245FFF]">competitors</span>
+              {t.rich('heading', {
+                highlight: (chunks) => <span className="text-[#245FFF]">{chunks}</span>,
+              })}
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-              See how Scam AI stacks up against other deepfake detection platforms. Transparent comparisons — including where competitors are stronger.
+              {t('subheading')}
             </p>
           </div>
 
@@ -49,7 +53,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               >
                 <div className="flex-1 min-w-0">
                   <h2 className="text-base font-bold text-white group-hover:text-[#245FFF] transition-colors mb-1">
-                    Scam AI vs {comp.name}
+                    {t('versus', { name: comp.name })}
                   </h2>
                   <p className="text-sm text-gray-500 leading-relaxed line-clamp-1">{comp.metaDescription}</p>
                 </div>
@@ -67,7 +71,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               rel="noopener noreferrer"
               className="rainbow-button inline-block"
             >
-              <span className="rainbow-button-inner">Try Scam AI Free — 200 images/month</span>
+              <span className="rainbow-button-inner">{t('tryFree')}</span>
             </a>
           </div>
         </div>

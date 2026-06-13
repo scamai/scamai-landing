@@ -4,6 +4,7 @@ import { Bento46, Bento53 } from "@/components/bento";
 import { BentoV1_18, BentoV1_20 } from "@/components/bento-v1";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState, Suspense } from "react";
+import { useTranslations } from "next-intl";
 import { getIndustryBySlug } from "@/lib/solutions/industries";
 import { getArticleBySlug } from "@/lib/learn/articles";
 import { audioDetectionSolutionLinks, audioDetectionLearnLinks, audioDetectionCompareLink } from "@/lib/internal-links";
@@ -48,6 +49,7 @@ function AnimatedSection({
 }
 
 export default function AudioDetectionPage() {
+  const t = useTranslations("audioDetectionPage");
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
@@ -69,31 +71,33 @@ export default function AudioDetectionPage() {
           <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5 lg:space-y-6">
             <AnimatedSection delay={0.2}>
               <p className="text-[10px] font-semibold text-gray-400 tracking-[0.15em] uppercase sm:text-xs">
-                AUDIO DETECTION
+                {t("hero.eyebrow")}
               </p>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={0.3}>
               <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                Detect voice cloning and synthetic audio
+                {t("hero.title")}
               </h1>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={0.4}>
               <div className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0" data-speakable>
                 <p className="text-center">
-                  Detect <span className="font-semibold text-white">voice clones</span>, <span className="font-semibold text-white">AI-generated speech</span>, and <span className="font-semibold text-white">synthetic audio</span> with <span className="font-semibold text-white">98.5% accuracy</span> in under 3 seconds. Identifies outputs from ElevenLabs, PlayHT, Resemble AI, Azure TTS, and other voice synthesis platforms. Supports MP3, WAV, M4A, FLAC, and OGG formats.
+                  {t.rich("hero.description", {
+                    em: (c) => <span className="font-semibold text-white">{c}</span>,
+                  })}
                 </p>
               </div>
             </AnimatedSection>
-            
+
             <AnimatedSection delay={0.5}>
               <div className="pt-4 sm:pt-3">
                 <a
                   href="mailto:sales@scam.ai"
                   className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#245FFF] rounded-lg hover:bg-[#1d4acc] transition-colors duration-200"
                 >
-                  Contact Sales
+                  {t("hero.cta")}
                 </a>
               </div>
             </AnimatedSection>
@@ -108,10 +112,12 @@ export default function AudioDetectionPage() {
           <AnimatedSection>
             <div className="text-center mb-16 lg:mb-20">
               <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-4 sm:text-[10px] lg:mb-6">
-                ADVANCED CAPABILITIES
+                {t("features.eyebrow")}
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                Advanced Audio <span className="text-[#245FFF]">Analysis</span>
+                {t.rich("features.title", {
+                  accent: (c) => <span className="text-[#245FFF]">{c}</span>,
+                })}
               </h2>
             </div>
           </AnimatedSection>
@@ -121,16 +127,20 @@ export default function AudioDetectionPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-28">
               <div className="lg:pl-12 flex flex-col justify-center" style={{ minHeight: '400px' }}>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  VOICE CLONING DETECTION
+                  {t("features.voiceCloning.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Identify AI-Generated Voices
+                  {t("features.voiceCloning.title")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4" data-speakable>
-                  Identify AI-generated voice clones with <span className="font-semibold text-white">98.5% accuracy</span> across multiple languages, accents, and speech patterns. According to the FBI&apos;s IC3 2024 report, voice phishing losses exceeded $12.5 billion globally, making real-time audio detection essential for financial institutions and call centers.
+                  {t.rich("features.voiceCloning.body1", {
+                    em: (c) => <span className="font-semibold text-white">{c}</span>,
+                  })}
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Processing in <span className="font-semibold text-white">under 3 seconds</span> per audio clip enables live call verification, real-time streaming analysis, and automated fraud screening at scale.
+                  {t.rich("features.voiceCloning.body2", {
+                    em: (c) => <span className="font-semibold text-white">{c}</span>,
+                  })}
                 </p>
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
@@ -151,16 +161,20 @@ export default function AudioDetectionPage() {
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center" style={{ minHeight: '400px' }}>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  TTS DETECTION
+                  {t("features.tts.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Synthetic Speech Analysis
+                  {t("features.tts.title")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
-                  Detect text-to-speech output from major AI models including <span className="font-semibold text-white">ElevenLabs, PlayHT, Azure TTS</span>, and emerging voice synthesis platforms.
+                  {t.rich("features.tts.body1", {
+                    em: (c) => <span className="font-semibold text-white">{c}</span>,
+                  })}
                 </p>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Works seamlessly with <span className="font-semibold text-white">MP3, WAV, M4A, FLAC, OGG</span> and all major audio formats for maximum compatibility.
+                  {t.rich("features.tts.body2", {
+                    em: (c) => <span className="font-semibold text-white">{c}</span>,
+                  })}
                 </p>
               </div>
             </div>
@@ -171,13 +185,13 @@ export default function AudioDetectionPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 lg:mb-28">
               <div className="lg:pl-12 flex flex-col justify-center" style={{ minHeight: '400px' }}>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  MANIPULATION DETECTION
+                  {t("features.manipulation.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Audio Manipulation Detection
+                  {t("features.manipulation.title")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Identify spliced audio segments, pitch modifications, speed alterations, and other sophisticated audio manipulations. Our advanced algorithms detect even subtle edits that human ears might miss.
+                  {t("features.manipulation.body")}
                 </p>
               </div>
               <div className="relative flex items-center justify-center" style={{ minHeight: '400px' }}>
@@ -198,13 +212,13 @@ export default function AudioDetectionPage() {
               </div>
               <div className="order-1 lg:order-2 flex flex-col justify-center" style={{ minHeight: '400px' }}>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs lg:mb-6">
-                  EASY INTEGRATION
+                  {t("features.integration.eyebrow")}
                 </p>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-[1.15] lg:mb-6">
-                  Simple API Integration
+                  {t("features.integration.title")}
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Easy REST API integration with comprehensive documentation for real-time or batch audio verification workflows. Get started in minutes with our SDKs and 24/7 developer support.
+                  {t("features.integration.body")}
                 </p>
               </div>
             </div>
@@ -225,130 +239,37 @@ export default function AudioDetectionPage() {
           <AnimatedSection>
             <div className="text-center mb-16 lg:mb-20">
               <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-gray-400 mb-4 sm:text-[10px] lg:mb-6">
-                REAL-WORLD APPLICATIONS
+                {t("useCases.eyebrow")}
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                Trusted across <span className="text-[#245FFF]">industries</span>
+                {t.rich("useCases.title", {
+                  accent: (c) => <span className="text-[#245FFF]">{c}</span>,
+                })}
               </h2>
             </div>
           </AnimatedSection>
 
           <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-            <AnimatedSection delay={0.1}>
-              <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
-                <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-white">Call Centers & Customer Service</h3>
-                <p className="mb-6 text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Protect against voice impersonation and fraud attempts in customer service interactions with real-time verification.
-                </p>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Caller authentication verification</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Voice biometric security enhancement</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Fraud prevention and detection</span>
-                  </li>
-                </ul>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
-                <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-white">Banking & Financial Services</h3>
-                <p className="mb-6 text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Prevent voice phishing (vishing) scams and unauthorized account access through voice authentication bypass attempts.
-                </p>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Voice banking security verification</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Phone authentication protection</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Vishing attack detection</span>
-                  </li>
-                </ul>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
-                <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-white">Media & Broadcasting</h3>
-                <p className="mb-6 text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Verify the authenticity of audio recordings and prevent the spread of manipulated interviews, statements, or broadcasts.
-                </p>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Audio source verification</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Interview authenticity validation</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Content integrity protection</span>
-                  </li>
-                </ul>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.4}>
-              <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
-                <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-white">Legal & Law Enforcement</h3>
-                <p className="mb-6 text-base sm:text-lg text-gray-300 leading-relaxed">
-                  Authenticate audio evidence and detect manipulated recordings in legal proceedings and criminal investigations.
-                </p>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Evidence authentication services</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Forensic audio analysis</span>
-                  </li>
-                  <li className="flex items-start text-base sm:text-lg">
-                    <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Chain of custody verification</span>
-                  </li>
-                </ul>
-              </div>
-            </AnimatedSection>
+            {useCaseCards.map(({ id, delay }) => (
+              <AnimatedSection key={id} delay={delay}>
+                <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
+                  <h3 className="mb-4 text-2xl sm:text-3xl font-bold text-white">{t(`useCases.cards.${id}.title`)}</h3>
+                  <p className="mb-6 text-base sm:text-lg text-gray-300 leading-relaxed">
+                    {t(`useCases.cards.${id}.description`)}
+                  </p>
+                  <ul className="space-y-3 text-gray-300">
+                    {[0, 1, 2].map((i) => (
+                      <li key={i} className="flex items-start text-base sm:text-lg">
+                        <svg className="w-5 h-5 text-[#245FFF] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{t(`useCases.cards.${id}.bullets.${i}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -362,45 +283,56 @@ export default function AudioDetectionPage() {
           <AnimatedSection>
             <div className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1]">
-                Ready to protect your platform from voice fraud?
+                {t("cta.title")}
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Contact our team to discuss <span className="font-semibold text-white">enterprise audio detection solutions</span> tailored to your needs.
+                {t.rich("cta.subtitle", {
+                  em: (c) => <span className="font-semibold text-white">{c}</span>,
+                })}
               </p>
               <a
                 href="mailto:sales@scam.ai"
                 className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#245FFF] rounded-lg hover:bg-[#1d4acc] transition-colors duration-200"
               >
-                Contact Sales
+                {t("cta.button")}
               </a>
               <p className="mt-6 text-sm text-gray-400">
-                Also need image and video deepfake detection?{" "}
-                <Link href="/products/ai-detection" className="text-[#245FFF] hover:underline">
-                  Explore AI Image Detection →
-                </Link>
+                {t.rich("cta.crossLink", {
+                  link: (c) => (
+                    <Link href="/products/ai-detection" className="text-[#245FFF] hover:underline">
+                      {c}
+                    </Link>
+                  ),
+                })}
               </p>
               <p className="mt-2 text-sm text-gray-400">
-                View{" "}
-                <Link href="/pricing" className="text-[#245FFF] hover:underline">
-                  pricing plans
-                </Link>{" "}
-                starting at $0.05/file.
+                {t.rich("cta.pricingLink", {
+                  link: (c) => (
+                    <Link href="/pricing" className="text-[#245FFF] hover:underline">
+                      {c}
+                    </Link>
+                  ),
+                })}
               </p>
               <p className="mt-2 text-sm text-gray-500">
-                Built on published research:{" "}
-                <Link href="/research/papers/deepfake-detectors-in-reality" className="text-gray-400 hover:text-[#245FFF] transition-colors">
-                  Do deepfake detectors work in reality?
-                </Link>
-                {" "}·{" "}
-                <Link href="/research/papers/open-source-ai-detection-benchmark" className="text-gray-400 hover:text-[#245FFF] transition-colors">
-                  Open-source detector benchmark
-                </Link>
+                {t.rich("cta.research", {
+                  link1: (c) => (
+                    <Link href="/research/papers/deepfake-detectors-in-reality" className="text-gray-400 hover:text-[#245FFF] transition-colors">
+                      {c}
+                    </Link>
+                  ),
+                  link2: (c) => (
+                    <Link href="/research/papers/open-source-ai-detection-benchmark" className="text-gray-400 hover:text-[#245FFF] transition-colors">
+                      {c}
+                    </Link>
+                  ),
+                })}
               </p>
             </div>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="mt-14 mx-auto max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4 text-center">Industry Solutions & Learning</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-4 text-center">{t("relatedLinks.heading")}</p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {audioDetectionSolutionLinks.map((slug) => {
                   const sol = getIndustryBySlug(slug);
@@ -423,7 +355,7 @@ export default function AudioDetectionPage() {
                   );
                 })}
                 <Link href={`/compare/${audioDetectionCompareLink}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
-                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Scam AI vs Sensity AI</span>
+                  <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{t("relatedLinks.compare")}</span>
                   <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </Link>
               </div>
@@ -435,49 +367,39 @@ export default function AudioDetectionPage() {
   );
 }
 
-const audioFaqs = [
-  {
-    question: "How accurate is Scam AI voice clone and audio deepfake detection?",
-    answer: "Scam AI achieves 98.5% accuracy for voice clone detection, identifying synthetic voices from platforms like ElevenLabs, PlayHT, Resemble AI, and Azure TTS. Processing time is under 3 seconds per audio file.",
-  },
-  {
-    question: "What types of audio deepfakes can Scam AI detect?",
-    answer: "Scam AI detects voice clones (ElevenLabs, Resemble AI, PlayHT, Azure TTS), text-to-speech generated audio, audio deepfakes, spliced or manipulated audio recordings, and real-time synthetic voice streams.",
-  },
-  {
-    question: "What audio formats does Scam AI support?",
-    answer: "Scam AI supports MP3, WAV, M4A, FLAC, and OGG audio formats. Real-time audio stream analysis is also available for live call monitoring and voice authentication.",
-  },
-  {
-    question: "Can Scam AI detect voice phishing (vishing) attacks?",
-    answer: "Yes. Scam AI audio detection is used by call centers, banks, and financial services to identify voice phishing attacks in real-time. It detects cloned voices attempting to impersonate executives, customers, or authority figures.",
-  },
-  {
-    question: "What is voice clone detection?",
-    answer: "Voice clone detection identifies audio that has been artificially generated or cloned using AI speech synthesis tools such as ElevenLabs, PlayHT, or Azure TTS. Scam AI's Eva-v1 audio model analyzes spectral and temporal artifacts — patterns invisible to human ears — that distinguish synthetic voices from genuine recordings, achieving 98.5% accuracy.",
-  },
-  {
-    question: "Can the audio deepfake detection API process real-time streams?",
-    answer: "Yes. Scam AI provides a real-time streaming endpoint for live call monitoring, processing each audio segment in under 3 seconds. This enables call centers and financial institutions to screen synthetic media and voice clones during active calls, preventing fraud in real time.",
-  },
-];
+const useCaseCards = [
+  { id: "callCenters", delay: 0.1 },
+  { id: "banking", delay: 0.2 },
+  { id: "media", delay: 0.3 },
+  { id: "legal", delay: 0.4 },
+] as const;
+
+const audioFaqKeys = [
+  "accuracy",
+  "types",
+  "formats",
+  "vishing",
+  "whatIs",
+  "realtime",
+] as const;
 
 function AudioFAQAccordion() {
+  const t = useTranslations("audioDetectionPage");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="landing-section relative overflow-hidden bg-black" aria-label="Frequently Asked Questions">
+    <section className="landing-section relative overflow-hidden bg-black" aria-label={t("faq.ariaLabel")}>
       <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 py-20 sm:py-24 lg:py-32">
         <div className="text-center mb-12">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs">FAQ</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#245FFF] mb-4 sm:text-xs">{t("faq.eyebrow")}</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white leading-[1.1]">
-            Voice Clone Detection Questions
+            {t("faq.title")}
           </h2>
         </div>
         <div className="space-y-4">
-          {audioFaqs.map((faq, index) => (
+          {audioFaqKeys.map((key, index) => (
             <div
-              key={index}
+              key={key}
               className="rounded-2xl border border-gray-800 overflow-hidden transition-colors duration-300 hover:border-gray-700"
               style={{ background: openIndex === index ? "rgba(36, 95, 255, 0.03)" : "rgba(17, 24, 39, 0.3)" }}
             >
@@ -486,7 +408,7 @@ function AudioFAQAccordion() {
                 className="w-full px-6 py-5 flex items-start justify-between text-left transition-colors hover:bg-gray-800/30"
                 aria-expanded={openIndex === index}
               >
-                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{faq.question}</span>
+                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{t(`faq.items.${key}.question`)}</span>
                 <motion.svg
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -508,7 +430,7 @@ function AudioFAQAccordion() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-5">
-                      <p className="text-gray-300 leading-relaxed" data-speakable>{faq.answer}</p>
+                      <p className="text-gray-300 leading-relaxed" data-speakable>{t(`faq.items.${key}.answer`)}</p>
                     </div>
                   </motion.div>
                 )}

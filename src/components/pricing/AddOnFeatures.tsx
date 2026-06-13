@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   ADAPTIVE_DEFENSE_PRICE,
   ACTIVE_LIVENESS_PRICE,
@@ -25,27 +26,22 @@ export function AddOnFeatures({
   currencySymbol,
   formatPrice,
 }: AddOnFeaturesProps) {
+  const t = useTranslations("pricingPage");
   const features = [
     {
       id: 'adaptive-defense',
-      name: 'Adaptive Defense',
-      description: 'Real-time GenAI, deepfake & injection attack detection with advanced AI models',
       price: ADAPTIVE_DEFENSE_PRICE,
       checked: adaptiveDefense,
       onChange: setAdaptiveDefense,
     },
     {
       id: 'active-liveness',
-      name: 'Active Liveness',
-      description: 'Live face detection to verify real human presence and prevent GenAI-generated deepfakes',
       price: ACTIVE_LIVENESS_PRICE,
       checked: activeLiveness,
       onChange: setActiveLiveness,
     },
     {
       id: 'express-lane',
-      name: 'Express Lane',
-      description: 'Low latency processing with 3s response time guarantee',
       price: EXPRESS_LANE_PRICE,
       checked: expressLane,
       onChange: setExpressLane,
@@ -54,8 +50,8 @@ export function AddOnFeatures({
 
   return (
     <div className="rounded-3xl bg-gray-900/60 border border-gray-700 p-8">
-      <h3 className="mb-6 text-xl font-bold text-white">Add-on Features</h3>
-      <p className="mb-6 text-sm text-gray-400">Enhance your detection capabilities with optional features</p>
+      <h3 className="mb-6 text-xl font-bold text-white">{t("addOns.title")}</h3>
+      <p className="mb-6 text-sm text-gray-400">{t("addOns.subtitle")}</p>
 
       <div className="space-y-4">
         {features.map((feature) => (
@@ -79,13 +75,13 @@ export function AddOnFeatures({
             <div className="flex-1">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-semibold text-white group-hover:text-[#0043FA] transition-colors">
-                  {feature.name}
+                  {t(`addOns.items.${feature.id}.name`)}
                 </span>
                 <span className="text-sm font-semibold text-[#0043FA]">
                   +{currencySymbol}{formatPrice(feature.price)}/image
                 </span>
               </div>
-              <p className="text-sm text-gray-400">{feature.description}</p>
+              <p className="text-sm text-gray-400">{t(`addOns.items.${feature.id}.description`)}</p>
             </div>
           </label>
         ))}

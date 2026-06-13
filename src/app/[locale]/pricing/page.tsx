@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   usePricingCalculator,
   PricingHero,
@@ -11,6 +12,7 @@ import {
 } from '@/components/pricing';
 
 export default function PricingPage() {
+  const t = useTranslations("pricingPage");
   const {
     // State
     volume,
@@ -100,8 +102,9 @@ export default function PricingPage() {
       <section className="py-12 px-4 sm:px-6">
         <div className="mx-auto max-w-5xl text-center mb-16">
           <p className="text-lg text-gray-300 sm:text-xl">
-            Transparent pricing with no hidden fees.{' '}
-            <span className="font-bold text-white">Scale confidently as your business grows.</span>
+            {t.rich("banner.text", {
+              strong: (chunks) => <span className="font-bold text-white">{chunks}</span>,
+            })}
           </p>
         </div>
 

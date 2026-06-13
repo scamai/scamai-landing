@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { FORENSIC_REPORT_PRICE } from './constants';
 
 interface ForensicAddOnsProps {
@@ -6,15 +7,17 @@ interface ForensicAddOnsProps {
 }
 
 export function ForensicAddOns({ currencySymbol, formatPrice }: ForensicAddOnsProps) {
+  const t = useTranslations("pricingPage");
+  const includes = ['timeline', 'custody', 'evidence', 'witness'];
   return (
     <div className="rounded-3xl bg-gradient-to-br from-purple-500/10 to-gray-900/60 border-2 border-purple-500/50 p-8">
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h3 className="text-xl font-bold text-white mb-2">Forensic Add-ons</h3>
-          <p className="text-sm text-gray-400">Enterprise-grade investigation tools</p>
+          <h3 className="text-xl font-bold text-white mb-2">{t("forensic.title")}</h3>
+          <p className="text-sm text-gray-400">{t("forensic.subtitle")}</p>
         </div>
         <span className="rounded-full bg-purple-500/20 border border-purple-500/50 px-3 py-1 text-xs font-semibold text-purple-300">
-          Enterprise
+          {t("forensic.badge")}
         </span>
       </div>
 
@@ -23,28 +26,23 @@ export function ForensicAddOns({ currencySymbol, formatPrice }: ForensicAddOnsPr
         <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
           <div className="flex items-start justify-between mb-2">
             <div className="flex-1">
-              <h4 className="font-semibold text-white mb-1">Forensic PDF Reports</h4>
+              <h4 className="font-semibold text-white mb-1">{t("forensic.report.title")}</h4>
               <p className="text-sm text-gray-400 mb-3">
-                Comprehensive provenance report with detailed analysis, chain of custody, and legal documentation
+                {t("forensic.report.description")}
               </p>
               <div className="flex items-center gap-2">
                 <span className="text-lg font-bold text-purple-400">
                   {currencySymbol}{formatPrice(FORENSIC_REPORT_PRICE)}
                 </span>
-                <span className="text-sm text-gray-400">per image</span>
+                <span className="text-sm text-gray-400">{t("forensic.report.perImage")}</span>
               </div>
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-gray-700">
-            <p className="text-xs text-gray-500 mb-3">Includes:</p>
+            <p className="text-xs text-gray-500 mb-3">{t("forensic.report.includesLabel")}</p>
             <ul className="space-y-2 text-xs text-gray-400">
-              {[
-                'Detailed manipulation timeline & techniques used',
-                'Chain of custody documentation',
-                'Legal-ready evidence package',
-                'Expert witness support available',
-              ].map((item, index) => (
-                <li key={index} className="flex items-start gap-2">
+              {includes.map((item) => (
+                <li key={item} className="flex items-start gap-2">
                   <svg
                     className="h-4 w-4 flex-shrink-0 text-purple-400 mt-0.5"
                     fill="currentColor"
@@ -56,7 +54,7 @@ export function ForensicAddOns({ currencySymbol, formatPrice }: ForensicAddOnsPr
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span>{item}</span>
+                  <span>{t(`forensic.report.includes.${item}`)}</span>
                 </li>
               ))}
             </ul>
@@ -78,7 +76,7 @@ export function ForensicAddOns({ currencySymbol, formatPrice }: ForensicAddOnsPr
               d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
             />
           </svg>
-          Talk to sales for forensic features
+          {t("forensic.talkToSales")}
         </a>
       </div>
     </div>
