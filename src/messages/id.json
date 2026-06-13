@@ -3171,6 +3171,16 @@
       "waitlist": "<label>³ Daftar tunggu.</label> Bergabung dengan daftar tunggu tidak merupakan pendaftaran dalam program asuransi apa pun atau jaminan akses ke aplikasi scam.ai. Dengan mengirimkan email Anda, Anda setuju untuk menerima pembaruan produk dari scam.ai. Anda dapat berhenti berlangganan kapan saja.",
       "offer": "<label>⁴ Penawaran pengguna awal.</label> Penawaran “3 bulan pertama gratis” berlaku secara eksklusif untuk anggota daftar tunggu dan untuk 3 bulan pertama langganan berbayar setelah peluncuran umum produk. scam.ai berhak mengubah penawaran ini kapan saja sebelum peluncuran.",
       "app": "<label>⁵ Fungsionalitas aplikasi.</label> scam.ai beroperasi sebagai alat penyaringan di perangkat dan tidak menjamin deteksi seluruh aktivitas penipuan. Performa dapat bervariasi menurut perangkat dan sistem operasi."
+    },
+    "waitlistForm": {
+      "successTitle": "Anda sudah masuk daftar!",
+      "successBody": "Kami akan menghubungi Anda begitu scam.ai siap.",
+      "emailLabel": "Alamat email",
+      "emailPlaceholder": "namaanda@email.com",
+      "error": "Terjadi kesalahan. Silakan coba lagi.",
+      "saving": "Menyimpan tempat Anda…",
+      "joinButton": "Gabung daftar tunggu",
+      "earlyBird": "Pendaftar awal dapat 3 bulan gratis"
     }
   },
   "contactPage": {

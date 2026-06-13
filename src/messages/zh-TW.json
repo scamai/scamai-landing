@@ -3171,6 +3171,16 @@
       "waitlist": "<label>³ 候補名單。</label> 加入候補名單不構成參與任何保險方案，也不保證取得 scam.ai 應用程式的使用權。提交您的電子郵件即表示您同意接收來自 scam.ai 的產品更新。您可隨時取消訂閱。",
       "offer": "<label>⁴ 早期採用者優惠。</label>「前 3 個月免費」優惠僅適用於候補名單成員，且僅適用於產品正式發布後付費訂閱的前 3 個月。scam.ai 保留在發布前隨時修改此優惠的權利。",
       "app": "<label>⁵ 應用程式功能。</label> scam.ai 作為一款裝置端篩查工具運作，不保證偵測出所有詐欺活動。效能可能因裝置與作業系統而異。"
+    },
+    "waitlistForm": {
+      "successTitle": "你已加入名單！",
+      "successBody": "scam.ai 一上線我們就通知你。",
+      "emailLabel": "電子郵箱",
+      "emailPlaceholder": "yourname@email.com",
+      "error": "出錯了，請重試。",
+      "saving": "正在為你保留名額…",
+      "joinButton": "加入候補名單",
+      "earlyBird": "早鳥可享 3 個月免費"
     }
   },
   "contactPage": {

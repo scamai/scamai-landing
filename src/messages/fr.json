@@ -3171,6 +3171,16 @@
       "waitlist": "<label>³ Liste d’attente.</label> Rejoindre la liste d’attente ne constitue pas une adhésion à un quelconque plan d’assurance ni une garantie d’accès à l’application scam.ai. En soumettant votre e-mail, vous acceptez de recevoir des actualités produit de scam.ai. Vous pouvez vous désabonner à tout moment.",
       "offer": "<label>⁴ Offre de lancement.</label> L’offre « 3 premiers mois gratuits » s’applique exclusivement aux membres de la liste d’attente et aux 3 premiers mois d’un abonnement payant suivant le lancement général du produit. scam.ai se réserve le droit de modifier cette offre à tout moment avant le lancement.",
       "app": "<label>⁵ Fonctionnement de l’application.</label> scam.ai fonctionne comme un outil de filtrage sur l’appareil et ne garantit pas la détection de toutes les activités frauduleuses. Les performances peuvent varier selon l’appareil et le système d’exploitation."
+    },
+    "waitlistForm": {
+      "successTitle": "Vous êtes inscrit !",
+      "successBody": "Nous vous contacterons dès que scam.ai sera prêt.",
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "votrenom@email.com",
+      "error": "Une erreur s’est produite. Veuillez réessayer.",
+      "saving": "Enregistrement de votre place…",
+      "joinButton": "Rejoindre la liste d’attente",
+      "earlyBird": "Les premiers inscrits obtiennent 3 mois gratuits"
     }
   },
   "contactPage": {

@@ -2907,6 +2907,16 @@
       "waitlist": "<label>³ Waitlist.</label> Joining the waitlist does not constitute enrollment in any insurance plan or guarantee access to the scam.ai application. By submitting your email, you agree to receive product updates from scam.ai. You may unsubscribe at any time.",
       "offer": "<label>⁴ Early adopter offer.</label> The “first 3 months free” offer applies exclusively to waitlist members and to the first 3 months of a paid subscription following general product launch. scam.ai reserves the right to modify this offer at any time before launch.",
       "app": "<label>⁵ App functionality.</label> scam.ai operates as an on-device screening tool and does not guarantee detection of all fraudulent activity. Performance may vary by device and operating system."
+    },
+    "waitlistForm": {
+      "successTitle": "You’re on the list!",
+      "successBody": "We’ll reach out as soon as scam.ai is ready.",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "yourname@email.com",
+      "error": "Something went wrong — please try again.",
+      "saving": "Saving your spot…",
+      "joinButton": "Join the Waitlist",
+      "earlyBird": "Early bird gets 3 months free"
     }
   },
   "contactPage": {

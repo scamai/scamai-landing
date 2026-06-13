@@ -3278,6 +3278,16 @@
       "waitlist": "<label>³ Warteliste.</label> Der Beitritt zur Warteliste stellt weder eine Anmeldung zu einem Versicherungsplan dar noch garantiert er den Zugang zur scam.ai-Anwendung. Mit der Übermittlung Ihrer E-Mail-Adresse stimmen Sie zu, Produktneuigkeiten von scam.ai zu erhalten. Sie können sich jederzeit abmelden.",
       "offer": "<label>⁴ Angebot für Frühentschlossene.</label> Das Angebot „erste 3 Monate gratis“ gilt ausschließlich für Mitglieder der Warteliste und für die ersten 3 Monate eines kostenpflichtigen Abonnements nach dem allgemeinen Produktstart. scam.ai behält sich das Recht vor, dieses Angebot jederzeit vor dem Start zu ändern.",
       "app": "<label>⁵ Funktionsweise der App.</label> scam.ai arbeitet als Screening-Tool auf dem Gerät und garantiert nicht die Erkennung sämtlicher betrügerischer Aktivitäten. Die Leistung kann je nach Gerät und Betriebssystem variieren."
+    },
+    "waitlistForm": {
+      "successTitle": "Sie stehen auf der Liste!",
+      "successBody": "Wir melden uns, sobald scam.ai bereit ist.",
+      "emailLabel": "E-Mail-Adresse",
+      "emailPlaceholder": "ihrname@email.com",
+      "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      "saving": "Ihr Platz wird gesichert…",
+      "joinButton": "Auf die Warteliste",
+      "earlyBird": "Frühbucher erhalten 3 Monate gratis"
     }
   },
   "contactPage": {

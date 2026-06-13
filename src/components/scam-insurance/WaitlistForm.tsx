@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { trackEvent, trackWaitlistSubmit } from "@/lib/analytics";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
 export default function WaitlistForm() {
+  const t = useTranslations("scamInsurancePage.waitlistForm");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<FormState>("idle");
   const [utmParams, setUtmParams] = useState<Record<string, string>>({});
@@ -50,9 +52,9 @@ export default function WaitlistForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <p className="text-sm font-semibold text-white mb-1">You&apos;re on the list!</p>
+        <p className="text-sm font-semibold text-white mb-1">{t("successTitle")}</p>
         <p className="text-xs text-gray-400">
-          We&apos;ll reach out as soon as scam.ai is ready.
+          {t("successBody")}
         </p>
       </div>
     );
@@ -62,12 +64,12 @@ export default function WaitlistForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <div>
         <label htmlFor="waitlist-email" className="block text-xs font-medium text-gray-400 mb-1.5">
-          Email Address
+          {t("emailLabel")}
         </label>
         <input
           id="waitlist-email"
           type="email"
-          placeholder="yourname@email.com"
+          placeholder={t("emailPlaceholder")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -75,7 +77,7 @@ export default function WaitlistForm() {
         />
       </div>
       {state === "error" && (
-        <p className="text-red-400 text-xs">Something went wrong — please try again.</p>
+        <p className="text-red-400 text-xs">{t("error")}</p>
       )}
       <button
         type="submit"
@@ -83,11 +85,11 @@ export default function WaitlistForm() {
         className="w-full rounded-full bg-[#245FFF] hover:bg-[#1d4ed8] disabled:opacity-50 px-5 py-3 text-sm font-semibold text-white transition-all shadow-[0_0_24px_rgba(36,95,255,0.35)] flex flex-col items-center gap-0.5"
       >
         {state === "loading" ? (
-          "Saving your spot…"
+          t("saving")
         ) : (
           <>
-            <span>Join the Waitlist</span>
-            <span className="text-xs font-normal opacity-75">Early bird gets 3 months free</span>
+            <span>{t("joinButton")}</span>
+            <span className="text-xs font-normal opacity-75">{t("earlyBird")}</span>
           </>
         )}
       </button>

@@ -3171,6 +3171,16 @@
       "waitlist": "<label>³ 候补名单。</label> 加入候补名单不构成参与任何保险计划，也不保证获得 scam.ai 应用的使用权。提交您的电子邮箱即表示您同意接收来自 scam.ai 的产品更新。您可随时退订。",
       "offer": "<label>⁴ 早期采用者优惠。</label> “前 3 个月免费”优惠仅适用于候补名单成员，且仅适用于产品正式发布后付费订阅的前 3 个月。scam.ai 保留在发布前随时修改此优惠的权利。",
       "app": "<label>⁵ 应用功能。</label> scam.ai 作为一款端侧筛查工具运行，不保证检测出所有欺诈活动。性能可能因设备和操作系统而异。"
+    },
+    "waitlistForm": {
+      "successTitle": "你已加入名单！",
+      "successBody": "scam.ai 一上线我们就通知你。",
+      "emailLabel": "电子邮箱",
+      "emailPlaceholder": "yourname@email.com",
+      "error": "出错了，请重试。",
+      "saving": "正在为你预留名额…",
+      "joinButton": "加入候补名单",
+      "earlyBird": "早鸟可享 3 个月免费"
     }
   },
   "contactPage": {
