@@ -606,6 +606,33 @@
           "description": "Planifier un appel de 15 minutes"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo — détection des deepfakes sur l’appareil, en partenariat avec Qualcomm",
+      "headline": "Halo détecte les deepfakes sur l’appareil.",
+      "body": "Vous venez de voir à quel point un deepfake est simple. Sur votre appareil, en temps réel, Halo détecte les <em>visages synthétiques et les face swaps</em> en direct à chaque appel — avant qu’ils ne vous coûtent un virement ou un mauvais recrutement.",
+      "pillars": {
+        "realtime": {
+          "label": "Temps réel",
+          "desc": "Signale les menaces pendant l’appel en direct"
+        },
+        "secure": {
+          "label": "Sécurisé",
+          "desc": "Visages synthétiques et face swaps"
+        },
+        "private": {
+          "label": "Privé",
+          "desc": "Sur l’appareil — aucun enregistrement, rien n’est envoyé"
+        }
+      },
+      "exploreHalo": "Découvrir Halo",
+      "joinWaitlist": "Rejoindre la liste d’attente",
+      "card": {
+        "liveCall": "Appel en direct",
+        "deepfakeDetected": "Deepfake détecté",
+        "caught": "Bloqué",
+        "onDevice": "Fonctionne 100 % sur votre appareil · aucun enregistrement, rien n’est envoyé"
+      }
     }
   },
   "nav": {

@@ -606,6 +606,33 @@
           "description": "Schedule a 15-minute call"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo — on-device deepfake detection, in partnership with Qualcomm",
+      "headline": "Halo catches deepfakes on device.",
+      "body": "You just saw how easy a deepfake is. On your device, in real time, Halo flags <em>synthetic faces and faceswaps</em> live on every call — before they cost you a wire transfer or a bad hire.",
+      "pillars": {
+        "realtime": {
+          "label": "Real-Time",
+          "desc": "Flags threats during the live call"
+        },
+        "secure": {
+          "label": "Secure",
+          "desc": "Synthetic faces & faceswaps"
+        },
+        "private": {
+          "label": "Private",
+          "desc": "On-device — no recording, nothing sent"
+        }
+      },
+      "exploreHalo": "Explore Halo",
+      "joinWaitlist": "Join the waitlist",
+      "card": {
+        "liveCall": "Live call",
+        "deepfakeDetected": "Deepfake detected",
+        "caught": "Caught",
+        "onDevice": "Runs 100% on your device · no recording, nothing sent"
+      }
     }
   },
   "nav": {

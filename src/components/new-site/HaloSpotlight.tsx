@@ -9,21 +9,23 @@
 // Echoes the launch poster: "Real-Time. Secure. Private." + on-device framing.
 
 import { ShieldCheck, Lock, Zap, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { trackCTA } from "@/lib/analytics";
 
 const PILLARS = [
-  { icon: Zap, label: "Real-Time", desc: "Flags threats during the live call" },
-  { icon: Lock, label: "Secure", desc: "Synthetic faces & faceswaps" },
-  { icon: ShieldCheck, label: "Private", desc: "On-device — no recording, nothing sent" },
-];
+  { icon: Zap, key: "realtime" },
+  { icon: Lock, key: "secure" },
+  { icon: ShieldCheck, key: "private" },
+] as const;
 
 export default function HaloSpotlight() {
+  const t = useTranslations("landing.haloSpotlight");
   return (
     <section
       id="halo"
       className="relative w-full overflow-hidden border-y border-white/[0.06] bg-[#04060d] py-20 sm:py-28"
-      aria-label="Halo — on-device deepfake detection, in partnership with Qualcomm"
+      aria-label={t("ariaLabel")}
     >
       {/* Partnership gradient wash */}
       <div
@@ -48,23 +50,22 @@ export default function HaloSpotlight() {
           </div>
 
           <h2 className="mt-6 text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-[44px]">
-            Halo catches deepfakes on device.
+            {t("headline")}
           </h2>
 
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-white/60">
-            You just saw how easy a deepfake is. On your device, in real time, Halo
-            flags{" "}
-            <span className="font-semibold text-white">synthetic faces and faceswaps</span>{" "}
-            live on every call — before they cost you a wire transfer or a bad hire.
+            {t.rich("body", {
+              em: (c) => <span className="font-semibold text-white">{c}</span>,
+            })}
           </p>
 
           {/* Real-Time · Secure · Private pillars */}
           <div className="mt-7 grid w-full grid-cols-1 gap-2 text-left min-[420px]:grid-cols-3 sm:gap-3 lg:max-w-lg">
-            {PILLARS.map(({ icon: Icon, label, desc }) => (
-              <div key={label} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-3">
+            {PILLARS.map(({ icon: Icon, key }) => (
+              <div key={key} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-3">
                 <Icon className="h-4 w-4 text-[#245FFF]" />
-                <p className="mt-2 text-sm font-semibold text-white">{label}</p>
-                <p className="mt-0.5 text-[11px] leading-snug text-white/60">{desc}</p>
+                <p className="mt-2 text-sm font-semibold text-white">{t(`pillars.${key}.label`)}</p>
+                <p className="mt-0.5 text-[11px] leading-snug text-white/60">{t(`pillars.${key}.desc`)}</p>
               </div>
             ))}
           </div>
@@ -75,7 +76,7 @@ export default function HaloSpotlight() {
               onClick={() => trackCTA("meet_halo", "halo_spotlight")}
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90 active:scale-[0.98]"
             >
-              Explore Halo
+              {t("exploreHalo")}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
@@ -83,7 +84,7 @@ export default function HaloSpotlight() {
               onClick={() => trackCTA("halo_waitlist", "halo_spotlight")}
               className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
             >
-              Join the waitlist
+              {t("joinWaitlist")}
             </Link>
           </div>
 
@@ -98,7 +99,7 @@ export default function HaloSpotlight() {
                   <span className="absolute inline-flex h-full w-full animate-ping motion-reduce:animate-none rounded-full bg-red-500/60" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
                 </span>
-                Live call
+                {t("card.liveCall")}
               </span>
               <span className="ml-auto text-[11px] tabular-nums text-white/60">12:04</span>
             </div>
@@ -125,15 +126,15 @@ export default function HaloSpotlight() {
                     <span className="absolute inline-flex h-full w-full animate-ping motion-reduce:animate-none rounded-full bg-red-500/70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />
                   </span>
-                  Deepfake detected
+                  {t("card.deepfakeDetected")}
                 </span>
-                <span className="text-[13px] font-semibold text-white">Caught</span>
+                <span className="text-[13px] font-semibold text-white">{t("card.caught")}</span>
               </div>
             </div>
 
             <div className="flex items-center gap-1.5 border-t border-white/[0.07] bg-[#0a0c12] px-4 py-2.5 text-[11px] text-white/60">
               <Lock className="h-3.5 w-3.5" />
-              Runs 100% on your device · no recording, nothing sent
+              {t("card.onDevice")}
             </div>
           </div>
         </div>

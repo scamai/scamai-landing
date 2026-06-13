@@ -606,6 +606,33 @@
           "description": "Jadwalkan panggilan 15 menit"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo — deteksi deepfake di perangkat, bermitra dengan Qualcomm",
+      "headline": "Halo menangkap deepfake di perangkat.",
+      "body": "Anda baru saja melihat betapa mudahnya deepfake. Di perangkat Anda, secara real-time, Halo menandai <em>wajah sintetis dan tukar wajah</em> langsung di setiap panggilan — sebelum merugikan Anda lewat transfer dana atau salah rekrut.",
+      "pillars": {
+        "realtime": {
+          "label": "Real-Time",
+          "desc": "Menandai ancaman selama panggilan langsung"
+        },
+        "secure": {
+          "label": "Aman",
+          "desc": "Wajah sintetis dan tukar wajah"
+        },
+        "private": {
+          "label": "Privat",
+          "desc": "Di perangkat — tanpa rekaman, tidak ada yang dikirim"
+        }
+      },
+      "exploreHalo": "Jelajahi Halo",
+      "joinWaitlist": "Gabung daftar tunggu",
+      "card": {
+        "liveCall": "Panggilan langsung",
+        "deepfakeDetected": "Deepfake terdeteksi",
+        "caught": "Tertangkap",
+        "onDevice": "Berjalan 100% di perangkat Anda · tanpa rekaman, tidak ada yang dikirim"
+      }
     }
   },
   "Business": {

@@ -606,6 +606,33 @@
           "description": "預約一次 15 分鐘通話"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo —— 裝置端深度偽造偵測，與 Qualcomm 合作",
+      "headline": "Halo 在裝置端攔截深度偽造。",
+      "body": "你剛剛看到偽造一張臉有多容易。在你的裝置上、即時地，Halo 在每一次通話中辨識<em>合成人臉與換臉</em>—— 在它們讓你損失一筆電匯或招錯人之前。",
+      "pillars": {
+        "realtime": {
+          "label": "即時",
+          "desc": "在通話進行中標記威脅"
+        },
+        "secure": {
+          "label": "安全",
+          "desc": "合成人臉與換臉"
+        },
+        "private": {
+          "label": "隱私",
+          "desc": "裝置端 —— 不錄製、不上傳"
+        }
+      },
+      "exploreHalo": "了解 Halo",
+      "joinWaitlist": "加入候補名單",
+      "card": {
+        "liveCall": "即時通話",
+        "deepfakeDetected": "偵測到深度偽造",
+        "caught": "已攔截",
+        "onDevice": "100% 在你的裝置上執行 · 不錄製、不上傳"
+      }
     }
   },
   "nav": {

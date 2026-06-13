@@ -606,6 +606,33 @@
           "description": "15 分の通話を予約"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo —— オンデバイスのディープフェイク検出、Qualcomm との提携",
+      "headline": "Halo はディープフェイクをデバイス上で検出。",
+      "body": "ディープフェイクがいかに簡単かをご覧いただきました。お使いのデバイス上で、リアルタイムに、Halo はすべての通話で<em>合成顔やフェイススワップ</em>を検出します —— 不正送金や採用ミスを引き起こす前に。",
+      "pillars": {
+        "realtime": {
+          "label": "リアルタイム",
+          "desc": "通話中に脅威を検知"
+        },
+        "secure": {
+          "label": "セキュア",
+          "desc": "合成顔とフェイススワップ"
+        },
+        "private": {
+          "label": "プライベート",
+          "desc": "オンデバイス —— 録画なし、送信なし"
+        }
+      },
+      "exploreHalo": "Halo を見る",
+      "joinWaitlist": "ウェイトリストに登録",
+      "card": {
+        "liveCall": "通話中",
+        "deepfakeDetected": "ディープフェイクを検出",
+        "caught": "検出済み",
+        "onDevice": "100% お使いのデバイス上で動作 · 録画なし、送信なし"
+      }
     }
   },
   "nav": {
@@ -2359,31 +2386,109 @@
   },
   "seoMeta": {
     "solutions": {
-      "fintech": { "title": "フィンテック・銀行向けディープフェイク検出", "metaDescription": "フィンテックKYC向けディープフェイク検出、精度95.3%。合成ID、偽造文書、音声クローンを4秒以内に検出。SOC 2認証取得。", "headline": "フィンテック・銀行向けディープフェイク検出" },
-      "dating": { "title": "マッチングアプリ向けディープフェイク・偽プロフィール検出", "metaDescription": "マッチングアプリでAI生成の偽プロフィールと音声キャットフィッシングを検出。精度95.3%。月200回無料分析。", "headline": "マッチングアプリ向けディープフェイク・偽プロフィール検出" },
-      "call-centers": { "title": "コールセンター向け音声クローン検出", "metaDescription": "コールセンター向け音声クローン検出、精度98.5%。リアルタイムでビッシング攻撃を検出。SOC 2認証。10分でAPI設定。", "headline": "コールセンター向け音声クローン検出" },
-      "kyc": { "title": "KYC本人確認でのディープフェイク詐欺を阻止", "metaDescription": "KYCオンボーディングでディープフェイク自撮りとAI編集ID文書を検出。Eva-v1モデルで精度95.3%、4秒以内。", "headline": "KYC本人確認でのディープフェイク詐欺を阻止" },
-      "media": { "title": "メディア・報道機関向けAI生成コンテンツ検出", "metaDescription": "報道機関向けディープフェイク検出API。画像・動画・音声のAI生成を出版前に検証。精度95.3%、月200回無料。", "headline": "メディア・報道機関向けAI生成コンテンツ検出" },
-      "insurance": { "title": "保険請求におけるAI生成詐欺の検出", "metaDescription": "保険請求でAI編集写真と偽造文書を検出。Scam AIが請求証拠の合成操作をスクリーニング。$0.05/画像、SOC 2認証。", "headline": "保険請求におけるAI生成詐欺の検出" },
-      "hr": { "title": "リモート面接・ビデオ採用でのディープフェイク検出", "metaDescription": "リモート面接でディープフェイク、AI音声ツール、合成アバターを検出。HR向けビデオ・音声の真正性を検証。", "headline": "リモート面接・ビデオ採用でのディープフェイク検出" },
-      "government": { "title": "政府・公共部門向け合成メディア検出", "metaDescription": "政府機関向け合成メディア検出。ディープフェイク動画とAI生成画像を大規模に検出。エンタープライズSLA、SOC 2認証。", "headline": "政府・公共部門向け合成メディア検出" }
+      "fintech": {
+        "title": "フィンテック・銀行向けディープフェイク検出",
+        "metaDescription": "フィンテックKYC向けディープフェイク検出、精度95.3%。合成ID、偽造文書、音声クローンを4秒以内に検出。SOC 2認証取得。",
+        "headline": "フィンテック・銀行向けディープフェイク検出"
+      },
+      "dating": {
+        "title": "マッチングアプリ向けディープフェイク・偽プロフィール検出",
+        "metaDescription": "マッチングアプリでAI生成の偽プロフィールと音声キャットフィッシングを検出。精度95.3%。月200回無料分析。",
+        "headline": "マッチングアプリ向けディープフェイク・偽プロフィール検出"
+      },
+      "call-centers": {
+        "title": "コールセンター向け音声クローン検出",
+        "metaDescription": "コールセンター向け音声クローン検出、精度98.5%。リアルタイムでビッシング攻撃を検出。SOC 2認証。10分でAPI設定。",
+        "headline": "コールセンター向け音声クローン検出"
+      },
+      "kyc": {
+        "title": "KYC本人確認でのディープフェイク詐欺を阻止",
+        "metaDescription": "KYCオンボーディングでディープフェイク自撮りとAI編集ID文書を検出。Eva-v1モデルで精度95.3%、4秒以内。",
+        "headline": "KYC本人確認でのディープフェイク詐欺を阻止"
+      },
+      "media": {
+        "title": "メディア・報道機関向けAI生成コンテンツ検出",
+        "metaDescription": "報道機関向けディープフェイク検出API。画像・動画・音声のAI生成を出版前に検証。精度95.3%、月200回無料。",
+        "headline": "メディア・報道機関向けAI生成コンテンツ検出"
+      },
+      "insurance": {
+        "title": "保険請求におけるAI生成詐欺の検出",
+        "metaDescription": "保険請求でAI編集写真と偽造文書を検出。Scam AIが請求証拠の合成操作をスクリーニング。$0.05/画像、SOC 2認証。",
+        "headline": "保険請求におけるAI生成詐欺の検出"
+      },
+      "hr": {
+        "title": "リモート面接・ビデオ採用でのディープフェイク検出",
+        "metaDescription": "リモート面接でディープフェイク、AI音声ツール、合成アバターを検出。HR向けビデオ・音声の真正性を検証。",
+        "headline": "リモート面接・ビデオ採用でのディープフェイク検出"
+      },
+      "government": {
+        "title": "政府・公共部門向け合成メディア検出",
+        "metaDescription": "政府機関向け合成メディア検出。ディープフェイク動画とAI生成画像を大規模に検出。エンタープライズSLA、SOC 2認証。",
+        "headline": "政府・公共部門向け合成メディア検出"
+      }
     },
     "compare": {
-      "reality-defender": { "title": "Scam AI vs Reality Defender：ディープフェイク検出比較", "metaDescription": "Scam AI vs Reality Defender：画像あたり$0.05 vs 年間契約、200枚無料 vs なし。完全比較。", "tagline": "Scam AI vs Reality Defender：ディープフェイク検出比較" },
-      "sensity": { "title": "Scam AI vs Sensity AI：ディープフェイク検出比較", "metaDescription": "Scam AI vs Sensity AI：画像・動画・音声・文書を1つのAPIで。$0.05/画像、月200回無料。完全比較。", "tagline": "Scam AI vs Sensity AI：ディープフェイク検出比較" },
-      "hive": { "title": "Scam AI vs Hive Moderation：ディープフェイク検出比較", "metaDescription": "Scam AI vs Hive：95.3%ディープフェイク検出 vs 一般モデレーション。音声クローン+文書偽造検出。", "tagline": "Scam AI vs Hive Moderation：ディープフェイク検出比較" },
-      "microsoft-azure": { "title": "Scam AI vs Microsoft Azure AIコンテンツセーフティ", "metaDescription": "Scam AI vs Azure：95.3%専用ディープフェイク検出 vs 一般セーフティ分類器。音声クローン検出含む。", "tagline": "Scam AI vs Microsoft Azure AI：ディープフェイク検出比較" },
-      "aws-rekognition": { "title": "Scam AI vs AWS Rekognition：ディープフェイク検出比較", "metaDescription": "Scam AI vs AWS Rekognition：専用ディープフェイク検出モデル vs 一般的な顔分析。", "tagline": "Scam AI vs AWS Rekognition：ディープフェイク検出比較" },
-      "truepic": { "title": "Scam AI vs Truepic：ディープフェイク検出比較", "metaDescription": "Scam AI vs Truepic：あらゆる画像でAIディープフェイク検出 vs カメラハードウェアが必要なC2PA。", "tagline": "Scam AI vs Truepic：ディープフェイク検出比較" },
-      "deepware": { "title": "Scam AI vs Deepware：ディープフェイク検出比較", "metaDescription": "Scam AI vs Deepware：SLA 99.9%とSOC 2のエンタープライズAPI vs 無料消費者向けスキャナー。", "tagline": "Scam AI vs Deepware：ディープフェイク検出比較" }
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender：ディープフェイク検出比較",
+        "metaDescription": "Scam AI vs Reality Defender：画像あたり$0.05 vs 年間契約、200枚無料 vs なし。完全比較。",
+        "tagline": "Scam AI vs Reality Defender：ディープフェイク検出比較"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI：ディープフェイク検出比較",
+        "metaDescription": "Scam AI vs Sensity AI：画像・動画・音声・文書を1つのAPIで。$0.05/画像、月200回無料。完全比較。",
+        "tagline": "Scam AI vs Sensity AI：ディープフェイク検出比較"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation：ディープフェイク検出比較",
+        "metaDescription": "Scam AI vs Hive：95.3%ディープフェイク検出 vs 一般モデレーション。音声クローン+文書偽造検出。",
+        "tagline": "Scam AI vs Hive Moderation：ディープフェイク検出比較"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AIコンテンツセーフティ",
+        "metaDescription": "Scam AI vs Azure：95.3%専用ディープフェイク検出 vs 一般セーフティ分類器。音声クローン検出含む。",
+        "tagline": "Scam AI vs Microsoft Azure AI：ディープフェイク検出比較"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition：ディープフェイク検出比較",
+        "metaDescription": "Scam AI vs AWS Rekognition：専用ディープフェイク検出モデル vs 一般的な顔分析。",
+        "tagline": "Scam AI vs AWS Rekognition：ディープフェイク検出比較"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic：ディープフェイク検出比較",
+        "metaDescription": "Scam AI vs Truepic：あらゆる画像でAIディープフェイク検出 vs カメラハードウェアが必要なC2PA。",
+        "tagline": "Scam AI vs Truepic：ディープフェイク検出比較"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware：ディープフェイク検出比較",
+        "metaDescription": "Scam AI vs Deepware：SLA 99.9%とSOC 2のエンタープライズAPI vs 無料消費者向けスキャナー。",
+        "tagline": "Scam AI vs Deepware：ディープフェイク検出比較"
+      }
     },
     "learn": {
-      "what-is-a-deepfake": { "title": "ディープフェイクとは？仕組みと検出方法", "description": "ディープフェイク完全ガイド：AIがどう作成するか、なぜセキュリティの脅威か、検出技術はどう機能するか。" },
-      "how-to-detect-ai-generated-images": { "title": "AI生成画像の検出方法（無料ツール＋API）", "description": "無料ツールとAPIでAI生成画像を検出する方法。視覚検査のコツ、GAN・拡散モデル検出、フェイスワップ識別。" },
-      "voice-cloning-attacks": { "title": "音声クローン攻撃：仕組みと防止方法", "description": "音声クローン攻撃を解説：AIが数秒で音声をクローンする方法、実際のビッシング事例、98.5%精度の検出による防止。" },
-      "deepfake-detection-accuracy": { "title": "ディープフェイク検出の精度：ベンチマークの本当の意味", "description": "ディープフェイク検出精度を解説：ベンチマークの仕組み、実環境での精度低下の理由、適切な閾値の選び方。" },
-      "deepfake-detection-api-guide": { "title": "アプリにディープフェイク検出を統合する方法（APIガイド）", "description": "APIでアプリにディープフェイク検出を統合。エンドポイント選択、リクエスト例、信頼度スコアリング、本番スケーリング。" },
-      "deepfake-statistics-2026": { "title": "ディープフェイク統計2026：知っておくべき数字", "description": "2026年のディープフェイク統計決定版：詐欺損失、検出精度ベンチマーク、業界への影響、規制対応。" }
+      "what-is-a-deepfake": {
+        "title": "ディープフェイクとは？仕組みと検出方法",
+        "description": "ディープフェイク完全ガイド：AIがどう作成するか、なぜセキュリティの脅威か、検出技術はどう機能するか。"
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "AI生成画像の検出方法（無料ツール＋API）",
+        "description": "無料ツールとAPIでAI生成画像を検出する方法。視覚検査のコツ、GAN・拡散モデル検出、フェイスワップ識別。"
+      },
+      "voice-cloning-attacks": {
+        "title": "音声クローン攻撃：仕組みと防止方法",
+        "description": "音声クローン攻撃を解説：AIが数秒で音声をクローンする方法、実際のビッシング事例、98.5%精度の検出による防止。"
+      },
+      "deepfake-detection-accuracy": {
+        "title": "ディープフェイク検出の精度：ベンチマークの本当の意味",
+        "description": "ディープフェイク検出精度を解説：ベンチマークの仕組み、実環境での精度低下の理由、適切な閾値の選び方。"
+      },
+      "deepfake-detection-api-guide": {
+        "title": "アプリにディープフェイク検出を統合する方法（APIガイド）",
+        "description": "APIでアプリにディープフェイク検出を統合。エンドポイント選択、リクエスト例、信頼度スコアリング、本番スケーリング。"
+      },
+      "deepfake-statistics-2026": {
+        "title": "ディープフェイク統計2026：知っておくべき数字",
+        "description": "2026年のディープフェイク統計決定版：詐欺損失、検出精度ベンチマーク、業界への影響、規制対応。"
+      }
     }
   }
 }

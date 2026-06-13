@@ -606,6 +606,33 @@
           "description": "Agende uma chamada de 15 minutos"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo — detecção de deepfakes no dispositivo, em parceria com a Qualcomm",
+      "headline": "O Halo detecta deepfakes no dispositivo.",
+      "body": "Você acabou de ver como um deepfake é fácil. No seu dispositivo, em tempo real, o Halo detecta <em>rostos sintéticos e trocas de rosto</em> ao vivo em cada chamada — antes que custem uma transferência ou uma contratação errada.",
+      "pillars": {
+        "realtime": {
+          "label": "Tempo real",
+          "desc": "Sinaliza ameaças durante a chamada ao vivo"
+        },
+        "secure": {
+          "label": "Seguro",
+          "desc": "Rostos sintéticos e trocas de rosto"
+        },
+        "private": {
+          "label": "Privado",
+          "desc": "No dispositivo — sem gravação, nada é enviado"
+        }
+      },
+      "exploreHalo": "Explorar o Halo",
+      "joinWaitlist": "Entrar na lista de espera",
+      "card": {
+        "liveCall": "Chamada ao vivo",
+        "deepfakeDetected": "Deepfake detectado",
+        "caught": "Detectado",
+        "onDevice": "Roda 100% no seu dispositivo · sem gravação, nada é enviado"
+      }
     }
   },
   "nav": {
@@ -2359,31 +2386,109 @@
   },
   "seoMeta": {
     "solutions": {
-      "fintech": { "title": "Detecção de deepfakes para fintech e bancos", "metaDescription": "Detecção de deepfakes para KYC fintech com 95.3% de precisão. Detecta identidades sintéticas e documentos falsificados em menos de 4 segundos.", "headline": "Detecção de deepfakes para fintech e bancos" },
-      "dating": { "title": "Detecção de deepfakes e perfis falsos para apps de namoro", "metaDescription": "Detecta perfis falsos gerados por IA e catfishing de voz em apps de namoro. 95.3% de precisão. 200 análises grátis por mês.", "headline": "Detecção de deepfakes e perfis falsos para apps de namoro" },
-      "call-centers": { "title": "Detecção de clonagem de voz para call centers", "metaDescription": "Detecção de clonagem de voz em call centers com 98.5% de precisão. Detecta ataques vishing em tempo real. Certificação SOC 2.", "headline": "Detecção de clonagem de voz para call centers" },
-      "kyc": { "title": "Pare a fraude deepfake na verificação de identidade KYC", "metaDescription": "Detecta selfies deepfake e documentos de identidade editados com IA no processo KYC. 95.3% de precisão em menos de 4 segundos.", "headline": "Pare a fraude deepfake na verificação de identidade KYC" },
-      "media": { "title": "Detecção de conteúdo gerado por IA para mídia", "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio antes de publicar. 95.3% de precisão, 200 grátis/mês.", "headline": "Detecção de conteúdo gerado por IA para mídia e redações" },
-      "insurance": { "title": "Detectar fraude gerada por IA em sinistros de seguro", "metaDescription": "Detecta fotos editadas com IA e documentos falsificados em sinistros. $0.05/imagem, certificação SOC 2.", "headline": "Detectar fraude gerada por IA em sinistros de seguro" },
-      "hr": { "title": "Detectar deepfakes em entrevistas remotas de emprego", "metaDescription": "Detecta deepfakes e ferramentas de voz IA em entrevistas remotas. Scam AI verifica autenticidade de vídeo e áudio para equipes de RH.", "headline": "Detectar deepfakes em entrevistas remotas e contratação por vídeo" },
-      "government": { "title": "Detecção de mídia sintética para governo e setor público", "metaDescription": "Detecção de mídia sintética para agências governamentais. Detecta vídeos deepfake e imagens geradas por IA em escala. SLA empresarial.", "headline": "Detecção de mídia sintética para governo e setor público" }
+      "fintech": {
+        "title": "Detecção de deepfakes para fintech e bancos",
+        "metaDescription": "Detecção de deepfakes para KYC fintech com 95.3% de precisão. Detecta identidades sintéticas e documentos falsificados em menos de 4 segundos.",
+        "headline": "Detecção de deepfakes para fintech e bancos"
+      },
+      "dating": {
+        "title": "Detecção de deepfakes e perfis falsos para apps de namoro",
+        "metaDescription": "Detecta perfis falsos gerados por IA e catfishing de voz em apps de namoro. 95.3% de precisão. 200 análises grátis por mês.",
+        "headline": "Detecção de deepfakes e perfis falsos para apps de namoro"
+      },
+      "call-centers": {
+        "title": "Detecção de clonagem de voz para call centers",
+        "metaDescription": "Detecção de clonagem de voz em call centers com 98.5% de precisão. Detecta ataques vishing em tempo real. Certificação SOC 2.",
+        "headline": "Detecção de clonagem de voz para call centers"
+      },
+      "kyc": {
+        "title": "Pare a fraude deepfake na verificação de identidade KYC",
+        "metaDescription": "Detecta selfies deepfake e documentos de identidade editados com IA no processo KYC. 95.3% de precisão em menos de 4 segundos.",
+        "headline": "Pare a fraude deepfake na verificação de identidade KYC"
+      },
+      "media": {
+        "title": "Detecção de conteúdo gerado por IA para mídia",
+        "metaDescription": "API de detecção de deepfakes para redações. Verifique imagens, vídeo e áudio antes de publicar. 95.3% de precisão, 200 grátis/mês.",
+        "headline": "Detecção de conteúdo gerado por IA para mídia e redações"
+      },
+      "insurance": {
+        "title": "Detectar fraude gerada por IA em sinistros de seguro",
+        "metaDescription": "Detecta fotos editadas com IA e documentos falsificados em sinistros. $0.05/imagem, certificação SOC 2.",
+        "headline": "Detectar fraude gerada por IA em sinistros de seguro"
+      },
+      "hr": {
+        "title": "Detectar deepfakes em entrevistas remotas de emprego",
+        "metaDescription": "Detecta deepfakes e ferramentas de voz IA em entrevistas remotas. Scam AI verifica autenticidade de vídeo e áudio para equipes de RH.",
+        "headline": "Detectar deepfakes em entrevistas remotas e contratação por vídeo"
+      },
+      "government": {
+        "title": "Detecção de mídia sintética para governo e setor público",
+        "metaDescription": "Detecção de mídia sintética para agências governamentais. Detecta vídeos deepfake e imagens geradas por IA em escala. SLA empresarial.",
+        "headline": "Detecção de mídia sintética para governo e setor público"
+      }
     },
     "compare": {
-      "reality-defender": { "title": "Scam AI vs Reality Defender: Comparação de detecção de deepfakes", "metaDescription": "Scam AI vs Reality Defender: $0.05/imagem vs contratos anuais, 200 imagens grátis vs nenhuma. Comparação completa.", "tagline": "Scam AI vs Reality Defender: Comparação de detecção de deepfakes" },
-      "sensity": { "title": "Scam AI vs Sensity AI: Comparação de detecção de deepfakes", "metaDescription": "Scam AI vs Sensity AI: imagens, vídeo, áudio e documentos em uma API. $0.05/imagem, 200 grátis/mês. Comparação completa.", "tagline": "Scam AI vs Sensity AI: Comparação de detecção de deepfakes" },
-      "hive": { "title": "Scam AI vs Hive Moderation: Comparação de detecção de deepfakes", "metaDescription": "Scam AI vs Hive: 95.3% detecção de deepfakes vs moderação geral. Detecção de clones de voz + falsificação de documentos.", "tagline": "Scam AI vs Hive Moderation: Comparação de detecção de deepfakes" },
-      "microsoft-azure": { "title": "Scam AI vs Microsoft Azure AI Content Safety", "metaDescription": "Scam AI vs Azure: 95.3% detecção especializada de deepfakes vs classificador geral. Inclui detecção de clones de voz.", "tagline": "Scam AI vs Microsoft Azure AI: Comparação de detecção de deepfakes" },
-      "aws-rekognition": { "title": "Scam AI vs AWS Rekognition: Comparação de detecção de deepfakes", "metaDescription": "Scam AI vs AWS Rekognition: modelo dedicado de detecção de deepfakes vs análise facial geral.", "tagline": "Scam AI vs AWS Rekognition: Comparação de detecção de deepfakes" },
-      "truepic": { "title": "Scam AI vs Truepic: Comparação de detecção de deepfakes", "metaDescription": "Scam AI vs Truepic: detecção de deepfakes por IA em qualquer imagem vs proveniência C2PA que requer hardware especial.", "tagline": "Scam AI vs Truepic: Comparação de detecção de deepfakes" },
-      "deepware": { "title": "Scam AI vs Deepware: Comparação de detecção de deepfakes", "metaDescription": "Scam AI vs Deepware: API empresarial com SLA 99.9% e SOC 2 vs scanner gratuito para consumidores.", "tagline": "Scam AI vs Deepware: Comparação de detecção de deepfakes" }
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender: Comparação de detecção de deepfakes",
+        "metaDescription": "Scam AI vs Reality Defender: $0.05/imagem vs contratos anuais, 200 imagens grátis vs nenhuma. Comparação completa.",
+        "tagline": "Scam AI vs Reality Defender: Comparação de detecção de deepfakes"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI: Comparação de detecção de deepfakes",
+        "metaDescription": "Scam AI vs Sensity AI: imagens, vídeo, áudio e documentos em uma API. $0.05/imagem, 200 grátis/mês. Comparação completa.",
+        "tagline": "Scam AI vs Sensity AI: Comparação de detecção de deepfakes"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation: Comparação de detecção de deepfakes",
+        "metaDescription": "Scam AI vs Hive: 95.3% detecção de deepfakes vs moderação geral. Detecção de clones de voz + falsificação de documentos.",
+        "tagline": "Scam AI vs Hive Moderation: Comparação de detecção de deepfakes"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure: 95.3% detecção especializada de deepfakes vs classificador geral. Inclui detecção de clones de voz.",
+        "tagline": "Scam AI vs Microsoft Azure AI: Comparação de detecção de deepfakes"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition: Comparação de detecção de deepfakes",
+        "metaDescription": "Scam AI vs AWS Rekognition: modelo dedicado de detecção de deepfakes vs análise facial geral.",
+        "tagline": "Scam AI vs AWS Rekognition: Comparação de detecção de deepfakes"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic: Comparação de detecção de deepfakes",
+        "metaDescription": "Scam AI vs Truepic: detecção de deepfakes por IA em qualquer imagem vs proveniência C2PA que requer hardware especial.",
+        "tagline": "Scam AI vs Truepic: Comparação de detecção de deepfakes"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware: Comparação de detecção de deepfakes",
+        "metaDescription": "Scam AI vs Deepware: API empresarial com SLA 99.9% e SOC 2 vs scanner gratuito para consumidores.",
+        "tagline": "Scam AI vs Deepware: Comparação de detecção de deepfakes"
+      }
     },
     "learn": {
-      "what-is-a-deepfake": { "title": "O que é um deepfake? Como funcionam e como detectá-los", "description": "Guia completo sobre deepfakes: o que são, como a IA os cria, por que são uma ameaça de segurança e como funciona a tecnologia de detecção." },
-      "how-to-detect-ai-generated-images": { "title": "Como detectar imagens geradas por IA (ferramentas grátis + API)", "description": "Como detectar imagens geradas por IA com ferramentas gratuitas e APIs. Dicas de inspeção visual e detecção de modelos GAN e difusão." },
-      "voice-cloning-attacks": { "title": "Ataques de clonagem de voz: como funcionam e como pará-los", "description": "Ataques de clonagem de voz explicados: como a IA clona vozes em segundos, casos reais de vishing e como a detecção os impede." },
-      "deepfake-detection-accuracy": { "title": "Precisão de detecção de deepfakes: o que os benchmarks realmente significam", "description": "Precisão de detecção de deepfakes explicada: como funcionam os benchmarks e como escolher o limiar certo para seu caso de uso." },
-      "deepfake-detection-api-guide": { "title": "Como integrar detecção de deepfakes no seu app (guia API)", "description": "Integre detecção de deepfakes no seu app via API. Seleção de endpoints, exemplos de requisições e guia de escalabilidade." },
-      "deepfake-statistics-2026": { "title": "Estatísticas de deepfakes 2026: os números que você precisa saber", "description": "A coleção definitiva de estatísticas de deepfakes para 2026: perdas por fraude, benchmarks de detecção e impacto regulatório." }
+      "what-is-a-deepfake": {
+        "title": "O que é um deepfake? Como funcionam e como detectá-los",
+        "description": "Guia completo sobre deepfakes: o que são, como a IA os cria, por que são uma ameaça de segurança e como funciona a tecnologia de detecção."
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "Como detectar imagens geradas por IA (ferramentas grátis + API)",
+        "description": "Como detectar imagens geradas por IA com ferramentas gratuitas e APIs. Dicas de inspeção visual e detecção de modelos GAN e difusão."
+      },
+      "voice-cloning-attacks": {
+        "title": "Ataques de clonagem de voz: como funcionam e como pará-los",
+        "description": "Ataques de clonagem de voz explicados: como a IA clona vozes em segundos, casos reais de vishing e como a detecção os impede."
+      },
+      "deepfake-detection-accuracy": {
+        "title": "Precisão de detecção de deepfakes: o que os benchmarks realmente significam",
+        "description": "Precisão de detecção de deepfakes explicada: como funcionam os benchmarks e como escolher o limiar certo para seu caso de uso."
+      },
+      "deepfake-detection-api-guide": {
+        "title": "Como integrar detecção de deepfakes no seu app (guia API)",
+        "description": "Integre detecção de deepfakes no seu app via API. Seleção de endpoints, exemplos de requisições e guia de escalabilidade."
+      },
+      "deepfake-statistics-2026": {
+        "title": "Estatísticas de deepfakes 2026: os números que você precisa saber",
+        "description": "A coleção definitiva de estatísticas de deepfakes para 2026: perdas por fraude, benchmarks de detecção e impacto regulatório."
+      }
     }
   }
 }

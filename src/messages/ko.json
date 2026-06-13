@@ -606,6 +606,33 @@
           "description": "15분 통화 예약"
         }
       }
+    },
+    "haloSpotlight": {
+      "ariaLabel": "Halo —— 온디바이스 딥페이크 탐지, Qualcomm과 협력",
+      "headline": "Halo는 딥페이크를 기기에서 잡아냅니다.",
+      "body": "딥페이크가 얼마나 쉬운지 방금 확인하셨습니다. 사용자의 기기에서 실시간으로, Halo는 모든 통화에서 <em>합성 얼굴과 페이스스왑</em>을 잡아냅니다 —— 송금 사기나 잘못된 채용으로 이어지기 전에.",
+      "pillars": {
+        "realtime": {
+          "label": "실시간",
+          "desc": "통화 중 위협 표시"
+        },
+        "secure": {
+          "label": "보안",
+          "desc": "합성 얼굴과 페이스스왑"
+        },
+        "private": {
+          "label": "프라이버시",
+          "desc": "온디바이스 —— 녹화 없음, 전송 없음"
+        }
+      },
+      "exploreHalo": "Halo 살펴보기",
+      "joinWaitlist": "대기자 명단 등록",
+      "card": {
+        "liveCall": "실시간 통화",
+        "deepfakeDetected": "딥페이크 탐지됨",
+        "caught": "차단됨",
+        "onDevice": "100% 사용자 기기에서 실행 · 녹화 없음, 전송 없음"
+      }
     }
   },
   "nav": {
@@ -2359,31 +2386,109 @@
   },
   "seoMeta": {
     "solutions": {
-      "fintech": { "title": "핀테크 및 은행 딥페이크 탐지", "metaDescription": "핀테크 KYC용 딥페이크 탐지, 정확도 95.3%. 합성 신원, 위조 문서, 음성 클론을 4초 이내에 탐지. SOC 2 인증.", "headline": "핀테크 및 은행 딥페이크 탐지" },
-      "dating": { "title": "데이팅 앱 딥페이크 및 가짜 프로필 탐지", "metaDescription": "데이팅 앱에서 AI 생성 가짜 프로필과 음성 캣피싱을 탐지. 정확도 95.3%. 월 200회 무료 분석.", "headline": "데이팅 앱 딥페이크 및 가짜 프로필 탐지" },
-      "call-centers": { "title": "콜센터 음성 클론 탐지", "metaDescription": "콜센터 음성 클론 탐지, 정확도 98.5%. 실시간 비싱 공격 탐지. SOC 2 인증. 10분 API 설정.", "headline": "콜센터 음성 클론 탐지" },
-      "kyc": { "title": "KYC 본인 확인에서 딥페이크 사기 차단", "metaDescription": "KYC 온보딩에서 딥페이크 셀피와 AI 편집 신분증을 탐지. Eva-v1 모델 정확도 95.3%, 4초 이내.", "headline": "KYC 본인 확인에서 딥페이크 사기 차단" },
-      "media": { "title": "미디어 및 뉴스룸 AI 생성 콘텐츠 탐지", "metaDescription": "뉴스룸용 딥페이크 탐지 API. 출판 전 이미지, 비디오, 오디오의 AI 생성을 검증. 정확도 95.3%, 월 200회 무료.", "headline": "미디어 및 뉴스룸 AI 생성 콘텐츠 탐지" },
-      "insurance": { "title": "보험 청구 AI 생성 사기 탐지", "metaDescription": "보험 청구에서 AI 편집 사진과 위조 문서를 탐지. Scam AI로 청구 증거의 합성 조작 스크리닝. $0.05/이미지, SOC 2 인증.", "headline": "보험 청구 AI 생성 사기 탐지" },
-      "hr": { "title": "원격 면접 및 영상 채용 딥페이크 탐지", "metaDescription": "원격 면접에서 딥페이크, AI 음성 도구, 합성 아바타를 탐지. HR 팀 및 채용 플랫폼용 영상·오디오 진위 확인.", "headline": "원격 면접 및 영상 채용 딥페이크 탐지" },
-      "government": { "title": "정부 및 공공 부문 합성 미디어 탐지", "metaDescription": "정부 기관용 합성 미디어 탐지. 딥페이크 영상과 AI 생성 이미지를 대규모로 탐지. 엔터프라이즈 SLA, SOC 2 인증.", "headline": "정부 및 공공 부문 합성 미디어 탐지" }
+      "fintech": {
+        "title": "핀테크 및 은행 딥페이크 탐지",
+        "metaDescription": "핀테크 KYC용 딥페이크 탐지, 정확도 95.3%. 합성 신원, 위조 문서, 음성 클론을 4초 이내에 탐지. SOC 2 인증.",
+        "headline": "핀테크 및 은행 딥페이크 탐지"
+      },
+      "dating": {
+        "title": "데이팅 앱 딥페이크 및 가짜 프로필 탐지",
+        "metaDescription": "데이팅 앱에서 AI 생성 가짜 프로필과 음성 캣피싱을 탐지. 정확도 95.3%. 월 200회 무료 분석.",
+        "headline": "데이팅 앱 딥페이크 및 가짜 프로필 탐지"
+      },
+      "call-centers": {
+        "title": "콜센터 음성 클론 탐지",
+        "metaDescription": "콜센터 음성 클론 탐지, 정확도 98.5%. 실시간 비싱 공격 탐지. SOC 2 인증. 10분 API 설정.",
+        "headline": "콜센터 음성 클론 탐지"
+      },
+      "kyc": {
+        "title": "KYC 본인 확인에서 딥페이크 사기 차단",
+        "metaDescription": "KYC 온보딩에서 딥페이크 셀피와 AI 편집 신분증을 탐지. Eva-v1 모델 정확도 95.3%, 4초 이내.",
+        "headline": "KYC 본인 확인에서 딥페이크 사기 차단"
+      },
+      "media": {
+        "title": "미디어 및 뉴스룸 AI 생성 콘텐츠 탐지",
+        "metaDescription": "뉴스룸용 딥페이크 탐지 API. 출판 전 이미지, 비디오, 오디오의 AI 생성을 검증. 정확도 95.3%, 월 200회 무료.",
+        "headline": "미디어 및 뉴스룸 AI 생성 콘텐츠 탐지"
+      },
+      "insurance": {
+        "title": "보험 청구 AI 생성 사기 탐지",
+        "metaDescription": "보험 청구에서 AI 편집 사진과 위조 문서를 탐지. Scam AI로 청구 증거의 합성 조작 스크리닝. $0.05/이미지, SOC 2 인증.",
+        "headline": "보험 청구 AI 생성 사기 탐지"
+      },
+      "hr": {
+        "title": "원격 면접 및 영상 채용 딥페이크 탐지",
+        "metaDescription": "원격 면접에서 딥페이크, AI 음성 도구, 합성 아바타를 탐지. HR 팀 및 채용 플랫폼용 영상·오디오 진위 확인.",
+        "headline": "원격 면접 및 영상 채용 딥페이크 탐지"
+      },
+      "government": {
+        "title": "정부 및 공공 부문 합성 미디어 탐지",
+        "metaDescription": "정부 기관용 합성 미디어 탐지. 딥페이크 영상과 AI 생성 이미지를 대규모로 탐지. 엔터프라이즈 SLA, SOC 2 인증.",
+        "headline": "정부 및 공공 부문 합성 미디어 탐지"
+      }
     },
     "compare": {
-      "reality-defender": { "title": "Scam AI vs Reality Defender: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Reality Defender: 이미지당 $0.05 vs 연간 계약, 200장 무료 vs 없음. 전체 비교.", "tagline": "Scam AI vs Reality Defender: 딥페이크 탐지 비교" },
-      "sensity": { "title": "Scam AI vs Sensity AI: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Sensity AI: 이미지, 비디오, 오디오, 문서를 하나의 API로. $0.05/이미지, 월 200회 무료.", "tagline": "Scam AI vs Sensity AI: 딥페이크 탐지 비교" },
-      "hive": { "title": "Scam AI vs Hive Moderation: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Hive: 95.3% 딥페이크 탐지 vs 일반 모더레이션. 음성 클론 + 문서 위조 탐지.", "tagline": "Scam AI vs Hive Moderation: 딥페이크 탐지 비교" },
-      "microsoft-azure": { "title": "Scam AI vs Microsoft Azure AI Content Safety", "metaDescription": "Scam AI vs Azure: 95.3% 전용 딥페이크 탐지 vs 일반 안전 분류기. 음성 클론 탐지 포함.", "tagline": "Scam AI vs Microsoft Azure AI: 딥페이크 탐지 비교" },
-      "aws-rekognition": { "title": "Scam AI vs AWS Rekognition: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs AWS Rekognition: 전용 딥페이크 탐지 모델 vs 일반 얼굴 분석.", "tagline": "Scam AI vs AWS Rekognition: 딥페이크 탐지 비교" },
-      "truepic": { "title": "Scam AI vs Truepic: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Truepic: 모든 이미지에서 AI 딥페이크 탐지 vs 카메라 하드웨어가 필요한 C2PA.", "tagline": "Scam AI vs Truepic: 딥페이크 탐지 비교" },
-      "deepware": { "title": "Scam AI vs Deepware: 딥페이크 탐지 비교", "metaDescription": "Scam AI vs Deepware: SLA 99.9%와 SOC 2의 엔터프라이즈 API vs 무료 소비자 스캐너.", "tagline": "Scam AI vs Deepware: 딥페이크 탐지 비교" }
+      "reality-defender": {
+        "title": "Scam AI vs Reality Defender: 딥페이크 탐지 비교",
+        "metaDescription": "Scam AI vs Reality Defender: 이미지당 $0.05 vs 연간 계약, 200장 무료 vs 없음. 전체 비교.",
+        "tagline": "Scam AI vs Reality Defender: 딥페이크 탐지 비교"
+      },
+      "sensity": {
+        "title": "Scam AI vs Sensity AI: 딥페이크 탐지 비교",
+        "metaDescription": "Scam AI vs Sensity AI: 이미지, 비디오, 오디오, 문서를 하나의 API로. $0.05/이미지, 월 200회 무료.",
+        "tagline": "Scam AI vs Sensity AI: 딥페이크 탐지 비교"
+      },
+      "hive": {
+        "title": "Scam AI vs Hive Moderation: 딥페이크 탐지 비교",
+        "metaDescription": "Scam AI vs Hive: 95.3% 딥페이크 탐지 vs 일반 모더레이션. 음성 클론 + 문서 위조 탐지.",
+        "tagline": "Scam AI vs Hive Moderation: 딥페이크 탐지 비교"
+      },
+      "microsoft-azure": {
+        "title": "Scam AI vs Microsoft Azure AI Content Safety",
+        "metaDescription": "Scam AI vs Azure: 95.3% 전용 딥페이크 탐지 vs 일반 안전 분류기. 음성 클론 탐지 포함.",
+        "tagline": "Scam AI vs Microsoft Azure AI: 딥페이크 탐지 비교"
+      },
+      "aws-rekognition": {
+        "title": "Scam AI vs AWS Rekognition: 딥페이크 탐지 비교",
+        "metaDescription": "Scam AI vs AWS Rekognition: 전용 딥페이크 탐지 모델 vs 일반 얼굴 분석.",
+        "tagline": "Scam AI vs AWS Rekognition: 딥페이크 탐지 비교"
+      },
+      "truepic": {
+        "title": "Scam AI vs Truepic: 딥페이크 탐지 비교",
+        "metaDescription": "Scam AI vs Truepic: 모든 이미지에서 AI 딥페이크 탐지 vs 카메라 하드웨어가 필요한 C2PA.",
+        "tagline": "Scam AI vs Truepic: 딥페이크 탐지 비교"
+      },
+      "deepware": {
+        "title": "Scam AI vs Deepware: 딥페이크 탐지 비교",
+        "metaDescription": "Scam AI vs Deepware: SLA 99.9%와 SOC 2의 엔터프라이즈 API vs 무료 소비자 스캐너.",
+        "tagline": "Scam AI vs Deepware: 딥페이크 탐지 비교"
+      }
     },
     "learn": {
-      "what-is-a-deepfake": { "title": "딥페이크란? 작동 원리와 탐지 방법", "description": "딥페이크 완전 가이드: AI가 어떻게 만드는지, 왜 보안 위협인지, 탐지 기술이 어떻게 작동하는지." },
-      "how-to-detect-ai-generated-images": { "title": "AI 생성 이미지 탐지 방법 (무료 도구 + API)", "description": "무료 도구와 API로 AI 생성 이미지를 탐지하는 방법. 시각 검사 팁, GAN 및 확산 모델 탐지, 얼굴 스왑 식별." },
-      "voice-cloning-attacks": { "title": "음성 클론 공격: 작동 원리와 방지 방법", "description": "음성 클론 공격 설명: AI가 몇 초 만에 음성을 클론하는 방법, 실제 비싱 사례, 98.5% 정확도의 탐지로 방지." },
-      "deepfake-detection-accuracy": { "title": "딥페이크 탐지 정확도: 벤치마크의 실제 의미", "description": "딥페이크 탐지 정확도 설명: 벤치마크 작동 방식, 실환경에서 정확도 저하 이유, 적절한 임계값 선택 방법." },
-      "deepfake-detection-api-guide": { "title": "앱에 딥페이크 탐지 통합하는 방법 (API 가이드)", "description": "API를 통해 앱에 딥페이크 탐지를 통합. 엔드포인트 선택, 요청 예시, 신뢰도 점수, 프로덕션 확장 가이드." },
-      "deepfake-statistics-2026": { "title": "딥페이크 통계 2026: 알아야 할 숫자", "description": "2026년 딥페이크 통계 결정판: 사기 손실, 탐지 정확도 벤치마크, 산업 영향, 규제 대응." }
+      "what-is-a-deepfake": {
+        "title": "딥페이크란? 작동 원리와 탐지 방법",
+        "description": "딥페이크 완전 가이드: AI가 어떻게 만드는지, 왜 보안 위협인지, 탐지 기술이 어떻게 작동하는지."
+      },
+      "how-to-detect-ai-generated-images": {
+        "title": "AI 생성 이미지 탐지 방법 (무료 도구 + API)",
+        "description": "무료 도구와 API로 AI 생성 이미지를 탐지하는 방법. 시각 검사 팁, GAN 및 확산 모델 탐지, 얼굴 스왑 식별."
+      },
+      "voice-cloning-attacks": {
+        "title": "음성 클론 공격: 작동 원리와 방지 방법",
+        "description": "음성 클론 공격 설명: AI가 몇 초 만에 음성을 클론하는 방법, 실제 비싱 사례, 98.5% 정확도의 탐지로 방지."
+      },
+      "deepfake-detection-accuracy": {
+        "title": "딥페이크 탐지 정확도: 벤치마크의 실제 의미",
+        "description": "딥페이크 탐지 정확도 설명: 벤치마크 작동 방식, 실환경에서 정확도 저하 이유, 적절한 임계값 선택 방법."
+      },
+      "deepfake-detection-api-guide": {
+        "title": "앱에 딥페이크 탐지 통합하는 방법 (API 가이드)",
+        "description": "API를 통해 앱에 딥페이크 탐지를 통합. 엔드포인트 선택, 요청 예시, 신뢰도 점수, 프로덕션 확장 가이드."
+      },
+      "deepfake-statistics-2026": {
+        "title": "딥페이크 통계 2026: 알아야 할 숫자",
+        "description": "2026년 딥페이크 통계 결정판: 사기 손실, 탐지 정확도 벤치마크, 산업 영향, 규제 대응."
+      }
     }
   }
 }
