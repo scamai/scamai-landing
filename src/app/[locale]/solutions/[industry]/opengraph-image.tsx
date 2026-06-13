@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getIndustryBySlug } from '@/lib/solutions/industries';
+import { getTranslations } from 'next-intl/server';
 
 export const runtime = 'edge';
 export const size = { width: 1200, height: 630 };
@@ -10,12 +11,18 @@ export default async function OGImage({
 }: {
   params: Promise<{ locale: string; industry: string }>;
 }) {
-  const { industry: slug } = await params;
+  const { locale, industry: slug } = await params;
   const industry = getIndustryBySlug(slug);
 
-  const headline = industry?.headline ?? 'Industry Solutions';
-  const stat = industry?.stat;
-  const eyebrow = industry?.eyebrow ?? 'SOLUTIONS';
+  let stat: { value: string; label: string } | undefined;
+  let headline = 'Industry Solutions';
+  let eyebrow = 'SOLUTIONS';
+  if (industry) {
+    const t = await getTranslations({ locale, namespace: `solutionsContent.${slug}` });
+    headline = t('headline');
+    eyebrow = t('eyebrow');
+    stat = { value: industry.stat.value, label: t('stat.label') };
+  }
 
   return new ImageResponse(
     (

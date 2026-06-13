@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
@@ -55,6 +56,9 @@ export default function ComparePage() {
   const slug = params.competitor as string;
   const competitor = getCompetitorBySlug(slug);
   if (!competitor) notFound();
+  // Translatable content (tagline, row labels, prose cells, advantages, faqs)
+  // resolved per-locale from the compareContent.<slug>.* namespace.
+  const t = useTranslations(`compareContent.${slug}`);
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -134,21 +138,27 @@ export default function ComparePage() {
                   {competitor.name}
                 </div>
               </div>
-              {/* Rows */}
+              {/* Rows. Data cells (row.scamai / row.competitor) are kept literal in
+                  the data file; prose cells are null there and resolved from
+                  compareContent.<slug>.comparisonRows.<i>.<side>. */}
               {competitor.comparison.map((row, i) => (
                 <div
                   key={i}
                   className={`grid grid-cols-3 border-b border-gray-800/40 last:border-0 transition-colors ${row.scamaiWins ? 'hover:bg-[#245FFF]/[0.02]' : 'hover:bg-white/[0.01]'}`}
                 >
-                  <div className="px-5 py-4 text-sm text-gray-400 flex items-center">{row.feature}</div>
+                  <div className="px-5 py-4 text-sm text-gray-400 flex items-center">
+                    {t(`comparisonRows.${i}.feature`)}
+                  </div>
                   <div className="px-5 py-4 border-x border-gray-800/40 flex items-center justify-center gap-2">
                     {row.scamaiWins ? <WinIcon /> : <TieIcon />}
                     <span className={`text-sm font-medium ${row.scamaiWins ? 'text-white' : 'text-gray-400'}`}>
-                      {row.scamai}
+                      {row.scamai ?? t(`comparisonRows.${i}.scamai`)}
                     </span>
                   </div>
                   <div className="px-5 py-4 flex items-center justify-center">
-                    <span className="text-sm text-gray-500">{row.competitor}</span>
+                    <span className="text-sm text-gray-500">
+                      {row.competitor ?? t(`comparisonRows.${i}.competitor`)}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -180,7 +190,7 @@ export default function ComparePage() {
             </div>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
-            {competitor.advantages.map((adv, i) => (
+            {Array.from({ length: competitor.advantagesCount }).map((_, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
                   <div className="w-8 h-8 rounded-lg bg-[#245FFF]/15 border border-[#245FFF]/25 flex items-center justify-center mb-5">
@@ -188,8 +198,8 @@ export default function ComparePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">{adv.title}</h3>
-                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{adv.description}</p>
+                  <h3 className="text-lg font-bold text-white mb-3">{t(`advantages.${i}.title`)}</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{t(`advantages.${i}.description`)}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -198,7 +208,7 @@ export default function ComparePage() {
       </section>
 
       {/* FAQ */}
-      <CompareFAQ faqs={competitor.faqs} competitorName={competitor.name} />
+      <CompareFAQ slug={slug} faqsCount={competitor.faqsCount} competitorName={competitor.name} />
 
       {/* CTA */}
       <section className="landing-section relative overflow-hidden bg-black">
@@ -243,6 +253,7 @@ export default function ComparePage() {
 }
 
 function CompareCrossLinks({ slug }: { slug: string }) {
+  const tSol = useTranslations('solutionsContent');
   const solutionSlugs = compareToSolutionLinks[slug] || [];
   const learnSlugs = compareToLearnLinks[slug] || [];
   const solutions = solutionSlugs.map(s => getIndustryBySlug(s)).filter(Boolean);
@@ -260,7 +271,7 @@ function CompareCrossLinks({ slug }: { slug: string }) {
             href={`/solutions/${sol!.slug}`}
             className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
           >
-            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{sol!.name} solution</span>
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{tSol(`${sol!.slug}.name`)} solution</span>
             <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -283,8 +294,9 @@ function CompareCrossLinks({ slug }: { slug: string }) {
   );
 }
 
-function CompareFAQ({ faqs, competitorName }: { faqs: { question: string; answer: string }[]; competitorName: string }) {
+function CompareFAQ({ slug, faqsCount, competitorName }: { slug: string; faqsCount: number; competitorName: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const t = useTranslations(`compareContent.${slug}`);
   return (
     <section className="landing-section relative overflow-hidden bg-black" aria-label="Frequently Asked Questions">
       <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 py-20 sm:py-24 lg:py-32">
@@ -295,7 +307,7 @@ function CompareFAQ({ faqs, competitorName }: { faqs: { question: string; answer
           </h2>
         </div>
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {Array.from({ length: faqsCount }).map((_, index) => (
             <div
               key={index}
               className="rounded-2xl border border-gray-800 overflow-hidden transition-colors duration-300 hover:border-gray-700"
@@ -306,7 +318,7 @@ function CompareFAQ({ faqs, competitorName }: { faqs: { question: string; answer
                 className="w-full px-6 py-5 flex items-start justify-between text-left transition-colors hover:bg-gray-800/30"
                 aria-expanded={openIndex === index}
               >
-                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{faq.question}</span>
+                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{t(`faqs.${index}.question`)}</span>
                 <motion.svg
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -328,7 +340,7 @@ function CompareFAQ({ faqs, competitorName }: { faqs: { question: string; answer
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-5">
-                      <p className="text-gray-300 leading-relaxed" data-speakable>{faq.answer}</p>
+                      <p className="text-gray-300 leading-relaxed" data-speakable>{t(`faqs.${index}.answer`)}</p>
                     </div>
                   </motion.div>
                 )}

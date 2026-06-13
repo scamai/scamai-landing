@@ -50,6 +50,7 @@ function AnimatedSection({
 
 export default function AudioDetectionPage() {
   const t = useTranslations("audioDetectionPage");
+  const tSol = useTranslations("solutionsContent");
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
@@ -339,7 +340,7 @@ export default function AudioDetectionPage() {
                   if (!sol) return null;
                   return (
                     <Link key={slug} href={`/solutions/${slug}`} className="group rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors flex items-center justify-between">
-                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{sol.name}</span>
+                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{tSol(`${slug}.name`)}</span>
                       <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                     </Link>
                   );

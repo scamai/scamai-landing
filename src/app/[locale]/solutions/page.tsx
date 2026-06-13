@@ -49,6 +49,14 @@ const industryIcons: Record<string, LucideIcon> = {
 export default async function SolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = (await params).locale as Locale;
   const t = await getTranslations({ locale, namespace: 'solutionsPage' });
+  // Resolve each industry's display name + short description from the
+  // per-locale solutionsContent namespace (keyed by slug).
+  const industryCards = await Promise.all(
+    industries.map(async (industry) => {
+      const tc = await getTranslations({ locale, namespace: `solutionsContent.${industry.slug}` });
+      return { slug: industry.slug, name: tc('name'), metaDescription: tc('metaDescription') };
+    })
+  );
   return (
     <main className="min-h-screen bg-black text-white">
       <section className="relative px-4 sm:px-6 pb-20" style={{ paddingTop: '140px' }}>
@@ -68,7 +76,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {industries.map((industry) => (
+            {industryCards.map((industry) => (
               <Link
                 key={industry.slug}
                 href={`/solutions/${industry.slug}`}

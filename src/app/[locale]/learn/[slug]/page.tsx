@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { notFound } from 'next/navigation';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getArticleBySlug, getRelatedArticles, type ContentBlock } from '@/lib/learn/articles';
 import { getIndustryBySlug } from '@/lib/solutions/industries';
@@ -126,6 +127,7 @@ function FAQAccordion({ faqs }: { faqs: { question: string; answer: string }[] }
 }
 
 function LearnCrossLinks({ slug }: { slug: string }) {
+  const tSol = useTranslations('solutionsContent');
   const solutionSlugs = learnToSolutionLinks[slug] || [];
   const compareSlug = learnToCompareLinks[slug];
   const solutions = solutionSlugs.map(s => getIndustryBySlug(s)).filter(Boolean);
@@ -143,7 +145,7 @@ function LearnCrossLinks({ slug }: { slug: string }) {
             href={`/solutions/${sol!.slug}`}
             className="group flex items-center justify-between rounded-lg border border-gray-800/50 bg-white/[0.02] px-4 py-3 hover:border-[#245FFF]/30 transition-colors"
           >
-            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Solution: {sol!.name}</span>
+            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">Solution: {tSol(`${sol!.slug}.name`)}</span>
             <svg className="w-4 h-4 text-gray-700 group-hover:text-[#245FFF] flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

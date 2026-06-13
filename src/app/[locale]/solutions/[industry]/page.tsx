@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { getIndustryBySlug } from '@/lib/solutions/industries';
 import { getArticleBySlug } from '@/lib/learn/articles';
 import { getCompetitorBySlug } from '@/lib/compare/competitors';
@@ -46,6 +47,18 @@ export default function IndustryPage() {
   const industry = getIndustryBySlug(slug);
   if (!industry) notFound();
 
+  return <IndustryPageContent slug={slug} industry={industry} />;
+}
+
+function IndustryPageContent({
+  slug,
+  industry,
+}: {
+  slug: string;
+  industry: NonNullable<ReturnType<typeof getIndustryBySlug>>;
+}) {
+  const t = useTranslations(`solutionsContent.${slug}`);
+
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero */}
@@ -68,23 +81,23 @@ export default function IndustryPage() {
           <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5 lg:space-y-6">
             <AnimatedSection delay={0.2}>
               <p className="text-[10px] font-semibold text-gray-400 tracking-[0.15em] uppercase sm:text-xs">
-                {industry.eyebrow}
+                {t('eyebrow')}
               </p>
             </AnimatedSection>
             <AnimatedSection delay={0.3}>
               <h1 className="text-3xl font-bold leading-[1.2] tracking-tight sm:text-5xl lg:text-6xl max-w-3xl px-2 sm:px-0">
-                {industry.headline}
+                {t('headline')}
               </h1>
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
               <p className="max-w-2xl text-sm leading-[1.7] text-gray-300 sm:text-base sm:leading-relaxed lg:text-lg px-4 sm:px-0 text-center" data-speakable>
-                {industry.subheadline}
+                {t('subheadline')}
               </p>
             </AnimatedSection>
             <AnimatedSection delay={0.45}>
               <div className="inline-flex items-center gap-3 rounded-full border border-[#245FFF]/30 bg-[#245FFF]/5 px-5 py-2.5">
                 <span className="text-2xl font-bold text-[#245FFF]">{industry.stat.value}</span>
-                <span className="text-sm text-gray-400 max-w-[240px] text-left leading-snug">{industry.stat.label}</span>
+                <span className="text-sm text-gray-400 max-w-[240px] text-left leading-snug">{t('stat.label')}</span>
               </div>
             </AnimatedSection>
             <AnimatedSection delay={0.5}>
@@ -112,7 +125,7 @@ export default function IndustryPage() {
             </div>
           </AnimatedSection>
           <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
-            {industry.capabilities.map((cap, i) => (
+            {Array.from({ length: industry.capabilitiesCount }, (_, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <div className="rounded-2xl border border-gray-800/60 bg-white/[0.02] p-8 h-full">
                   <div className="w-10 h-10 rounded-xl bg-[#245FFF]/10 border border-[#245FFF]/20 flex items-center justify-center mb-5">
@@ -120,8 +133,8 @@ export default function IndustryPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">{cap.title}</h3>
-                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{cap.description}</p>
+                  <h3 className="text-lg font-bold text-white mb-3">{t(`capabilities.${i}.title`)}</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{t(`capabilities.${i}.description`)}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -165,21 +178,21 @@ export default function IndustryPage() {
                 REAL-WORLD APPLICATIONS
               </p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-                Built for <span className="text-[#245FFF]">{industry.name}</span>
+                Built for <span className="text-[#245FFF]">{t('name')}</span>
               </h2>
             </div>
           </AnimatedSection>
           <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-            {industry.useCases.map((uc, i) => (
+            {Array.from({ length: industry.useCasesCount }, (_, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <div className="rounded-2xl border border-gray-800/50 bg-gray-900/40 backdrop-blur-sm p-8 lg:p-10 h-full">
-                  <h3 className="mb-4 text-xl sm:text-2xl font-bold text-white">{uc.title}</h3>
-                  <p className="mb-6 text-base text-gray-300 leading-relaxed">{uc.description}</p>
+                  <h3 className="mb-4 text-xl sm:text-2xl font-bold text-white">{t(`useCases.${i}.title`)}</h3>
+                  <p className="mb-6 text-base text-gray-300 leading-relaxed">{t(`useCases.${i}.description`)}</p>
                   <ul className="space-y-3 text-gray-300">
-                    {uc.bullets.map((bullet, j) => (
+                    {Array.from({ length: industry.useCaseBullets[i] ?? 0 }, (_, j) => (
                       <li key={j} className="flex items-start text-base">
                         <CheckIcon />
-                        <span>{bullet}</span>
+                        <span>{t(`useCases.${i}.bullets.${j}`)}</span>
                       </li>
                     ))}
                   </ul>
@@ -191,7 +204,7 @@ export default function IndustryPage() {
       </section>
 
       {/* FAQ */}
-      <IndustryFAQ faqs={industry.faqs} industryName={industry.name} />
+      <IndustryFAQ faqsCount={industry.faqsCount} industryName={t('name')} slug={slug} />
 
       {/* CTA */}
       <section className="landing-section relative overflow-hidden bg-black">
@@ -199,10 +212,10 @@ export default function IndustryPage() {
           <AnimatedSection>
             <div className="text-center">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-[1.1]">
-                {industry.ctaHeadline}
+                {t('ctaHeadline')}
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                {industry.ctaSubheadline}
+                {t('ctaSubheadline')}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a href="https://app.scam.ai" target="_blank" rel="noopener noreferrer" className="rainbow-button inline-block">
@@ -275,7 +288,8 @@ function IndustryCrossLinks({ slug }: { slug: string }) {
   );
 }
 
-function IndustryFAQ({ faqs, industryName }: { faqs: { question: string; answer: string }[]; industryName: string }) {
+function IndustryFAQ({ faqsCount, industryName, slug }: { faqsCount: number; industryName: string; slug: string }) {
+  const t = useTranslations(`solutionsContent.${slug}`);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   return (
     <section className="landing-section relative overflow-hidden bg-black" aria-label="Frequently Asked Questions">
@@ -287,7 +301,7 @@ function IndustryFAQ({ faqs, industryName }: { faqs: { question: string; answer:
           </h2>
         </div>
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {Array.from({ length: faqsCount }, (_, index) => (
             <div
               key={index}
               className="rounded-2xl border border-gray-800 overflow-hidden transition-colors duration-300 hover:border-gray-700"
@@ -298,7 +312,7 @@ function IndustryFAQ({ faqs, industryName }: { faqs: { question: string; answer:
                 className="w-full px-6 py-5 flex items-start justify-between text-left transition-colors hover:bg-gray-800/30"
                 aria-expanded={openIndex === index}
               >
-                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{faq.question}</span>
+                <span className="text-base font-semibold text-white pr-8 leading-relaxed">{t(`faqs.${index}.question`)}</span>
                 <motion.svg
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -320,7 +334,7 @@ function IndustryFAQ({ faqs, industryName }: { faqs: { question: string; answer:
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-5">
-                      <p className="text-gray-300 leading-relaxed" data-speakable>{faq.answer}</p>
+                      <p className="text-gray-300 leading-relaxed" data-speakable>{t(`faqs.${index}.answer`)}</p>
                     </div>
                   </motion.div>
                 )}

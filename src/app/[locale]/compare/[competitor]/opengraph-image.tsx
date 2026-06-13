@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getCompetitorBySlug } from '@/lib/compare/competitors';
+import { getTranslations } from 'next-intl/server';
 
 export const runtime = 'edge';
 export const size = { width: 1200, height: 630 };
@@ -10,12 +11,16 @@ export default async function OGImage({
 }: {
   params: Promise<{ locale: string; competitor: string }>;
 }) {
-  const { competitor: slug } = await params;
+  const { locale, competitor: slug } = await params;
   const competitor = getCompetitorBySlug(slug);
 
   const name = competitor?.name ?? 'Competitor';
-  const tagline = competitor?.tagline ?? `Scam AI vs ${name}`;
-  const firstAdvantage = competitor?.advantages[0]?.title ?? '';
+  // First advantage title is translatable (compareContent.<slug>.advantages.0.title).
+  let firstAdvantage = '';
+  if (competitor) {
+    const t = await getTranslations({ locale, namespace: `compareContent.${slug}` });
+    firstAdvantage = t('advantages.0.title');
+  }
 
   return new ImageResponse(
     (
