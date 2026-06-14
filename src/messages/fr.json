@@ -88,21 +88,25 @@
         "product": {
           "label": "Produit",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes & AI-generated images and video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech detection"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · Nouveau",
-              "description": "Détection des deepfakes sur l’appareil pour les appels en direct — avec Qualcomm"
-            },
-            "aiDetection": {
-              "label": "Détection IA",
-              "description": "Détection des deepfakes et des médias synthétiques"
-            },
-            "audio": {
-              "label": "Audio",
-              "description": "Détection du clonage vocal et de l’audio synthétique"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
               "label": "Documentation",
-              "description": "Guides API et exemples d’intégration"
+              "description": "API guides and integration examples"
             }
           }
         },

@@ -324,7 +324,7 @@
       "allInOne": {
         "eyebrow": "ALL-IN-ONE PLATFORM",
         "headline": "One platform for all media verification needs",
-        "body": "Stop juggling multiple detection tools. Scam AI unifies deepfake detection for images, video, and audio into a single API. Detect face swaps, GAN-generated images, diffusion model outputs (Stable Diffusion, DALL-E, Midjourney), and voice clones — all with one integration in under 10 minutes."
+        "body": "Stop juggling point tools. One Scam AI API covers both threats — manipulated real people (face swaps, lip-sync, voice clones) and fully AI-generated content (Stable Diffusion, DALL·E, Midjourney) — across image, video, and audio. One integration, under 10 minutes."
       },
       "lightningFast": {
         "eyebrow": "LIGHTNING FAST",
@@ -383,17 +383,21 @@
         "product": {
           "label": "Product",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes & AI-generated images and video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech detection"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · New",
-              "description": "On-device deepfake detection for live calls — with Qualcomm"
-            },
-            "aiDetection": {
-              "label": "AI Detection",
-              "description": "Deepfake and synthetic media detection"
-            },
-            "audio": {
-              "label": "Audio",
-              "description": "Voice cloning and synthetic audio detection"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
               "label": "Documentation",

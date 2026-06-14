@@ -88,21 +88,25 @@
         "product": {
           "label": "제품",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes & AI-generated images and video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech detection"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · New",
-              "description": "실시간 통화를 위한 온디바이스 딥페이크 탐지 — Qualcomm과 함께"
-            },
-            "aiDetection": {
-              "label": "AI 탐지",
-              "description": "딥페이크 및 합성 미디어 탐지"
-            },
-            "audio": {
-              "label": "오디오",
-              "description": "음성 클로닝 및 합성 오디오 탐지"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
-              "label": "문서",
-              "description": "API 가이드 및 통합 예제"
+              "label": "Documentation",
+              "description": "API guides and integration examples"
             }
           }
         },
