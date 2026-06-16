@@ -3,7 +3,7 @@ import { locales } from '@/i18n/config';
 
 export type Locale = (typeof locales)[number];
 
-const baseUrl = 'https://scam.ai';
+const baseUrl = 'https://www.scam.ai';
 
 interface GenerateMetadataParams {
   locale: Locale;
@@ -75,8 +75,8 @@ export function generatePageMetadata({
       title: fullTitle,
       description,
       images: [ogImage],
-      creator: '@scamai',
-      site: '@scamai',
+      creator: '@ScamAI_Official',
+      site: '@ScamAI_Official',
     },
     robots: noindex
       ? {
@@ -110,7 +110,7 @@ export function generateBreadcrumbSchema(
   locale: Locale,
   breadcrumbs: { name: string; path?: string }[]
 ) {
-  const baseUrl = 'https://scam.ai';
+  const baseUrl = 'https://www.scam.ai';
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -137,7 +137,7 @@ export function generateSpeakableSchema(
   path: string,
   cssSelectors: string[] = ['h1', '[data-speakable]']
 ) {
-  const baseUrl = 'https://scam.ai';
+  const baseUrl = 'https://www.scam.ai';
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',

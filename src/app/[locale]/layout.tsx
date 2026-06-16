@@ -7,6 +7,11 @@ import { locales, rtlLocales, type Locale } from "@/i18n/config";
 import Providers from "@/contexts/Providers";
 import NewNav from "@/components/new-site/NewNav";
 import NewFooter from "@/components/new-site/NewFooter";
+import CookieConsent from "@/components/CookieConsent";
+import AnalyticsScripts from "@/components/AnalyticsScripts";
+import { inter } from "@/lib/fonts";
+
+const IS_VERCEL = process.env.VERCEL === "1";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -116,10 +121,35 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <Providers locale={locale} messages={messages}>
-      <NewNav />
-      {children}
-      <NewFooter />
-    </Providers>
+    <html
+      lang={locale}
+      dir={isRtl ? "rtl" : "ltr"}
+      suppressHydrationWarning
+      className="bg-[#0b0b0b]"
+    >
+      <head>
+        <link rel="alternate" type="application/rss+xml" title="Scam AI News" href="/feed.xml" />
+      </head>
+      <body className={`${inter.variable} antialiased bg-[#0b0b0b]`}>
+        {/* GTM noscript fallback fires only when JS is disabled; internal-traffic
+            detection requires JS, so this is left ungated (a negligible edge case). */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K2WNMJV8"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        <Providers locale={locale} messages={messages}>
+          <NewNav />
+          {children}
+          <NewFooter />
+        </Providers>
+        {/* GTM + Vercel Analytics, gated client-side. */}
+        <AnalyticsScripts vercel={IS_VERCEL} />
+        <CookieConsent />
+      </body>
+    </html>
   );
 }

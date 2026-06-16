@@ -1,19 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
-const IS_VERCEL = process.env.VERCEL === '1';
-import CookieConsent from "@/components/CookieConsent";
-import Script from "next/script";
-import { cookies } from "next/headers";
-import { getLocale } from "next-intl/server";
-import { rtlLocales, type Locale } from "@/i18n/config";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +31,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://www.scam.ai"),
   alternates: {
-    canonical: "/",
+    canonical: "/en",
     languages: {
       "en": "/en",
       "es": "/es",
@@ -83,8 +69,8 @@ export const metadata: Metadata = {
     title: "Scam AI - AI Trust Platform | Deepfake Detection",
     description: "Detect synthetic media and deepfakes in real-time with industry-leading accuracy. SOC 2 Type II compliant.",
     images: ["/en/opengraph-image"],
-    creator: "@scamai",
-    site: "@scamai",
+    creator: "@ScamAI_Official",
+    site: "@ScamAI_Official",
   },
   robots: {
     index: true,
@@ -114,50 +100,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+// Static passthrough root layout. <html>/<body> and lang/dir now live in each
+// top-level branch's layout ([locale], admin, share) so this layout never calls a
+// dynamic API (getLocale/cookies) and the public routes stay statically rendered
+// and CDN-cacheable. globals.css and the metadata above still apply site-wide.
+// Non-localized top-level routes (app/page.tsx, /company, /contact, …) are
+// redirect() shells that throw before render, so they need no <html>/<body>.
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Derive lang/dir from the locale next-intl resolves for THIS request (set on
-  // the rewritten request by the next-intl middleware). The old approach read a
-  // NEXT_LOCALE cookie that the middleware wrote one request too late (and from a
-  // header that's absent on the incoming request), so <html lang> was always "en"
-  // and Arabic never got dir="rtl".
-  const locale = await getLocale();
-  const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
-  // si_internal set by middleware for our own egress IPs — skip GTM and
-  // Vercel Analytics entirely so internal test traffic never reaches them.
-  const cookieStore = await cookies();
-  const isInternal = cookieStore.get("si_internal")?.value === "1";
-
-  return (
-    <html lang={locale} dir={dir} suppressHydrationWarning className="bg-[#0b0b0b]">
-      <head>
-        {!isInternal && (
-          <Script id="gtm" strategy="afterInteractive">{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K2WNMJV8');`}</Script>
-        )}
-        <link rel="alternate" type="application/rss+xml" title="Scam AI News" href="/feed.xml" />
-      </head>
-      <body className={`${inter.variable} antialiased bg-[#0b0b0b]`}>
-        {!isInternal && (
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-K2WNMJV8"
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-        )}
-        {children}
-        {IS_VERCEL && !isInternal && <Analytics />}
-        <CookieConsent />
-      </body>
-    </html>
-  );
+  return children;
 }

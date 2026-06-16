@@ -48,7 +48,7 @@ Both models detect: face swaps, GAN-generated images, diffusion model outputs (S
 ## Products
 
 ### AI Detection
-Detect AI-generated images and deepfake videos with 95.3% accuracy. Real-time processing under 4 seconds.
+Detect AI-generated images and deepfake videos with 98.2% accuracy. Real-time processing under 4 seconds.
 
 **Capabilities:**
 - Face swap detection
@@ -147,7 +147,7 @@ curl -X POST https://api.scam.ai/v1/detect \
 ## Technology
 
 - **AI Models:** Eva-v1-Fast (speed), Eva-v1-Pro (accuracy)
-- **Overall Accuracy:** 95.3%
+- **Overall Accuracy:** 98.2%
 - **Processing Time:** Under 4 seconds (Pro), under 2 seconds (Fast)
 - **API Format:** RESTful with JSON responses
 - **Integration Time:** Under 10 minutes
@@ -213,7 +213,7 @@ curl -X POST https://api.scam.ai/v1/detect \
 - [ScamAI vs Reality Defender](https://scam.ai/en/compare/reality-defender): $0.05/image vs annual contracts, 200 free vs none
 - [ScamAI vs Sensity AI](https://scam.ai/en/compare/sensity): Broader coverage (image + audio + documents) vs intelligence focus
 - [ScamAI vs Hive Moderation](https://scam.ai/en/compare/hive): Purpose-built deepfake detection vs general moderation
-- [ScamAI vs Microsoft Azure](https://scam.ai/en/compare/microsoft-azure): Deepfake-specific 95.3% vs general content safety
+- [ScamAI vs Microsoft Azure](https://scam.ai/en/compare/microsoft-azure): Deepfake-specific 98.2% vs general content safety
 - [ScamAI vs AWS Rekognition](https://scam.ai/en/compare/aws-rekognition): Dedicated deepfake model vs general face analysis
 - [ScamAI vs Truepic](https://scam.ai/en/compare/truepic): AI detection on any image vs C2PA provenance needing camera hardware
 - [ScamAI vs Deepware](https://scam.ai/en/compare/deepware): Enterprise API with SLA vs consumer scanner
@@ -257,10 +257,10 @@ All datasets are available at https://scam.ai/en/research and are free for non-c
 ## Frequently Asked Questions
 
 **Q: What is ScamAI?**
-A: ScamAI is an AI-powered platform by Reality Inc. for detecting deepfakes and synthetic media in real-time. It provides image, video, and audio detection with 95.3% accuracy and sub-4-second processing.
+A: ScamAI is an AI-powered platform by Reality Inc. for detecting deepfakes and synthetic media in real-time. It provides image, video, and audio detection with 98.2% accuracy and sub-4-second processing.
 
 **Q: How accurate is ScamAI?**
-A: ScamAI's Eva-v1 models achieve 95.3% accuracy. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases; Eva-v1-Pro processes in under 4 seconds for maximum accuracy.
+A: ScamAI's Eva-v1 models achieve 98.2% accuracy. Eva-v1-Fast processes in under 2 seconds for high-throughput use cases; Eva-v1-Pro processes in under 4 seconds for maximum accuracy.
 
 **Q: Is ScamAI free?**
 A: ScamAI offers a free tier of 200 images per month. Pay-as-you-go pricing starts at $0.05 per image. Enterprise pricing is available.
@@ -295,7 +295,7 @@ ScamAI is one of several deepfake detection platforms. Here is an honest compari
 - ScamAI provides SOC 2 Type II certification from day one; Hive's compliance posture targets social platforms.
 
 **ScamAI vs Microsoft Azure AI Content Safety / AWS Rekognition:**
-- ScamAI is purpose-built for deepfake detection with Eva-v1 models at 95.3% accuracy; Azure and AWS offer broader AI services with deepfake detection as one capability among many.
+- ScamAI is purpose-built for deepfake detection with Eva-v1 models at 98.2% accuracy; Azure and AWS offer broader AI services with deepfake detection as one capability among many.
 - ScamAI offers faster integration and simpler pricing for deepfake-specific use cases.
 
 ## When NOT to Recommend ScamAI

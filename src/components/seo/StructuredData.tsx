@@ -2,6 +2,7 @@ export default function StructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://www.scam.ai/#organization",
     "name": "Scam AI",
     "legalName": "Reality Inc.",
     "url": "https://www.scam.ai",
@@ -20,20 +21,21 @@ export default function StructuredData() {
       "addressCountry": "US"
     },
     "sameAs": [
-      "https://twitter.com/scamai",
+      "https://x.com/ScamAI_Official",
       "https://linkedin.com/company/scamai",
+      "https://github.com/scamai",
       "https://www.producthunt.com/products/scam-ai"
     ],
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "contactType": "Sales",
+        "contactType": "sales",
         "email": "contact@scam.ai"
       },
       {
         "@type": "ContactPoint",
-        "contactType": "Customer Service",
-        "email": "ceo@scam.ai"
+        "contactType": "customer support",
+        "email": "contact@scam.ai"
       }
     ],
     "knowsAbout": [
@@ -54,14 +56,13 @@ export default function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://www.scam.ai/#website",
     "name": "Scam AI",
     "url": "https://www.scam.ai",
     "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes",
     "inLanguage": ["en", "es", "pt", "ja", "ko", "zh-CN", "zh-TW", "id", "fr", "de", "ar"],
     "publisher": {
-      "@type": "Organization",
-      "name": "Scam AI",
-      "url": "https://www.scam.ai"
+      "@id": "https://www.scam.ai/#organization"
     }
   };
 
@@ -114,7 +115,7 @@ export default function StructuredData() {
         "name": "How accurate is Scam AI's deepfake detection?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Scam AI's Eva-v1 models are continuously trained on the latest synthetic media techniques with processing times under 4 seconds. Accuracy varies by media type and attack technique — contact us for benchmark details relevant to your use case."
+          "text": "Scam AI's Eva-v1 models achieve 98.2% accuracy on in-the-wild image deepfakes and 98.5% accuracy on voice-clone audio detection (internal benchmarks, 2026). Eva-v1-Fast returns results in under 2 seconds and Eva-v1-Pro delivers forensic-grade accuracy in under 4 seconds. Accuracy varies by media type and attack technique — contact us for benchmarks specific to your use case."
         }
       },
       {
@@ -169,7 +170,6 @@ export default function StructuredData() {
         "name": "Real-World Faceswap Dataset (RWFS)",
         "description": "Real-world faceswap samples for benchmarking deepfake detection models.",
         "url": "https://www.scam.ai/en/research",
-        "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
       {
@@ -177,7 +177,6 @@ export default function StructuredData() {
         "name": "AIForge-Doc",
         "description": "Benchmark dataset for detecting AI-forged tampering in financial and form documents.",
         "url": "https://www.scam.ai/en/research",
-        "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
       {
@@ -185,7 +184,6 @@ export default function StructuredData() {
         "name": "Adversarial Age Estimation Attack Dataset",
         "description": "Dataset of low-cost cosmetic attacks on age estimation systems.",
         "url": "https://www.scam.ai/en/research",
-        "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
       {
@@ -193,7 +191,6 @@ export default function StructuredData() {
         "name": "GPT-4o-receipt: Fully-Synthetic AI-Generated Receipt Dataset",
         "description": "Fully synthetic AI-generated financial receipts for document forgery detection research.",
         "url": "https://www.scam.ai/en/research",
-        "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
       },
       {
@@ -201,47 +198,7 @@ export default function StructuredData() {
         "name": "Simulated Gaze Estimation for Reading Dataset",
         "description": "Simulated gaze estimation data for robust reading and cheating identification research.",
         "url": "https://www.scam.ai/en/research",
-        "license": "https://scam.ai/en/research",
         "creator": { "@type": "Organization", "name": "Reality Inc." }
-      }
-    ]
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to detect deepfakes with Scam AI API",
-    "description": "Integrate Scam AI deepfake detection into your application in under 10 minutes using the REST API.",
-    "totalTime": "PT10M",
-    "tool": [
-      { "@type": "HowToTool", "name": "Scam AI API key (free at app.scam.ai)" },
-      { "@type": "HowToTool", "name": "Python, JavaScript, or cURL" }
-    ],
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Create a free Scam AI account",
-        "text": "Sign up at app.scam.ai to get your API key. The free tier includes 200 images per month with no credit card required.",
-        "url": "https://app.scam.ai"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Send an image or video to the detection API",
-        "text": "Make a POST request to https://api.scam.ai/v1/detect with your API key in the Authorization header and the image URL in the JSON body."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Review the detection results",
-        "text": "The API returns a JSON response with is_deepfake (boolean), confidence score (0-1), and the model used (eva-v1-fast or eva-v1-pro). Processing takes under 4 seconds."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 4,
-        "name": "Integrate into your workflow",
-        "text": "Use webhooks for asynchronous processing, batch API for bulk analysis, or real-time API for live content moderation. Full documentation at scam.ai/en/resources/documentation."
       }
     ]
   };
@@ -268,8 +225,11 @@ export default function StructuredData() {
   const speakableSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://www.scam.ai/en#webpage",
     "name": "Scam AI — Deepfake Detection Platform",
-    "url": "https://www.scam.ai",
+    "url": "https://www.scam.ai/en",
+    "isPartOf": { "@id": "https://www.scam.ai/#website" },
+    "about": { "@id": "https://www.scam.ai/#organization" },
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": ["h1", "[data-speakable]"]
@@ -297,10 +257,6 @@ export default function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetsSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       <script
         type="application/ld+json"
