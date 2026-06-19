@@ -42,7 +42,7 @@
       "finance": {
         "tab": "Finance",
         "eyebrow": "FOR FINANCE & TREASURY",
-        "headline": "The voice approving the wire<br/>might not be your CFO.",
+        "headline": "The voice approving the wire<br></br>might not be your CFO.",
         "fearTitle": "Synthetic-exec wire fraud",
         "fearBody": "In 2024, a finance employee at engineering firm Arup joined a video call with what looked and sounded like their CFO and colleagues — every face on the call was a deepfake. They authorized <em>15 transfers totaling ~$25M</em>. The call looked completely normal. That’s the new attack: real-time synthetic executives on routine approval calls.",
         "stat": "~$25M",
@@ -56,7 +56,7 @@
       "hr": {
         "tab": "HR & Recruiting",
         "eyebrow": "FOR HR & TALENT",
-        "headline": "The candidate on camera<br/>may not be a real person.",
+        "headline": "The candidate on camera<br></br>may not be a real person.",
         "fearTitle": "Synthetic & face-swapped candidates",
         "fearBody": "The FBI has warned of a surge in deepfake job applicants — people using real-time face-swaps and voice changers to pass remote interviews, often to land access to sensitive systems or to mask a different person doing the work. Gartner projects that <em>1 in 4 candidate profiles will be fake by 2028</em>. Your interview loop is now an identity checkpoint.",
         "stat": "1 in 4",
@@ -156,7 +156,7 @@
       }
     },
     "finalCta": {
-      "heading": "Halo catches deepfakes on your calls.<br/> On your device, in real time.",
+      "heading": "Halo catches deepfakes on your calls.<br></br> On your device, in real time.",
       "body": "Halo is in early access. Join the waitlist and we’ll let you know the moment it’s ready for your device.",
       "discount": "Join now and get 50% off your first year.",
       "platformNote": "Available on Windows · Nothing leaves your device"

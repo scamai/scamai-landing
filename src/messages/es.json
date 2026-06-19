@@ -3011,7 +3011,7 @@
     },
     "problem": {
       "eyebrow": "La nueva superficie de ataque",
-      "heading": "Tus llamadas acaban de convertirse<br/> en un lugar para <highlight>ser atacado</highlight>.",
+      "heading": "Tus llamadas acaban de convertirse<br></br> en un lugar para <highlight>ser atacado</highlight>.",
       "body": "Los face-swaps en tiempo real son lo bastante buenos como para pasar por un colega en una videollamada en directo. Los filtros de correo y las comprobaciones de inicio de sesión nunca los ven: el fraude ocurre en la propia conversación."
     },
     "icp": {
@@ -3019,7 +3019,7 @@
       "finance": {
         "tab": "Finanzas",
         "eyebrow": "PARA FINANZAS Y TESORERÍA",
-        "headline": "La voz que aprueba la transferencia<br/>podría no ser tu director financiero.",
+        "headline": "La voz que aprueba la transferencia<br></br>podría no ser tu director financiero.",
         "fearTitle": "Fraude de transferencias con ejecutivos sintéticos",
         "fearBody": "En 2024, un empleado del área financiera de la firma de ingeniería Arup se unió a una videollamada con lo que parecía y sonaba como su director financiero y sus colegas: todos los rostros de la llamada eran deepfakes. Autorizaron <em>15 transferencias por un total de ~$25M</em>. La llamada parecía completamente normal. Ese es el nuevo ataque: ejecutivos sintéticos en tiempo real en llamadas de aprobación rutinarias.",
         "stat": "~$25M",
@@ -3033,7 +3033,7 @@
       "hr": {
         "tab": "RR. HH. y selección",
         "eyebrow": "PARA RR. HH. Y TALENTO",
-        "headline": "El candidato frente a la cámara<br/>puede no ser una persona real.",
+        "headline": "El candidato frente a la cámara<br></br>puede no ser una persona real.",
         "fearTitle": "Candidatos sintéticos y con face swap",
         "fearBody": "El FBI ha advertido de un aumento de los solicitantes de empleo deepfake: personas que usan face-swaps en tiempo real y modificadores de voz para superar entrevistas remotas, a menudo para acceder a sistemas sensibles o para ocultar que otra persona hace el trabajo. Gartner prevé que <em>1 de cada 4 perfiles de candidatos será falso para 2028</em>. Tu proceso de entrevistas es ahora un punto de control de identidad.",
         "stat": "1 de cada 4",
@@ -3133,7 +3133,7 @@
       }
     },
     "finalCta": {
-      "heading": "Halo detecta deepfakes en tus llamadas.<br/> En tu dispositivo, en tiempo real.",
+      "heading": "Halo detecta deepfakes en tus llamadas.<br></br> En tu dispositivo, en tiempo real.",
       "body": "Halo está en acceso anticipado. Únete a la lista de espera y te avisaremos en cuanto esté listo para tu dispositivo.",
       "discount": "Únete ahora y obtén un 50% de descuento en tu primer año.",
       "platformNote": "Disponible en Windows · Nada sale de tu dispositivo"

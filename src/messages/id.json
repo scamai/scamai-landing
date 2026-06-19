@@ -2904,7 +2904,7 @@
     },
     "problem": {
       "eyebrow": "Permukaan serangan baru",
-      "heading": "Panggilan Anda kini menjadi<br/> tempat untuk <highlight>diserang</highlight>.",
+      "heading": "Panggilan Anda kini menjadi<br></br> tempat untuk <highlight>diserang</highlight>.",
       "body": "Face-swap real-time kini cukup baik untuk menyamar sebagai rekan kerja dalam panggilan video langsung. Filter email dan pemeriksaan login tak pernah melihatnya — penipuan terjadi dalam percakapan itu sendiri."
     },
     "icp": {
@@ -2912,7 +2912,7 @@
       "finance": {
         "tab": "Keuangan",
         "eyebrow": "UNTUK KEUANGAN & TREASURI",
-        "headline": "Suara yang menyetujui transfer<br/>mungkin bukan CFO Anda.",
+        "headline": "Suara yang menyetujui transfer<br></br>mungkin bukan CFO Anda.",
         "fearTitle": "Penipuan transfer eksekutif sintetis",
         "fearBody": "Pada 2024, seorang karyawan keuangan di firma teknik Arup bergabung dalam panggilan video dengan sosok yang tampak dan terdengar seperti CFO dan rekan-rekannya — setiap wajah dalam panggilan itu adalah deepfake. Mereka menyetujui <em>15 transfer senilai total ~$25M</em>. Panggilan itu tampak sepenuhnya normal. Itulah serangan baru: eksekutif sintetis real-time pada panggilan persetujuan rutin.",
         "stat": "~$25M",
@@ -2926,7 +2926,7 @@
       "hr": {
         "tab": "SDM & Rekrutmen",
         "eyebrow": "UNTUK SDM & TALENTA",
-        "headline": "Kandidat di depan kamera<br/>mungkin bukan orang sungguhan.",
+        "headline": "Kandidat di depan kamera<br></br>mungkin bukan orang sungguhan.",
         "fearTitle": "Kandidat sintetis & face-swap",
         "fearBody": "FBI telah memperingatkan lonjakan pelamar kerja deepfake — orang yang menggunakan face-swap real-time dan pengubah suara untuk lolos wawancara jarak jauh, sering kali demi memperoleh akses ke sistem sensitif atau menutupi orang lain yang melakukan pekerjaan itu. Gartner memproyeksikan bahwa <em>1 dari 4 profil kandidat akan palsu pada 2028</em>. Putaran wawancara Anda kini menjadi titik pemeriksaan identitas.",
         "stat": "1 dari 4",
@@ -3026,7 +3026,7 @@
       }
     },
     "finalCta": {
-      "heading": "Halo menangkap deepfake pada panggilan Anda.<br/> Di perangkat Anda, secara real-time.",
+      "heading": "Halo menangkap deepfake pada panggilan Anda.<br></br> Di perangkat Anda, secara real-time.",
       "body": "Halo dalam akses awal. Gabung daftar tunggu dan kami akan memberi tahu Anda begitu siap untuk perangkat Anda.",
       "discount": "Gabung sekarang dan dapatkan diskon 50% untuk tahun pertama Anda.",
       "platformNote": "Tersedia di Windows · Tidak ada yang meninggalkan perangkat Anda"

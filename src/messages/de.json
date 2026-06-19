@@ -3011,7 +3011,7 @@
     },
     "problem": {
       "eyebrow": "Die neue Angriffsfläche",
-      "heading": "Ihre Anrufe sind gerade zu einem Ort geworden,<br/> an dem man <highlight>angegriffen werden</highlight> kann.",
+      "heading": "Ihre Anrufe sind gerade zu einem Ort geworden,<br></br> an dem man <highlight>angegriffen werden</highlight> kann.",
       "body": "Echtzeit-Face-Swaps sind gut genug, um in einem Live-Videoanruf als Kollege durchzugehen. E-Mail-Filter und Login-Prüfungen sehen sie nie — der Betrug geschieht im Gespräch selbst."
     },
     "icp": {
@@ -3019,7 +3019,7 @@
       "finance": {
         "tab": "Finanzen",
         "eyebrow": "FÜR FINANZEN UND TREASURY",
-        "headline": "Die Stimme, die die Überweisung freigibt,<br/>ist vielleicht nicht Ihr CFO.",
+        "headline": "Die Stimme, die die Überweisung freigibt,<br></br>ist vielleicht nicht Ihr CFO.",
         "fearTitle": "Überweisungsbetrug durch synthetische Führungskräfte",
         "fearBody": "2024 nahm ein Mitarbeiter der Finanzabteilung beim Ingenieurbüro Arup an einem Videoanruf mit Personen teil, die wie sein CFO und seine Kollegen aussahen und klangen — jedes Gesicht im Anruf war ein Deepfake. Er autorisierte <em>15 Überweisungen mit einem Gesamtwert von ~25 Mio. $</em>. Der Anruf wirkte völlig normal. Das ist der neue Angriff: synthetische Führungskräfte in Echtzeit bei routinemäßigen Freigabeanrufen.",
         "stat": "~25 Mio. $",
@@ -3033,7 +3033,7 @@
       "hr": {
         "tab": "HR und Recruiting",
         "eyebrow": "FÜR HR UND TALENTE",
-        "headline": "Der Kandidat vor der Kamera<br/>ist vielleicht keine reale Person.",
+        "headline": "Der Kandidat vor der Kamera<br></br>ist vielleicht keine reale Person.",
         "fearTitle": "Synthetische Kandidaten und Face Swaps",
         "fearBody": "Das FBI hat vor einem starken Anstieg von Deepfake-Bewerbern gewarnt — Personen, die Echtzeit-Face-Swaps und Stimmverzerrer nutzen, um Remote-Interviews zu bestehen, oft um Zugang zu sensiblen Systemen zu erlangen oder zu verschleiern, dass eine andere Person die Arbeit erledigt. Gartner prognostiziert, dass <em>bis 2028 jedes vierte Kandidatenprofil gefälscht sein wird</em>. Ihr Interviewprozess ist jetzt ein Identitäts-Checkpoint.",
         "stat": "1 von 4",
@@ -3133,7 +3133,7 @@
       }
     },
     "finalCta": {
-      "heading": "Halo erkennt Deepfakes in Ihren Anrufen.<br/> Auf Ihrem Gerät, in Echtzeit.",
+      "heading": "Halo erkennt Deepfakes in Ihren Anrufen.<br></br> Auf Ihrem Gerät, in Echtzeit.",
       "body": "Halo ist im Early Access. Tragen Sie sich in die Warteliste ein, und wir benachrichtigen Sie, sobald es für Ihr Gerät bereit ist.",
       "discount": "Jetzt beitreten und 50% Rabatt auf Ihr erstes Jahr erhalten.",
       "platformNote": "Verfügbar für Windows · Nichts verlässt Ihr Gerät"
