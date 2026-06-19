@@ -34,7 +34,7 @@
     },
     "problem": {
       "eyebrow": "The new attack surface",
-      "heading": "Your calls just became<br/> a place to <highlight>get attacked</highlight>.",
+      "heading": "Your calls just became a place to <highlight>get attacked</highlight>.",
       "body": "Real-time face-swaps are good enough to pass as a colleague on a live video call. Email filters and login checks never see them — the fraud happens in the conversation itself."
     },
     "icp": {
