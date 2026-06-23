@@ -326,61 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "WHAT WE DETECT",
-      "heading": "Two kinds of fake. <highlight>One platform.</highlight>",
-      "subheading": "Most AI detectors do one trick. Scam AI catches both threats — a real person manipulated, and content generated from nothing — across every medium your business touches.",
+      "eyebrow": "CE QUE NOUS DÉTECTONS",
+      "heading": "Deux types de faux. <highlight>Une seule plateforme.</highlight>",
+      "subheading": "La plupart des détecteurs IA ne savent faire qu’une chose. Scam AI déjoue les deux menaces — une personne réelle manipulée et un contenu généré de toutes pièces — sur chaque support que votre entreprise utilise.",
       "classes": {
         "deepfake": {
-          "tag": "MANIPULATED REALITY",
+          "tag": "RÉALITÉ MANIPULÉE",
           "title": "Deepfakes",
-          "description": "A real person, altered. Face swaps, lip-sync, reenactment, and cloned voices — engineered to impersonate someone who actually exists."
+          "description": "Une personne réelle, altérée. Échanges de visage, synchronisation labiale, réanimation et clones vocaux — conçus pour usurper l’identité de quelqu’un qui existe réellement."
         },
         "genai": {
-          "tag": "FULLY SYNTHETIC",
-          "title": "GenAI content",
-          "description": "Created from nothing. Images, video, and audio generated from scratch by modern AI models — Stable Diffusion, DALL·E, Midjourney, Sora, ElevenLabs."
+          "tag": "ENTIÈREMENT SYNTHÉTIQUE",
+          "title": "Contenu GenAI",
+          "description": "Créé à partir de rien. Images, vidéos et audio générés de toutes pièces par les modèles d’IA modernes — Stable Diffusion, DALL·E, Midjourney, Sora, ElevenLabs."
         }
       },
-      "mediumsHeading": "Across every medium",
+      "mediumsHeading": "Sur chaque support",
       "products": {
         "visual": {
-          "title": "Visual Detection",
-          "coverage": "Image · Video",
-          "description": "Face swaps, AI-generated images, and manipulated video — forensic-grade results in under 4 seconds via API."
+          "title": "Détection visuelle",
+          "coverage": "Image · Vidéo",
+          "description": "Échanges de visage, images générées par IA et vidéos manipulées — des résultats de qualité forensique en moins de 4 secondes via API."
         },
         "voice": {
-          "title": "Voice & Audio",
+          "title": "Voix et audio",
           "coverage": "Audio",
-          "description": "Voice clones and synthetic speech, analyzed in real time to stop call-center and authentication fraud."
+          "description": "Clones vocaux et voix synthétiques, analysés en temps réel pour stopper la fraude dans les centres d’appels et l’authentification."
         },
         "identity": {
-          "title": "Identity & Document",
+          "title": "Identité et documents",
           "coverage": "KYC · IDV",
-          "description": "Forged IDs, manipulated selfies, and AI-generated documents — caught before onboarding completes."
+          "description": "Pièces d’identité falsifiées, selfies manipulés et documents générés par IA — détectés avant la fin de l’intégration."
         },
         "halo": {
-          "badge": "On-device · Qualcomm",
+          "badge": "Sur l’appareil · Qualcomm",
           "title": "Halo",
-          "coverage": "Live calls",
-          "description": "Real-time deepfake detection on your Zoom, Teams & Meet calls, on-device. Video today; voice on the roadmap."
+          "coverage": "Appels en direct",
+          "description": "Détection des deepfakes en temps réel sur vos appels Zoom, Teams et Meet, directement sur l’appareil. La vidéo dès aujourd’hui ; la voix sur la feuille de route."
         }
       },
-      "learnMore": "Learn more",
+      "learnMore": "En savoir plus",
       "byIndustry": {
-        "heading": "Built for your industry",
-        "viewAll": "View all solutions"
+        "heading": "Conçu pour votre secteur",
+        "viewAll": "Voir toutes les solutions"
       },
       "industries": {
-        "fintech": "Financial services",
-        "call-centers": "Contact centers",
-        "hr": "Hiring & interviews",
-        "media": "Media & platforms",
-        "insurance": "Insurance",
-        "government": "Government",
-        "kyc": "KYC & onboarding",
-        "dating": "Dating & marketplaces"
+        "fintech": "Services financiers",
+        "call-centers": "Centres de contact",
+        "hr": "Recrutement et entretiens",
+        "media": "Médias et plateformes",
+        "insurance": "Assurance",
+        "government": "Secteur public",
+        "kyc": "KYC et intégration",
+        "dating": "Rencontres et marketplaces"
       },
-      "talkToSales": "Talk to sales"
+      "talkToSales": "Contacter le service commercial"
     },
     "developer": {
       "eyebrow": "LA PLUS SIMPLE À INTÉGRER",
@@ -2927,7 +2927,7 @@
       "finance": {
         "tab": "Finance",
         "eyebrow": "POUR LA FINANCE ET LA TRÉSORERIE",
-        "headline": "La voix qui approuve le virement<br></br>n’est peut-être pas celle de votre directeur financier.",
+        "headline": "Le visage sur cet appel vidéo<br></br>n’est peut-être pas celui de votre CFO.",
         "fearTitle": "Fraude au virement par dirigeant synthétique",
         "fearBody": "En 2024, un employé du service financier du cabinet d’ingénierie Arup a participé à un appel vidéo avec ce qui ressemblait et sonnait comme son directeur financier et ses collègues — chaque visage à l’appel était un deepfake. Il a autorisé <em>15 transferts pour un total d’environ $25M</em>. L’appel semblait tout à fait normal. C’est la nouvelle attaque : des dirigeants synthétiques en temps réel lors d’appels d’approbation de routine.",
         "stat": "~$25M",
@@ -3032,7 +3032,7 @@
         },
         "vsBuiltIn": {
           "q": "En quoi est-ce différent de la sécurité intégrée de mon application de visioconférence ?",
-          "a": "Les fonctionnalités natives des plateformes se concentrent sur l’accès et les contrôles de réunion, et non sur la détection du caractère synthétique du visage ou de la voix d’un participant. Halo est conçu spécifiquement pour la détection de médias synthétiques en temps réel et fonctionne sur toutes les plateformes que vous utilisez."
+          "a": "Les fonctionnalités natives des plateformes se concentrent sur l’accès et les contrôles de réunion, et non sur la détection du caractère synthétique du visage d’un participant. Halo est conçu spécifiquement pour la détection de médias synthétiques en temps réel et fonctionne sur toutes les plateformes que vous utilisez."
         },
         "devices": {
           "q": "Quels appareils Halo prend-il en charge ?",

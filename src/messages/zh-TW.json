@@ -326,61 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "WHAT WE DETECT",
-      "heading": "Two kinds of fake. <highlight>One platform.</highlight>",
-      "subheading": "Most AI detectors do one trick. Scam AI catches both threats — a real person manipulated, and content generated from nothing — across every medium your business touches.",
+      "eyebrow": "我們偵測什麼",
+      "heading": "兩種偽造。<highlight>一個平台。</highlight>",
+      "subheading": "多數 AI 偵測工具只會一招。Scam AI 同時揪出兩種威脅——被竄改的真實人物，以及無中生有的生成內容——涵蓋你企業所接觸的每一種媒介。",
       "classes": {
         "deepfake": {
-          "tag": "MANIPULATED REALITY",
-          "title": "Deepfakes",
-          "description": "A real person, altered. Face swaps, lip-sync, reenactment, and cloned voices — engineered to impersonate someone who actually exists."
+          "tag": "被竄改的真實",
+          "title": "深度偽造",
+          "description": "真實人物，遭到竄改。換臉、對嘴、動作重演與語音複製——刻意打造，用以冒充真實存在的某個人。"
         },
         "genai": {
-          "tag": "FULLY SYNTHETIC",
-          "title": "GenAI content",
-          "description": "Created from nothing. Images, video, and audio generated from scratch by modern AI models — Stable Diffusion, DALL·E, Midjourney, Sora, ElevenLabs."
+          "tag": "全然合成",
+          "title": "GenAI 生成內容",
+          "description": "無中生有。由現代 AI 模型從零生成的影像、影片與音訊——Stable Diffusion、DALL·E、Midjourney、Sora、ElevenLabs。"
         }
       },
-      "mediumsHeading": "Across every medium",
+      "mediumsHeading": "涵蓋每一種媒介",
       "products": {
         "visual": {
-          "title": "Visual Detection",
-          "coverage": "Image · Video",
-          "description": "Face swaps, AI-generated images, and manipulated video — forensic-grade results in under 4 seconds via API."
+          "title": "視覺偵測",
+          "coverage": "影像 · 影片",
+          "description": "換臉、AI 生成影像與竄改影片——透過 API 在 4 秒內提供鑑識級結果。"
         },
         "voice": {
-          "title": "Voice & Audio",
-          "coverage": "Audio",
-          "description": "Voice clones and synthetic speech, analyzed in real time to stop call-center and authentication fraud."
+          "title": "語音與音訊",
+          "coverage": "音訊",
+          "description": "語音複製與合成語音，即時分析以阻止客服中心與身分驗證詐騙。"
         },
         "identity": {
-          "title": "Identity & Document",
+          "title": "身分與證件",
           "coverage": "KYC · IDV",
-          "description": "Forged IDs, manipulated selfies, and AI-generated documents — caught before onboarding completes."
+          "description": "偽造證件、竄改自拍與 AI 生成文件——在註冊完成前即時攔截。"
         },
         "halo": {
-          "badge": "On-device · Qualcomm",
+          "badge": "裝置端 · Qualcomm",
           "title": "Halo",
-          "coverage": "Live calls",
-          "description": "Real-time deepfake detection on your Zoom, Teams & Meet calls, on-device. Video today; voice on the roadmap."
+          "coverage": "即時通話",
+          "description": "在你的 Zoom、Teams 與 Meet 通話中，於裝置端即時偵測深度偽造。目前支援影片；語音已列入產品藍圖。"
         }
       },
-      "learnMore": "Learn more",
+      "learnMore": "了解更多",
       "byIndustry": {
-        "heading": "Built for your industry",
-        "viewAll": "View all solutions"
+        "heading": "為你的產業打造",
+        "viewAll": "查看所有解決方案"
       },
       "industries": {
-        "fintech": "Financial services",
-        "call-centers": "Contact centers",
-        "hr": "Hiring & interviews",
-        "media": "Media & platforms",
-        "insurance": "Insurance",
-        "government": "Government",
-        "kyc": "KYC & onboarding",
-        "dating": "Dating & marketplaces"
+        "fintech": "金融服務",
+        "call-centers": "客服中心",
+        "hr": "招募與面試",
+        "media": "媒體與平台",
+        "insurance": "保險",
+        "government": "政府機關",
+        "kyc": "KYC 與註冊驗證",
+        "dating": "交友與交易平台"
       },
-      "talkToSales": "Talk to sales"
+      "talkToSales": "聯絡業務"
     },
     "developer": {
       "eyebrow": "最易於整合",
@@ -2927,7 +2927,7 @@
       "finance": {
         "tab": "財務",
         "eyebrow": "面向財務與資金管理",
-        "headline": "核准電匯的那個聲音<br></br>可能並非您的 CFO。",
+        "headline": "那場視訊通話裡的那張臉<br></br>可能並非您的 CFO。",
         "fearTitle": "合成主管電匯詐欺",
         "fearBody": "2024 年，工程公司 Arup 的一名財務員工加入了一場視訊通話，畫面中的人看起來、聽起來都像他們的 CFO 與同事——而通話中的每一張臉都是深度偽造。他們核准了 <em>15 筆總計約 $25M</em> 的轉帳。整場通話看起來完全正常。這就是全新的攻擊方式：在例行核准通話中出現的即時合成主管。",
         "stat": "約 $25M",
@@ -3032,7 +3032,7 @@
         },
         "vsBuiltIn": {
           "q": "這與我的會議應用程式內建的安全功能有何不同？",
-          "a": "平台原生功能著重於存取與會議控制，而非偵測參與者的人臉或聲音是否為合成。Halo 專為即時合成媒體偵測打造，並相容您使用的每一個平台。"
+          "a": "平台原生功能著重於存取與會議控制，而非偵測參與者的人臉是否為合成。Halo 專為即時合成媒體偵測打造，並相容您使用的每一個平台。"
         },
         "devices": {
           "q": "Halo 支援哪些裝置？",

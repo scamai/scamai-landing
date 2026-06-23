@@ -326,61 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "WHAT WE DETECT",
-      "heading": "Two kinds of fake. <highlight>One platform.</highlight>",
-      "subheading": "Most AI detectors do one trick. Scam AI catches both threats — a real person manipulated, and content generated from nothing — across every medium your business touches.",
+      "eyebrow": "検出対象",
+      "heading": "2 種類のフェイク。<highlight>1 つのプラットフォーム。</highlight>",
+      "subheading": "ほとんどの AI 検出ツールは 1 つの手口にしか対応しません。Scam AI は、実在する人物を改ざんした脅威と、何もないところから生成されたコンテンツの両方を、ビジネスが触れるあらゆるメディアで検出します。",
       "classes": {
         "deepfake": {
-          "tag": "MANIPULATED REALITY",
-          "title": "Deepfakes",
-          "description": "A real person, altered. Face swaps, lip-sync, reenactment, and cloned voices — engineered to impersonate someone who actually exists."
+          "tag": "改ざんされた現実",
+          "title": "ディープフェイク",
+          "description": "実在する人物を改ざん。フェイススワップ、リップシンク、リエナクトメント、音声クローン — 実在する誰かになりすますために作られます。"
         },
         "genai": {
-          "tag": "FULLY SYNTHETIC",
-          "title": "GenAI content",
-          "description": "Created from nothing. Images, video, and audio generated from scratch by modern AI models — Stable Diffusion, DALL·E, Midjourney, Sora, ElevenLabs."
+          "tag": "完全な合成",
+          "title": "GenAI コンテンツ",
+          "description": "何もないところから生成。最新の AI モデル — Stable Diffusion、DALL·E、Midjourney、Sora、ElevenLabs — がゼロから作り出す画像、動画、音声です。"
         }
       },
-      "mediumsHeading": "Across every medium",
+      "mediumsHeading": "あらゆるメディアに対応",
       "products": {
         "visual": {
-          "title": "Visual Detection",
-          "coverage": "Image · Video",
-          "description": "Face swaps, AI-generated images, and manipulated video — forensic-grade results in under 4 seconds via API."
+          "title": "ビジュアル検出",
+          "coverage": "画像 · 動画",
+          "description": "フェイススワップ、AI 生成画像、改ざんされた動画を、API 経由で 4 秒未満にフォレンジック品質の結果として検出します。"
         },
         "voice": {
-          "title": "Voice & Audio",
-          "coverage": "Audio",
-          "description": "Voice clones and synthetic speech, analyzed in real time to stop call-center and authentication fraud."
+          "title": "音声・オーディオ",
+          "coverage": "音声",
+          "description": "音声クローンと合成音声をリアルタイムで分析し、コールセンター詐欺や認証なりすましを阻止します。"
         },
         "identity": {
-          "title": "Identity & Document",
+          "title": "本人確認・書類",
           "coverage": "KYC · IDV",
-          "description": "Forged IDs, manipulated selfies, and AI-generated documents — caught before onboarding completes."
+          "description": "偽造 ID、改ざんされたセルフィー、AI 生成書類を、オンボーディングが完了する前に検出します。"
         },
         "halo": {
-          "badge": "On-device · Qualcomm",
+          "badge": "オンデバイス · Qualcomm",
           "title": "Halo",
-          "coverage": "Live calls",
-          "description": "Real-time deepfake detection on your Zoom, Teams & Meet calls, on-device. Video today; voice on the roadmap."
+          "coverage": "ライブ通話",
+          "description": "Zoom、Teams、Meet のライブ通話で、ディープフェイクをデバイス上でリアルタイム検出。現在は映像に対応、音声は今後のロードマップに含まれます。"
         }
       },
-      "learnMore": "Learn more",
+      "learnMore": "詳しく見る",
       "byIndustry": {
-        "heading": "Built for your industry",
-        "viewAll": "View all solutions"
+        "heading": "あなたの業界のために",
+        "viewAll": "すべてのソリューションを見る"
       },
       "industries": {
-        "fintech": "Financial services",
-        "call-centers": "Contact centers",
-        "hr": "Hiring & interviews",
-        "media": "Media & platforms",
-        "insurance": "Insurance",
-        "government": "Government",
-        "kyc": "KYC & onboarding",
-        "dating": "Dating & marketplaces"
+        "fintech": "金融サービス",
+        "call-centers": "コンタクトセンター",
+        "hr": "採用・面接",
+        "media": "メディア・プラットフォーム",
+        "insurance": "保険",
+        "government": "行政・公共",
+        "kyc": "KYC・オンボーディング",
+        "dating": "マッチング・マーケットプレイス"
       },
-      "talkToSales": "Talk to sales"
+      "talkToSales": "営業に相談する"
     },
     "developer": {
       "eyebrow": "最も簡単に統合できる",
@@ -3034,7 +3034,7 @@
       "finance": {
         "tab": "財務",
         "eyebrow": "財務・トレジャリー向け",
-        "headline": "送金を承認するその声は、<br></br>あなたのCFOではないかもしれません。",
+        "headline": "そのビデオ通話に映る顔は、<br></br>あなたのCFOではないかもしれません。",
         "fearTitle": "合成された経営幹部による送金詐欺",
         "fearBody": "2024年、エンジニアリング企業Arupの財務担当者が、見た目も声もCFOや同僚そっくりの相手と動画通話に参加しました — 通話上のすべての顔がディープフェイクでした。担当者は<em>合計約$25Mの15件の送金</em>を承認しました。通話はまったく正常に見えました。これが新たな攻撃です： 日常的な承認通話に登場する、リアルタイムの合成された経営幹部。",
         "stat": "約$25M",
@@ -3139,7 +3139,7 @@
         },
         "vsBuiltIn": {
           "q": "会議アプリ内蔵のセキュリティと何が違うのですか？",
-          "a": "プラットフォームネイティブの機能は、アクセスや会議のコントロールに重点を置いており、参加者の顔や声が合成されたものかどうかの検出には対応していません。Haloはリアルタイムの合成メディア検出のために専用に設計され、お使いのあらゆるプラットフォームで動作します。"
+          "a": "プラットフォームネイティブの機能は、アクセスや会議のコントロールに重点を置いており、参加者の顔が合成されたものかどうかの検出には対応していません。Haloはリアルタイムの合成メディア検出のために専用に設計され、お使いのあらゆるプラットフォームで動作します。"
         },
         "devices": {
           "q": "Haloはどのデバイスに対応していますか？",
