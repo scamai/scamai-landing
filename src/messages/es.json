@@ -29,7 +29,7 @@
       "allInOne": {
         "eyebrow": "PLATAFORMA TODO EN UNO",
         "headline": "Una sola plataforma para todas tus necesidades de verificación de medios",
-        "body": "Deja de hacer malabares con múltiples herramientas de detección. Scam AI unifica la detección de deepfakes para imágenes, video y audio en una sola API. Detecta intercambios de rostro, imágenes generadas por GAN, resultados de modelos de difusión (Stable Diffusion, DALL-E, Midjourney) y clonaciones de voz, todo con una única integración en menos de 10 minutos."
+        "body": "Deja de hacer malabares con múltiples herramientas de detección. Scam AI unifica la detección de deepfakes para imágenes, video y audio en una sola API. Detecta intercambios de rostro, imágenes generadas por GAN, resultados de modelos de difusión (Stable Diffusion, DALL·E, Midjourney) y clonaciones de voz, todo con una única integración en menos de 10 minutos."
       },
       "lightningFast": {
         "eyebrow": "ULTRARRÁPIDO",
@@ -88,21 +88,25 @@
         "product": {
           "label": "Producto",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes, AI-generated images & video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · Nuevo",
-              "description": "Detección de deepfakes en el dispositivo para llamadas en vivo, con Qualcomm"
-            },
-            "aiDetection": {
-              "label": "Detección con IA",
-              "description": "Detección de deepfakes y medios sintéticos"
-            },
-            "audio": {
-              "label": "Audio",
-              "description": "Detección de clonación de voz y audio sintético"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
-              "label": "Documentación",
-              "description": "Guías de API y ejemplos de integración"
+              "label": "Documentation",
+              "description": "API guides and integration examples"
             }
           }
         },
@@ -322,50 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "SOLUCIONES",
-      "heading": "La infraestructura de confianza <br></br>para la <highlight>era de la IA</highlight>",
-      "subheading": "Detecta deepfakes, medios sintéticos, clonaciones de voz y fraude documental, en personas, documentos y agentes de IA.",
-      "learnMore": "Más información",
-      "talkToSales": "Hablar con ventas",
-      "cards": {
-        "halo": {
-          "title": "Halo — Detección en el dispositivo",
-          "description": "Detección de deepfakes en tiempo real en tus llamadas de Zoom, Teams y Meet. Se ejecuta en la NPU Qualcomm Snapdragon X: nada sale de tu dispositivo.",
-          "badge": "Nuevo · con Qualcomm"
-        },
+      "eyebrow": "QUÉ DETECTAMOS",
+      "heading": "Dos tipos de falsificación. <highlight>Una plataforma.</highlight>",
+      "subheading": "La mayoría de los detectores de IA hacen un solo truco. Scam AI detecta ambas amenazas —una persona real manipulada y contenido generado de la nada— en todos los medios con los que trabaja tu empresa.",
+      "classes": {
         "deepfake": {
-          "title": "Deepfake",
-          "description": "Detecta intercambios de rostro, ataques de sincronización labial y rostros generados por IA en imágenes y video en tiempo real."
+          "tag": "REALIDAD MANIPULADA",
+          "title": "Deepfakes",
+          "description": "Una persona real, alterada. Intercambios de rostro, sincronización labial, recreación y clonaciones de voz, diseñados para suplantar a alguien que realmente existe."
         },
         "genai": {
-          "title": "GenAI",
-          "description": "Identifica contenido sintético de modelos de difusión, GAN y LLM antes de que entre en tu flujo de trabajo."
-        },
-        "voiceClone": {
-          "title": "Clonación de voz",
-          "description": "Detecta voces clonadas y habla sintética que apunta a centros de llamadas y sistemas de autenticación de voz."
-        },
-        "remoteNotary": {
-          "title": "Notaría remota",
-          "description": "Verifica la identidad del firmante durante las notarizaciones remotas. Detén los deepfakes antes de sellar los documentos."
-        },
-        "ageEstimation": {
-          "title": "Estimación de edad e IDV",
-          "description": "Estimación de edad y verificación de identidad con IA que detecta documentos sintéticos y selfies manipulados."
-        },
-        "documentForgery": {
-          "title": "Falsificación de documentos",
-          "description": "Análisis forense de documentos generados por IA y manipulados, desde extractos bancarios hasta recibos de nómina."
-        },
-        "aiAgentScamPrevention": {
-          "title": "Prevención de estafas con agentes de IA",
-          "description": "Bloquea la ingeniería social, la inyección de prompts y la suplantación de identidad dirigidas a flujos de trabajo impulsados por IA."
-        },
-        "remoteInterview": {
-          "title": "Integridad de entrevistas remotas",
-          "description": "Verifica la identidad del candidato y detecta deepfakes durante entrevistas en video en vivo en tiempo real."
+          "tag": "TOTALMENTE SINTÉTICO",
+          "title": "Contenido GenAI",
+          "description": "Creado de la nada. Imágenes, video y audio generados desde cero por los modelos de IA modernos: Stable Diffusion, DALL·E, Midjourney, Sora, ElevenLabs."
         }
-      }
+      },
+      "mediumsHeading": "En todos los medios",
+      "products": {
+        "visual": {
+          "title": "Detección visual",
+          "coverage": "Imagen · Video",
+          "description": "Intercambios de rostro, imágenes generadas por IA y video manipulado: resultados de calidad forense en menos de 4 segundos a través de la API."
+        },
+        "voice": {
+          "title": "Voz y audio",
+          "coverage": "Audio",
+          "description": "Clonaciones de voz y habla sintética, analizadas en tiempo real para detener el fraude en centros de llamadas y en la autenticación."
+        },
+        "identity": {
+          "title": "Identidad y documentos",
+          "coverage": "KYC · IDV",
+          "description": "Identificaciones falsificadas, selfies manipuladas y documentos generados por IA: detectados antes de que se complete la incorporación."
+        },
+        "halo": {
+          "badge": "En el dispositivo · Qualcomm",
+          "title": "Halo",
+          "coverage": "Llamadas en vivo",
+          "description": "Detección de deepfakes en tiempo real en tus llamadas de Zoom, Teams y Meet, en el dispositivo. Video hoy; voz en la hoja de ruta."
+        }
+      },
+      "learnMore": "Más información",
+      "byIndustry": {
+        "heading": "Diseñado para tu industria",
+        "viewAll": "Ver todas las soluciones"
+      },
+      "industries": {
+        "fintech": "Servicios financieros",
+        "call-centers": "Centros de contacto",
+        "hr": "Contratación y entrevistas",
+        "media": "Medios y plataformas",
+        "insurance": "Seguros",
+        "government": "Gobierno",
+        "kyc": "KYC e incorporación",
+        "dating": "Citas y marketplaces"
+      },
+      "talkToSales": "Habla con ventas"
     },
     "developer": {
       "eyebrow": "LA INTEGRACIÓN MÁS SENCILLA",
@@ -1020,7 +1035,7 @@
         "category": "Scam Text Detection",
         "headline": "Instantly Identify and Neutralize",
         "subtitle": "Malicious Texts",
-        "description": "Scam.ai's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
+        "description": "Scam AI's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
         "tags": [
           "Text Analysis",
           "Scam Detection",
@@ -1375,7 +1390,7 @@
         "logTitle": "Live log · Blocked Requests",
         "realtime": "Realtime",
         "logs": [
-          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%*",
+          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%",
           "[00:01:15] VOICE-CLONE IVR flagged · fallback to OTP",
           "[00:01:19] IMPERSONATION API denied · rule: Vision-Strict"
         ]
@@ -1454,7 +1469,7 @@
       "privacyShort": "Privacy",
       "termsShort": "Terms"
     },
-    "copyright": " 2026 Scam.ai Inc. All rights reserved. Built in Berkeley."
+    "copyright": " 2026 Reality Inc. All rights reserved. Built in Berkeley."
   },
   "Navigation": {
     "sections": {
@@ -2281,7 +2296,7 @@
         "category": "Research Database for Scam Analysis",
         "headline": "The Intelligence Engine Powering",
         "subtitle": "Next-Generation Fraud Defense",
-        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam.ai platform.",
+        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam AI platform.",
         "tags": [
           "Database",
           "Scam Intelligence",
@@ -2334,7 +2349,7 @@
           },
           {
             "title": "Instantaneous Verification & Propagation",
-            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam.ai model is instantly updated and ready to block it."
+            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam AI model is instantly updated and ready to block it."
           }
         ],
         "outputDescription": "The API returns a rich JSON object containing an entity's risk score, history, and all known connections to other malicious infrastructure."
@@ -2356,7 +2371,7 @@
           },
           {
             "title": "Platform Synergy",
-            "description": "This is the single source of truth that trains, validates, and powers all other Scam.ai models. It's why our detection products are always smarter and faster. ️"
+            "description": "This is the single source of truth that trains, validates, and powers all other Scam AI models. It's why our detection products are always smarter and faster. ️"
           }
         ]
       },
@@ -2609,7 +2624,7 @@
     "hero": {
       "eyebrow": "DETECCIÓN DE IA",
       "heading": "Detecta deepfakes en imágenes y vídeos",
-      "body": "Los modelos Eva-v1 de Scam AI detectan <em>medios sintéticos</em>, <em>rostros manipulados</em> y <em>vídeos deepfake</em> con una <em>precisión del 98.2%</em> en menos de 4 segundos. Compatible con face swaps, imágenes generadas por GAN y resultados de modelos de difusión como Stable Diffusion, DALL-E, Midjourney y Flux.",
+      "body": "Los modelos Eva-v1 de Scam AI detectan <em>medios sintéticos</em>, <em>rostros manipulados</em> y <em>vídeos deepfake</em> con una <em>precisión del 98.2%</em> en menos de 4 segundos. Compatible con face swaps, imágenes generadas por GAN y resultados de modelos de difusión como Stable Diffusion, DALL·E, Midjourney y Flux.",
       "cta": "Probar la detección de IA"
     },
     "features": {
@@ -2618,7 +2633,7 @@
       "face": {
         "eyebrow": "DETECCIÓN DE ROSTROS",
         "heading": "Detección de manipulación de rostros",
-        "body1": "Identifica face swaps, cambios de expresión y manipulaciones de atributos faciales con una <em>precisión del 98.2%</em> mediante análisis avanzado de redes neuronales. Detecta resultados de las principales herramientas de generación, incluidas Stable Diffusion, DALL-E, Midjourney y Flux.",
+        "body1": "Identifica face swaps, cambios de expresión y manipulaciones de atributos faciales con una <em>precisión del 98.2%</em> mediante análisis avanzado de redes neuronales. Detecta resultados de las principales herramientas de generación, incluidas Stable Diffusion, DALL·E, Midjourney y Flux.",
         "body2": "Eva-v1-Fast procesa en <em>menos de 2 segundos</em> para moderación en tiempo real. Eva-v1-Pro ofrece resultados de calidad forense en <em>menos de 4 segundos</em> para KYC y pruebas legales."
       },
       "video": {
@@ -2691,7 +2706,7 @@
         },
         "types": {
           "question": "¿Qué tipos de deepfakes puede detectar Scam AI en imágenes y vídeos?",
-          "answer": "Scam AI detecta face swaps, imágenes generadas por GAN, resultados de modelos de difusión (Stable Diffusion, DALL-E, Midjourney, Flux), vídeos deepfake con análisis fotograma a fotograma y temporal, rostros sintéticos y manipulación de vídeo en 4K."
+          "answer": "Scam AI detecta face swaps, imágenes generadas por GAN, resultados de modelos de difusión (Stable Diffusion, DALL·E, Midjourney, Flux), vídeos deepfake con análisis fotograma a fotograma y temporal, rostros sintéticos y manipulación de vídeo en 4K."
         },
         "formats": {
           "question": "¿Qué formatos de imagen y vídeo admite Scam AI?",
@@ -2887,7 +2902,7 @@
         },
         "genai-detection": {
           "title": "Lanzamiento de la detección GenAI",
-          "description": "Lanzamos una detección integral de contenido GenAI en texto, imágenes y vídeos. Modelos de IA avanzados identifican contenido generado por ChatGPT, Midjourney, DALL-E y otras plataformas de IA generativa."
+          "description": "Lanzamos una detección integral de contenido GenAI en texto, imágenes y vídeos. Modelos de IA avanzados identifican contenido generado por ChatGPT, Midjourney, DALL·E y otras plataformas de IA generativa."
         },
         "audio-detection": {
           "title": "Lanzamiento de la detección de audio",
@@ -2921,7 +2936,7 @@
     "cards": {
       "aiDetection": {
         "title": "Detección de deepfakes en imágenes y vídeos con IA",
-        "description": "Detecta imágenes generadas por IA y vídeos deepfake con una precisión del 98.2%* usando el modelo Eva-v1. Identifica face swaps, imágenes generadas por GAN y resultados de modelos de difusión de Stable Diffusion, DALL-E y Midjourney. Se integra mediante REST API en menos de 10 minutos.",
+        "description": "Detecta imágenes generadas por IA y vídeos deepfake con una precisión del 98.2% usando el modelo Eva-v1. Identifica face swaps, imágenes generadas por GAN y resultados de modelos de difusión de Stable Diffusion, DALL·E y Midjourney. Se integra mediante REST API en menos de 10 minutos.",
         "link": "Explora la detección de deepfakes con IA →"
       },
       "audioDetection": {
@@ -3019,7 +3034,7 @@
       "finance": {
         "tab": "Finanzas",
         "eyebrow": "PARA FINANZAS Y TESORERÍA",
-        "headline": "La voz que aprueba la transferencia<br></br>podría no ser tu director financiero.",
+        "headline": "El rostro en esa videollamada<br></br>podría no ser tu CFO.",
         "fearTitle": "Fraude de transferencias con ejecutivos sintéticos",
         "fearBody": "En 2024, un empleado del área financiera de la firma de ingeniería Arup se unió a una videollamada con lo que parecía y sonaba como su director financiero y sus colegas: todos los rostros de la llamada eran deepfakes. Autorizaron <em>15 transferencias por un total de ~$25M</em>. La llamada parecía completamente normal. Ese es el nuevo ataque: ejecutivos sintéticos en tiempo real en llamadas de aprobación rutinarias.",
         "stat": "~$25M",
@@ -3124,7 +3139,7 @@
         },
         "vsBuiltIn": {
           "q": "¿En qué se diferencia esto de la seguridad integrada de mi aplicación de videoconferencia?",
-          "a": "Las funciones nativas de la plataforma se centran en los controles de acceso y de la reunión, no en detectar si el rostro o la voz de un participante es sintético. Halo está diseñado específicamente para la detección de medios sintéticos en tiempo real y funciona en todas las plataformas que utilizas."
+          "a": "Las funciones nativas de la plataforma se centran en los controles de acceso y de la reunión, no en detectar si el rostro de un participante es sintético. Halo está diseñado específicamente para la detección de medios sintéticos en tiempo real y funciona en todas las plataformas que utilizas."
         },
         "devices": {
           "q": "¿Qué dispositivos admite Halo?",
@@ -3506,7 +3521,7 @@
         },
         "1": {
           "question": "¿Cómo detecta Scam AI los perfiles falsos creados con rostros generados por IA?",
-          "answer": "El modelo Eva-v1 de Scam AI detecta los artefactos sutiles que dejan los generadores GAN y los modelos de difusión como Stable Diffusion, DALL-E y Midjourney. Los rostros totalmente sintéticos que nunca han existido se identifican mediante análisis semántico y en el dominio de la frecuencia."
+          "answer": "El modelo Eva-v1 de Scam AI detecta los artefactos sutiles que dejan los generadores GAN y los modelos de difusión como Stable Diffusion, DALL·E y Midjourney. Los rostros totalmente sintéticos que nunca han existido se identifican mediante análisis semántico y en el dominio de la frecuencia."
         },
         "2": {
           "question": "¿Puede Scam AI verificar los mensajes de voz en busca de clonación?",
@@ -3716,7 +3731,7 @@
       "capabilities": {
         "0": {
           "title": "Verificación de autenticidad de imágenes",
-          "description": "Detecta imágenes generadas por IA de Stable Diffusion, DALL-E, Midjourney y otros modelos generativos antes de su publicación. Identifica intercambios de rostro y fotografías manipuladas digitalmente."
+          "description": "Detecta imágenes generadas por IA de Stable Diffusion, DALL·E, Midjourney y otros modelos generativos antes de su publicación. Identifica intercambios de rostro y fotografías manipuladas digitalmente."
         },
         "1": {
           "title": "Análisis de vídeos deepfake",
@@ -3771,8 +3786,8 @@
       },
       "faqs": {
         "0": {
-          "question": "¿Puede Scam AI detectar imágenes generadas por IA de Midjourney y DALL-E?",
-          "answer": "Sí. El modelo Eva-v1 de Scam AI está entrenado para detectar los resultados de Stable Diffusion, DALL-E, Midjourney, Flux y otros modelos importantes de imágenes generativas, así como las imágenes generadas por GAN."
+          "question": "¿Puede Scam AI detectar imágenes generadas por IA de Midjourney y DALL·E?",
+          "answer": "Sí. El modelo Eva-v1 de Scam AI está entrenado para detectar los resultados de Stable Diffusion, DALL·E, Midjourney, Flux y otros modelos importantes de imágenes generativas, así como las imágenes generadas por GAN."
         },
         "1": {
           "question": "¿Cómo detecta Scam AI los vídeos deepfake de figuras públicas?",

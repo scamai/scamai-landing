@@ -29,7 +29,7 @@
       "allInOne": {
         "eyebrow": "PLATFORM SERBA ADA",
         "headline": "Satu platform untuk semua kebutuhan verifikasi media",
-        "body": "Berhenti repot mengelola banyak alat deteksi. Scam AI menyatukan deteksi deepfake untuk gambar, video, dan audio ke dalam satu API. Deteksi pertukaran wajah, gambar yang dihasilkan GAN, keluaran model difusi (Stable Diffusion, DALL-E, Midjourney), dan kloning suara — semuanya dengan satu integrasi dalam waktu kurang dari 10 menit."
+        "body": "Berhenti repot mengelola banyak alat deteksi. Scam AI menyatukan deteksi deepfake untuk gambar, video, dan audio ke dalam satu API. Deteksi pertukaran wajah, gambar yang dihasilkan GAN, keluaran model difusi (Stable Diffusion, DALL·E, Midjourney), dan kloning suara — semuanya dengan satu integrasi dalam waktu kurang dari 10 menit."
       },
       "lightningFast": {
         "eyebrow": "SECEPAT KILAT",
@@ -88,21 +88,25 @@
         "product": {
           "label": "Produk",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes, AI-generated images & video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · Baru",
-              "description": "Deteksi deepfake di perangkat untuk panggilan langsung — bersama Qualcomm"
-            },
-            "aiDetection": {
-              "label": "Deteksi AI",
-              "description": "Deteksi deepfake dan media sintetis"
-            },
-            "audio": {
-              "label": "Audio",
-              "description": "Deteksi kloning suara dan audio sintetis"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
-              "label": "Dokumentasi",
-              "description": "Panduan API dan contoh integrasi"
+              "label": "Documentation",
+              "description": "API guides and integration examples"
             }
           }
         },
@@ -322,50 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "SOLUSI",
-      "heading": "Infrastruktur kepercayaan <br></br>untuk <highlight>era AI</highlight>",
-      "subheading": "Deteksi deepfake, media sintetis, kloning suara, dan penipuan dokumen — di seluruh orang, dokumen, dan agen AI.",
-      "learnMore": "Pelajari lebih lanjut",
-      "talkToSales": "Bicara dengan penjualan",
-      "cards": {
-        "halo": {
-          "title": "Halo — Deteksi di Perangkat",
-          "description": "Deteksi deepfake real-time pada panggilan Zoom, Teams & Meet Anda. Berjalan di Qualcomm Snapdragon X NPU — tidak ada yang meninggalkan perangkat Anda.",
-          "badge": "Baru · bersama Qualcomm"
-        },
+      "eyebrow": "APA YANG KAMI DETEKSI",
+      "heading": "Dua jenis pemalsuan. <highlight>Satu platform.</highlight>",
+      "subheading": "Sebagian besar pendeteksi AI hanya jago satu trik. Scam AI menangkap kedua ancaman — orang nyata yang dimanipulasi, dan konten yang dibuat dari nol — di setiap medium yang disentuh bisnis Anda.",
+      "classes": {
         "deepfake": {
+          "tag": "REALITAS YANG DIMANIPULASI",
           "title": "Deepfake",
-          "description": "Deteksi pertukaran wajah, serangan lip-sync, dan wajah yang dihasilkan AI di seluruh gambar dan video secara real time."
+          "description": "Orang nyata, tapi diubah. Pertukaran wajah, sinkronisasi bibir, peragaan ulang, dan kloning suara — direkayasa untuk menyamar sebagai seseorang yang benar-benar ada."
         },
         "genai": {
-          "title": "GenAI",
-          "description": "Identifikasi konten sintetis dari model difusi, GAN, dan LLM sebelum masuk ke pipeline Anda."
-        },
-        "voiceClone": {
-          "title": "Kloning Suara",
-          "description": "Tangkap suara kloningan dan ucapan sintetis yang menargetkan pusat panggilan dan sistem autentikasi suara."
-        },
-        "remoteNotary": {
-          "title": "Notaris Jarak Jauh",
-          "description": "Verifikasi identitas penandatangan selama notarisasi jarak jauh. Hentikan deepfake sebelum dokumen disahkan."
-        },
-        "ageEstimation": {
-          "title": "Estimasi Usia & IDV",
-          "description": "Estimasi usia dan verifikasi ID bertenaga AI yang menangkap ID sintetis dan selfie yang dimanipulasi."
-        },
-        "documentForgery": {
-          "title": "Pemalsuan Dokumen",
-          "description": "Analisis forensik dokumen yang dihasilkan AI dan dimanipulasi, mulai dari rekening koran hingga slip gaji."
-        },
-        "aiAgentScamPrevention": {
-          "title": "Pencegahan Penipuan Agen AI",
-          "description": "Blokir rekayasa sosial, prompt injection, dan pemalsuan identitas yang menargetkan alur kerja bertenaga AI."
-        },
-        "remoteInterview": {
-          "title": "Integritas Wawancara Jarak Jauh",
-          "description": "Verifikasi identitas kandidat dan deteksi deepfake selama wawancara video langsung secara real time."
+          "tag": "SEPENUHNYA SINTETIS",
+          "title": "Konten GenAI",
+          "description": "Dibuat dari nol. Gambar, video, dan audio yang dihasilkan dari awal oleh model AI modern — Stable Diffusion, DALL·E, Midjourney, Sora, ElevenLabs."
         }
-      }
+      },
+      "mediumsHeading": "Di setiap medium",
+      "products": {
+        "visual": {
+          "title": "Deteksi Visual",
+          "coverage": "Gambar · Video",
+          "description": "Pertukaran wajah, gambar yang dihasilkan AI, dan video yang dimanipulasi — hasil setingkat forensik dalam kurang dari 4 detik melalui API."
+        },
+        "voice": {
+          "title": "Suara & Audio",
+          "coverage": "Audio",
+          "description": "Kloning suara dan ucapan sintetis, dianalisis secara real time untuk menghentikan penipuan call center dan autentikasi."
+        },
+        "identity": {
+          "title": "Identitas & Dokumen",
+          "coverage": "KYC · IDV",
+          "description": "Identitas palsu, selfie yang dimanipulasi, dan dokumen yang dihasilkan AI — tertangkap sebelum onboarding selesai."
+        },
+        "halo": {
+          "badge": "Di perangkat · Qualcomm",
+          "title": "Halo",
+          "coverage": "Panggilan langsung",
+          "description": "Deteksi deepfake real-time pada panggilan Zoom, Teams & Meet Anda, di perangkat. Video sekarang; suara dalam peta jalan."
+        }
+      },
+      "learnMore": "Pelajari lebih lanjut",
+      "byIndustry": {
+        "heading": "Dibuat untuk industri Anda",
+        "viewAll": "Lihat semua solusi"
+      },
+      "industries": {
+        "fintech": "Layanan keuangan",
+        "call-centers": "Pusat kontak",
+        "hr": "Perekrutan & wawancara",
+        "media": "Media & platform",
+        "insurance": "Asuransi",
+        "government": "Pemerintahan",
+        "kyc": "KYC & onboarding",
+        "dating": "Kencan & marketplace"
+      },
+      "talkToSales": "Hubungi tim penjualan"
     },
     "developer": {
       "eyebrow": "PALING MUDAH DIINTEGRASIKAN",
@@ -974,7 +989,7 @@
         "category": "Scam Text Detection",
         "headline": "Instantly Identify and Neutralize",
         "subtitle": "Malicious Texts",
-        "description": "Scam.ai's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
+        "description": "Scam AI's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
         "tags": [
           "Text Analysis",
           "Scam Detection",
@@ -1375,7 +1390,7 @@
         "logTitle": "Live log · Blocked Requests",
         "realtime": "Realtime",
         "logs": [
-          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%*",
+          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%",
           "[00:01:15] VOICE-CLONE IVR flagged · fallback to OTP",
           "[00:01:19] IMPERSONATION API denied · rule: Vision-Strict"
         ]
@@ -1454,7 +1469,7 @@
       "privacyShort": "Privacy",
       "termsShort": "Terms"
     },
-    "copyright": " 2026 Scam.ai Inc. All rights reserved. Built in Berkeley."
+    "copyright": " 2026 Reality Inc. All rights reserved. Built in Berkeley."
   },
   "Navigation": {
     "sections": {
@@ -2281,7 +2296,7 @@
         "category": "Research Database for Scam Analysis",
         "headline": "The Intelligence Engine Powering",
         "subtitle": "Next-Generation Fraud Defense",
-        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam.ai platform.",
+        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam AI platform.",
         "tags": [
           "Database",
           "Scam Intelligence",
@@ -2334,7 +2349,7 @@
           },
           {
             "title": "Instantaneous Verification & Propagation",
-            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam.ai model is instantly updated and ready to block it."
+            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam AI model is instantly updated and ready to block it."
           }
         ],
         "outputDescription": "The API returns a rich JSON object containing an entity's risk score, history, and all known connections to other malicious infrastructure."
@@ -2356,7 +2371,7 @@
           },
           {
             "title": "Platform Synergy",
-            "description": "This is the single source of truth that trains, validates, and powers all other Scam.ai models. It's why our detection products are always smarter and faster. ️"
+            "description": "This is the single source of truth that trains, validates, and powers all other Scam AI models. It's why our detection products are always smarter and faster. ️"
           }
         ]
       },
@@ -2502,7 +2517,7 @@
     "hero": {
       "eyebrow": "DETEKSI AI",
       "heading": "Deteksi deepfake pada gambar dan video",
-      "body": "Model Eva-v1 dari Scam AI mendeteksi <em>media sintetis</em>, <em>wajah yang dimanipulasi</em>, dan <em>video deepfake</em> dengan <em>akurasi 98.2%</em> dalam waktu kurang dari 4 detik. Mendukung face swap, gambar hasil GAN, dan keluaran model difusi termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
+      "body": "Model Eva-v1 dari Scam AI mendeteksi <em>media sintetis</em>, <em>wajah yang dimanipulasi</em>, dan <em>video deepfake</em> dengan <em>akurasi 98.2%</em> dalam waktu kurang dari 4 detik. Mendukung face swap, gambar hasil GAN, dan keluaran model difusi termasuk Stable Diffusion, DALL·E, Midjourney, dan Flux.",
       "cta": "Coba Deteksi AI"
     },
     "features": {
@@ -2511,7 +2526,7 @@
       "face": {
         "eyebrow": "DETEKSI WAJAH",
         "heading": "Deteksi Manipulasi Wajah",
-        "body1": "Identifikasi face swap, perubahan ekspresi, dan manipulasi atribut wajah dengan <em>akurasi 98.2%</em> menggunakan analisis jaringan saraf canggih. Mendeteksi keluaran dari perangkat generasi terkemuka termasuk Stable Diffusion, DALL-E, Midjourney, dan Flux.",
+        "body1": "Identifikasi face swap, perubahan ekspresi, dan manipulasi atribut wajah dengan <em>akurasi 98.2%</em> menggunakan analisis jaringan saraf canggih. Mendeteksi keluaran dari perangkat generasi terkemuka termasuk Stable Diffusion, DALL·E, Midjourney, dan Flux.",
         "body2": "Eva-v1-Fast memproses dalam <em>kurang dari 2 detik</em> untuk moderasi real-time. Eva-v1-Pro memberikan hasil berkualitas forensik dalam <em>kurang dari 4 detik</em> untuk KYC dan bukti hukum."
       },
       "video": {
@@ -2584,7 +2599,7 @@
         },
         "types": {
           "question": "Jenis deepfake apa saja yang dapat dideteksi Scam AI pada gambar dan video?",
-          "answer": "Scam AI mendeteksi face swap, gambar hasil GAN, keluaran model difusi (Stable Diffusion, DALL-E, Midjourney, Flux), deepfake video dengan analisis bingkai demi bingkai dan temporal, wajah sintetis, dan manipulasi video 4K."
+          "answer": "Scam AI mendeteksi face swap, gambar hasil GAN, keluaran model difusi (Stable Diffusion, DALL·E, Midjourney, Flux), deepfake video dengan analisis bingkai demi bingkai dan temporal, wajah sintetis, dan manipulasi video 4K."
         },
         "formats": {
           "question": "Format gambar dan video apa yang didukung Scam AI?",
@@ -2780,7 +2795,7 @@
         },
         "genai-detection": {
           "title": "Rilis Deteksi GenAI",
-          "description": "Meluncurkan deteksi konten GenAI menyeluruh untuk teks, gambar, dan video. Model AI canggih mengidentifikasi konten yang dihasilkan oleh ChatGPT, Midjourney, DALL-E, dan platform AI generatif lainnya."
+          "description": "Meluncurkan deteksi konten GenAI menyeluruh untuk teks, gambar, dan video. Model AI canggih mengidentifikasi konten yang dihasilkan oleh ChatGPT, Midjourney, DALL·E, dan platform AI generatif lainnya."
         },
         "audio-detection": {
           "title": "Rilis Deteksi Audio",
@@ -2814,7 +2829,7 @@
     "cards": {
       "aiDetection": {
         "title": "Deteksi Deepfake Gambar & Video AI",
-        "description": "Deteksi gambar hasil AI dan video deepfake dengan akurasi 98.2%* menggunakan model Eva-v1. Identifikasi face swap, gambar hasil GAN, dan keluaran model difusi dari Stable Diffusion, DALL-E, dan Midjourney. Terintegrasi melalui REST API dalam kurang dari 10 menit.",
+        "description": "Deteksi gambar hasil AI dan video deepfake dengan akurasi 98.2% menggunakan model Eva-v1. Identifikasi face swap, gambar hasil GAN, dan keluaran model difusi dari Stable Diffusion, DALL·E, dan Midjourney. Terintegrasi melalui REST API dalam kurang dari 10 menit.",
         "link": "Jelajahi deteksi deepfake AI →"
       },
       "audioDetection": {
@@ -2912,7 +2927,7 @@
       "finance": {
         "tab": "Keuangan",
         "eyebrow": "UNTUK KEUANGAN & TREASURI",
-        "headline": "Suara yang menyetujui transfer<br></br>mungkin bukan CFO Anda.",
+        "headline": "Wajah pada panggilan video itu<br></br>mungkin bukan CFO Anda.",
         "fearTitle": "Penipuan transfer eksekutif sintetis",
         "fearBody": "Pada 2024, seorang karyawan keuangan di firma teknik Arup bergabung dalam panggilan video dengan sosok yang tampak dan terdengar seperti CFO dan rekan-rekannya — setiap wajah dalam panggilan itu adalah deepfake. Mereka menyetujui <em>15 transfer senilai total ~$25M</em>. Panggilan itu tampak sepenuhnya normal. Itulah serangan baru: eksekutif sintetis real-time pada panggilan persetujuan rutin.",
         "stat": "~$25M",
@@ -3017,7 +3032,7 @@
         },
         "vsBuiltIn": {
           "q": "Apa bedanya dengan keamanan bawaan aplikasi konferensi saya?",
-          "a": "Fitur bawaan platform berfokus pada akses dan kontrol rapat, bukan pada mendeteksi apakah wajah atau suara peserta itu sintetis. Halo dirancang khusus untuk deteksi media sintetis real-time dan bekerja di setiap platform yang Anda gunakan."
+          "a": "Fitur bawaan platform berfokus pada akses dan kontrol rapat, bukan pada mendeteksi apakah wajah peserta itu sintetis. Halo dirancang khusus untuk deteksi media sintetis real-time dan bekerja di setiap platform yang Anda gunakan."
         },
         "devices": {
           "q": "Perangkat apa saja yang didukung Halo?",
@@ -3399,7 +3414,7 @@
         },
         "1": {
           "question": "Bagaimana Scam AI mendeteksi profil palsu yang dibuat dengan wajah yang dihasilkan AI?",
-          "answer": "Model Eva-v1 dari Scam AI mendeteksi artefak halus yang ditinggalkan oleh generator GAN dan model difusi seperti Stable Diffusion, DALL-E, dan Midjourney. Wajah yang sepenuhnya sintetis dan tidak pernah ada diidentifikasi melalui analisis domain frekuensi dan semantik."
+          "answer": "Model Eva-v1 dari Scam AI mendeteksi artefak halus yang ditinggalkan oleh generator GAN dan model difusi seperti Stable Diffusion, DALL·E, dan Midjourney. Wajah yang sepenuhnya sintetis dan tidak pernah ada diidentifikasi melalui analisis domain frekuensi dan semantik."
         },
         "2": {
           "question": "Dapatkah Scam AI memverifikasi pesan suara terhadap kloning suara?",
@@ -3609,7 +3624,7 @@
       "capabilities": {
         "0": {
           "title": "Verifikasi Keaslian Gambar",
-          "description": "Deteksi gambar yang dihasilkan AI dari Stable Diffusion, DALL-E, Midjourney, dan model generatif lainnya sebelum publikasi. Identifikasi face swap dan fotografi yang dimanipulasi secara digital."
+          "description": "Deteksi gambar yang dihasilkan AI dari Stable Diffusion, DALL·E, Midjourney, dan model generatif lainnya sebelum publikasi. Identifikasi face swap dan fotografi yang dimanipulasi secara digital."
         },
         "1": {
           "title": "Analisis Video Deepfake",
@@ -3664,8 +3679,8 @@
       },
       "faqs": {
         "0": {
-          "question": "Dapatkah Scam AI mendeteksi gambar yang dihasilkan AI dari Midjourney dan DALL-E?",
-          "answer": "Ya. Model Eva-v1 dari Scam AI dilatih untuk mendeteksi keluaran dari Stable Diffusion, DALL-E, Midjourney, Flux, dan model gambar generatif utama lainnya, serta citra yang dihasilkan GAN."
+          "question": "Dapatkah Scam AI mendeteksi gambar yang dihasilkan AI dari Midjourney dan DALL·E?",
+          "answer": "Ya. Model Eva-v1 dari Scam AI dilatih untuk mendeteksi keluaran dari Stable Diffusion, DALL·E, Midjourney, Flux, dan model gambar generatif utama lainnya, serta citra yang dihasilkan GAN."
         },
         "1": {
           "question": "Bagaimana Scam AI mendeteksi video deepfake tokoh publik?",

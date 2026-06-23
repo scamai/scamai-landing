@@ -29,7 +29,7 @@
       "allInOne": {
         "eyebrow": "منصة شاملة متكاملة",
         "headline": "منصة واحدة لجميع احتياجات التحقق من الوسائط",
-        "body": "توقّف عن التنقّل بين أدوات كشف متعددة. توحّد Scam AI كشف التزييف العميق للصور والفيديو والصوت في واجهة برمجة تطبيقات API واحدة. اكشف تبديل الوجوه، والصور المُولَّدة بـ GAN، ومخرجات نماذج الانتشار (Stable Diffusion، DALL-E، Midjourney)، واستنساخ الأصوات — كل ذلك بتكامل واحد في أقل من 10 دقائق."
+        "body": "توقّف عن التنقّل بين أدوات كشف متعددة. توحّد Scam AI كشف التزييف العميق للصور والفيديو والصوت في واجهة برمجة تطبيقات API واحدة. اكشف تبديل الوجوه، والصور المُولَّدة بـ GAN، ومخرجات نماذج الانتشار (Stable Diffusion، DALL·E، Midjourney)، واستنساخ الأصوات — كل ذلك بتكامل واحد في أقل من 10 دقائق."
       },
       "lightningFast": {
         "eyebrow": "سريع كالبرق",
@@ -88,21 +88,25 @@
         "product": {
           "label": "المنتج",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes, AI-generated images & video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · جديد",
-              "description": "كشف التزييف العميق على الجهاز للمكالمات المباشرة — مع Qualcomm"
-            },
-            "aiDetection": {
-              "label": "كشف الذكاء الاصطناعي",
-              "description": "كشف التزييف العميق والوسائط المُصطنعة"
-            },
-            "audio": {
-              "label": "الصوت",
-              "description": "كشف استنساخ الأصوات والصوت المُصطنع"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
-              "label": "التوثيق",
-              "description": "أدلة API وأمثلة التكامل"
+              "label": "Documentation",
+              "description": "API guides and integration examples"
             }
           }
         },
@@ -322,50 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "الحلول",
-      "heading": "البنية التحتية للثقة <br></br>في <highlight>عصر الذكاء الاصطناعي</highlight>",
-      "subheading": "اكشف التزييف العميق، والوسائط المُصطنعة، واستنساخ الأصوات، والاحتيال على المستندات — عبر الأشخاص والمستندات ووكلاء الذكاء الاصطناعي.",
-      "learnMore": "اعرف المزيد",
-      "talkToSales": "تحدّث مع المبيعات",
-      "cards": {
-        "halo": {
-          "title": "Halo — الكشف على الجهاز",
-          "description": "كشف التزييف العميق في الوقت الفعلي على مكالمات Zoom وTeams وMeet لديك. يعمل على Qualcomm Snapdragon X NPU — لا شيء يغادر جهازك.",
-          "badge": "جديد · مع Qualcomm"
-        },
+      "eyebrow": "ما الذي نكشفه",
+      "heading": "نوعان من التزييف. <highlight>منصة واحدة.</highlight>",
+      "subheading": "معظم أدوات كشف الذكاء الاصطناعي تتقن حيلة واحدة فقط. أما Scam AI فتكشف كلا التهديدين — شخص حقيقي جرى التلاعب به، ومحتوى مُولَّد من العدم — عبر كل وسيط تتعامل معه مؤسستك.",
+      "classes": {
         "deepfake": {
+          "tag": "واقع مُتلاعَب به",
           "title": "التزييف العميق",
-          "description": "اكشف تبديل الوجوه، وهجمات مزامنة الشفاه، والوجوه المُولَّدة بالذكاء الاصطناعي عبر الصور والفيديو في الوقت الفعلي."
+          "description": "شخص حقيقي، جرى تعديله. تبديل الوجوه، ومزامنة الشفاه، وإعادة تمثيل الحركات، والأصوات المستنسخة — مصمّمة لانتحال شخصية إنسان موجود فعلًا."
         },
         "genai": {
-          "title": "GenAI",
-          "description": "حدّد المحتوى المُصطنع من نماذج الانتشار وGAN وLLM قبل أن يدخل إلى مسارك."
-        },
-        "voiceClone": {
-          "title": "استنساخ الصوت",
-          "description": "اكشف الأصوات المستنسخة والكلام المُصطنع الذي يستهدف مراكز الاتصال وأنظمة المصادقة الصوتية."
-        },
-        "remoteNotary": {
-          "title": "التوثيق عن بُعد",
-          "description": "تحقّق من هوية الموقّع أثناء التوثيقات عن بُعد. أوقف التزييف العميق قبل ختم المستندات."
-        },
-        "ageEstimation": {
-          "title": "تقدير العمر وIDV",
-          "description": "تقدير العمر والتحقق من الهوية بالذكاء الاصطناعي يكشف الهويات المُصطنعة والصور الذاتية المُتلاعَب بها."
-        },
-        "documentForgery": {
-          "title": "تزوير المستندات",
-          "description": "تحليل بمستوى الطب الشرعي للمستندات المُولَّدة بالذكاء الاصطناعي والمُتلاعَب بها، من كشوف الحسابات المصرفية إلى قسائم الرواتب."
-        },
-        "aiAgentScamPrevention": {
-          "title": "منع احتيال وكلاء الذكاء الاصطناعي",
-          "description": "احجب الهندسة الاجتماعية، وحقن الأوامر، وانتحال الهوية الذي يستهدف سير العمل المدعوم بالذكاء الاصطناعي."
-        },
-        "remoteInterview": {
-          "title": "نزاهة المقابلات عن بُعد",
-          "description": "تحقّق من هوية المرشح واكشف التزييف العميق أثناء مقابلات الفيديو المباشرة في الوقت الفعلي."
+          "tag": "اصطناعي بالكامل",
+          "title": "محتوى GenAI",
+          "description": "مُنشأ من العدم. صور وفيديو وصوت مُولَّدة من الصفر بنماذج الذكاء الاصطناعي الحديثة — Stable Diffusion وDALL·E وMidjourney وSora وElevenLabs."
         }
-      }
+      },
+      "mediumsHeading": "عبر كل وسيط",
+      "products": {
+        "visual": {
+          "title": "الكشف البصري",
+          "coverage": "صورة · فيديو",
+          "description": "تبديل الوجوه، والصور المُولَّدة بالذكاء الاصطناعي، والفيديو المُتلاعب به — نتائج بدقة جنائية في أقل من 4 ثوانٍ عبر API."
+        },
+        "voice": {
+          "title": "الصوت والمقاطع الصوتية",
+          "coverage": "صوت",
+          "description": "استنساخ الأصوات والكلام الاصطناعي، يُحلَّل في الوقت الفعلي لإيقاف الاحتيال في مراكز الاتصال والمصادقة."
+        },
+        "identity": {
+          "title": "الهوية والمستندات",
+          "coverage": "KYC · IDV",
+          "description": "بطاقات الهوية المزوّرة، والصور الذاتية المُتلاعب بها، والمستندات المُولَّدة بالذكاء الاصطناعي — تُكشف قبل اكتمال التسجيل."
+        },
+        "halo": {
+          "badge": "على الجهاز · Qualcomm",
+          "title": "Halo",
+          "coverage": "المكالمات المباشرة",
+          "description": "كشف التزييف العميق في الوقت الفعلي على مكالمات Zoom وTeams وMeet لديك، على الجهاز مباشرةً. الفيديو متاح اليوم؛ والصوت على خارطة الطريق."
+        }
+      },
+      "learnMore": "اعرف المزيد",
+      "byIndustry": {
+        "heading": "مصمّمة لقطاعك",
+        "viewAll": "عرض جميع الحلول"
+      },
+      "industries": {
+        "fintech": "الخدمات المالية",
+        "call-centers": "مراكز الاتصال",
+        "hr": "التوظيف والمقابلات",
+        "media": "الإعلام والمنصات",
+        "insurance": "التأمين",
+        "government": "الحكومة",
+        "kyc": "اعرف عميلك والتسجيل",
+        "dating": "المواعدة والأسواق"
+      },
+      "talkToSales": "تواصل مع المبيعات"
     },
     "developer": {
       "eyebrow": "الأسهل في التكامل",
@@ -1020,7 +1035,7 @@
         "category": "Scam Text Detection",
         "headline": "Instantly Identify and Neutralize",
         "subtitle": "Malicious Texts",
-        "description": "Scam.ai's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
+        "description": "Scam AI's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
         "tags": [
           "Text Analysis",
           "Scam Detection",
@@ -1375,7 +1390,7 @@
         "logTitle": "Live log · Blocked Requests",
         "realtime": "Realtime",
         "logs": [
-          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%*",
+          "[00:01:12] FACE-SWAP attempt blocked · confidence 98.2%",
           "[00:01:15] VOICE-CLONE IVR flagged · fallback to OTP",
           "[00:01:19] IMPERSONATION API denied · rule: Vision-Strict"
         ]
@@ -1454,7 +1469,7 @@
       "privacyShort": "Privacy",
       "termsShort": "Terms"
     },
-    "copyright": " 2026 Scam.ai Inc. All rights reserved. Built in Berkeley."
+    "copyright": " 2026 Reality Inc. All rights reserved. Built in Berkeley."
   },
   "Navigation": {
     "sections": {
@@ -2281,7 +2296,7 @@
         "category": "Research Database for Scam Analysis",
         "headline": "The Intelligence Engine Powering",
         "subtitle": "Next-Generation Fraud Defense",
-        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam.ai platform.",
+        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam AI platform.",
         "tags": [
           "Database",
           "Scam Intelligence",
@@ -2334,7 +2349,7 @@
           },
           {
             "title": "Instantaneous Verification & Propagation",
-            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam.ai model is instantly updated and ready to block it."
+            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam AI model is instantly updated and ready to block it."
           }
         ],
         "outputDescription": "The API returns a rich JSON object containing an entity's risk score, history, and all known connections to other malicious infrastructure."
@@ -2356,7 +2371,7 @@
           },
           {
             "title": "Platform Synergy",
-            "description": "This is the single source of truth that trains, validates, and powers all other Scam.ai models. It's why our detection products are always smarter and faster. ️"
+            "description": "This is the single source of truth that trains, validates, and powers all other Scam AI models. It's why our detection products are always smarter and faster. ️"
           }
         ]
       },
@@ -2502,7 +2517,7 @@
     "hero": {
       "eyebrow": "كشف الذكاء الاصطناعي",
       "heading": "اكشف التزييف العميق في الصور ومقاطع الفيديو",
-      "body": "تكشف نماذج Eva-v1 من Scam AI <em>الوسائط الاصطناعية</em> و<em>الوجوه المتلاعب بها</em> و<em>مقاطع التزييف العميق</em> بدقة <em>98.2%</em> في أقل من 4 ثوانٍ. تدعم تبديل الوجوه والصور المولّدة بتقنية GAN ومخرجات نماذج الانتشار بما في ذلك Stable Diffusion وDALL-E وMidjourney وFlux.",
+      "body": "تكشف نماذج Eva-v1 من Scam AI <em>الوسائط الاصطناعية</em> و<em>الوجوه المتلاعب بها</em> و<em>مقاطع التزييف العميق</em> بدقة <em>98.2%</em> في أقل من 4 ثوانٍ. تدعم تبديل الوجوه والصور المولّدة بتقنية GAN ومخرجات نماذج الانتشار بما في ذلك Stable Diffusion وDALL·E وMidjourney وFlux.",
       "cta": "جرّب كشف الذكاء الاصطناعي"
     },
     "features": {
@@ -2511,7 +2526,7 @@
       "face": {
         "eyebrow": "كشف الوجوه",
         "heading": "كشف التلاعب بالوجوه",
-        "body1": "تعرّف على تبديل الوجوه وتغييرات تعابير الوجه والتلاعب بسمات الوجه بدقة <em>98.2%</em> باستخدام تحليل الشبكات العصبية المتقدم. يكشف مخرجات أدوات التوليد الرائدة بما في ذلك Stable Diffusion وDALL-E وMidjourney وFlux.",
+        "body1": "تعرّف على تبديل الوجوه وتغييرات تعابير الوجه والتلاعب بسمات الوجه بدقة <em>98.2%</em> باستخدام تحليل الشبكات العصبية المتقدم. يكشف مخرجات أدوات التوليد الرائدة بما في ذلك Stable Diffusion وDALL·E وMidjourney وFlux.",
         "body2": "يعالج Eva-v1-Fast في <em>أقل من ثانيتين</em> للإشراف اللحظي. ويقدّم Eva-v1-Pro نتائج بمستوى جنائي في <em>أقل من 4 ثوانٍ</em> لإجراءات KYC والأدلة القانونية."
       },
       "video": {
@@ -2584,7 +2599,7 @@
         },
         "types": {
           "question": "ما أنواع التزييف العميق التي يمكن لـ Scam AI كشفها في الصور ومقاطع الفيديو؟",
-          "answer": "يكشف Scam AI تبديل الوجوه والصور المولّدة بتقنية GAN ومخرجات نماذج الانتشار (Stable Diffusion وDALL-E وMidjourney وFlux)، وتزييف الفيديو العميق بالتحليل إطارًا بإطار والتحليل الزمني، والوجوه الاصطناعية، والتلاعب بفيديو 4K."
+          "answer": "يكشف Scam AI تبديل الوجوه والصور المولّدة بتقنية GAN ومخرجات نماذج الانتشار (Stable Diffusion وDALL·E وMidjourney وFlux)، وتزييف الفيديو العميق بالتحليل إطارًا بإطار والتحليل الزمني، والوجوه الاصطناعية، والتلاعب بفيديو 4K."
         },
         "formats": {
           "question": "ما صيغ الصور والفيديو التي يدعمها Scam AI؟",
@@ -2780,7 +2795,7 @@
         },
         "genai-detection": {
           "title": "إطلاق كشف الذكاء الاصطناعي التوليدي",
-          "description": "أطلقنا كشفًا شاملًا لمحتوى الذكاء الاصطناعي التوليدي عبر النصوص والصور ومقاطع الفيديو. وتحدّد نماذج الذكاء الاصطناعي المتقدمة المحتوى المولّد بواسطة ChatGPT وMidjourney وDALL-E ومنصّات الذكاء الاصطناعي التوليدي الأخرى."
+          "description": "أطلقنا كشفًا شاملًا لمحتوى الذكاء الاصطناعي التوليدي عبر النصوص والصور ومقاطع الفيديو. وتحدّد نماذج الذكاء الاصطناعي المتقدمة المحتوى المولّد بواسطة ChatGPT وMidjourney وDALL·E ومنصّات الذكاء الاصطناعي التوليدي الأخرى."
         },
         "audio-detection": {
           "title": "إطلاق كشف الصوت",
@@ -2814,7 +2829,7 @@
     "cards": {
       "aiDetection": {
         "title": "كشف التزييف العميق للصور والفيديو بالذكاء الاصطناعي",
-        "description": "اكشف الصور المولّدة بالذكاء الاصطناعي ومقاطع التزييف العميق بدقة 98.2%* باستخدام نموذج Eva-v1. تعرّف على تبديل الوجوه والصور المولّدة بتقنية GAN ومخرجات نماذج الانتشار من Stable Diffusion وDALL-E وMidjourney. يتكامل عبر REST API في أقل من 10 دقائق.",
+        "description": "اكشف الصور المولّدة بالذكاء الاصطناعي ومقاطع التزييف العميق بدقة 98.2% باستخدام نموذج Eva-v1. تعرّف على تبديل الوجوه والصور المولّدة بتقنية GAN ومخرجات نماذج الانتشار من Stable Diffusion وDALL·E وMidjourney. يتكامل عبر REST API في أقل من 10 دقائق.",
         "link": "استكشف كشف التزييف العميق بالذكاء الاصطناعي ←"
       },
       "audioDetection": {
@@ -2912,7 +2927,7 @@
       "finance": {
         "tab": "المالية",
         "eyebrow": "للمالية والخزينة",
-        "headline": "قد لا يكون الصوت الذي يوافق على التحويل<br></br>هو مديرك المالي.",
+        "headline": "قد لا يكون الوجه الذي تراه في مكالمة الفيديو تلك<br></br>هو مديرك المالي.",
         "fearTitle": "احتيال التحويلات بانتحال تنفيذيين اصطناعيين",
         "fearBody": "في عام 2024، انضم موظف مالي في شركة الهندسة Arup إلى مكالمة فيديو مع أشخاص بدا أنهم مديره المالي وزملاؤه ويتحدثون بأصواتهم — وكان كل وجه في المكالمة تزييفًا عميقًا. فأذِنوا بـ<em>15 تحويلًا بإجمالي ~$25M</em>. بدت المكالمة طبيعية تمامًا. ذلك هو الهجوم الجديد: تنفيذيون اصطناعيون لحظيون في مكالمات الموافقة الروتينية.",
         "stat": "~$25M",
@@ -3017,7 +3032,7 @@
         },
         "vsBuiltIn": {
           "q": "كيف يختلف هذا عن الأمان المدمج في تطبيق المؤتمرات لديّ؟",
-          "a": "تركّز الميزات المدمجة في المنصّة على عناصر التحكم في الوصول والاجتماعات، لا على كشف ما إذا كان وجه مشارك أو صوته اصطناعيًا. أما Halo فمصمّم خصيصًا لكشف الوسائط الاصطناعية لحظيًا ويعمل عبر كل منصّة تستخدمها."
+          "a": "تركّز الميزات المدمجة في المنصّة على عناصر التحكم في الوصول والاجتماعات، لا على كشف ما إذا كان وجه أحد المشاركين اصطناعيًا. أما Halo فمصمّم خصيصًا لكشف الوسائط الاصطناعية في الوقت الفعلي ويعمل عبر كل منصّة تستخدمها."
         },
         "devices": {
           "q": "ما الأجهزة التي يدعمها Halo؟",
@@ -3399,7 +3414,7 @@
         },
         "1": {
           "question": "كيف يكتشف Scam AI الملفات الشخصية المزيفة المبنية على وجوه مولّدة بالذكاء الاصطناعي؟",
-          "answer": "يكتشف نموذج Eva-v1 من Scam AI الآثار الدقيقة التي تتركها مولّدات GAN ونماذج الانتشار مثل Stable Diffusion وDALL-E وMidjourney. وتُحدَّد الوجوه الاصطناعية بالكامل التي لم توجد قط من خلال تحليل النطاق الترددي والتحليل الدلالي."
+          "answer": "يكتشف نموذج Eva-v1 من Scam AI الآثار الدقيقة التي تتركها مولّدات GAN ونماذج الانتشار مثل Stable Diffusion وDALL·E وMidjourney. وتُحدَّد الوجوه الاصطناعية بالكامل التي لم توجد قط من خلال تحليل النطاق الترددي والتحليل الدلالي."
         },
         "2": {
           "question": "هل يمكن لـ Scam AI التحقق من الرسائل الصوتية بحثًا عن استنساخ الصوت؟",
@@ -3609,7 +3624,7 @@
       "capabilities": {
         "0": {
           "title": "التحقق من أصالة الصور",
-          "description": "اكتشف الصور المولّدة بالذكاء الاصطناعي من Stable Diffusion وDALL-E وMidjourney وغيرها من النماذج التوليدية قبل النشر. حدّد عمليات تبديل الوجوه والصور الفوتوغرافية المعدّلة رقميًا."
+          "description": "اكتشف الصور المولّدة بالذكاء الاصطناعي من Stable Diffusion وDALL·E وMidjourney وغيرها من النماذج التوليدية قبل النشر. حدّد عمليات تبديل الوجوه والصور الفوتوغرافية المعدّلة رقميًا."
         },
         "1": {
           "title": "تحليل الفيديو المزيف عميقًا",
@@ -3664,8 +3679,8 @@
       },
       "faqs": {
         "0": {
-          "question": "هل يمكن لـ Scam AI كشف الصور المولّدة بالذكاء الاصطناعي من Midjourney وDALL-E؟",
-          "answer": "نعم. نموذج Eva-v1 من Scam AI مُدرَّب على كشف مخرجات Stable Diffusion وDALL-E وMidjourney وFlux وغيرها من نماذج توليد الصور الكبرى، فضلًا عن الصور المولّدة بتقنية GAN."
+          "question": "هل يمكن لـ Scam AI كشف الصور المولّدة بالذكاء الاصطناعي من Midjourney وDALL·E؟",
+          "answer": "نعم. نموذج Eva-v1 من Scam AI مُدرَّب على كشف مخرجات Stable Diffusion وDALL·E وMidjourney وFlux وغيرها من نماذج توليد الصور الكبرى، فضلًا عن الصور المولّدة بتقنية GAN."
         },
         "1": {
           "question": "كيف يكتشف Scam AI مقاطع الفيديو المزيفة عميقًا للشخصيات العامة؟",

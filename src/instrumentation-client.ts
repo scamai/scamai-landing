@@ -51,7 +51,10 @@ if (typeof Node === "function" && Node.prototype) {
   };
 }
 
-if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+// Gate on NODE_ENV (inlined at build time) so a local `next dev` build doesn't
+// report client errors into the prod scam-landing project — same dev-noise fix
+// as sentry.server.config.ts. The DOM-mutation guard above stays unconditional.
+if (process.env.NEXT_PUBLIC_SENTRY_DSN && process.env.NODE_ENV === "production") {
   // Internal traffic (our egress IPs via si_internal cookie, or automation
   // via navigator.webdriver): errors STILL report — a prod bug found by
   // internal testing is a real bug — but tagged internal_traffic for

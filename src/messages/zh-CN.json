@@ -29,7 +29,7 @@
       "allInOne": {
         "eyebrow": "一体化平台",
         "headline": "一个平台，满足所有媒体验证需求",
-        "body": "无需在多款检测工具间切换。Scam AI 将图像、视频和音频的 deepfake 检测统一到单一 API。检测换脸、GAN 生成图像、扩散模型输出（Stable Diffusion、DALL-E、Midjourney）以及声音克隆——只需一次集成，10 分钟内即可完成。"
+        "body": "无需在多款检测工具间切换。Scam AI 将图像、视频和音频的 deepfake 检测统一到单一 API。检测换脸、GAN 生成图像、扩散模型输出（Stable Diffusion、DALL·E、Midjourney）以及声音克隆——只需一次集成，10 分钟内即可完成。"
       },
       "lightningFast": {
         "eyebrow": "极速响应",
@@ -88,21 +88,25 @@
         "product": {
           "label": "产品",
           "children": {
+            "visual": {
+              "label": "Visual Detection",
+              "description": "Deepfakes, AI-generated images & video"
+            },
+            "voice": {
+              "label": "Voice & Audio",
+              "description": "Voice clones & synthetic speech"
+            },
+            "identity": {
+              "label": "Identity & Document",
+              "description": "Forged IDs, selfies & AI-generated documents"
+            },
             "halo": {
-              "label": "Halo · 全新",
-              "description": "携手 Qualcomm，为实时通话提供设备端 deepfake 检测"
-            },
-            "aiDetection": {
-              "label": "AI 检测",
-              "description": "Deepfake 与合成媒体检测"
-            },
-            "audio": {
-              "label": "音频",
-              "description": "声音克隆与合成音频检测"
+              "label": "Halo · On-device",
+              "description": "Real-time deepfake detection on live calls — with Qualcomm"
             },
             "documentation": {
-              "label": "文档",
-              "description": "API 指南与集成示例"
+              "label": "Documentation",
+              "description": "API guides and integration examples"
             }
           }
         },
@@ -322,50 +326,61 @@
       }
     },
     "solutions": {
-      "eyebrow": "解决方案",
-      "heading": "为 <highlight>AI 时代</highlight><br></br>打造的信任基础设施",
-      "subheading": "跨人物、文档和 AI 智能体，检测 deepfake、合成媒体、声音克隆与文档欺诈。",
-      "learnMore": "了解更多",
-      "talkToSales": "联系销售",
-      "cards": {
-        "halo": {
-          "title": "Halo — 设备端检测",
-          "description": "在你的 Zoom、Teams 和 Meet 通话中实时检测 deepfake。运行于 Qualcomm Snapdragon X NPU——数据绝不离开你的设备。",
-          "badge": "全新 · 携手 Qualcomm"
-        },
+      "eyebrow": "我们检测什么",
+      "heading": "两种伪造，<highlight>一个平台。</highlight>",
+      "subheading": "大多数 AI 检测工具只会一招。Scam AI 同时识破两类威胁——被篡改的真人，以及凭空生成的内容——覆盖你业务触及的每一种媒介。",
+      "classes": {
         "deepfake": {
-          "title": "Deepfake",
-          "description": "在图像和视频中实时检测换脸、口型同步攻击与 AI 生成人脸。"
+          "tag": "篡改的真实",
+          "title": "深度伪造",
+          "description": "真人被篡改。换脸、唇形同步、表情迁移与声音克隆——专为冒充真实存在的某个人而打造。"
         },
         "genai": {
-          "title": "GenAI",
-          "description": "在合成内容进入你的流程前，识别来自扩散模型、GAN 和 LLM 的内容。"
-        },
-        "voiceClone": {
-          "title": "声音克隆",
-          "description": "识破针对呼叫中心和语音认证系统的克隆声音与合成语音。"
-        },
-        "remoteNotary": {
-          "title": "远程公证",
-          "description": "在远程公证过程中验证签署人身份。在文件封印前拦截 deepfake。"
-        },
-        "ageEstimation": {
-          "title": "年龄估算与 IDV",
-          "description": "AI 驱动的年龄估算与身份验证，识破合成证件与篡改自拍。"
-        },
-        "documentForgery": {
-          "title": "文档伪造",
-          "description": "对 AI 生成与篡改的文档进行取证分析，涵盖银行对账单到工资单。"
-        },
-        "aiAgentScamPrevention": {
-          "title": "AI 智能体诈骗防护",
-          "description": "拦截针对 AI 驱动工作流的社会工程、提示注入与身份伪冒。"
-        },
-        "remoteInterview": {
-          "title": "远程面试诚信",
-          "description": "在实时视频面试中验证候选人身份并实时检测 deepfake。"
+          "tag": "完全合成",
+          "title": "GenAI 内容",
+          "description": "凭空生成。由现代 AI 模型从零生成的图像、视频与音频——Stable Diffusion、DALL·E、Midjourney、Sora、ElevenLabs。"
         }
-      }
+      },
+      "mediumsHeading": "覆盖每一种媒介",
+      "products": {
+        "visual": {
+          "title": "视觉检测",
+          "coverage": "图像 · 视频",
+          "description": "换脸、AI 生成图像与被篡改的视频——通过 API 在 4 秒内给出取证级结论。"
+        },
+        "voice": {
+          "title": "语音与音频",
+          "coverage": "音频",
+          "description": "声音克隆与合成语音，实时分析，遏制呼叫中心与身份认证欺诈。"
+        },
+        "identity": {
+          "title": "身份与证件",
+          "coverage": "KYC · IDV",
+          "description": "伪造证件、被篡改的自拍与 AI 生成的文件——在开户完成前即被识破。"
+        },
+        "halo": {
+          "badge": "设备端 · Qualcomm",
+          "title": "Halo",
+          "coverage": "实时通话",
+          "description": "在你的 Zoom、Teams 与 Meet 通话中实时检测深度伪造，全程在设备端运行。视频检测现已上线；语音检测在规划之中。"
+        }
+      },
+      "learnMore": "了解更多",
+      "byIndustry": {
+        "heading": "为你的行业量身打造",
+        "viewAll": "查看全部解决方案"
+      },
+      "industries": {
+        "fintech": "金融服务",
+        "call-centers": "呼叫中心",
+        "hr": "招聘与面试",
+        "media": "媒体与平台",
+        "insurance": "保险",
+        "government": "政府机构",
+        "kyc": "KYC 与开户",
+        "dating": "婚恋与交易平台"
+      },
+      "talkToSales": "联系销售"
     },
     "developer": {
       "eyebrow": "最易于集成",
@@ -831,7 +846,7 @@
         "logTitle": "实时日志 · 已拦截请求",
         "realtime": "实时",
         "logs": [
-          "[00:01:12] FACE-SWAP 尝试已拦截 · 置信度 98.2%*",
+          "[00:01:12] FACE-SWAP 尝试已拦截 · 置信度 98.2%",
           "[00:01:15] VOICE-CLONE IVR 已标记 · 回退到 OTP",
           "[00:01:19] IMPERSONATION API 被拒绝 · 规则：Vision-Strict"
         ]
@@ -910,7 +925,7 @@
       "privacyShort": "隐私",
       "termsShort": "条款"
     },
-    "copyright": "© 2026 Scam.ai Inc. 保留所有权利。诞生于伯克利。"
+    "copyright": "© 2026 Reality Inc. 保留所有权利。诞生于伯克利。"
   },
   "Navigation": {
     "sections": {
@@ -1287,7 +1302,7 @@
         "category": "Research Database for Scam Analysis",
         "headline": "The Intelligence Engine Powering",
         "subtitle": "Next-Generation Fraud Defense",
-        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam.ai platform.",
+        "description": "Welcome to ScamNet DB, the most comprehensive and real-time database of active scams on the planet. This is not just a static blocklist; it's a living ecosystem of threat intelligence that forms the core foundation of the entire Scam AI platform.",
         "tags": [
           "Database",
           "Scam Intelligence",
@@ -1340,7 +1355,7 @@
           },
           {
             "title": "Instantaneous Verification & Propagation",
-            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam.ai model is instantly updated and ready to block it."
+            "description": "Verified intelligence is propagated across our network in milliseconds. When a new scam is detected, every Scam AI model is instantly updated and ready to block it."
           }
         ],
         "outputDescription": "The API returns a rich JSON object containing an entity's risk score, history, and all known connections to other malicious infrastructure."
@@ -1362,7 +1377,7 @@
           },
           {
             "title": "Platform Synergy",
-            "description": "This is the single source of truth that trains, validates, and powers all other Scam.ai models. It's why our detection products are always smarter and faster."
+            "description": "This is the single source of truth that trains, validates, and powers all other Scam AI models. It's why our detection products are always smarter and faster."
           }
         ]
       },
@@ -1472,7 +1487,7 @@
         "category": "Scam Text Detection",
         "headline": "Instantly Identify and Neutralize",
         "subtitle": "Malicious Texts",
-        "description": "Scam.ai's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
+        "description": "Scam AI's Text Guardian model analyzes text messages and short-form content in real time to detect and block phishing, smishing, and other text-based scams before a user can click a malicious link or fall for a fraudulent request.",
         "tags": [
           "Text Analysis",
           "Scam Detection",
@@ -2502,7 +2517,7 @@
     "hero": {
       "eyebrow": "AI 检测",
       "heading": "检测图像和视频中的深度伪造",
-      "body": "Scam AI 的 Eva-v1 模型能以 <em>98.2% 的准确率</em> 在 4 秒内检测 <em>合成媒体</em>、<em>被篡改的人脸</em> 和 <em>深度伪造视频</em>。支持换脸、GAN 生成图像，以及包括 Stable Diffusion、DALL-E、Midjourney 和 Flux 在内的扩散模型输出。",
+      "body": "Scam AI 的 Eva-v1 模型能以 <em>98.2% 的准确率</em> 在 4 秒内检测 <em>合成媒体</em>、<em>被篡改的人脸</em> 和 <em>深度伪造视频</em>。支持换脸、GAN 生成图像，以及包括 Stable Diffusion、DALL·E、Midjourney 和 Flux 在内的扩散模型输出。",
       "cta": "试用 AI 检测"
     },
     "features": {
@@ -2511,7 +2526,7 @@
       "face": {
         "eyebrow": "人脸检测",
         "heading": "人脸篡改检测",
-        "body1": "运用先进的神经网络分析，以 <em>98.2% 的准确率</em> 识别换脸、表情更改和面部属性篡改。可检测来自 Stable Diffusion、DALL-E、Midjourney 和 Flux 等主流生成工具的输出。",
+        "body1": "运用先进的神经网络分析，以 <em>98.2% 的准确率</em> 识别换脸、表情更改和面部属性篡改。可检测来自 Stable Diffusion、DALL·E、Midjourney 和 Flux 等主流生成工具的输出。",
         "body2": "Eva-v1-Fast 处理时间 <em>不到 2 秒</em>，适用于实时审核。Eva-v1-Pro 在 <em>4 秒内</em> 提供取证级结果，适用于 KYC 和法律证据。"
       },
       "video": {
@@ -2584,7 +2599,7 @@
         },
         "types": {
           "question": "Scam AI 能在图像和视频中检测哪些类型的深度伪造？",
-          "answer": "Scam AI 可检测换脸、GAN 生成图像、扩散模型输出（Stable Diffusion、DALL-E、Midjourney、Flux）、通过逐帧和时序分析识别的视频深度伪造、合成人脸以及 4K 视频篡改。"
+          "answer": "Scam AI 可检测换脸、GAN 生成图像、扩散模型输出（Stable Diffusion、DALL·E、Midjourney、Flux）、通过逐帧和时序分析识别的视频深度伪造、合成人脸以及 4K 视频篡改。"
         },
         "formats": {
           "question": "Scam AI 支持哪些图像和视频格式？",
@@ -2780,7 +2795,7 @@
         },
         "genai-detection": {
           "title": "GenAI 检测发布",
-          "description": "推出涵盖文本、图像和视频的全面 GenAI 内容检测。先进的 AI 模型可识别由 ChatGPT、Midjourney、DALL-E 及其他生成式 AI 平台生成的内容。"
+          "description": "推出涵盖文本、图像和视频的全面 GenAI 内容检测。先进的 AI 模型可识别由 ChatGPT、Midjourney、DALL·E 及其他生成式 AI 平台生成的内容。"
         },
         "audio-detection": {
           "title": "音频检测发布",
@@ -2814,7 +2829,7 @@
     "cards": {
       "aiDetection": {
         "title": "AI 图像与视频深度伪造检测",
-        "description": "使用 Eva-v1 模型，以 98.2%* 的准确率检测 AI 生成图像和深度伪造视频。识别换脸、GAN 生成图像，以及来自 Stable Diffusion、DALL-E 和 Midjourney 的扩散模型输出。通过 REST API 在 10 分钟内完成集成。",
+        "description": "使用 Eva-v1 模型，以 98.2% 的准确率检测 AI 生成图像和深度伪造视频。识别换脸、GAN 生成图像，以及来自 Stable Diffusion、DALL·E 和 Midjourney 的扩散模型输出。通过 REST API 在 10 分钟内完成集成。",
         "link": "了解 AI 深度伪造检测 →"
       },
       "audioDetection": {
@@ -2912,7 +2927,7 @@
       "finance": {
         "tab": "财务",
         "eyebrow": "面向财务与资金管理",
-        "headline": "批准电汇的那个声音<br></br>可能并非您的 CFO。",
+        "headline": "视频通话里的那张脸<br></br>可能并非您的 CFO。",
         "fearTitle": "合成高管电汇欺诈",
         "fearBody": "2024 年，工程公司 Arup 的一名财务员工加入了一场视频通话，画面中的人看起来、听起来都像他们的 CFO 和同事——而通话中的每一张脸都是深度伪造。他们授权了 <em>15 笔总计约 $25M</em> 的转账。整场通话看起来完全正常。这就是全新的攻击方式：在例行审批通话中出现的实时合成高管。",
         "stat": "约 $25M",
@@ -3017,7 +3032,7 @@
         },
         "vsBuiltIn": {
           "q": "这与我的会议应用内置的安全功能有何不同？",
-          "a": "平台原生功能侧重于访问和会议控制，而非检测参与者的人脸或声音是否为合成。Halo 专为实时合成媒体检测打造，并兼容您使用的每一个平台。"
+          "a": "平台原生功能侧重于访问和会议控制，而非检测参与者的人脸是否为合成。Halo 专为实时合成媒体检测打造，并兼容您使用的每一个平台。"
         },
         "devices": {
           "q": "Halo 支持哪些设备？",
@@ -3399,7 +3414,7 @@
         },
         "1": {
           "question": "Scam AI 如何检测使用 AI 生成人脸创建的虚假资料？",
-          "answer": "Scam AI 的 Eva-v1 模型可检测 GAN 生成器以及 Stable Diffusion、DALL-E、Midjourney 等扩散模型留下的细微伪影。完全合成、从未真实存在的人脸将通过频域与语义分析被识别出来。"
+          "answer": "Scam AI 的 Eva-v1 模型可检测 GAN 生成器以及 Stable Diffusion、DALL·E、Midjourney 等扩散模型留下的细微伪影。完全合成、从未真实存在的人脸将通过频域与语义分析被识别出来。"
         },
         "2": {
           "question": "Scam AI 能否核验语音消息是否为语音克隆？",
@@ -3609,7 +3624,7 @@
       "capabilities": {
         "0": {
           "title": "图像真实性核验",
-          "description": "在发布前检测来自 Stable Diffusion、DALL-E、Midjourney 及其他生成模型的 AI 生成图像。识别换脸与经数字篡改的摄影作品。"
+          "description": "在发布前检测来自 Stable Diffusion、DALL·E、Midjourney 及其他生成模型的 AI 生成图像。识别换脸与经数字篡改的摄影作品。"
         },
         "1": {
           "title": "深度伪造视频分析",
@@ -3664,8 +3679,8 @@
       },
       "faqs": {
         "0": {
-          "question": "Scam AI 能否检测来自 Midjourney 和 DALL-E 的 AI 生成图像？",
-          "answer": "可以。Scam AI 的 Eva-v1 模型经过训练，可检测来自 Stable Diffusion、DALL-E、Midjourney、Flux 及其他主流生成式图像模型的输出，以及 GAN 生成的图像。"
+          "question": "Scam AI 能否检测来自 Midjourney 和 DALL·E 的 AI 生成图像？",
+          "answer": "可以。Scam AI 的 Eva-v1 模型经过训练，可检测来自 Stable Diffusion、DALL·E、Midjourney、Flux 及其他主流生成式图像模型的输出，以及 GAN 生成的图像。"
         },
         "1": {
           "question": "Scam AI 如何检测公众人物的深度伪造视频？",

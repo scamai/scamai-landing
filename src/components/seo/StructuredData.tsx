@@ -13,7 +13,7 @@ export default function StructuredData() {
     },
     "image": "https://www.scam.ai/scamai-logo.svg",
     "foundingDate": "2024",
-    "description": "All-in-one AI Trust Platform for detecting synthetic media and deepfakes in real-time with industry-leading accuracy.",
+    "description": "All-in-one AI Trust Platform for detecting synthetic and manipulated media — including deepfakes — in real time with industry-leading accuracy.",
     "slogan": "Building trust in the AI era",
     "address": {
       "@type": "PostalAddress",
@@ -80,7 +80,7 @@ export default function StructuredData() {
       "description": "200 free images per month",
       "availability": "https://schema.org/InStock"
     },
-    "description": "AI-powered deepfake detection and synthetic media verification platform with real-time analysis.",
+    "description": "AI-powered synthetic and manipulated media detection platform — including deepfakes — with real-time analysis.",
     "featureList": [
       "Real-time deepfake detection with 98.2% accuracy",
       "AI detection for images and videos",
