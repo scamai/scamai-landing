@@ -159,7 +159,7 @@ export default async function HaloOGImage({
                 maxWidth: "520px",
               }}
             >
-              Real-time detection for video &amp; voice — nothing leaves your device.
+              Real-time deepfake detection on your video calls — nothing leaves your device.
             </span>
           </div>
 
