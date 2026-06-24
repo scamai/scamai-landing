@@ -27,6 +27,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/newsletter',
     '/research',
   ]
+  // NOTE: '/company' (→ /about) and '/news' (→ /newsletter) are intentionally
+  // excluded — both return 307 redirects, and Google's guidelines require
+  // sitemaps to list only canonical 200-response URLs.
 
   const sitemapEntries: MetadataRoute.Sitemap = []
 
